@@ -1,0 +1,14 @@
+./decay f/hgagaSM
+./decay f/hgaZSM
+./decay f/hggSM
+./decay f/heeSM
+./decay f/huuSM
+./decay f/hddSM
+./decay f/hgaga
+./decay f/hgaZ
+./decay f/hgg
+./decay f/hhh
+./decay f/hee
+./decay f/huu
+gmake: *** [f/huu] Terminated
+/home/pcl301/hahn/bin/scripts/math: line 7:  9014 Killed                  LD_LIBRARY_PATH=$M/Libraries/$X $M/Kernel/Binaries/$X/MathKernel "$@"

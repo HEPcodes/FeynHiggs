@@ -1,0 +1,96 @@
+  #****p* SecDec/loop/perlsrc/makemakeC.pm
+  #  NAME
+  #    makemakeC.pm
+  #
+  #  USAGE
+  #  is called from preparenumerics.pl via writefiles::makemakeC
+  # 
+  #  USES 
+  #  arguments parsed from preparenumerics.pl
+  #
+  #  USED BY 
+  #  preparenumerics.pl, writefiles.pm
+  #
+  #  PURPOSE
+  #  writes the makefiles *make*file in the appropriate subdirectory
+  #    
+  #  INPUTS
+  #  
+  #  arguments:
+  #  filename: name of makefile to write
+  #  integpath:path for numerical integrator
+  #  Ccompiler:which C compiler is to be used
+  #  kk:which make file is to be written, specifies *make${kk}file
+  #  lowii: first function to be integrated by *intfile${kk}.c
+  #  highii: last function to be integrated by *intfile${kk}.c
+  #  variables: 
+  #  $funlisto: is the list of functions to be made
+  #  $lineflag: flag to decide whether a newline is needed in $funlisto
+  #  $nfun: number of functions summed in *intfile${kk}.cc
+  #    
+  #  RESULT
+  #  new functions make$[kk]file in the appropriate subdirectory
+  #    
+  #  SEE ALSO
+  #  preparenumerics.pl, writefiles.pm
+  #   
+  #****
+
+package makemakeC;
+
+sub go {
+my $filename=$_[0];
+my $integpath=$_[1];
+my $Ccompiler=$_[2];
+#my $point=$_[3];
+#$point=~s/DEFAULT//;
+my $kk=$_[3];
+my $lowii=$_[4];
+my $highii=$_[5];
+my $currentdir=$_[6];
+my $soboldir=$_[7];
+my $contourdef=$_[8];
+my $funlisto="";
+my $gunlisto="";
+for ($ii=$lowii;$ii<=$highii;$ii++) {
+	$lineflag++;
+	if($ii==$highii){
+	    $funlisto = "$funlisto f$ii\.o";
+	    if($contourdef eq "True"){$gunlisto = "$gunlisto g$ii\.o";}
+	}elsif($lineflag >5){
+	    $lineflag=0;
+	    $funlisto = "$funlisto\\\n	f$ii\.o";
+	    if($contourdef eq "True"){$gunlisto = "$gunlisto\\\n	g$ii\.o";}
+	} else {
+	    $funlisto = "$funlisto f$ii\.o";
+	    if($contourdef eq "True"){$gunlisto = "$gunlisto g$ii\.o"}
+	}
+}#next ii
+$nfun=$highii-$lowii+1;
+
+if ($nfun>0) {
+
+if(-e $filename){system("rm -f $filename")};
+open(MAKEFILE, ">", "$filename") || die "cannot open $filename\n";
+	print MAKEFILE "CC	= $Ccompiler -O\n";
+#	print MAKEFILE "LIBS	= -lgsl -lgslcblas -lm -lstdc++ \n";
+	print MAKEFILE "LIBS	= -lm -lstdc++ \n";
+	print MAKEFILE "LIB	= $integpath/libcuba.a\n";
+	print MAKEFILE "HEADER	= $integpath/cuba.h\n";
+	print MAKEFILE "SOBOLF	= ${soboldir}/sobol.o\n";
+	print MAKEFILE "%.o : %.cc intfile.hh \n";
+	print MAKEFILE "	\$(CC) -c -o \$@ \$<\n";
+#	print MAKEFILE "MAIN	= ${point}intfile${kk}.o\n";
+	print MAKEFILE "MAIN	= intfile${kk}.o\n";
+	print MAKEFILE "CFILES	= $funlisto$gunlisto\n";
+#	print MAKEFILE "${point}intfile${kk}: \$(MAIN)  \$(CFILES) \$(LIB)\n";
+	print MAKEFILE "intfile${kk}: \$(MAIN)  \$(CFILES) \$(LIB)\n";
+	print MAKEFILE "\t\$(CC) -o \$@.exe \\\n";
+#	print MAKEFILE "\t\$(MAIN) \$(CFILES) \$(LIB) \$(HEADER) \$(SOBOLF) \$(LIBS)\n";
+	print MAKEFILE "\t\$(MAIN) \$(CFILES) -static \$(LIB) \$(HEADER) \$(SOBOLF) \$(LIBS)\n";
+	print MAKEFILE "clean:\n";
+	print MAKEFILE "\trm \$(MAIN)  \$(CFILES)\n";
+close MAKEFILE;
+}
+};
+1;	

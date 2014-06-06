@@ -1,0 +1,778 @@
+checking for gcc... gcc
+checking whether the C compiler works... yes
+checking for C compiler default output file name... a.out
+checking for suffix of executables... 
+checking whether we are cross compiling... no
+checking for suffix of object files... o
+checking whether we are using the GNU C compiler... yes
+checking whether gcc accepts -g... yes
+checking for gcc option to accept ISO C89... none needed
+checking for g77... g77
+checking whether we are using the GNU Fortran 77 compiler... yes
+checking whether g77 accepts -g... yes
+checking for ranlib... ranlib
+checking for a BSD-compatible install... /usr/bin/install -c
+checking for an ANSI C-conforming const... yes
+checking for inline... inline
+checking for long double with more range or precision than double... yes
+checking how to run the C preprocessor... gcc -E
+checking for grep that handles long lines and -e... /usr/bin/grep
+checking for egrep... /usr/bin/grep -E
+checking for ANSI C header files... yes
+checking for sys/types.h... yes
+checking for sys/stat.h... yes
+checking for stdlib.h... yes
+checking for string.h... yes
+checking for memory.h... yes
+checking for strings.h... yes
+checking for inttypes.h... yes
+checking for stdint.h... yes
+checking for unistd.h... yes
+checking for size_t... yes
+checking for ssize_t... yes
+checking for pid_t... yes
+checking for powl... yes
+checking for erf... yes
+checking vfork.h usability... no
+checking vfork.h presence... no
+checking for vfork.h... no
+checking for fork... yes
+checking for vfork... yes
+checking for working fork... yes
+checking for working vfork... (cached) yes
+checking for working alloca.h... yes
+checking for alloca... yes
+checking build system type... x86_64-unknown-linux-gnu
+checking host system type... x86_64-unknown-linux-gnu
+checking for shmget... yes
+checking for getloadavg... yes
+checking for variable-size arrays... yes
+checking for MathLink... yes
+checking for qmake... qmake
+configure: creating ./config.status
+config.status: creating makefile
+config.status: creating config.h
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/vegas -DNOUNDERSCORE -c -o Vegas.o ./src/vegas/Vegas.c
+ar rv libcuba.a Vegas.o
+ar: creating libcuba.a
+a - Vegas.o
+rm -f Vegas.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/vegas -c -o Vegas_.o ./src/vegas/Vegas.c
+ar rv libcuba.a Vegas_.o
+a - Vegas_.o
+rm -f Vegas_.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/vegas -DLONGLONGINT -DNOUNDERSCORE -c -o llVegas.o ./src/vegas/Vegas.c
+ar rv libcuba.a llVegas.o
+a - llVegas.o
+rm -f llVegas.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/vegas -DLONGLONGINT -c -o llVegas_.o ./src/vegas/Vegas.c
+ar rv libcuba.a llVegas_.o
+a - llVegas_.o
+rm -f llVegas_.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/suave -DNOUNDERSCORE -c -o Suave.o ./src/suave/Suave.c
+ar rv libcuba.a Suave.o
+a - Suave.o
+rm -f Suave.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/suave -c -o Suave_.o ./src/suave/Suave.c
+ar rv libcuba.a Suave_.o
+a - Suave_.o
+rm -f Suave_.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/suave -DLONGLONGINT -DNOUNDERSCORE -c -o llSuave.o ./src/suave/Suave.c
+ar rv libcuba.a llSuave.o
+a - llSuave.o
+rm -f llSuave.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/suave -DLONGLONGINT -c -o llSuave_.o ./src/suave/Suave.c
+ar rv libcuba.a llSuave_.o
+a - llSuave_.o
+rm -f llSuave_.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/divonne -DNOUNDERSCORE -c -o Divonne.o ./src/divonne/Divonne.c
+ar rv libcuba.a Divonne.o
+a - Divonne.o
+rm -f Divonne.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/divonne -c -o Divonne_.o ./src/divonne/Divonne.c
+ar rv libcuba.a Divonne_.o
+a - Divonne_.o
+rm -f Divonne_.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/divonne -DLONGLONGINT -DNOUNDERSCORE -c -o llDivonne.o ./src/divonne/Divonne.c
+ar rv libcuba.a llDivonne.o
+a - llDivonne.o
+rm -f llDivonne.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/divonne -DLONGLONGINT -c -o llDivonne_.o ./src/divonne/Divonne.c
+ar rv libcuba.a llDivonne_.o
+a - llDivonne_.o
+rm -f llDivonne_.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/cuhre -DNOUNDERSCORE -c -o Cuhre.o ./src/cuhre/Cuhre.c
+ar rv libcuba.a Cuhre.o
+a - Cuhre.o
+rm -f Cuhre.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/cuhre -c -o Cuhre_.o ./src/cuhre/Cuhre.c
+ar rv libcuba.a Cuhre_.o
+a - Cuhre_.o
+rm -f Cuhre_.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/cuhre -DLONGLONGINT -DNOUNDERSCORE -c -o llCuhre.o ./src/cuhre/Cuhre.c
+ar rv libcuba.a llCuhre.o
+a - llCuhre.o
+rm -f llCuhre.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -I./src/cuhre -DLONGLONGINT -c -o llCuhre_.o ./src/cuhre/Cuhre.c
+ar rv libcuba.a llCuhre_.o
+a - llCuhre_.o
+rm -f llCuhre_.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -DNOUNDERSCORE -c -o WorkerIni.o ./src/common/WorkerIni.c
+ar rv libcuba.a WorkerIni.o
+a - WorkerIni.o
+rm -f WorkerIni.o
+gcc -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I./src/common -I. -I. -c -o WorkerIni_.o ./src/common/WorkerIni.c
+ar rv libcuba.a WorkerIni_.o
+a - WorkerIni_.o
+rm -f WorkerIni_.o
+ranlib libcuba.a
+paramfile= T11234m11110.input
+currentdir = .//T11234m11110
+N = 4
+graph = T11234m11110
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o
+paramfile= T11234m11210.input
+currentdir = .//T11234m11210
+N = 4
+graph = T11234m11210
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o
+paramfile= T11234m11234.input
+currentdir = .//T11234m11234
+N = 4
+graph = T11234m11234
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o
+paramfile= T12345m11011.input
+currentdir = .//T12345m11011
+N = 5
+graph = T12345m11011
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o f11.o f11.cc
+g++ -Ofast -static -march=native   -c -o f12.o f12.cc
+g++ -Ofast -static -march=native   -c -o f13.o f13.cc
+g++ -Ofast -static -march=native   -c -o f14.o f14.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native   -c -o g11.o g11.cc
+g++ -Ofast -static -march=native   -c -o g12.o g12.cc
+g++ -Ofast -static -march=native   -c -o g13.o g13.cc
+g++ -Ofast -static -march=native   -c -o g14.o g14.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o
+paramfile= T12345m12012.input
+currentdir = .//T12345m12012
+N = 5
+graph = T12345m12012
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o f11.o f11.cc
+g++ -Ofast -static -march=native   -c -o f12.o f12.cc
+g++ -Ofast -static -march=native   -c -o f13.o f13.cc
+g++ -Ofast -static -march=native   -c -o f14.o f14.cc
+g++ -Ofast -static -march=native   -c -o f15.o f15.cc
+g++ -Ofast -static -march=native   -c -o f16.o f16.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native   -c -o g11.o g11.cc
+g++ -Ofast -static -march=native   -c -o g12.o g12.cc
+g++ -Ofast -static -march=native   -c -o g13.o g13.cc
+g++ -Ofast -static -march=native   -c -o g14.o g14.cc
+g++ -Ofast -static -march=native   -c -o g15.o g15.cc
+g++ -Ofast -static -march=native   -c -o g16.o g16.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o f15.o f16.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o g15.o g16.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o f15.o f16.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o g15.o g16.o
+paramfile= T12345m12344.input
+currentdir = .//T12345m12344
+N = 5
+graph = T12345m12344
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o f11.o f11.cc
+g++ -Ofast -static -march=native   -c -o f12.o f12.cc
+g++ -Ofast -static -march=native   -c -o f13.o f13.cc
+g++ -Ofast -static -march=native   -c -o f14.o f14.cc
+g++ -Ofast -static -march=native   -c -o f15.o f15.cc
+g++ -Ofast -static -march=native   -c -o f16.o f16.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native   -c -o g11.o g11.cc
+g++ -Ofast -static -march=native   -c -o g12.o g12.cc
+g++ -Ofast -static -march=native   -c -o g13.o g13.cc
+g++ -Ofast -static -march=native   -c -o g14.o g14.cc
+g++ -Ofast -static -march=native   -c -o g15.o g15.cc
+g++ -Ofast -static -march=native   -c -o g16.o g16.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o f15.o f16.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o g15.o g16.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o f15.o f16.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o g15.o g16.o
+paramfile= T1234m0110.input
+currentdir = .//T1234m0110
+N = 4
+graph = T1234m0110
+Compiling functions for calculation at order eps^1...
+compiling epstothe1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o f11.o f11.cc
+g++ -Ofast -static -march=native   -c -o f12.o f12.cc
+g++ -Ofast -static -march=native   -c -o f13.o f13.cc
+g++ -Ofast -static -march=native   -c -o f14.o f14.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native   -c -o g11.o g11.cc
+g++ -Ofast -static -march=native   -c -o g12.o g12.cc
+g++ -Ofast -static -march=native   -c -o g13.o g13.cc
+g++ -Ofast -static -march=native   -c -o g14.o g14.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o f11.o f11.cc
+g++ -Ofast -static -march=native   -c -o f12.o f12.cc
+g++ -Ofast -static -march=native   -c -o f13.o f13.cc
+g++ -Ofast -static -march=native   -c -o f14.o f14.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native   -c -o g11.o g11.cc
+g++ -Ofast -static -march=native   -c -o g12.o g12.cc
+g++ -Ofast -static -march=native   -c -o g13.o g13.cc
+g++ -Ofast -static -march=native   -c -o g14.o g14.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o f13.o f14.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o g13.o g14.o
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o
+paramfile= T1234m0123.input
+currentdir = .//T1234m0123
+N = 4
+graph = T1234m0123
+Compiling functions for calculation at order eps^1...
+compiling epstothe1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o f11.o f11.cc
+g++ -Ofast -static -march=native   -c -o f12.o f12.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native   -c -o g11.o g11.cc
+g++ -Ofast -static -march=native   -c -o g12.o g12.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o f11.o f11.cc
+g++ -Ofast -static -march=native   -c -o f12.o f12.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native   -c -o g11.o g11.cc
+g++ -Ofast -static -march=native   -c -o g12.o g12.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o f11.o f12.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o g11.o g12.o
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o
+paramfile= T1234m1110.input
+currentdir = .//T1234m1110
+N = 4
+graph = T1234m1110
+Compiling functions for calculation at order eps^1...
+compiling epstothe1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o
+paramfile= T1234m1210.input
+currentdir = .//T1234m1210
+N = 4
+graph = T1234m1210
+Compiling functions for calculation at order eps^1...
+compiling epstothe1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o
+paramfile= T1234m1234.input
+currentdir = .//T1234m1234
+N = 4
+graph = T1234m1234
+Compiling functions for calculation at order eps^1...
+compiling epstothe1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o f7.o f7.cc
+g++ -Ofast -static -march=native   -c -o f8.o f8.cc
+g++ -Ofast -static -march=native   -c -o f9.o f9.cc
+g++ -Ofast -static -march=native   -c -o f10.o f10.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native   -c -o g7.o g7.cc
+g++ -Ofast -static -march=native   -c -o g8.o g8.cc
+g++ -Ofast -static -march=native   -c -o g9.o g9.cc
+g++ -Ofast -static -march=native   -c -o g10.o g10.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o f7.o f8.o f9.o f10.o g1.o g2.o g3.o g4.o g5.o g6.o g7.o g8.o g9.o g10.o
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o g1.o g2.o g3.o g4.o
+paramfile= T234m123.input
+currentdir = .//T234m123
+N = 3
+graph = T234m123
+Compiling functions for calculation at order eps^1...
+compiling epstothe1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o g1.o g2.o g3.o g4.o g5.o g6.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o g1.o g2.o g3.o g4.o g5.o g6.o
+Compiling functions for calculation at order eps^0...
+compiling epstothe0 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o f2.o f2.cc
+g++ -Ofast -static -march=native   -c -o f3.o f3.cc
+g++ -Ofast -static -march=native   -c -o f4.o f4.cc
+g++ -Ofast -static -march=native   -c -o f5.o f5.cc
+g++ -Ofast -static -march=native   -c -o f6.o f6.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native   -c -o g2.o g2.cc
+g++ -Ofast -static -march=native   -c -o g3.o g3.cc
+g++ -Ofast -static -march=native   -c -o g4.o g4.cc
+g++ -Ofast -static -march=native   -c -o g5.o g5.cc
+g++ -Ofast -static -march=native   -c -o g6.o g6.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o f2.o f3.o f4.o f5.o f6.o g1.o g2.o g3.o g4.o g5.o g6.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o f2.o f3.o f4.o f5.o f6.o g1.o g2.o g3.o g4.o g5.o g6.o
+No Monte Carlo integration needed, computation done with Standard math library.
+Compiling functions for calculation at order eps^-1...
+compiling epstothe-1 ...
+g++ -Ofast -static -march=native   -c -o f1.o f1.cc
+g++ -Ofast -static -march=native   -c -o g1.o g1.cc
+g++ -Ofast -static -march=native -o intfile1.exe intfile1.cc f1.o g1.o  /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+strip intfile1.exe
+rm -f f1.o g1.o

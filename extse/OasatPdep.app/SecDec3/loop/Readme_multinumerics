@@ -1,0 +1,81 @@
+1) - edit the parameter file (example mp.input)
+     and the Mathematica template (example testmp.m) as usual;
+   - set the "exe flag" to >=1 and 'launch' such that the 
+     Fortran/C++ integration files are produced
+
+   
+2) edit multiparam.input to specify the name of your parameter file,
+   and the prefix you would like to use for the names of the points
+   to be calculated, eg
+   paramfile=mp.input
+   pointname=mpp
+   note: mp.input, testmp.m, multiparam.input should be in the same directory, 
+   can be any of your working directories.
+   
+   next define values of invariants and masses you wish to calculate:
+   'numsij=3' states that the first 3 entries in each line are taken
+    as s12, s23, s13.
+   'numpi2=4' states that the next 4 entries are taken as p1^2, p2^2, p3^2, p4^2.
+   'nummi2=2' states that the next 2 entries are taken as m1^2, m2^2.
+   Once these values are set, each line should contain a list of numerical values.
+   Eg for the number of invariants, p^2 and m^2 above, a list of values would be
+   6.,-3.,-1.,0.,0.,1.,1.,0.024,1.
+   which corresponds to s12=6., s23=-3., s13=-1., p1^2=p2^2=0.,p3^2=p4^2=1.,m1^2=0.024,
+   m2^2=1.
+   
+   The number of points calculated will be equal to the number of lines of values given,
+   unless the optional parameter 'lines=N' is used, in which case only the first N sets
+   of values is calculated.
+   
+   There is also the option to output the results in a format compatible with eg gnuplot.
+   Consider the above example. If we wanted to examine the behaviour of the amplitude
+   for different values of m1^2, the sets of values could be
+   6.,-3.,-1.,0.,0.,1.,1.,0.023,1.
+   6.,-3.,-1.,0.,0.,1.,1.,0.024,1.
+   6.,-3.,-1.,0.,0.,1.,1.,0.025,1.
+   6.,-3.,-1.,0.,0.,1.,1.,0.026,1.
+   ...
+   and then setting the parameter 'xplot=8' means that the value of the 8th parameter in
+   the list (in this case m1^2) is used as the variable to plot results with. The output
+   files is in the same directory as the other results files, and have the naming convention
+   [pointname][eps order].gpdat. The format of each file in this case would be:
+   
+    0.023  real_result  real_error  imaginary_result  imaginary_error  timing  
+    0.024  real_result  real_error  imaginary_result  imaginary_error  timing  
+    0.025  real_result  real_error  imaginary_result  imaginary_error  timing  
+    0.026  real_result  real_error  imaginary_result  imaginary_error  timing  
+   
+    To plot the results for two or more invariants/masses, xplot can be a list.
+    Eg to tabulate results with columns for m1^2 and s12 for the above example,
+    set 'xplot=8,1', and the resulting files will look like:
+    
+    0.023  6.  real_result  real_error  imaginary_result  imaginary_error  timing
+    0.024  6.  real_result  real_error  imaginary_result  imaginary_error  timing
+    0.025  6.  real_result  real_error  imaginary_result  imaginary_error  timing
+    0.026  6.  real_result  real_error  imaginary_result  imaginary_error  timing
+
+
+3) the command for the multinumerics is (from the 'general' directory)               
+  'perl multinumerics.pl -d workingdir -p multiparamfilename ' 
+  
+     
+4) when all integrations are done are done, type 
+  'perl multinumerics.pl -d workingdir -p multiparamfilename 2' 
+  to remove the parameter files for the individual sets of 
+  numerical values.
+  The original paramfile remains, but the derived ones are deleted.                                     
+
+                   
+================================================================                                                                                
+when running on a batch system:                                                        
+                                                                                
+the syntax is as before: 
+to start the numerics type 
+'perl multinumerics.pl -d workingdir -p multiparamfilename'.                                           
+
+Once all jobs are done, to collect the results, type 
+'perl multinumerics.pl -d workingdir -p multiparamfilename 1' 
+(not needed in single machine  mode).  
+                                                                        
+                                                                                
+                                                                                

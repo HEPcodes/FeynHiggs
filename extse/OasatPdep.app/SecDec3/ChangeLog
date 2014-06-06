@@ -1,0 +1,645 @@
+20.01.2014
+	SVN rev 271 (SecDec-3.0)
+	development branch:
+	- commit changes regarding how integration files
+	are written so that merging with most recent version
+	of trunk can be done
+	
+15.01.2014
+SVN rev 270 (SecDec-2.1.5)
+	loop directory:
+	- small comments added in default param- and template
+	files
+	
+15.01.2014
+SVN rev 269 (SecDec-2.1.5)
+	loop directory:
+	- bug fixed when using togetherflag=1 and a grouping
+	which produced more than one integration file in one
+	order in epsilon (affected resultsloop/userdefined.pl 
+	files)
+	
+14.01.2014
+SVN rev 268 (SecDec-2.1.5)
+	loop directory:
+	- implementation of warning when prefactor has imaginary part
+	- added splitlist to template file where those Feynman parameters
+	whose integral should be split at 1/2 can be inserted.
+	(affected files: decomposition.m, deconoprimary.m,
+	templatetail_loop/userdefined.m, added file: split.m)
+	- decomposeuserdefined.pl: 
+	removed checks on F[z], as F[z] does not exist in 
+	combination with userdefined setup
+	- bugfixes in NSDroutines.m:
+	-> expoU and expoF are now converted into a string in the 
+	  InputForm instead of OutputForm
+	-> definition of NSDroutines needed to be distributed among
+	  all Kernels (letter "N" was missing)
+	- improvement when using rescaleflag:
+	introduction of numerical instabilities removed occurring 
+	due to additional powers in the biggest invariant 
+	(called bi in f*.cc files), affected formContour(P)C.m files
+	- bugfix for userdefined option:
+	pole orders that were missing before are now rechecked and
+	written to the together/infofile where necessary.
+	
+09.01.2014
+SVN rev 267 (SecDec-2.1.5)
+	loop directory:
+	formContour(P)C.m
+	- removed bug which occurred when inserting floating
+	point values in onshell conditions
+
+07.01.2014
+SVN rev 266 (SecDec-2.1.5)
+	- introduced a new development branch
+	- renamed old development branch
+	
+06.01.2014
+SVN rev 265 (SecDec-2.1.5)
+	loop directory:
+	- decomposeloop.pl and decomposeuserdefined.pl: 
+	improved checks for monomial, sign, number of scales
+	- formContour(P)C.m:
+	expanded ratio-check to detect functions F[z] which
+	are independent of a contour deformation when using
+	contourdef=true
+
+22.12.2013
+SVN rev 264 (SecDec-2.1.5)
+	loop directory:
+	- decomposeloop.pl: improved checks for monomial, sign, 
+	number of scales
+	
+11.12.2013
+SVN rev 263 (SecDec-2.1.5)
+	loop directory:
+	- signcheck reincluded into C++ integration 
+	file when threshold=none
+	- decomposeloop.pl: additionally, the number of 
+	scales in F[z] is now checked and a warning is 
+	cast if F[z] is negative, of one scale only and
+	contourdef=False (useful in connection with computation
+	of diagram with off-shell external legs!)
+	
+02.12.2013
+SVN rev 262 (SecDec-2.1.5)
+	loop directory:
+	- when F[z] is a monomial and contourdef=True 
+	was chosen in the {myparam}.input file, SecDec 
+	automatically opens the {myparam}.input file
+	and sets contourdef=False
+	
+02.12.2013
+SVN rev 261 (SecDec-2.1.5)
+	loop directory:
+	- fixed bug in SDroutines.m and NSDroutines.m which 
+	occurred when Mathematica version was too old for 
+	parallel computing
+	- automated writing of f*.m files commented out
+	
+28.11.2013
+SVN rev 258, 259, 260 (SecDec-2.1.5)
+	loop directory:
+	- threshold also included in dotogetherC.pl
+	- small bugs found in makeintC.pm and 
+	dotogetherC.pl regarding the inclusion 
+	of a user threshold and previous changes
+	
+28.11.2013
+SVN rev 257 (SecDec-2.1.5)
+	loop directory:
+	- different warnings included in decompose*.pl: 
+	Signcheck in decomposeloop.pl does no longer lead 
+	to an exit but a vanishing F[z] does lead to an 
+	exit in decomposeloop.pl and decomposeuserdefined.pl
+	- usage of ONSHELL-conditions:
+	Small bug fixed in calcFU.m and deconoprimary.m where 
+	onshell conditions were replaced only once instead of
+	a repeated replacement
+	- RESCALEFLAG:
+	The rescaleflag now defaults to zero in all Perl-scripts 
+	and modules if no flag is given
+	- THRESHOLD CHECK:
+	When using the C++ option, a user can now include a
+	kinematic threshold in Mathematica format in the
+	templatefile defining when the contour deformation
+	should _kick in_. The threshold is stored in the file
+	{graph}OUT.info and used in the integration files only.
+	- SIGNCHECK:
+	As soon as one signcheck fails a warning is printed and the
+	program ({point}intfile{nb}.exe) exits
+	
+26.11.2013
+SVN rev 256 (SecDec-2.1.4)
+	loop+general directory:
+	- demo files updated
+	
+22.11.2013
+SVN rev 255 (SecDec-2.1.4)
+	loop directory:
+	- formContourPC.m: Bug fixed when using Mathematica 7, 
+	definition of variable mathematicaflag was not distributed
+	among all subkernels
+
+22.10.2013
+SVN rev 254 (SecDec-2.1.4)	
+	install script changed to use Cuba-3.2 
+
+07.10.2013
+SVN rev 253 (SecDec-2.1.3)	
+	Cuba-3.2 makefile updated
+	
+04.10.2013
+SVN rev 252 (SecDec-2.1.3)
+	loop directory:
+	- parallelization of the iterated sector decomposition 
+	reintroduced
+		
+01.10.2013
+SVN rev 251 (SecDec-2.1.3)
+	CUBA-3.2 added
+	loop+general directory:
+	- all files updated which are necessary for using CUBA 
+	version 3.1 and above (default is set to CUBA 3.2)
+	- removed automated writing of f*.m files
+	loop directory:
+	- added insertion of package Fraction to multinumerics*.pl
+	general directory:
+	- bug fixed when trying to integrate constants or functions 
+	  with just one parameter but a numerical integrator which 
+	  supports a minimum of 2 integration parameters 
+	  (formfortran.m altered as well as getinfo.pm, makesub.pm) 
+	  polenumerics.pl and preparenumerics.pl, dotogether.pl)
+	
+06.08.2013
+SVN rev 250  (SecDec-2.1.2)
+	loop directory:
+	- bug fixed where the integrator Vegas was not chosen when 
+	using the together flag and integrating over just one 
+	Feynman parameter.
+	
+12.07.2013
+SVN rev 249  (SecDec-2.1.2)
+	loop directory:
+	- comments in param*.input changed regarding the list 
+	of s_ij invariants for pentagons and hexagons
+	- changed treatment of old "together" folders when 
+	using togetherflag=1 and Cpp
+	
+19.06.2013
+SVN rev 248  (SecDec-2.1.1)
+	loop directory:
+	- bug fixed in subexploop.pl and subexpuserdefined.pl 
+	which occurred when the exponent of F or U contained 
+	a fraction 
+	
+17.06.2013
+SVN rev 247  (SecDec-2.1.1)
+	loop & general directory:
+	1) Empty lines are now removed from multiparam.input to evade read-in problems when using multinumerics*.pl
+	
+17.06.2013
+SVN rev 246  
+	loop & general directory:
+	1) Inserted Fraction.pm into perlsrc to be able to automatically evaluate fractions given in the input files.
+	2) Kinematic invariants sij, pi^2 and mi^2 which are inserted as fractions are now correctly evaluated in Perl
+	3) Version print was changed to SecDec-2.1.1
+
+14.06.2013
+SVN rev 245 
+	1) Bug in formContour(P)C.m corrected which occurred when onshell-conditions were inserted in decimal form
+	2) Added one file needed for the installation of CUBA + revised CUBA makefile
+
+12.06.2013
+SVN rev 244
+	1) Fixed a bug in resultsloop.pl and resultsuserdefined.pl which occurred when using rescale=1 and prefactorflag=0
+	2) Added most recent version of SecDec-2.0 paper to documentary
+
+06.06.2013
+SVN rev 242
+	1) Improved default parameters for Suave in default param*.input files
+	2) Small variation in c++ makefiles regarding the libraries
+	3) Cuba-3.0 updated to newest working version
+	
+12.05.2013
+SVN rev 241
+	1) Reverted some Cuba updates to a stable version
+	2) Changed the integrator in paramloop.input to Divonne instead of Mathematica
+	3) Bug fixed in dotogetherC.pl when using "../launch" from a directory different from your standard working directory
+	
+29.04.2013
+SVN rev 239
+	Warnings during subtraction and expansion in epsilon removed in form*.m which could occur in the case of tensor integrals and orders of epsilon in the numerator
+	
+17.04.2013
+SVN rev 238
+	CUBA makefile altered to the version not containing the demos, new CUBA files added to subversion
+17.04.2013
+SVN rev 237
+	loop & general directory: Comment dimension statements like (*Dim=4-2*eps*) now also recognized as comments
+	
+16.04.2013
+SVN rev 234
+	Update of the CUBA-library to the newest version
+05.03.2013
+SVN rev 233
+	1) Added demo files for the ggtt1 scalar diagram and the ggtt1 with contracted tensor numerator to demo directory.
+	2) Commented in some lines in the resultsloop.pl file which were commented out for testing.
+	
+28.02.2013
+SVN rev 232
+	1) Small bugs in dotogetherC.pl removed concerning the usage of clusterflag=1, also the perlsrc/makesub.pm had to be altered for that.
+	
+25.02.2013
+SVN rev 231
+	1) Application of symmetry relations to the numerator for externalegs=4 added to src/deco/calcFU.m.
+	2) Bug fixed concerning the renaming of epsilon to eps and the other way round in form*.m.
+	3) Implementation of togetherflag=1 for C++ version added. Perl script dotogetherC.pl steers the creation and compilation of integration files for togetherflag=1 using C++.
+
+05.02.2013
+SVN rev 230
+	1) Constraint s+t+u=Sum(p_i^2) removed from calcFU.m used to compute the functions F, U and the numerator
+	1) Comments in some files added, print statements removed
+	2) Small alteration of loop/demos/templateDBr1p3.m file for more user friendliness.
+	
+01.02.2013
+SVN rev 229
+	1) Computation of numerator corrected in miscel.m
+	2) Computation of higher orders in epsilon occuring in numerator corrected and respective Perl scripts adjusted.
+	3) Factoring out of an overall prefactor occurring in the denominator of the numerator implemented.
+
+23.01.2013
+SVN rev 228
+	1) loop+general directory:
+		Resultfile output altered that an integration which had too few samples (CUBA Divonne output=-999) is translated into "probability that error is underestimated=1"
+		For that the makeint*.pm files needed to be changed.
+	2) Comments added to loop/src/deco/calcFU.m
+	
+22.01.2013
+SVN rev 227
+	1) loop directory:
+		Option of having direct powers of epsilon in the numerator included. This occurs with integrals of rank >0 or may occur in user defined functions. For that, all form*.m, *.pl and (N)SDroutines.m files were changed accordingly. The maximal and minimal degree in epsilon in the numerator are written to the {graph}OUT.info file. From there, the minpole and required order in epsilon from which up to which the Laurent series is expanded, is adjusted.
+	2) Small bugs in formContourC.m removed where two semicolons were missing.
+	3) loop+general directory:
+		Resultsfile output slightly altered to improve user friendliness in case the integration files are incomplete or the integration did not have enough samples.
+	
+09.01.2013
+SVN rev 226
+	1) Cuba library updated to Version Cuba-3.0 (date Jan 9 2013) where bugs in Divonne were fixed
+07.12.2012
+SVN rev 225
+	1) Minor changes to how the error probability is written to file. If fail is negative, a -999 is written to output file which translates as "integration failed, or not enough samples"
+	2) Names of *general.pl files and src/deco/templatetail_general.m were changed into *userdefined.pl and src/deco/templatetail_userdefined.m. Also the -n option is changed into the ./launch -u option to induce least confusion in the user. The -u in './launch -u' stands for _u_serdefined. The respective files were added to the SVN, the no longer needed files were removed from the SVN. The perlsrc/ files were changed accordingly. The readmes and the documentation are updated.
+	3) The parameters when using Divonne or Vegas were adjusted to more optimal ones in the paramloop.input and paramuserdefined.input file.
+	4) A bug occurring with the new Mathematica version 9 was fixed in the subandexpand*.m file allowing for the evaluation of integrands with arbitrary exponents.
+	5) Change of input primseclist={} to the more user friendly input name functionlist={} in the mytemplate.m file.
+	
+05.12.2012
+SVN rev 224
+	1) loop directory: In form(P)*.m some n-1 were not replaced by feynpars which produced errors when n=feynpars.
+	2) loop&general directory: The error probability was sometimes not shown correctly in the output files when using other integrators than Divonne which is now fixed
+	2) general directory: correct choice of integrator implemented when integrating over less than 2 Feynman parameters
+	
+05.12.2012
+SVN rev 223
+	1) Correction of makeint.pm file in general directory done and writing error probabilities to result outfiles also done now.
+	2) General directory:
+		Correction of some files which still had the CUBA-2.1 path in it. Alteration of results.pl and other files accordingly to write the error probability to the resultfile.
+	3) Minor changes to formatting of makeint.pm in loop directory and fixing of a small bug where a character was missing.
+	4) The outdated signcheck written to the graph.m file via the decomposegeneral.pl is removed to evade unnecessary error statements. 
+	
+30.11.2012
+SVN rev 222
+	1) Decreased size of sobol.cc and improved sobol.hh. Changed makemakeC.pm file such that sobol is not recompiled every time the user wants to compile a function. This decreases compilation time per function drastically. 
+	2) install file altered. With the SecDec installation, sobol random sampler file is compiled as well. If compilation didn't work, an error message is echoed.
+	
+30.11.2012
+SVN rev 221
+	1) Removed superfluous common block line in formfortran.m
+	2) Changed evaluation of "bigger" function to absolute values, so that with the two error probabilities of -999 and 0, -999 is chosen for the maxErrorProb value. 
+	3) Commented out the eval statement in results*.pl files when collecting the contourdef=true results. Eval evaluates errors smaller 1.e-14 to zero. This is evaded if the eval statements are commented out.
+	4) Changed Cuba-3.0/src/divonne/Integrate.c file so that presampling of some points is not followed by a segmentation fault afterwards
+	
+22.11.2012
+SVN rev 220
+	1) Changed computation of different possible lambdas for smalldefs=1 in makeintC.pm 
+	2) Added hash "optlamevals=" to param*.input file to give the expert user the option to de-/or increase the number of evaluations done to find an optimal lambda when choosing "contourdef=true". This is good in cases of few functions and complicated diagrams.
+	
+21.11.2012
+SVN rev 219
+	1) Small changes to makeint.pm to remove compiler complaints
+	2) Optimization -O to C++ compilation added in makemakeC.pm
+	3) Small changes to results*.pl file towards more user friendly {point}result{ord}.log files.
+	
+20.11.2012
+	1) Changed makeintC.pm and results*.pl such that in the C++ (w/o contour deformation) version the integration is done for a real part only and the results are collected accordingly. 
+	2) results*.pl: When computing the prefactor with Mathematica, check if a Mathematica licence could be acquired and if not, there are 15 retries.
+	   Integration resultfiles which contain no result for an imaginary part although they should (contourdef=true) are collected and redone, as are the integrations where the resultfiles are absent completely.
+	
+19.11.2012
+	1) Set precision in C++ result files to 10 digits. Now, the Fortran and C++ have the same precision.
+	2) Write error probabilities properly into all result outfiles and then the maximal error probability for each epsorder into the final resultfile.
+	3) Implemented the rescaling when using Fortran (before only for C++ available). 
+	4) Changed C++ integration file: When computation of real part has finished, the result is already written to the resultfile *.out for each integration.
+	5) Added "cpp" (in addition to "Cpp") as allowed input for "language=" in myparamfile.input
+	
+15.11.2012
+	1) Shared definition feynpars in all form*P*.m files
+	
+14.11.2012
+	1) makeint.pm and getinfo.pm changed such that the accuracy achieved during integration is correctly translated into the result file
+13.11.2012
+	1) Files justnumerics*.pl and finishnumerics*.pl updated for usage of togetherflag with Fortran and BASES
+	2) Integration of constants (independent of any Feynman parameter) possible now when using Fortran
+	3) Bug fixed related to collection of results when using launch and the -n option
+	4) Readme for noprimary option inserted
+	
+02.11.2012
+	1) Bug fixed for functions with more than 1 Feynpar but less than number of propagators-1 (Nn-1)
+	2) Print statement in subandexpand.m corrected
+	3) Print statements in makeint(C).pm changed so that resultfiles contain "errorprob=" instead of "chisq=" as chisq might be a misleading term
+	
+26.10.2012
+	1) NSDroutines.m and deconoprimary.m changed such that the numeration of the functions in the primseclist in the template file is just useful for the user and puts no constraints on the usage of the -n option. However, the first entry of every entry in the primseclist must remain a number, multiples of one number are allowed. 
+	
+25.10.2012
+	1) Together-Flag fixed for Fortran BASES version
+
+19.10.2012
+	1) Number of Feynman paramters the integrands depend upon is now written to infofile in every polestructure directory *l*h*/. Number is then read by polenumerics.pl and handed over to preparenumerics.pl to choose correct integrator (Divonne and Cuhre can't do 1d integrations) or an alternative integration setup (no Feynman parameters in function f*.cc) and correct number of Feynman parameters to be integrated in each epsorder.
+	2) Small changes to demo files paramloop.input and demos/paramA61.input
+	
+16.10.2012
+	1) Minor changes to demo files to make them work properly.
+	2) Changes to calcFU.m where ambiguous iterator name was used
+	3) Introduction of sdiQnoprim.m which does the same job as sdiQ.m, but for the general setup within the loop branch. The deconoprimary.m was altered accordingly.
+	
+15.10.2012
+	1) Changes to makeintC.pm for the case where no numerical integration is necessary (number of feynman parameters at integration stage is zero) 
+	2) More comments added for clarity to templategeneral.m 
+	3) Made variables Nloops, Dim and Nn known to prefactor.pl so that they can be used for computing the prefactor correctly
+	
+10.10.2012
+	1) makesum.pl for Fortran version changed to new naming conventions
+	2) Default values set for rescaleflag and cutconstruct
+	3) removed xl from decomposition step and changed into loops as global 
+	   variable (otherwise replacements as xl=loops=2 occur)
+	4) changed formindlist.m to previous version as previous one was 
+	   correct
+	
+04.10.2012
+	1) Fixed bug when user wants to compute loop integral with just 1 sector
+	2) Fixed bug when using Fortran or C++ in case of no contour deformation
+	3) Included sdiQnoprim.m to make predecomposition of squared Feynman parameters possible also for the "no primary sector decomposition" option
+
+01.10.2012
+	1) Revised version of the README
+	2) Corrected the summation of results in the general case
+	3) Onshell conditions are now also imposed on the numerator, in the cutconstruct=0 case (here, numerator can be unequal 1)
+	4) In form*.m integrands such as 0^eps are recognized as zero integrals
+	5) The prefactor is altered such that all the rescaling is done on Mathematica Level until the writing of the *.f or *.cc files. After that, no rescaling issues need to be taken into consideration. The biggest invariant is additionally written to Monte Carlo integration files via Perl scripts. 
+
+	
+27.09.2012
+	1) Fixed small bug in formContour(P)C.m for IBP=1, ";" was missing
+	2) Changed default input file for general files to paramgeneral.input and templategeneral.input
+	3) Wrote some comments to templategeneral file to get the syntax right
+	4) In results*.pl files rescaling is only done with the overall prefactor, not with the maximal invariant anymore. The rescaling with the invariant is done on the Mathematica level now by writing maxinv^(expoU+expoF) into the numerator
+	
+20.09.2012
+	1) Fixed small spelling mistake in in NSDroutines.m 
+	2) Fixed rescaleflag. Rescaling is now done in Mathematica and no longer on Perl level. The decomposed U and F are divided by Symbol maxinv and then contour deformation and subtraction etc. is done. maxinv is written into Fortran/C++ files as "bi" (can also be changed back to maxinv).
+
+28.6.2012:
+gudrun
+        1) in header.pm: line 139: replaced $el/$r by eval($el)/$r to cope with case where $el=a/b
+	2) in makemakerun.pm: if(-e "/proc/cpuinfo"){..} enabled because this file doesn't exist on MAC
+	3) in makemakeC.pm: -lgsl -lgslcblas eliminated because it is not found on MAC
+	4) in install script: eliminated "installation successful" because it is printed even if Cuba compilation fails
+	5) eliminated compilation of default_tools in Cuba-3.0/makefile.in because it lead to compilation errors on some systems
+
+15.03.2012:
+	1) Fixing bugs (endpointflag)
+	2) Optimizing memory use and time in Mathematica
+	3) Add more comments to integration outputfile (e.g. add total lambda used, including the lrs[][] value)
+	4) Change results.pl so that files are written to correct folder
+
+09.03.2012:
+	1) When using IBP with CD files are written in between so that Mathematica won't run out of memory
+	2) Variable transformation implemented for integrands using CD which is done just before the MC integration
+	3) Makefiles compiling c++ functions improved
+	4) Writing of .cc functions instead of .c functions and changing compiler to gcc instead of g++
+	5) Fixing small bugs 
+	
+14.02.2012:
+	1) results.pl got more lines of code in trade for a faster calculation of the prefactor. 
+	   In some cases Mathematica must not be used and in these cases Mathematica is not used anymore.
+	2) The numerical output file contains more comments now and the user can choose a smaller lambda, 
+	   even if the signs are different for the lambda and lambda^3 terms.
+
+07.02.2012:
+	1) The file cleanup.pl now also cleans up the files created when using a cluster. 
+	   These start with "runtests-" and contain integration output, errors and cluster logs.
+	2) IBP is now possible with Contour Deformation, for that formContourC.m was changed.
+	3) Due to huge slowdowns the imaginary integrand now again starts with 1.0 instead of 0.0, 
+	   as there are more cases where the imaginary part is zero than cases where the imaginary part is 1.
+
+11.01.2012:
+	modified justnumerics.pl and results.pl to enable multinumerics.pl to first make the compilation on the local 
+	machine and then submit the jobs
+	modified the param.input file so that it now contains the new options
+
+09.12.2011:
+	put stable deformation into loop folder
+
+10.11.2011:
+	modified: src/subexp/ExpOpt.m
+		src/subexp/formContourC.m
+		perlsrc/prefactor.pl
+       		perlsrc/header.pm
+       		perlsrc/makeintC.pm
+       		perlsrc/preparenumerics.pl
+       		results.pl
+
+	prefactor is calculated for rescaled invariants, functions to find the biggest invariant and rescale all invariants is written into the header; these functions are called in makeintC.pm to write the rescaled invariants into the intfile.c files and they are called in results.pl in order to get the correct prefactor;
+09.11.2011:
+	modified:
+		perlsrc/makeintC.pm
+		results.pl
+		src/subexp/ExpOpt.m
+		src/subexp/formContourC.m
+
+	makeintC.pm: small changes in how the intfile.c + intfile.h file is written
+	ExpOpt.m: small changes in how the fi.c files are written
+	formContourC.m: predefinition of lambda in mathematica file commented out
+26.10.2011:
+	modified: 
+		loopdevelop/perlsrc/makeintC.pm
+        	loopdevelop/perlsrc/makemakeC.pm
+        	loopdevelop/perlsrc/polenumerics.pl
+        	loopdevelop/perlsrc/preparenumerics.pl
+		loopdevelop/src/subexp/ExpOpt.m
+        	loopdevelop/src/subexp/formContourC.m
+
+	makeintC.pm writes a header file for the .c-files, a new function is added to the (point)intfile(kk).c determining the biggest invariant and dividing every invariant by the biggest one in case it is >1. 
+	makemakeC.pm is changed accordingly to allow a smooth compilation of all .c files including the header in the f(i).c functions before writing the makefile.  
+	polenumerics.pl and preparenumerics.pl got small comments
+	ExpOpt.m got a new module which writes a small infofile with the exponent of F in it.
+	formContourC.m got changes related to the writing of the f(i).c files. Additionally to the writing of the infofile, a new function was introduced which has not yet any meaning and the header of the f(i).c functions was changed.
+
+14.10.2011:
+	Starting values for lambda, alpha, beta can be written into the parameter file. These or standard starting values are written to subandexpand*l*h*.m
+
+11.10.2011:
+	added new folder loopdevelop in which the contourdeformation will be developed
+	
+18.8.2011:
+
+in Mathematica 8, MatchQ[x_,0] does not match if x=0. (real instead of integer), 
+therefore MatchQ had to be redefined (decomposition.m changed) and == has been replaced by
+MatchQ in primarySD.m lines 76/77.
+
+11.08.2011:
+
+- start implementing contour deformation
+ needs to be added: (not done yet)		
+  	loop/src/subexp/formContour.m (to replace formfortran.m in contour def case)
+ modified:
+ 	loop/src/subexp/subandexpand.m
+	loop/subexp.pl
+        loop/perlsrc/header.pm
+	loop/param.input
+
+
+25.07.2011
+- further changes for C-version.
+ added:		
+ 	loop/perlsrc/makeintC.pm
+ 	loop/perlsrc/makemakeC.pm
+ modified:
+ 	loop/src/subexp/formC.m
+			subandexpand.m
+			ExpOpt.m
+		/util/Format.m
+	loop/perlsrc/makemakerun.pm
+		     makesub.pm
+		     mathlaunch.pm
+		     getinfo.pm
+		     polenumerics.pl
+		     preparenumerics.pl
+		     writefiles.pm
+		     batch
+	loop/results.pl
+	     subexp.pl
+	     justnumerics.pl
+ loop C version functional for Euclidean kinematics, and in physical region for
+ 1-scale problems.	
+
+11.07.2011
+- to start implementing a C-version in addition to the Fortran version, 
+added:loop/src/subexp/formC.m, 
+modified:
+param.input, 
+header.pm 
+subexp.pl
+subandexpand.m
+ExpOpt.m
+makeint.pm
+preparenumerics.pl (for name of intfile)
+
+16.06.2011
+-functions can be left implicit for the algebraic part of the calculation for
+ the general program.
+-more control over the random number generator seed is now possible.
+-documentation brought up to date for new functionality.
+
+02.06.2011
+-added files permitting to loop over different values for numerical constants 
+ in "general" subdirectory
+
+01.06.2011
+-allowed length of output filenames increased in general program
+
+26.05.2011
+-unregulated singularities detected for general program
+
+
+14.04.2011
+-problem with collection of lowest pole in loop program fixed
+
+11.04.2011
+-version number changed to 1.1.0 to indicate inclusion of Cuba library as significant upgrade
+-detection of singularities within the integration region refined
+
+04.04.2011
+-previous problems with restarting the program after manual interrupt fixed.
+
+24.03.2011
+-development branch added
+
+22.03.2011
+-in the general program constant prefactors not dependent upon epsilon were not
+treated correctly after the update of 03.03.2011. This is fixed
+
+
+03.03.2011
+-exponents of the form (a_i+b_i eps) are now accepted with b_i implicit for the
+ general program (a_i must of course be explicitly given as it dictates what
+ level of subtraction is needed). The Hyp4F3 example is changed to give a
+ demonstration of this
+
+01.03.2011
+-routine findsymmetries in loop/src/subexp/formindlist.m improved
+-justnumerics.pl updated to remain compatible with previous change in batch
+ files
+
+23.02.2011
+-SDroutines.m. more thoroughly documented
+-Other robodoc headers brought up to date
+-'grouping' option added to param.input files
+-submission of Mathematica jobs via batch*l*h* retrys when no 
+ licences are immediately available
+-informative print statements adjusted for the loop program when
+ sectors are decomposed seperately
+
+21.02.2011
+-preferred set selection during the decomposition was incorrectly 
+ implemented in the loop case,  this is fixed.
+-Portable Batch System output/error files renamed;
+ they now appear in the directory the job submission file is written in.
+
+16.02.2011
+-common block 'ndim' in fortran files caused a naming conflict. This is now
+called 'ndimen'
+
+08.02.2011: release of version 1.0.1
+
+Changes with respect to version 1.0.0:
+
+08.02.2011
+- Bug fixed relating to prefactors and collection of the results in the loop directory.
+ Version 1.0.0 gave an incorrect result when "togetherflag=1" and 
+ "primarysectors" and  "multiplicities" were non-empty. 
+ Specifically if k sectors are in the list "primarysectors", the
+ stated result was k times too large. 
+ 
+- general/cleanall.sh and loop/cleanall.sh added to run any launchclean scripts
+ remaining, and remove all intermediate files from the main directory (e.g. job
+ output/error files from the batch system) 
+ 
+04.02.2011
+- New sector decomposition routines added to allow for parallelisation of the
+  Mathematica part
+- Cuba library 2.1 integrated into the package and into the user interface
+
+6.12.2010
+- issue with "togetherflag=1" on 64bit machines fixed
+- "graphname" starting with a number is now also possible 
+-  info about timings and result files added to the "demos" directories
+
+1.12.2010: 
+- general/finishnumerics.pl:  fixed option to call the script from any directory 
+- general/demos/param5F4.input: changed parameter settings to have a 
+  faster evaluation
+ 

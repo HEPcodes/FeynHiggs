@@ -1,0 +1,21 @@
+CC = gcc
+CXXFLAGS = -Ofast -static -march=native
+LDFLAGS	= /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/loop/src/util/sobol.o /home/pcl301/hahn/fh-2a/extse/OasatPdep.app/SecDec3/Cuba-3.2/libcuba.a -lm
+OBJS =  f1.o f2.o f3.o f4.o f5.o\
+	f6.o f7.o f8.o f9.o f10.o f11.o\
+	f12.o f13.o f14.o f15.o f16.o g1.o g2.o g3.o g4.o g5.o\
+	g6.o g7.o g8.o g9.o g10.o g11.o\
+	g12.o g13.o g14.o g15.o g16.o
+MAIN = intfile1
+
+default: $(MAIN).exe
+	strip $(MAIN).exe
+	$(RM) $(OBJS)
+
+$(MAIN).exe: $(MAIN).cc $(OBJS)
+	$(CXX) $(CXXFLAGS) -o $@ $^ $(SOBOLF) $(LDFLAGS)
+
+$(OBJS): intfile.hh
+
+clean:
+	$(RM) $(MAIN).exe $(OBJS)

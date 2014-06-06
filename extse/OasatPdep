@@ -1,0 +1,51 @@
+#! /bin/bash
+#
+# OasatPdep computes the k^2-dependent O(as at) Higgs self-energies
+# for use with FeynHiggs
+#
+# File written by S. Borowka, Feb 2014
+# last modified 29 Apr 14 th
+#
+# Notes:
+# - the imaginary part of SecDec results plays no crucial role in the 
+#   real part, it does play a role in the imaginary part of phi22 and phi12
+# - thresholds are taken care of in SecDec
+
+
+test -n "$FHEXTSE_WORKDIR" && cp -rp $0.app/* . || cd $0.app
+root=$PWD
+
+cat << _EOF_ 1>&2
+ SecDec is computing the k^2-dependent 2-loop Higgs self-energies.
+ This may take up to a few minutes.
+ Please cite arXiv:1204.4152, 1404.xxxx.
+_EOF_
+
+test "`echo "0${FHImUSt11#-} + 0${FHImUSt12#-} > .000001" | bc`" = 1 &&
+  echo "Warning: Complex phases ignored by OasatPdep" 1>&2
+
+test "0$FHDEBUG" -gt 3 && {
+  exec 2> /tmp/OasatPdep.log
+  set -x
+  echo "keep tmpdir $root"
+}
+
+export Mudim=`echo "($FHscalefactor*$FHMT)^2" | bc`
+export AlfasMT=$FHAlfasMT
+export GF=$FHGF
+export TB=$FHTB
+export MT=$FHMT
+export MGl=$FHMGl
+export MUE=$FHReMUE
+export Mh12=$FHMHiggs21
+export Mh22=$FHMHiggs22
+export MA=$FHMA0
+export MSf1=$FHMSt1
+export MSf2=$FHMSt2
+export Ctf=$FHReUSt11
+export Stf=$FHReUSt12
+
+. $root/SecDec3/loop/secdexecute
+
+. $root/OasatEval
+

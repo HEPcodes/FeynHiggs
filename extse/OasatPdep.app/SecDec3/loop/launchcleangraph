@@ -1,0 +1,19 @@
+#****l* SecDec/loop/launchcleangraph
+# NAME
+#  launchcleangraph
+# USAGE
+#  ./launchcleangraph
+# USES
+#  cleanup.pl
+# PURPOSE
+#  removes all intermediate files produced by the program.
+#  written by subexploop.pl, subexpuserdefined.pl, justnumericsloop.pl
+#  or justnumericsuserdefined.pl
+#
+# OPTIONS
+# './launchcleangraph all' does a more thorough removal of files,
+# leaving only the full result file.
+# SEE ALSO
+#  subexploop.pl, subexpuserdefined.pl, justnumericsloop.pl,
+#  justnumericsuserdefined.pl, cleanup.pl
+#****

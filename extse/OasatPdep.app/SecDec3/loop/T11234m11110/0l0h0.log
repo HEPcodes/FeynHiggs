@@ -1,0 +1,31 @@
+Mathematica 9.0 for Linux x86 (64-bit)
+Copyright 1988-2013 Wolfram Research, Inc.
+
+In[1]:=                                                                                                                                                                                                                                                                                                                                                                                                                                         
+In[2]:= 
+In[3]:= In[3]:= 
+In[4]:= In[4]:= Recasting input for subtraction
+Recasting done, time taken = 0.001000 seconds
+Integrand takes up 42928 bytes
+Integrand list ordered, time taken = 0.001000 seconds
+Collating integrand list
+Integrand list collated, time taken = 0.seconds
+Checking for symmetry amongst subsectors
+Symmetries accounted for, time taken = 0.001000 seconds
+Launching kernels...
+
+CreateDirectory::filex: 
+   /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11110/together/
+     already exists.
+Producing C++ functions
+Memory in use before optimizing C++ functions = 24572856
+numericalintegrand 1 evaluated, Memory in use = 21636168
+numericalintegrand 2 evaluated, Memory in use = 21680152
+numericalintegrand 3 evaluated, Memory in use = 21731944
+numericalintegrand 4 evaluated, Memory in use = 21816096
+C++ functions produced, time taken = 1.417000 seconds
+
+In[5]:= 
+In[6]:= Total time taken to produce C++ files: 1.813000 secs
+
+In[7]:= In[7]:= 

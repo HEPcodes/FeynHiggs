@@ -1,0 +1,8 @@
+#! /bin/sh
+
+cd `dirname $0`
+
+for dir in `cut -d/ -f1 integrals.tab | sort -u` ; do
+  ./justnumericsloop.pl -p $dir.input exe3 || exit 1
+done
+

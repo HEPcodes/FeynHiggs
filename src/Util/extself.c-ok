@@ -1,0 +1,113 @@
+/*
+	extself.c
+		call external program with preset environment
+		for the computation of the Higgs SE
+		this file is part of FeynHiggs
+		last modified 26 Mar 14 th
+*/
+
+#include <stdlib.h>
+#include <stdio.h>
+#include <string.h>
+#include <stdarg.h>
+
+#include "externals.h"
+#include "ftypes.h"
+
+
+#if NOUNDERSCORE
+#define extself_ extself
+#endif
+
+#define lengthof(x) sizeof(x)/sizeof(*(x))
+
+typedef struct {
+  RealType re, im;
+} cplx;
+
+enum { semax = 13, seXmax = 4 };
+
+typedef struct {
+  char *tag;
+  int off;
+} hid_t;
+
+void extself_(int *flags, cplx *se, const char *cmd, ...)
+{
+  char buf[256], val[32], *s;
+  RealType *r;
+  va_list v1, v2;
+  int cmd_len, s_len, i, rot, sub;
+  FILE *h;
+
+#define higgs_se(tag,off) \
+  {"h0h0" tag, off+0x00}, \
+  {"HHHH" tag, off+0x01}, \
+  {"A0A0" tag, off+0x02}, \
+  {"HmHp" tag, off+0x03}, \
+  {"h0HH" tag, off+0x04}, \
+  {"h0A0" tag, off+0x05}, \
+  {"HHA0" tag, off+0x06}, \
+  {"G0G0" tag, off+0x07}, \
+  {"h0G0" tag, off+0x08}, \
+  {"HHG0" tag, off+0x09}, \
+  {"A0G0" tag, off+0x0a}, \
+  {"GmGp" tag, off+0x0b}, \
+  {"HmGp" tag, off+0x0c}, \
+  {"F1F1" tag, off+0x80}, \
+  {"F2F2" tag, off+0x81}, \
+  {"F1F2" tag, off+0x84}
+
+  static hid_t hid[seXmax*(semax+3)] = {
+    higgs_se("@Mh0", 0*semax),
+    higgs_se("@MHH", 1*semax),
+    higgs_se("@MA0", 2*semax),
+    higgs_se("@MHp", 3*semax) };
+
+  va_start(v1, cmd);
+  va_copy(v2, v1);
+  while( *va_arg(v1, char *) != '-' ) va_arg(v1, RealType *);
+  cmd_len = va_arg(v1, int);
+  for( ; ; ) {
+    s = va_arg(v2, char *);
+    if( *s == '-' ) break;
+    r = va_arg(v2, RealType *);
+    s_len = va_arg(v1, int);
+    memcpy(buf, s, s_len);
+    buf[s_len] = 0;
+    sprintf(val, "%.15lg", *r);
+    setenv(buf, val, 1);
+  }
+  va_end(v2);
+  va_end(v1);
+
+  memset(se, 0, semax*seXmax*sizeof(cplx));
+
+  while( cmd_len > 1 && cmd[cmd_len-1] == ' ' ) --cmd_len;
+  memcpy(buf, cmd, cmd_len);
+  buf[cmd_len] = 0;
+
+  rot = sub = 0;
+  h = popen(buf, "r");
+  if( h ) {
+    while( fgets(buf, sizeof buf, h) ) {
+      if( strncmp(buf, "sub ", 4) == 0 ) {
+        if( strncmp(buf+4, "asat", 4) == 0 ) sub |= 2;
+        else if( strncmp(buf+4, "atat", 4) == 0 ) sub |= 4;
+        else if( strncmp(buf+4, "asab", 4) == 0 ) sub |= 8;
+        else if( strncmp(buf+4, "atab", 4) == 0 ) sub |= 16;
+      }
+      else for( i = 0; i < lengthof(hid); ++i ) {
+        if( strncmp(buf, hid[i].tag, 8) == 0 ) {
+          cplx *sei = &se[hid[i].off & 0x7f];
+          rot |= hid[i].off;
+          sscanf(buf+8, "%lg %lg", &sei->re, &sei->im);
+          break;
+        }
+      }
+    }
+    pclose(h);
+  }
+  *flags = (rot >> 7) + sub;
+}
+

@@ -1,0 +1,36 @@
+#include "intfile.hh"
+
+dcmplx Pf2(const double x[], double es[], double esx[], double em[], double lambda, double lrs[], double bi) {
+double x0=x[0];
+double x1=x[1];
+dcmplx y[16];
+dcmplx FOUT;
+dcmplx MYI(0.,1.);
+y[1]=1./bi;
+y[2]=em[1];
+y[3]=-x0;
+y[4]=1.+y[3];
+y[5]=lrs[0];
+y[6]=-(lambda*MYI*x0*y[1]*y[2]*y[4]*y[5]);
+y[7]=x0+y[6];
+y[8]=em[0];
+y[9]=em[2];
+y[10]=lrs[1];
+y[11]=x0*x0;
+y[12]=esx[0];
+y[13]=pow(bi,-2);
+y[14]=lambda*lambda;
+y[15]=pow(y[2],2);
+FOUT=(pow(y[1]+y[1]*y[7],-3)*(y[1]*y[2]+y[1]*y[2]*y[7])*y[13]*(1.-lambda*MYI\
+*y[1]*y[2]*y[5]+2.*lambda*MYI*x0*y[1]*y[2]*y[5]-lambda*MYI*x0*y[1]*y[2]*y[1\
+0]-lambda*MYI*x0*y[1]*y[8]*y[10]-lambda*MYI*y[1]*y[9]*y[10]-lambda*MYI*x0*y\
+[1]*y[9]*y[10]-lambda*MYI*y[1]*y[8]*y[10]*y[11]+lambda*MYI*x0*y[1]*y[10]*y[\
+12]-x0*y[2]*y[5]*y[8]*y[10]*y[13]*y[14]+2.*pow(x0,3)*y[2]*y[5]*y[8]*y[10]*y\
+[13]*y[14]-y[2]*y[5]*y[9]*y[10]*y[13]*y[14]+x0*y[2]*y[5]*y[9]*y[10]*y[13]*y\
+[14]+y[2]*y[5]*y[8]*y[10]*y[11]*y[13]*y[14]+2.*y[2]*y[5]*y[9]*y[10]*y[11]*y\
+[13]*y[14]+x0*y[2]*y[5]*y[10]*y[12]*y[13]*y[14]-2.*y[2]*y[5]*y[10]*y[11]*y[\
+12]*y[13]*y[14]-x0*y[5]*y[10]*y[13]*y[14]*y[15]+2.*y[5]*y[10]*y[11]*y[13]*y\
+[14]*y[15]))/(1.-lambda*MYI*y[10]*(x0*y[1]*y[2]+x0*y[1]*y[8]+y[1]*y[9]+x0*y\
+[1]*y[9]+y[1]*y[8]*y[11]-x0*y[1]*y[12]));
+return (FOUT);
+}

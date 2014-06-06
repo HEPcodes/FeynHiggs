@@ -1,0 +1,23 @@
+paramfile=param.input
+pointname=p
+##########################################################
+# one can specify lines<number of inputs listed so that not
+# all points listed are calculated
+lines=10000
+#---------------------------------------------------------
+# each line below contains numsij sij's, then numpi2 pi^2, then numms2 mi^2
+numsij=1
+numpi2=3
+numms2=1
+xplot=1
+# This means that for the list of points given below, each 
+# contains one value for sijs, three for pi2 and one for ms2.
+# xplot is optional, and defines which parameter to plot on
+# the x axis.
+#---------------------------------------------------------
+0.4,0.0,0.0,0.4,1.0
+1.2,0.0,0.0,1.2,1.0
+2.3,0.0,0.0,2.3,1.0
+3.9,0.0,0.0,3.9,1.0
+7.0,0.0,0.0,7.0,1.0
+20.0,0.0,0.0,20.0,1.0

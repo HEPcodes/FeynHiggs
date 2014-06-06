@@ -1,0 +1,43 @@
+#! /bin/bash
+
+cd `dirname ${BASH_SOURCE[0]}`
+
+MATH_EXEC <<\_EOF_
+(*AppendTo[$Echo, "stderr"];*)
+
+EG4Pi = 1;
+
+<< routines/SimplificationDefinitions.m;
+SetOptions[MagicSimplify, Feedback -> False];
+
+(* simplifying definitions contained in Sij_eff *)
+
+<< analytexpr/T134m123.m;
+<< analytexpr/T234m100.m;
+<< analytexpr/B0_gudrun.m;
+
+<< analytexpr/oasatpdepwithoutGrams.m;
+
+(#1 = Internal`StringToDouble/@ (ToString/@ #1 /. GetEnvironment[]))& @
+  {Mudim, GF, AlfasMT, TB, MT, MGl, MUE, MA, MSf1, MSf2, Ctf, Stf};
+
+read[file_, den_] := (Tfin[den, N[#1]] = #2 + I #4)&@@@ (rec =
+  ReadList["SecDec3/loop/" <> file <> "0.gpdat", Number, RecordLists -> True]);
+
+read@@@ ReadList["SecDec3/loop/integrals.tab", {Word, Expression}];
+
+SE[ExtMomSq_] = MagicSimplify/@ (SEs /.
+  GS^2 yt^2 -> Sqrt[2] 8 Pi GF AlfasMT MT^2/TB^2 (1 + TB^2));
+
+
+Print[ExportString[
+  Flatten[MapThread[{#1, Re[#2], Im[#2]}&,
+    { {{"\nF1F1@Mh0", "F2F2@Mh0", "F1F2@Mh0"},
+       {"\nF1F1@MHH", "F2F2@MHH", "F1F2@MHH"}},
+      SE/@ {rec[[1,1]], rec[[2,1]]} }, 2], 1],
+  "Table"]]
+
+Print["\nsub asat"];
+
+_EOF_
+

@@ -1,0 +1,40 @@
+Installation:
+
+1) Install SecDec:
+
+Go to SecDec3 directory
+./install
+
+3) Open the file OasatPdep
+
+Insert the path from your home directory 
+to your oasatprogram folder, e.g.:
+
+$HOME$relp="/home/username/anotherfolder/oasatprogram"
+then
+$HOME=/home/username/
+$relp="anotherfolder/oasatprogram"
+
+The relative path $relp is the one you have to insert in 
+the OasatPdep file.
+
+
+Usage:
+
+1) Go to FeynHiggs-2.10.1 directory
+
+2) Alter the file "computemhH.F" to match your wishes or 
+use any other FeynHiggs input file you want
+
+3) Compile it with a Fortran compiler
+ifort/gfortran/... -Ibuild computemhH.F -Lbuild -lFH -o computemhH
+
+4) Set environment variable:
+export FHEXTSE=/path/to/your/FeynHiggs/directory/OasatPdep
+
+5) Start program with ./computemhH or the same way 
+you usually start FeynHiggs
+
+
+---
+14-Apr-2014

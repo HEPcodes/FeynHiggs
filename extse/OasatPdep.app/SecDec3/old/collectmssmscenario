@@ -1,0 +1,31 @@
+#! /bin/bash
+
+cd `dirname "$0"`
+shopt -s nullglob 2> /dev/null
+
+declare -a integrals
+integrals=(`cut -f1 -d' ' integrals.tab`)
+
+multinumericsloop() {
+  for i in ${integrals[@]} ; do
+    perl ./multinumericsloop.pl -p multi`basename $i`.input "$@" || exit 1
+  done
+}
+
+
+# start calculation
+multinumericsloop
+
+set -- ${integrals[@]/\/*//together/epstothe*}
+expected=$((3*$#))
+
+# wait for results to be delivered
+while true ; do
+  set -- T*/together/epstothe*/*.out
+  test $# -ge $expected && break
+  sleep 1
+done
+
+# collect results
+multinumericsloop 1
+

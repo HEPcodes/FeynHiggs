@@ -1,0 +1,272 @@
+####################
+SecDec README
+####################
+
+Dear user, 
+
+this is a very short manual of how to use the SecDec program when computing Loop integrals with either
+using primary sector decomposition or omitting it. 
+
+When the keyword "loop" in this README is contained in any filename or command, this refers to the case 
+where a primary sector decomposition is done. The keyword "userdefined" refers to the case where integrals, 
+which are written to the Mathematica template file via "functionlist={...}" by the user, are not getting 
+a primary sector decomposition.
+
+For further information and updates check out the website http://secdec.hepforge.org.
+
+I) DEFINITION OF INPUT
+   
+   Set the desired parameters in paramloop.input and define the propagators etc. in templateloop.m
+   Alternatively, rename paramloop.input into [myparamfilename] and templateloop.m into [mytemplatename],
+   and move them to [myworkingdirectory].
+   Then use '[path_to_launch]/launch -p myparamfilename -t mytemplatefilename'.
+
+   The same applies to the files paramuserdefined.input and templateuserdefined.m in the case of omitting the 
+   primary sector decomposition.  
+   To launch the program use '[path_to_launch]/launch -p myparamfilename -t mytemplatefilename -u'.
+
+
+II) HOW TO RUN SecDec
+
+    Specify the stage to which you want SecDec to run in the "myparamfile" via the "exeflag=".
+
+    Execute the command './launch' in the shell (from the SecDec/loop/ directory) 
+    or '[path_to_launch]/launch' if the launch script is called from a different directory. 
+    this will launch the following 3 perl scripts:
+    makeFU.pl: 
+      This script constructs the integrand from the propagators and indices given in the 
+      "mytemplatefile". 
+      If you would like to define the functions U and F manually, edit FUN.m in the graph 
+      subdirectory and skip the makeFU.pl step.
+
+    decomposeloop.pl/decomposeuserdefined.pl: 
+      This script launches the iterated sector decomposition for loop integrals/more general 
+      integrals (with Feynman parametrization) and  writes the files 'graphsec*.out' 
+      (or 'graphfunc*.out for more general functions using no primary sector decomposition) 
+      for each pole structure.
+
+    subexploop.pl/subexpuserdefined.pl: 
+      This script launches the subtractions and epsilon-expansions for loop integrals/more 
+      general integrals depending on the 'exe' flag chosen in param*.input:
+      
+      exe=0: a) writes  the mathematica files subandexpand*.m for each pole structure which 
+      	        serve to do the symbolic subtraction, eps expansion (with IBP where applicable), 
+                and for writing the fortran files.
+	     b) also writes  the scripts 'batch[polestructure]' which serve to launch the symbolic 
+	        subtraction,eps expansion (with IBP where applicable), writing the C++ or Fortran 
+		files and the numerical integration
+	     c) if a batch system is used, it writes the submission files 'job[polestructure]' which 
+	        are used to launch 'batch[polestructure]'		  
+	     d) use this option if you would like to run different pole structures separately on 
+	        different machines/cores. In this case an individual pole structure runs sequentially 
+		on a single core, but different pole structures can be run in parallel. Set the 
+		'job submission' flag to 0 (single machine). To run a given pole structure, type 
+		'./subdir/graph/batch[polestructure]'
+	        uses: templates perlsrc/batch and src/subexp/subandexpand.m
+		          
+      exe=1:    (in addition to the above)
+             e) launches the scripts 'batch[polestructure]', which launches subandexpand*.m
+	     f) subandexpand*.m will create subdirectories for each pole structure (via 
+	        form(P)fortran.m, formContour(P)C.m or form(P)C.m depending on the language you use
+		and if you want to use contour deformation) and write the C++/Fortran functions 
+		there
+  
+      exe=2:    (in addition to the above)	 
+             g) creates all the additional files needed for the numerical integration
+	        by launching polenumerics.pl for each pole structure
+		  
+		  uses:
+		  polenumerics.pl: 
+		  for each order (and,  when IBP is used, each number of variables) 
+		  in the given polestructure it calls preparenumerics.pl;
+		  
+		  preparenumerics.pl: 
+		  writes the sf, intfile, makefile, subfile.pl, make.pl for the given
+                  polestructure, order, number of variables in the corresponding subdirectory.
+
+      exe=3: h) compilation is launched (via make.pl) to make the executables 
+   
+      exe=4: i) executables are run (via subfile.pl)
+
+    
+    OPTIONS: 
+    If a  parameter/template file with a name different form paramloop.input/templateloop.m is to be used, 
+    use the options 
+    ./launch -p myparamfilename -t mytemplatefilename. 
+    If these files are in a subdirectory, use 
+    ./launch -d myworkingdirectory -p myparamfilename -t mytemplatefilename, 
+    or from myworkingdirectory, execute:
+    '[path_to_launch]/launch -p myparamfilename -t mytemplatefilename', 
+    where [path_to_launch] is the (relative or absolute) path for the SecDec/loop directory.
+
+    If you want to compute a more general parametric integral which uses Feynman parametrization, 
+    specify a functionlist={} in the template file with mytemplatefilename and type an additional 
+    -u when launching
+    ./launch -p myparamfilename -t mytemplatefilename -u. 
+    In this case, no primary sector decomposition is performed. 
+
+
+III) USAGE OF BATCH SYSTEMS
+  a) If the calculations are done sequentially: (no batch system used)
+    
+     The results will be collected automatically (via resultsloop.pl).
+     The output file will be displayed with your specified text editor. If none is specified, 
+     only the path to the output file is printed to the shell. 
+     The results are also saved to the files graphdir/graph_pointepstothe*.res, graph/graph_pointfull.res. 
+
+  b) If using a batch system on a cluster: 
+
+      i) Default batch setup (PBS): 
+        
+	 When all jobs have finished execute the command 
+	 './resultsloop.pl [-d myworkingdirectory -p myparamfilename]'. 
+	 or if no primary sector decomposition was used
+	 './resultsuserdefined.pl [-d myworkingdirectory -p myparamfilename]'. 
+      
+     ii) user-defined batch setup:
+         
+         manually edit perlsrc/makejob.pm and perlsrc/launchjob.pm (required) to be compatible with
+	 your batch system syntax.
+	 To ensure the maximum number of jobs allowed in the queue is not exceeded, 
+	 manually edit perlsrc/makesub.pm (optional - if not done, max jobs allowed = infinity).
+	 This writes the desired syntax to the scripts subdir/graph/job[polestructure], which are
+	 launched automatically by subexploop.pl/subexpuserdefined.pl or finishnumericsloop.pl/
+	 finishnumericsuserdefined.pl.
+	 The submission files for numerical integration are created at
+	 subdir/graph/polestructure/epstothe[o]/polestructure.[o].[ni] or
+         subdir/graph/polestructure/epstothe[o]/[nv]/polestructure.[o].[nv].[ni],
+	 where [o] is the order of epsilon, [nv] is the number of integration variables (only when IBP used)
+	 and [ni] labels which executable (intfile[ni].exe) is to be run.
+	 These are launched by subfile.pl in the same directory, which is run automatically by
+	 perlsrc/polenumerics.pl, or perlsrc/finishpolenumerics.pl.
+	
+	 When all jobs have finished type './resultsloop.pl [-d myworkingdirectory -p myparamfilename]' or
+	 './resultsuserdefined.pl [-d myworkingdirectory -p myparamfilename]' if no primary sector decomposition
+	 was used. 
+
+
+IV) CLEANUP
+
+    To remove intermediate auxiliary files after completion of the calculation, type './launchclean[graph]'.
+  
+    Called with no arguments it removes intermediate perl scripts, makefiles, .o files, *sf*.f or *sf*.cc, 
+    executables, and, where applicable, job submission files. It leaves the Fortran/C++ files created by 
+    Mathematica, so that different numerical points can be calculated without rerunning the Mathematica part.
+    Called with the argument 'all' (i.e. "./launchclean[graph] all"),  it removes everything except the 
+    [graph]*full.res file.
+    
+    The executable cleanall.sh will run all existing launchclean[graphname] with the argument 'all', remove 
+    any 'decompose[graph]' executables and remove all job error and output files from the batch system in the 
+    "loop/" directory.
+
+
+V) USEFUL ADDITIONAL COMMANDS:
+  
+  a)'./finishnumericsloop.pl [-d myworkingdirectory -p myparamfilename]': 
+
+     If the 'exe' flag in 'paramloop.input' resp. 'myparamfilename' is set < 4, 
+     './finishnumericsloop.pl [-d myworkingdirectory -p myparamfilename]' 
+     will complete the calculation without redoing previous steps by calling one of polenumerics.pl, 
+     finishpolenumerics.pl, ./batch*l*h* or resultsloop.pl.
+     Then execute the command './resultsloop.pl [-d myworkingdir -p myparamfilename]'
+     to collect and display the result as above. 
+
+     The same applies to finishnumericsuserdefined.pl (with paramuserdefined.input and the resultsuserdefined.pl command).
+  
+  b)'./justnumericsloop.pl [-d myworkingdirectory -p myparamfilename]': 
+
+     Works only if Fortran (C++) files f*.f (f*.cc) have been produced already.
+     To produce results for a different kinematic point: 
+     1) Change the point name and 
+     2) the numerical values for the masses/invariants in the parameter file
+     3) and then execute the command 
+     	'./justnumericsloop.pl [-d myworkingdirectory -p myparamfilename]' 
+	to produce numerical results for different points in phase space. It skips the Mathematica 
+	subtraction+epsilon expansion step which can be done once and for all, as the kinematic variables at 
+	this stage are still symbolic.
+     4) Then type 
+     	'./resultsloop.pl [-d myworkingdirectory -p myparamfilename]'
+  	to collect and display the result as above.
+  
+     The same applies to ./justnumericsuserdefined.pl (with paramuserdefined.input and the resultsuserdefined.pl command)
+
+  c)'./resultsloop.pl [-d myworkingdirectory -p myparamfilename]': 
+
+     Works only if Fortran (C++) files f*.f (f*.cc) have been produced and compiled already.
+     If this is the case, it
+     1) ... scans through the subdirectories, picking up all necessary result files
+     2) ... reruns/resubmits any integration whose result files of type nb*x*ord.out are not found
+     3) ... collects the results, generates and uses the appropriate prefactors and writes the results to 
+        files subdir/graph/graph_pointepstothe*.res and subdir/graph/graph_pointfull.res.  
+	When a text editor is specified in paramloop.input, this is used to display the results.
+  
+     uses: perlsrc/prefactor.pl, perlsrc/mathlaunch.pl, perlsrc/getinfo.pm
+
+     The same applies to ./resultsuserdefined.pl (with paramuserdefined.input).
+
+VI) DEMOS 
+    
+    The 'demos' subdirectory contains parameter and template files for the examples described in the manuscript. 
+    The file 'timings.info' gives a list of timings for the different examples (indicative timings only, as 
+    this is obviously machine dependent).
+    The results which a correct usage of the program should produce are also given in the 'demos' subdirectory, 
+    in the files with extension *.res.
+
+
+VII) USEFUL FOR TROUBLESHOOTING
+
+  a) If the function F is zero:
+     Verify the on-shell conditions in loop/templateloop.m or loop/templateuserdefined.m. By default, the external 
+     legs have been set to be light-like (p_i^2=ssp[i]=0). 
+     If you calculate a massless two-point integral or a one-scale 3-point integral, at least one scale must be 
+     different from zero (e.g. set ssp[1]=-1 for a two-point function with external momentum p_1).
+
+     Remember that the program by default replaces p_i^2 by ssp[i], (p_i+p_j)^2 by sp[i,j]. 
+     This is done in src/deco/calcFU.m when using primary sector decomposition, and in src/deco/deconoprimary.m
+     when omitting the primary sector decomposition. If symbols different from p_i are used for the 
+     external momenta, the user has to define their numerical values in the templateloop.m or
+     templateuserdefined.m file in the list 'onshell'. When giving numerical values here, the rescale option might 
+     not work as expected as it takes the biggest kinematic invariant from the input file and inserts this into
+     the function at the stage of numerical integration. 
+
+     Example: for external vectors called p, q, 
+     define numerical values for the invariants formed by p and q, 
+     e.g. onshell={p^2 -> -1, q^2 -> 0, p*q -> -0.5}.
+     Alternatively, you can map to the predefined names for the invariants, 
+     e.g. onshell={p^2 -> ssp[1], q^2 -> ssp[2], p*q -> (sp[1,2]-ssp[1]-ssp[2])/2}.
+     This latter solution allows you to leave the invariants symbolic and specify 
+     numerical values only at the numerical integration stage, by assigning the corresponding 
+     numerical values in paramloop.input or paramuserdefined.input. 
+
+     The user can check if the functions  {\cal F}, {\cal U} and numerator 
+     look as expected by looking at the file  FUN.m in the graph subdirectory "subdir/graph/".
+
+  b) If the numerical integration takes very long:
+     Apart from the fact that this is to be expected for complicated integrands, other reasons could be
+
+     i) The integrand still contains undefined symbols at the numerical integration stage
+        because the numerical values for the constants have not been properly defined
+	(e.g. values for which {\cal F} is not of definite sign).
+	Things to do are: check the function {\cal F} in the file  FUN.m in the  graph/ subdirectory; 
+	check the log files of the numerical integration in the subdiretories 
+ 	integralname/polestructure/epstothe[i], where ``polestructure" is of the form e.g.  2l0h0, 
+	denoting 2 logarithmic poles and 0 linear or higher poles.
+    ii) You chose an extremely high accuracy in the input file, or depending on the integrator you use, 
+    	chose a key which is too small or too big.
+   iii) When using divonne, 'border' is set too small. This is particularly important
+   	when the integrand has a complicated pole structure.
+
+  c) If the results do not appear in an editor window:
+     Either you did not specify an editor in param*.input (last entry) or 
+     your system is unable to open the editor window. 
+     In this case just look at the result file located in the 'graph' subdirectory 
+     (where 'graph' is the name for the calculated  graph, specified by you in param*.input, third item). 
+     The result file is called graph_[point]full.res.
+
+  d) If you get the message ``path for Mathematica not automatically found":
+     Insert the path to Mathematica on your system manually for the variable \mathpath
+     in the file  perlsrc/mathlaunch.pl.
+
+#####################################################################################################
+
+

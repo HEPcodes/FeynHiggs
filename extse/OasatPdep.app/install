@@ -1,0 +1,109 @@
+#! /bin/bash
+
+cat << _EOF_
+$0 sets up the OasatPdep folder for computation with FeynHiggs
+To use the HTCondor batch system @ MPP, run "$0 condor".
+
+Important: This program must be run whenever you move the
+OasatPdep.app folder to a different location.
+
+_EOF_
+
+
+cd `dirname ${BASH_SOURCE[0]}`
+shopt -s nullglob 2> /dev/null
+
+version=serial
+fast=0
+
+for arg in "$@" ; do
+  case "$arg" in
+  fast)	echo "Not recompiling libraries and executables"
+	fast=1 ;;
+  condor)
+	echo "Setting scripts up for Condor"
+	version=condor ;;
+  *=*)
+	eval "${arg/=/=\"}\"" ;;
+  esac
+done
+
+
+rm -f SecDec3/loop/secdexecute
+ln -s secdexecute-$version SecDec3/loop/secdexecute
+
+
+test -z "$PERL_EXEC" && {
+  PERL_EXEC=`which perl`
+  test -z "$PERL_EXEC" && {
+    echo "perl not found"
+    exit 1
+  }
+}
+echo "perl is at $PERL_EXEC"
+
+
+test -z "$MATH_EXEC" && {
+  case `uname -s` in
+  Darwin) set MathKernel \
+	/Applications/Mathematica*/Contents/MacOS \
+	$HOME/Desktop/Mathematica*/Contents/MacOS ;;
+  CYG*)	set math.exe \
+	"`cygpath '$ProgramW6432'`/Wolfram Research/Mathematica"/* \
+	"`cygpath '$PROGRAMFILES'`/Wolfram Research/Mathematica"/* \
+	"/cygdrive/c/Program Files/Wolfram Research/Mathematica"/* \
+	"/cygdrive/c/Program Files (x86)/Wolfram Research/Mathematica"/* ;;
+  *)	set math \
+	/usr/local/bin \
+	/usr/local/Wolfram/bin \
+	/usr/local/Wolfram/Mathematica/*/Executables \
+	/opt/Wolfram/bin \
+	/opt/Wolfram/Mathematica/*/Executables ;;
+  esac
+  MATH_EXEC="$1"  
+  shift
+  MATH_EXEC=`IFS=:
+    PATH="$PATH:$*" which $MATH_EXEC`
+  test -z "$MATH_EXEC" && {
+    echo "Mathematica not found"
+    exit 1
+  }
+}
+echo "Mathematica is at $MATH_EXEC"
+
+
+for fin in `find . -name \*.in` ; do
+  f=${fin%.in}
+  perl -pe "s|PERL_EXEC|$PERL_EXEC|;
+            s|MATH_EXEC|$MATH_EXEC|;
+            s|clusterflag=[^=;]*;|clusterflag=0;|" $fin > $f
+  chmod 755 $f
+done
+
+
+test "$fast" = 1 && exit
+
+find . -name '*.[ao]' -execdir rm {} \;
+find . -name '*.exe' -execdir rm {} \;
+
+echo "Compiling Cuba"
+( cd SecDec3/Cuba-* &&
+  ./configure &&
+  make libcuba.a ) > install.log 2>&1
+
+
+echo "Compiling Sobol random sampler"
+( set +x &&
+  cd SecDec3/loop/src/util &&
+  ${CC:-gcc} -O -c sobol.cc ) >> install.log 2>&1 || echo "\
+Could not compile Sobol random sampler. \
+Retry manually in `pwd`/loop/src/util directory."
+
+
+echo "Dryrun: Compiling integration files"
+echo "Please wait (may take up to a couple of minutes)"
+SecDec3/loop/makedryrun >> install.log 2>&1
+
+
+echo "Install complete"
+

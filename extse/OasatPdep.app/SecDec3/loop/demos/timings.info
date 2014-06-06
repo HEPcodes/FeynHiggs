@@ -1,0 +1,13 @@
+This is a list of timings for the demos, run on a 64 bit machine 
+with a 2.66GHz processor,  cache size 6144 KB.
+
+Where results for more than one numerical point are given in the
+manuscript, the timing is for the calculation of the first point only.
+
+	NPbox: 	  2 hours, 5 minutes
+	QED:	  11 minutes
+	ggtt1: 	    3 minutes
+	ggtt2: 	    2 hours, 56 minutes
+	DBr1p3:	 2 hours, 11 minutes
+	A61:	   4.5 minutes
+

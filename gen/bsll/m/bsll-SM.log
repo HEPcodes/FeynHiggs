@@ -1,0 +1,394 @@
+Mathematica 9.0 for Linux x86 (64-bit)
+Copyright 1988-2013 Wolfram Research, Inc.
+
+In[1]:= 
+In[2]:= In[2]:= << FeynArts`
+FeynArts 3.9
+by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
+last revised 6 Sep 13
+
+In[3]:= In[3]:= << FormCalc`
+FormCalc 8.4
+by Thomas Hahn
+last revised 28 Feb 14
+
+In[4]:= In[4]:= NClear[];
+In[5]:= N[sqrt2] = Sqrt[2.];
+In[6]:= sqrt2/: sqrt2/2 = 1/sqrt2;
+In[7]:= sqrt2/: sqrt2^2 = 2;
+In[8]:= sqrt2/: sqrt2^-2 = 1/2;
+In[9]:= In[9]:= nsimp = Identity (*Simplify*);
+In[10]:= fsimp = (*Full*)Simplify;
+In[11]:= (*FormSub = Identity;*)
+In[12]:= In[12]:=                            massrulz = {
+  MT -> Mf[tT,3],
+  MT2 -> Mf2[tT,3],
+  Mdy[g_] -> Mf[bTR,g],
+(*
+  MB -> Mf[bTR,3],
+  MB2 -> Mf[bTR,3],
+*)
+  MSf[s_,4,g_] -> MSf[s,bTR,g],
+  MSf2[s_,4,g_] -> MSf2[s,bTR,g],
+  USf[s__,4,g_] -> USf[s,bTR,g],
+  USfC[s__,4,g_] -> USfC[s,bTR,g],
+  MASf[as_,4] -> MASf[as,bTR],
+  MASf2[as_,4] -> MASf2[as,bTR],
+  UASf[as__,4] -> UASf[as,bTR],
+  UASfC[as__,4] -> UASfC[as,bTR],
+  Kf[g__,4] -> Kf[g,bTR],
+  KfC[g__,4] -> KfC[g,bTR]
+}
+Out[12]= {MT -> Mf[tT, 3], MT2 -> Mf2[tT, 3], Mdy[g_] -> Mf[bTR, g], 
+ 
+      MSf[s_, 4, g_] -> MSf[s, bTR, g], MSf2[s_, 4, g_] -> MSf2[s, bTR, g], 
+ 
+      USf[s__, 4, g_] -> USf[s, bTR, g], USfC[s__, 4, g_] -> USfC[s, bTR, g], 
+ 
+      MASf[as_, 4] -> MASf[as, bTR], MASf2[as_, 4] -> MASf2[as, bTR], 
+ 
+      UASf[as__, 4] -> UASf[as, bTR], UASfC[as__, 4] -> UASfC[as, bTR], 
+ 
+      Kf[g__, 4] -> Kf[g, bTR], KfC[g__, 4] -> KfC[g, bTR]}
+
+In[13]:= In[13]:= Neglect[Mq] = Neglect[Mq2] = 0;
+In[14]:= Sq[Mq] = Mq2;
+In[15]:= In[15]:= MU = Mq; MU2 = Mq2;
+In[16]:= MC = Mq; MC2 = Mq2;
+In[17]:= In[17]:= MS = MS2 = 0;
+In[18]:= MM = MM2 = 0;
+In[19]:= In[19]:= MSf2[x__,2] = MSf2[x,1];		(* <<< ONLY FOR TESTING *)
+In[20]:= MSf[x__,2] = MSf[x,1];
+In[21]:= USf[x__,2] = USf[x,1];
+In[22]:= USfC[x__,2] = USfC[x,1];
+In[23]:= In[23]:= Sq[Alfas] =.;
+In[24]:= Alfas = asMT;
+In[25]:= In[25]:= (*_USf = VCha = UCha = IndexDelta;*)
+In[26]:= In[26]:= fs = 2;
+In[27]:= fl["bsll"] = 2;
+In[28]:= In[28]:= proc = F[4, {3}] -> {F[4, {fs}], F[2, {fl[me]}], -F[2, {fl[me]}]};
+In[29]:= In[29]:= opt["All"] = Sequence[];
+In[30]:= opt["Hp"] = LastSelections -> S[5];
+In[31]:= opt["Cha"] = LastSelections -> F[12];
+In[32]:= opt["Neu"] = Sequence[ExcludeParticles -> F[15], LastSelections -> F[11]];
+In[33]:= opt["Glu"] = LastSelections -> F[15];
+In[34]:= opt["SM"] = ExcludeParticles -> {F[11|12|15], S[5] (*, V[1]*)};
+In[35]:= In[35]:= In[35]:= SCsimp[expr_, var_:{SW, CW, SW2, CW2},
+  rul_:{CW2 -> 1 - SW2, SW2 -> 1 - CW2}] :=
+Block[ {p, s},
+  p = Cases[expr /. p_Plus :> fsimp[p] /; LeafCount[p] < 100,
+    p_Plus /; Complement[Cases[p, _Symbol, {-1}], var] === {},
+    Infinity] //Union;
+  Block[var,
+    s = Fold[nsimp[#1 /. #2]&, p, rul] /.
+      (Join[#, Map[-#&, #, {2}]]&)[Reverse/@ rul];
+    expr /. Thread[p -> s] ]
+]
+In[36]:= In[36]:= In[36]:= simp[ins_, opt___] :=
+Block[ {amp},
+  Paint[ins,
+    ColumnsXRows -> {4, 5},
+    (*PaintLevel -> {Classes},*)
+    DisplayFunction -> (Export[name <> ".ps", #, ImageSize -> 72 2 {4, 5}]&)];
+
+  amp = CreateFeynAmp[ins];
+(*amp = TagDiagrams[amp];*)
+
+  amp = CalcFeynAmp[ amp, opt,
+(*RetainFile -> True,*)
+    CancelQ2 -> False,
+    FermionChains -> Chiral,
+(*Antisymmetrize -> False,*)
+(*SortDen -> False,*)
+    FermionOrder -> (*None*) {2, 1, 3, 4} ];
+
+  Put[amp, name <> ".raw"];
+
+  amp = amp //. Subexpr[] /.
+    C0i[Except[LoopTools`cc0 | LoopTools`cc00], __] -> 0 /.
+    D0i[Except[LoopTools`dd0 | LoopTools`dd00], __] -> 0 /.
+    (#1 -> 0 &)@@@ Select[Abbr[], !FreeQ[#, DiracChain[__, _k, __]] &] /.
+    FormCalc`S23|FormCalc`T12|FormCalc`T13 -> 0;
+
+  Put[amp, name <> ".raw2"];
+
+  amp = ApplyUnitarity[amp, CKM, 3, TermCollect];
+
+  Put[amp, name <> ".amp"];
+  Put[Abbr[], name <> ".abbr"];
+
+  Plus@@ amp //. Abbr[]
+];
+In[37]:= In[37]:= tops = CreateTopologies[1, 1 -> 3
+  (*, ExcludeTopologies -> Loops[4]*)
+  (*, ExcludeTopologies -> {Tadpoles, WFCorrections}*)
+  (*, TrianglesOnly*)
+  (*, BoxesOnly*)
+];
+In[38]:= In[38]:= ins = InsertFields[tops,
+  proc, opt[tag],
+  InsertionLevel -> {Particles},
+Restrictions -> NoLightFHCoupling,
+  Model -> myMSSMQCD];
+loading generic model file /home/pcl301/hahn/FeynArts/Models/Lorentz.gen
+> $GenericMixing is OFF
+generic model {Lorentz} initialized
+
+loading classes model file /home/pcl301/hahn/fh-2a/gen/bsll/myMSSMQCD.mod
+  loading classes model file /home/pcl301/hahn/FeynArts/Models/MSSMQCD.mod
+    loading classes model file /home/pcl301/hahn/FeynArts/Models/MSSM.mod
+> 75 particles (incl. antiparticles) in 26 classes
+> $CounterTerms are ON
+> 403 vertices
+classes model {myMSSMQCD} initialized
+
+Excluding 0 Generic, 6 Classes, and 6 Particles fields
+
+Excluding 18 field point(s) (incl. charge-conjugate ones)
+
+inserting at level(s) {Particles}
+> Top. 1: 0 Particles insertions
+> Top. 2: 0 Particles insertions
+> Top. 3: 0 Particles insertions
+> Top. 4: 0 Particles insertions
+> Top. 5: 0 Particles insertions
+> Top. 6: 0 Particles insertions
+> Top. 7: 0 Particles insertions
+> Top. 8: 0 Particles insertions
+> Top. 9: 0 Particles insertions
+> Top. 10: 0 Particles insertions
+> Top. 11: 0 Particles insertions
+> Top. 12: 20 Particles insertions
+> Top. 13: 3 Particles insertions
+> Top. 14: 0 Particles insertions
+> Top. 15: 0 Particles insertions
+> Top. 16: 0 Particles insertions
+> Top. 17: 0 Particles insertions
+> Top. 18: 0 Particles insertions
+> Top. 19: 0 Particles insertions
+> Top. 20: 0 Particles insertions
+> Top. 21: 0 Particles insertions
+> Top. 22: 0 Particles insertions
+> Top. 23: 0 Particles insertions
+> Top. 24: 0 Particles insertions
+> Top. 25: 0 Particles insertions
+> Top. 26: 0 Particles insertions
+> Top. 27: 0 Particles insertions
+> Top. 28: 0 Particles insertions
+> Top. 29: 0 Particles insertions
+> Top. 30: 0 Particles insertions
+> Top. 31: 0 Particles insertions
+> Top. 32: 0 Particles insertions
+> Top. 33: 0 Particles insertions
+> Top. 34: 0 Particles insertions
+> Top. 35: 0 Particles insertions
+> Top. 36: 0 Particles insertions
+> Top. 37: 0 Particles insertions
+> Top. 38: 0 Particles insertions
+> Top. 39: 0 Particles insertions
+> Top. 40: 0 Particles insertions
+> Top. 41: 0 Particles insertions
+> Top. 42: 0 Particles insertions
+> Top. 43: 0 Particles insertions
+> Top. 44: 0 Particles insertions
+> Top. 45: 0 Particles insertions
+> Top. 46: 0 Particles insertions
+> Top. 47: 0 Particles insertions
+> Top. 48: 0 Particles insertions
+> Top. 49: 0 Particles insertions
+> Top. 50: 0 Particles insertions
+> Top. 51: 0 Particles insertions
+> Top. 52: 0 Particles insertions
+> Top. 53: 0 Particles insertions
+> Top. 54: 0 Particles insertions
+> Top. 55: 0 Particles insertions
+> Top. 56: 0 Particles insertions
+> Top. 57: 0 Particles insertions
+> Top. 58: 0 Particles insertions
+> Top. 59: 0 Particles insertions
+> Top. 60: 0 Particles insertions
+> Top. 61: 0 Particles insertions
+> Top. 62: 0 Particles insertions
+> Top. 63: 0 Particles insertions
+> Top. 64: 0 Particles insertions
+> Top. 65: 0 Particles insertions
+> Top. 66: 0 Particles insertions
+> Top. 67: 0 Particles insertions
+> Top. 68: 0 Particles insertions
+> Top. 69: 0 Particles insertions
+> Top. 70: 0 Particles insertions
+> Top. 71: 0 Particles insertions
+> Top. 72: 0 Particles insertions
+> Top. 73: 0 Particles insertions
+> Top. 74: 0 Particles insertions
+> Top. 75: 0 Particles insertions
+> Top. 76: 0 Particles insertions
+> Top. 77: 0 Particles insertions
+> Top. 78: 0 Particles insertions
+> Top. 79: 0 Particles insertions
+> Top. 80: 0 Particles insertions
+> Top. 81: 0 Particles insertions
+> Top. 82: 0 Particles insertions
+> Top. 83: 0 Particles insertions
+> Top. 84: 0 Particles insertions
+> Top. 85: 0 Particles insertions
+> Top. 86: 0 Particles insertions
+> Top. 87: 0 Particles insertions
+> Top. 88: 0 Particles insertions
+> Top. 89: 0 Particles insertions
+> Top. 90: 0 Particles insertions
+> Top. 91: 0 Particles insertions
+> Top. 92: 0 Particles insertions
+> Top. 93: 0 Particles insertions
+> Top. 94: 0 Particles insertions
+> Top. 95: 0 Particles insertions
+> Top. 96: 0 Particles insertions
+> Top. 97: 0 Particles insertions
+> Top. 98: 8 Particles insertions
+> Top. 99: 8 Particles insertions
+
+Restoring 0 Generic, 6 Classes, and 6 Particles fields
+
+Restoring 18 field point(s)
+in total: 39 Particles insertions
+
+In[39]:= In[39]:= amp = simp[ins];> Top. 1: 20 diagrams
+> Top. 2: 3 diagrams
+> Top. 3: 8 diagrams
+> Top. 4: 8 diagrams
+
+creating amplitudes at level(s) {Particles}
+> Top. 1: 20 Particles amplitudes
+> Top. 2: 3 Particles amplitudes
+> Top. 3: 8 Particles amplitudes
+> Top. 4: 8 Particles amplitudes
+in total: 39 Particles amplitudes
+
+preparing FORM code in /home/pcl301/hahn/fh-2a/gen/bsll/fc-amp-1.frm
+running FORM... ok
+
+In[40]:= In[40]:= In[40]:= Alfa2 = (Alfa = Sqrt[2]/Pi GF MW2 SW2)^2;
+In[41]:= In[41]:= Attributes[C0z] = Attributes[C00z] =
+Attributes[D0z] = Attributes[D00z] = {Orderless};
+In[42]:= In[42]:=                                              (*
+C0i[LoopTools`cc0, 0, 0, 0, m__] := C0z[m];
+C0i[LoopTools`cc00, 0, 0, 0, m__] := C00z[m];
+D0i[LoopTools`dd0, 0, 0, 0, 0, 0, 0, m__] := D0z[m];
+D0i[LoopTools`dd00, 0, 0, 0, 0, 0, 0, m__] := D00z[m];
+*)
+In[43]:= In[43]:= C0i[LoopTools`cc0, _, _, _, m__] := C0z[m];
+In[44]:= C0i[LoopTools`cc00, _, _, _, m__] := C00z[m];
+In[45]:= D0i[LoopTools`dd0, _, _, _, _, _, _, m__] := D0z[m];
+In[46]:= D0i[LoopTools`dd00, _, _, _, _, _, _, m__] := D00z[m];
+In[47]:= In[47]:= C0z[m1_, m2_, m2_] := c0[m1, m2];
+In[48]:= C00z[m1_, m2_, m2_] := c00[m1, m2];
+In[49]:= B0i[bb0, _, m1_, m2_] := b0[m1, m2];
+In[50]:= B0i[bb1, _, m1_, m2_] := b1[m1, m2];
+In[51]:= In[51]:= (* approximate, from 0811.2891: *)
+In[52]:= c00[m1_, m2_] := -1/2 b1[m1, m2];
+In[53]:= c0[m1_, m2_] := (-1/2 + b1[m2, m1] + 2 c00[m1, m2])/m2
+In[54]:= In[54]:= (* exact: *)
+In[55]:= b1[m1_, m2_] := 1/2/(m1 - m2) (A0[m2] - m1 b0[m1, m2] - (m1 + m2)/2);
+In[56]:= b0[m1_, m2_] := (A0[m1] - A0[m2])/(m1 - m2)
+In[57]:= In[57]:= In[57]:= Attributes[ColorDelta] = {Orderless};
+In[58]:= In[58]:= omend[om_Integer, g___] :=
+  Opi[g, {R, L}[[1 + Mod[om + Length[{g}], 2]]]]
+In[59]:= In[59]:= dc = amp /.
+  {Col1 -> 1, Col3 -> 3,
+   Col2 -> 2, Col4 -> 4,
+   Spinor[_[1], __] -> b,
+   Spinor[_[2], __] -> s,
+   Spinor[_[3], __] -> lbar,
+   Spinor[_[4], __] -> l} /.
+  SUNT[i_, j_] -> ColorDelta[i, j] /.
+  Mat[ DiracChain[s1:s, g1__, s2_] ColorDelta[1, 2] *
+       DiracChain[s3_, g2__, s4_] ] :>
+    Op[s1.omend[g1].s2, s3.omend[g2].s4] /.
+  {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
+In[60]:= In[60]:= Put[dc, name <> ".dc"];
+In[61]:= In[61]:= In[61]:= (* VVV = ijk ijk, vvv = ijk kji *)
+In[62]:= In[62]:=                                     (*
+Op[s1_ . Opi[Lor[i_], Lor[j_], Lor[k_], om1_] . s2_,
+   s3_ . Opi[Lor[i_], Lor[j_], Lor[k_], om2_] . s4_] :=
+  Opx[s1.VVV[om1].s2, s3.VVV[om2].s4];
+*)
+In[63]:= In[63]:= Op[s1_ . Opi[Lor[i_], Lor[j_], Lor[k_], om1_] . s2_,
+   s3_ . Opi[Lor[i_], Lor[j_], Lor[k_], om2_] . s4_] :=
+  20 Opx[s1.V[om1].s2, s3.V[om2].s4] -
+  Opx[s1.vvv[om1].s2, s3.vvv[om2].s4];	(* see ijk2kji.m *)
+In[64]:= In[64]:= Op[s1_ . Opi[Lor[i_], Lor[j_], om1_] . s2_,
+   s3_ . Opi[Lor[i_], Lor[j_], om2_] . s4_] :=
+  Opx[s1.T[om1].s2, s3.T[om2].s4];
+In[65]:= In[65]:= Op[s1_ . Opi[Lor[i_], om1_] . s2_,
+   s3_ . Opi[Lor[i_], om2_] . s4_] :=
+  Opx[s1.V[om1].s2, s3.V[om2].s4];
+In[66]:= In[66]:= Op[s1_ . Opi[om1_] . s2_,
+   s3_ . Opi[om2_] . s4_] :=
+  Opx[s1.S[om1].s2, s3.S[om2].s4];
+In[67]:= In[67]:= In[67]:= Opx[s.op_[om1_].b, lbar.op_[om2_].l] := OP[op[om1, om2]];
+In[68]:= In[68]:= In[68]:= Put[dc, name <> ".dc1"];
+In[69]:= In[69]:= In[69]:=                            (* Note: the following Fierz identities from 0112305 are used only
+   if FermionOrder -> None is set in CalcFeynAmp above.  In this case
+   also Antisymmetric -> False must be used, or else the VVV bits
+   are invalid. *)
+In[70]:= In[70]:= (* 0112305 Eq. 4.6 *)
+In[71]:= OP[vvv[L,L]] := Evan[VVV[L,L]] + 4 OP[V[L,L]];
+In[72]:= In[72]:= (* 0112305 Eq. 4.9 *)
+In[73]:= Opx[s.VVV[L].l, l.VVV[L].b] := Evan[VVV[L,L]] + 16 OP[V[L,L]];
+In[74]:= Opx[s.VVV[L].l, l.VVV[R].b] := Evan[VVV[R,R]] + 4 OP[V[L,R]];
+In[75]:= In[75]:= (* 0112305 Eq. 4.7 *)
+In[76]:= Opx[s.S[L].l, l.S[L].b] := Evan[S[L,L]] - 1/2 OP[S[L,L]] + 1/8 OP[T[L,L]];
+In[77]:= Opx[s.S[L].l, l.S[R].b] := Evan[S[L,R]] - 1/2 OP[V[R,L]];
+In[78]:= Opx[s.V[L].l, l.V[L].b] := Evan[V[L,L]] + OP[V[L,L]];
+In[79]:= Opx[s.V[L].l, l.V[R].b] := Evan[V[L,R]] - 2 OP[S[R,L]];
+In[80]:= Opx[s.T[L].l, l.T[L].b] := Evan[T[L,L]] + 6 OP[S[L,L]] + 1/2 OP[T[L,L]];
+In[81]:= In[81]:= In[81]:= (* due to vanishing of the corresponding hadronic matrix elements: *)
+In[82]:= OP[V[om_,R]] := +OP[V[om,5]]/2;
+In[83]:= OP[V[om_,L]] := -OP[V[om,5]]/2;
+In[84]:= OP[_T] = 0;
+In[85]:= In[85]:= OP[S[om_,R]] := OP[S[om,1]] + OP[S[om,5]];
+In[86]:= OP[S[om_,L]] := OP[S[om,1]] - OP[S[om,5]];
+In[87]:= In[87]:= MB2/: MB2 Den[MB2, 0] = 1;
+In[88]:= MB2/: MB2 Den[0, MB2] = -1;
+In[89]:= In[89]:=          dc = SCsimp[nsimp[dc /. Mq|Mq2 -> 0 /. massrulz /.
+    {o_OP -> o, S|T|U -> 0} /.
+    {Finite -> 1, _Evan -> 0, _Evanescent -> 0}] (* /.
+  {MB2 Den[MB2, 0] -> 1, MB2 Den[0, MB2] -> -1} *)] /.
+    a_ CW2 + a_ SW2 -> a //nsimp;
+In[90]:= In[90]:= Put[dc, name <> ".dc2"];
+In[91]:= In[91]:= In[91]:= OpName[V[L,5]] := "CAL";
+In[92]:= OpName[V[R,5]] := "CAR";
+In[93]:= OpName[S[L,1]] := "CSL";
+In[94]:= OpName[S[R,1]] := "CSR";
+In[95]:= OpName[S[L,5]] := "CPL";
+In[96]:= OpName[S[R,5]] := "CPR";
+In[97]:= In[97]:= In[97]:= ops = Union[Cases[dc, _OP, Infinity]];
+In[98]:= In[98]:= fac = -2 GF/Sqrt[2] Alfa/(2 Pi SW2) CKM[3,3] CKMC[3,fs] /.
+  GF -> Alfa Pi/(Sqrt[2] MW2 SW2);
+In[99]:= In[99]:= coeff = ((OpName@@ #) <> tag -> Coefficient[dc, #]/fac)&/@ ops;
+In[100]:= In[100]:= (*Put[coeff, name <> ".coeff.raw"];*)
+In[101]:= In[101]:= chk = dc /. Thread[ops -> 0];
+In[102]:= If[ chk =!= 0,
+  Print["WARNING: REMAINDER NOT ZERO"];
+  Put[chk, name <> ".ZERO"] ];
+In[103]:= In[103]:= In[103]:= fin[var_ -> expr_] := (Print[var]; var -> fin[expr]);
+In[104]:= In[104]:= fin[expr_] := nsimp @ Collect[expr, {_SumOver, _Log}, fsimp];
+In[105]:= In[105]:= coeff = fin/@ coeff;CALSM
+
+In[106]:= In[106]:= Put[coeff, name <> ".coeff"];
+In[107]:= In[107]:= If[ !FreeQ[coeff, Den[0, 0]],
+  Print["WARNING: REMAINING Den[0, 0]"] ];
+In[108]:= In[108]:= Mino3 = "M_3";
+In[109]:= Mino3C = "M_3C";
+In[110]:= In[110]:= hh = OpenFortran[name <> ".F"];
+In[111]:= In[111]:= $DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCONST ", " ENDL"};
+In[112]:= In[112]:= WriteExpr[hh, coeff /. IndexDelta -> Delta,
+  (*HornerStyle -> False,*)
+  TmpType -> False,
+  Expensive -> {_B0i, _C0z, _C00z, _D0z, _D00z},
+  RealArgs -> {B0i, C0z, C00z, D0z, D00z},
+  Optimize -> True,
+  DebugLines -> True,
+  FinalCollect -> True];
+In[113]:= In[113]:= Close[hh];
+In[114]:= 

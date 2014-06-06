@@ -1,0 +1,103 @@
+./se f-mfv/se_h0h0.F
+./se f-mfv/dse_h0h0.F
+./se f-mfv/se_HHHH.F
+./se f-mfv/dse_HHHH.F
+./se f-mfv/se_A0A0.F
+./se f-mfv/dse_A0A0.F
+./se f-mfv/se_h0HH.F
+./se f-mfv/dse_h0HH.F
+./se f-mfv/se_h0A0.F
+./se f-mfv/dse_h0A0.F
+./se f-mfv/se_HHA0.F
+./se f-mfv/dse_HHA0.F
+./se f-mfv/se_HmHp.F
+./se f-mfv/dse_HmHp.F
+./se f-mfv/se_G0G0.F
+./se f-mfv/dse_G0G0.F
+./se f-mfv/se_h0G0.F
+./se f-mfv/dse_h0G0.F
+./se f-mfv/se_HHG0.F
+./se f-mfv/dse_HHG0.F
+./se f-mfv/se_A0G0.F
+./se f-mfv/dse_A0G0.F
+./se f-mfv/se_HmGp.F
+./se f-mfv/dse_HmGp.F
+./se f-mfv/se_GmGp.F
+./se f-mfv/dse_GmGp.F
+./se f-mfv/se_WW.F
+./se f-mfv/dse_WW.F
+./se f-mfv/se_ZZ.F
+./se f-mfv/dse_ZZ.F
+./se f-mfv/se_A0Z.F
+./se f-mfv/td_h0.F
+./se f-mfv/td_HH.F
+./se f-mfv/td_A0.F
+./se f-nmfv/se_h0h0.F
+./se f-nmfv/dse_h0h0.F
+./se f-nmfv/se_HHHH.F
+./se f-nmfv/dse_HHHH.F
+./se f-nmfv/se_A0A0.F
+./se f-nmfv/dse_A0A0.F
+./se f-nmfv/se_h0HH.F
+./se f-nmfv/dse_h0HH.F
+./se f-nmfv/se_h0A0.F
+./se f-nmfv/dse_h0A0.F
+./se f-nmfv/se_HHA0.F
+./se f-nmfv/dse_HHA0.F
+./se f-nmfv/se_HmHp.F
+./se f-nmfv/dse_HmHp.F
+./se f-nmfv/se_G0G0.F
+./se f-nmfv/dse_G0G0.F
+./se f-nmfv/se_h0G0.F
+./se f-nmfv/dse_h0G0.F
+./se f-nmfv/se_HHG0.F
+./se f-nmfv/dse_HHG0.F
+./se f-nmfv/se_A0G0.F
+./se f-nmfv/dse_A0G0.F
+./se f-nmfv/se_HmGp.F
+./se f-nmfv/dse_HmGp.F
+./se f-nmfv/se_GmGp.F
+./se f-nmfv/dse_GmGp.F
+./se f-nmfv/se_WW.F
+./se f-nmfv/dse_WW.F
+./se f-nmfv/se_ZZ.F
+./se f-nmfv/dse_ZZ.F
+./se f-nmfv/se_A0Z.F
+./se f-nmfv/td_h0.F
+./se f-nmfv/td_HH.F
+./se f-nmfv/td_A0.F
+./combine
+f-mfv/dse_A0A0.F + f-nmfv/dse_A0A0.F -> f/dse_A0A0.F
+f-mfv/dse_A0G0.F + f-nmfv/dse_A0G0.F -> f/dse_A0G0.F
+f-mfv/dse_G0G0.F + f-nmfv/dse_G0G0.F -> f/dse_G0G0.F
+f-mfv/dse_GmGp.F + f-nmfv/dse_GmGp.F -> f/dse_GmGp.F
+f-mfv/dse_h0A0.F + f-nmfv/dse_h0A0.F -> f/dse_h0A0.F
+f-mfv/dse_h0G0.F + f-nmfv/dse_h0G0.F -> f/dse_h0G0.F
+f-mfv/dse_h0h0.F + f-nmfv/dse_h0h0.F -> f/dse_h0h0.F
+f-mfv/dse_h0HH.F + f-nmfv/dse_h0HH.F -> f/dse_h0HH.F
+f-mfv/dse_HHA0.F + f-nmfv/dse_HHA0.F -> f/dse_HHA0.F
+f-mfv/dse_HHG0.F + f-nmfv/dse_HHG0.F -> f/dse_HHG0.F
+f-mfv/dse_HHHH.F + f-nmfv/dse_HHHH.F -> f/dse_HHHH.F
+f-mfv/dse_HmGp.F + f-nmfv/dse_HmGp.F -> f/dse_HmGp.F
+f-mfv/dse_HmHp.F + f-nmfv/dse_HmHp.F -> f/dse_HmHp.F
+f-mfv/dse_WW.F + f-nmfv/dse_WW.F -> f/dse_WW.F
+f-mfv/dse_ZZ.F + f-nmfv/dse_ZZ.F -> f/dse_ZZ.F
+f-mfv/se_A0A0.F + f-nmfv/se_A0A0.F -> f/se_A0A0.F
+f-mfv/se_A0G0.F + f-nmfv/se_A0G0.F -> f/se_A0G0.F
+f-mfv/se_A0Z.F + f-nmfv/se_A0Z.F -> f/se_A0Z.F
+f-mfv/se_G0G0.F + f-nmfv/se_G0G0.F -> f/se_G0G0.F
+f-mfv/se_GmGp.F + f-nmfv/se_GmGp.F -> f/se_GmGp.F
+f-mfv/se_h0A0.F + f-nmfv/se_h0A0.F -> f/se_h0A0.F
+f-mfv/se_h0G0.F + f-nmfv/se_h0G0.F -> f/se_h0G0.F
+f-mfv/se_h0h0.F + f-nmfv/se_h0h0.F -> f/se_h0h0.F
+f-mfv/se_h0HH.F + f-nmfv/se_h0HH.F -> f/se_h0HH.F
+f-mfv/se_HHA0.F + f-nmfv/se_HHA0.F -> f/se_HHA0.F
+f-mfv/se_HHG0.F + f-nmfv/se_HHG0.F -> f/se_HHG0.F
+f-mfv/se_HHHH.F + f-nmfv/se_HHHH.F -> f/se_HHHH.F
+f-mfv/se_HmGp.F + f-nmfv/se_HmGp.F -> f/se_HmGp.F
+f-mfv/se_HmHp.F + f-nmfv/se_HmHp.F -> f/se_HmHp.F
+f-mfv/se_WW.F + f-nmfv/se_WW.F -> f/se_WW.F
+f-mfv/se_ZZ.F + f-nmfv/se_ZZ.F -> f/se_ZZ.F
+f-mfv/td_A0.F + f-nmfv/td_A0.F -> f/td_A0.F
+f-mfv/td_h0.F + f-nmfv/td_h0.F -> f/td_h0.F
+f-mfv/td_HH.F + f-nmfv/td_HH.F -> f/td_HH.F

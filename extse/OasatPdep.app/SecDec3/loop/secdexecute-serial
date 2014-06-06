@@ -1,0 +1,36 @@
+#! /bin/bash -x
+
+cd `dirname ${BASH_SOURCE[0]}`
+shopt -s nullglob 2> /dev/null
+
+#( sleep 1800 ; kill -9 $$ )&
+#trap "kill -9 $!" 0 1 2 3 9 15
+
+perl -pi -e "s/prefactor\=.*/prefactor\=\($Mudim\*Exp\[EulerGamma\]\)\^\(\-2\*eps\)/g" *.input
+
+rm -f T*/*.gpdat
+
+nints=0
+nil=0
+IFS=$' \t\n]/,'
+
+while read dir int dfk1 m0 dfk2 m1 dfk3 m2 dfk4 m3 dfk5 m4 rest ; do
+  test -z "$int" && continue
+  : $((++nints))
+
+  m=(nil nil nil nil nil)
+  code=${dir##*m}00000
+  eval m[${code:0:1}]=\$m0 \
+       m[${code:1:1}]=\$m1 \
+       m[${code:2:1}]=\$m2 \
+       m[${code:3:1}]=\$m3 \
+       m[${code:4:1}]=\$m4
+  eval set -- \$${m[1]} \$${m[2]} \$${m[3]} \$${m[4]}
+
+  ./helpmultiSB.pl $dir $int $@ $Mh12 $Mh22 $MA
+  ./multinumericsloop.pl -p multi$int.input
+  ./multinumericsloop.pl -p multi$int.input 1
+done < integrals.tab
+
+IFS=$' \t\n'
+

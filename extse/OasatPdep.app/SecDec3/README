@@ -1,0 +1,49 @@
+Program: SecDec
+Authors: Sophia Borowka, Jonathon Carter, Gudrun Heinrich 
+Version 2.1
+
+---------------------------------------------------------------------------------------
+INSTALLATION: 
+
+./install
+
+Prerequisites: 
+Mathematica
+Perl
+C++/Fortran compiler
+       
+----------------------------------------------------------------------------------------
+USAGE:
+
+See README files in directory loop/ and general/.
+ 
+-------------------------------------------------------------------------------------------------------------
+Overall STRUCTURE of the program:
+-------------------------------------------------------------------------------------------------------------
+
+SecDec/ contains 5 subdirectories: loops/, general/, basesv5.1/, Cuba-3.x/, doc/
+
+The subdirectory basesv5.1 contains the BASES library for the numerical integration, 
+subdirectory Cuba-3.0 contains the Cuba library for the numerical integration, 
+doc contains documentation (an index created with robodoc is available by loading 
+masterindex.html into a browser). 
+
+The subdirectories loops/ and general/ contain 
+1) Mathematica scripts in the src/ directory doing the analytical part of the integration 
+   (up to the expansion of the subtracted functions in the regulator)
+2) Perl scripts *.pl and in the perlsrc/ directory which automatically steer the whole integration (Mathematica
+   modules, numerical integration)
+3) The input files to be edited by the user are param*.input and  template*.m.
+4) demos which are contained in the demo/ directory. This directory contains expamples of input and template 
+   files, result files and timings.
+
+----------------------------------------------------------------------------------------------------------------
+
+Additional information:
+
+More information about the structure of the program can be found in the doc/ directory, in
+Comput.Phys.Commun. 182 (2011) 1566-1581 and in http://arxiv.org/abs/1204.4152 (April 2012).
+
+Parameters used by routines in the Cuba library are explained in more detail 
+in Comp.Phys.Comm. 168 (2005) 78 [hep-ph/0404043] by T.Hahn, 
+resp. in Cuba-3.x/cuba.pdf.

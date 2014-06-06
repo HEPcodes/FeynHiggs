@@ -1,0 +1,153 @@
+#!/bin/sh
+#****l* SecDec/loop/launch
+# NAME
+#  launch
+# USAGE
+#  ./launch
+# USES
+#  makeFU.pl, decomposeloop.pl or decomposeuserdefined.pl, subexploop.pl or subexpuserdefined.pl, resultsloop.pl or resultsuserdefined.pl
+# PURPOSE
+#  launches the calculation. Calculation runs until it hits an error, or completes to the
+#  level specified with the 'exe' flag in paramfile
+# OPTIONS
+#  "-d workingdirectory" specifies a different directory to work in.
+#  This option can also be replicated by running launch
+#  from the workingdirectory you sish to specify
+#  "-p paramfile" specifies which parameter file to use
+#  "-t templatefile" specifies which template file to use
+#  "-u " specifies that no primary sector decomposition should be performed
+#****
+pflag=
+tflag=
+dflag=
+primflag=
+while getopts 'p:t:d:u' OPTION
+do
+  case $OPTION in
+  p)	pflag=1
+		paramfile="$OPTARG"
+		;;
+
+  t)	tflag=1
+		templatefile="$OPTARG"
+		;;
+  d)	dflag=1
+  		workdir="$OPTARG"
+		;;
+  u)    primflag=1
+	        noprim="$OPTARG"
+	        ;;
+  ?)	printf "Usage: %s: [-d workingdirectory] [-p paramfile] [-t templatefile] [-u]\n" $(basename $0) >&2
+	printf "\t -d specify working directory\n"
+	printf "\t -p specify parameter file\n"
+	printf "\t -t specify template file\n"
+	printf "\t -u user inserted functions used, primary sector decomposition omitted\n"
+	exit 2
+	;;
+  esac
+done
+shift $(($OPTIND - 1))
+if [ "$pflag" ]
+then
+  param="-p=$paramfile"
+else
+    if  [ ! "$primflag" ]
+    then
+	param="-p=paramloop.input"
+    else
+	param="-p=paramuserdefined.input"
+    fi
+fi
+if [ "$tflag" ]
+then
+ template="-t=$templatefile" 
+else
+    if  [ ! "$primflag" ]
+    then
+	template="-t=templateloop.m"
+    else
+	template="-t=templateuserdefined.m"
+    fi
+fi
+if [ "$dflag" ]
+then
+ dir="-d=$workdir"
+else
+ dir=""
+fi
+SECDEC_PATH=`dirname $(cd ${0%/*} && echo $PWD/${0##*/})`
+RUN_PATH=$PWD
+if [ "$SECDEC_PATH" != "$RUN_PATH" ]
+then
+    if [ "$dflag" ]
+    then
+	echo You cannot specify a different directory unless you run launch from
+	echo $SECDEC_PATH
+	exit
+    else
+	dir="-d=$RUN_PATH"
+	cd $SECDEC_PATH
+    fi
+fi
+if [ ! "$primflag" ]
+then
+    ./makeFU.pl $param $template $dir
+    if [ $? -gt 0 ]
+    then
+	echo makeFU.pl failed
+	exit
+    fi
+    ./decomposeloop.pl $param $template $dir "launch"
+    if [ $? -eq 10 ]
+    then
+	echo Calculation failed at the decomposition stage
+	exit
+    fi
+else
+    ./decomposeuserdefined.pl $param $template $dir "launch"
+    if [ $? -eq 10 ]
+    then
+	echo Calculation failed at the decomposition stage
+	exit
+    fi
+fi
+if [ ! "$primflag" ]
+then
+    ./subexploop.pl $param $template $dir "launch"
+    err=$?
+    if [ $err -eq 91 ]
+    then
+	echo Calculation terminated upon finding NaN for numerical integration
+    elif [ $err -eq 90 ]
+    then
+	echo Calculation terminated upon finding suspected unintegrable function
+    elif [ $err -eq 89 ]
+    then
+	echo Calculation terminated upon finding integration with result greater than 1E17
+    elif [ $err -gt 0 ]
+    then
+	echo Calculation terminated during subexploop.pl/subexpuserdefined.pl
+    else
+	./resultsloop.pl $param $template $dir "launch"
+    fi
+else
+    ./subexpuserdefined.pl $param $template $dir "launch"
+    err=$?
+    if [ $err -eq 91 ]
+    then
+	echo Calculation terminated upon finding NaN for numerical integration
+    elif [ $err -eq 90 ]
+    then
+	echo Calculation terminated upon finding suspected unintegrable function
+    elif [ $err -eq 89 ]
+    then
+	echo Calculation terminated upon finding integration with result greater than 1E17
+    elif [ $err -gt 0 ]
+    then
+	echo Calculation terminated during subexploop.pl/subexpuserdefined.pl
+    else
+	./resultsuserdefined.pl $param $template $dir "launch"
+    fi
+fi
+
+

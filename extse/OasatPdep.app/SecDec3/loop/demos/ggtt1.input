@@ -1,0 +1,234 @@
+################ input parameters for sector decomposition ################
+#
+# ############### all lines beginning with # are comments ##################
+#--------------------------------------------------------------------------------------------------
+# subdirectory for the mathematica output files (will be created if non-existent) : 
+# if not specified, a directory with the name of the graph given below will be created by default
+subdir=2loop
+#--------------------------------------------------------------------------------------------------
+# if outputdir is not specified: default directory for 
+# the output will have integral name (given below) appended to directory above, 
+# otherwise specify full path for Mathematica output files here
+outputdir=
+#--------------------------------------------------------------------------------------------------
+# graphname (can contain underscores, numbers, but should not contain commas)
+graph=Ggtt1
+#--------------------------------------------------------------------------------------------------
+# number of propagators:
+propagators=7
+#--------------------------------------------------------------------------------------------------
+# number of external legs:
+legs=4
+#--------------------------------------------------------------------------------------------------
+# number of loops:
+loops=2
+cutconstruct=1
+#########################################################
+# parameters for subtractions and epsilon expansion
+########################################################
+# epsord: level up to which expansion in eps is desired 
+# (default is epsord=0: Laurent series is cut after finite part eps^0)
+# series will be calculated from eps^(-maxpole) to eps^epsord
+# note that epsord is negative if only some pole coeffs are required
+epsord=0
+#--------------------------------------------------------------------------------------------------
+#  flag for prefactor: 
+#  '0': default prefactor (-1)^Nn*Gamma[Nn-Nloops*Dim/2] is factored out of the numerical result
+#  '1': default prefactor (-1)^Nn*Gamma[Nn-Nloops*Dim/2] included in numerical result
+#  '2': give desired prefactor to be factored out (in Mathematica syntax) below
+prefactorflag=2
+#--------------------------------------------------------------------------------------------------
+# if option 2 has been chosen above: prefactor in Mathematica syntax,
+# in combination with options 0 or 1 above this entry will be ignored
+# NB use Nn, Nloops, Dim to denote number of propagators, loops, and dimension (4-2eps by default)
+prefactor=Gamma[1+eps]^2
+#--------------------------------------------------------------------------------------------------
+# flag to use integration by parts (IBP) to deal with numerical instability in functions with 
+# many subtractions. '0' for never, '1' for always, '2' for a mixed approach. 
+# '2' is designed to use IBP when it is more efficient to do so, and not otherwise.
+# Note that using IBP can increase considerably the number of functions to be integrated
+IBPflag=0
+##################################################################### 
+# parameters for the numerical integration
+#####################################################################
+# Fortran compiler (tested with gfortran, ifort, g77), if blank defaults to gfortran
+compiler=
+#--------------------------------------------------------------------------------------------------
+# flag to decide at which stage the program terminates: ('exe flag')
+# 0 - the iterated sector decomposition is done and 
+#      the scripts to do the subtraction and epsilon expansion and 
+#      to create the fortran files and to launch the numerical integration
+#      are created (scripts batch* in graph subdirectory)  but not run 
+#     (useful if a cluster is available to run each pole structure on a different node)
+# 1 - the subtraction and epsilon expansion are performed, and the 
+#      resulting functions are written to fortran files 
+# 2 - all the files needed for the numerical integration are created
+# 3 - compilation is launched to make the executables 
+# 4 - the executables are run, either by batch submission or locally
+exeflag=4
+#--------------------------------------------------------------------------------------------------
+# flag for job submission: 0: single machine, 1: cluster (batch system to submit jobs)
+clusterflag=0
+#--------------------------------------------------------------------------------------------------
+# if using a cluster: flag to use the default batch setup (0) or a user-defined setup (1)  
+batchsystem=1
+#--------------------------------------------------------------------------------------------------
+# if using a cluster: maximum number of jobs allowed in the queue
+maxjobs=50
+#--------------------------------------------------------------------------------------------------
+# estimated maximal CPU time (in hours) 
+# (used to send to a particular queue on a batch system, otherwise not important)
+maxcput=4
+#--------------------------------------------------------------------------------------------------
+# name of the point to calculate (should be either blank or a string, useful to label the result files
+# in case of different choices for the Mandelstam variables, masses etc.)
+pointname=p
+#--------------------------------------------------------------------------------------------------
+# values for Mandelstam invariants sij=(p_i+p_j)^2 in numbers 
+# attention, sij should be <=0 in Euclidean region !!!
+# the ordering is s12,s23,s13,s14,s24,s34,s15,s25,s35,s45,s16,s26,s36,s46,s56
+# length of list below can be larger than number of invariants actually present in the integrand;
+# additional values will be ignored
+sij=1.2,-0.4,-0.3
+#--------------------------------------------------------------------------------------------------
+# off-shell legs p1^2,p2^2,...
+#pi^2 = (should be <=0 in Euclidean region !!!)
+pi2=0.,0.
+#--------------------------------------------------------------------------------------------------
+# masses m1^2,m2^2,...
+#mi^2 = ms[i] = 
+# (should be >=0)
+ms2=0.25
+#--------------------------------------------------------------------------------------------------
+# Numerical integrator to use:
+# 0=BASES,>0=>CUBA, 1=Vegas,2=Suave,3=Divonne,4=Cuhre
+integrator=3
+#--------------------------------------------------------------------------------------------------
+# path to library for numerical integration (BASES library)
+# leave blank for default path =  SecDec/basesv5.1, otherwise give full path
+basespath=
+#--------------------------------------------------------------------------------------------------
+# ######################## BASES parameters #######################
+# ncall  (number of Monte Carlo points) for leading pole, subleading pole,...
+ncall=1000000,1200000,1500000,2000000,2200000
+#--------------------------------------------------------------------------------------------------
+# relative accuracy (as %) for Monte Carlo grid construction for leading pole, subleading pole,...
+acc1=.1,.1,.1,.1,.1
+#--------------------------------------------------------------------------------------------------
+# relative accuracy (as %) for final Monte Carlo integration step for leading pole, subleading pole,...
+acc2=.08,.1,.1,.1,.1
+#--------------------------------------------------------------------------------------------------
+# number of iterations for grid step for leading pole, subleading pole,...
+iter1=10,10,10,10,10
+#--------------------------------------------------------------------------------------------------
+# number of iterations for integration step for leading pole, subleading pole,...
+iter2=10,10,10,10,10
+#--------------------------------------------------------------------------------------------------
+# path for Cuba library
+# leave blank for default path =  ../Cuba-3.0, otherwise give full path
+#cubapath=Users/gudrun/SecDec/trunk/Cuba-2.1
+cubapath=
+######################### Cuba parameters #########################
+# maximum number of function evaluations for leading pole, subleading pole,...
+maxeval=990000000
+#--------------------------------------------------------------------------------------------------
+# minimum number of function evaluations for leading pole, subleading pole,...
+mineval=0
+#--------------------------------------------------------------------------------------------------
+# relative accuraccy required (as decimal) for leading pole, subleading pole,...
+#epsrel=.09d-2,.09d-2,.09d-2,.09d-2,.1d-2
+epsrel=1.e-3
+#--------------------------------------------------------------------------------------------------
+# absolute accuraccy required (as decimal) for leading pole, subleading pole,...
+epsabs=1.e-5
+#--------------------------------------------------------------------------------------------------
+# flag for Cuba (encodes verbosity, how samples are used, and how random numbers are generated)
+cubaflags=2
+#--------------------------------------------------------------------------------------------------
+####################### Vegas specific parameters #################
+# number of function evaluations on the first iteration
+nstart=1000000,1200000,1500000,2000000,2200000
+#--------------------------------------------------------------------------------------------------
+# number of extra function evaluations per iteration
+nincrease=500000,600000,750000,1000000,1100000
+#--------------------------------------------------------------------------------------------------
+####################### Suave specific parameters #################
+# number of new integrand evaluations in each subdivision
+nnew=1000000,1000000,1000000,1000000,1000000
+#--------------------------------------------------------------------------------------------------
+# measure of how 'flat' the function to evaluate is
+flatness=1d0,1d0,1d0,1d0,1d0
+#--------------------------------------------------------------------------------------------------
+####################### Divonne specific parameters ###############
+# determines sampling in partitioning phase
+key1=700
+#--------------------------------------------------------------------------------------------------
+# determines sampling in final integration phase
+key2=1
+#--------------------------------------------------------------------------------------------------
+# sets strategy for refinement phase
+key3=1
+#--------------------------------------------------------------------------------------------------
+# controls thoroughness of partitioning phase
+# (essentially the number of 'saftey' iterations performed before a partition is accepted)
+maxpass=5
+#--------------------------------------------------------------------------------------------------
+# the width of the border of the integration region
+# functions which cannot be evaluated on the border (most functions in secdec) need a non-zero border
+# function values in this region are extrapolated from inside the integration region
+border=1.e-6
+#--------------------------------------------------------------------------------------------------
+# maximum chi squared value a single subregion is allowed to have in the final integration phase
+maxchisq=0.9
+#--------------------------------------------------------------------------------------------------
+# minimum deviation (as decimal) of the requested error of the entire integral which determines
+# whether it is worthwhile further examining a region which failed chi squared test
+mindeviation=.05
+#--------------------------------------------------------------------------------------------------
+################################ Cuhre specific parameters ###################
+# chooses basic integration rule
+key=7
+#--------------------------------------------------------------------------------------------------
+########################################################
+# advanced options
+########################################################
+# list of primary sectors to be treated: 
+# (if blank, default all, i.e.1 to number of propagators, will be taken)
+# useful if a diagram has symmetries such that some primary sectors yield the same 
+primarysectors=
+#--------------------------------------------------------------------------------------------------
+# multiplicities of the primary sectors listed above
+# (list multiplicities in same order as corresponding sectors above)
+# if blank, default multiplicities (=one) are set automatically
+multiplicities=
+#--------------------------------------------------------------------------------------------------
+# list of primary sectors to be redone differently because they lead to infinite recursion
+# must be empty for default strategy to be applied
+infinitesectors=
+#--------------------------------------------------------------------------------------------------
+# flag to integrate subsets of functions for each pole order separately or 
+# to sum all functions for a certain pole order and then integrate
+# integrate and then sum: 0 
+# sum and then integrate: 1
+# flag=1 will allow cancellations between different functions and thus give a more realistic error,
+# but should not be used for complicated diagrams where the individual functions are large already
+togetherflag=0
+#--------------------------------------------------------------------------------------------------
+# editor to display numerical result
+# if blank, result will not be automatically displayed in an editor window
+editor=none
+#--------------------------------------------------------------------------------------------------
+# the maximum size in bytes of the fortran functions to be grouped together
+# for integration.
+grouping=500000
+#--------------------------------------------------------------------------------------------------
+# language of the files for numerical evaluation; default is fortran, Cpp for C (or C++) is also possible
+language=Cpp
+#--------------------------------------------------------------------------------------------------
+# contour deformation or calculation in Euclidean space (True/False, default is False)
+contourdef=True
+lambda=5.0
+rescale=0
+smalldefs=0
+largedefs=0
+optlamevals=829800

@@ -1,0 +1,27 @@
+sec3P0l0h0={{{eps, 0, 0, 0}, maxinv^(-1) + t[2]/maxinv + t[4]/maxinv + 
+   (t[1]*t[4])/maxinv + (t[1]*t[2]*t[4])/maxinv, 
+  ms[1]/maxinv + (ms[1]*t[1])/maxinv + (ms[1]*t[2])/maxinv + 
+   (2*ms[1]*t[1]*t[2])/maxinv - (ssp[1]*t[1]*t[2])/maxinv + 
+   (ms[1]*t[1]*t[2]^2)/maxinv + (ms[1]*t[4])/maxinv + 
+   (2*ms[1]*t[1]*t[4])/maxinv + (ms[1]*t[1]^2*t[4])/maxinv + 
+   (2*ms[1]*t[1]*t[2]*t[4])/maxinv - (ssp[1]*t[1]*t[2]*t[4])/maxinv + 
+   (2*ms[1]*t[1]^2*t[2]*t[4])/maxinv - (ssp[1]*t[1]^2*t[2]*t[4])/maxinv + 
+   (ms[1]*t[1]^2*t[2]^2*t[4])/maxinv, maxinv^(-2 + eps)}, 
+ {{0, eps, 0, 0}, maxinv^(-1) + t[1]/maxinv + t[4]/maxinv + 
+   (t[2]*t[4])/maxinv + (t[1]*t[2]*t[4])/maxinv, 
+  ms[1]/maxinv + (ms[1]*t[1])/maxinv + (ms[1]*t[2])/maxinv + 
+   (2*ms[1]*t[1]*t[2])/maxinv - (ssp[1]*t[1]*t[2])/maxinv + 
+   (ms[1]*t[1]^2*t[2])/maxinv + (ms[1]*t[4])/maxinv + 
+   (2*ms[1]*t[2]*t[4])/maxinv - (ssp[1]*t[2]*t[4])/maxinv + 
+   (2*ms[1]*t[1]*t[2]*t[4])/maxinv + (ms[1]*t[2]^2*t[4])/maxinv + 
+   (2*ms[1]*t[1]*t[2]^2*t[4])/maxinv - (ssp[1]*t[1]*t[2]^2*t[4])/maxinv + 
+   (ms[1]*t[1]^2*t[2]^2*t[4])/maxinv, maxinv^(-2 + eps)}, 
+ {{0, 0, 0, eps}, maxinv^(-1) + t[1]/maxinv + t[2]/maxinv + 
+   (t[1]*t[4])/maxinv + (t[2]*t[4])/maxinv, 
+  ms[1]/maxinv + (ms[1]*t[1])/maxinv + (ms[1]*t[2])/maxinv + 
+   (2*ms[1]*t[1]*t[4])/maxinv + (ms[1]*t[1]^2*t[4])/maxinv + 
+   (2*ms[1]*t[2]*t[4])/maxinv - (ssp[1]*t[2]*t[4])/maxinv + 
+   (2*ms[1]*t[1]*t[2]*t[4])/maxinv - (ssp[1]*t[1]*t[2]*t[4])/maxinv + 
+   (ms[1]*t[2]^2*t[4])/maxinv + (ms[1]*t[1]^2*t[4]^2)/maxinv + 
+   (2*ms[1]*t[1]*t[2]*t[4]^2)/maxinv - (ssp[1]*t[1]*t[2]*t[4]^2)/maxinv + 
+   (ms[1]*t[2]^2*t[4]^2)/maxinv, maxinv^(-2 + eps)}}

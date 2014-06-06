@@ -1,0 +1,7 @@
+perl /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/perlsrc/cleanup.pl /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T1234m1210/1l0h0 0 $1
+perl /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/perlsrc/cleanup.pl /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T1234m1210/0l0h0 0 $1
+perl /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/perlsrc/cleanup.pl /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T1234m1210 fullclean $1
+if [ "$1" == "all" ]
+then
+rm /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/launchcleanT1234m1210
+fi

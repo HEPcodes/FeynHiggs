@@ -1,0 +1,28 @@
+polesP1l0h0 = {2, 2, 0, 0}
+polesP0l0h0 = {2, 0, 3, 3}
+
+threshold = esx(0) >= em(0)
+
+Nn = 4
+ 
+expoU = -2 + 3*eps
+ 
+expoF = -2*eps
+ 
+allcount = 12
+ 
+maxlogpole = 1
+ 
+maxlinpole = 0
+ 
+maxhpole = 0
+ 
+prefacord = -1
+ 
+prefac = Gamma[2*eps]
+ 
+mindegree = 0
+ 
+maxdegree = 0
+ 
+lengthprimseclist = 4

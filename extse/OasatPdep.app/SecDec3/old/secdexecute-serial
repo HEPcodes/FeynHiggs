@@ -1,0 +1,62 @@
+#! /bin/bash
+
+cd `dirname ${BASH_SOURCE[0]}`
+shopt -s nullglob 2> /dev/null
+
+perl -pi -e "s/prefactor\=.*/prefactor\=\($Mudim\*Exp\[EulerGamma\]\)\^\(\-2\*eps\)/g" *.input
+
+
+# set up integrals
+
+dirs=()
+ints=()
+nil=0
+IFS=$' \t\n]/,'
+
+while read dir int dfk1 m0 dfk2 m1 dfk3 m2 dfk4 m3 dfk5 m4 rest ; do
+  dirs+=($dir)
+  ints+=($int)
+  m=(nil nil nil nil nil)
+  code=${dir##*m}00000
+  eval m[${code:0:1}]=\$m0 \
+       m[${code:1:1}]=\$m1 \
+       m[${code:2:1}]=\$m2 \
+       m[${code:3:1}]=\$m3 \
+       m[${code:4:1}]=\$m4
+  eval ./helpmultiSB.pl $dir $int \
+    \$${m[1]} \$${m[2]} \$${m[3]} \$${m[4]} \
+    $Mh12 $Mh22 $MA
+done < integrals.tab
+
+IFS=$' \t\n'
+
+
+# start calculation
+
+multinumericsloop() {
+  for i in ${ints[@]} ; do
+    ./multinumericsloop.pl -p multi$i.input "$@" || exit 1
+  done
+}
+
+multinumericsloop
+
+
+# wait for results to be delivered
+
+set -- ${dirs[@]/%//together/epstothe*}
+expected=$((3*$#))
+
+dirs=("`IFS=$'\n'
+echo "${dirs[*]/%//together/epstothe*/*.out}" | sort -u`")
+
+while true ; do
+  test `cat ${dirs[@]} | grep -c CPUtime` -ge $expected && break
+  sleep 3
+done
+
+
+# collect results
+
+multinumericsloop 1
+

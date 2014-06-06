@@ -1,0 +1,480 @@
+#! PERL_EXEC -X
+  #****s* SecDec/loop/subexploop.pl
+  #  NAME
+  #    subexploop.pl
+  #
+  #  USAGE
+  #  ./launch or ./subexploop.pl
+  # 
+  #  USES 
+  #  $paramfile, header.pm, makejob.pm, launchjob.pm, getinfo.pm, dirform.pm
+  #  as templates: subandexpand.m, batch 
+  #
+  #  USED BY 
+  #  launch
+  #  
+  #  PURPOSE
+  #  prepares the intermediate files subandexpand*l*h*.m, batch*l*h*, and where
+  #  applicable job*l*h*. Depending on values of $exe and $processlimit, it submits
+  #  the job files, runs the batch files, or neither.  
+  #  INPUTS
+  #  $paramfile (default is paramloop.input) read via module header
+  #  parameters parsed via ARGV:
+  #  fromlaunch: a flag to indicate whether subexploop.pl was run by launch, or from
+  #  the terminal.
+  #    
+  #  RESULT
+  #  intermediate files made. Depending on values of $exe and $clusterflag, the
+  #  subtraction, eps expansion and creation of f*.f files is run or submitted.
+  #  executable launchclean$graph is created, which when run will remove all unneeded
+  #  intermediate files.
+  #  OPTIONS
+  #  to use a parameter file with a different name
+  #  use option "-p paramfile" 
+  #  to specify a different directory to work in
+  #  use option "-d workingdirectory" 
+  #    
+  #  SEE ALSO
+  #  launch, batch, subandexpand.m, cleanup.pl, makejob.pm, launchjob.pm, getinfo.pm
+  #   
+  #****
+  #
+
+use Getopt::Long;
+
+GetOptions("parameter=s" => \$paramfile, "template=s"=>\$templatefile, "dirwork=s"=>\$workingdir);
+unless($paramfile){$paramfile = "paramloop.input"};
+$wdstring="";$wparamfile=$paramfile;
+if($workingdir){$workingdir=~s/\/$//;$wparamfile="$workingdir/$paramfile";$wdstring="-d=$workingdir"};
+
+use lib "perlsrc";
+use Fraction ':constants';
+use header;
+use makejob;
+use launchjob;
+use getinfo;
+use dirform;
+use getkinematics;
+
+my %hash_var=header::readparams($wparamfile);
+$dirbase=`pwd`;
+chomp $dirbase;
+$srcdir="src/subexp";
+$regexsrc=dirform::regex($srcdir);
+$subdir=$hash_var{"diry"};
+$diry=dirform::norm("${dirbase}/$subdir");
+$currentdir=$hash_var{"currentdir"};
+$language=$hash_var{"language"};
+unless ($language) {$language="cpp"};
+if ($language eq "Fortran"){$language="fortran"};
+if ($language eq "Cpp"){$language="cpp"};
+$rescaleflag=$hash_var{"rescaleflag"};
+unless ($rescaleflag) {$rescaleflag="0"};
+$contourdef=$hash_var{"contourdef"};
+unless ($contourdef) {$contourdef="False"};
+if ($contourdef eq "true"){$contourdef="True"};
+if ($contourdef eq "false"){$contourdef="False"};
+$xlambda=$hash_var{"xlambda"};
+unless ($xlambda) {$xlambda="1.0"};
+#$xalpha=$hash_var{"xalpha"};
+#unless ($xalpha) {$xalpha="1.0"};
+#$xbeta=$hash_var{"xbeta"};
+#unless ($xbeta) {$xbeta="1.0"};
+$oscillatory=$hash_var{"oscillatory"};
+unless ($oscillatory) {$oscillatory="0"};
+$endpointflag=$hash_var{"endpointflag"};
+unless ($endpointflag) {$endpointflag="0"};
+#
+$graph=$hash_var{"graph"};
+$pointname=$hash_var{"pointname"};
+$batchsystem=$hash_var{"batch"};
+$cputime=$hash_var{"cputime"};
+unless($cputime){$cputime=1000};
+$togetherflag=$hash_var{"together"};
+unless ($currentdir) {
+if($workingdir){
+if ($workingdir=~m/^\//){
+  $diry=dirform::norm("$workingdir/$subdir");
+  $currentdir="$diry/$graph";
+ } else {
+  $subdir="$workingdir/$subdir";
+  $diry=dirform::norm("${dirbase}/$subdir");
+  $currentdir="$diry/$graph"
+ }
+} else {
+ $currentdir="$diry/$graph"
+}
+}
+$basespath=$hash_var{"basespath"};
+unless ($basespath) {$basespath="$dirbase/basesv5.1"};
+$basespath=~s/\/loop\//\//;
+$basespath=~s/\/general\//\//;
+$cubapath=$hash_var{"cubapath"};
+unless ($cubapath) {$cubapath="$dirbase/Cuba-3.2"};
+$cubapath=~s/\/loop\//\//;
+$cubapath=~s/\/general\//\//;
+$externalegs=$hash_var{"externalegs"};
+$Nn=$hash_var{"Nn"};
+$feynpars=$hash_var{"feynpars"};
+#############################################################
+#if user didn't input number of feynpars, set it equal to 
+#number of propagators (usual default case when using SecDec
+#without specifying an own functionlist)
+unless ($feynpars){$feynpars=$Nn;}
+#############################################################
+$Nmin=1;
+$Nmax=$Nn;
+@Nlist = split(/,/,$hash_var{"Nlist"});
+$indflag=1;
+@multiplicities = split(/,/,$hash_var{"multlist"});
+unless (@Nlist) {
+$indflag=0;
+@Nlist=($Nmin .. $Nmax);
+unless (@multiplicities) {
+@multiplicities = (1,@Nlist);
+}
+}
+$Nmin=$Nlist[0];
+$last=eval(@Nlist-1);
+$Nmax=$Nlist[$last];
+
+$el=0;
+foreach $sec (@Nlist) {
+if (@multiplicities) {
+$hashmulti{ $sec } = $multiplicities[$el];
+}
+else{
+$hashmulti{ $sec } = 1;
+}
+$el++;
+}
+$loops=$hash_var{"loops"};
+$dim=getinfo::dim("$currentdir/$graph.m");
+if ($indflag==1) {$infofile="$currentdir/${graph}Sec$Nlist[0]OUT.info"} else {$infofile="$currentdir/${graph}OUT.info"};
+if ($indflag==1) {$declog="$currentdir/${graph}DecompositionSec${Nlist[0]}.log"} else {$declog="$currentdir/${graph}Decomposition.log"};
+unless (-e $infofile) {
+    print "Warning - (iterated) sector decomposition not yet performed.\n";
+    print "For more details, see $declog.\n"; 
+    print "(Re-)Launch the program via ./launch -p paramfile -t templatefile.\n"; 
+    exit;
+}; 
+$lengthprimseclist=getinfo::lengthprimseclist($infofile);
+@expfu=getinfo::expfu($infofile);
+$expu=$expfu[0];
+$expf=$expfu[1];
+## convert slashes in fractions to search-replace  ##
+## compatible format (needed in lines 375 and 376) ##
+## (by SB, 19.6.2013)                              ##
+$expu=~s/\//\\\//g;
+$expf=~s/\//\\\//g;
+
+$IBPflag=$hash_var{"IBPflag"};
+
+$epsord=$hash_var{"epsord"};
+$prefacord=getinfo::prefacord($infofile);
+$maxdegree=getinfo::maxdegree($infofile);
+if ( $prefacord==-1 ){ $epsord=$epsord+1; }
+#if ( $maxdegree > 0 ) { $epsord=$epsord+$maxdegree; }
+
+$exe=$hash_var{"exe"};
+if ($exe ne "0") {unless ($exe) {$exe=4};};
+$clusterflag=$hash_var{"clusterflag"};
+unless($clusterflag){$clusterflag=0};
+$local=0;
+if($clusterflag==0){if($exe>0){$local=1}};
+$compiler=$hash_var{"compiler"};
+unless ($compiler) {$compiler="gfortran"};
+$integrator=$hash_var{"integrator"};
+$makefile="Makefile.linux";
+$integpath=$basespath;
+if ($integrator==5)
+{
+    $mathematica=1;
+}
+elsif($integrator){
+    $makefile="makefile";
+    $integpath=$cubapath
+}
+unless ($mathematica) {
+    if($language ne "fortran") {
+	my $validintegrator=0;
+	foreach $posinteg (1,2,3,4){
+	    if ($integrator==$posinteg){$validintegrator=1}
+	}
+	unless($validintegrator) {
+	    print "Warning - valid integrator not selected.\nVegas will be used.\n";
+	    open (WPARAM,"<$wparamfile");
+	    @wparam=<WPARAM>;
+	    close WPARAM;
+	    my $changed=0;
+	    open (PARAMOUT,">TEMPORARYPARAMETERFILE");
+	    foreach $pline (@wparam){
+		if($pline=~m/integrator=/){
+		    print PARAMOUT "integrator=1\n";$changed=1
+		}else{
+		    print PARAMOUT $pline
+	    }
+	    }
+	    unless($changed){print PARAMOUT "integrator=1\n"};
+	    close PARAMOUT;
+	    system("mv TEMPORARYPARAMETERFILE $wparamfile");
+	    $integrator=1;
+	    $makefile="makefile";
+	    $integpath=$cubapath;
+	    ################################################
+            #  print "Error - please select a numerical integrator compatible with C++.\n";
+            #  print "Valid selections are 1, 2, 3 and 4\n";
+            #  exit 10;
+	    ################################################
+	}
+    }
+}
+
+$fromlaunch=$ARGV[0];
+if($fromlaunch eq "launch"){
+    # if in language=C++ the subtraction and expansion 
+    # in combination with the togetherflag has been 
+    # undertaken once before, move the existing 
+    # directory to togehter_old
+    if ( $togetherflag == 1 && $language ne "fortran") {
+	if (-d "$currentdir/together" && -d "$currentdir/together_old") { 
+	    system("rm -r $currentdir/together_old; mv $currentdir/together $currentdir/together_old"); 
+	}
+	elsif (-d "$currentdir/together"){ 
+	    system("mv $currentdir/together $currentdir/together_old");
+	}
+    }
+ if($indflag==1) {
+  exit
+ }
+};
+if ($fromlaunch ne "launch") {
+print "paramfile= $paramfile\n";
+print "currentdir = $currentdir\n";
+print "N = $Nn\n";
+print "graph = $graph\n";
+print "IBPflag = $IBPflag\n";
+print "subdir = $subdir\n";
+print "epsord = $epsord\n";
+print "dirbase = $dirbase\n";
+}
+@partsflaglims=qw(4 3 1);
+$regexdir=dirform::regex($currentdir);
+$regexdir="$regexdir\\/";
+$regexdirbase=dirform::regex($dirbase);
+$regexdirbase="$regexdirbase\\/";
+$regexintegpath=dirform::regex($integpath);
+$regexparamfile=dirform::regex($paramfile);
+$regexwdstring="";
+if($wdstring){$regexwdstring=dirform::regex($wdstring)};
+$regexsubdir=dirform::regex($subdir);
+$regexabspath=dirform::regex($currentdir);
+if($local==1){
+#    system("perl perlsrc/remakebases.pl $integpath $compiler none $compiler $makefile $integrator");
+    $makefile="none";
+}
+#if($togetherflag==1){if($exe>0){$exe=1}}; 
+
+if($indflag==0){
+ $itermax=0
+} else {
+ $itermax=$last
+}
+open($cleanfile, ">", "launchclean$graph"); 
+$integstring="";
+$minmin=0;
+for ($iter=0;$iter<=$itermax;$iter++){
+ $cursec=$Nlist[$iter];
+ $infofile="$currentdir/${graph}Sec${cursec}OUT.info";
+ if($indflag==0){$infofile="$currentdir/${graph}OUT.info"};
+ $mindegree=getinfo::mindegree($infofile);
+ @polelist=getinfo::poles($infofile);
+ foreach (@polelist) {
+     $polestruct=$_;
+     if ($polestruct=~/(\d+)l(\d+)h(\d+)/){$i=$1;$j=$2;$h=$3};
+     if($indflag==1){$polestruct="sec${cursec}P$polestruct"};
+     # if numerator contains negative orders in epsilon, these must be added
+     # (if order is negative, corresponds to subtraction) to the minpole $minp
+     $minp=-$i-$j-$h+$mindegree;
+     if($minp<$minmin){$minmin=$minp};
+     if ($i+$j+$h>=-$epsord) {
+	 $partsflag=partsflag();
+	 if($local==0){$integstring="/$polestruct"};
+	 print $cleanfile "perl $dirbase/perlsrc/cleanup.pl $currentdir/$polestruct 0 \$1\n";
+	 $pli="s";$plj="s";$plh="s";
+	 if ($i==1) {$pli=""};
+	 if ($j==1) {$plj=""};
+	 if ($h==1) {$plh=""};
+	 $secstring="primary sector $cursec, ";
+	 if($indflag==0){$secstring=""};
+	 print "working on ${secstring}pole structure: $i logarithmic pole$pli, $j linear pole$plj, $h higher pole$plh\n";
+	 preparesubandexpand("subandexpand$polestruct.m");
+	 preparebatch("batch$polestruct");
+	 if ($clusterflag==1) {
+	     $memuse=1;
+	     if ($partsflag==1) {$memuse=2};
+	     $jobfilename="${currentdir}/job$polestruct";
+	     $executable="batch$polestruct";
+	     #submit batch: no kinematics needed here
+	     @jobargs=($batchsystem,$jobfilename,$currentdir,$executable,$cputime,$memuse);
+	     makejob::go(@jobargs);
+	     if ($hash_var{"exe"}>0) {
+		 print "Submitting job$polestruct...\n";
+		 launchjob::submit($batchsystem,"${currentdir}/job$polestruct");
+	     }
+	 } else {
+	     if ($hash_var{"exe"}>0) {
+		 system("cd $currentdir;./batch$polestruct");
+		 $texcode=$?>>8;
+		 unless($texcode==0){
+		     print "Exiting at pole structure $polestruct. Further pole structures will not be calculated\n";
+		     exit $texcode
+		 }    
+	     }
+	 } # end if clusterflag==1
+     } # end if ($i+$j+$k>=-$epsord)
+ } # next in polelist
+} #next sector where applicable
+if($local==0){print $cleanfile "rm -rf $integpath/$graph\n"};
+print $cleanfile "perl $dirbase/perlsrc/cleanup.pl $currentdir fullclean \$1\n";
+print $cleanfile "if [ \"\$1\" == \"all\" ]\nthen\nrm $dirbase/launchclean$graph\nfi";
+close $cleanfile;
+system("chmod +x launchclean$graph");
+if($togetherflag==1) {
+ if($hash_var{"exe"}>1){
+  @ordlist=();
+  for($i=$epsord;$i>=$minmin;$i--){
+   $it=$i;
+   $it=~s/-/m/;
+   push(@ordlist,$it)
+  }
+  if($clusterflag==0) {
+      if ( $language eq "fortran" ) {
+	  system("./dotogether.pl -p=$paramfile $wdstring @ordlist");
+      } else {
+	  system("perl dotogetherC.pl -p=$paramfile $wdstring $exe @ordlist");
+      }
+  } else {
+   print "Warning! This selection of flags cannot run to completion at this stage.\n";
+   print "When all jobs have finished running, type 'perl dotogether(C).pl -p=$paramfile $wdstring @ordlist' to complete the calculation\n";
+  }
+ }
+}
+
+
+
+sub preparesubandexpand{
+ my $filename = $_[0];
+ if (-e "${currentdir}$filename"){system("rm -f ${currentdir}$filename")};
+ system("cp src/subexp/subandexpand.m ${currentdir}/$filename");
+ if ($indflag==1){
+  $filestr="\<\<$regexdir${graph}$polestruct.out;\n"
+ } else {
+  $filestr="";
+  for ($k=1;$k<=$Nn;$k++) {
+   $filestr="$filestr\<\<$regexdir${graph}sec${k}P${i}l${j}h${h}.out;\n"
+  }
+ }
+ $filestr="${filestr}lengthprimseclist=$lengthprimseclist;\n";
+ system("perl -pi -e 's/outp=/outp=\"$regexabspath\"/' ${currentdir}/$filename");
+ system("perl -pi -e 's/path\=/path\=\"$regexdirbase\"/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/inputdecomposition/$filestr/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/n=/n=$Nn/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/feynpars=/feynpars=$feynpars/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/Dim=/Dim=$dim/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/expu=/expu=${expu}/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/expf=/expf=\-($expf\)/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/diagramname=/diagramname=\"$graph\"/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/subdir=/subdir=\"$regexsubdir\\/\"/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/mindegree=/mindegree=$mindegree/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/maxdegree=/maxdegree=$maxdegree/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/precisionrequired=/precisionrequired=$epsord/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/logi=/logi=$i/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/lini=/lini=$j/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/higheri=/higheri=$h/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/partsflag=/partsflag=$partsflag/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/language=/language=$language/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/contourdef=/contourdef=$contourdef/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/srcdir=/srcdir=\"$regexsrc\\/\"/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/prestring=/prestring=\"sec\"/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/extlegs=/extlegs=$externalegs/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/xlambda=/xlambda=$xlambda/g' ${currentdir}/$filename");
+# system("perl -pi -e 's/xalpha=/xalpha=$xalpha/g' ${currentdir}/$filename");
+# system("perl -pi -e 's/xbeta=/xbeta=$xbeta/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/oscillatory=/oscillatory=$oscillatory/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/rescaleflag=/rescaleflag=$rescaleflag/g' ${currentdir}/$filename");
+# system("perl -pi -e 's/endpointflag=/endpointflag=$endpointflag/g' ${currentdir}/$filename");
+# no remapping (SB, June 04 2012) by fixing endpointflag=0:
+ system("perl -pi -e 's/endpointflag=/endpointflag=0/g' ${currentdir}/$filename");
+ if ( ($togetherflag ==1) && ($language ne "fortran") ) {
+     system("perl -pi -e 's/togetherflag=0/togetherflag=1; polestring=\"\"/g' ${currentdir}/$filename");
+ }
+ if ($mathematica) {
+     kininvar();
+     system("perl -pi -e 's/mathematicaflag=0/mathematicaflag=1;${kininvars}pointname=\"$pointname\"/g' ${currentdir}/$filename");
+ }
+ $indcode="";
+ if($indflag==1){$indcode="indsec=$cursec;"};
+ system("perl -pi -e 's/individual sector/$indcode/g' ${currentdir}/$filename");
+}
+
+
+sub preparebatch {
+ my $filename=$_[0];
+ if (-e "${currentdir}/$filename"){system("rm -f ${currentdir}/$filename")};
+ $minpole=-$i-$j-$h+$mindegree;
+ system("cp perlsrc/batch ${currentdir}/$filename");
+ if($language ne "fortran"){
+         system("perl -pi -e 's/Fortran/C\+\+/g' ${currentdir}/$filename");
+ }
+ system("perl -pi -e 's/basespath/$regexintegpath/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/mathfile/${regexdir}subandexpand$polestruct.m/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/dumpfile/$regexdir$polestruct.log/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/dirbase/$regexdirbase/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/path/$regexdir$polestruct/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/numsec/$Nn/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/minpole/$minpole/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/partsflag/$partsflag/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/polestruct/$polestruct/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/makedump/$regexdir$polestruct\\/makedump/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/paramfile/$regexparamfile $regexwdstring/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/compiler/$compiler/g' ${currentdir}/$filename");
+ system("perl -pi -e 's/makefile/$makefile/g' ${currentdir}/$filename");
+ if ($exe==1) {
+  system("perl -pi -e 's/perl perlsrc/#perl perlsrc/g' ${currentdir}/$filename")
+ } elsif ($togetherflag==1) {
+  system("perl -pi -e 's/perl perlsrc/#perl perlsrc/g' ${currentdir}/$filename")
+ }
+ if ($mathematica) {
+     system("perl -pi -e 's/math=0/math=1/g' ${currentdir}/$filename");
+ }
+}
+
+sub partsflag {
+ if ($IBPflag==2) {
+  if ($h>0) {
+   $partsflag=1
+  } else {
+   if ($j>2) {
+    $partsflag=1
+   } else {
+    if ($i>$partsflaglims[$j]) {
+     $partsflag=1
+    } else {
+     $partsflag=0
+    }
+   }
+  }
+ } else {
+  $partsflag=$IBPflag
+ }
+}
+ 
+sub kininvar() {
+ my %hash_var=header::readparams($paramfile);
+ my @stupointM = split(/,/,$hash_var{"stupoint"});
+ my @psqM = split(/,/,$hash_var{"psq"});
+ my @msqM = split(/,/,$hash_var{"msq"});
+
+ $kininvars = getkinematics::getkinformath(\@stupointM,\@psqM,\@msqM,$rescaleflag);
+}

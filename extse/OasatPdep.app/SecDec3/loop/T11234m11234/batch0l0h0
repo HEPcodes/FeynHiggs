@@ -1,0 +1,66 @@
+#!/bin/sh
+#****t* SecDec/loop/perlsrc/batch
+  #  NAME
+  #    batch
+  #
+  #  USAGE
+  #  ./batch[0l0h0ure]
+  # 
+  #  USES  
+  #   polenumerics.pl
+  #
+  #  USED BY 
+  #  subexploop.pl, subexpuserdefined.pl, justnumericsloop.pl and justnumericsuserdefined.pl, job[polesturcture]
+  #
+  #  PURPOSE
+  #  the file 'batch' acts as a template for subexploop.pl or subexpuserdefined.pl to 
+  #  create files subdir/graph/batch[0l0h0ure], which are run/submitted to 
+  #  perform subtraction & eps expansion via subandexpand[0l0h0ure].m, and 
+  #  the creation, compilation and execution of all files needed for numerical
+  #  integration via polenumerics.pl. From justnumericsloop.pl and justnumericsuserdefined.pl, 
+  #  batch[0l0h0ure] only does the creation, compilation and execution of all files needed for 
+  #  numerical integration via polenumerics.pl.
+  #
+  #  SEE ALSO
+  #  subexploop.pl, subexpuserdefined.pl, polenumerics.pl, justnumericsloop.pl and justnumericsuserdefined.pl 
+  #   
+  #****
+iter=0
+flag=0
+math=0
+while [ $flag -eq 0 ]
+do
+perl /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/perlsrc/mathlaunch.pl /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11234/subandexpand0l0h0.m /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11234/0l0h0.log
+runcheck=`fgrep "Total time taken to produce C++ files" /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11234/0l0h0.log`
+mathcheck=`fgrep "You will" /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11234/0l0h0.log`
+if [ "$mathcheck" != "" ]
+then
+iter=`echo $iter+1 | bc`
+if [ $iter -gt 500 ]
+then
+echo could not acquire a Mathematica licence
+flag=1
+else
+sleep 30
+fi
+echo Could not acquire a Mathematica licence: Retry number $iter
+else
+flag=1
+fi
+done
+if [ "$runcheck" ]
+then
+    if [ $math -eq 0 ]
+    then
+	echo "C++ functions created for pole structure 0l0h0"
+        # rm /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11234/subandexpand0l0h0.m
+	cd /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/
+	#perl perlsrc/polenumerics.pl 0l0h0 /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/Cuba-3.2 gfortran none -p=T11234m11234.input 
+    else 
+	echo "Integrand functions created and integrated with NIntegrate for pole structure 0l0h0"
+	# rm /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11234/subandexpand0l0h0.m
+	cd /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/
+    fi
+else
+    echo program failed when attempting to run /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11234/subandexpand0l0h0.m , for more information read /home/pcl335a/sborowka/Work/OasatPdep/SecDec3/loop/T11234m11234/0l0h0.log
+fi

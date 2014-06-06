@@ -1,0 +1,66 @@
+#!/bin/sh
+#****t* SecDec/loop/perlsrc/batch
+  #  NAME
+  #    batch
+  #
+  #  USAGE
+  #  ./batch[polestructure]
+  # 
+  #  USES  
+  #   polenumerics.pl
+  #
+  #  USED BY 
+  #  subexploop.pl, subexpuserdefined.pl, justnumericsloop.pl and justnumericsuserdefined.pl, job[polesturcture]
+  #
+  #  PURPOSE
+  #  the file 'batch' acts as a template for subexploop.pl or subexpuserdefined.pl to 
+  #  create files subdir/graph/batch[polestructure], which are run/submitted to 
+  #  perform subtraction & eps expansion via subandexpand[polestructure].m, and 
+  #  the creation, compilation and execution of all files needed for numerical
+  #  integration via polenumerics.pl. From justnumericsloop.pl and justnumericsuserdefined.pl, 
+  #  batch[polestructure] only does the creation, compilation and execution of all files needed for 
+  #  numerical integration via polenumerics.pl.
+  #
+  #  SEE ALSO
+  #  subexploop.pl, subexpuserdefined.pl, polenumerics.pl, justnumericsloop.pl and justnumericsuserdefined.pl 
+  #   
+  #****
+iter=0
+flag=0
+math=0
+while [ $flag -eq 0 ]
+do
+perl dirbaseperlsrc/mathlaunch.pl mathfile dumpfile
+runcheck=`fgrep "Total time taken to produce Fortran files" dumpfile`
+mathcheck=`fgrep "You will" dumpfile`
+if [ "$mathcheck" != "" ]
+then
+iter=`echo $iter+1 | bc`
+if [ $iter -gt 500 ]
+then
+echo could not acquire a Mathematica licence
+flag=1
+else
+sleep 30
+fi
+echo Could not acquire a Mathematica licence: Retry number $iter
+else
+flag=1
+fi
+done
+if [ "$runcheck" ]
+then
+    if [ $math -eq 0 ]
+    then
+	echo "Fortran functions created for pole structure polestruct"
+        # rm mathfile
+	cd dirbase
+	perl perlsrc/polenumerics.pl polestruct basespath compiler makefile -p=paramfile
+    else 
+	echo "Integrand functions created and integrated with NIntegrate for pole structure polestruct"
+	# rm mathfile
+	cd dirbase
+    fi
+else
+    echo program failed when attempting to run mathfile , for more information read dumpfile
+fi
