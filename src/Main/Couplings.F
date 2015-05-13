@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 25 Sep 14 th
+* last modified 20 Apr 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -505,6 +505,11 @@ c	  i = -iand(isB(t), isMFV(t))
 * H0 -> Higgs Higgs
 
 	call H0HHCouplings(chhh, DD)
+
+	DeltaHhh = .5D0*cI*EL0*MW/(CW2*SW)*
+     &    3*SA*CA2/SB/MZ2*
+     &    (CA2*se2R(h0h0) + SA2*se2R(HHHH) + S2A*se2R(h0HH))
+
 	call hhh_CalcRenConst
 
 	do h2 = 1, 3

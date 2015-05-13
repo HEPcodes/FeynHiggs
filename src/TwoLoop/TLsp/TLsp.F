@@ -31,7 +31,7 @@ c	MTy = Mf(tM2,3)
 	Q = mudim
 	ht = sqrt(4*pi*Alfat)
 
-#if 1
+#if 0
 	PRINT *, "TLsp: MT=", MTy, MTy2
 	PRINT *, "TLsp: ht=", ht
 	PRINT *, "TLsp: Alfat=", Alfat
