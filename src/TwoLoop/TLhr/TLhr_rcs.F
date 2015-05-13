@@ -1,6 +1,6 @@
 * TLhr_rcs.F
 * this file is part of FeynHiggs
-* generated 24-Sep-2014 23:09
+* generated 5-May-2015 11:08
 
 #include "externals.h"
 #include "types.h"
@@ -12,33 +12,33 @@
 #include "TLhr.h"
 
 
-	dMSfsq1133eps(-1) = 1/(3.D0*Pi)*(Alfas2L*(Cr(3) - Cr(6)))
+	dMSfsq1133eps(-1) = 2/(3.D0*Pi)*(Alfas2L*(Cr(3) - Cr(6)))
 
-	dMSfsq1133eps(0) = 1/(3.D0*Pi)*(Alfas2L*(Cr(12) - Cr(19)))
+	dMSfsq1133eps(0) = -(1/(3.D0*Pi)*(Alfas2L*(Cr(13) - Cr(21))))
 
-	dMSfsq1133eps(1) = -(1/(3.D0*Pi)*(Alfas2L*(Cr(21) + Cr(25))))
+	dMSfsq1133eps(1) = -(1/(6.D0*Pi)*(Alfas2L*(Cr(23) + Cr(27))))
 
-	dMSfsq1233eps(-1) = 1/(3.D0*Pi)*(Alfas2L*(Cr(29) - 2*Cr(31)))
+	dMSfsq1233eps(-1) = 2/(3.D0*Pi)*(Alfas2L*(Cr(30) - Cr(32)))
 
-	dMSfsq1233eps(0) = 1/(3.D0*Pi)*(Alfas2L*(Cr(35) - Cr(39)))
+	dMSfsq1233eps(0) = -(1/(3.D0*Pi)*(Alfas2L*(Cr(36) - Cr(41))))
 
-	dMSfsq1233eps(1) = -(1/(3.D0*Pi)*(Alfas2L*(Cr(40) - Cr(42))))
+	dMSfsq1233eps(1) = -(1/(6.D0*Pi)*(Alfas2L*(Cr(42) - Cr(46))))
 
 	dMf133eps(-1) = -(4/(3.D0*Pi)*(Alfas2L*MTy))
 
         dMf133eps(0) = 
-     &   1/(6.D0*Pi)*(-(Alfas2L*Cr(82)) + 6*Pi*(dMTfin*MTy))/MTy
+     &   1/(6.D0*Pi)*(Alfas2L*Cr(88) + 6*Pi*(dMTfin*MTy))/MTy
 
-	dMf133eps(1) = -(1/(12.D0*Pi)*(Alfas2L*Cr(83))/MTy)
+	dMf133eps(1) = 1/(12.D0*Pi)*(Alfas2L*Cr(135))/MTy
 
         dY33eps(-1) = 4/(3.D0*Pi)*
-     &    (Alfas2L*(2*MTy*Cr(138) - Cr(75)*MStop2(3)*UCStop(3,1)))
+     &    (Alfas2L*(2*MTy*Cr(139) - Cr(117)*MStop2(3)*UCStop(3,1)))
 
         dY33eps(0) = 2/(3.D0*Pi)*
-     &    (Alfas2L*(MTy*Cr(67)*Cr(138) - 
-     &        Cr(75)*Cr(139)*UCStop(3,1)))
+     &    (Alfas2L*(MTy*Cr(70)*Cr(139) - 
+     &        Cr(117)*Cr(140)*UCStop(3,1)))
 
-	dY33eps(1) = 1/(3.D0*Pi)*(Alfas2L*Cr(75)*Cr(132)*UCStop(3,1))
+	dY33eps(1) = 1/(3.D0*Pi)*(Alfas2L*Cr(117)*Cr(134)*UCStop(3,1))
 
         dMSfsq1143eps(-1) = 
      &   -2*MTy*dMf133eps(-1) + 

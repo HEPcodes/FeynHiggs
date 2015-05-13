@@ -1,0 +1,60 @@
+#! /bin/sh -x
+
+test $# -ne 1 && {
+  cat << _EOF_
+Usage:  $0 se
+computes the renormalization constants for the 'se' 2L self-energies
+_EOF_
+  exit 1
+}
+
+in=m/$1/4-simp.1
+test -f $in || exit 1
+out=m/$1/5-rc
+rm -f $out*
+
+rcdir=m/rc
+psdir=$rcdir/d
+mkdir -p $psdir
+
+time math -run rcdir=\"$rcdir\" \
+          -run psdir=\"$psdir/\" << \_EOF_ > $out.log
+AppendTo[$Echo, "stdout"];
+
+	(* Note: cannot use MSSMCTgl.mod here since dZH1,2 take
+	   a limit of alpha different from the gaugeless one,
+	   see ABrules in MSSMCT.rc1. *)
+model = "MSSMCT";
+
+<< packages`RenConst`;
+glamp = Identity;
+
+rcs = {dZH1, dZH2, dMWsq1gl, dMZsq1gl};
+CalcRenConst[rcs];
+
+Uninstall[$ReadFormHandle];
+_EOF_
+
+time math -run se=\"$1\" \
+          -run in=\"$in\" \
+          -run out=\"$out\" \
+          -run rcdir=\"$rcdir\" \
+          -run psdir=\"$psdir/\" << \_EOF_ >> $out.log
+AppendTo[$Echo, "stdout"];
+
+<< packages`RenConst`;
+
+amp = Get[in] + ct[se];
+rcs = FindRenConst[amp];
+rcs = CalcRenConst[rcs];
+
+Put[rcs, out];
+
+Uninstall[$ReadFormHandle];
+_EOF_
+
+gzip $out.log
+find $psdir -name \*.ps -execdir gzip -f {} \;
+
+test -f $out
+

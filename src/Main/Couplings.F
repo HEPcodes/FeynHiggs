@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 20 Apr 15 th
+* last modified 24 Apr 15 th
 
 #include "externals.h"
 #include "types.h"

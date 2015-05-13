@@ -1,27 +1,27 @@
 * TLhr.F
-* master file for Heidi Rzehak's two-loop corrections
+* master file for Heidi Rzehak's 2L asat corrections
 * this file is part of FeynHiggs
-* last modified 2 Mar 15 th
+* last modified 4 May 15 th
 
 #include "externals.h"
 #include "types.h"
 
 
-	subroutine TLhrSE(error, mudim)
+	subroutine TLhrSE(error, mudim, ps)
 	implicit none
 	integer error
 	RealType mudim
+	logical ps
 
 #include "TLhr.h"
 #define __SUBROUTINE__ "TLhrSE"
 
-	ComplexType seinput
 	RealType c
 
-	call TLSf(error)
+	call TLSfgl(error)
 
 	Xt = Xf(3,3)
-	At = Xt + MUEC/TB
+	At = Xt - MUETB(3)
 	MUEXt = MUE*Xt
 	MTy = Mf(tM2,3)
 	MTy2 = MTy**2
@@ -53,46 +53,51 @@
 	  DSELF "---------------------------"	ENDL
 	endif
 
-	call TLhr_abbr0
+	call TLhr_abbr_r
 	call TLhr_rcs
 
-	call TLhr_abbr1_1
-	call TLhr_abbr1_2
-	call TLhr_abbr1_3
-	call TLhr_abbr1_4
-	call TLhr_abbr1_5
-	call TLhr_abbr1_6
-	call TLhr_abbr1_7
-	call TLhr_abbr1_8
-	call TLhr_abbr1_9
-	call TLhr_abbr1_10
-	call TLhr_abbr1_11
-	call TLhr_abbr1_12
-	call TLhr_abbr1_13
-	call TLhr_abbr1_14
-	call TLhr_abbr1_15
-	call TLhr_abbr1_16
-	call TLhr_abbr1_17
-	call TLhr_abbr1_18
-	call TLhr_self1
+	call TLhr_abbr_c1
+	call TLhr_abbr_c2
+	call TLhr_self_c
+
+	se2U(A0A0) = se2U(A0A0) + selfA0A0
+	se2U(HmHp) = se2U(HmHp) + selfHmHp
+	if( inputmass .eq. 3 ) then
+	  seinput = selfA0A0
+	  se2R(HmHp) = se2R(HmHp) + selfHmHp - seinput
+	else
+	  seinput = selfHmHp
+	  se2R(A0A0) = se2R(A0A0) + selfA0A0 - seinput
+	endif
+
+	if( ps ) return
+
+	call TLhr_abbr_d1
+	call TLhr_abbr_d2
+	call TLhr_abbr_d3
+	call TLhr_abbr_d4
+	call TLhr_abbr_d5
+	call TLhr_abbr_d6
+	call TLhr_abbr_d7
+	call TLhr_abbr_d8
+	call TLhr_abbr_d9
+	call TLhr_abbr_d10
+	call TLhr_abbr_d11
+	call TLhr_abbr_d12
+	call TLhr_abbr_d13
+	call TLhr_self_d
 
 	c = EL2L/(2*SW*MW)
 
-	if( inputmass .eq. 3 ) then
-	  seinput = selfA0A0
-	else
-	  seinput = selfHmHp
-	endif
-
-	se2R(h0h0) = selfh0h0 - CBA2*seinput +
+	se2U(h0h0) = se2U(h0h0) + selfh0h0
+	se2Rcat(se11,asat) = selfh0h0 - CBA2*seinput +
      &    c*SBA*(CBA*SBA*tadHH - (1 + CBA2)*tadh0)
+	se2R(h0h0) = se2R(h0h0) + se2Rcat(se11,asat)
 
-	se2R(HHHH) = selfHHHH - SBA2*seinput +
+	se2U(HHHH) = se2U(HHHH) + selfHHHH
+	se2Rcat(se22,asat) = selfHHHH - SBA2*seinput +
      &    c*CBA*(CBA*SBA*tadh0 - (1 + SBA2)*tadHH)
-
-	se2R(A0A0) = selfA0A0 - seinput
-
-	se2R(HmHp) = selfHmHp - seinput
+	se2R(HHHH) = se2R(HHHH) + se2Rcat(se22,asat)
 
 	if( debuglevel .ge. 2 ) then
 	  DSELF "se2R(h0h0) =", se2R(h0h0)	ENDL
@@ -103,13 +108,15 @@
 
 	if( higgsmix .lt. 2 ) return
 
-	call TLhr_abbr2_1
-	call TLhr_abbr2_2
-	call TLhr_abbr2_3
-	call TLhr_self2
+	call TLhr_abbr_e1
+	call TLhr_abbr_e2
+	call TLhr_abbr_e3
+	call TLhr_self_e
 
-	se2R(h0HH) = selfh0HH + CBA*SBA*seinput -
+	se2U(h0HH) = se2U(h0HH) + selfh0HH
+	se2Rcat(se12,asat) = selfh0HH + CBA*SBA*seinput -
      &    c*(CBA**3*tadh0 + SBA**3*tadHH)
+	se2R(h0HH) = se2R(h0HH) + se2Rcat(se12,asat)
 
 	if( debuglevel .ge. 2 ) then
 	  DSELF "se2R(h0HH) =", se2R(h0HH)	ENDL
@@ -117,15 +124,16 @@
 
 	if( higgsmix .lt. 3 ) return
 
-	call TLhr_abbr3_1
-	call TLhr_abbr3_2
-	call TLhr_abbr3_3
-	call TLhr_abbr3_4
-	call TLhr_self3
+	call TLhr_abbr_o1
+	call TLhr_abbr_o2
+	call TLhr_abbr_o3
+	call TLhr_self_o
 
-	se2R(h0A0) = selfh0A0 - c*SBA*tadA0
+	se2U(h0A0) = se2U(h0A0) + selfh0A0
+	se2R(h0A0) = se2R(h0A0) + selfh0A0 - c*SBA*tadA0
 
-	se2R(HHA0) = selfHHA0 - c*CBA*tadA0
+	se2U(HHA0) = se2U(HHA0) + selfHHA0
+	se2R(HHA0) = se2R(HHA0) + selfHHA0 - c*CBA*tadA0
 
 	if( debuglevel .ge. 2 ) then
 	  DSELF "se2R(h0A0) =", se2R(h0A0)	ENDL

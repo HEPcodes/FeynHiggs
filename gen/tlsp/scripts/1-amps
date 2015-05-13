@@ -1,0 +1,93 @@
+#! /bin/sh -x
+
+test $# -ne 2 && {
+  cat << _EOF_
+Usage:  $0 se cto
+generates the 'se' 2L self-energies at counter-term order cto
+se is one of h0h0 h0HH h0A0 HHHH HHA0 A0A0 HmHp h0 HH A0
+_EOF_
+  exit 1
+}
+
+mkdir -p m/$1 || exit 1
+out=m/$1/1-amps.$2
+rm -f $out*
+
+time math -run se=\"$1\" \
+          -run cto=$2 \
+          -run out=\"$out\" << \_EOF_ > $out.log
+AppendTo[$Echo, "stdout"];
+
+<< packages`FASettings`;
+
+sel[0][S[5] -> S[5]] = {
+  tb[3] && tb[5] && htb[6],
+  tb[3] && tb[5] && htb[4|6],
+  tb[3] && tb[5] && htb[4|6],
+  tb[3] && tb[4] && htb[5],
+  tb[3] && htb[5|6],
+  tb[3] && htb[5],
+  tb[3] && tb[5],
+  tb[5] && htb[3|4],
+  tb[3|4|5] && hb[3|4] };
+
+sel[0][S[_] -> S[_]] = {
+  t[3] && htb[6],
+  t[3] && tb[6],
+  t[3] && tb[6],
+  t[3] && t[4] && htb[5],
+  t[3] && htb[5|6],
+  t[3] && htb[5],
+  t[3] && t[5],
+  t[5] && ht[3|4],
+  t[3|4|5] && ht[3|4|5] };
+
+sel[0][S[_] -> {}] = {
+  t[2] && htb[4],
+  t[2] && htb[4],
+  t[2|3|4] };
+
+sel[1][S[5] -> S[5]] = tb[3];
+
+sel[1][S[_] -> S[_]] = t[3];
+
+sel[1][S[_] -> {}] = t[2];
+
+
+
+hIns[proc_] := diagsel[ins[proc], sel[cto][proc]];
+
+hAmp[diags_] :=
+Block[ {amps},
+  amps = cfa[diags];
+  amps = ampmod[cto]@@@ amps;
+  Put[amps, out];
+  amps
+];
+
+hPaint[diags_] := (
+  Paint[diags, DisplayFunction -> (Export[out <> ".ps", #]&)];
+  diags
+);
+
+
+proc["h0h0"] = S[1] -> S[1];
+proc["h0HH"] = S[1] -> S[2];
+proc["h0A0"] = S[1] -> S[3];
+proc["HHHH"] = S[2] -> S[2];
+proc["HHA0"] = S[2] -> S[3];
+proc["A0A0"] = S[3] -> S[3];
+proc["HmHp"] = S[5] -> S[5];
+proc["h0"] = S[1] -> {};
+proc["HH"] = S[2] -> {};
+proc["A0"] = S[3] -> {};  
+_proc := Abort[];
+
+hAmp @ hPaint @ hIns @ proc[se];
+
+_EOF_
+
+gzip $out.log $out.ps
+
+test -f $out
+

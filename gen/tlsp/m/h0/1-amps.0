@@ -1,0 +1,1417 @@
+FeynAmpList[Process -> {{S[1], FourMomentum[Incoming, 1], Mh0, {}}} -> {}, 
+  Model -> {"MSSMCTgl"}, GenericModel -> {"Lorentz"}, 
+  AmplitudeLevel -> {Particles}, ExcludeParticles -> 
+   {U, V, -F[1], F[1], -F[2], F[2], F[15], -F[1, {1}], F[1, {1}], -F[1, {2}], 
+    F[1, {2}], -F[1, {3}], F[1, {3}], -F[2, {1}], F[2, {1}], -F[2, {2}], 
+    F[2, {2}], -F[2, {3}], F[2, {3}], -F[3, {1, _}], F[3, {1, _}], 
+    -F[3, {2, _}], F[3, {2, _}], -F[4, {1, _}], F[4, {1, _}], -F[4, {2, _}], 
+    F[4, {2, _}], F[15, {_}], -S[11], S[11], -S[12], S[12], -S[11, {1}], 
+    S[11, {1}], -S[11, {2}], S[11, {2}], -S[11, {3}], S[11, {3}], 
+    -S[12, {1, 1}], S[12, {1, 1}], -S[12, {1, 2}], S[12, {1, 2}], 
+    -S[12, {1, 3}], S[12, {1, 3}], -S[12, {2, 1}], S[12, {2, 1}], 
+    -S[12, {2, 2}], S[12, {2, 2}], -S[12, {2, 3}], S[12, {2, 3}], 
+    -S[13, {1, 1, _}], S[13, {1, 1, _}], -S[13, {1, 2, _}], S[13, {1, 2, _}], 
+    -S[13, {2, 1, _}], S[13, {2, 1, _}], -S[13, {2, 2, _}], S[13, {2, 2, _}], 
+    -S[14, {1, 1, _}], S[14, {1, 1, _}], -S[14, {1, 2, _}], S[14, {1, 2, _}], 
+    -S[14, {2, 1, _}], S[14, {2, 1, _}], -S[14, {2, 2, _}], S[14, {2, 2, _}], 
+    -U[1], U[1], -U[2], U[2], -U[3], U[3], -U[4], U[4], -U[5], U[5], 
+    -U[5, {_}], U[5, {_}], V[1], V[2], -V[3], V[3], V[5], V[5, {_}]}, 
+  ExcludeFieldPoints -> {}, LastSelections -> 
+   {F[3 | 4, {3, _, ___}] | S[13 | 14, {_, 3, _, ___}] | F[11 | 12] | 
+     S[1 | 2 | 3 | 4 | 5 | 6]}][FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 1, Number == 1], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[1, 3, 3]]]*
+    (1 + IndexDelta[Index[Colour, 2], Index[Colour, 3]])*
+    SumOver[Index[Colour, 2], 3]*SumOver[Index[Colour, 3], 3]*(MT + U2s1[Xt])*
+    UCSf[1, 1, 3, 3]*UCSf[1, 2, 3, 3])/(64*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 2, 
+   Number == 2], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+      MSf[1, 3, 3]]]*(1 + IndexDelta[Index[Colour, 2], Index[Colour, 3]])*
+    SumOver[Index[Colour, 2], 3]*SumOver[Index[Colour, 3], 3]*U2c1C[Xt]*
+    (-UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3])*UCSf[3, 1, 3, 3])/
+   (128*Sqrt[2]*MT2*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 3, Number == 3], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+      MSf[1, 3, 3]]]*(1 + IndexDelta[Index[Colour, 2], Index[Colour, 3]])*
+    SumOver[Index[Colour, 2], 3]*SumOver[Index[Colour, 3], 3]*U2c1[Xt]*
+    (-UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3])*UCSfC[3, 1, 3, 3])/
+   (128*Sqrt[2]*MT2*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 4, Number == 4], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+      MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*SumOver[Index[Colour, 3], 
+     3]*(MT - U2s1[Xt])*(-2*UCSf[1, 1, 3, 3]*UCSf[1, 2, 3, 3] + 
+     IndexDelta[Index[Colour, 2], Index[Colour, 3]]*(UCSf[1, 1, 3, 3]^2 + 
+       UCSf[1, 2, 3, 3]^2)))/(128*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 5, 
+   Number == 5], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+      MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*SumOver[Index[Colour, 3], 
+     3]*(MT + U2s1[Xt])*(-2*UCSf[1, 1, 3, 3]*UCSf[1, 2, 3, 3] + 
+     IndexDelta[Index[Colour, 2], Index[Colour, 3]]*(UCSf[1, 1, 3, 3]^2 + 
+       UCSf[1, 2, 3, 3]^2)))/(128*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 6, 
+   Number == 6], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+      MSf[2, 3, 3]]]*(1 + IndexDelta[Index[Colour, 2], Index[Colour, 3]])*
+    SumOver[Index[Colour, 2], 3]*SumOver[Index[Colour, 3], 3]*U2c1C[Xt]*
+    (UCSf[1, 1, 3, 3] - UCSf[1, 2, 3, 3])*UCSf[3, 1, 3, 3])/
+   (128*Sqrt[2]*MT2*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 7, Number == 7], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+      MSf[2, 3, 3]]]*(1 + IndexDelta[Index[Colour, 2], Index[Colour, 3]])*
+    SumOver[Index[Colour, 2], 3]*SumOver[Index[Colour, 3], 3]*U2c1[Xt]*
+    (UCSf[1, 1, 3, 3] - UCSf[1, 2, 3, 3])*UCSfC[3, 1, 3, 3])/
+   (128*Sqrt[2]*MT2*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 8, Number == 8], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[2, 3, 3]]]*
+    (1 + IndexDelta[Index[Colour, 2], Index[Colour, 3]])*
+    SumOver[Index[Colour, 2], 3]*SumOver[Index[Colour, 3], 3]*(MT - U2s1[Xt])*
+    UCSf[1, 1, 3, 3]*UCSf[1, 2, 3, 3])/(64*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 9, 
+   Number == 9], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0]]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 10, 
+   Number == 10], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 11, 
+   Number == 11], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 12, 
+   Number == 12], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0]]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 13, 
+   Number == 13], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp]]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/
+   (1024*Sqrt[2]*MT2*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 14, Number == 14], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 15, 
+   Number == 15], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 16, 
+   Number == 16], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*S2B^2*SB*DiagMark[MHp, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp]]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/
+   (1024*Sqrt[2]*MT2*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 17, Number == 17], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp]]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/
+   (1024*Sqrt[2]*MT2*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 18, Number == 18], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 19, 
+   Number == 19], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 20, 
+   Number == 20], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*S2B^2*SB*DiagMark[MHp, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp]]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/
+   (1024*Sqrt[2]*MT2*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 21, Number == 21], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 2], M0]]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 22, 
+   Number == 22], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 23, 
+   Number == 23], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 24, 
+   Number == 24], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0]]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 25, 
+   Number == 25], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp]]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt])*UCSf[1, 2, 3, 3])/
+   (512*Sqrt[2]*MT2*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 26, Number == 26], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  -(ht^3*MT^2*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp]]*
+     SumOver[Index[Colour, 2], 3]*U2c1C[Xt]*UCSf[3, 1, 3, 3])/
+   (512*Sqrt[2]*MT2*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 27, Number == 27], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  -(ht^3*MT^2*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp]]*
+     SumOver[Index[Colour, 2], 3]*U2c1[Xt]*UCSfC[3, 1, 3, 3])/
+   (512*Sqrt[2]*MT2*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 28, Number == 28], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*S2B^2*SB*DiagMark[MHp, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp]]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt])*UCSf[1, 1, 3, 3])/
+   (512*Sqrt[2]*MT2*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 29, Number == 29], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 2], M0]]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt])*UCSf[1, 2, 3, 3])/
+   (128*Sqrt[2]*MT2*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 30, Number == 30], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  -(ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0]]*
+     SumOver[Index[Colour, 2], 3]*U2c1C[Xt]*UCSf[3, 1, 3, 3])/
+   (128*Sqrt[2]*MT2*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 31, Number == 31], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  -(ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0]]*
+     SumOver[Index[Colour, 2], 3]*U2c1[Xt]*UCSfC[3, 1, 3, 3])/
+   (128*Sqrt[2]*MT2*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 32, Number == 32], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 2], M0]]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt])*UCSf[1, 1, 3, 3])/
+   (128*Sqrt[2]*MT2*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 33, Number == 33], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+      MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt])*
+    UCSf[1, 2, 3, 3])/(128*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 34, 
+   Number == 34], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+       MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*U2c1C[Xt]*
+     UCSf[3, 1, 3, 3])/(128*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 35, 
+   Number == 35], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(ht^3*MT^2*SB*DiagMark[MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+       MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*U2c1[Xt]*
+     UCSfC[3, 1, 3, 3])/(128*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 36, 
+   Number == 36], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*DiagMark[MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], 
+      MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt])*
+    UCSf[1, 1, 3, 3])/(128*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 37, 
+   Number == 37], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 38, 
+   Number == 38], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 39, 
+   Number == 39], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 40, 
+   Number == 40], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 1, 
+   Number == 41], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT + U2s1[Xt])^3)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 2, 
+   Number == 42], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c1C[Xt]*(MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 3, 
+   Number == 43], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c1C[Xt]*(MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 4, 
+   Number == 44], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c1C[Xt]*(MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 5, 
+   Number == 45], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c1C[Xt]*(MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 6, 
+   Number == 46], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c1C[Xt]*(MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 7, 
+   Number == 47], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c1C[Xt]*(MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 8, 
+   Number == 48], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*SB^3*DiagMark[0, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT - U2s1[Xt])^3)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 9, 
+   Number == 49], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT + U2s1[Xt])*(MT + U2s1[Yt])^2)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 10, 
+   Number == 50], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Yt]*U2c1C[Xt]*(MT + U2s1[Yt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 11, 
+   Number == 51], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c1C[Yt]*(MT + U2s1[Yt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 12, 
+   Number == 52], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Yt]*U2c1C[Yt]*(MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 13, 
+   Number == 53], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Yt]*U2c1C[Yt]*(MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 14, 
+   Number == 54], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Yt]*U2c1C[Xt]*(MT - U2s1[Yt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 15, 
+   Number == 55], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c1C[Yt]*(MT - U2s1[Yt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 16, 
+   Number == 56], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (CB^2*ht^3*SB*DiagMark[MHp, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT - U2s1[Xt])*(MT - U2s1[Yt])^2)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 17, 
+   Number == 57], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT + U2s1[Xt])*U2s2[Yt]^2)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 18, 
+   Number == 58], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1C[Xt]*U2c2[Yt]*U2s2[Yt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 19, 
+   Number == 59], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+      PropagatorDenominator[-FourMomentum[Internal, 1] + 
+        FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 
+      3]*U2c1[Xt]*U2c2C[Yt]*U2s2[Yt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 20, 
+   Number == 60], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+      PropagatorDenominator[-FourMomentum[Internal, 1] + 
+        FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 
+      3]*U2c2[Yt]*U2c2C[Yt]*(MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 21, 
+   Number == 61], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+      PropagatorDenominator[-FourMomentum[Internal, 1] + 
+        FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 
+      3]*U2c2[Yt]*U2c2C[Yt]*(MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 22, 
+   Number == 62], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+      PropagatorDenominator[-FourMomentum[Internal, 1] + 
+        FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 
+      3]*U2c1C[Xt]*U2c2[Yt]*U2s2[Yt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 23, 
+   Number == 63], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c2C[Yt]*U2s2[Yt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 24, 
+   Number == 64], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (CB^2*ht^3*SB*DiagMark[MHp, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT - U2s1[Xt])*U2s2[Yt]^2)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 25, 
+   Number == 65], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT + U2s1[Xt])*U2s2[Xt]^2)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 26, 
+   Number == 66], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1C[Xt]*U2c2[Xt]*U2s2[Xt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 27, 
+   Number == 67], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+      PropagatorDenominator[-FourMomentum[Internal, 1] + 
+        FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 
+      3]*U2c1[Xt]*U2c2C[Xt]*U2s2[Xt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 28, 
+   Number == 68], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+      PropagatorDenominator[-FourMomentum[Internal, 1] + 
+        FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 
+      3]*U2c2[Xt]*U2c2C[Xt]*(MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 29, 
+   Number == 69], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+      PropagatorDenominator[-FourMomentum[Internal, 1] + 
+        FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 
+      3]*U2c2[Xt]*U2c2C[Xt]*(MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 30, 
+   Number == 70], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  -(ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+      PropagatorDenominator[-FourMomentum[Internal, 1] + 
+        FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 
+      3]*U2c1C[Xt]*U2c2[Xt]*U2s2[Xt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 31, 
+   Number == 71], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*U2c2C[Xt]*U2s2[Xt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 32, 
+   Number == 72], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*SB^3*DiagMark[0, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT - U2s1[Xt])*U2s2[Xt]^2)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 33, 
+   Number == 73], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT + U2s1[Xt])*(MT*USf[1, 1, 3, 3] + Yt*USf[1, 2, 3, 3])*
+    (MT*USfC[1, 1, 3, 3] + YtC*USfC[1, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 34, 
+   Number == 74], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*(MT*USf[2, 1, 3, 3] + Yt*USf[2, 2, 3, 3])*
+    (MT*USfC[1, 1, 3, 3] + YtC*USfC[1, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 35, 
+   Number == 75], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1C[Xt]*(MT*USf[1, 1, 3, 3] + Yt*USf[1, 2, 3, 3])*
+    (MT*USfC[2, 1, 3, 3] + YtC*USfC[2, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 36, 
+   Number == 76], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB^2*ht^3*SB*DiagMark[MHp, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], MHp], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT - U2s1[Xt])*(MT*USf[2, 1, 3, 3] + Yt*USf[2, 2, 3, 3])*
+    (MT*USfC[2, 1, 3, 3] + YtC*USfC[2, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 37, 
+   Number == 77], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 38, 
+   Number == 78], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 39, 
+   Number == 79], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 40, 
+   Number == 80], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 41, 
+   Number == 81], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT + U2s1[Xt])*(MT*USf[1, 1, 3, 3] + Xt*USf[1, 2, 3, 3])*
+    (MT*USfC[1, 1, 3, 3] + XtC*USfC[1, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 42, 
+   Number == 82], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1[Xt]*(MT*USf[2, 1, 3, 3] + Xt*USf[2, 2, 3, 3])*
+    (MT*USfC[1, 1, 3, 3] + XtC*USfC[1, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 43, 
+   Number == 83], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    U2c1C[Xt]*(MT*USf[1, 1, 3, 3] + Xt*USf[1, 2, 3, 3])*
+    (MT*USfC[2, 1, 3, 3] + XtC*USfC[2, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 44, 
+   Number == 84], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*SB^3*DiagMark[0, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 2], M0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT - U2s1[Xt])*(MT*USf[2, 1, 3, 3] + Xt*USf[2, 2, 3, 3])*
+    (MT*USfC[2, 1, 3, 3] + XtC*USfC[2, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 45, 
+   Number == 85], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 46, 
+   Number == 86], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 47, 
+   Number == 87], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 48, 
+   Number == 88], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 1, 
+   Number == 89], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  ((I/256)*DiagMark[0, MT]*FeynAmpDenominator[PropagatorDenominator[
+      FourMomentum[Internal, 1], MT], PropagatorDenominator[
+      FourMomentum[Internal, 1], MT], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT], PropagatorDenominator[
+      -FourMomentum[Internal, 1] + FourMomentum[Internal, 2], M0]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 2]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2]]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 2, 
+   Number == 90], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MHp, MT]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MT], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MHp]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     (I*CB*ht*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 2]]], 
+     (I*CB*ht*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2]]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 3, 
+   Number == 91], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MHp, MT]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MT], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MHp]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     (CB*ht*(NonCommutative[ChiralityProjector[-1]] - 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 2]]], 
+     (CB*ht*(NonCommutative[ChiralityProjector[-1]] - 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2]]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 4, 
+   Number == 92], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  ((I/256)*DiagMark[0, MT]*FeynAmpDenominator[PropagatorDenominator[
+      FourMomentum[Internal, 1], MT], PropagatorDenominator[
+      FourMomentum[Internal, 1], MT], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT], PropagatorDenominator[
+      -FourMomentum[Internal, 1] + FourMomentum[Internal, 2], M0]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     (ht*SB*(NonCommutative[ChiralityProjector[-1]] - 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 2]]], 
+     (ht*SB*(NonCommutative[ChiralityProjector[-1]] - 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2]]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 5, 
+   Number == 93], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[0, MHp, MT]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], 0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MHp]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     I*CB*ht*NonCommutative[ChiralityProjector[1]], 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 2]]], 
+     I*CB*ht*NonCommutative[ChiralityProjector[-1]]]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 6, 
+   Number == 94], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[0, 0, MT]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], 0], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], M0]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     I*ht*SB*NonCommutative[ChiralityProjector[1]], 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 2]]], 
+     I*ht*SB*NonCommutative[ChiralityProjector[-1]]]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 7, 
+   Number == 95], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MT, MNeu[1], MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MNeu[1]], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 2]] + MNeu[1]], 0]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 8, 
+   Number == 96], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MT, MNeu[2], MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MNeu[2]], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 2]] + MNeu[2]], 0]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 9, 
+   Number == 97], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MMUE, MT, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MMUE], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     (I*ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[1, 1, 3, 3] + 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[1, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[1, 1, 3, 3] + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[1, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 10, 
+   Number == 98], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MMUE, MT, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MMUE], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     (ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[1, 1, 3, 3] - 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[1, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 2]]], 
+     (ht*(-(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[1, 1, 3, 3]) + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[1, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 11, 
+   Number == 99], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MT, MNeu[1], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MNeu[1]], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 2]] + MNeu[1]], 0]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 12, 
+   Number == 100], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MT, MNeu[2], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MNeu[2]], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 2]] + MNeu[2]], 0]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 13, 
+   Number == 101], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MMUE, MT, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MMUE], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     (I*ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[2, 1, 3, 3] + 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[2, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[2, 1, 3, 3] + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[2, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 14, 
+   Number == 102], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MMUE, MT, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MMUE], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     (ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[2, 1, 3, 3] - 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[2, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 2]]], 
+     (ht*(-(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[2, 1, 3, 3]) + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[2, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 15, 
+   Number == 103], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MMUE, MT, MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MMUE], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     I*ht*NonCommutative[ChiralityProjector[1]], 
+     NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[-1]]]*SumOver[Index[Colour, 2], 
+     3])/Pi^8], FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, 
+   Particles == 16, Number == 104], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], ((I/256)*DiagMark[MMUE, MT, MSf[2, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MT], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MMUE], 
+     PropagatorDenominator[-FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 4, 3]]]*
+    MatrixTrace[NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 
+     ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
+        NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
+     NonCommutative[MT + DiracSlash[FourMomentum[Internal, 1]]], 0, 
+     NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 2]]], 0]*
+    SumOver[Index[Colour, 2], 3])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 1, 
+   Number == 105], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht*SB*DiagMark[MT, MNeu[1], MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MNeu[1]], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]] + MNeu[1]], 0]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 2, 
+   Number == 106], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht*SB*DiagMark[MT, MNeu[2], MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MNeu[2]], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]] + MNeu[2]], 0]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 3, 
+   Number == 107], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[1, 1, 3, 3] + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[1, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[1, 1, 3, 3] + 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[1, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 4, Number == 108], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 
+     (ht*(-(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[1, 1, 3, 3]) + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[1, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     (ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[1, 1, 3, 3] - 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[1, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 5, Number == 109], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MT, MNeu[1], MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MNeu[1]], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]] + MNeu[1]], 0]*
+    SumOver[Index[Colour, 2], 3]*U2c1C[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 6, 
+   Number == 110], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MT, MNeu[1], MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MNeu[1]], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]] + MNeu[1]], 0]*
+    SumOver[Index[Colour, 2], 3]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 7, 
+   Number == 111], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MT, MNeu[2], MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MNeu[2]], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]] + MNeu[2]], 0]*
+    SumOver[Index[Colour, 2], 3]*U2c1C[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 8, 
+   Number == 112], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MT, MNeu[2], MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MNeu[2]], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]] + MNeu[2]], 0]*
+    SumOver[Index[Colour, 2], 3]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 9, 
+   Number == 113], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[2, 1, 3, 3] + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[2, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[1, 1, 3, 3] + 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[1, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3]*U2c1C[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 10, 
+   Number == 114], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[1, 1, 3, 3] + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[1, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[2, 1, 3, 3] + 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[2, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 11, 
+   Number == 115], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 
+     (ht*(-(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[2, 1, 3, 3]) + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[2, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     (ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[1, 1, 3, 3] - 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[1, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3]*U2c1C[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 12, 
+   Number == 116], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 
+     (ht*(-(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[1, 1, 3, 3]) + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[1, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     (ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[2, 1, 3, 3] - 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[2, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 13, 
+   Number == 117], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht*SB*DiagMark[MT, MNeu[1], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MNeu[1]], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]] + MNeu[1]], 0]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 14, 
+   Number == 118], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht*SB*DiagMark[MT, MNeu[2], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MNeu[2]], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 0, 
+     NonCommutative[DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]] + MNeu[2]], 0]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 15, 
+   Number == 119], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht*SB*DiagMark[MMUE, MT, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[2, 1, 3, 3] + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[2, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     (I*ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[2, 1, 3, 3] + 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[2, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 16, Number == 120], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[MMUE, MT, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], MT]]*MatrixTrace[
+     NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 2]]], 
+     (ht*(-(rMUEC*NonCommutative[ChiralityProjector[-1]]*USfC[2, 1, 3, 3]) + 
+        rMUE*NonCommutative[ChiralityProjector[1]]*USfC[2, 2, 3, 3]))/
+      Sqrt[2], NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     (ht*(rMUE*NonCommutative[ChiralityProjector[1]]*USf[2, 1, 3, 3] - 
+        rMUEC*NonCommutative[ChiralityProjector[-1]]*USf[2, 2, 3, 3]))/
+      Sqrt[2]]*SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 17, Number == 121], 
+  Integral[FourMomentum[Internal, 1], FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[0, MMUE, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], 0]]*MatrixTrace[
+     NonCommutative[DiracSlash[-FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[1]]*USfC[1, 2, 3, 3], 
+     NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[-1]]*USf[1, 2, 3, 3]]*
+    SumOver[Index[Colour, 2], 3]*(MT + U2s1[Xt]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 18, 
+   Number == 122], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[0, MMUE, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], 0]]*MatrixTrace[
+     NonCommutative[DiracSlash[-FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[1]]*USfC[2, 2, 3, 3], 
+     NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[-1]]*USf[1, 2, 3, 3]]*
+    SumOver[Index[Colour, 2], 3]*U2c1C[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 19, 
+   Number == 123], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht*SB*DiagMark[0, MMUE, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], 0]]*MatrixTrace[
+     NonCommutative[DiracSlash[-FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[1]]*USfC[1, 2, 3, 3], 
+     NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[-1]]*USf[2, 2, 3, 3]]*
+    SumOver[Index[Colour, 2], 3]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 20, 
+   Number == 124], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht*SB*DiagMark[0, MMUE, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1] - 
+       FourMomentum[Internal, 2], MMUE], PropagatorDenominator[
+      FourMomentum[Internal, 2], 0]]*MatrixTrace[
+     NonCommutative[DiracSlash[-FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[1]]*USfC[2, 2, 3, 3], 
+     NonCommutative[MMUE + DiracSlash[FourMomentum[Internal, 1] - 
+         FourMomentum[Internal, 2]]], 
+     I*ht*NonCommutative[ChiralityProjector[-1]]*USf[2, 2, 3, 3]]*
+    SumOver[Index[Colour, 2], 3]*(MT - U2s1[Xt]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 1, 
+   Number == 125], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], M0], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT + U2s1[Xt]))/(128*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 2, 
+   Number == 126], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 3, 
+   Number == 127], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 4, 
+   Number == 128], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], M0], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT - U2s1[Xt]))/(128*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 5, 
+   Number == 129], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (CB*ht^3*MT^2*S2B*DiagMark[MHp, MSf[1, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MHp], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT + U2s1[Yt]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 6, 
+   Number == 130], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 7, 
+   Number == 131], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 8, 
+   Number == 132], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], (CB*ht^3*MT^2*S2B*DiagMark[MHp, MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MHp], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[2, 3, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT - U2s1[Yt]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 9, 
+   Number == 133], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB*ht^3*MT^2*S2B*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MHp], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT*UCSf[1, 1, 3, 3] + Yt*UCSfC[1, 3, 3, 3]))/(512*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 10, 
+   Number == 134], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB*ht^3*MT^2*S2B*DiagMark[MHp, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MHp], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT*UCSf[1, 2, 3, 3] - Yt*UCSfC[1, 3, 3, 3]))/(512*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 11, 
+   Number == 135], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 12, 
+   Number == 136], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 13, 
+   Number == 137], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB*ht^3*MT^2*S2B*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MHp], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT*UCSf[1, 1, 3, 3] + YtC*UCSf[1, 3, 3, 3]))/(512*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 14, 
+   Number == 138], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (CB*ht^3*MT^2*S2B*DiagMark[MHp, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], MHp], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT*UCSf[1, 2, 3, 3] - YtC*UCSf[1, 3, 3, 3]))/(512*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 15, 
+   Number == 139], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 16, 
+   Number == 140], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 17, 
+   Number == 141], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], M0], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT*UCSf[1, 1, 3, 3] + Xt*UCSfC[1, 3, 3, 3]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 18, 
+   Number == 142], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], M0], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT*UCSf[1, 2, 3, 3] - Xt*UCSfC[1, 3, 3, 3]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 19, 
+   Number == 143], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 20, 
+   Number == 144], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 21, 
+   Number == 145], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], M0], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[1, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT*UCSf[1, 1, 3, 3] + XtC*UCSf[1, 3, 3, 3]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 22, 
+   Number == 146], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 
+  (ht^3*MT^2*SB*SB2*DiagMark[0, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], M0], 
+     PropagatorDenominator[FourMomentum[Internal, 2], MSf[2, 3, 3]], 
+     PropagatorDenominator[FourMomentum[Internal, 1] + 
+       FourMomentum[Internal, 2], MSf[1, 4, 3]]]*SumOver[Index[Colour, 2], 3]*
+    (MT*UCSf[1, 2, 3, 3] - XtC*UCSf[1, 3, 3, 3]))/(256*Sqrt[2]*MT2*Pi^8)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 23, 
+   Number == 147], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 24, 
+   Number == 148], Integral[FourMomentum[Internal, 1], 
+   FourMomentum[Internal, 2]], 0]]

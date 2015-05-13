@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 20 Feb 15 th
+* last modified 20 Mar 15 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -83,8 +83,8 @@
      &    "???",
      &    "tree level only",
      &    "include 1-loop corrections",
-     &    "include 2-loop corrections",
-     &    "include resummation of large logs",
+     &    "also include 2-loop corrections",
+     &    "also include resummation of large logs",
      &    "???" /
 
 	data drunningMT /
@@ -103,12 +103,12 @@
 	data dtlCplxApprox /
      &    "???",
      &    "all corrections evaluated in the rMSSM",
-     &    "a_s a_t in cMSSM only",
-     &    "a_s a_t in cMSSM, rest in rMSSM",
-     &    "a_s a_t in cMSSM, rest interpolated in At,Ab,M_3,MUE",
-     &    "a_s a_t in cMSSM, rest interpolated in At,Xb,M_3,MUE",
-     &    "a_s a_t in cMSSM, rest interpolated in Xt,Ab,M_3,MUE",
-     &    "a_s a_t in cMSSM, rest interpolated in Xt,Xb,M_3,MUE",
+     &    "asat,atat in cMSSM only",
+     &    "asat,atat in cMSSM, rest in rMSSM",
+     &    "asat,atat in cMSSM, rest interpolated in At,Ab,M_3,MUE",
+     &    "asat,atat in cMSSM, rest interpolated in At,Xb,M_3,MUE",
+     &    "asat,atat in cMSSM, rest interpolated in Xt,Ab,M_3,MUE",
+     &    "asat,atat in cMSSM, rest interpolated in Xt,Xb,M_3,MUE",
      &    "???" /
 
 	call pageron

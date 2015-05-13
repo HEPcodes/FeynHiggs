@@ -1,0 +1,48 @@
+#! /bin/sh
+
+case $0 in
+*gl) mod=MSSMCTgl ;;
+*)   mod=MSSMCT ;;
+esac
+
+math4.1 -pwfile $HOME/mathstuff/mpa4 << _EOF_
+<< WriteTeXFile.m
+
+USf[i_, j_, t_, g_] := USf[t, g][i, j];
+USfC[i_, j_, t_, g_] := Conjugate[USf[t, g][i, j]];
+AtC = Conjugate[At];
+XtC = Conjugate[Xt];
+YtC = Conjugate[Yt];
+MUEC = Conjugate[MUE];
+ZNeuC[i__] := Conjugate[ZNeu[i]];
+UChaC[i__] := Conjugate[UCha[i]];
+VChaC[i__] := Conjugate[VCha[i]];
+AfC[i__] := Conjugate[Af[i]];
+CKMC[i__] := Conjugate[CKM[i]];
+MT2 = MT^2;
+MW2 = MW^2;
+CW2 = CW^2;
+SW2 = SW^2;
+CB2 = CB^2;
+SB2 = SB^2;
+
+gl = Identity;
+
+SymRules = Flatten[{ SymRules,
+  Xt :> Sym["X", "t"],
+  Yt :> Sym["Y", "t"],
+  At :> Sym["A", "t"],
+  (*ht :> Sym["h", "t"],*)
+  ht :> Sym["\\Red{h}", "\\Red{t}"],
+  MT :> Sym["m", "t"]
+}];
+
+WriteTeXFile["$mod"]
+
+_EOF_
+
+
+latex $mod.tex
+dvips $mod.dvi
+gv --orientation=landscape $mod.ps &
+

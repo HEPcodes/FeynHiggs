@@ -1,7 +1,7 @@
 * OutputSLHA.F
 * fill SLHA data structure from FeynHiggs inputs and outputs
 * this file is part of FeynHiggs
-* last modified 15 May 14 th
+* last modified 20 Mar 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -234,15 +234,25 @@ R1	  Af_Q(t) = QSf(t)
 	    enddo
 	  else
 	    do g = 1, 3
-	      Mass_MSf(1,t,g) = MSf(1,ty,g)
-	      Mass_MSf(2,t,g) = MSf(2,ty,g)
+* SLHA1 does not transport mixing matrices for gen 1 & 2 sfermions
+* but requires instead that 1 be the left- and 2 the right-handed sf.
+* FH dumps the mixing into the NMFV matrices anyway but for very
+* inept SLHA readers flips the ordering, too.
+	      s1 = 1
+	      if( g .lt. 3 .and.
+     &          abs(USf(1,1,ty,g)) .lt. abs(USf(1,2,ty,g)) ) s1 = 2
+	      Mass_MSf(1,t,g) = MSf(s1,ty,g)
+	      Mass_MSf(2,t,g) = MSf(3-s1,ty,g)
+	      ASfMix_UASf(g,g,t) = USf(s1,1,ty,g)
+	      ASfMix_UASf(g+3,g,t) = USf(3-s1,1,ty,g)
+	      ASfMix_UASf(g,g+3,t) = USf(s1,2,ty,g)
+	      ASfMix_UASf(g+3,g+3,t) = USf(3-s1,2,ty,g)
 	    enddo
 * Note: the SfMix blocks exist only for g = 3
-	    g = 3
-	    SfMix_USf(1,1,t) = USf(1,1,ty,g)
-	    SfMix_USf(2,1,t) = USf(2,1,ty,g)
-	    SfMix_USf(1,2,t) = USf(1,2,ty,g)
-	    SfMix_USf(2,2,t) = USf(2,2,ty,g)
+	    SfMix_USf(1,1,t) = USf(1,1,ty,3)
+	    SfMix_USf(2,1,t) = USf(2,1,ty,3)
+	    SfMix_USf(1,2,t) = USf(1,2,ty,3)
+	    SfMix_USf(2,2,t) = USf(2,2,ty,3)
 	  endif
 	enddo
 
@@ -261,7 +271,7 @@ R1	  Af_Q(t) = QSf(t)
 
 	do i = 1, 4
 	  Mass_MNeu(i) = MNeu(i)
-	  if( Im(ZNeu(i,1)) .eq. 0 ) then
+	  if( abs(Im(ZNeu(i,1))) .lt. 1D-12 ) then
 	    do j = 1, 4
 	      NMix_ZNeu(i,j) = ZNeu(i,j)
 	    enddo

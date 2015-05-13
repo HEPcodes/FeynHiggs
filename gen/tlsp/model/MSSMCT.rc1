@@ -1,0 +1,855 @@
+
+(* ------------------------ Renormalization constants ---------------------- *)
+
+(* The following SM definitions of renormalization constants are
+   for the on-shell renormalization of the MSSM in a scheme
+   similar to A. Denner, Fortschr. d. Physik, 41 (1993) 4.
+
+   The MSSM definitions of the renormalization constants 
+   (except of the sbottom sector) can be found in
+   Phys. Rev. D 86, 035014 (2012) [arXiv:1111.7289].
+
+   The renormalization constants are not directly used by
+   FeynArts, and hence do not restrict the generation of diagrams
+   and amplitudes in any way. *)
+
+Clear[RenConst]
+
+
+(* ---------------------- SM renormalization constants --------------------- *)
+
+RenConst[ dMf1[type_, j1_] ] := MassRC[F[type, {j1}]]
+
+RenConst[ dZfL1[type_, j1_, j1_] ] := Block[{
+      m1 = TheMass[F[type, {j1}]], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[type, {j1}]], 
+     dsff = DSelfEnergy[F[type, {j1}]]},
+     {sff = ReTilde[SelfEnergy[F[type, {j1}]]], 
+     dsff = ReTilde[DSelfEnergy[F[type, {j1}]]]}
+     ];
+-( LVectorCoeff[sff] + m1^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff]) 
+  + m1 (LScalarCoeff[dsff] + RScalarCoeff[dsff]) )
++ (LScalarCoeff[sff] - RScalarCoeff[sff])/(2 m1)
+]
+
+RenConst[ dZfR1[type_, j1_, j1_] ] := Block[{
+      m1 = TheMass[F[type, {j1}]], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[type, {j1}]], 
+     dsff = DSelfEnergy[F[type, {j1}]]},
+     {sff = ReTilde[SelfEnergy[F[type, {j1}]]], 
+     dsff = ReTilde[DSelfEnergy[F[type, {j1}]]]}
+     ];
+-( RVectorCoeff[sff] + m1^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
+  + m1 (LScalarCoeff[dsff] + RScalarCoeff[dsff]) )
+- (LScalarCoeff[sff] - RScalarCoeff[sff])/(2 m1)
+]
+
+RenConst[ dZbarfL1[type_, j1_, j1_] ] := Block[{
+      m1 = TheMass[F[type, {j1}]], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[type, {j1}]], 
+     dsff = DSelfEnergy[F[type, {j1}]]},
+     {sff = ReTilde[SelfEnergy[F[type, {j1}]]], 
+     dsff = ReTilde[DSelfEnergy[F[type, {j1}]]]}
+     ];
+-( LVectorCoeff[sff] + m1^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
+  + m1 (LScalarCoeff[dsff] + RScalarCoeff[dsff]) )
+- (LScalarCoeff[sff] - RScalarCoeff[sff])/(2 m1) 
+]
+
+RenConst[ dZbarfR1[type_, j1_, j1_] ] := Block[{
+      m1 = TheMass[F[type, {j1}]], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[type, {j1}]], 
+     dsff = DSelfEnergy[F[type, {j1}]]},
+     {sff = ReTilde[SelfEnergy[F[type, {j1}]]], 
+     dsff = ReTilde[DSelfEnergy[F[type, {j1}]]]}
+     ];
+-( RVectorCoeff[sff] + m1^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
+  + m1 (LScalarCoeff[dsff] + RScalarCoeff[dsff]) )
++ (LScalarCoeff[sff] - RScalarCoeff[sff])/(2 m1)
+]
+
+RenConst[ dZfL1[type_, j1_, j2_] ] := Block[{
+      m1 = TheMass[F[type, {j1}]], 
+      m2 = TheMass[F[type, {j2}]], sff},
+   If[$OffDiagOn,
+      sff = SelfEnergy[F[type, {j2}] -> F[type, {j1}], m2],
+      sff = ReTilde[SelfEnergy[F[type, {j2}] -> F[type, {j1}], m2]]
+     ];
+2 (m2^2 LVectorCoeff[sff] + m1 m2 RVectorCoeff[sff] 
+   + m1 LScalarCoeff[sff] + m2 RScalarCoeff[sff])/(m1^2 - m2^2)
+]
+
+RenConst[ dZfR1[type_, j1_, j2_] ] := Block[{
+      m1 = TheMass[F[type, {j1}]], 
+      m2 = TheMass[F[type, {j2}]], sff},
+   If[$OffDiagOn,
+      sff = SelfEnergy[F[type, {j2}] -> F[type, {j1}], m2],
+      sff = ReTilde[SelfEnergy[F[type, {j2}] -> F[type, {j1}], m2]]
+     ];
+2 (m2^2 RVectorCoeff[sff] + m1 m2 LVectorCoeff[sff] 
+   + m1 RScalarCoeff[sff] + m2 LScalarCoeff[sff] )/(m1^2 - m2^2)
+]
+
+RenConst[ dZbarfL1[type_, j1_, j2_] ] := Block[{
+      m1 = TheMass[F[type, {j1}]], 
+      m2 = TheMass[F[type, {j2}]], sff},
+   If[$OffDiagOn,
+      sff = SelfEnergy[F[type, {j2}] -> F[type, {j1}], m1],
+      sff = ReTilde[SelfEnergy[F[type, {j2}] -> F[type, {j1}], m1]]
+     ];
+2 (m1^2 LVectorCoeff[sff] + m1 m2 RVectorCoeff[sff] 
+   + m1 LScalarCoeff[sff] + m2 RScalarCoeff[sff])/(m2^2 - m1^2)
+]
+
+RenConst[ dZbarfR1[type_, j1_, j2_] ] := Block[{
+    m1 = TheMass[F[type, {j1}]], 
+    m2 = TheMass[F[type, {j2}]], sff},
+   If[$OffDiagOn,
+      sff = SelfEnergy[F[type, {j2}] -> F[type, {j1}], m1],
+      sff = ReTilde[SelfEnergy[F[type, {j2}] -> F[type, {j1}], m1]]
+     ];
+2 (m1^2 RVectorCoeff[sff] + m1 m2 LVectorCoeff[sff] 
+   + m1 RScalarCoeff[sff] + m2 LScalarCoeff[sff] )/(m2^2 - m1^2)
+]
+
+
+(* ------------------------------ Neutrinos -------------------------------- *)
+
+RenConst[ dZfL1[1, j1_, j1_] ] := If[$DiagOn,
+   -LVectorCoeff[SelfEnergy[F[1, {j1}]]], 
+   -LVectorCoeff[ReTilde[SelfEnergy[F[1, {j1}]]]]]
+
+RenConst[ dZfR1[1, j1_, j1_] ] := If[$DiagOn,
+   -RVectorCoeff[SelfEnergy[F[1, {j1}]]], 
+   -RVectorCoeff[ReTilde[SelfEnergy[F[1, {j1}]]]]]
+
+RenConst[ dZbarfL1[1, j1_, j1_] ] := dZfL1[1, j1, j1]
+
+RenConst[ dZbarfR1[1, j1_, j1_] ] := dZfR1[1, j1, j1]
+
+
+(* ----------------------------- Vector bosons ----------------------------- *)
+
+RenConst[ dMZsq1 ] := MassRC[V[2]]
+
+RenConst[ dMWsq1 ] := MassRC[V[3]]
+
+RenConst[ dZAA1 ] := FieldRC[V[1]]
+
+RenConst[ dZAZ1 ] := FieldRC[V[1], V[2]]
+
+RenConst[ dZZA1 ] := FieldRC[V[2], V[1]]
+
+RenConst[ dZZZ1 ] := If[$DiagOn, -DSelfEnergy[V[2]], -ReTilde[DSelfEnergy[V[2]]]]
+
+RenConst[ dZW1 ] := If[$DiagOn, -DSelfEnergy[V[3]], -ReTilde[DSelfEnergy[V[3]]]]
+
+RenConst[ dZbarW1 ] := dZW1
+
+
+RenConst[ dZe1 ] := (SW/CW dZZA1 - dZAA1)/2
+
+RenConst[ dZG01 ] := FieldRC[S[4]]
+
+RenConst[ dZGp1 ] := FieldRC[S[6]]
+
+(* ATTENTION: originally the counterterms have been generated with       *)
+(*            SW -> SW - dSW1 instead of SW -> SW + dSW1                 *)
+(*            therefore one has now to multiply dSW1 with -1 leading to: *)
+RenConst[ dSW1 ] := CW2 (dMZsq1/MZ2 - dMWsq1/MW2)/(2 SW)
+
+
+(* ----------------------------- CKM matrix -------------------------------- *)
+
+RenConst[ dCKM1[_, _] ] := 0
+
+(*
+RenConst[ dCKM1[j1_, j2_] ] := 1/4 Sum[
+  (dZfL1[3, j1, gn] - Conjugate[dZfL1[3, gn, j1]]) CKM[gn, j2] -
+  CKM[j1, gn] (dZfL1[4, gn, j2] - Conjugate[dZfL1[4, j2, gn]]),
+  {gn, 1, 3}]
+*)
+
+
+(* --------------------- MSSM renormalization constants -------------------- *)
+
+(* tan(beta) (the Higgs sector renormalization follows hep-ph/0611326):      *)
+
+ABRules = {CA -> 1, CA2 -> 1, SA -> 0, SA2 -> 0,
+  C2A -> 1, S2A -> 0, CAB -> CB, SAB -> SB, 
+  CBA -> CB, CBA2 -> CB2, SBA -> SB, SBA2 -> SB2}
+
+RenConst[dZH1] := (-UVDivergentPart[Re[DSelfEnergy[S[2] -> S[2], 0]]] 
+	//. ABRules)
+
+RenConst[dZH2] := (-UVDivergentPart[Re[DSelfEnergy[S[1] -> S[1], 0]]] 
+	//. ABRules)
+
+(* TB -> TB + dTanB1 instead of                                              *)
+(* TB -> TB (1 + dTanB1) (= Eq. 50 in hep-ph/0611326):                       *)
+
+RenConst[dTanB1] := TB (dZH2 - dZH1)/2
+
+RenConst[dSinB1] := (CB2 CB dTanB1)
+
+RenConst[dCosB1] := -(SB CB2 dTanB1)
+
+
+(* --------------------- Chargino/Neutralino sector ------------------------ *)
+
+RenConst[dM11] := Block[{sff1}, 
+   sff1 = ReTilde[SelfEnergy[F[11, {1}]]]; 
+(2*dMu1*ZNeuC[1, 3]*ZNeuC[1, 4] - dM21*ZNeuC[1, 2]^2 +
+ 2*CB2*dTanB1*(MW*ZNeuC[1, 2] - MZ*SW*ZNeuC[1, 1])*
+   (SB*ZNeuC[1, 3] + CB*ZNeuC[1, 4]) + 
+ dMZsq1/MZ*SW*ZNeuC[1, 1]*(CB*ZNeuC[1, 3] - SB*ZNeuC[1, 4]) + 
+ dMWsq1/MW*ZNeuC[1, 2]*(SB*ZNeuC[1, 4] - CB*ZNeuC[1, 3]) +
+ 2*dSW1*MZ*ZNeuC[1, 1]*(CB*ZNeuC[1, 3] - SB*ZNeuC[1, 4]) +
+ LScalarCoeff[sff1] + MNeu[1]*LVectorCoeff[sff1])/(ZNeuC[1, 1]^2)]
+
+RenConst[dM21] := Block[{sff1, sff2, uv, vu, uuvv}, 
+   sff1 = ReTilde[SelfEnergy[F[12, {1}]]]; 
+   sff2 = ReTilde[SelfEnergy[F[12, {2}]]];
+     uv = (UChaC[1, 1]*UChaC[2, 2] - UChaC[1, 2]*UChaC[2, 1])*
+           VChaC[1, 2]*VChaC[2, 2];
+     vu = (VChaC[1, 2]*VChaC[2, 1] - VChaC[1, 1]*VChaC[2, 2])*
+           UChaC[1, 2]*UChaC[2, 2];
+   uuvv = (UChaC[1, 2]*UChaC[2, 1]*VChaC[1, 2]*VChaC[2, 1] - 
+           UChaC[1, 1]*UChaC[2, 2]*VChaC[1, 1]*VChaC[2, 2]); 
+((UChaC[1, 2]*VChaC[1, 2]*(MCha[2]/2*(
+     LVectorCoeff[sff2] + RVectorCoeff[sff2]) + LScalarCoeff[sff2]) -
+  UChaC[2, 2]*VChaC[2, 2]*(MCha[1]/2*(
+     LVectorCoeff[sff1] + RVectorCoeff[sff1]) + LScalarCoeff[sff1])) + 
+  sqrt2*CB2*dTanB1*MW*(CB*uv + SB*vu) + dMWsq1/(sqrt2*MW)*(SB*uv - CB*vu)
+)/uuvv]
+
+RenConst[ dMu1 ] := Block[ {sff1, sff2, vu, uv, uuvv},
+   sff1 = ReTilde[SelfEnergy[F[12, {1}]]];
+   sff2 = ReTilde[SelfEnergy[F[12, {2}]]];
+     vu = VChaC[1, 1] VChaC[2, 1] *
+         (UChaC[1, 1] UChaC[2, 2] - UChaC[1, 2] UChaC[2, 1]);
+     uv = UChaC[1, 1] UChaC[2, 1] *
+         (VChaC[1, 2] VChaC[2, 1] - VChaC[1, 1] VChaC[2, 2]);
+   uuvv = (UChaC[1, 2]*UChaC[2, 1]*VChaC[1, 2]*VChaC[2, 1] - 
+           UChaC[1, 1]*UChaC[2, 2]*VChaC[1, 1]*VChaC[2, 2]); 
+(-UChaC[1, 1] VChaC[1, 1] (MCha[2]/2*(
+     LVectorCoeff[sff2] + RVectorCoeff[sff2]) + LScalarCoeff[sff2]) +
+  UChaC[2, 1] VChaC[2, 1] (MCha[1]/2*(
+     LVectorCoeff[sff1] + RVectorCoeff[sff1]) + LScalarCoeff[sff1]) -
+  sqrt2 CB2 dTanB1 MW (SB vu + CB uv) + dMWsq1/(sqrt2 MW) (CB vu - SB uv)
+)/uuvv]
+
+
+(* V^* dX^T U^+ *)
+RenConst[dMCha1[i_, j_]] := Sum[VChaC[i, k]*
+   { {dM21, sqrt2*(CB*dMWsq1/(2*MW) - CB2*MW*SB*dTanB1)}, 
+     {sqrt2*(SB*dMWsq1/(2*MW) + CB*CB2*MW*dTanB1), dMu1}}[[k, l]]*
+   UChaC[j, l], {k, 1, 2}, {l, 1, 2}]
+
+RenConst[dZfL1[12, j1_, j1_]] := Block[{
+      m = TheMass[F[12, {j1}]], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[12, {j1}]],
+     dsff = DSelfEnergy[F[12, {j1}]]},
+     {sff = ReTilde[SelfEnergy[F[12, {j1}]]],
+     dsff = ReTilde[DSelfEnergy[F[12, {j1}]]]}
+     ];
+-(LVectorCoeff[sff] + m^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
++ m (LScalarCoeff[dsff] + RScalarCoeff[dsff]))
++ (LScalarCoeff[sff] - RScalarCoeff[sff] - 
+   dMCha1[j1, j1] + Conjugate[dMCha1[j1, j1]])/(2 m)
+]
+
+RenConst[dZfR1[12, j1_, j1_]] := Block[{
+      m = TheMass[F[12, {j1}]], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[12, {j1}]],
+     dsff = DSelfEnergy[F[12, {j1}]]},
+     {sff = ReTilde[SelfEnergy[F[12, {j1}]]],
+     dsff = ReTilde[DSelfEnergy[F[12, {j1}]]]}
+     ];
+-(RVectorCoeff[sff] + m^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
++ m (LScalarCoeff[dsff] + RScalarCoeff[dsff]))
+- (LScalarCoeff[sff] - RScalarCoeff[sff] - 
+   dMCha1[j1, j1] + Conjugate[dMCha1[j1, j1]])/(2 m)
+]
+
+RenConst[dZbarfL1[12, j1_, j1_]] := Block[{
+      m = TheMass[F[12, {j1}]], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[12, {j1}]],
+     dsff = DSelfEnergy[F[12, {j1}]]},
+     {sff = ReTilde[SelfEnergy[F[12, {j1}]]],
+     dsff = ReTilde[DSelfEnergy[F[12, {j1}]]]}
+     ];
+-(LVectorCoeff[sff] + m^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
++ m (LScalarCoeff[dsff] + RScalarCoeff[dsff]))
+- (LScalarCoeff[sff] - RScalarCoeff[sff] - 
+   dMCha1[j1, j1] + Conjugate[dMCha1[j1, j1]])/(2 m)
+]
+
+RenConst[dZbarfR1[12, j1_, j1_]] := Block[{
+      m = TheMass[F[12, {j1}]], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[12, {j1}]],
+     dsff = DSelfEnergy[F[12, {j1}]]},
+     {sff = ReTilde[SelfEnergy[F[12, {j1}]]],
+     dsff = ReTilde[DSelfEnergy[F[12, {j1}]]]}
+     ];
+-(RVectorCoeff[sff] + m^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
++ m (LScalarCoeff[dsff] + RScalarCoeff[dsff]))
++ (LScalarCoeff[sff] - RScalarCoeff[sff] - 
+   dMCha1[j1, j1] + Conjugate[dMCha1[j1, j1]])/(2 m)
+]
+
+RenConst[dZfL1[12, j1_, j2_]] := Block[{
+      m1 = TheMass[F[12, {j1}]],
+      m2 = TheMass[F[12, {j2}]], sff},
+   If[$OffDiagOn,
+      sff = SelfEnergy[F[12, {j2}] -> F[12, {j1}], m2],
+      sff = ReTilde[SelfEnergy[F[12, {j2}] -> F[12, {j1}], m2]]
+     ];
+(2 (m2^2 LVectorCoeff[sff] + m1 m2 RVectorCoeff[sff] +
+      m1 LScalarCoeff[sff] + m2 RScalarCoeff[sff] -
+      m1 dMCha1[j1, j2] - m2 Conjugate[dMCha1[j2, j1]]))/(m1^2 - m2^2)]
+
+RenConst[dZfR1[12, j1_, j2_]] := Block[{
+      m1 = TheMass[F[12, {j1}]],
+      m2 = TheMass[F[12, {j2}]], sff},
+   If[$OffDiagOn,
+      sff = SelfEnergy[F[12, {j2}] -> F[12, {j1}], m2],
+      sff = ReTilde[SelfEnergy[F[12, {j2}] -> F[12, {j1}], m2]]
+     ];
+(2 (m2^2 RVectorCoeff[sff] + m1 m2 LVectorCoeff[sff] +
+      m1 RScalarCoeff[sff] + m2 LScalarCoeff[sff] -
+      m2 dMCha1[j1, j2] - m1 Conjugate[dMCha1[j2, j1]]))/(m1^2 - m2^2)]
+
+RenConst[dZbarfL1[12, j1_, j2_]] := Block[{
+      m1 = TheMass[F[12, {j1}]],
+      m2 = TheMass[F[12, {j2}]], sff},
+   If[$OffDiagOn,
+      sff = SelfEnergy[F[12, {j2}] -> F[12, {j1}], m1],
+      sff = ReTilde[SelfEnergy[F[12, {j2}] -> F[12, {j1}], m1]]
+     ];
+(2 (m1^2 LVectorCoeff[sff] + m1 m2 RVectorCoeff[sff] +
+      m1 LScalarCoeff[sff] + m2 RScalarCoeff[sff] -
+      m1 dMCha1[j1, j2] - m2 Conjugate[dMCha1[j2, j1]]))/(m2^2 - m1^2)]
+
+RenConst[dZbarfR1[12, j1_, j2_]] := Block[{
+      m1 = TheMass[F[12, {j1}]],
+      m2 = TheMass[F[12, {j2}]], sff},
+   If[$OffDiagOn,
+      sff = SelfEnergy[F[12, {j2}] -> F[12, {j1}], m1],
+      sff = ReTilde[SelfEnergy[F[12, {j2}] -> F[12, {j1}], m1]]
+     ];
+(2 (m1^2 RVectorCoeff[sff] + m1 m2 LVectorCoeff[sff] +
+      m1 RScalarCoeff[sff] + m2 LScalarCoeff[sff] -
+      m2 dMCha1[j1, j2] - m1 Conjugate[dMCha1[j2, j1]]))/(m2^2 - m1^2)]
+
+
+RenConst[dMNeu1[i_, j_]] := Block[{a, b, c, d}, If[i > j, dMNeu1[j, i], 
+   a = -MZ*CB*dSW1 - SW*CB*dMZsq1/(2*MZ) + MZ*SW*CB2*SB*dTanB1; 
+   b =  MZ*SB*dSW1 + SW*SB*dMZsq1/(2*MZ) + MZ*SW*CB2*CB*dTanB1; 
+   c =  CB*dMWsq1/(2*MW) - MW*CB2*SB*dTanB1; 
+   d = -SB*dMWsq1/(2*MW) - MW*CB2*CB*dTanB1; 
+Sum[ZNeuC[i, k]*{{dM11, 0, a, b}, {0, dM21, c, d}, {a, c, 0, -dMu1}, 
+    {b, d, -dMu1, 0}}[[k, l]]*ZNeuC[j, l], {k, 1, 4}, {l, 1, 4}]]]
+
+RenConst[dZfL1[11, j1_, j1_]] := Block[{
+      m = MNeu[j1], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[11, {j1}] -> F[11, {j1}], MNeu[j1]],
+     dsff = DSelfEnergy[F[11, {j1}] -> F[11, {j1}], MNeu[j1]]},
+     {sff = ReTilde[SelfEnergy[F[11, {j1}] -> F[11, {j1}], MNeu[j1]]],
+     dsff = ReTilde[DSelfEnergy[F[11, {j1}] -> F[11, {j1}], MNeu[j1]]]}
+     ];
+-(LVectorCoeff[sff] + m^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
++ m (LScalarCoeff[dsff] + RScalarCoeff[dsff]))
++ (LScalarCoeff[sff] - RScalarCoeff[sff] - 
+   dMNeu1[j1, j1] + Conjugate[dMNeu1[j1, j1]])/(2 m)
+]
+
+RenConst[dZfR1[11, j1_, j1_]] := Block[{
+      m = MNeu[j1], sff, dsff},
+   If[$DiagOn,
+     {sff = SelfEnergy[F[11, {j1}] -> F[11, {j1}], MNeu[j1]],
+     dsff = DSelfEnergy[F[11, {j1}] -> F[11, {j1}], MNeu[j1]]},
+     {sff = ReTilde[SelfEnergy[F[11, {j1}] -> F[11, {j1}], MNeu[j1]]],
+     dsff = ReTilde[DSelfEnergy[F[11, {j1}] -> F[11, {j1}], MNeu[j1]]]}
+     ];
+-(RVectorCoeff[sff] + m^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])
++ m (LScalarCoeff[dsff] + RScalarCoeff[dsff]))
+- (LScalarCoeff[sff] - RScalarCoeff[sff] - 
+   dMNeu1[j1, j1] + Conjugate[dMNeu1[j1, j1]])/(2 m)
+]
+
+RenConst[dZbarfL1[11, j1_, j1_]] := dZfR1[11, j1, j1]
+
+RenConst[dZbarfR1[11, j1_, j1_]] := dZfL1[11, j1, j1]
+
+RenConst[dZfL1[11, j1_, j2_]] := Block[{
+      m1 = MNeu[j1], 
+      m2 = MNeu[j2], sff},
+   If[$OffDiagOn, 
+      sff = SelfEnergy[F[11, {j2}] -> F[11, {j1}], MNeu[j2]],
+      sff = ReTilde[SelfEnergy[F[11, {j2}] -> F[11, {j1}], MNeu[j2]]]
+     ];
+(2 (m2^2 LVectorCoeff[sff] + m1 m2 RVectorCoeff[sff] + 
+      m1 LScalarCoeff[sff] + m2 RScalarCoeff[sff] - 
+      m1 dMNeu1[j1, j2] - m2 Conjugate[dMNeu1[j2, j1]]))/(m1^2 - m2^2)]
+
+RenConst[dZfR1[11, j1_, j2_]] := Block[{
+      m1 = MNeu[j1], 
+      m2 = MNeu[j2], sff}, 
+   If[$OffDiagOn, 
+      sff = SelfEnergy[F[11, {j2}] -> F[11, {j1}], MNeu[j2]],
+      sff = ReTilde[SelfEnergy[F[11, {j2}] -> F[11, {j1}], MNeu[j2]]]
+     ];
+(2 (m2^2 RVectorCoeff[sff] + m1 m2 LVectorCoeff[sff] + 
+      m1 RScalarCoeff[sff] + m2 LScalarCoeff[sff] - 
+      m2 dMNeu1[j1, j2] - m1 Conjugate[dMNeu1[j2, j1]]))/(m1^2 - m2^2)]
+
+RenConst[dZbarfL1[11, j1_, j2_]] := dZfR1[11, j2, j1]
+
+RenConst[dZbarfR1[11, j1_, j2_]] := dZfL1[11, j2, j1]
+
+
+(* ---------------------------- Slepton sector ----------------------------- *)
+
+RenConst[dMSlsq1[1, j1_, 1, 1]] := ReTilde[SelfEnergy[S[11, {j1}]]]
+
+RenConst[dZSl1[1, j1_, 1, 1]] := If[$DiagOn,
+   -DSelfEnergy[S[11, {j1}]], -ReTilde[DSelfEnergy[S[11, {j1}]]]]
+
+RenConst[dZbarSl1[1, j1_, 1, 1]] := dZSl1[1, j1, 1, 1]
+
+
+RenConst[dMSlsq1[2, j1_, s1_, s1_]] := ReTilde[SelfEnergy[S[12, {s1, j1}]]]
+
+RenConst[dMSlsq1[2, j1_, 1, 2]] := Block[{m1, m2, s1, s2}, 
+   m1 = TheMass[S[12, {1, j1}]]; 
+   m2 = TheMass[S[12, {2, j1}]]; 
+   s1 = SelfEnergy[S[12, {2, j1}] -> S[12, {1, j1}], m1]; 
+   s2 = SelfEnergy[S[12, {2, j1}] -> S[12, {1, j1}], m2]; 
+(ReTilde[s1] + ReTilde[s2])/2]
+
+RenConst[dMSlsq1[2, j1_, 2, 1]] := Block[{m1, m2, s1, s2}, 
+   m1 = TheMass[S[12, {1, j1}]]; 
+   m2 = TheMass[S[12, {2, j1}]]; 
+   s1 = SelfEnergy[S[12, {1, j1}] -> S[12, {2, j1}], m1]; 
+   s2 = SelfEnergy[S[12, {1, j1}] -> S[12, {2, j1}], m2]; 
+(ReTilde[s1] + ReTilde[s2])/2]
+
+RenConst[ dAf1[2, j1_, j1_] ] := Block[{
+      m2 = TheMass[F[2, {j1}]], dmsl1, dmsl2, dYl, Kl},
+   dmsl1 = dMSlsq1[2, j1, 1, 1];
+   dmsl2 = dMSlsq1[2, j1, 2, 2];
+     dYl = dMSlsq1[2, j1, 1, 2];
+      Kl = (Conjugate[USf[2, j1][1, 1]] USf[2, j1][1, 2] (dmsl1 - dmsl2) + 
+            Conjugate[USf[2, j1][1, 1]] USf[2, j1][2, 2] dYl + 
+            Conjugate[USf[2, j1][2, 1]] USf[2, j1][1, 2] Conjugate[dYl]
+            - dMf1[2, j1] (Conjugate[Af[2, j1, j1]] - MUE TB) 
+            + m2 (dMu1 TB + MUE dTanB1));
+Conjugate[Kl]/m2]
+
+RenConst[dZSl1[2, j1_, s1_, s1_]] := If[$DiagOn,
+   -DSelfEnergy[S[12, {s1, j1}]], -ReTilde[DSelfEnergy[S[12, {s1, j1}]]]]
+
+RenConst[dZbarSl1[2, j1_, s1_, s1_]] := dZSl1[2, j1, s1, s1]
+
+RenConst[dZSl1[2, j1_, 1, 2]] := Block[{
+      m1 = TheMass[S[12, {1, j1}]], 
+      m2 = TheMass[S[12, {2, j1}]], sig12},
+   If[$OffDiagOn,
+      sig12 = SelfEnergy[S[12, {2, j1}] -> S[12, {1, j1}], m2],
+      sig12 = ReTilde[SelfEnergy[S[12, {2, j1}] -> S[12, {1, j1}], m2]]
+     ];
+(2 (sig12 - dMSlsq1[2, j1, 1, 2])/(m1^2 - m2^2))]
+
+RenConst[dZSl1[2, j1_, 2, 1]] := Block[{
+      m1 = TheMass[S[12, {1, j1}]],
+      m2 = TheMass[S[12, {2, j1}]], sig21},
+   If[$OffDiagOn,
+      sig21 = SelfEnergy[S[12, {1, j1}] -> S[12, {2, j1}], m1],
+      sig21 = ReTilde[SelfEnergy[S[12, {1, j1}] -> S[12, {2, j1}], m1]]
+     ];
+(-2 (sig21 -  dMSlsq1[2, j1, 2, 1])/(m1^2 - m2^2))]
+
+RenConst[dZbarSl1[2, j1_, 1, 2]] := Block[{
+      m1 = TheMass[S[12, {1, j1}]], 
+      m2 = TheMass[S[12, {2, j1}]], sig12},
+   If[$OffDiagOn,
+      sig21 = SelfEnergy[S[12, {1, j1}] -> S[12, {2, j1}], m2],
+      sig21 = ReTilde[SelfEnergy[S[12, {1, j1}] -> S[12, {2, j1}], m2]]
+     ];
+(2 (sig21 - dMSlsq1[2, j1, 2, 1])/(m1^2 - m2^2))]
+
+RenConst[dZbarSl1[2, j1_, 2, 1]] := Block[{
+      m1 = TheMass[S[12, {1, j1}]],
+      m2 = TheMass[S[12, {2, j1}]], sig21},
+   If[$OffDiagOn,
+      sig12 = SelfEnergy[S[12, {2, j1}] -> S[12, {1, j1}], m1],
+      sig12 = ReTilde[SelfEnergy[S[12, {2, j1}] -> S[12, {1, j1}], m1]]
+     ];
+(-2 (sig12 - dMSlsq1[2, j1, 1, 2])/(m1^2 - m2^2))]
+
+
+(* ---------------------------- Squark sector ------------------------------ *)
+
+RenConst[dMSfsq1[13, s1_, s1_, j1_, j2_]] := 
+   IndexDelta[j1, j2] ReTilde[SelfEnergy[S[13, {s1, j1}]]]
+
+RenConst[dMSfsq1[13, 1, 2, j1_, j2_]] := Block[{m1, m2, s1, s2}, 
+   m1 = TheMass[S[13, {1, j1}]]; 
+   m2 = TheMass[S[13, {2, j1}]]; 
+   s1 = SelfEnergy[S[13, {2, j1}] -> S[13, {1, j1}], m1]; 
+   s2 = SelfEnergy[S[13, {2, j1}] -> S[13, {1, j1}], m2]; 
+IndexDelta[j1, j2] (ReTilde[s1] + ReTilde[s2])/2]
+
+RenConst[dMSfsq1[13, 2, 1, j1_, j2_]] := Block[{m1, m2, s1, s2}, 
+   m1 = TheMass[S[13, {1, j1}]]; 
+   m2 = TheMass[S[13, {2, j1}]]; 
+   s1 = SelfEnergy[S[13, {1, j1}] -> S[13, {2, j1}], m1]; 
+   s2 = SelfEnergy[S[13, {1, j1}] -> S[13, {2, j1}], m2]; 
+IndexDelta[j1, j2] (ReTilde[s1] + ReTilde[s2])/2]
+
+RenConst[ dAf1[3, j1_, j1_] ] := Block[{
+      m3 = TheMass[F[3, {j1}]], dmsu1, dmsu2, dYt, Kt},
+   dmsu1 = dMSfsq1[13, 1, 1, j1, j1];
+   dmsu2 = dMSfsq1[13, 2, 2, j1, j1];
+     dYt = dMSfsq1[13, 1, 2, j1, j1];
+      Kt = (Conjugate[USf[3, j1][1, 1]] USf[3, j1][1, 2] (dmsu1 - dmsu2) + 
+	    Conjugate[USf[3, j1][1, 1]] USf[3, j1][2, 2] dYt + 
+            Conjugate[USf[3, j1][2, 1]] USf[3, j1][1, 2] Conjugate[dYt]
+	    - dMf1[3, j1] (Conjugate[Af[3, j1, j1]] - MUE/TB) 
+	    + m3 (dMu1/TB - MUE dTanB1/TB2));
+Conjugate[Kt]/m3]
+
+RenConst[dZSq1[13, s1_, s1_, j1_, j2_]] := IndexDelta[j1, j2] * 
+   If[$DiagOn,
+      -DSelfEnergy[S[13, {s1, j1}]], 
+      -ReTilde[DSelfEnergy[S[13, {s1, j1}]]]]
+
+RenConst[dZbarSq1[13, s1_, s1_, j1_, j2_]] := dZSq1[13, s1, s1, j1, j2]
+
+RenConst[dZSq1[13, 1, 2, j1_, j2_]] := Block[{
+      m1 = TheMass[S[13, {1, j1}]], 
+      m2 = TheMass[S[13, {2, j1}]], sig12},
+   If[$OffDiagOn,
+      sig12 = SelfEnergy[S[13, {2, j1}] -> S[13, {1, j1}], m2],
+      sig12 = ReTilde[SelfEnergy[S[13, {2, j1}] -> S[13, {1, j1}], m2]]
+     ];
+IndexDelta[j1, j2] (2 (sig12 - dMSfsq1[13,1,2,j1,j1])/(m1^2 - m2^2))]
+
+RenConst[dZSq1[13, 2, 1, j1_, j2_]] := Block[{
+      m1 = TheMass[S[13, {1, j1}]],
+      m2 = TheMass[S[13, {2, j1}]], sig21},
+   If[$OffDiagOn,
+      sig21 = SelfEnergy[S[13, {1, j1}] -> S[13, {2, j1}], m1],
+      sig21 = ReTilde[SelfEnergy[S[13, {1, j1}] -> S[13, {2, j1}], m1]]
+     ];
+IndexDelta[j1, j2] (-2 (sig21 - dMSfsq1[13,2,1,j1,j1])/(m1^2 - m2^2))]
+
+RenConst[dZbarSq1[13, 1, 2, j1_, j2_]] := Block[{
+      m1 = TheMass[S[13, {1, j1}]], 
+      m2 = TheMass[S[13, {2, j1}]], sig21},
+   If[$OffDiagOn,
+      sig21 = SelfEnergy[S[13, {1, j1}] -> S[13, {2, j1}], m2],
+      sig21 = ReTilde[SelfEnergy[S[13, {1, j1}] -> S[13, {2, j1}], m2]]
+     ];
+IndexDelta[j1, j2] (2 (sig21 - dMSfsq1[13,2,1,j1,j2])/(m1^2 - m2^2))]
+
+RenConst[dZbarSq1[13, 2, 1, j1_, j2_]] := Block[{
+      m1 = TheMass[S[13, {1, j1}]],
+      m2 = TheMass[S[13, {2, j1}]], sig12},
+   If[$OffDiagOn,
+      sig12 = SelfEnergy[S[13, {2, j1}] -> S[13, {1, j1}], m1],
+      sig12 = ReTilde[SelfEnergy[S[13, {2, j1}] -> S[13, {1, j1}], m1]]
+     ];
+IndexDelta[j1, j2] (-2 (sig12 - dMSfsq1[13,1,2,j1,j2])/(m1^2 - m2^2))]
+
+
+
+If[$BottomOS,
+   RenConst[ dMf1[4, 3] ] := MassRC[F[4, {3}]],
+   RenConst[ dMf1[4, 3] ] := UVDivergentPart[MassRC[F[4, {3}]]]
+  ];
+
+RenConst[dMSfsq1[14, 2, 2, j1_, j2_]] := 
+ IndexDelta[j1, j2] ReTilde[SelfEnergy[S[14, {2, j1}]]]
+
+RenConst[ dmsd1[g_] ] := UVDivergentPart[dMSfsq1[14, 1, 1, g, g] /. 
+   CalcRenConst[dMSfsq1[14, 1, 1, g, g]]]
+
+RenConst[ dmsd2[g_] ] := UVDivergentPart[dMSfsq1[14, 2, 2, g, g] /. 
+   CalcRenConst[dMSfsq1[14, 2, 2, g, g]]]
+
+RenConst[ dY4DRBar[g_] ] := Block[{m1, m2, s1, s2}, 
+   m1 = TheMass[S[14, {1, g}]]; 
+   m2 = TheMass[S[14, {2, g}]]; 
+   s1 = SelfEnergy[S[14, {2, g}] -> S[14, {1, g}], m1]; 
+   s2 = SelfEnergy[S[14, {2, g}] -> S[14, {1, g}], m2]; 
+UVDivergentPart[ReTilde[s1] + ReTilde[s2]]/2]
+
+RenConst[ dMUE ] := UVDivergentPart[dMu1 //. CalcRenConst[dMu1]]
+
+RenConst[ dAf1[4, g_, g_] ] := Block[{
+        m4 = TheMass[F[4, {g}]], KbDRbar},
+   KbDRbar = (Conjugate[USf[4, g][1, 1]] USf[4, g][1, 2] (dmsd1[g] - dmsd2[g]) + 
+              Conjugate[USf[4, g][1, 1]] USf[4, g][2, 2] dY4DRBar[g] + 
+              Conjugate[USf[4, g][2, 1]] USf[4, g][1, 2] Conjugate[dY4DRBar[g]]
+              - dMf1[4, g] (Conjugate[Af[4, g, g]] - MUE TB)
+              + m4 (dMUE TB + MUE dTanB1));
+Conjugate[KbDRbar]/m4]
+
+RenConst[dMSfsq1[14, 1, 1, g1_, g2_]] := Block[{
+      g = g1,
+      m3 = TheMass[F[3, {g}]],
+      m4 = TheMass[F[4, {g}]]},
+   dmutb = (dMu1 TB + MUE dTanB1);
+     Xf4 = (Af[4, g] - Conjugate[MUE] TB);
+IndexDelta[g1, g2] (
+Abs[USf[4, g][1, 2]]^2 dMSfsq1[14, 2, 2, g, g] + 
+USf[4, g][1, 1] Conjugate[USf[4, g][1, 2]]*
+   (m4 (Conjugate[dAf1[4, g, g]] - dmutb) + dMf1[4, g] Conjugate[Xf4]) +
+Conjugate[USf[4, g][1, 1]] USf[4, g][1, 2]*
+   (m4 (dAf1[4, g, g] - Conjugate[dmutb]) + 
+dMf1[4, g] Xf4) +
+(Abs[USf[4, g][1, 1]]^2 - Abs[USf[4, g][1, 2]]^2)*
+   (Abs[USf[3, g][1, 1]]^2 dMSfsq1[13, 1, 1, g, g] +
+    Abs[USf[3, g][1, 2]]^2 dMSfsq1[13, 2, 2, g, g] -
+Conjugate[USf[3, g][1, 2]] USf[3, g][2, 2] dMSfsq1[13, 1, 2, g, g] -
+Conjugate[USf[3, g][2, 2]] USf[3, g][1, 2] Conjugate[dMSfsq1[13, 1, 2, g, g]] +
+2 m4 dMf1[4, g] - 2 m3 dMf1[3, g] - 
+C2B dMWsq1 + 4 MW2 TB dTanB1 / (1 + TB2)^2 ))/Abs[USf[4, g][1, 1]]^2]
+
+
+RenConst[ dY4[g_] ] := Block[{
+      m4 = TheMass[F[4, {g}]], u1122, u1221, dmutb, Xf4},
+   u1122 = USf[4, g][1, 1] Conjugate[USf[4, g][2, 2]];
+   u1221 = USf[4, g][1, 2] Conjugate[USf[4, g][2, 1]];
+   dmutb = (dMu1 TB + MUE dTanB1);
+     Xf4 = (Af[4, g, g] - Conjugate[MUE] TB);
+(m4 (u1122 (Conjugate[dAf1[4, g, g]] - dmutb) 
+   - u1221 (dAf1[4, g, g] - Conjugate[dmutb]))
+   + (u1122 Conjugate[Xf4] - u1221 Xf4) dMf1[4, g]
+   + USf[4, g][1, 1] Conjugate[USf[4, g][2, 1]]*
+   (dMSfsq1[14, 1, 1, g, g] - dMSfsq1[14, 2, 2, g, g]))/
+   (Abs[USf[4, g][1, 1]]^2 - Abs[USf[4, g][1, 2]]^2)]
+
+RenConst[dMSfsq1[14, 1, 2, j1_, j2_]] := IndexDelta[j1, j2] dY4[j1]
+
+RenConst[dMSfsq1[14, 2, 1, j1_, j2_]] := IndexDelta[j1, j2] Conjugate[dY4[j1]]
+
+RenConst[dZSq1[14, s1_, s1_, j1_, j2_]] := IndexDelta[j1, j2] *
+   If[$DiagOn,
+      -DSelfEnergy[S[14, {s1, j1}]], 
+      -ReTilde[DSelfEnergy[S[14, {s1, j1}]]]]
+
+RenConst[dZbarSq1[14, s1_, s1_, j1_, j2_]] := dZSq1[14, s1, s1, j1, j2]
+
+RenConst[dZSq1[14, 1, 2, j1_, j2_]] := Block[{ 
+      m1 = TheMass[S[14, {1, j1}]], 
+      m2 = TheMass[S[14, {2, j1}]], sig12},
+   If[$OffDiagOn,
+      sig12 = SelfEnergy[S[14, {2, j1}] -> S[14, {1, j1}], m2],
+      sig12 = ReTilde[SelfEnergy[S[14, {2, j1}] -> S[14, {1, j1}], m2]]
+     ];
+IndexDelta[j1, j2] (2 (sig12 - dMSfsq1[14, 1, 2, j1, j2])/(m1^2 - m2^2))]
+
+RenConst[dZSq1[14, 2, 1, j1_, j2_]] := Block[{
+      m1 = TheMass[S[14, {1, j1}]],
+      m2 = TheMass[S[14, {2, j1}]], sig21},
+   If[$OffDiagOn,
+      sig21 = SelfEnergy[S[14, {1, j1}] -> S[14, {2, j1}], m1],
+      sig21 = ReTilde[SelfEnergy[S[14, {1, j1}] -> S[14, {2, j1}], m1]]
+     ];
+IndexDelta[j1, j2] (-2 (sig21 - dMSfsq1[14, 2, 1, j1, j2])/(m1^2 - m2^2))]
+
+RenConst[dZbarSq1[14, 1, 2, j1_, j2_]] := Block[{
+      m1 = TheMass[S[14, {1, j1}]], 
+      m2 = TheMass[S[14, {2, j1}]], sig21},
+   If[$OffDiagOn,
+      sig21 = SelfEnergy[S[14, {1, j1}] -> S[14, {2, j1}], m2],
+      sig21 = ReTilde[SelfEnergy[S[14, {1, j1}] -> S[14, {2, j1}], m2]]
+     ];
+IndexDelta[j1, j2] (2 (sig21 - dMSfsq1[14, 2, 1, j1, j2])/(m1^2 - m2^2))]
+
+RenConst[dZbarSq1[14, 2, 1, j1_, j2_]] := Block[{
+      m1 = TheMass[S[14, {1, j1}]],
+      m2 = TheMass[S[14, {2, j1}]], sig12},
+   If[$OffDiagOn,
+      sig12 = SelfEnergy[S[14, {2, j1}] -> S[14, {1, j1}], m1],
+      sig12 = ReTilde[SelfEnergy[S[14, {2, j1}] -> S[14, {1, j1}], m1]]
+     ];
+IndexDelta[j1, j2] (-2 (sig12 - dMSfsq1[14, 1, 2, j1, j2])/(m1^2 - m2^2))]
+
+
+(* --------------------------------- SQCD ---------------------------------- *)
+
+RenConst[dMGl1] := Block[{m = TheMass[F[15]], sff}, 
+   sff = ReTilde[SelfEnergy[F[15]]]; 
+(m (LVectorCoeff[sff] + RVectorCoeff[sff])
+  + LScalarCoeff[sff] + RScalarCoeff[sff]) SqrtEGl^2/2]
+
+RenConst[dZGlL1] := Block[{
+      m = TheMass[F[15]], sff, dsff},
+   If[$DiagOn, 
+     {sff = SelfEnergy[F[15]], dsff = DSelfEnergy[F[15]]},
+     {sff = ReTilde[SelfEnergy[F[15]]], dsff = ReTilde[DSelfEnergy[F[15]]]}
+     ];
+-( LVectorCoeff[sff] + m^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff]) 
+  + m (LScalarCoeff[dsff] + RScalarCoeff[dsff]) )
++ (LScalarCoeff[sff] - RScalarCoeff[sff])/(2 m)
+]
+
+RenConst[dZGlR1] := Block[{
+      m = TheMass[F[15]], sff, dsff},
+   If[$DiagOn, 
+     {sff = SelfEnergy[F[15]], dsff = DSelfEnergy[F[15]]}, 
+     {sff = ReTilde[SelfEnergy[F[15]]], dsff = ReTilde[DSelfEnergy[F[15]]]}
+     ];
+-( RVectorCoeff[sff] + m^2 (LVectorCoeff[dsff] + RVectorCoeff[dsff])  
+  + m (LScalarCoeff[dsff] + RScalarCoeff[dsff]) )
+- (LScalarCoeff[sff] - RScalarCoeff[sff])/(2 m)
+]
+
+RenConst[dZbarGlL1] := dZGlR1
+
+RenConst[dZbarGlR1] := dZGlL1
+
+RenConst[dZGG1] := UVDivergentPart[FieldRC[V[5]]]
+
+RenConst[dZgs1] := dZGG1/2
+
+
+(* ---------------------------- Higgs sector ------------------------------- *)
+
+(* The dMNHiggs1 and dMCHiggs1 follow hep-ph/0611326.                        *)
+(* TB -> TB (1 + dTanB1) (= Eq. 50 in hep-ph/0611326) instead of             *)
+(* TB -> TB + dTanB1 makes it necessary to replace dTanB1 -> dTanB1/TB:      *)
+
+
+RenConst[dTadh01] := TadpoleRC[S[1]]
+RenConst[dTadHH1] := TadpoleRC[S[2]]
+RenConst[dTadA01] := TadpoleRC[S[3]]
+
+If[$MHpInput,
+{
+RenConst[dMCHiggs1[5, 5]] := ReTilde[SelfEnergy[S[5] -> S[5], MHptree]],
+RenConst[dMNHiggs1[3, 3]] := (dMCHiggs1[5, 5] - dMWsq1),
+RenConst[dMNHiggs1[3, 4]] := (EL/(2 MZ SW CW) (dTadHH1 SBA - dTadh01 CBA) 
+                              - dTanB1 CB2 (MHptree2 - MW2)),
+RenConst[dMNHiggs1[4, 3]] := 
+   (EL/(2 MZ SW CW) (Conjugate[dTadHH1] SBA - Conjugate[dTadh01] CBA) 
+   - dTanB1 CB2 (MHptree2 - MW2))
+},
+{
+RenConst[dMNHiggs1[3, 3]] := ReTilde[SelfEnergy[S[3] -> S[3], MA0tree]],
+RenConst[dMCHiggs1[5, 5]] := (dMNHiggs1[3, 3] + dMWsq1),
+RenConst[dMNHiggs1[3, 4]] := (EL/(2 MZ SW CW) (dTadHH1 SBA - dTadh01 CBA) 
+                              - dTanB1 CB2 MA0tree2),
+RenConst[dMNHiggs1[4, 3]] := 
+   (EL/(2 MZ SW CW) (Conjugate[dTadHH1] SBA - Conjugate[dTadh01] CBA) 
+   - dTanB1 CB2 MA0tree2)
+}
+]
+
+RenConst[dMNHiggs1[1, 1]] := (dMNHiggs1[3, 3] CBA^2 + dMZsq1 SAB^2 + 
+   EL/(2 MZ SW CW) (dTadHH1 CBA SBA^2 - dTadh01 SBA (1 + CBA^2)) +
+   2 dTanB1 CB2 (MZ2 SAB CAB - MA0tree2 SBA CBA))
+
+RenConst[dMNHiggs1[2, 2]] := (dMNHiggs1[3, 3] SBA^2 + dMZsq1 CAB^2 -
+   EL/(2 MZ SW CW) (dTadHH1 CBA (1 + SBA^2) - dTadh01 SBA CBA^2) -
+   2 dTanB1 CB2 (MZ2 SAB CAB - MA0tree2 SBA CBA))
+
+RenConst[dMNHiggs1[4, 4]] := -EL/(2 MZ SW CW) (dTadHH1 CBA + dTadh01 SBA)
+
+RenConst[dMNHiggs1[1, 2]] := (-dMNHiggs1[3, 3] SBA CBA - dMZsq1 SAB CAB -
+   EL/(2 MZ SW CW) (dTadHH1 SBA^3 + dTadh01 CBA^3) -
+   dTanB1 CB2 (MA0tree2 (CBA^2 - SBA^2) + MZ2 (CAB^2 - SAB^2)))
+
+RenConst[dMNHiggs1[2, 1]] := Conjugate[dMNHiggs1[1, 2]]
+
+RenConst[dMNHiggs1[1, 3]] := -EL/(2 MZ SW CW) SBA dTadA01
+
+RenConst[dMNHiggs1[3, 1]] := -EL/(2 MZ SW CW) SBA Conjugate[dTadA01]
+
+RenConst[dMNHiggs1[1, 4]] := +EL/(2 MZ SW CW) CBA dTadA01
+
+RenConst[dMNHiggs1[4, 1]] := +EL/(2 MZ SW CW) CBA Conjugate[dTadA01]
+
+RenConst[dMNHiggs1[2, 3]] := -EL/(2 MZ SW CW) CBA dTadA01
+
+RenConst[dMNHiggs1[3, 2]] := -EL/(2 MZ SW CW) CBA Conjugate[dTadA01]
+
+RenConst[dMNHiggs1[2, 4]] := -EL/(2 MZ SW CW) SBA dTadA01
+
+RenConst[dMNHiggs1[4, 2]] := -EL/(2 MZ SW CW) SBA Conjugate[dTadA01]
+
+RenConst[dMCHiggs1[6, 6]] := -EL/(2 MZ SW CW) (dTadHH1 CBA + dTadh01 SBA) 
+(* = dMNHiggs1[4, 4] *)
+
+(* To be consistent with the FA/FC convention: Sigma_ij <--> j -> i, *)
+(* we changed the sign of I dTadA01:                                 *)
+RenConst[dMCHiggs1[5, 6]] := (EL/(2 MZ SW CW) (dTadHH1 SBA - 
+   dTadh01 CBA + I dTadA01) - dTanB1 CB2 MHptree2)
+
+RenConst[dMCHiggs1[6, 5]] := Conjugate[dMCHiggs1[5, 6]]
+
+RenConst[dZNHiggs1[1, 1]] := (SA2 dZH1 + CA2 dZH2)
+RenConst[dZNHiggs1[2, 2]] := (CA2 dZH1 + SA2 dZH2)
+RenConst[dZNHiggs1[3, 3]] := (SB2 dZH1 + CB2 dZH2)
+RenConst[dZNHiggs1[4, 4]] := (CB2 dZH1 + SB2 dZH2)
+RenConst[dZNHiggs1[1, 2]] := (SA CA (dZH2 - dZH1))
+RenConst[dZNHiggs1[2, 1]] := (SA CA (dZH2 - dZH1))
+RenConst[dZNHiggs1[1, 3]] := 0
+RenConst[dZNHiggs1[3, 1]] := 0 
+RenConst[dZNHiggs1[1, 4]] := 0
+RenConst[dZNHiggs1[4, 1]] := 0
+RenConst[dZNHiggs1[2, 3]] := 0
+RenConst[dZNHiggs1[3, 2]] := 0 
+RenConst[dZNHiggs1[2, 4]] := 0
+RenConst[dZNHiggs1[4, 2]] := 0
+RenConst[dZNHiggs1[3, 4]] := (SB CB (dZH2 - dZH1))
+RenConst[dZNHiggs1[4, 3]] := (SB CB (dZH2 - dZH1))
+
+(* The following leads to IR divergent results: *)
+(* RenConst[dZCHiggs1[5, 5]] := dZNHiggs1[3, 3] *)
+
+(* For proper on-shell conditions: add dZ^hat, see arXiv:1111.7289. *)
+(* This cancels dZNHiggs1[3, 3], leading to an IR finite result.    *)
+RenConst[dZCHiggs1[5, 5]] := If[$DiagOn,
+   -DSelfEnergy[S[5] -> S[5], MHptree], 
+   -Re[DSelfEnergy[S[5] -> S[5], MHptree]]]
+
+RenConst[dZbarCHiggs1[5, 5]] := dZCHiggs1[5, 5]
+
+RenConst[dZCHiggs1[6, 6]] := (CB2 dZH1 + SB2 dZH2) (* = dZNHiggs1[4, 4] *)
+
+RenConst[dZCHiggs1[5, 6]] := (SB CB (dZH2 - dZH1)) (* = dZNHiggs1[3, 4] *)
+RenConst[dZCHiggs1[6, 5]] := (SB CB (dZH2 - dZH1)) (* = dZNHiggs1[4, 3] *)
+
+
+(* ------------------------------------------------------------------------- *)
+
+Unprotect[Re];
+Re[x_Plus] := Re /@ x; Re[a_*SumOver[x___]] := SumOver[x]*Re[a];
+Protect[Re];
+Unprotect[Im];
+Im[x_Plus] := Im /@ x; Im[a_*SumOver[x___]] := SumOver[x]*Im[a];
+Protect[Im];
+Unprotect[Conjugate];
+Conjugate[x_Plus] := Conjugate /@ x; Conjugate[x_Times] := Conjugate /@ x;
+Protect[Conjugate];
+Conjugate[SumOver[x___]] ^= SumOver[x];
+Conjugate[IndexDelta[x___]] ^= IndexDelta[x];
+Conjugate[CA2] ^= CA2; Conjugate[SA2] ^= SA2;
+Conjugate[C2B] ^= C2B; Conjugate[S2B] ^= S2B; 
+Conjugate[TB2] ^= TB2; 
+Conjugate[MGl] ^= MGl; Conjugate[MGl2] ^= MGl2;
+Conjugate[sqrt2] ^= sqrt2

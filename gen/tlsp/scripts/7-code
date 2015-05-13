@@ -1,0 +1,249 @@
+#! /bin/sh -x
+
+for se in h0h0 h0HH h0A0 HHHH HHA0 A0A0 HmHp h0 HH A0 ; do
+  test -f m/$se/6-comb || exit 1
+done
+
+sdir=static
+test -d $sdir || exit 1
+
+fdir=f
+rm -fr $fdir
+mkdir -p $fdir || exit 1
+
+out=m/`basename $0`
+rm -f $out*
+
+time math -run out=\"$out\" \
+          -run fdir=\"$fdir\" \
+          -run sdir=\"$sdir\" \
+          -run debug=${DEBUG:-0} << \_EOF_ > $out.log
+AppendTo[$Echo, "stdout"];
+
+<< packages`FCSettings`;
+<< packages`USfSimplify`;
+<< packages`U2Simplify`;
+
+NClear[];
+
+Alfa = Alfa2L;
+
+M0 = M02 = 0;
+
+MT = MTy;
+MT2 = MTy2;
+Sq[MTy] = MTy2;
+
+MA0 = MA0in;
+MA02 = MA02in;
+MHp = MHpin;
+MHp2 = MHp2in;
+
+(*Sq[ht] = 4 Pi Alfat;*)
+
+MSf[i_,3,3] = MStop[i];
+MSf[i_,4,3] = MSbot[i];
+
+MSf2[i_,3,3] = MStop2[i];
+MSf2[i_,4,3] = MSbot2[i];
+
+USf[i_,j_,3,3] = UStop[i,j];
+USf[i_,j_,4,3] = USbot[i,j];
+USfC[i_,j_,3,3] = UStopC[i,j];
+USfC[i_,j_,4,3] = USbotC[i,j];
+
+UCSf[i:1|2,j:1|2,3,3] := UStop2[i,j];
+UCSf[i_,j_,3,3] := UCStop[i,j];
+UCSfC[i_,j_,3,3] := UCStopC[i,j];
+
+u2srulz = Join[
+  u2sdefs[Xt, MTy, MTy2,
+    U2s1Xt, U2s2Xt, U2s1XtmMT, U2s1XtpMT,
+    U2c1Xt, U2c2Xt, U2c1XtC, U2c2XtC, U2c1Xt2, U2c2Xt2],
+  u2sdefs[Yt, MTy, MTy2,
+    U2s1Yt, U2s2Yt, U2s1YtmMT, U2s1YtpMT,
+    U2c1Yt, U2c2Yt, U2c1YtC, U2c2YtC, U2c1Yt2, U2c2Yt2] ];
+
+MTy2/: MTy2 + 2 MTy x_ + x_^2 := (MTy + x)^2;
+MTy2/: MTy2 - 2 MTy x_ + x_^2 := (MTy - x)^2;
+MTy2/: MTy2 - x_^2 := (MTy - x) (MTy + x);
+(*MMUE2/: MMUE2 - MTy2 := (MMUE - MTy) (MMUE + MTy);*)
+MMUE2/: MMUE2 - x_^2 := (MMUE - x) (MMUE + x);
+
+simp[x_] := FullSimplify[x] /;
+  LeafCount[x] < 50 && !FreeQ[x, U2s1Xt | U2s1Yt];
+simp[x_] := Simplify[x];
+
+final[x_] := simp[TermCollect[x /. u22rulz /. u2srulz]] /.
+  p_Plus :> HornerForm[p] /; !FreeQ[p, Power] &&
+    FreeQ[p, _^_?Negative] && FreeQ[List@@ p, Plus] /.
+  {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
+
+N[sqrt2] = Sqrt[2.];
+
+T134fin = T134;
+A0fin[m_] := A0[m];
+B0fin[0, 0, m_] := A0[m]/m;
+B0del[0, 0, m_] := A0del[m]/m;
+B0fin[a__] := B0[a];
+DB0fin[a__] := DB0[a];
+
+Unprotect[Re];
+Re[a_[m_]/m_] := Re[a[m]]/m;
+Protect[Re];
+
+abtag = Sequence[Ccl, Ccx, Cel, Cex, Col, Cox];
+
+$DebugCmd = {"DTLSP ", " ENDL"};
+If[ debug === 0, debtag[_[Alternatives[abtag][__], _]] = False ];
+(*debtag[RuleAdd[_Symbol, _]] := "ren";*)
+_debtag = True;
+
+(*DebugLine[var_Symbol, expr_] := DebugLine[var, expr, tag[var]];*)
+
+WriteMod[expr_, mod_] :=
+Block[ {hh},
+  hh = OpenFortran[ToFileName[fdir, mod <> ".F"]];
+  WriteString[hh, "\
+* " <> mod <> ".F\n\
+* this file is part of FeynHiggs\n\
+* generated " <> TimeStamp[] <> "\n\n\
+#include \"externals.h\"\n\
+#include \"types.h\"\n\n\n\
+\tsubroutine " <> mod <> "\n\
+\timplicit none\n\n\
+#include \"TLsp.h\"\n\n"];
+  WriteExpr[hh, expr,
+    HornerStyle -> False,
+    Optimize -> True,
+    FinalTouch -> final,
+    RealArgs -> integrals,
+    TmpType -> "ComplexType",
+    DebugLines -> debtag];
+  WriteString[hh, "\tend\n"];
+  Close[hh];
+  mod
+];
+
+
+If[ debug === 0, _TAG = 1 ];
+
+in[se_] := ToFileName[{"m", se}, "6-comb"];
+get[se_] := Check[(Print["Reading ", #]; Get[#]), Exit[]]& @ in[se];
+
+Attributes[selist] = {HoldRest};
+selist[{se2v_, se1ct_, 0}, ___, seR_] :=
+  seR -> TAG[0] se2v + TAG[1] se1ct;
+selist[{se2v_, se1ct_, se2ct_}, se_, seR_] := {
+  se -> TAG[0] se2v + TAG[1] se1ct,
+  seR -> TAG[2] se + TAG[3] se2ct };
+
+self[name_, pre_:"SE"] := selist[
+  get[name] /. _TAG -> 1,
+  ToExpression[pre <> name <> "2"],
+  ToExpression[pre <> name <> "2R"] ]
+
+tad[name_, pre_:"Tad"] := selist[
+  get[name] /. _TAG -> 1,
+  ToExpression[pre <> name <> "2"]
+];
+
+
+den[m:(MStop2|MSbot2)[1|2|4]] := 1/m;
+den[n_?NumberQ] := 1/n;
+
+
+integrals = T134 | T134sub | A0 | A0del | B0 | B0del | DB0 | DB0del;
+
+intsub[x_] := intsub[x] = NewSymbol[$IntPrefix];
+
+prevint = prevsub = {};
+
+abbr[rul_, suf_] :=
+Block[ {new, sub, int},
+  $IntPrefix = "C" <> suf <> "l";
+  new = rul /. i:integrals[__] :> intsub[i];
+  int = Cases[DownValues[intsub], _[_[_[x_]], s_Symbol] :> s -> x];
+  int = Complement[int, prevint];
+  prevint = Flatten[{prevint, int}];
+
+  (*new = new /. x_^(n_?Negative) :> den[x]^(-n) /. den[s_Symbol] :> 1/s;*)
+
+  $AbbPrefix = "C" <> suf <> "x";
+  new = Abbreviate[new, 4];
+  sub = Complement[Subexpr[], prevsub];
+  prevsub = Flatten[{prevsub, sub}];
+
+  new = SubstSimpleAbbr[{new, sub}];
+  new = new /. (SEA0A02R -> x_) :>
+    (SEA0A02R -> Simplify[x /. inputMA0 -> 1 - inputMHp]);
+  new = MoveDepsLeft@@ new;
+  new = OnePassOrder @ Flatten[{int, new[[1]]}];
+  new
+];
+
+write[rul_, file_] := FileSplit[rul, file, WriteMod];
+
+
+all = Flatten/@ {
+  {self["A0A0"], self["HmHp"]},
+  {self["h0h0"], self["HHHH"], self["h0HH"]},
+  {self["h0A0"], self["HHA0"]},
+  {tad["h0"], tad["HH"], tad["A0"]},
+  Cases[Get/@ FileNames[ToFileName[{"m", "rc"}, "*.m"]], _Rule, {4}]
+};
+
+all = MoveDepsLeft@@ all;
+
+all = {abbr[#1, "c"], abbr[#2, "e"], abbr[#3, "o"]}&@@ all;
+
+all = ToArray[all, abtag];
+
+all = Renumber[all, abtag];
+
+all = all /. den[x:Alternatives[abtag][_]] :> den[Re[x]];
+
+Put[all, out <> ".m"];
+
+{ write[#1, "TLsp_atat_c"],
+  write[#2, "TLsp_atat_e"],
+  write[#3, "TLsp_atat_o"] }&@@ all;
+
+
+vars = First/@ Flatten[all];
+vars = DeleteCases[vars, _se2R];
+vars1 = Union[Select[vars, AtomQ]];
+vars2 = Select[vars, !AtomQ[#]&];
+vars2 = Split[Sort[vars2], Head[#1] === Head[#2] &];
+
+dim[i_, r___] := range[i, i] /; i === r;
+dim[i__] := range[Min[{i}], Max[{i}]];
+
+range[1, hi_] := hi;
+Format[range[lo_, hi_], FortranForm] := SequenceForm[lo, ":", hi];
+
+vars2 = (#[[1, 0]]@@ MapThread[dim, List@@@ #])&/@ vars2;
+
+hh = OpenFortran[ToFileName[fdir, "TLspvars.h"]];
+ 
+WriteString[hh, "\
+* TLspvars.h\n\
+* this file is part of FeynHiggs\n\
+* generated " <> TimeStamp[] <> "\n\n" <>
+  VarDecl[Common["spvar"][vars2, "ComplexType"]] <>
+  VarDecl[Common["spvar"][vars1, "ComplexType"]]
+]
+
+Close[hh];
+
+
+SetDirectory[sdir];
+CopyFile[#, ToFileName[{"..", fdir}, #]]&/@ FileNames[];
+
+_EOF_
+
+gzip $out.log
+
+set -- $fdir/*
+test $# -gt 0
+

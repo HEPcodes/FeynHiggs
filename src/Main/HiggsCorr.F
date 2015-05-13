@@ -3,7 +3,7 @@
 * to the MSSM Higgs sector
 * this file is part of FeynHiggs
 * V1.0 by Markus Frank 21/08/2002
-* last modified 16 Jul 14 th
+* last modified 24 Apr 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -200,7 +200,7 @@
 	ComplexType M(0:NNeutral,0:NNeutral)
 
 * must cut off imaginary parts, otherwise UHiggs is not unitary
-#define seU(i) Re(seR(i))
+#define seUH(i) Re(seR(i))
 
 #define Need(i) -ibits(i-1-higgsmix,4,1)
 
@@ -213,20 +213,20 @@
 * calculate masses^2 & mixing angles at k^2 = 0
 	call CalcSelf(-1D0, key, key)
 
-	M(1,1) = Msq(h0h0) - seU(h0h0)
-	M(2,2) = Msq(HHHH) - seU(HHHH)
-	M(3,3) = Msq(A0A0) - seU(A0A0)
+	M(1,1) = Msq(h0h0) - seUH(h0h0)
+	M(2,2) = Msq(HHHH) - seUH(HHHH)
+	M(3,3) = Msq(A0A0) - seUH(A0A0)
 c	MHiggs2(A0A0) = M(3,3)
-	M(1,2) = -seU(h0HH)
-	M(1,3) = -seU(h0A0)
-	M(2,3) = -seU(HHA0)
+	M(1,2) = -seUH(h0HH)
+	M(1,3) = -seUH(h0A0)
+	M(2,3) = -seUH(HHA0)
 
-	M(0,0) = Msq(G0G0) - seU(G0G0)
-	M(0,1) = -seU(h0G0)
-	M(0,2) = -seU(HHG0)
-	M(0,3) = -seU(A0G0)
+	M(0,0) = Msq(G0G0) - seUH(G0G0)
+	M(0,1) = -seUH(h0G0)
+	M(0,2) = -seUH(HHG0)
+	M(0,3) = -seUH(A0G0)
 
-	MHiggs2(HmHp) = Msq(HmHp) - seU(HmHp)
+	MHiggs2(HmHp) = Msq(HmHp) - seUH(HmHp)
 
 	if( debuglevel .ge. 4 ) then
 	  DHIGGS "CalcUHiggs:"		ENDL

@@ -1,0 +1,672 @@
+\documentclass[11pt,twoside]{article}
+\usepackage[fleqn,leqno]{amsmath}
+\usepackage{a4wide,lscape,longtable,multicol,array,colordvi,mathpple}
+
+\raggedbottom
+\raggedcolumns
+
+\advance\topmargin -9cm
+\advance\textheight 11cm
+
+\advance\oddsidemargin -2cm
+\advance\evensidemargin -2cm
+\advance\textwidth 3cm
+
+\parindent=0pt
+
+\makeatletter
+\pagestyle{plain}
+\renewcommand{\@evenfoot}{\hfill\rotatebox{90}{\bf\qquad\qquad\thepage}}
+\renewcommand{\@oddfoot}{\hfill\smash{\raise 27.8cm\hbox{%
+  \rotatebox{90}{\bf\thepage}}}}
+
+\newenvironment{CoupVec}%
+  {\left[\begin{array}{>{\displaystyle}c}}%
+  {\end{array}\right]}
+\newenvironment{PlusB}%
+  {\left\{\begin{array}{l}}%
+  {\end{array}\right\}}
+\newenvironment{PlusN}%
+  {\begin{array}[t]{l}}%
+  {\end{array}}
+
+\def\Class#1#2{\par%
+  \addcontentsline{toc}{subsection}{\texttt{[#1]} #2}%
+  \fbox{\Large\texttt{[#1]}~~\textbf{#2}}\\[3ex]%
+  \nopagebreak\bigskip\ignorespaces%
+}
+
+\def\Mfunction#1{\displaystyle #1}
+\def\Muserfunction#1{\text{#1}}
+\def\Mvariable#1{\text{#1}}
+\def\InvisibleSpace{}
+
+\def\Bar#1{\setbox0=\hbox{$#1$}\rlap{\raise\ht0\hbox{$-$}}\box0}
+\def\nbox#1{\rlap{\lower 2ex\hbox{\scriptsize #1}}}
+\def\i{\mathrm{i}}
+
+\begin{document}
+
+\begin{landscape}
+
+\begin{minipage}{25cm}
+
+\begin{large}
+\begin{multicols}{2}[\section*{MSSMCTgl}]
+\@starttoc{toc}
+\end{multicols}
+\end{large}
+
+\end{minipage}
+
+\clearpage
+
+\renewcommand{\arraystretch}{1.5}
+
+\begin{longtable}{p{.985\linewidth}}
+\Class{FFS}{2 Leptons -- Higgs}
+\nbox{1}$
+\Mfunction{C}(e_{\Mvariable{j1}},\Bar{e_{\Mvariable{j2}}},h^{0}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}\\
+\\[-3ex]
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{4}$
+\Mfunction{C}(e_{\Mvariable{j1}},\Bar{e_{\Mvariable{j2}}},A^{0}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}^{2}}{{\sqrt{2}}\,c_{\beta}\,m_{t}}\\
+\\[-3ex]
+-\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}^{2}}{{\sqrt{2}}\,c_{\beta}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{5}$
+\Mfunction{C}(e_{\Mvariable{j1}},\Bar{e_{\Mvariable{j2}}},G^{0}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}\\
+\\[-3ex]
+\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{6}$
+\Mfunction{C}(\nu_{\Mvariable{j1}},\Bar{e_{\Mvariable{j2}}},H^{-}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j2}}}\,\Red{h}_{\Red{t}}\,s_{\beta}^{2}}{c_{\beta}\,m_{t}}\\
+\\[-3ex]
+0
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{7}$
+\Mfunction{C}(\nu_{\Mvariable{j1}},\Bar{e_{\Mvariable{j2}}},G^{-}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j2}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{m_{t}}\\
+\\[-3ex]
+0
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{8}$
+\Mfunction{C}(e_{\Mvariable{j1}},\Bar{\nu_{\Mvariable{j2}}},H^{+}) = \Mfunction{ }
+\begin{CoupVec}
+0\\
+\\[-3ex]
+\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}^{2}}{c_{\beta}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{9}$
+\Mfunction{C}(e_{\Mvariable{j1}},\Bar{\nu_{\Mvariable{j2}}},G^{+}) = \Mfunction{ }
+\begin{CoupVec}
+0\\
+\\[-3ex]
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{14}$
+\Mfunction{C}(e_{\Mvariable{j1}},\Bar{e_{\Mvariable{j2}}},H^{0}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}^{2}}{{\sqrt{2}}\,c_{\beta}\,m_{t}}\\
+\\[-3ex]
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}^{2}}{{\sqrt{2}}\,c_{\beta}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\Class{FFS}{2 Quarks -- Higgs}
+\nbox{2}$
+\Mfunction{C}(u_{\Mvariable{j1}},\Bar{u_{\Mvariable{j2}}},h^{0}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}\\
+\\[-3ex]
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{10}$
+\Mfunction{C}(u_{\Mvariable{j1}},\Bar{u_{\Mvariable{j2}}},A^{0}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{c_{\beta}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}}{{\sqrt{2}}\,m_{t}}\\
+\\[-3ex]
+-\frac{c_{\beta}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}}{{\sqrt{2}}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{11}$
+\Mfunction{C}(u_{\Mvariable{j1}},\Bar{u_{\Mvariable{j2}}},G^{0}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}\\
+\\[-3ex]
+-\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{15}$
+\Mfunction{C}(u_{\Mvariable{j1}},\Bar{u_{\Mvariable{j2}}},H^{0}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\i\,c_{\beta}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}}{{\sqrt{2}}\,m_{t}}\\
+\\[-3ex]
+\frac{\i\,c_{\beta}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}}{{\sqrt{2}}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{17}$
+\Mfunction{C}(u_{\Mvariable{j1}},\Bar{d_{\Mvariable{j2}}},H^{-}) = \Mfunction{ }
+\begin{CoupVec}
+0\\
+\\[-3ex]
+\frac{\i\,c_{\beta}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}}{m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{18}$
+\Mfunction{C}(u_{\Mvariable{j1}},\Bar{d_{\Mvariable{j2}}},G^{-}) = \Mfunction{ }
+\begin{CoupVec}
+0\\
+\\[-3ex]
+\frac{\i\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}\,s_{\beta}}{m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{19}$
+\Mfunction{C}(d_{\Mvariable{j1}},\Bar{u_{\Mvariable{j2}}},H^{+}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\i\,c_{\beta}\,m_{u_{\Mvariable{j2}}}\,\Mvariable{CKM}_{\Mvariable{j2},\Mvariable{j1}}\,\Red{h}_{\Red{t}}}{m_{t}}\\
+\\[-3ex]
+0
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{20}$
+\Mfunction{C}(d_{\Mvariable{j1}},\Bar{u_{\Mvariable{j2}}},G^{+}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\i\,m_{u_{\Mvariable{j2}}}\,\Mvariable{CKM}_{\Mvariable{j2},\Mvariable{j1}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{m_{t}}\\
+\\[-3ex]
+0
+\end{CoupVec}
+$\\
+\bigskip
+\Class{FFS}{Chargino -- Lepton -- Slepton}
+\nbox{49}$
+\Mfunction{C}(\tilde \chi_{\Mvariable{c1}}^{-},\Bar{e_{\Mvariable{j2}}},\tilde \nu_{\Mvariable{j1}}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{c1},2}^{*}}{c_{\beta}\,m_{t}}\\
+\\[-3ex]
+0
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{50}$
+\Mfunction{C}(\tilde \chi_{\Mvariable{c1}}^{+},\Bar{\nu_{\Mvariable{j1}}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}}) = \Mfunction{ }
+\begin{CoupVec}
+0\\
+\\[-3ex]
+\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{c1},2}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}}{c_{\beta}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{53}$
+\Mfunction{C}(e_{\Mvariable{j2}},\tilde \chi_{\Mvariable{c1}}^{+},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \Mfunction{ }
+\begin{CoupVec}
+0\\
+\\[-3ex]
+\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{c1},2}}{c_{\beta}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{54}$
+\Mfunction{C}(\nu_{\Mvariable{j1}},\tilde \chi_{\Mvariable{c1}}^{-},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{c1},2}^{*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}}{c_{\beta}\,m_{t}}\\
+\\[-3ex]
+0
+\end{CoupVec}
+$\\
+\bigskip
+\Class{FFS}{Chargino -- Quark -- Squark}
+\nbox{47}$
+\Mfunction{C}(\tilde \chi_{\Mvariable{c1}}^{-},\Bar{d_{\Mvariable{j2}}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}}) = \Mfunction{ }
+\begin{CoupVec}
+0\\
+\\[-3ex]
+\frac{\i\,\delta_{\Mvariable{c1},2}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}}{m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{48}$
+\Mfunction{C}(\tilde \chi_{\Mvariable{c1}}^{+},\Bar{u_{\Mvariable{j1}}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\i\,\delta_{\Mvariable{c1},2}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{m_{t}}\\
+\\[-3ex]
+0
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{51}$
+\Mfunction{C}(d_{\Mvariable{j2}},\tilde \chi_{\Mvariable{c1}}^{+},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{ }
+\begin{CoupVec}
+\frac{\i\,\delta_{\Mvariable{c1},2}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}}{m_{t}}\\
+\\[-3ex]
+0
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{52}$
+\Mfunction{C}(u_{\Mvariable{j1}},\tilde \chi_{\Mvariable{c1}}^{-},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{ }
+\begin{CoupVec}
+0\\
+\\[-3ex]
+\frac{\i\,\delta_{\Mvariable{c1},2}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\Class{FFS}{Lepton -- Neutralino -- Slepton}
+\nbox{41}$
+\Mfunction{C}(\tilde \chi_{\Mvariable{n1}}^{0},\Bar{e_{\Mvariable{j1}}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}\,Z_{\Mvariable{n1},3}^{*}}{c_{\beta}\,m_{t}}\\
+\\[-3ex]
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}\,Z_{\Mvariable{n1},3}}{c_{\beta}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{44}$
+\Mfunction{C}(e_{\Mvariable{j1}},\tilde \chi_{\Mvariable{n1}}^{0},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}\,Z_{\Mvariable{n1},3}^{*}}{c_{\beta}\,m_{t}}\\
+\\[-3ex]
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}\,Z_{\Mvariable{n1},3}}{c_{\beta}\,m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\Class{FFS}{Neutralino -- Quark -- Squark}
+\nbox{42}$
+\Mfunction{C}(\tilde \chi_{\Mvariable{n1}}^{0},\Bar{u_{\Mvariable{j1}}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2}}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}*}\,Z_{\Mvariable{n1},4}^{*}}{m_{t}}\\
+\\[-3ex]
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}*}\,Z_{\Mvariable{n1},4}}{m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\nbox{45}$
+\Mfunction{C}(u_{\Mvariable{j1}},\tilde \chi_{\Mvariable{n1}}^{0},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{ }
+\begin{CoupVec}
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}}\,Z_{\Mvariable{n1},4}^{*}}{m_{t}}\\
+\\[-3ex]
+-\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}}\,Z_{\Mvariable{n1},4}}{m_{t}}
+\end{CoupVec}
+$\\
+\bigskip
+\Class{SSS}{Higgs -- 2 Sleptons}
+\nbox{21}$
+\Mfunction{C}(A^{0},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,c_{\beta}\,m_{t}}\,\left( U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}\,\left( c_{\beta}\,\mu + A_{\Mvariable{j1},\Mvariable{j1}}^{e*}\,s_{\beta} \right)  - U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}\,\left( c_{\beta}\,\mu^{*} + A_{\Mvariable{j1},\Mvariable{j1}}^{e}\,s_{\beta} \right)  \right) 
+$\\
+\bigskip
+\nbox{22}$
+\Mfunction{C}(G^{0},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,c_{\beta}\,m_{t}}\,\left( U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}\,\left( A_{\Mvariable{j1},\Mvariable{j1}}^{e}\,c_{\beta} - \mu^{*}\,s_{\beta} \right)  - U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}\,\left( A_{\Mvariable{j1},\Mvariable{j1}}^{e*}\,c_{\beta} - \mu\,s_{\beta} \right)  \right) 
+$\\
+\bigskip
+\nbox{27}$
+\Mfunction{C}(h^{0},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,c_{\beta}\,m_{t}}\, 
+\begin{PlusB}
+U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}\,\left( A_{\Mvariable{j1},\Mvariable{j1}}^{e}\,c_{\beta} - \mu^{*}\,s_{\beta} \right)  + U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}\,\left( A_{\Mvariable{j1},\Mvariable{j1}}^{e*}\,c_{\beta} - \mu\,s_{\beta} \right) \,+\\
+2\,c_{\beta}\,m_{e_{\Mvariable{j1}}}\,\left( U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}} + U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}} \right) 
+\end{PlusB}
+$\\
+\bigskip
+\nbox{28}$
+\Mfunction{C}(H^{0},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,c_{\beta}\,m_{t}}\, 
+\begin{PlusB}
+U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}\,\left( c_{\beta}\,\mu + A_{\Mvariable{j1},\Mvariable{j1}}^{e*}\,s_{\beta} \right)  + U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}\,\left( c_{\beta}\,\mu^{*} + A_{\Mvariable{j1},\Mvariable{j1}}^{e}\,s_{\beta} \right) \,+\\
+2\,m_{e_{\Mvariable{j1}}}\,s_{\beta}\,\left( U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}} + U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}} \right) 
+\end{PlusB}
+$\\
+\bigskip
+\nbox{35}$
+\Mfunction{C}(H^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{\Mfunction{c}_{\beta}\,\Mfunction{m}_{t}}\,\left( \Mfunction{m}_{e_{\Mvariable{j1}}}\,\Mfunction{s}_{\beta}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*} + \Mfunction{U}_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}\,\left( \Mfunction{c}_{\beta}\,\Mfunction{\mu} + \Mfunction{A}_{\Mvariable{j1},\Mvariable{j1}}^{e*}\,\Mfunction{s}_{\beta} \right)  \right) 
+$\\
+\bigskip
+\nbox{36}$
+\Mfunction{C}(H^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{\Mfunction{c}_{\beta}\,\Mfunction{m}_{t}}\,\left( \Mfunction{m}_{e_{\Mvariable{j1}}}\,\Mfunction{s}_{\beta}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}} + \Mfunction{U}_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}\,\left( \Mfunction{c}_{\beta}\,\Mfunction{\mu}^{*} + \Mfunction{A}_{\Mvariable{j1},\Mvariable{j1}}^{e}\,\Mfunction{s}_{\beta} \right)  \right) 
+$\\
+\bigskip
+\nbox{39}$
+\Mfunction{C}(G^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{c_{\beta}\,m_{t}}\,\left( c_{\beta}\,m_{e_{\Mvariable{j1}}}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*} + U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}\,\left( A_{\Mvariable{j1},\Mvariable{j1}}^{e*}\,c_{\beta} - \mu\,s_{\beta} \right)  \right) 
+$\\
+\bigskip
+\nbox{40}$
+\Mfunction{C}(G^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{c_{\beta}\,m_{t}}\,\left( c_{\beta}\,m_{e_{\Mvariable{j1}}}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}} + U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}\,\left( A_{\Mvariable{j1},\Mvariable{j1}}^{e}\,c_{\beta} - \mu^{*}\,s_{\beta} \right)  \right) 
+$\\
+\bigskip
+\Class{SSS}{Higgs -- 2 Squarks}
+\nbox{23}$
+\Mfunction{C}(A^{0},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{c}_{\beta}\,\Mfunction{\delta}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{m}_{u_{\Mvariable{j1}}}\,\Mfunction{\Red{h}}_{\Red{t}}}{{\sqrt{2}}\,m_{t}}\,\left( \Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,\Mfunction{U}_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}}\,\Mfunction{Y}_{t} - \Mfunction{U}_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}}\,\Mfunction{Y}_{t}^{*} \right) 
+$\\
+\bigskip
+\nbox{24}$
+\Mfunction{C}(G^{0},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\delta}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{m}_{u_{\Mvariable{j1}}}\,\Mfunction{\Red{h}}_{\Red{t}}\,\Mfunction{s}_{\beta}}{{\sqrt{2}}\,m_{t}}\,\left( \Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,\Mfunction{U}_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}}\,\Mfunction{X}_{t} - \Mfunction{U}_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}}\,\Mfunction{X}_{t}^{*} \right) 
+$\\
+\bigskip
+\nbox{29}$
+\Mfunction{C}(h^{0},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}\,s_{\beta}}{{\sqrt{2}}\,m_{t}}\,\left( U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}}\,X_{t} + U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}}\,X_{t}^{*} + 2\,m_{u_{\Mvariable{j1}}}\,\left( U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}} + U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}} \right)  \right) 
+$\\
+\bigskip
+\nbox{30}$
+\Mfunction{C}(H^{0},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,c_{\beta}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}\,\Red{h}_{\Red{t}}}{{\sqrt{2}}\,m_{t}}\,\left( \Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,\Mfunction{U}_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}}\,\Mfunction{Y}_{t} + \Mfunction{U}_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}}\,\Mfunction{Y}_{t}^{*} + 2\,m_{u_{\Mvariable{j1}}}\,\left( U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}} + U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}} \right)  \right) 
+$\\
+\bigskip
+\nbox{33}$
+\Mfunction{C}(H^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{\i}\,c_{\beta}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{\Mfunction{m}_{t}}\,\left( \Mfunction{m}_{u_{\Mvariable{j1}}}\,\Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}} + \Mfunction{U}_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}\,\Mfunction{Y}_{t} \right) 
+$\\
+\bigskip
+\nbox{34}$
+\Mfunction{C}(H^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,c_{\beta}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{\Mfunction{m}_{t}}\,\left( \Mfunction{m}_{u_{\Mvariable{j1}}}\,\Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*} + \Mfunction{U}_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,\Mfunction{Y}_{t}^{*} \right) 
+$\\
+\bigskip
+\nbox{37}$
+\Mfunction{C}(G^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{\i}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{\Mfunction{m}_{t}}\,\left( \Mfunction{m}_{u_{\Mvariable{j1}}}\,\Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}} + \Mfunction{U}_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}\,\Mfunction{X}_{t} \right) 
+$\\
+\bigskip
+\nbox{38}$
+\Mfunction{C}(G^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,m_{u_{\Mvariable{j1}}}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}\,s_{\beta}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{\Mfunction{m}_{t}}\,\left( \Mfunction{m}_{u_{\Mvariable{j1}}}\,\Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*} + \Mfunction{U}_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,\Mfunction{X}_{t}^{*} \right) 
+$\\
+\bigskip
+\Class{SSSS}{2 Higgs -- 2 Sleptons}
+\nbox{55}$
+\Mfunction{C}(h^{0},h^{0},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{57}$
+\Mfunction{C}(H^{0},H^{0},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{c_{\beta}^{2}\,c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{59}$
+\Mfunction{C}(A^{0},A^{0},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{c_{\beta}^{2}\,c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{60}$
+\Mfunction{C}(G^{0},G^{0},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{61}$
+\Mfunction{C}(A^{0},G^{0},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,s_{2\beta}}{2\,c_{\beta}^{2}\,c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{\Mfunction{c}_{W}^{2}\,\Mfunction{m}_{e_{\Mvariable{j1}}}^{2}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{\beta}^{2}\,\Mfunction{s}_{W}^{2}\,\Mfunction{U}_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{\Mfunction{m}_{t}^{2}} + \frac{\Mfunction{c}_{W}^{2}\,\Mfunction{m}_{e_{\Mvariable{j1}}}^{2}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{\beta}^{2}\,\Mfunction{s}_{W}^{2}\,\Mfunction{U}_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}}\,\Mfunction{U}_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}}{\Mfunction{m}_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{65}$
+\Mfunction{C}(h^{0},H^{0},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,s_{2\beta}}{2\,c_{\beta}^{2}\,c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{79}$
+\Mfunction{C}(h^{0},H^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}}{2\,{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{80}$
+\Mfunction{C}(h^{0},G^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}}{{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{81}$
+\Mfunction{C}(h^{0},H^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{2\,{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{82}$
+\Mfunction{C}(h^{0},G^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{83}$
+\Mfunction{C}(A^{0},H^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\delta}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{m}_{e_{\Mvariable{j1}}}^{2}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{\beta}^{4}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}}{{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{84}$
+\Mfunction{C}(G^{0},G^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\delta}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{m}_{e_{\Mvariable{j1}}}^{2}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{\beta}^{2}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}}{{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{85}$
+\Mfunction{C}(A^{0},G^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}}{2\,{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{86}$
+\Mfunction{C}(G^{0},H^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}}{2\,{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{87}$
+\Mfunction{C}(A^{0},H^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \Mfunction{-}\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{88}$
+\Mfunction{C}(G^{0},G^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \Mfunction{-}\frac{\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{89}$
+\Mfunction{C}(A^{0},G^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \frac{\Mfunction{\delta}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{m}_{e_{\Mvariable{j1}}}^{2}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{2\beta}\,\Mfunction{s}_{\beta}^{2}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{2\,{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{90}$
+\Mfunction{C}(G^{0},H^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \frac{\Mfunction{\delta}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{m}_{e_{\Mvariable{j1}}}^{2}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{2\beta}\,\Mfunction{s}_{\beta}^{2}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{2\,{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{95}$
+\Mfunction{C}(H^{0},H^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}}{{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{96}$
+\Mfunction{C}(H^{0},G^{-},\tilde \nu_{\Mvariable{j1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}}{2\,{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{97}$
+\Mfunction{C}(H^{0},H^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{98}$
+\Mfunction{C}(H^{0},G^{+},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde \nu_{\Mvariable{j1}}^{\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}*}}{2\,{\sqrt{2}}\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{99}$
+\Mfunction{C}(H^{-},H^{+},\tilde \nu_{\Mvariable{j1}},\tilde \nu_{\Mvariable{j2}}^{\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}}{c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{100}$
+\Mfunction{C}(G^{-},G^{+},\tilde \nu_{\Mvariable{j1}},\tilde \nu_{\Mvariable{j2}}^{\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}}{m_{t}^{2}}
+$\\
+\bigskip
+\nbox{101}$
+\Mfunction{C}(H^{-},G^{+},\tilde \nu_{\Mvariable{j1}},\tilde \nu_{\Mvariable{j2}}^{\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}}{2\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{102}$
+\Mfunction{C}(G^{-},H^{+},\tilde \nu_{\Mvariable{j1}},\tilde \nu_{\Mvariable{j2}}^{\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}}{2\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{103}$
+\Mfunction{C}(H^{-},H^{+},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{4}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}}{c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{104}$
+\Mfunction{C}(G^{-},G^{+},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}}{m_{t}^{2}}
+$\\
+\bigskip
+\nbox{105}$
+\Mfunction{C}(H^{-},G^{+},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}}{2\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{106}$
+\Mfunction{C}(G^{-},H^{+},\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{e_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,s_{\beta}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}}{2\,c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\Class{SSSS}{2 Higgs -- 2 Squarks}
+\nbox{56}$
+\Mfunction{C}(h^{0},h^{0},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{3\,c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{58}$
+\Mfunction{C}(H^{0},H^{0},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{12\,c_{W}^{2}\,s_{\beta}^{2}\,s_{W}^{2}}\,\left( \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{62}$
+\Mfunction{C}(A^{0},A^{0},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{12\,c_{W}^{2}\,s_{\beta}^{2}\,s_{W}^{2}}\,\left( \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{63}$
+\Mfunction{C}(G^{0},G^{0},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{3\,c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{64}$
+\Mfunction{C}(A^{0},G^{0},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}}{3\,c_{W}^{2}\,s_{\beta}\,s_{W}^{2}}\,\left( \frac{3\,c_{\beta}\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} + \frac{3\,c_{\beta}\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}*}}{m_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{66}$
+\Mfunction{C}(h^{0},H^{0},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{\i}\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,s_{2\beta}}{6\,c_{W}^{2}\,s_{W}^{2}}\,\left( \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}*}}{\Mfunction{m}_{t}^{2}} + \frac{3\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}*}}{\Mfunction{m}_{t}^{2}} \right) 
+$\\
+\bigskip
+\nbox{67}$
+\Mfunction{C}(h^{0},H^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{2\,{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{68}$
+\Mfunction{C}(h^{0},G^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \frac{\Mfunction{\i}\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{69}$
+\Mfunction{C}(h^{0},H^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{\i}\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{2\,{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{70}$
+\Mfunction{C}(h^{0},G^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{\i}\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{71}$
+\Mfunction{C}(A^{0},H^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{2\,{\sqrt{2}}\,c_{\beta}^{4}\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{m_{t}^{2}\,s_{2\beta}^{2}}
+$\\
+\bigskip
+\nbox{72}$
+\Mfunction{C}(G^{0},G^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{73}$
+\Mfunction{C}(A^{0},G^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{4\,{\sqrt{2}}\,c_{\beta}\,m_{t}^{2}\,s_{\beta}}
+$\\
+\bigskip
+\nbox{74}$
+\Mfunction{C}(G^{0},H^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{4\,{\sqrt{2}}\,c_{\beta}\,m_{t}^{2}\,s_{\beta}}
+$\\
+\bigskip
+\nbox{75}$
+\Mfunction{C}(A^{0},H^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{2\,{\sqrt{2}}\,c_{\beta}^{4}\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{\Mfunction{m}_{t}^{2}\,\Mfunction{s}_{2\beta}^{2}}
+$\\
+\bigskip
+\nbox{76}$
+\Mfunction{C}(G^{0},G^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{m}_{u_{\Mvariable{j1}}}^{2}\,\Mfunction{\Mvariable{CKM}}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{\beta}^{2}\,\Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{77}$
+\Mfunction{C}(A^{0},G^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{m}_{u_{\Mvariable{j1}}}^{2}\,\Mfunction{\Mvariable{CKM}}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{2\beta}^{2}\,\Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{4\,{\sqrt{2}}\,c_{\beta}\,m_{t}^{2}\,s_{\beta}}
+$\\
+\bigskip
+\nbox{78}$
+\Mfunction{C}(G^{0},H^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \frac{\Mfunction{m}_{u_{\Mvariable{j1}}}^{2}\,\Mfunction{\Mvariable{CKM}}_{\Mvariable{j1},\Mvariable{j2}}\,\Mfunction{\Red{h}}_{\Red{t}}^{2}\,\Mfunction{s}_{2\beta}^{2}\,\Mfunction{U}_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,\Mfunction{U}_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{4\,{\sqrt{2}}\,c_{\beta}\,m_{t}^{2}\,s_{\beta}}
+$\\
+\bigskip
+\nbox{91}$
+\Mfunction{C}(H^{0},H^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{2\,{\sqrt{2}}\,\i\,c_{\beta}^{4}\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{m_{t}^{2}\,s_{2\beta}^{2}}
+$\\
+\bigskip
+\nbox{92}$
+\Mfunction{C}(H^{0},G^{-},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}^{*}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{2\,{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{93}$
+\Mfunction{C}(H^{0},H^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{2\,{\sqrt{2}}\,\i\,c_{\beta}^{4}\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{m_{t}^{2}\,s_{2\beta}^{2}}
+$\\
+\bigskip
+\nbox{94}$
+\Mfunction{C}(H^{0},G^{+},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2}},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1},\dagger}) = \Mfunction{-}\frac{\i\,m_{u_{\Mvariable{j1}}}^{2}\,\Mvariable{CKM}_{\Mvariable{j1},\Mvariable{j2}}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}*}}{2\,{\sqrt{2}}\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{107}$
+\Mfunction{C}(H^{-},H^{+},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j2}}}{4\,m_{t}^{2}\,s_{\beta}^{2}}
+$\\
+\bigskip
+\nbox{108}$
+\Mfunction{C}(G^{-},G^{+},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j2}}}{m_{t}^{2}}
+$\\
+\bigskip
+\nbox{109}$
+\Mfunction{C}(H^{-},G^{+},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j2}}}{2\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{110}$
+\Mfunction{C}(G^{-},H^{+},\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j2}}\,m_{u_{\Mvariable{j1}}}^{2}\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j2}}}{2\,m_{t}^{2}}
+$\\
+\bigskip
+\nbox{111}$
+\Mfunction{C}(H^{-},H^{+},\tilde d_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde d,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{4\,m_{t}^{2}\,s_{\beta}^{2}}\,\left( m_{u_{1}}^{2}\,\Mvariable{CKM}_{1,\Mvariable{j1}}\,\Mvariable{CKM}_{1,\Mvariable{j2}}^{*} + m_{u_{2}}^{2}\,\Mvariable{CKM}_{2,\Mvariable{j1}}\,\Mvariable{CKM}_{2,\Mvariable{j2}}^{*} + m_{u_{3}}^{2}\,\Mvariable{CKM}_{3,\Mvariable{j1}}\,\Mvariable{CKM}_{3,\Mvariable{j2}}^{*} \right) 
+$\\
+\bigskip
+\nbox{112}$
+\Mfunction{C}(G^{-},G^{+},\tilde d_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},1}^{\tilde d,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{m_{t}^{2}}\,\left( m_{u_{1}}^{2}\,\Mvariable{CKM}_{1,\Mvariable{j1}}\,\Mvariable{CKM}_{1,\Mvariable{j2}}^{*} + m_{u_{2}}^{2}\,\Mvariable{CKM}_{2,\Mvariable{j1}}\,\Mvariable{CKM}_{2,\Mvariable{j2}}^{*} + m_{u_{3}}^{2}\,\Mvariable{CKM}_{3,\Mvariable{j1}}\,\Mvariable{CKM}_{3,\Mvariable{j2}}^{*} \right) 
+$\\
+\bigskip
+\nbox{113}$
+\Mfunction{C}(H^{-},G^{+},\tilde d_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,U_{\Mvariable{s1},1}^{\tilde d,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{2\,m_{t}^{2}}\,\left( m_{u_{1}}^{2}\,\Mvariable{CKM}_{1,\Mvariable{j1}}\,\Mvariable{CKM}_{1,\Mvariable{j2}}^{*} + m_{u_{2}}^{2}\,\Mvariable{CKM}_{2,\Mvariable{j1}}\,\Mvariable{CKM}_{2,\Mvariable{j2}}^{*} + m_{u_{3}}^{2}\,\Mvariable{CKM}_{3,\Mvariable{j1}}\,\Mvariable{CKM}_{3,\Mvariable{j2}}^{*} \right) 
+$\\
+\bigskip
+\nbox{114}$
+\Mfunction{C}(G^{-},H^{+},\tilde d_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger}) = \Mfunction{-}\frac{\i\,\Red{h}_{\Red{t}}^{2}\,s_{2\beta}\,U_{\Mvariable{s1},1}^{\tilde d,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}}{2\,m_{t}^{2}}\,\left( m_{u_{1}}^{2}\,\Mvariable{CKM}_{1,\Mvariable{j1}}\,\Mvariable{CKM}_{1,\Mvariable{j2}}^{*} + m_{u_{2}}^{2}\,\Mvariable{CKM}_{2,\Mvariable{j1}}\,\Mvariable{CKM}_{2,\Mvariable{j2}}^{*} + m_{u_{3}}^{2}\,\Mvariable{CKM}_{3,\Mvariable{j1}}\,\Mvariable{CKM}_{3,\Mvariable{j2}}^{*} \right) 
+$\\
+\bigskip
+\Class{SSSS}{4 Sleptons}
+\nbox{119}$
+\Mfunction{C}(\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger},\tilde e_{\Mvariable{j3}}^{\Mvariable{s3}},\tilde e_{\Mvariable{j4}}^{\Mvariable{s4},\dagger}) = \Mfunction{-}\frac{\i}{c_{\beta}^{2}\,c_{W}^{2}\,s_{W}^{2}}\, 
+\begin{PlusB}
+\delta_{\Mvariable{j1},\Mvariable{j4}}\,\delta_{\Mvariable{j2},\Mvariable{j3}}\,\left( \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}\,m_{e_{\Mvariable{j2}}}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j2}}\,U_{\Mvariable{s3},1}^{\tilde e,\Mvariable{j2}*}\,U_{\Mvariable{s4},1}^{\tilde e,\Mvariable{j1}}}{m_{t}^{2}} + \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}\,m_{e_{\Mvariable{j2}}}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j2}}\,U_{\Mvariable{s3},2}^{\tilde e,\Mvariable{j2}*}\,U_{\Mvariable{s4},2}^{\tilde e,\Mvariable{j1}}}{m_{t}^{2}} \right) \,+\\
+\delta_{\Mvariable{j1},\Mvariable{j2}}\,\delta_{\Mvariable{j3},\Mvariable{j4}}\,\left( \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}\,m_{e_{\Mvariable{j3}}}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s3},2}^{\tilde e,\Mvariable{j3}*}\,U_{\Mvariable{s4},1}^{\tilde e,\Mvariable{j3}}}{m_{t}^{2}} + \frac{c_{W}^{2}\,m_{e_{\Mvariable{j1}}}\,m_{e_{\Mvariable{j3}}}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde e,\Mvariable{j1}}\,U_{\Mvariable{s3},1}^{\tilde e,\Mvariable{j3}*}\,U_{\Mvariable{s4},2}^{\tilde e,\Mvariable{j3}}}{m_{t}^{2}} \right) 
+\end{PlusB}
+$\\
+\bigskip
+\nbox{120}$
+\Mfunction{C}(\tilde e_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde e_{\Mvariable{j2}}^{\Mvariable{s2},\dagger},\tilde \nu_{\Mvariable{j3}},\tilde \nu_{\Mvariable{j4}}^{\dagger}) = \Mfunction{-}\frac{\i\,\delta_{\Mvariable{j1},\Mvariable{j4}}\,\delta_{\Mvariable{j2},\Mvariable{j3}}\,m_{e_{\Mvariable{j1}}}\,m_{e_{\Mvariable{j2}}}\,\Red{h}_{\Red{t}}^{2}\,s_{\beta}^{2}\,U_{\Mvariable{s1},2}^{\tilde e,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde e,\Mvariable{j2}}}{c_{\beta}^{2}\,m_{t}^{2}}
+$\\
+\bigskip
+\Class{SSSS}{4 Squarks}
+\nbox{116}$
+\Mfunction{C}(\tilde d_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde d_{\Mvariable{j2}}^{\Mvariable{s2},\dagger},\tilde u_{\Mvariable{j3}}^{\Mvariable{s3}},\tilde u_{\Mvariable{j4}}^{\Mvariable{s4},\dagger}) = \Mfunction{-}\frac{\i\,m_{u_{\Mvariable{j3}}}\,m_{u_{\Mvariable{j4}}}\,\Mvariable{CKM}_{\Mvariable{j3},\Mvariable{j2}}^{*}\,\Mvariable{CKM}_{\Mvariable{j4},\Mvariable{j1}}\,\Red{h}_{\Red{t}}^{2}\,U_{\Mvariable{s1},1}^{\tilde d,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde d,\Mvariable{j2}}\,U_{\Mvariable{s3},2}^{\tilde u,\Mvariable{j3}*}\,U_{\Mvariable{s4},2}^{\tilde u,\Mvariable{j4}}}{m_{t}^{2}}
+$\\
+\bigskip
+\nbox{121}$
+\Mfunction{C}(\tilde u_{\Mvariable{j1}}^{\Mvariable{s1}},\tilde u_{\Mvariable{j2}}^{\Mvariable{s2},\dagger},\tilde u_{\Mvariable{j3}}^{\Mvariable{s3}},\tilde u_{\Mvariable{j4}}^{\Mvariable{s4},\dagger}) = \Mfunction{-}\frac{\i}{9\,c_{W}^{2}\,s_{W}^{2}}\, 
+\begin{PlusB}
+\delta_{\Mvariable{j1},\Mvariable{j4}}\,\delta_{\Mvariable{j2},\Mvariable{j3}}\,\left( \frac{9\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}\,m_{u_{\Mvariable{j2}}}\,\Red{h}_{\Red{t}}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j2}}\,U_{\Mvariable{s3},1}^{\tilde u,\Mvariable{j2}*}\,U_{\Mvariable{s4},1}^{\tilde u,\Mvariable{j1}}}{m_{t}^{2}} + \frac{9\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}\,m_{u_{\Mvariable{j2}}}\,\Red{h}_{\Red{t}}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j2}}\,U_{\Mvariable{s3},2}^{\tilde u,\Mvariable{j2}*}\,U_{\Mvariable{s4},2}^{\tilde u,\Mvariable{j1}}}{m_{t}^{2}} \right) \,+\\
+\delta_{\Mvariable{j1},\Mvariable{j2}}\,\delta_{\Mvariable{j3},\Mvariable{j4}}\,\left( \frac{9\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}\,m_{u_{\Mvariable{j3}}}\,\Red{h}_{\Red{t}}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},1}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},2}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s3},2}^{\tilde u,\Mvariable{j3}*}\,U_{\Mvariable{s4},1}^{\tilde u,\Mvariable{j3}}}{m_{t}^{2}} + \frac{9\,c_{W}^{2}\,m_{u_{\Mvariable{j1}}}\,m_{u_{\Mvariable{j3}}}\,\Red{h}_{\Red{t}}^{2}\,s_{W}^{2}\,U_{\Mvariable{s1},2}^{\tilde u,\Mvariable{j1}*}\,U_{\Mvariable{s2},1}^{\tilde u,\Mvariable{j1}}\,U_{\Mvariable{s3},1}^{\tilde u,\Mvariable{j3}*}\,U_{\Mvariable{s4},2}^{\tilde u,\Mvariable{j3}}}{m_{t}^{2}} \right) 
+\end{PlusB}
+$\\
+\bigskip
+\end{longtable}
+
+\end{landscape}
+
+\end{document}
+

@@ -2,7 +2,7 @@
 * terms correcting the use of MT-DRbar at 1L
 * arXiv:1103.1335 Eqs. (95)-(102) and App. C
 * this file is part of FeynHiggs
-* last modified 3 Mar 15 th
+* last modified 11 Mar 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -39,23 +39,23 @@
 
 	c = 3/(4*pi)*Alfa2L/(MW2*SW2*SB2) * 2*MTy*dMT
 	dsig11 = c*(G + Re(MUEXt)**2*dcA)
+	dPhi(se11,dMTH) = dPhi(se11,dMTH) + dsig11
 	dsig12 = c*(-G/TB - Re(MUEXt)*(ReAtCXt*dcA - dlA))
+	dPhi(se12,dMTH) = dPhi(se12,dMTH) + dsig12
 	dsig22 = c*(-dl22 + G/TB2 + ReAtCXt*(ReAtCXt*dcA - 2*dlA))
+	dPhi(se22,dMTH) = dPhi(se22,dMTH) + dsig22
 	c = c/SB
 	dsig1A = c*(-Im(MUEXt**2)*dcA)
+	dPhi(se1A,dMTA) = dPhi(se1A,dMTA) + dsig1A
 	dsig2A = c*(Im(MUEXt)*(ReAtCXt*dcA - dlA))
+	dPhi(se2A,dMTA) = dPhi(se2A,dMTA) + dsig2A
 	c = c/SB
 	dsigAA = c*(G + Im(MUEXt)**2*dcA)
-
-	dPhi(se11,dMTH) = dPhi(se11,dMTH) + dsig11
-	dPhi(se12,dMTH) = dPhi(se12,dMTH) + dsig12
-	dPhi(se22,dMTH) = dPhi(se22,dMTH) + dsig22
-	dPhi(se1A,dMTA) = dPhi(se1A,dMTA) + dsig1A
-	dPhi(se2A,dMTA) = dPhi(se2A,dMTA) + dsig2A
 	dPhi(seAA,dMTA) = dPhi(seAA,dMTA) + dsigAA
 
 	if( debuglevel .ge. 4 ) then
 	  DSELF "dMT shifts:" ENDL
+	  DSELF "dMT =", dMT ENDL
 	  DSELF "dsig11 =", dsig11 ENDL
 	  DSELF "dsig12 =", dsig12 ENDL
 	  DSELF "dsig22 =", dsig22 ENDL

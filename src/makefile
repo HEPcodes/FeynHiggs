@@ -59,7 +59,7 @@ TLPS = TLps.o TLps_asat.o TLps_asab.o TLps_atab.o TLps_atat.o \
 
 $(TLPS): TLps.h
 
-TLHR = TLhr_abbr0.o TLhr_abbr1_1.o TLhr_abbr1_2.o TLhr_abbr1_3.o \
+xTLHR = TLhr_abbr0.o TLhr_abbr1_1.o TLhr_abbr1_2.o TLhr_abbr1_3.o \
   TLhr_abbr1_4.o TLhr_abbr1_5.o TLhr_abbr1_6.o TLhr_abbr1_7.o \
   TLhr_abbr1_8.o TLhr_abbr1_9.o TLhr_abbr1_10.o TLhr_abbr1_11.o \
   TLhr_abbr1_12.o TLhr_abbr1_13.o TLhr_abbr1_14.o TLhr_abbr1_15.o \
@@ -69,13 +69,23 @@ TLHR = TLhr_abbr0.o TLhr_abbr1_1.o TLhr_abbr1_2.o TLhr_abbr1_3.o \
   TLhr_rcs.o TLhr_self1.o TLhr_self2.o TLhr_self3.o \
   TLhr.o MTrepara.o
 
-TLSP = TLsp_atat1.o TLsp_atat2.o TLsp_atat3.o \
-  TLsp_atat4.o TLsp_atat5.o TLsp.o
+TLHR = TLhr.o TLhr_abbr_r.o TLhr_rcs.o \
+  TLhr_abbr_c1.o TLhr_abbr_c2.o TLhr_self_c.o \
+  TLhr_abbr_d1.o TLhr_abbr_d2.o TLhr_abbr_d3.o TLhr_abbr_d4.o \
+  TLhr_abbr_d5.o TLhr_abbr_d6.o TLhr_abbr_d7.o TLhr_abbr_d8.o \
+  TLhr_abbr_d9.o TLhr_abbr_d10.o TLhr_abbr_d11.o TLhr_abbr_d12.o \
+  TLhr_abbr_d13.o TLhr_self_d.o \
+  TLhr_abbr_e1.o TLhr_abbr_e2.o TLhr_abbr_e3.o TLhr_self_e.o\
+  TLhr_abbr_o1.o TLhr_abbr_o2.o TLhr_abbr_o3.o TLhr_self_o.o
+
+TLSP = TLsp.o TLsp_atat_c1.o TLsp_atat_c2.o \
+  TLsp_atat_e1.o TLsp_atat_e2.o TLsp_atat_e3.o \
+  TLsp_atat_o1.o TLsp_atat_o2.o
 
 $(TLSP): TLsp.h
 
 TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
-  CalcRenSETL.o Resum4H.o InvTri.o Phi.o TLSf.o
+  CalcRenSETL.o MTrepara.o Resum4H.o InvTri.o Phi.o TLSfgl.o
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 

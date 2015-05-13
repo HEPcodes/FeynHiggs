@@ -1,0 +1,56 @@
+#! /bin/sh -x
+
+test $# -ne 2 && {
+  cat << _EOF_
+Usage:  $0 se cto
+prepares the 'se' 2L self-energy for TuCalc
+_EOF_
+  exit 1
+}
+
+in=m/$1/1-amps.$2
+test -f $in || exit 1
+out=m/$1/2-prep.$2
+rm -f $out*
+
+time math -run cto=$2 \
+          -run in=\"$in\" \
+          -run out=\"$out\" << \_EOF_ > $out.log
+AppendTo[$Echo, "stdout"];
+
+<< twocalc`SimpSubstFA3`;
+CheckIfkVars[FeynAmp[__, 0]] := True;
+
+<< packages`SumOverToSum`;
+<< packages`SimplificationDefinitions`;
+<< packages`U2Simplify`;
+
+<< FormCalc`FormCalc`ModelSpecific`;
+
+IndexDelta[n_, n_] = 1;
+IndexDelta[n_Integer, _Integer] = 0;
+sqrt2 = Sqrt[2];
+
+(*ampsimp[_, _, 0] := Sequence[];*)
+
+ampsimp[id_, q_, amp_] := FeynAmp[id, q,
+  U2Simplify @ MagicSimplify[SumOverToSum[amp], Feedback -> False]];
+
+amp = Get[in];
+
+amp = amp /. {
+  pol:_[_V, _FourMomentum, _Index] :> pol,
+  FourMomentum[Incoming | Outgoing, _] -> 0 };
+
+amp = amp /. FeynAmp -> ampsimp;
+
+If[ cto === 0, amp = SimpleSubst[amp] ];
+
+Put[amp, out];
+
+_EOF_
+
+gzip $out.log
+
+test -f $out
+

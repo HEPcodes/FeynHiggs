@@ -1,4 +1,4 @@
-.TH FHGETSELF 1 "5-Jul-2010"
+.TH FHGETSELF 1 "24-Apr-2015"
 .SH NAME
 .PP
 FHGetSelf \- calculate the renormalized Higgs self-energies
@@ -6,9 +6,9 @@ FHGetSelf \- calculate the renormalized Higgs self-energies
 .PP
 integer error
 .br
-double precision k2
+double complex k2
 .br
-integer key, dkey
+integer key, dkey, ren
 .br
 double complex sig(13), dsig(13)
 .sp
@@ -30,10 +30,10 @@ parameter (GmGp = 12, HmGp = 13)
 .br
 #define Key(se) 2**(se-1)
 .sp
-subroutine FHGetSelf(error, k2, key, sig, dkey, dsig)
+subroutine FHGetSelf(error, k2, key, sig, dkey, dsig, ren)
 .SH SYNOPSIS (Mathematica version)
 .PP
-FHGetSelf[k2, key, dkey]
+FHGetSelf[k2, key, dkey, ren]
 .SH DESCRIPTION
 FHGetSelf returns the renormalized Higgs self-energies at momentum-squared
 k2.  The flags and parameters must have been set before with FHSetFlags(1)
@@ -51,6 +51,15 @@ the momentum-squared k^2 at which the self-energies are evaluated.
 a flag determining which of the self-energies are actually evaluated,
 e.g. to evaluate the h0-h0 self-energy, add Key(h0h0) to key.
 .TP
+.B dkey (input)
+a flag determining which of the derivatives of the self-energies
+are actually evaluated, e.g. to evaluate the derivative of the h0-h0
+self-energy, add Key(h0h0) to dkey.
+.TP
+.B ren (input)
+whether the unrenormalized (0) or renormalized (1) self-energies
+are output.
+.TP
 .B sig(h0h0), sig(HHHH), sig(A0A0), sig(HmHp) (output)
 the h0, HH, A0, and Hp self-energies at k^2 = k2.
 .TP
@@ -62,11 +71,6 @@ the neutral Goldstone self-energies at k^2 = k2.
 .TP
 .B sig(GmGp), sig(HmGp) (output)
 the charged Goldstone self-energies at k^2 = k2.
-.TP
-.B dkey (input)
-a flag determining which of the derivatives of the self-energies
-are actually evaluated, e.g. to evaluate the derivative of the h0-h0
-self-energy, add Key(h0h0) to dkey.
 .TP
 .B dsig(i) (output)
 the derivatives of the self-energies with respect to k^2 at k^2 = k2,

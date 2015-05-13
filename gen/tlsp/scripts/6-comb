@@ -1,0 +1,80 @@
+#! /bin/sh -x
+
+test $# -ne 1 && {
+  cat << _EOF_
+Usage:  $0 se
+puts together the renormalized 'se' 2L self-energy
+env DEBUG=i outputs the coefficient of del^i only
+_EOF_
+  exit 1
+}
+
+out=m/$1/6-comb
+rm -f $out*
+
+time math -run se=\"$1\" \
+          -run out=\"$out\" \
+          -run debug=${DEBUG:-0} << \_EOF_ > $out.log
+AppendTo[$Echo, "stdout"];
+
+<< packages`FinalSimp`;
+<< packages`ExpandDel`;
+
+<< model/MSSMCT.rc2;
+
+get[file_] := Check[(Print["Reading ", file]; Get[file]), Exit[]];
+
+get[name_, cto_] := get @ ToFileName[{"m", name}, "4-simp." <> ToString[cto]];
+
+getamp[name_] := getamp[name] =
+  TAG[name, 0] get[name, 0] + TAG[name, 1] get[name, 1];
+
+If[ debug === 0,
+  (*TAG[_, i_] := TAG[i];*)
+  _TAG = 1,
+(* else *)
+  inputMA0 = 1;
+  inputMHp = 0;
+  Tadh02 := getamp["h0"];
+  TadHH2 := getamp["HH"];
+  TadA02 := getamp["A0"];
+  SEA0A02 := getamp["A0A0"];
+  SEHmHp2 := getamp["HmHp"]
+];
+
+amp = {
+  TAG[se, 0] get[se, 0],
+  TAG[se, 1] get[se, 1],
+  TAG[se, 2] ct[se]};
+
+rcs = Get/@ FileNames[ToFileName[{"m", "rc"}, "*.m"]];
+
+amp = amp //. Prepend[Cases[rcs, _Rule, {2}], r_RC :> r];
+
+rct = Drop[amp, 1];
+zrc = Complement[
+  Cases[rct, _RC, Infinity],
+  Cases[Expand[rct], _RC, Infinity] ];
+amp = amp /. Thread[zrc -> 0];
+
+amp = ExpandDel[amp];
+
+amp = Collect[amp, _DiagMark, DelSeries];
+
+DC[debug, x_] := x;
+_DC = 0;
+
+If[ debug === 0,
+  amp = FinalSimp[amp] (*/. inputMHp -> 1 - inputMA0*),
+(* else *)
+  amp = amp /. Cases[rcs, _Rule, {4}]
+];
+
+Put[amp, out];
+
+_EOF_
+
+gzip $out.log
+
+test -f $out
+

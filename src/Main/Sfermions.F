@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 13 May 14 th
+* last modified 20 Mar 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -319,6 +319,10 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 
 	integer g, t, ty, fail
 	character h
+
+	character*4 sftype(SfSlots)
+	common /sftypes/ sftype
+
 	character*32 msg(2:4)
 	data msg /
      &    "negative stau mass squares",
@@ -363,7 +367,7 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	h = Hex(ty)
 
 	DPARA "----------------------------" ENDL
-	DPARA "Type ", h, " = ", SfType(ty)			ENDL
+	DPARA "Type ", h, " = ", sftype(ty)			ENDL
 	DPARA "Mf(",h,",3)  =", Mf(ty,3)			ENDL
 	DPARA "MSf(",h,",1) =", MSf(1,ty,1), MSf(2,ty,1)	ENDL
 	DPARA "MSf(",h,",2) =", MSf(1,ty,2), MSf(2,ty,2)	ENDL
@@ -434,6 +438,9 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	integer t, ts, ty, nQ, nU, as, g, j
 	ComplexType MX2(6,6), m1, m2, m3
 	character*4 h
+
+	character*4 sftype(SfSlots)
+	common /sftypes/ sftype
 
 	ty = nib2(ty_ts_t)
 	ts = nib1(ty_ts_t)
@@ -530,7 +537,7 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	h = Hex(ty)
 
 	DPARA "----------------------------"		ENDL
-	DPARA "Type ", h, " = ", SfType(ty)		ENDL
+	DPARA "Type ", h, " = ", sftype(ty)		ENDL
 	DPARA "MASf(",h,") =", MASf(1,ty), MASf(2,ty)	ENDL
 	DPARA "         ", MASf(3,ty), MASf(4,ty)	ENDL
 	DPARA "         ", MASf(5,ty), MASf(6,ty)	ENDL
@@ -600,5 +607,27 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	endif
 
 	Tdmb = n/d
+	end
+
+************************************************************************
+
+	block data sftypeini
+
+#include "FH.h"
+
+	character*4 sftype(SfSlots)
+	common /sftypes/ sftype
+
+	data sftype(1) /"nu"/
+	data sftype(2) /"e"/
+	data sftype(3) /"u"/
+	data sftype(4) /"d"/
+	data sftype(5) /"bBR"/
+	data sftype(6) /"tT"/
+	data sftype(7) /"bTR"/
+	data sftype(8) /"bTR0"/
+	data sftype(9) /"tH"/
+	data sftype(10) /"bH"/
+	data sftype(11) /"bHR"/
 	end
 

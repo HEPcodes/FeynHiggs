@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 4 Aug 14 th
+* last modified 24 Apr 15 th
 
 
 #ifndef SignSq
@@ -208,12 +208,6 @@
 * sfermion parameters, but all variables which need to be
 * conserved during FHUncertainties.
 
-	character*(*) sfstr
-	parameter (sfstr =
-     &    "nu  e   u   d   bBR tT  bTR bTR0tH  bH  bHR ")
-
-#define SfType(t) sfstr(t*4-3:t*4)
-
 * Sf(*,1) = Sneutrino				- set in Para.F
 * Sf(*,2) = Slepton				- set in Para.F
 * Sf(*,3) = Sup with MT(pole)			- set in Sfermions.F
@@ -317,6 +311,9 @@
 	ComplexType seX_flat(semax*(seXmax + 1))
 	equivalence (seX, seX_flat)
 
+	ComplexType seU(semax), dseU(semax), se2U(semax)
+	common /higgsunren/ seU, dseU, se2U
+
 
 * couplings and widths
 
@@ -349,7 +346,7 @@
 	integer higgsmix, p2approx, looplevel
 	integer runningMT, botResum, tlCplxApprox
 	integer debuglevel, debugunit, fv
-	integer uzint, uzext, mfeff
+	integer uzint, uzext, mfeff, tlmask
 	integer tM1, tM2, bM, bM0, gM
 	character*256 extSE
 
@@ -363,7 +360,7 @@
      &    higgsmix, p2approx, looplevel,
      &    runningMT, botResum, tlCplxApprox,
      &    debuglevel, debugunit, fv,
-     &    uzint, uzext, mfeff,
+     &    uzint, uzext, mfeff, tlmask,
      &    tM1, tM2, bM, bM0, gM,
      &    extSE
 

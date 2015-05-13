@@ -1,0 +1,34 @@
+"/home/pcl343/passehr/Mathematica-Projekte/Higgs2L/"
+"calculation/"
+{"/opt/Wolfram/Mathematica/7.0/SystemFiles/Links", 
+ "/home/pcl343/passehr/.Mathematica/Kernel", 
+ "/home/pcl343/passehr/.Mathematica/Autoload", 
+ "/home/pcl343/passehr/.Mathematica/Applications", 
+ "/usr/share/Mathematica/Kernel", "/usr/share/Mathematica/Autoload", 
+ "/usr/share/Mathematica/Applications", ".", "/home/pcl343/passehr", 
+ "/opt/Wolfram/Mathematica/7.0/AddOns/Packages", 
+ "/opt/Wolfram/Mathematica/7.0/AddOns/LegacyPackages", 
+ "/opt/Wolfram/Mathematica/7.0/SystemFiles/Autoload", 
+ "/opt/Wolfram/Mathematica/7.0/AddOns/Autoload", 
+ "/opt/Wolfram/Mathematica/7.0/AddOns/Applications", 
+ "/opt/Wolfram/Mathematica/7.0/AddOns/ExtraPackages", 
+ "/opt/Wolfram/Mathematica/7.0/SystemFiles/Kernel/Packages", 
+ "/opt/Wolfram/Mathematica/7.0/Documentation/English/System", 
+ "/opt/Wolfram/FormCalc-7.0", "/opt/Wolfram/FormCalc-6.1", 
+ "/opt/Wolfram/FormCalc-5.4", "/opt/Wolfram/FormCalc-4.0", 
+ "/opt/Wolfram/FormCalc-3.2", "/opt/Wolfram/FeynCalc-2.2", 
+ "/opt/Wolfram/FeynArts-3.6", 
+ "/home/pcl343/passehr/Mathematica-PlugIns/FeynArts-3.5/", 
+ "/home/pcl343/passehr/Mathematica-PlugIns/FormCalc-6.1/", 
+ "/home/pcl343/passehr/Mathematica-Projekte/packages/twocalc/TuCalc/Code/", 
+ "/home/pcl343/passehr/Mathematica-Projekte/packages/twocalc/work/", 
+ "/home/pcl343/passehr/Mathematica-Projekte/packages/twocalc/", 
+ "/home/pcl343/passehr/Mathematica-Projekte/packages/", 
+ "/home/pcl343/passehr/Mathematica-Projekte/routines/", 
+ "/home/pcl343/passehr/Mathematica-Projekte/renormalisation schemes/"}
+{"/home/pcl343/passehr/Mathematica-Projekte/packages/twocalc/TuCalc/Code", "/\
+home/pcl343/passehr/Mathematica-Projekte/packages/twocalc/TuCalc/Code/Models/\
+", "/opt/Wolfram/FeynArts-3.6/Models/", 
+ "/home/pcl343/passehr/Mathematica-Projekte/model files/"}
+{"model file: ", "cMSSMCT"}
+{"renormalisation scheme: ", "Denner1993"}

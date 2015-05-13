@@ -1,7 +1,7 @@
 * AddSelf.F
 * Add user-specified values to the Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 15 May 14 th
+* last modified 24 Apr 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -116,7 +116,7 @@
 	if( n .eq. 1 ) then
 	  do h = 1, seXmax
 	    do i = 1, semax
-	      seX(i,h) = sig(i,0)
+	      seX(i,h) = seX(i,0)
 	    enddo
 	  enddo
 	endif

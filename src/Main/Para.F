@@ -1,7 +1,7 @@
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 5 Jun 14 th
+* last modified 24 Apr 15 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -59,6 +59,9 @@
 	fv = 0
 
 	do i = 1, semax
+	  se2U(i) = 0
+	enddo
+	do i = 1, semax
 	  se2R(i) = 0
 	enddo
 	do i = 1, se2Rn*se2Rc
@@ -102,17 +105,17 @@
 c	call AlphaS(AlfasMT, nf, MT)
 	GSMT = sqrt(4*pi*AlfasMT)
 
-	if( tlCplxApprox .eq. 1 ) then
-	  Mf(tT,3) = MT/(1 + 4/(3*pi)*AlfasMT)
-	  Alfat = (Mf(tT,3)/(vev/sqrt2))**2/(4*pi)
-	else
+c	if( tlCplxApprox .eq. 1 ) then
+c	  Mf(tT,3) = MT/(1 + 4/(3*pi)*AlfasMT)
+c	  Alfat = (Mf(tT,3)/(vev/sqrt2))**2/(4*pi)
+c	else
 	  tmp = 0
 	  do while( abs(Mf(tT,3) - tmp) .gt. 1D-5 )
 	    tmp = Mf(tT,3)
 	    Alfat = (Mf(tT,3)/(vev/sqrt2))**2/(4*pi)
 	    Mf(tT,3) = MT/(1 - Alfat/(2*pi) + 4/(3*pi)*AlfasMT)
 	  enddo
-	endif
+c	endif
 	Mf2(tT,3) = Mf(tT,3)**2
 
 	MB_MT = MB*Run(MB, MT)

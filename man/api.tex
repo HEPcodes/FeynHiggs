@@ -80,7 +80,7 @@
 
 \begin{document}
 
-\chapter*{FeynHiggs 2.9.5\\[2ex] Application Programming Interface}
+\chapter*{FeynHiggs 2.11.0\\[2ex] Application Programming Interface}
 
 \makeatletter
 \begin{multicols}{2}
@@ -174,12 +174,14 @@ determines the approximation for the one-loop result:
   \textit{(recommended)}.
 \end{itemize}
 
-\FLAGIN{integer looplevel}{0}{2}
+\FLAGIN{integer looplevel}{0}{3}
 determines the inclusion of higher-order corrections:
 \begin{itemize}
 \item[0:] tree level,
 \item[1:] one-loop contributions only,
-\item[2:] include various two-loop contributions \textit{(recommended)}.
+\item[2:] also include various two-loop contributions
+  \textit{(recommended)},
+\item[3:] also include resummation of large logs.
 \end{itemize}
 
 \FLAGIN{integer runningMT}{0}{1}
@@ -202,14 +204,15 @@ determines how the two-loop corrections are treated in the presence of
 complex parameters (cMSSM):
 \begin{itemize}
 \item[0:] all corrections ($\alpha_s\alpha_t$, $\alpha_s\alpha_b$,
-  $\alpha_t\alpha_t$, $\alpha_t\alpha_b$) are computed in the rMSSM
+  $\alpha_t^2$, $\alpha_t\alpha_b$) are computed in the rMSSM
   \textit{(recommended for evaluation in the rMSSM)},
-\item[1:] only the cMSSM $\alpha_s\alpha_t$ corrections are used,
-\item[2:] the cMSSM $\alpha_s\alpha_t$ corrections are combined with
-  the remaining corrections in the rMSSM,
-\item[3:] the cMSSM $\alpha_s\alpha_t$ corrections are combined with
-  the remaining corrections, whose complex phases are interpolated in
-  $A_t$, $A_b$, $M_3$, $\mu$,
+\item[1:] only the cMSSM $\alpha_s\alpha_t$ and $\alpha_t^2$ corrections 
+  are used,
+\item[2:] the cMSSM $\alpha_s\alpha_t$ and $\alpha_t^2$ corrections are 
+  combined with the remaining corrections in the rMSSM,
+\item[3:] the cMSSM $\alpha_s\alpha_t$ and $\alpha_t^2$ corrections are 
+  combined with the remaining corrections, whose complex phases are 
+  interpolated in $A_t$, $A_b$, $M_3$, $\mu$,
 \item[4:] ditto, with interpolation in $X_t$, $A_b$, $M_3$, $\mu$,
 \item[5:] ditto, with interpolation in $A_t$, $X_b$, $M_3$, $\mu$,
 \item[6:] ditto, with interpolation in $X_t$, $X_b$, $M_3$, $\mu$.
@@ -1417,8 +1420,8 @@ $k^2$.  The flags and parameters must have been set before with
 
 \begin{verbatim}
 integer error
-double precision k2
-integer key, dkey
+double complex k2
+integer key, dkey, ren
 double complex sig(13), dsig(13)
 integer h0h0, HHHH, A0A0, HmHp
 integer h0HH, h0A0, HHA0
@@ -1431,13 +1434,13 @@ parameter (GmGp = 12, HmGp = 13)
 
 #define Key(se) 2**(se-1)
 
-subroutine FHGetSelf(error, k2, key, sig, dkey, dsig)
+subroutine FHGetSelf(error, k2, key, sig, dkey, dsig, ren)
 \end{verbatim}
 
 \MSYNOPSIS
 
 \begin{verbatim}
-FHGetSelf[k2, key, dkey]
+FHGetSelf[k2, key, dkey, ren]
 \end{verbatim}
 
 \ARGUMENTS
@@ -1475,6 +1478,10 @@ $h^0$ self-energy, add \CODE{Key(h0h0)} to \CODE{dkey}.
 \VAROUT{dsig(i)}
 the derivatives of the self-energies with respect to $k^2$ at
 $k^2$ = k2, where the index \CODE{i} runs as for the \CODE{sig(i)}.
+
+\VARIN{ren}
+whether the unrenormalized (0) or renormalized (1) self-energies
+are output.
 
 \ENDARGUMENTS
 

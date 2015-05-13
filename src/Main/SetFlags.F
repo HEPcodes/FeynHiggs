@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 30 Sep 14 th
+* last modified 20 Mar 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -57,6 +57,7 @@ c	  call setfpu
 	uzint = 1
 	uzext = 3
 	mfeff = 1
+	tlmask = 0
 
 	call getenv("FHDEBUG", env)
 	read(env, *, end=10, err=10) debuglevel
@@ -79,6 +80,11 @@ c	  call setfpu
 	Check(uzint, 1, 2, "FHSELECTUZ(uzint)")
 	Check(uzext, 1, 3, "FHSELECTUZ(uzext)")
 	Check(mfeff, 0, 2, "FHSELECTUZ(mfeff)")
+
+	call getenv("FHTLMASK", env)
+	read(env, *, end=13, err=13) tlmask
+	print *, "tlmask ", tlmask
+13	continue
 
 	call getenv("FHEXTSE", extSE)
 	l = len_trim(extSE)
@@ -107,8 +113,8 @@ c	  call setfpu
 	Check(looplevel, 0, 3, "looplevel")
 
 	runningMT = runningMT_
-	Check(runningMT, 0, 1, "runningMT")
-	tM1 = 3 + (tT - 3)*runningMT
+	Check(runningMT, 0, 2, "runningMT")
+	tM1 = tT + (3 - tT)*signbit(runningMT - 1)
 	tM2 = tM1
 
 	botResum = botResum_

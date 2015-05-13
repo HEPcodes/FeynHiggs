@@ -1,4 +1,4 @@
-.TH FEYNHIGGS 1 "1-Jun-2012"
+.TH FEYNHIGGS 1 "20-Mar-2015"
 .SH NAME
 .PP
 FeynHiggs \- the FeynHiggs command-line frontend
@@ -271,14 +271,16 @@ determines the approximation for the 1-loop result:
 .br
 .B recommended: 4
 .TP
-#6: looplevel = 0..2
+#6: looplevel = 0..3
 determines the inclusion of higher-order corrections:
 .br
 0: tree level
 .br
 1: one-loop contributions only
 .br
-2: include various two-loop contributions
+2: also include various two-loop contributions
+.br
+3: also include resummation of large logs
 .br
 .B recommended: 2
 .TP

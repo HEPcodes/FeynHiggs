@@ -1,0 +1,955 @@
+FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {}, Model -> {"MSSMCTgl"}, 
+  GenericModel -> {"Lorentz"}, AmplitudeLevel -> {Particles}, 
+  ExcludeParticles -> {U, V, -F[1], F[1], -F[2], F[2], F[15], -F[1, {1}], 
+    F[1, {1}], -F[1, {2}], F[1, {2}], -F[1, {3}], F[1, {3}], -F[2, {1}], 
+    F[2, {1}], -F[2, {2}], F[2, {2}], -F[2, {3}], F[2, {3}], -F[3, {1, _}], 
+    F[3, {1, _}], -F[3, {2, _}], F[3, {2, _}], -F[4, {1, _}], F[4, {1, _}], 
+    -F[4, {2, _}], F[4, {2, _}], F[15, {_}], -S[11], S[11], -S[12], S[12], 
+    -S[11, {1}], S[11, {1}], -S[11, {2}], S[11, {2}], -S[11, {3}], 
+    S[11, {3}], -S[12, {1, 1}], S[12, {1, 1}], -S[12, {1, 2}], S[12, {1, 2}], 
+    -S[12, {1, 3}], S[12, {1, 3}], -S[12, {2, 1}], S[12, {2, 1}], 
+    -S[12, {2, 2}], S[12, {2, 2}], -S[12, {2, 3}], S[12, {2, 3}], 
+    -S[13, {1, 1, _}], S[13, {1, 1, _}], -S[13, {1, 2, _}], S[13, {1, 2, _}], 
+    -S[13, {2, 1, _}], S[13, {2, 1, _}], -S[13, {2, 2, _}], S[13, {2, 2, _}], 
+    -S[14, {1, 1, _}], S[14, {1, 1, _}], -S[14, {1, 2, _}], S[14, {1, 2, _}], 
+    -S[14, {2, 1, _}], S[14, {2, 1, _}], -S[14, {2, 2, _}], S[14, {2, 2, _}], 
+    -U[1], U[1], -U[2], U[2], -U[3], U[3], -U[4], U[4], -U[5], U[5], 
+    -U[5, {_}], U[5, {_}], V[1], V[2], -V[3], V[3], V[5], V[5, {_}]}, 
+  ExcludeFieldPoints -> {}, LastSelections -> 
+   {F[3 | 4, {3, _, ___}] | S[13 | 14, {_, 3, _, ___}] | F[11 | 12] | 
+     S[1 | 2 | 3 | 4 | 5 | 6]}][FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 1, Number == 1], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MSf[1, 3, 3]]]*(MT + U2s1[Xt])*
+    UCSf[1, 1, 3, 3]*UCSf[1, 2, 3, 3])/(16*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 2, 
+   Number == 2], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, 
+      MSf[1, 3, 3]]]*U2c1C[Xt]*(-UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3])*
+    UCSf[3, 1, 3, 3])/(32*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 3, 
+   Number == 3], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, 
+      MSf[1, 3, 3]]]*U2c1[Xt]*(-UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3])*
+    UCSfC[3, 1, 3, 3])/(32*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 4, 
+   Number == 4], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, 
+      MSf[1, 3, 3]]]*(MT - U2s1[Xt])*(UCSf[1, 1, 3, 3]^2 - 
+     6*UCSf[1, 1, 3, 3]*UCSf[1, 2, 3, 3] + UCSf[1, 2, 3, 3]^2))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 5, Number == 5], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k4, 
+      MSf[2, 3, 3]]]*(MT + U2s1[Xt])*(UCSf[1, 1, 3, 3]^2 - 
+     6*UCSf[1, 1, 3, 3]*UCSf[1, 2, 3, 3] + UCSf[1, 2, 3, 3]^2))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 6, Number == 6], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, 
+      MSf[2, 3, 3]]]*U2c1C[Xt]*(UCSf[1, 1, 3, 3] - UCSf[1, 2, 3, 3])*
+    UCSf[3, 1, 3, 3])/(32*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 7, 
+   Number == 7], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, 
+      MSf[2, 3, 3]]]*U2c1[Xt]*(UCSf[1, 1, 3, 3] - UCSf[1, 2, 3, 3])*
+    UCSfC[3, 1, 3, 3])/(32*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 8, 
+   Number == 8], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MSf[2, 3, 3]]]*(MT - U2s1[Xt])*
+    UCSf[1, 1, 3, 3]*UCSf[1, 2, 3, 3])/(16*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 9, 
+   Number == 9], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*(MT + U2s1[Xt]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 10, Number == 10], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 11, 
+   Number == 11], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 12, 
+   Number == 12], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*(MT - U2s1[Xt]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 13, Number == 13], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*(MT + U2s1[Xt]))/
+   (1024*Sqrt[2]*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 14, Number == 14], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 15, 
+   Number == 15], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 16, 
+   Number == 16], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*S2B^2*SB*DiagMark[MHp, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*(MT - U2s1[Xt]))/
+   (1024*Sqrt[2]*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 17, Number == 17], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*(MT + U2s1[Xt]))/
+   (1024*Sqrt[2]*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 18, Number == 18], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 19, 
+   Number == 19], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 20, 
+   Number == 20], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*S2B^2*SB*DiagMark[MHp, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*(MT - U2s1[Xt]))/
+   (1024*Sqrt[2]*Pi^8*SB2)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 21, Number == 21], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*(MT + U2s1[Xt]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 22, Number == 22], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 23, 
+   Number == 23], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 24, 
+   Number == 24], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*(MT - U2s1[Xt]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Particles == 25, Number == 25], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*(MT + U2s1[Xt])*
+    UCSf[1, 2, 3, 3])/(512*Sqrt[2]*Pi^8*SB2)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 26, 
+   Number == 26], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*
+    U2c1C[Xt]*UCSf[3, 1, 3, 3])/(512*Sqrt[2]*Pi^8*SB2)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 27, 
+   Number == 27], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*S2B^2*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*
+    U2c1[Xt]*UCSfC[3, 1, 3, 3])/(512*Sqrt[2]*Pi^8*SB2)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 28, 
+   Number == 28], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*S2B^2*SB*DiagMark[MHp, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*(MT - U2s1[Xt])*
+    UCSf[1, 1, 3, 3])/(512*Sqrt[2]*Pi^8*SB2)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 29, 
+   Number == 29], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*(MT + U2s1[Xt])*
+    UCSf[1, 2, 3, 3])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 30, 
+   Number == 30], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*
+    U2c1C[Xt]*UCSf[3, 1, 3, 3])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 31, 
+   Number == 31], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*
+    U2c1[Xt]*UCSfC[3, 1, 3, 3])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 32, 
+   Number == 32], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*(MT - U2s1[Xt])*
+    UCSf[1, 1, 3, 3])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 33, 
+   Number == 33], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k4, 
+      MSf[1, 4, 3]]]*(MT + U2s1[Xt])*UCSf[1, 2, 3, 3])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 34, 
+   Number == 34], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, 
+      MSf[1, 4, 3]]]*U2c1C[Xt]*UCSf[3, 1, 3, 3])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 35, 
+   Number == 35], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*SB*DiagMark[MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, 
+      MSf[1, 4, 3]]]*U2c1[Xt]*UCSfC[3, 1, 3, 3])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 36, 
+   Number == 36], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*DiagMark[MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k4, 
+      MSf[1, 4, 3]]]*(MT - U2s1[Xt])*UCSf[1, 1, 3, 3])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 37, 
+   Number == 37], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 38, 
+   Number == 38], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 39, 
+   Number == 39], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 1, Generic == 1, Classes == 1, Particles == 40, 
+   Number == 40], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 1, 
+   Number == 41], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, M0]]*(MT + U2s1[Xt])^3)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 2, 
+   Number == 42], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*U2c1C[Xt]*
+    (MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 3, 
+   Number == 43], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*U2c1C[Xt]*
+    (MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 4, 
+   Number == 44], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*U2c1C[Xt]*
+    (MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 5, 
+   Number == 45], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*U2c1C[Xt]*
+    (MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 6, 
+   Number == 46], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*U2c1C[Xt]*
+    (MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 7, 
+   Number == 47], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*U2c1C[Xt]*
+    (MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 8, 
+   Number == 48], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, M0]]*(MT - U2s1[Xt])^3)/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 9, 
+   Number == 49], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, MHp]]*(MT + U2s1[Xt])*(MT + U2s1[Yt])^2)/
+   (64*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 1, 
+   Classes == 2, Particles == 10, Number == 50], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Yt]*U2c1C[Xt]*
+    (MT + U2s1[Yt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 11, 
+   Number == 51], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Xt]*U2c1C[Yt]*
+    (MT + U2s1[Yt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 12, 
+   Number == 52], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Yt]*U2c1C[Yt]*
+    (MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 13, 
+   Number == 53], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Yt]*U2c1C[Yt]*
+    (MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 14, 
+   Number == 54], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Yt]*U2c1C[Xt]*
+    (MT - U2s1[Yt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 15, 
+   Number == 55], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Xt]*U2c1C[Yt]*
+    (MT - U2s1[Yt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 16, 
+   Number == 56], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, MHp]]*(MT - U2s1[Xt])*(MT - U2s1[Yt])^2)/
+   (64*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 1, 
+   Classes == 2, Particles == 17, Number == 57], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, MHp]]*(MT + U2s1[Xt])*U2s2[Yt]^2)/
+   (64*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 1, 
+   Classes == 2, Particles == 18, Number == 58], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1C[Xt]*U2c2[Yt]*
+    U2s2[Yt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 19, 
+   Number == 59], k1, k2, k3, k4, k5, p, 
+  (-3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Xt]*U2c2C[Yt]*
+    U2s2[Yt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 20, 
+   Number == 60], k1, k2, k3, k4, k5, p, 
+  (-3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c2[Yt]*U2c2C[Yt]*
+    (MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 21, 
+   Number == 61], k1, k2, k3, k4, k5, p, 
+  (-3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c2[Yt]*U2c2C[Yt]*
+    (MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 22, 
+   Number == 62], k1, k2, k3, k4, k5, p, 
+  (-3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1C[Xt]*U2c2[Yt]*
+    U2s2[Yt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 23, 
+   Number == 63], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Xt]*U2c2C[Yt]*
+    U2s2[Yt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 24, 
+   Number == 64], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, MHp]]*(MT - U2s1[Xt])*U2s2[Yt]^2)/
+   (64*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 1, 
+   Classes == 2, Particles == 25, Number == 65], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k1, 
+      MSf[1, 3, 3]], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, M0]]*(MT + U2s1[Xt])*U2s2[Xt]^2)/
+   (64*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 1, 
+   Classes == 2, Particles == 26, Number == 66], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1C[Xt]*U2c2[Xt]*
+    U2s2[Xt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 27, 
+   Number == 67], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*U2c2C[Xt]*
+    U2s2[Xt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 28, 
+   Number == 68], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*U2c2[Xt]*U2c2C[Xt]*
+    (MT + U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 29, 
+   Number == 69], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 3, 3]], PropagatorDenominator[k4, M0]]*U2c2[Xt]*U2c2C[Xt]*
+    (MT - U2s1[Xt]))/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 30, 
+   Number == 70], k1, k2, k3, k4, k5, p, 
+  (-3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1C[Xt]*U2c2[Xt]*
+    U2s2[Xt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 31, 
+   Number == 71], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[2, 3, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*U2c2C[Xt]*
+    U2s2[Xt])/(64*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 32, 
+   Number == 72], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k1, 
+      MSf[2, 3, 3]], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, M0]]*(MT - U2s1[Xt])*U2s2[Xt]^2)/
+   (64*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 1, 
+   Classes == 2, Particles == 33, Number == 73], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 4, 3]], PropagatorDenominator[k4, MHp]]*(MT + U2s1[Xt])*
+    (MT*USf[1, 1, 3, 3] + Yt*USf[1, 2, 3, 3])*(MT*USfC[1, 1, 3, 3] + 
+     YtC*USfC[1, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 34, 
+   Number == 74], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 4, 3]], PropagatorDenominator[k4, MHp]]*U2c1[Xt]*
+    (MT*USf[2, 1, 3, 3] + Yt*USf[2, 2, 3, 3])*(MT*USfC[1, 1, 3, 3] + 
+     YtC*USfC[1, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 35, 
+   Number == 75], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 4, 3]], PropagatorDenominator[k4, MHp]]*U2c1C[Xt]*
+    (MT*USf[1, 1, 3, 3] + Yt*USf[1, 2, 3, 3])*(MT*USfC[2, 1, 3, 3] + 
+     YtC*USfC[2, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 36, 
+   Number == 76], k1, k2, k3, k4, k5, p, 
+  (3*CB2*ht^3*SB*DiagMark[MHp, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 4, 3]], PropagatorDenominator[k4, MHp]]*(MT - U2s1[Xt])*
+    (MT*USf[2, 1, 3, 3] + Yt*USf[2, 2, 3, 3])*(MT*USfC[2, 1, 3, 3] + 
+     YtC*USfC[2, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 37, 
+   Number == 77], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 38, 
+   Number == 78], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 39, 
+   Number == 79], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 40, 
+   Number == 80], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 41, 
+   Number == 81], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 4, 3]], PropagatorDenominator[k4, M0]]*(MT + U2s1[Xt])*
+    (MT*USf[1, 1, 3, 3] + Xt*USf[1, 2, 3, 3])*(MT*USfC[1, 1, 3, 3] + 
+     XtC*USfC[1, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 42, 
+   Number == 82], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 4, 3]], PropagatorDenominator[k4, M0]]*U2c1[Xt]*
+    (MT*USf[2, 1, 3, 3] + Xt*USf[2, 2, 3, 3])*(MT*USfC[1, 1, 3, 3] + 
+     XtC*USfC[1, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 43, 
+   Number == 83], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 4, 3]], PropagatorDenominator[k4, M0]]*U2c1C[Xt]*
+    (MT*USf[1, 1, 3, 3] + Xt*USf[1, 2, 3, 3])*(MT*USfC[2, 1, 3, 3] + 
+     XtC*USfC[2, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 44, 
+   Number == 84], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MSf[1, 4, 3]], PropagatorDenominator[k4, M0]]*(MT - U2s1[Xt])*
+    (MT*USf[2, 1, 3, 3] + Xt*USf[2, 2, 3, 3])*(MT*USfC[2, 1, 3, 3] + 
+     XtC*USfC[2, 2, 3, 3]))/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 45, 
+   Number == 85], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 46, 
+   Number == 86], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 47, 
+   Number == 87], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 2, Particles == 48, 
+   Number == 88], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 1, 
+   Number == 89], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[0, MT]*DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k4]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2])]*FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, M0], 
+     PropagatorDenominator[k4, MT]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 2, 
+   Number == 90], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MHp, MT]*DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 
+      ((I*CB*ht*(ChiralityProjector[-1] + ChiralityProjector[1]))/Sqrt[2]) . 
+      (MT + DiracSlash[k4]) . ((I*CB*ht*(ChiralityProjector[-1] + 
+         ChiralityProjector[1]))/Sqrt[2])]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k3, MHp], PropagatorDenominator[k4, MT]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 3, 
+   Number == 91], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MHp, MT]*DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 
+      ((CB*ht*(ChiralityProjector[-1] - ChiralityProjector[1]))/Sqrt[2]) . 
+      (MT + DiracSlash[k4]) . ((CB*ht*(ChiralityProjector[-1] - 
+         ChiralityProjector[1]))/Sqrt[2])]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k3, MHp], PropagatorDenominator[k4, MT]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 4, 
+   Number == 92], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[0, MT]*DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 
+      ((ht*SB*(ChiralityProjector[-1] - ChiralityProjector[1]))/Sqrt[2]) . 
+      (MT + DiracSlash[k4]) . ((ht*SB*(ChiralityProjector[-1] - 
+         ChiralityProjector[1]))/Sqrt[2])]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k3, M0], PropagatorDenominator[k4, MT]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 5, 
+   Number == 93], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[0, MHp, MT]*DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . (I*CB*ht*ChiralityProjector[1]) . 
+      DiracSlash[k4] . (I*CB*ht*ChiralityProjector[-1])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MHp], 
+     PropagatorDenominator[k4, 0]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 6, 
+   Number == 94], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[0, 0, MT]*DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . (I*ht*SB*ChiralityProjector[1]) . 
+      DiracSlash[k4] . (I*ht*SB*ChiralityProjector[-1])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, M0], 
+     PropagatorDenominator[k4, 0]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 7, 
+   Number == 95], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MT, MNeu[1], MSf[1, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 0 . (DiracSlash[k4] + MNeu[1]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, MNeu[1]]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 8, 
+   Number == 96], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MT, MNeu[2], MSf[1, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 0 . (DiracSlash[k4] + MNeu[2]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, MNeu[2]]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 9, 
+   Number == 97], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MMUE, MT, MSf[1, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 
+      ((I*ht*(rMUE*ChiralityProjector[1]*USf[1, 1, 3, 3] + 
+         rMUEC*ChiralityProjector[-1]*USf[1, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[k4]) . 
+      ((I*ht*(rMUEC*ChiralityProjector[-1]*USfC[1, 1, 3, 3] + 
+         rMUE*ChiralityProjector[1]*USfC[1, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, MMUE]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 10, 
+   Number == 98], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MMUE, MT, MSf[1, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 
+      ((ht*(rMUE*ChiralityProjector[1]*USf[1, 1, 3, 3] - 
+         rMUEC*ChiralityProjector[-1]*USf[1, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[k4]) . 
+      ((ht*(-(rMUEC*ChiralityProjector[-1]*USfC[1, 1, 3, 3]) + 
+         rMUE*ChiralityProjector[1]*USfC[1, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, MMUE]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 11, 
+   Number == 99], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MT, MNeu[1], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 0 . (DiracSlash[k4] + MNeu[1]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, MNeu[1]]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 12, 
+   Number == 100], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MT, MNeu[2], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 0 . (DiracSlash[k4] + MNeu[2]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, MNeu[2]]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 13, 
+   Number == 101], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MMUE, MT, MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 
+      ((I*ht*(rMUE*ChiralityProjector[1]*USf[2, 1, 3, 3] + 
+         rMUEC*ChiralityProjector[-1]*USf[2, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[k4]) . 
+      ((I*ht*(rMUEC*ChiralityProjector[-1]*USfC[2, 1, 3, 3] + 
+         rMUE*ChiralityProjector[1]*USfC[2, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, MMUE]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 14, 
+   Number == 102], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MMUE, MT, MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 
+      ((ht*(rMUE*ChiralityProjector[1]*USf[2, 1, 3, 3] - 
+         rMUEC*ChiralityProjector[-1]*USf[2, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[k4]) . 
+      ((ht*(-(rMUEC*ChiralityProjector[-1]*USfC[2, 1, 3, 3]) + 
+         rMUE*ChiralityProjector[1]*USfC[2, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, MMUE]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 15, 
+   Number == 103], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MMUE, MT, MSf[1, 4, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . (I*ht*ChiralityProjector[1]) . 
+      (MMUE + DiracSlash[k4]) . (I*ht*ChiralityProjector[-1])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[1, 4, 3]], 
+     PropagatorDenominator[k4, MMUE]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 2, Classes == 3, Particles == 16, 
+   Number == 104], k1, k2, k3, k4, k5, p, 
+  (((3*I)/256)*DiagMark[MMUE, MT, MSf[2, 4, 3]]*
+    DiracTrace[(MT + DiracSlash[k1]) . 
+      (((-I)*ht*SB*(ChiralityProjector[-1] + ChiralityProjector[1]))/
+       Sqrt[2]) . (MT + DiracSlash[k1]) . 0 . (MMUE + DiracSlash[k4]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MT], 
+     PropagatorDenominator[k1, MT], PropagatorDenominator[k3, MSf[2, 4, 3]], 
+     PropagatorDenominator[k4, MMUE]])/Pi^8], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 1, 
+   Number == 105], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MT, MNeu[1], MSf[1, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 0 . (DiracSlash[-k3] + MNeu[1]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MNeu[1]], PropagatorDenominator[k4, MT]]*(MT + U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 2, Number == 106], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MT, MNeu[2], MSf[1, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 0 . (DiracSlash[-k3] + MNeu[2]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MNeu[2]], PropagatorDenominator[k4, MT]]*(MT + U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 3, Number == 107], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 
+      ((I*ht*(rMUEC*ChiralityProjector[-1]*USfC[1, 1, 3, 3] + 
+         rMUE*ChiralityProjector[1]*USfC[1, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[-k3]) . 
+      ((I*ht*(rMUE*ChiralityProjector[1]*USf[1, 1, 3, 3] + 
+         rMUEC*ChiralityProjector[-1]*USf[1, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, MT]]*(MT + U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 4, Number == 108], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 
+      ((ht*(-(rMUEC*ChiralityProjector[-1]*USfC[1, 1, 3, 3]) + 
+         rMUE*ChiralityProjector[1]*USfC[1, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[-k3]) . 
+      ((ht*(rMUE*ChiralityProjector[1]*USf[1, 1, 3, 3] - 
+         rMUEC*ChiralityProjector[-1]*USf[1, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, MT]]*(MT + U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 5, Number == 109], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MT, MNeu[1], MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 0 . (DiracSlash[-k3] + MNeu[1]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MNeu[1]], PropagatorDenominator[k4, MT]]*U2c1C[Xt])/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 6, Number == 110], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MT, MNeu[1], MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 0 . (DiracSlash[-k3] + MNeu[1]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MNeu[1]], PropagatorDenominator[k4, MT]]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 7, 
+   Number == 111], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MT, MNeu[2], MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 0 . (DiracSlash[-k3] + MNeu[2]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MNeu[2]], PropagatorDenominator[k4, MT]]*U2c1C[Xt])/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 8, Number == 112], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MT, MNeu[2], MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 0 . (DiracSlash[-k3] + MNeu[2]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MNeu[2]], PropagatorDenominator[k4, MT]]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 9, 
+   Number == 113], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 
+      ((I*ht*(rMUEC*ChiralityProjector[-1]*USfC[2, 1, 3, 3] + 
+         rMUE*ChiralityProjector[1]*USfC[2, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[-k3]) . 
+      ((I*ht*(rMUE*ChiralityProjector[1]*USf[1, 1, 3, 3] + 
+         rMUEC*ChiralityProjector[-1]*USf[1, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, MT]]*U2c1C[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 10, 
+   Number == 114], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 
+      ((I*ht*(rMUEC*ChiralityProjector[-1]*USfC[1, 1, 3, 3] + 
+         rMUE*ChiralityProjector[1]*USfC[1, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[-k3]) . 
+      ((I*ht*(rMUE*ChiralityProjector[1]*USf[2, 1, 3, 3] + 
+         rMUEC*ChiralityProjector[-1]*USf[2, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, MT]]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 11, 
+   Number == 115], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 
+      ((ht*(-(rMUEC*ChiralityProjector[-1]*USfC[2, 1, 3, 3]) + 
+         rMUE*ChiralityProjector[1]*USfC[2, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[-k3]) . 
+      ((ht*(rMUE*ChiralityProjector[1]*USf[1, 1, 3, 3] - 
+         rMUEC*ChiralityProjector[-1]*USf[1, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, MT]]*U2c1C[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 12, 
+   Number == 116], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MMUE, MT, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 
+      ((ht*(-(rMUEC*ChiralityProjector[-1]*USfC[1, 1, 3, 3]) + 
+         rMUE*ChiralityProjector[1]*USfC[1, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[-k3]) . 
+      ((ht*(rMUE*ChiralityProjector[1]*USf[2, 1, 3, 3] - 
+         rMUEC*ChiralityProjector[-1]*USf[2, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, MT]]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 13, 
+   Number == 117], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MT, MNeu[1], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 0 . (DiracSlash[-k3] + MNeu[1]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MNeu[1]], PropagatorDenominator[k4, MT]]*(MT - U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 14, Number == 118], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MT, MNeu[2], MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 0 . (DiracSlash[-k3] + MNeu[2]) . 0]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MNeu[2]], PropagatorDenominator[k4, MT]]*(MT - U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 15, Number == 119], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MMUE, MT, MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 
+      ((I*ht*(rMUEC*ChiralityProjector[-1]*USfC[2, 1, 3, 3] + 
+         rMUE*ChiralityProjector[1]*USfC[2, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[-k3]) . 
+      ((I*ht*(rMUE*ChiralityProjector[1]*USf[2, 1, 3, 3] + 
+         rMUEC*ChiralityProjector[-1]*USf[2, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, MT]]*(MT - U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 16, Number == 120], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[MMUE, MT, MSf[2, 3, 3]]*
+    DiracTrace[(MT + DiracSlash[-k4]) . 
+      ((ht*(-(rMUEC*ChiralityProjector[-1]*USfC[2, 1, 3, 3]) + 
+         rMUE*ChiralityProjector[1]*USfC[2, 2, 3, 3]))/Sqrt[2]) . 
+      (MMUE + DiracSlash[-k3]) . 
+      ((ht*(rMUE*ChiralityProjector[1]*USf[2, 1, 3, 3] - 
+         rMUEC*ChiralityProjector[-1]*USf[2, 2, 3, 3]))/Sqrt[2])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, MT]]*(MT - U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 17, Number == 121], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[0, MMUE, MSf[1, 3, 3]]*
+    DiracTrace[DiracSlash[-k4] . (I*ht*ChiralityProjector[1]*
+       USfC[1, 2, 3, 3]) . (MMUE + DiracSlash[-k3]) . 
+      (I*ht*ChiralityProjector[-1]*USf[1, 2, 3, 3])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[1, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, 0]]*(MT + U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 2, Generic == 3, 
+   Classes == 4, Particles == 18, Number == 122], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[0, MMUE, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[DiracSlash[-k4] . (I*ht*ChiralityProjector[1]*
+       USfC[2, 2, 3, 3]) . (MMUE + DiracSlash[-k3]) . 
+      (I*ht*ChiralityProjector[-1]*USf[1, 2, 3, 3])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, 0]]*U2c1C[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 19, 
+   Number == 123], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[0, MMUE, MSf[1, 3, 3], MSf[2, 3, 3]]*
+    DiracTrace[DiracSlash[-k4] . (I*ht*ChiralityProjector[1]*
+       USfC[1, 2, 3, 3]) . (MMUE + DiracSlash[-k3]) . 
+      (I*ht*ChiralityProjector[-1]*USf[2, 2, 3, 3])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[1, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, 0]]*U2c1[Xt])/(128*Sqrt[2]*Pi^8)], 
+ FeynAmp[GraphID[Topology == 2, Generic == 3, Classes == 4, Particles == 20, 
+   Number == 124], k1, k2, k3, k4, k5, p, 
+  (3*ht*SB*DiagMark[0, MMUE, MSf[2, 3, 3]]*
+    DiracTrace[DiracSlash[-k4] . (I*ht*ChiralityProjector[1]*
+       USfC[2, 2, 3, 3]) . (MMUE + DiracSlash[-k3]) . 
+      (I*ht*ChiralityProjector[-1]*USf[2, 2, 3, 3])]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MSf[2, 3, 3]], 
+     PropagatorDenominator[k1, MSf[2, 3, 3]], PropagatorDenominator[k3, 
+      MMUE], PropagatorDenominator[k4, 0]]*(MT - U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 1, Number == 125], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, M0], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, MSf[1, 3, 3]]]*(MT + U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 2, Number == 126], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 3, 
+   Number == 127], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 4, 
+   Number == 128], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, M0], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, MSf[2, 3, 3]]]*(MT - U2s1[Xt]))/
+   (128*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 5, Number == 129], k1, k2, k3, k4, k5, p, 
+  (3*CB*ht^3*S2B*DiagMark[MHp, MSf[1, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MHp], PropagatorDenominator[k3, MSf[1, 3, 3]], 
+     PropagatorDenominator[k4, MSf[1, 3, 3]]]*(MT + U2s1[Yt]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 6, Number == 130], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 7, 
+   Number == 131], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 8, 
+   Number == 132], k1, k2, k3, k4, k5, p, 
+  (3*CB*ht^3*S2B*DiagMark[MHp, MSf[2, 3, 3]]*FeynAmpDenominator[
+     PropagatorDenominator[k1, MHp], PropagatorDenominator[k3, MSf[2, 3, 3]], 
+     PropagatorDenominator[k4, MSf[2, 3, 3]]]*(MT - U2s1[Yt]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 9, Number == 133], k1, k2, k3, k4, k5, p, 
+  (3*CB*ht^3*S2B*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MHp], 
+     PropagatorDenominator[k3, MSf[1, 4, 3]], PropagatorDenominator[k4, 
+      MSf[1, 3, 3]]]*(MT*UCSf[1, 1, 3, 3] + Yt*UCSfC[1, 3, 3, 3]))/
+   (512*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 10, Number == 134], k1, k2, k3, k4, k5, p, 
+  (3*CB*ht^3*S2B*DiagMark[MHp, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MHp], 
+     PropagatorDenominator[k3, MSf[1, 4, 3]], PropagatorDenominator[k4, 
+      MSf[2, 3, 3]]]*(MT*UCSf[1, 2, 3, 3] - Yt*UCSfC[1, 3, 3, 3]))/
+   (512*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 11, Number == 135], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 12, 
+   Number == 136], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 13, 
+   Number == 137], k1, k2, k3, k4, k5, p, 
+  (3*CB*ht^3*S2B*DiagMark[MHp, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MHp], 
+     PropagatorDenominator[k3, MSf[1, 4, 3]], PropagatorDenominator[k4, 
+      MSf[1, 3, 3]]]*(MT*UCSf[1, 1, 3, 3] + YtC*UCSf[1, 3, 3, 3]))/
+   (512*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 14, Number == 138], k1, k2, k3, k4, k5, p, 
+  (3*CB*ht^3*S2B*DiagMark[MHp, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, MHp], 
+     PropagatorDenominator[k3, MSf[1, 4, 3]], PropagatorDenominator[k4, 
+      MSf[2, 3, 3]]]*(MT*UCSf[1, 2, 3, 3] - YtC*UCSf[1, 3, 3, 3]))/
+   (512*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 15, Number == 139], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 16, 
+   Number == 140], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 17, 
+   Number == 141], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, M0], 
+     PropagatorDenominator[k3, MSf[1, 4, 3]], PropagatorDenominator[k4, 
+      MSf[1, 3, 3]]]*(MT*UCSf[1, 1, 3, 3] + Xt*UCSfC[1, 3, 3, 3]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 18, Number == 142], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, M0], 
+     PropagatorDenominator[k3, MSf[1, 4, 3]], PropagatorDenominator[k4, 
+      MSf[2, 3, 3]]]*(MT*UCSf[1, 2, 3, 3] - Xt*UCSfC[1, 3, 3, 3]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 19, Number == 143], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 20, 
+   Number == 144], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 21, 
+   Number == 145], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 3, 3], MSf[1, 4, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, M0], 
+     PropagatorDenominator[k3, MSf[1, 4, 3]], PropagatorDenominator[k4, 
+      MSf[1, 3, 3]]]*(MT*UCSf[1, 1, 3, 3] + XtC*UCSf[1, 3, 3, 3]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 22, Number == 146], k1, k2, k3, k4, k5, p, 
+  (3*ht^3*SB*SB2*DiagMark[0, MSf[1, 4, 3], MSf[2, 3, 3]]*
+    FeynAmpDenominator[PropagatorDenominator[k1, M0], 
+     PropagatorDenominator[k3, MSf[1, 4, 3]], PropagatorDenominator[k4, 
+      MSf[2, 3, 3]]]*(MT*UCSf[1, 2, 3, 3] - XtC*UCSf[1, 3, 3, 3]))/
+   (256*Sqrt[2]*Pi^8)], FeynAmp[GraphID[Topology == 3, Generic == 1, 
+   Classes == 5, Particles == 23, Number == 147], k1, k2, k3, k4, k5, p, 0], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 5, Particles == 24, 
+   Number == 148], k1, k2, k3, k4, k5, p, 0]]

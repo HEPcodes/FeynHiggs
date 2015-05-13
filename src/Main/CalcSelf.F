@@ -1,7 +1,7 @@
 * CalcSelf.F
 * Calculation of the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 16 Jul 14 th
+* last modified 4 May 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -16,13 +16,16 @@
 #include "FH.h"
 #include "OneLoop.h"
 
-#define SelfEnergy(i,f,bX) if( ibits(key,i-1,1) .eq. 1 ) \
-seR(i) = f(p2,bX)+dZ(i)*(p2-Msq(i))-dMsq(i)+se2R(i)+seX(i,hX)
+#define computeSE(i) ibits(key,i-1,1) .eq. 1
+#define SEu(i) se1+se2U(i)
+#define SEr(i) se1+dZ(i)*(p2-Msq(i))-dMsq(i)+se2R(i)+seX(i,hX)
 
-#define DSelfEnergy(i,f,bX) if( ibits(dkey,i-1,1) .eq. 1 ) \
-dseR(i) = f(p2,bX) + dZ(i)
+#define computeDSE(i) ibits(dkey,i-1,1) .eq. 1
+#define DSEu(i) se1
+#define DSEr(i) se1+dZ(i)
 
 	RealType p2
+	ComplexType se1
 	logical onshell
 	integer i
 
@@ -34,7 +37,15 @@ dseR(i) = f(p2,bX) + dZ(i)
 
 	do i = 1, semax
 	  seR(i) = 0
+	enddo
+	do i = 1, semax
 	  dseR(i) = 0
+	enddo
+	do i = 1, semax
+	  seU(i) = 0
+	enddo
+	do i = 1, semax
+	  dseU(i) = 0
 	enddo
 
 * 1) the CP-even bosons h & H + the mixing h-H
@@ -45,80 +56,177 @@ dseR(i) = f(p2,bX) + dZ(i)
 	    call CPevenSEs_MTapprox
 	  else
 	    if( onshell ) p2 = Msq(h0h0)
-	    SelfEnergy(h0h0, se_h0h0, bM0)
-	    DSelfEnergy(h0h0, dse_h0h0, bM0)
+	    if( computeSE(h0h0) ) then
+	      se1 = se_h0h0(p2, bM0)
+	      seU(h0h0) = SEu(h0h0)
+	      seR(h0h0) = SEr(h0h0)
+	    endif
+	    if( computeDSE(h0h0) ) then
+	      se1 = dse_h0h0(p2, bM0)
+	      dseU(h0h0) = DSEu(h0h0)
+	      dseR(h0h0) = DSEr(h0h0)
+	    endif
 
 	    if( onshell ) p2 = Msq(HHHH)
-	    SelfEnergy(HHHH, se_HHHH, bM0)
-	    DSelfEnergy(HHHH, dse_HHHH, bM0)
+	    if( computeSE(HHHH) ) then
+	      se1 = se_HHHH(p2, bM0)
+	      seU(HHHH) = SEu(HHHH)
+	      seR(HHHH) = SEr(HHHH)
+	    endif
+	    if( computeDSE(HHHH) ) then
+	      se1 = dse_HHHH(p2, bM0)
+	      dseU(HHHH) = DSEu(HHHH)
+	      dseR(HHHH) = DSEr(HHHH)
+	    endif
 
 	    if( onshell ) p2 = Msq(h0HH)
-	    SelfEnergy(h0HH, se_h0HH, bM0)
-	    DSelfEnergy(h0HH, dse_h0HH, bM0)
+	    if( computeSE(h0HH) ) then
+	      se1 = se_h0HH(p2, bM0)
+	      seU(h0HH) = SEu(h0HH)
+	      seR(h0HH) = SEr(h0HH)
+	    endif
+	    if( computeDSE(h0HH) ) then
+	      se1 = dse_h0HH(p2, bM0)
+	      dseU(h0HH) = DSEu(h0HH)
+	      dseR(h0HH) = DSEr(h0HH)
+	    endif
 	  endif
 	endif
 
 * 2) the CP-odd boson A
 
 	if( onshell ) p2 = Msq(A0A0)
-	SelfEnergy(A0A0, se_A0A0, bM)
-	DSelfEnergy(A0A0, dse_A0A0, bM)
+	if( computeSE(A0A0) ) then
+	  se1 = se_A0A0(p2, bM)
+	  seU(A0A0) = SEu(A0A0)
+	  seR(A0A0) = SEr(A0A0)
+	endif
+	if( computeDSE(A0A0) ) then
+	  se1 = dse_A0A0(p2, bM)
+	  dseU(A0A0) = DSEu(A0A0)
+	  dseR(A0A0) = DSEr(A0A0)
+	endif
 
 * 3) the CP-violating h-A & H-A mixing
 
 	if( onshell ) p2 = Msq(h0A0)
-	SelfEnergy(h0A0, se_h0A0, bM)
-	DSelfEnergy(h0A0, dse_h0A0, bM)
+	if( computeSE(h0A0) ) then
+	  se1 = se_h0A0(p2, bM)
+	  seU(h0A0) = SEu(h0A0)
+	  seR(h0A0) = SEr(h0A0)
+	endif
+	if( computeDSE(h0A0) ) then
+	  se1 = dse_h0A0(p2, bM)
+	  dseU(h0A0) = DSEu(h0A0)
+	  dseR(h0A0) = DSEr(h0A0)
+	endif
 
 	if( onshell ) p2 = Msq(HHA0)
-	SelfEnergy(HHA0, se_HHA0, bM)
-	DSelfEnergy(HHA0, dse_HHA0, bM)
+	if( computeSE(HHA0) ) then
+	  se1 = se_HHA0(p2, bM)
+	  seU(HHA0) = SEu(HHA0)
+	  seR(HHA0) = SEr(HHA0)
+	endif
+	if( computeDSE(HHA0) ) then
+	  se1 = dse_HHA0(p2, bM)
+	  dseU(HHA0) = DSEu(HHA0)
+	  dseR(HHA0) = DSEr(HHA0)
+	endif
 
 * 4) the charged boson H+
 
-#if 1
 	if( iand(key, SEKey(HmHp)) .ne. 0 .or.
      &      iand(dkey, SEKey(HmHp)) .ne. 0 ) then
 	  if( mssmpart .eq. 0 ) then
 	    call HpSEs_MTapprox
 	  else
 	    if( onshell ) p2 = Msq(HmHp)
-	    SelfEnergy(HmHp, se_HmHp, bM)
-	    DSelfEnergy(HmHp, dse_HmHp, bM)
+	    if( computeSE(HmHp) ) then
+	      se1 = se_HmHp(p2, bM)
+	      seU(HmHp) = SEu(HmHp)
+	      seR(HmHp) = SEr(HmHp)
+	    endif
+	    if( computeDSE(HmHp) ) then
+	      se1 = dse_HmHp(p2, bM)
+	      dseU(HmHp) = DSEu(HmHp)
+	      dseR(HmHp) = DSEr(HmHp)
+	    endif
 	  endif
 	endif
-#else
-	if( onshell ) p2 = Msq(HmHp)
-	SelfEnergy(HmHp, se_HmHp, bM)
-	DSelfEnergy(HmHp, dse_HmHp, bM)
-#endif
 
 * 5) the Goldstones
 
 	if( onshell ) p2 = Msq(G0G0)
-	SelfEnergy(G0G0, se_G0G0, bM)
-	DSelfEnergy(G0G0, dse_G0G0, bM)
+	if( computeSE(G0G0) ) then
+	  se1 = se_G0G0(p2, bM)
+	  seU(G0G0) = SEu(G0G0)
+	  seR(G0G0) = SEr(G0G0)
+	endif
+	if( computeDSE(G0G0) ) then
+	  se1 = dse_G0G0(p2, bM)
+	  dseU(G0G0) = DSEu(G0G0)
+	  dseR(G0G0) = DSEr(G0G0)
+	endif
 
 	if( onshell ) p2 = Msq(h0G0)
-	SelfEnergy(h0G0, se_h0G0, bM)
-	DSelfEnergy(h0G0, dse_h0G0, bM)
+	if( computeSE(h0G0) ) then
+	  se1 = se_h0G0(p2, bM)
+	  seU(h0G0) = DSEu(h0G0)
+	  seR(h0G0) = DSEr(h0G0)
+	endif
+	if( computeDSE(h0G0) ) then
+	  se1 = dse_h0G0(p2, bM)
+	  dseU(h0G0) = DSEu(h0G0)
+	  dseR(h0G0) = DSEr(h0G0)
+	endif
 
 	if( onshell ) p2 = Msq(HHG0)
-	SelfEnergy(HHG0, se_HHG0, bM)
-	DSelfEnergy(HHG0, dse_HHG0, bM)
+	if( computeSE(HHG0) ) then
+	  se1 = se_HHG0(p2, bM)
+	  seU(HHG0) = SEu(HHG0)
+	  seR(HHG0) = SEr(HHG0)
+	endif
+	if( computeDSE(HHG0) ) then
+	  se1 = dse_HHG0(p2, bM)
+	  dseU(HHG0) = DSEu(HHG0)
+	  dseR(HHG0) = DSEr(HHG0)
+	endif
 
 	if( onshell ) p2 = Msq(A0G0)
-	SelfEnergy(A0G0, se_A0G0, bM)
-	DSelfEnergy(A0G0, dse_A0G0, bM)
+	if( computeSE(A0G0) ) then
+	  se1 = se_A0G0(p2, bM)
+	  seU(A0G0) = SEu(A0A0)
+	  seR(A0G0) = SEr(A0G0)
+	endif
+	if( computeDSE(A0G0) ) then
+	  se1 = dse_A0G0(p2, bM)
+	  dseU(A0G0) = DSEu(A0G0)
+	  dseR(A0G0) = DSEr(A0G0)
+	endif
 
 	if( onshell ) p2 = Msq(GmGp)
-	SelfEnergy(GmGp, se_GmGp, bM)
-	DSelfEnergy(GmGp, dse_GmGp, bM)
+	if( computeSE(GmGp) ) then
+	  se1 = se_GmGp(p2, bM)
+	  seU(GmGp) = SEu(GmGp)
+	  seR(GmGp) = SEr(GmGp)
+	endif
+	if( computeDSE(GmGp) ) then
+	  se1 = dse_GmGp(p2, bM)
+	  dseU(GmGp) = DSEu(GmGp)
+	  dseR(GmGp) = DSEr(GmGp)
+	endif
 
 	if( onshell ) p2 = Msq(HmGp)
-	SelfEnergy(HmGp, se_HmGp, bM)
-	DSelfEnergy(HmGp, dse_HmGp, bM)
-
+	if( computeSE(HmGp) ) then
+	  se1 = se_HmGp(p2, bM)
+	  seU(HmGp) = SEu(HmGp)
+	  seR(HmGp) = SEr(HmGp)
+	endif
+	if( computeDSE(HmGp) ) then
+	  se1 = dse_HmGp(p2, bM)
+	  dseU(HmGp) = DSEu(HmGp)
+	  dseR(HmGp) = DSEr(HmGp)
+	endif
 
 	if( p2approx .eq. 3 ) then
 	  do i = 1, semax
@@ -185,9 +293,12 @@ dseR(i) = f(p2,bX) + dZ(i)
 	omega_t = c*(log(MSf(1,tM1,3)*MSf(2,tM1,3)/Mf2(tM1,3)) +
      &    Af(3,3)*(x + Af(3,3)*x2))
 
-	seR(h0h0) = -(SA2*sigma_t + CA2*omega_t - 2*SA*CA*lam_t)
-	seR(HHHH) = -(CA2*sigma_t + SA2*omega_t + 2*SA*CA*lam_t)
-	seR(h0HH) = -((CA2 - SA2)*lam_t + SA*CA*(omega_t - sigma_t))
+	seR(h0h0) = -(SA2*sigma_t + CA2*omega_t - 2*SA*CA*lam_t) +
+     &    seX(h0h0,hX)
+	seR(HHHH) = -(CA2*sigma_t + SA2*omega_t + 2*SA*CA*lam_t) +
+     &    seX(HHHH,hX)
+	seR(h0HH) = -((CA2 - SA2)*lam_t + SA*CA*(omega_t - sigma_t)) +
+     &    seX(h0HH,hX)
 	end
 
 
@@ -232,7 +343,8 @@ dseR(i) = f(p2,bX) + dZ(i)
 	seR(HmHp) = 3/(8.D0*pi)*Mf2(tM1,3)*
      &    AlfaGF/(MW2*SW2*TB2*(Mf2(tM1,3) + ctt**2*MStop2(3)))*
      &    (Mf(tM1,3)*(Af(3,3) + MUE*TB) + ctt*stt*MStop2(3))**2*
-     &    (dmlog + (MSbot12*(log(MSbot12) - 1) - mlog1)/d)
+     &    (dmlog + (MSbot12*(log(MSbot12) - 1) - mlog1)/d) +
+     &    seX(HmHp,hX)
 	end
 
 

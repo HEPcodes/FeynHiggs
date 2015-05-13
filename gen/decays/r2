@@ -1,0 +1,24 @@
+CA2 = CA^2;
+SA2 = SA^2;
+C2A = CA2 - SA2;
+S2A = 2 CA SA;
+
+(*
+Shh = SA2 S11 + CA2 S22 - S2A S12;
+SHH = CA2 S11 + SA2 S22 + S2A S12;
+ShH = C2A S12 + S2A/2 (S22 - S11)
+*)
+
+Y = {{-SA, CA}, {CA, SA}};
+
+iY = Simplify[Inverse[Y], CA^2 + SA^2 == 1]
+
+SE = {{S11, S12}, {S12, S22}};
+SErot = {{Shh, ShH}, {ShH, SHH}}
+
+r1 = Transpose[Y].SE.Y //Simplify;
+t1 := r1 - SErot //Simplify
+
+r2 = Transpose[iY].SErot.iY //Simplify;
+t2 := r2 - SE //Simplify
+

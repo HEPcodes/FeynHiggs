@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 9 Feb 15 th
+		last modified 24 Apr 15 th
 */
 
 
@@ -255,9 +255,9 @@ extern void FORTRAN(fhflavour)(INTEGER *error,
 extern void FORTRAN(fhhiggsprod)(INTEGER *error,
   _fh_Fcr_(sqrts,[1]), _fh_Fr_(prodxs,[nprodxs]));
 
-extern void FORTRAN(fhgetself)(INTEGER *error, _fh_Fcr_(k2,[1]),
+extern void FORTRAN(fhgetself)(INTEGER *error, _fh_Fcc_(k2,[1]),
   CINTEGER *key, _fh_Fc_(sig,[nsig]),
-  CINTEGER *dkey, _fh_Fc_(dsig,[nsig]));
+  CINTEGER *dkey, _fh_Fc_(dsig,[nsig]), CINTEGER *ren);
 
 extern void FORTRAN(fhaddself)(INTEGER *error, CINTEGER *n,
   _fh_Fcc_(sig,[n]), CINTEGER *flags);
@@ -528,16 +528,16 @@ static inline void FHHiggsProd(int *error,
 }
 
 
-static inline void FHGetSelf(int *error, _fh_Ccr_(k2,[1]),
+static inline void FHGetSelf(int *error, _fh_Ccc_(k2,[1]),
   const int key, _fh_Cac_(sig,[nsig]),
-  const int dkey, _fh_Cac_(dsig,[nsig]))
+  const int dkey, _fh_Cac_(dsig,[nsig]), const int ren)
 {
-  _fh_Dr_(k2,[1]);
+  _fh_Dc_(k2,[1]);
   _fh_Dc_(sig,[nsig]);
   _fh_Dc_(dsig,[nsig]);
   _fh_Ir_(k2,[1]);
-  FORTRAN(fhgetself)(error, _fh_Pcr_(k2,[1]),
-    &key, _fh_Pc_(sig,[nsig]), &dkey, _fh_Pc_(dsig,[nsig]));
+  FORTRAN(fhgetself)(error, _fh_Pcc_(k2,[1]),
+    &key, _fh_Pc_(sig,[nsig]), &dkey, _fh_Pc_(dsig,[nsig]), &ren);
   _fh_Oc_(sig,[nsig]);
   _fh_Oc_(dsig,[nsig]);
 }

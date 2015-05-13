@@ -1,0 +1,68 @@
+#! /bin/sh -x
+# takes gaugeless limit of MSSMCT.mod and
+# introduces explicit symbol 'ht' in top Yukawa couplings
+
+in=MSSMCT.mod
+test -f $in.in || exit 1
+out=MSSMCTgl.mod
+rm -f $in $out $0.log*
+
+time math -run in=\"$in\" \
+          -run out=\"$out\" << \_EOF_ > $0.log
+AppendTo[$Echo, "stdout"];
+
+<< FeynArts`;
+<< packages`Gaugeless`;
+<< packages`XtSimplify`;
+<< FormCalc`FormCalc`ModelSpecific`;
+
+
+Xtmod[c_ == rhs_, {n_}] := (
+  Print["Xt #", n, ": ", c];
+  c == XtSimplify[rhs]
+) /; !FreeQ[rhs, (Af | AfC)[3, __]];
+
+Xtmod[other_, _] := other;
+
+
+htmod[c_ == rhs_, {n_}] :=
+Block[ {new},
+  new = Map[NoGaugeCoupling, rhs, {2}];
+  c == If[ FreeQ[new, ht], rhs,
+    Print["ht #", n, ": ", c];
+    Simplify[new /. ht -> htmt MT] /. htmt -> ht/MT ]
+];
+
+htmod[other_, _] := other;
+
+
+removeEM[r_. Alfa p_Plus] := r removeEM[Distribute[Alfa p]] /;
+  !FreeQ[p, Alfa^_?Negative];
+
+removeEM[c_] := c /. Alfa | EL -> 0;
+
+
+LoadModel[in, ".in"];
+
+M$ClassesDescription = M$ClassesDescription /. {
+  S[4] == d_ :> S[4] == (d /. (Mass -> _) -> (Mass -> MG0)),
+  S[6] == d_ :> S[6] == (d /. (Mass -> _) -> (Mass -> MGp)) };
+
+DumpModel[in];
+
+M$CouplingMatrices = Gaugeless[M$CouplingMatrices];
+M$CouplingMatrices = MapIndexed[Xtmod, M$CouplingMatrices];
+M$CouplingMatrices = MapIndexed[htmod, M$CouplingMatrices];
+M$CouplingMatrices = Map[removeEM, M$CouplingMatrices, {4}];
+M$CouplingMatrices = DeleteCases[M$CouplingMatrices, _ == {{0..}..}];
+M$CouplingMatrices = M$CouplingMatrices /.
+  TB -> SB/CB (*/. {SB/CB -> TB, CB/SB -> 1/TB}*);
+
+DumpModel[out];
+
+_EOF_
+
+gzip $0.log
+
+test -f $out
+

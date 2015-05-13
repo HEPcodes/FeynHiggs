@@ -1,0 +1,49 @@
+#! /bin/sh -x
+
+test $# -ne 2 && {
+  cat << _EOF_
+Usage:  $0 se cto
+simplifies the 'se' 2L self-energy
+_EOF_
+  exit 1
+}
+
+in=m/$1/3-calc.$2
+test -f $in || exit 1
+out=m/$1/4-simp.$2
+rm -f $out*
+
+time math -run cto=$2 \
+          -run in=\"$in\" \
+          -run out=\"$out\" << \_EOF_ > $out.log
+AppendTo[$Echo, "stdout"];
+
+<< packages`SimplificationDefinitions`;
+<< packages`FCSettings`;
+
+SetOptions[Simplify, TimeConstraint -> 10];
+
+amp = Get[in];
+
+If[ cto === 1,
+  amp = amp /. {
+    B0[0, 0, 0] -> 0,
+    B0[0, m_, m_] :> (1 - del)/m A0[m],
+    B0[0, m0_, m1_] :> (A0[m1] - A0[m0])/(m1 - m0) } ];
+
+amp = Collect[amp, {ht, del, _DiagMark},
+  MagicSimplify[#, Feedback -> False, SimpSubExpr -> False]&];
+
+simp[x_] := simp[x] = Simplify[x];
+
+amp = Collect[amp, _DiagMark, TermCollect] /.
+  p_Plus :> simp[p] /; LeafCount[p] < 100;
+
+Put[amp, out];
+
+_EOF_
+
+gzip $out.log
+
+test -f $out
+

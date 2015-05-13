@@ -507,9 +507,9 @@
 
 :Begin:
 :Function: mFHGetSelf
-:Pattern: FHGetSelf[p2_, key_, dkey_]
-:Arguments: {N[p2], key, dkey}
-:ArgumentTypes: {Real, Integer, Integer}
+:Pattern: FHGetSelf[p2_, key_, dkey_, ren_]
+:Arguments: {N[Re[p2]], N[Im[p2]], key, dkey, ren}
+:ArgumentTypes: {Real, Real, Integer, Integer, Integer}
 :ReturnType: Manual
 :End:
 
@@ -651,7 +651,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 4 Aug 14 th
+		last modified 24 Apr 15 th
 */
 
 
@@ -1704,14 +1704,14 @@ static void mFHHiggsProd(cRealType sqrts)
 
 /******************************************************************/
 
-static void mFHGetSelf(cRealType p2, cint key, cint dkey)
+static void mFHGetSelf(_Mc_(k2,[1]), cint key, cint dkey, cint ren)
 {
   int error, i;
   ComplexType sig[nsig], dsig[nsig];
 
   BeginRedirect();
 
-  FHGetSelf(&error, p2, key, sig, dkey, dsig);
+  FHGetSelf(&error, _Vc_(k2,[1]), key, sig, dkey, dsig, ren);
 
   EndRedirect();
 
