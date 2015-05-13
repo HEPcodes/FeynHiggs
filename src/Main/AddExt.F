@@ -1,7 +1,7 @@
 * AddExt.F
 * Call external program to provide corrections to the Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 29 Apr 14 th
+* last modified 15 May 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -17,12 +17,12 @@
 	integer error
 	character*(*) cmd
 
-	integer rotate
+	integer rotate, n
 	ComplexType sig(semax,seXmax)
 
 	call flush(6)
 
-	call extself(rotate, sig, cmd,
+	call extself(rotate, n, sig, cmd,
      &    "FHscalefactor", scalefactor,
      &    "FHAlfasMT", AlfasMT,
      &    "FHTB", TB,
@@ -44,6 +44,6 @@
      &    "FHImMUE", Im(MUE),
      &    "-")
 
-	call FHAddSelf(error, seXmax, sig, rotate)
+	call FHAddSelf(error, n, sig, rotate)
 	end
 

@@ -1,7 +1,9 @@
-{Amp[{{S[10, {hno}], k[1], m1, {}}} -> {{V[5, {Glu2}], k[2], 0, {}}, 
-     {V[5, {Glu3}], k[3], 0, {}}}][0], 
- Amp[{{S[10, {hno}], k[1], m1, {}}} -> {{V[5, {Glu2}], k[2], 0, {}}, 
-     {V[5, {Glu3}], k[3], 0, {}}}][
+{Amp[{{S[10, {hno}], k[1], m1, {}}} -> 
+    {{V[5, {Glu2}], k[2], 0, {Sqrt[3]*ColorCharge}}, 
+     {V[5, {Glu3}], k[3], 0, {Sqrt[3]*ColorCharge}}}][0], 
+ Amp[{{S[10, {hno}], k[1], m1, {}}} -> 
+    {{V[5, {Glu2}], k[2], 0, {Sqrt[3]*ColorCharge}}, 
+     {V[5, {Glu3}], k[3], 0, {Sqrt[3]*ColorCharge}}}][
   -((AlfasMH*EL0*Mat[SUN1]*((Sub22[All4, Ind1, Ind2]*Sub3[All4])/12 - 
       (Sub25[All4]*Sub44[All4, Ind1, Ind2])/12)*SumOver[All4, 6]*
      SumOver[Ind1, 3]*SumOver[Ind2, 3])/(MW*Pi*SW)), 
@@ -16,8 +18,8 @@
  {Pair1 -> Pair[ec[2], ec[3]], Pair2 -> Pair[ec[2], k[1]], 
   Pair3 -> Pair[ec[3], k[1]], Eps1 -> Eps[ec[2], ec[3], k[1], k[2]], 
   SUN1 -> SUNT[Glu2, Glu3, 0, 0], Abb3 -> -(m12*Pair1) + 4*Pair2*Pair3, 
-  Abb2 -> -2*Eps1 - m12*Pair1 + 2*Pair2*Pair3, 
-  Abb1 -> 2*Eps1 - m12*Pair1 + 2*Pair2*Pair3}, 
+  Abb1 -> -2*Eps1 - m12*Pair1 + 2*Pair2*Pair3, 
+  Abb2 -> 2*Eps1 - m12*Pair1 + 2*Pair2*Pair3}, 
  {Sub1[All4] -> B0i[bb0, m12, MASf2[All4, bBR], MASf2[All4, bBR]] - 
     4*C0i[cc00, 0, 0, m12, MASf2[All4, bBR], MASf2[All4, bBR], 
       MASf2[All4, bBR]], Sub23[All4] -> 
@@ -53,11 +55,11 @@
     CA*hggDRe[2, Gen4]*XHiggs[hno, 2, uzext], 
   Sub57[Gen4] -> CA*hggU[1, Gen4]*XHiggs[hno, 1, uzext] + 
     SA*hggU[2, Gen4]*XHiggs[hno, 2, uzext], 
-  Sub52[Gen4] -> I*(Abb1 + Abb2)*Sub48[Gen4] + (-Abb1 + Abb2)*SB*
+  Sub52[Gen4] -> I*(Abb1 + Abb2)*Sub48[Gen4] + (Abb1 - Abb2)*SB*
      hggDIm[3, Gen4]*XHiggs[hno, 3, uzext], 
-  Sub53[Gen4] -> I*(Abb1 + Abb2)*Sub45[Gen4] + (-Abb1 + Abb2)*SB*
+  Sub53[Gen4] -> I*(Abb1 + Abb2)*Sub45[Gen4] + (Abb1 - Abb2)*SB*
      hggDRe[3, Gen4]*XHiggs[hno, 3, uzext], 
-  Sub58[Gen4] -> (Abb1 + Abb2)*TB*Sub57[Gen4] - I*(Abb1 - Abb2)*SB*
+  Sub58[Gen4] -> (Abb1 + Abb2)*TB*Sub57[Gen4] + I*(Abb1 - Abb2)*SB*
      hggU[3, Gen4]*XHiggs[hno, 3, uzext], 
   Sub11[Ind1] -> CAB*CB*MW*MZ*(3 - 2*SW2) - 6*CA*CW*Mf2[bBR, Ind1], 
   Sub14[Ind1] -> CAB*CB*MW*MZ*SW2 - 3*CA*CW*Mf2[bBR, Ind1], 

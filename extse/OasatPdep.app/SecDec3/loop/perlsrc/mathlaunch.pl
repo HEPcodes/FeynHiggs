@@ -24,7 +24,7 @@
 
 
 
-system("/home/pcl301/hahn/fh-2a/math/math <$ARGV[0] >$ARGV[1]");
+system("/Applications/Mathematica.app/Contents/MacOS/MathKernel <$ARGV[0] >$ARGV[1]");
 $exer=$?>>8;
 if($exer==127){print "Path for Mathematica was not determined";exit 127};
 # 

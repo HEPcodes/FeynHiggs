@@ -1,6 +1,6 @@
 * dse_h0G0.F
 * this file is part of FeynHiggs
-* generated 05 Nov 2013 19:22
+* generated 13 May 2014 09:33
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 	ComplexType dse_h0G0_mfv, dse_h0G0_nmfv
 	external dse_h0G0_mfv, dse_h0G0_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  dse_h0G0 = dse_h0G0_mfv(k2, bX)
 	else
 	  dse_h0G0 = dse_h0G0_nmfv(k2, bX)
@@ -206,11 +206,11 @@
 
 	dup16 = CB*ZNeuC(Neu4,3) + SB*ZNeuC(Neu4,4)
 
-        dup17 = cI*(dup10*(dup12*dup14 + dup11*dup15)*dup5 + 
-     &      dup12*dup14*dup7*dup8 - 
-     &      dup13*dup14*(dup6*dup8 + dup5*dup9) - 
+        dup17 = cI*(dup10*(dup12*dup14 + dup11*dup15)*dup5 - 
      &      dup11*((dup16*dup6 - dup15*dup7)*dup8 + 
-     &         dup16*dup5*dup9))
+     &         dup16*dup5*dup9) + 
+     &      dup14*(dup12*dup7*dup8 - dup13*(dup6*dup8 + dup5*dup9))
+     &      )
 
         dse_h0G0_mfv = dse_h0G0_mfv - 
      &    1/(16.D0*Pi)*(Alfa1L*
@@ -451,11 +451,11 @@
 
 	dup16 = CB*ZNeuC(Neu4,3) + SB*ZNeuC(Neu4,4)
 
-        dup17 = cI*(dup10*(dup12*dup14 + dup11*dup15)*dup5 + 
-     &      dup12*dup14*dup7*dup8 - 
-     &      dup13*dup14*(dup6*dup8 + dup5*dup9) - 
+        dup17 = cI*(dup10*(dup12*dup14 + dup11*dup15)*dup5 - 
      &      dup11*((dup16*dup6 - dup15*dup7)*dup8 + 
-     &         dup16*dup5*dup9))
+     &         dup16*dup5*dup9) + 
+     &      dup14*(dup12*dup7*dup8 - dup13*(dup6*dup8 + dup5*dup9))
+     &      )
 
         dse_h0G0_nmfv = dse_h0G0_nmfv - 
      &    1/(16.D0*Pi)*(Alfa1L*

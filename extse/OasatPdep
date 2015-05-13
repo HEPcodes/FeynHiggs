@@ -4,7 +4,7 @@
 # for use with FeynHiggs
 #
 # File written by S. Borowka, Feb 2014
-# last modified 29 Apr 14 th
+# last modified 2 May 14 th
 #
 # Notes:
 # - the imaginary part of SecDec results plays no crucial role in the 
@@ -18,7 +18,7 @@ root=$PWD
 cat << _EOF_ 1>&2
  SecDec is computing the k^2-dependent 2-loop Higgs self-energies.
  This may take up to a few minutes.
- Please cite arXiv:1204.4152, 1404.xxxx.
+ Please cite arXiv:1204.4152, 1404.7074.
 _EOF_
 
 test "`echo "0${FHImUSt11#-} + 0${FHImUSt12#-} > .000001" | bc`" = 1 &&

@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 26 Mar 14 th
+* last modified 4 Aug 14 th
 
 
 #ifndef SignSq
@@ -9,7 +9,7 @@
 #define SignSqrt(x) sign(sqrt(abs(Re(x))),Re(x))
 #define signbit(i) ibits(i,31,1)
 #define Delta(i,j) signbit(ieor(i,j)-1)
-#define Key(se) 2**(se-1)
+#define SEKey(se) 2**(se-1)
 
 #define LOOP(var,from,to,step) do var = from, to, step
 #define ENDLOOP(var) enddo
@@ -49,7 +49,7 @@
 #define UASf_flat(i,t) CSf(i+39,t)
 #define DSS2(s,t,g) Sf(s+2*(g)+148,t)
 #define Kf(g1,g2,t) CSf(g1+3*(g2)+75,t)
-#define Kfflat(i,t) CSf(i+78,t)
+#define Kf_flat(i,t) CSf(i+78,t)
 #define Deltaf(t,g) CSf(g+87,t)
 #define CKM(g1,g2) CSf(g1+3*(g2)+84,1)
 #define CKM_flat(i) CSf(i+87,1)
@@ -208,6 +208,12 @@
 * sfermion parameters, but all variables which need to be
 * conserved during FHUncertainties.
 
+	character*(*) sfstr
+	parameter (sfstr =
+     &    "nu  e   u   d   bBR tT  bTR bTR0tH  bH  bHR ")
+
+#define SfType(t) sfstr(t*4-3:t*4)
+
 * Sf(*,1) = Sneutrino				- set in Para.F
 * Sf(*,2) = Slepton				- set in Para.F
 * Sf(*,3) = Sup with MT(pole)			- set in Sfermions.F
@@ -254,10 +260,10 @@
 	parameter (G0G0 = 8, h0G0 = 9, HHG0 = 10, A0G0 = 11)
 	parameter (GmGp = 12, HmGp = 13)
 	parameter (semax = HmGp)
-	parameter (cpeven = Key(h0h0) + Key(HHHH) + Key(h0HH))
-	parameter (cpodd = Key(A0A0) + Key(h0A0) + Key(HHA0))
-	parameter (goldstones = Key(G0G0) + Key(h0G0) +
-     &    Key(HHG0) + Key(A0G0))
+	parameter (cpeven = SEKey(h0h0) + SEKey(HHHH) + SEKey(h0HH))
+	parameter (cpodd = SEKey(A0A0) + SEKey(h0A0) + SEKey(HHA0))
+	parameter (goldstones = SEKey(G0G0) + SEKey(h0G0) +
+     &    SEKey(HHG0) + SEKey(A0G0))
 
 	integer NNeutral, NCharged, NHiggs
 	parameter (NNeutral = 3)
@@ -308,7 +314,7 @@
 	integer hX, seXflags
 	common /userdata/ seX, hX, seXflags
 
-	ComplexType seX_flat(-semax+1:semax*seXmax)
+	ComplexType seX_flat(semax*(seXmax + 1))
 	equivalence (seX, seX_flat)
 
 

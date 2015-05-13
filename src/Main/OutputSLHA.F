@@ -1,7 +1,7 @@
 * OutputSLHA.F
 * fill SLHA data structure from FeynHiggs inputs and outputs
 * this file is part of FeynHiggs
-* last modified 1 Aug 13 th
+* last modified 15 May 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -91,7 +91,7 @@
 	else
 	  ModSel_CPV = 2
 	endif
-	ModSel_FV = ibits(-fv, 15, 1)
+	ModSel_FV = signbit(-fv)
 
 	SPInfo_NLines = 0
 	DCInfo_NLines = 0

@@ -2,7 +2,7 @@
 
 cd `dirname ${BASH_SOURCE[0]}`
 
-/home/pcl301/hahn/fh-2a/math/math <<\_EOF_
+/Applications/Mathematica.app/Contents/MacOS/MathKernel <<\_EOF_
 (*AppendTo[$Echo, "stderr"];*)
 
 EG4Pi = 1;
@@ -12,9 +12,9 @@ SetOptions[MagicSimplify, Feedback -> False];
 
 (* simplifying definitions contained in Sij_eff *)
 
-<< analytexpr/T134m123.m;
-<< analytexpr/T234m100.m;
-<< analytexpr/B0_gudrun.m;
+<< analytexpr/definitions.m;
+<< analytexpr/oneloop.m;
+<< analytexpr/twoloop.m;
 
 << analytexpr/oasatpdepwithoutGrams.m;
 

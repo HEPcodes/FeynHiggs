@@ -1362,11 +1362,11 @@ the correction to the bottom Yukawa coupling, $\Delta_b$.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ROUTINE{FHGetNMFV}
+\ROUTINE{FHGetFV}
 
 \DESCRIPTION
 
-\CODE{FHGetNMFV} returns the NMFV SUSY breaking parameters computed from the
+\CODE{FHGetFV} returns the FV SUSY breaking parameters computed from the
 deltas set by \CODE{FHSetNMFV} and \CODE{FHSetLFV}.  In the MFV case, the
 matrices are returned in the same way only that they are diagonal.
 
@@ -1376,19 +1376,19 @@ matrices are returned in the same way only that they are diagonal.
 integer error
 double complex MSS2(3,3,5), Kf(3,3,2:4)
 
-subroutine FHGetNMFV(error, MSS2, Kf)
+subroutine FHGetFV(error, MSS2, Kf)
 \end{verbatim}
 
 \MSYNOPSIS
 
 \begin{verbatim}
-FHGetNMFV[]
+FHGetFV[]
 \end{verbatim}
 
 \ARGUMENTS
 
 \VAROUT{integer error}
-zero if successful, otherwise the line number in \CODE{GetNMFV.F}
+zero if successful, otherwise the line number in \CODE{GetFV.F}
 from which the error message was emitted.
 
 \VAROUT{double complex MSS2($g_1$,$g_2$,$n$)}

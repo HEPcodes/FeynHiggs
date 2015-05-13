@@ -1,6 +1,6 @@
 * td_A0.F
 * this file is part of FeynHiggs
-* generated 05 Nov 2013 19:22
+* generated 13 May 2014 09:33
 
 #include "externals.h"
 #include "types.h"
@@ -17,7 +17,7 @@
 	ComplexType td_A0_mfv, td_A0_nmfv
 	external td_A0_mfv, td_A0_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  td_A0 = td_A0_mfv(bX)
 	else
 	  td_A0 = td_A0_nmfv(bX)
@@ -119,10 +119,10 @@
 	LOOP(Neu2, 1,4,1)
 
         td_A0_mfv = td_A0_mfv + 
-     &    cI/(16.D0*Pi**2)*(EL1L*A0(MNeu2(Neu2))*MNeu(Neu2)*
-     &        ((SW*ZNeu(Neu2,1) - CW*ZNeu(Neu2,2))*
+     &    cI/(32.D0*Pi**2)*(EL1L*A0(MNeu2(Neu2))*MNeu(Neu2)*
+     &        (2*(SW*ZNeu(Neu2,1) - CW*ZNeu(Neu2,2))*
      &           (SB*ZNeu(Neu2,3) - CB*ZNeu(Neu2,4)) - 
-     &          (SW*ZNeuC(Neu2,1) - CW*ZNeuC(Neu2,2))*
+     &          2*(SW*ZNeuC(Neu2,1) - CW*ZNeuC(Neu2,2))*
      &           (SB*ZNeuC(Neu2,3) - CB*ZNeuC(Neu2,4))))/(CW*SW)
 
 	ENDLOOP(Neu2)

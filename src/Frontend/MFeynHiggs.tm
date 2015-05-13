@@ -51,8 +51,8 @@
 :Evaluate: FHGetTLPara::usage =
 	"FHGetTLPara returns parameters used in the internal computation of the neutral Higgs masses in FeynHiggs."
 
-:Evaluate: FHGetNMFV::usage =
-	"FHGetNMFV returns the parameters computed by FHSetNMFV."
+:Evaluate: FHGetFV::usage =
+	"FHGetFV returns the parameters computed by FHSetNMFV and FHSetLFV."
 
 :Evaluate: FHHiggsCorr::usage =
 	"FHHiggsCorr computes the Higgs masses and mixings."
@@ -125,10 +125,12 @@
 
 :Evaluate: FHAbort[f_Symbol] := (Message[f::badsyntax]; Abort[])
 
+:Evaluate: FHWrite[s_String] := WriteString[$Output, s]
+
 :Evaluate: General::badsyntax =
 	"Probably not all arguments have numerical values."
 
-:Evaluate: MapIndexed[(Key[#] = 2^(#2[[1]] - 1))&,
+:Evaluate: MapIndexed[(SEKey[#] = 2^(#2[[1]] - 1))&,
 	SelfID = {h0h0, HHHH, A0A0, HmHp,
 	  h0HH, h0A0, HHA0,
 	  G0G0, h0G0, HHG0, A0G0,
@@ -448,8 +450,8 @@
 :End:
 
 :Begin:
-:Function: mFHGetNMFV
-:Pattern: FHGetNMFV[]
+:Function: mFHGetFV
+:Pattern: FHGetFV[]
 :Arguments: {}
 :ArgumentTypes: {}
 :ReturnType: Manual
@@ -511,10 +513,12 @@
 :ReturnType: Manual
 :End:
 
+:Evaluate: mSElist[sig_] := Transpose[Through[{Re, Im}[PadRight[sig, 13]]]]
+
 :Begin:
 :Function: mFHAddSelf
-:Pattern: FHAddSelf[sig_List, rotate_]
-:Arguments: {Flatten[Transpose[{Re[sig], Im[sig]}]], rotate}
+:Pattern: FHAddSelf[sig__List, flags_]
+:Arguments: {Flatten[mSElist/@ {sig}], flags}
 :ArgumentTypes: {RealList, Integer}
 :ReturnType: Manual
 :End:
@@ -647,7 +651,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 7 Oct 13 th
+		last modified 4 Aug 14 th
 */
 
 
@@ -658,6 +662,7 @@
 #include <unistd.h>
 #include <fcntl.h>
 #include <pthread.h>
+#include <sys/socket.h>
 
 #include "mathlink.h"
 #ifndef MLCONST
@@ -702,65 +707,52 @@ typedef const long len_t;
 #define _Lac_(v,d) ComplexType v d
 #define _La_(f) f(_s_, _Lr_, _Lc_, _Lar_, _Lac_)
 
+
+static int stdoutorig, stdoutpipe[2], stdoutthr;
+
 extern void FORTRAN(fortranflush)();
+
+#define BeginRedirect() \
+  dup2(stdoutpipe[1], 1)
+
+#define EndRedirect() \
+  FORTRAN(fortranflush)(); \
+  fflush(stdout); \
+  if( stdoutthr ) { \
+    char eot = 0; \
+    write(1, &eot, 1); \
+    read(1, &eot, 1); \
+  } \
+  dup2(stdoutorig, 1)
 
 /******************************************************************/
 
-static int forcestderr = 0;
-static int stdoutorig;
-static int stdoutpipe[2];
-static pthread_t stdouttid;
-
-static void *MLstdout(void *fd)
+static void *MLstdout(void *pfd)
 {
-  static byte *buf = NULL;
-  static long size = 0;
+  int fd = ((int *)pfd)[0];
+  byte *buf = NULL;
+  long size = 0;
   enum { unit = 10240 };
   long len = 0, n = 0;
 
   do {
-    len += n;
     if( size - len < 128 ) buf = realloc(buf, size += unit);
-    n = read(*(int *)fd, buf + len, size - len);
+    len += n = read(fd, buf + len, size - len);
+    if( len > 0 && buf[len-1] == 0 ) {
+      if( len > 1 ) {
+        MLPutFunction(stdlink, "EvaluatePacket", 1);
+        MLPutFunction(stdlink, "FHWrite", 1);
+        MLPutByteString(stdlink, buf, len - 1);
+        MLEndPacket(stdlink);
+        MLNextPacket(stdlink);
+        MLNewPacket(stdlink);
+      }
+      len = 0;
+      write(fd, "", 1);
+    }
   } while( n > 0 );
 
-  if( len ) {
-    MLPutFunction(stdlink, "EvaluatePacket", 1);
-    MLPutFunction(stdlink, "WriteString", 2);
-    MLPutString(stdlink, "stdout");
-    MLPutByteString(stdlink, buf, len);
-    MLEndPacket(stdlink);
-
-    MLNextPacket(stdlink);
-    MLNewPacket(stdlink);
-  }
-
   return NULL;
-}
-
-/******************************************************************/
-
-static inline void BeginRedirect()
-{
-  if( forcestderr == 0 &&
-      pipe(stdoutpipe) == 0 &&
-      pthread_create(&stdouttid, NULL, MLstdout, stdoutpipe) == 0 ) {
-    dup2(stdoutpipe[1], 1);
-    close(stdoutpipe[1]);
-  }
-  else dup2(2, 1);
-}
-
-/******************************************************************/
-
-static void EndRedirect()
-{
-  void *ret;
-
-  FORTRAN(fortranflush)();
-  fflush(stdout);
-  dup2(stdoutorig, 1);
-  if( stdouttid ) pthread_join(stdouttid, &ret);
 }
 
 /******************************************************************/
@@ -1393,14 +1385,14 @@ static void mFHGetTLPara(void)
 
 /******************************************************************/
 
-static void mFHGetNMFV(void)
+static void mFHGetFV(void)
 {
   int error, t, n;
-  _La_(argsGetNMFV);
+  _La_(argsGetFV);
 
   BeginRedirect();
 
-  FHGetNMFV(&error, _Ra_(argsGetNMFV));
+  FHGetFV(&error, _Ra_(argsGetFV));
 
   EndRedirect();
 
@@ -1753,15 +1745,15 @@ static void mFHGetSelf(cRealType p2, cint key, cint dkey)
 
 /******************************************************************/
 
-static void mFHAddSelf(RealType *sig, len_t sig_len, cint rotate)
+static void mFHAddSelf(RealType *sig, len_t sig_len, cint flags)
 {
-  int error = 999;
+  int error;
 
-  if( sig_len == 2*nsig ) {
-    BeginRedirect();
-    FHAddSelf(&error, (cComplexType *)sig, rotate);
-    EndRedirect();
-  }
+  BeginRedirect();
+
+  FHAddSelf(&error, sig_len/(2*nsig), (cComplexType *)sig, flags);
+
+  EndRedirect();
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -2024,15 +2016,28 @@ static void mFHSelectUZ(cint uzint, cint uzext, cint mfeff)
 
 int main(int argc, char **argv)
 {
-  int fd;
+  int fd, ret;
+  pthread_t stdouttid;
+  void *thr_ret;
 
 	/* make sure a pipe will not overlap with 0, 1, 2 */
   do { fd = open("/dev/null", O_WRONLY); } while( fd <= 2 );
   close(fd);
 
-  if( getenv("FHFORCESTDERR") ) forcestderr = 1;
   stdoutorig = dup(1);
 
-  return MLMain(argc, argv);
+  stdoutthr = getenv("FHFORCESTDERR") == NULL &&
+    socketpair(AF_UNIX, SOCK_STREAM, 0, stdoutpipe) != -1 &&
+    pthread_create(&stdouttid, NULL, MLstdout, stdoutpipe) == 0;
+  if( stdoutthr == 0 ) stdoutpipe[1] = 2;
+
+  ret = MLMain(argc, argv);
+
+  if( stdoutthr ) {
+    close(stdoutpipe[1]);
+    pthread_join(stdouttid, &thr_ret);
+  }
+
+  return ret;
 }
 

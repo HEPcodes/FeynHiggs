@@ -3,7 +3,7 @@
 		starts the pager to view FeynHiggs
 		Frontend output
 		this file is part of FeynHiggs
-		last modified 20 Jul 11 th
+		last modified 4 Aug 14 th
 */
 
 
@@ -14,7 +14,9 @@
 
 
 #if NOUNDERSCORE
+#undef pageron_
 #define pageron_ pageron
+#undef pageroff_
 #define pageroff_ pageroff
 #endif
 

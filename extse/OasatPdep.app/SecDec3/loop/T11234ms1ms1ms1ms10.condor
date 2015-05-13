@@ -1,0 +1,6 @@
+executable = T11234ms1ms1ms1ms10.sh
+universe = vanilla
+requirements = Machine == "pcl301a.mppmu.mpg.de" || Machine == "pcl346b.mppmu.mpg.de" || Machine == "pcl316a.mppmu.mpg.de" || Machine == "pcl347.mppmu.mpg.de" || Machine == "pcl322.mppmu.mpg.de" || Machine == "pcl317.mppmu.mpg.de"
+nice_user = True
+notification = Never
+queue

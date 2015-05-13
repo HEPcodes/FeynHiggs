@@ -1,6 +1,6 @@
 * se_WW.F
 * this file is part of FeynHiggs
-* generated 05 Nov 2013 19:22
+* generated 13 May 2014 09:33
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 	ComplexType se_WW_mfv, se_WW_nmfv
 	external se_WW_mfv, se_WW_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  se_WW = se_WW_mfv(k2, bX)
 	else
 	  se_WW = se_WW_nmfv(k2, bX)
@@ -113,11 +113,10 @@
 
         se_WW_mfv = se_WW_mfv - 
      &    3/(4.D0*Pi)*(Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
-     &        (2*tmp5 + k2*tmp6 + A0(Mf2(bX,Gen4)) - 
-     &          2*B00(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3)) - 
-     &          k2*B1(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3)) + 
-     &          tmp4*(k2 - Mf2(tM1,Gen3)) - 
-     &          B0(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3))*
+     &        (2*tmp5 + A0(Mf2(bX,Gen4)) - 
+     &          2*B00(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3)) + 
+     &          k2*(tmp6 - B1(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3))) + 
+     &          (tmp4 - B0(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3)))*
      &           (k2 - Mf2(tM1,Gen3))))/SW2
 
 	ENDLOOP(Gen4)
@@ -325,11 +324,10 @@
 
         se_WW_nmfv = se_WW_nmfv - 
      &    3/(4.D0*Pi)*(Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
-     &        (2*tmp8 + k2*tmp9 + A0(Mf2(bX,Gen4)) - 
-     &          2*B00(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3)) - 
-     &          k2*B1(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3)) + 
-     &          tmp7*(k2 - Mf2(tM1,Gen3)) - 
-     &          B0(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3))*
+     &        (2*tmp8 + A0(Mf2(bX,Gen4)) - 
+     &          2*B00(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3)) + 
+     &          k2*(tmp9 - B1(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3))) + 
+     &          (tmp7 - B0(k2,Mf2(bX,Gen4),Mf2(tM1,Gen3)))*
      &           (k2 - Mf2(tM1,Gen3))))/SW2
 
 	ENDLOOP(Gen4)
@@ -391,25 +389,28 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se_WW_nmfv = se_WW_nmfv + 
+        se_WW_nmfv = se_WW_nmfv - 
      &    1/(16.D0*Pi)*(Alfa1L*
-     &        (A0(MA02) + A0(Mh02) + A0(MHH2) + 
-     &          (1 + 12*CW2)*A0(MZ2) + 
-     &          2*(A0(MHp2) + 3*A0(MW2) + 
-     &             2*(MW2*(SBA2*B0(k2,Mh02,MW2) + 
-     &                   CBA2*B0(k2,MHH2,MW2)) - 
-     &                B00(k2,MA02,MHp2) - 
-     &                SBA2*
-     &                 (B00(k2,Mh02,MW2) + B00(k2,MHH2,MHp2)) - 
-     &                CBA2*
-     &                 (B00(k2,Mh02,MHp2) + B00(k2,MHH2,MW2)) - 
-     &                SW2*((3*k2 - MW2)*B0(k2,0.D0,MW2) + 
-     &                   ((CW2**2*(3*k2 + 2*MZ2) - MW2*SW2**2)*
-     &                      B0(k2,MW2,MZ2))/(CW2*SW2) + 
-     &                   8*B00(k2,MW2,0.D0)) - 
-     &                8*CW2*B00(k2,MW2,MZ2) - B00(k2,MZ2,MW2) + 
-     &                2*k2*(SW2*B1(k2,MW2,0.D0) + CW2*B1(k2,MW2,MZ2))
-     &                ))))/SW2
+     &        (4*(CW2**2*(3*k2 + 2*MZ2) - MW2*SW2**2)*
+     &           B0(k2,MW2,MZ2) - 
+     &          CW2*(A0(MA02) + A0(Mh02) + A0(MHH2) + 
+     &             (1 + 12*CW2)*A0(MZ2) + 
+     &             2*(A0(MHp2) + 3*A0(MW2) + 
+     &                2*(MW2*
+     &                    (SBA2*B0(k2,Mh02,MW2) + 
+     &                      CBA2*B0(k2,MHH2,MW2)) - 
+     &                   B00(k2,MA02,MHp2) - 
+     &                   SBA2*
+     &                    (B00(k2,Mh02,MW2) + B00(k2,MHH2,MHp2)) - 
+     &                   CBA2*
+     &                    (B00(k2,Mh02,MHp2) + B00(k2,MHH2,MW2)) - 
+     &                   SW2*
+     &                    ((3*k2 - MW2)*B0(k2,0.D0,MW2) + 
+     &                      8*B00(k2,MW2,0.D0)) - 
+     &                   8*CW2*B00(k2,MW2,MZ2) - B00(k2,MZ2,MW2) + 
+     &                   2*k2*
+     &                    (SW2*B1(k2,MW2,0.D0) + CW2*B1(k2,MW2,MZ2)))
+     &                ))))/(CW2*SW2)
 
 	LOOP(Cha3, 1,2,1)
 

@@ -82,6 +82,7 @@ typedef std::complex<RealType> ComplexType;
 #define ToComplex2(r,i) ComplexType(r, i)
 #define Re(x) std::real(x)
 #define Im(x) std::imag(x)
+#define Conjugate(x) std::conj(x)
 
 #elif __STDC_VERSION__ >= 199901L
 
@@ -89,8 +90,15 @@ typedef std::complex<RealType> ComplexType;
 typedef RealType complex ComplexType;
 #define ToComplex(c) (ToReal((c).re) + I*ToReal((c).im))
 #define ToComplex2(r,i) (r + I*(i))
+#if QUAD
+#define Re(x) creall(x)
+#define Im(x) cimagl(x)
+#define Conjugate(x) conjl(x)
+#else
 #define Re(x) creal(x)
 #define Im(x) cimag(x)
+#define Conjugate(x) conj(x)
+#endif
 
 #else
 
@@ -99,6 +107,7 @@ typedef struct { RealType re, im; } ComplexType;
 #define ToComplex2(r,i) (ComplexType){r, i}
 #define Re(x) (x).re
 #define Im(x) (x).im
+#define Conjugate(x) (ComplexType){(x).re, -(x).im}
 
 #endif
 

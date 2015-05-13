@@ -3,7 +3,7 @@
 		caching of tensor coefficients in
 		dynamically allocated memory
 		this file is part of FeynHiggs
-		last modified 21 Sep 12 th
+		last modified 4 Aug 14 th
 */
 
 
@@ -16,7 +16,9 @@
 
 
 #if NOUNDERSCORE
+#undef cachelookup_
 #define cachelookup_ cachelookup
+#undef cachecopy_
 #define cachecopy_ cachecopy
 #endif
 

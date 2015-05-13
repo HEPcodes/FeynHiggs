@@ -15,7 +15,7 @@ mma1: lib MFeynHiggs$(EXE)
 MAIN = SetFlags.o RetrieveFlags.o \
   SetSMPara.o RetrieveSMPara.o GetSMPara.o \
   SetPara.o RetrievePara.o RetrieveOSPara.o GetPara.o GetTLPara.o \
-  SetFV.o RetrieveFV.o GetNMFV.o SetSLHA.o \
+  SetFV.o RetrieveFV.o GetFV.o SetSLHA.o \
   Para.o Sfermions.o SetDebug.o SetExt.o GetSelf.o HiggsCorr.o \
   Uncertainties.o Couplings.o SelectUZ.o Constraints.o Flavour.o \
   HiggsProd.o CalcSelf.o AddSelf.o AddExt.o Error.o DRbartoOS.o \
@@ -344,7 +344,8 @@ MFeynHiggs$(EXE): MFeynHiggs$(QUAD).tm CFeynHiggs.h CSLHA.h fcc fortranflush.o l
 	CC="./fcc" REALCC="$(CC) $(CFLAGS)" \
 	CXX="./f++" REALCXX="$(CXX) $(CXXFLAGS)" \
 	PATH="$$PATH:." \
-	  mcc -o MFeynHiggs$(EXE) $(MCFLAGS) -DQUAD=0$(QUAD) MFeynHiggs$(QUAD).tm fortranflush.o libFH.a
+	  mcc -o MFeynHiggs$(EXE) $(MCFLAGS) -DQUAD=0$(QUAD) MFeynHiggs$(QUAD).tm \
+	    fortranflush.o libFH.a $(MCLIBS)
 	rm -f MFeynHiggs$(QUAD).tm.*
 
 MFeynHiggs1.tm: MFeynHiggs.tm

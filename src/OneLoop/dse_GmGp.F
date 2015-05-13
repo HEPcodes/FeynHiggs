@@ -1,6 +1,6 @@
 * dse_GmGp.F
 * this file is part of FeynHiggs
-* generated 05 Nov 2013 19:22
+* generated 13 May 2014 09:33
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 	ComplexType dse_GmGp_mfv, dse_GmGp_nmfv
 	external dse_GmGp_mfv, dse_GmGp_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  dse_GmGp = dse_GmGp_mfv(k2, bX)
 	else
 	  dse_GmGp = dse_GmGp_nmfv(k2, bX)
@@ -335,18 +335,18 @@
 	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
 
-        dse_GmGp_nmfv = dse_GmGp_nmfv - 
+        dse_GmGp_nmfv = dse_GmGp_nmfv + 
      &    3/(8.D0*Pi)*(Alfa1L*tmp5*CKMin(Ind1,Ind2)*
      &        CKMinC(Ind3,Ind4)*UASf(All4,Ind4,bX)*
-     &        (MUEC*Mf(tM1,Ind1)*UASf(All3,3 + Ind1,tM1)*
+     &        (TB2*(C2B*MW2 + Mf2(tM1,Ind1))*UASf(All3,Ind1,tM1)*
      &           (TB*(C2B*MW2 + Mf2(tM1,Ind3))*
      &              UASfC(All3,Ind3,tM1) - 
      &             MUE*Mf(tM1,Ind3)*UASfC(All3,3 + Ind3,tM1)) - 
-     &          (C2B*MW2 + Mf2(tM1,Ind1))*UASf(All3,Ind1,tM1)*
+     &          MUEC*Mf(tM1,Ind1)*UASf(All3,3 + Ind1,tM1)*
      &           (TB2*(C2B*MW2 + Mf2(tM1,Ind3))*
      &              UASfC(All3,Ind3,tM1) - 
      &             MUE*TB*Mf(tM1,Ind3)*UASfC(All3,3 + Ind3,tM1)))*
-     &        UASfC(All4,Ind2,bX))/(MW2*SW2*TB2)
+     &        UASfC(All4,Ind2,bX))/(MW2*SW2*TB*TB2)
 
 	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
@@ -371,15 +371,15 @@
      &    3/(8.D0*Pi)*(Alfa1L*tmp6*CKMin(Ind1,Ind2)*
      &        CKMinC(Ind3,Ind4)*UASf(All4,Ind4,bX)*
      &        (Kf(Ind1,Ind5,tM1)*UASf(All3,3 + Ind5,tM1)*
-     &           (TB2*(C2B*MW2 + Mf2(tM1,Ind3))*
+     &           (TB*(C2B*MW2 + Mf2(tM1,Ind3))*
      &              UASfC(All3,Ind3,tM1) - 
-     &             MUE*TB*Mf(tM1,Ind3)*UASfC(All3,3 + Ind3,tM1)) + 
+     &             MUE*Mf(tM1,Ind3)*UASfC(All3,3 + Ind3,tM1)) + 
      &          KfC(Ind3,Ind5,tM1)*
-     &           (TB2*(C2B*MW2 + Mf2(tM1,Ind1))*
+     &           (TB*(C2B*MW2 + Mf2(tM1,Ind1))*
      &              UASf(All3,Ind1,tM1) - 
-     &             MUEC*TB*Mf(tM1,Ind1)*UASf(All3,3 + Ind1,tM1))*
+     &             MUEC*Mf(tM1,Ind1)*UASf(All3,3 + Ind1,tM1))*
      &           UASfC(All3,3 + Ind5,tM1))*UASfC(All4,Ind2,bX))/
-     &      (MW2*SW2*TB2)
+     &      (MW2*SW2*TB)
 
 	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
@@ -469,29 +469,29 @@
         dse_GmGp_nmfv = dse_GmGp_nmfv - 
      &    3/(8.D0*Pi)*(Alfa1L*tmp12*CKMin(Ind1,Ind2)*
      &        CKMinC(Ind3,Ind4)*
-     &        ((((TB2*(dup1*Mf2(bX,Ind2) + 
+     &        ((((TB*(dup1*Mf2(bX,Ind2) + 
      &                      Mf2(bX,Ind4)*(C2B*MW2 + Mf2(tM1,Ind1)))
      &                     *UASf(All3,Ind1,tM1) - 
-     &                   MUEC*TB*Mf(tM1,Ind1)*Mf2(bX,Ind4)*
+     &                   MUEC*Mf(tM1,Ind1)*Mf2(bX,Ind4)*
      &                    UASf(All3,3 + Ind1,tM1))*
      &                 UASf(All4,Ind4,bX) - 
-     &                MUEC*TB2*Mf(bX,Ind4)*
-     &                 (TB*
+     &                MUEC*Mf(bX,Ind4)*
+     &                 (TB2*
      &                    (C2B*MW2 - Mf2(bX,Ind2) + Mf2(tM1,Ind1))*
      &                    UASf(All3,Ind1,tM1) - 
-     &                   MUEC*Mf(tM1,Ind1)*UASf(All3,3 + Ind1,tM1))
-     &                  *UASf(All4,3 + Ind4,bX))*
-     &              UASfC(All3,Ind3,tM1) - 
-     &             MUE*TB*Mf(tM1,Ind3)*Mf2(bX,Ind2)*
+     &                   MUEC*TB*Mf(tM1,Ind1)*
+     &                    UASf(All3,3 + Ind1,tM1))*
+     &                 UASf(All4,3 + Ind4,bX))*UASfC(All3,Ind3,tM1)
+     &               - MUE*Mf(tM1,Ind3)*Mf2(bX,Ind2)*
      &              UASf(All3,Ind1,tM1)*UASf(All4,Ind4,bX)*
      &              UASfC(All3,3 + Ind3,tM1))*UASfC(All4,Ind2,bX)-
-     &            MUE*TB2*Mf(bX,Ind2)*UASf(All3,Ind1,tM1)*
-     &           ((dup1*TB*UASf(All4,Ind4,bX) + 
-     &                MUEC*TB2*Mf(bX,Ind4)*UASf(All4,3 + Ind4,bX))*
+     &            MUE*Mf(bX,Ind2)*UASf(All3,Ind1,tM1)*
+     &           (TB2*(dup1*UASf(All4,Ind4,bX) + 
+     &                MUEC*TB*Mf(bX,Ind4)*UASf(All4,3 + Ind4,bX))*
      &              UASfC(All3,Ind3,tM1) - 
-     &             MUE*Mf(tM1,Ind3)*UASf(All4,Ind4,bX)*
+     &             MUE*TB*Mf(tM1,Ind3)*UASf(All4,Ind4,bX)*
      &              UASfC(All3,3 + Ind3,tM1))*
-     &           UASfC(All4,3 + Ind2,bX)))/(MW2*SW2*TB2)
+     &           UASfC(All4,3 + Ind2,bX)))/(MW2*SW2*TB)
 
 	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
@@ -516,31 +516,33 @@
      &    3/(8.D0*Pi)*(Alfa1L*tmp13*CKMin(Ind1,Ind2)*
      &        CKMinC(Ind3,Ind4)*
      &        (UASfC(All3,Ind3,tM1)*
-     &           (TB2*Kf(Ind1,Ind5,tM1)*UASf(All3,3 + Ind5,tM1)*
-     &              (Mf2(bX,Ind4)*UASf(All4,Ind4,bX) - 
-     &                MUEC*TB*Mf(bX,Ind4)*UASf(All4,3 + Ind4,bX))*
+     &           (Kf(Ind1,Ind5,tM1)*UASf(All3,3 + Ind5,tM1)*
+     &              (TB*Mf2(bX,Ind4)*UASf(All4,Ind4,bX) - 
+     &                MUEC*TB2*Mf(bX,Ind4)*UASf(All4,3 + Ind4,bX))*
      &              UASfC(All4,Ind2,bX) - 
      &             Kf(Ind4,Ind5,bX)*UASf(All4,3 + Ind5,bX)*
-     &              (MUEC*TB*Mf(tM1,Ind1)*UASf(All3,3 + Ind1,tM1)*
+     &              (MUEC*Mf(tM1,Ind1)*UASf(All3,3 + Ind1,tM1)*
      &                 UASfC(All4,Ind2,bX) - 
-     &                TB2*UASf(All3,Ind1,tM1)*
-     &                 ((C2B*MW2 - Mf2(bX,Ind2) + Mf2(tM1,Ind1))*
+     &                UASf(All3,Ind1,tM1)*
+     &                 (TB*
+     &                    (C2B*MW2 - Mf2(bX,Ind2) + Mf2(tM1,Ind1))*
      &                    UASfC(All4,Ind2,bX) + 
-     &                   MUE*TB*Mf(bX,Ind2)*UASfC(All4,3 + Ind2,bX)
-     &                   ))) + 
+     &                   MUE*TB2*Mf(bX,Ind2)*
+     &                    UASfC(All4,3 + Ind2,bX)))) + 
      &          UASf(All3,Ind1,tM1)*
-     &           (TB2*KfC(Ind3,Ind5,tM1)*UASf(All4,Ind4,bX)*
+     &           (KfC(Ind3,Ind5,tM1)*UASf(All4,Ind4,bX)*
      &              UASfC(All3,3 + Ind5,tM1)*
-     &              (Mf2(bX,Ind2)*UASfC(All4,Ind2,bX) - 
-     &                MUE*TB*Mf(bX,Ind2)*UASfC(All4,3 + Ind2,bX))+
+     &              (TB*Mf2(bX,Ind2)*UASfC(All4,Ind2,bX) - 
+     &                MUE*TB2*Mf(bX,Ind2)*UASfC(All4,3 + Ind2,bX))+
      &               KfC(Ind2,Ind5,bX)*
-     &              (TB2*((C2B*MW2 - Mf2(bX,Ind4) + Mf2(tM1,Ind3))*
-     &                    UASf(All4,Ind4,bX) + 
-     &                   MUEC*TB*Mf(bX,Ind4)*UASf(All4,3 + Ind4,bX)
-     &                   )*UASfC(All3,Ind3,tM1) - 
-     &                MUE*TB*Mf(tM1,Ind3)*UASf(All4,Ind4,bX)*
-     &                 UASfC(All3,3 + Ind3,tM1))*
-     &              UASfC(All4,3 + Ind5,bX))))/(MW2*SW2*TB2)
+     &              (MUEC*TB2*Mf(bX,Ind4)*UASf(All4,3 + Ind4,bX)*
+     &                 UASfC(All3,Ind3,tM1) + 
+     &                UASf(All4,Ind4,bX)*
+     &                 (TB*
+     &                    (C2B*MW2 - Mf2(bX,Ind4) + Mf2(tM1,Ind3))*
+     &                    UASfC(All3,Ind3,tM1) - 
+     &                   MUE*Mf(tM1,Ind3)*UASfC(All3,3 + Ind3,tM1))
+     &                )*UASfC(All4,3 + Ind5,bX))))/(MW2*SW2*TB)
 
 	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
@@ -620,7 +622,7 @@
      &           UASf(All3,3 + Ind2,2))*UASf(Gen3,Ind3,1)*
      &        (Delta(Ind3,Ind4)*(C2B*MW2 - Mf2(2,Ind3))*
      &           UASfC(All3,Ind4,2) - 
-     &          (KfC(Ind4,Ind3,2) - 
+     &          (KfC(Ind3,Ind4,2) - 
      &             MUE*TB*Delta(Ind3,Ind4)*Mf(2,Ind3))*
      &           UASfC(All3,3 + Ind4,2))*UASfC(Gen3,Ind1,1))/
      &      (MW2*SW2)

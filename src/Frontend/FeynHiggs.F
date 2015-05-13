@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 18 Dec 13 th
+* last modified 13 May 14 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -30,7 +30,7 @@
 
 	character*16 flags
 
-	character*55 dmssmpart(-1:5), dfieldren(-1:5),
+	character*54 dmssmpart(-1:5), dfieldren(-1:5),
      &    dtanbren(-1:3), dhiggsmix(0:5), dp2approx(-1:5),
      &    dlooplevel(-1:4), drunningMT(-1:2),
      &    dbotResum(-1:3), dtlCplxApprox(-1:7)
@@ -72,11 +72,11 @@
 
 	data dp2approx /
      &    "???",
-     &    "no approximation [recommended]",
+     &    "no approximation, UHiggs evaluated at p^2 = m^2",
      &    "p^2 = 0 approximation",
-     &    "self-energies are calculated at p^2 = M_tree^2",
+     &    "self-energies are calculated at p^2 = m_tree^2",
      &    "imaginary parts of self-energies are discarded",
-     &    "UHiggs is evaluated at p^2 = 0",
+     &    "no approx., UHiggs evaluated at p^2 = 0 [recommended]",
      &    "???" /
 
 	data dlooplevel /

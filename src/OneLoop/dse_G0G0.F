@@ -1,6 +1,6 @@
 * dse_G0G0.F
 * this file is part of FeynHiggs
-* generated 05 Nov 2013 19:22
+* generated 13 May 2014 09:33
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 	ComplexType dse_G0G0_mfv, dse_G0G0_nmfv
 	external dse_G0G0_mfv, dse_G0G0_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  dse_G0G0 = dse_G0G0_mfv(k2, bX)
 	else
 	  dse_G0G0 = dse_G0G0_nmfv(k2, bX)

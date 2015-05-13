@@ -1,7 +1,7 @@
 * CalcSelf.F
 * Calculation of the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 21 Mar 14 th
+* last modified 16 Jul 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -77,8 +77,8 @@ dseR(i) = f(p2,bX) + dZ(i)
 * 4) the charged boson H+
 
 #if 1
-	if( iand(key, Key(HmHp)) .ne. 0 .or.
-     &      iand(dkey, Key(HmHp)) .ne. 0 ) then
+	if( iand(key, SEKey(HmHp)) .ne. 0 .or.
+     &      iand(dkey, SEKey(HmHp)) .ne. 0 ) then
 	  if( mssmpart .eq. 0 ) then
 	    call HpSEs_MTapprox
 	  else
@@ -264,6 +264,11 @@ dseR(i) = f(p2,bX) + dZ(i)
 	Msq(HmGp) = .5D0*(Msq(HmHp) + Msq(GmGp))
 
 * choose the field renormalization:
+	dZH(1,4) = 0
+	dZH(2,4) = 0
+	dZH(1,5) = 0
+	dZH(2,5) = 0
+
 	if( fieldren .eq. 4 ) then
 * on-shell field renormalization IV goes like this...
 	  dZ(h0h0) = -Re(dse_h0h0(0D0, bM0))
@@ -284,10 +289,6 @@ dseR(i) = f(p2,bX) + dZ(i)
 	else
 * ... all others use these relations:
 	  if( fieldren .eq. 0 ) then
-	    dZH(1,4) = 0
-	    dZH(2,4) = 0
-	    dZH(1,5) = 0
-	    dZH(2,5) = 0
 	  else if( fieldren .eq. 1 ) then
 	    d1 = Re(dse_A0A0(MA02, bM))
 	    d2 = Re(se_A0Z(MA02, bM))

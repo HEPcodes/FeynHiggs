@@ -2,7 +2,7 @@
 * computes the decay rate of B_s -> l+ l-
 * the calculation follows closely hep-ph/0112305
 * this file is part of FeynHiggs
-* last modified 23 Jan 14 th
+* last modified 4 Aug 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -33,9 +33,13 @@
 	ComplexType dup30, dup31, dup32, dup33, dup34
 	ComplexType dup35, dup36, dup37, dup38, dup39
 	ComplexType dup40, dup41, dup42, dup43, dup44
-	ComplexType dup45, dup46, dup47, dup48, dup49, dup50
+	ComplexType dup45, dup46
 	ComplexType tmp1, tmp2, tmp3, tmp4, tmp5, tmp6
 	ComplexType tmp7, tmp8, tmp9
+
+c	ComplexType dup47, dup48, dup49, dup50, dup51, dup52
+c	ComplexType dup53, dup54, dup55, dup56, dup57, dup58
+c	integer Sfe6
 
 	integer l, q
 	parameter (l = 2)	! muon

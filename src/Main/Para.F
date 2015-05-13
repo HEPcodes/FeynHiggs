@@ -1,7 +1,7 @@
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 26 Mar 14 th
+* last modified 5 Jun 14 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -64,7 +64,7 @@
 	do i = 1, se2Rn*se2Rc
 	  se2Rcat_flat(i) = 0
 	enddo
-	do i = -semax + 1, semax*seXmax
+	do i = 1, semax*(seXmax + 1)
 	  seX_flat(i) = 0
 	enddo
 	hX = 0
@@ -443,7 +443,7 @@ c	call AlphaS(AlfasMT, nf, MT)
 	        DPARA "A"//cAf(t)//"_DRbar     =", Af(t,3) ENDL
 	      endif
 
-	      DSS2(1,t,3) = ospara(1,t)
+	      if( btest(t, 0) ) DSS2(1,t,3) = ospara(1,t)
 	      DSS2(2,t,3) = ospara(2,t)
 	      MSS2(3,3,nQ) = DSS2(1,t,3) + DSS2(2,t,3) - DSf(1,t)
 	      MSS(nQ,3) = sqrt(Re(MSS2(3,3,nQ)))

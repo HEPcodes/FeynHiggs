@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 1 Apr 14 th
+		last modified 30 Jul 14 th
 */
 
 
@@ -203,11 +203,11 @@ extern void FORTRAN(fhsetnmfv)(INTEGER *error,
 extern void FORTRAN(fhretrievenmfv)(INTEGER *error,
   _fh_Fa_(argsSetNMFV));
 
-#define argsGetNMFV(x,r,c,ra,ca) \
+#define argsGetFV(x,r,c,ra,ca) \
   ca(MSS2,[5][3][3]) x ca(Kf,[3][3][3])
 
-extern void FORTRAN(fhgetnmfv)(INTEGER *error,
-  _fh_Fa_(argsGetNMFV));
+extern void FORTRAN(fhgetfv)(INTEGER *error,
+  _fh_Fa_(argsGetFV));
 
 
 #define argsHiggsCorr(x,r,c,ra,ca) \
@@ -259,8 +259,8 @@ extern void FORTRAN(fhgetself)(INTEGER *error, _fh_Fcr_(k2,[1]),
   CINTEGER *key, _fh_Fc_(sig,[nsig]),
   CINTEGER *dkey, _fh_Fc_(dsig,[nsig]));
 
-extern void FORTRAN(fhaddself)(INTEGER *error,
-  _fh_Fcc_(sig,[nsig]), CINTEGER *rotate);
+extern void FORTRAN(fhaddself)(INTEGER *error, CINTEGER *n,
+  _fh_Fcc_(sig,[n]), CINTEGER *flags);
 
 extern void FORTRAN(fhoutput)(INTEGER *error,
   const char *filename, CINTEGER *key, _fh_Fcr_(sqrts,[1]),
@@ -463,12 +463,12 @@ static inline void FHGetTLPara(int *error,
 }
 
 
-static inline void FHGetNMFV(int *error,
-  _fh_Ca_(argsGetNMFV))
+static inline void FHGetFV(int *error,
+  _fh_Ca_(argsGetFV))
 {
-  _fh_Da_(argsGetNMFV);
-  FORTRAN(fhgetnmfv)(error, _fh_Pa_(argsGetNMFV));
-  _fh_Oa_(argsGetNMFV);
+  _fh_Da_(argsGetFV);
+  FORTRAN(fhgetfv)(error, _fh_Pa_(argsGetFV));
+  _fh_Oa_(argsGetFV);
 }
 
 
@@ -542,15 +542,15 @@ static inline void FHGetSelf(int *error, _fh_Ccr_(k2,[1]),
   _fh_Oc_(dsig,[nsig]);
 }
 
-#define Key(se) (1 << (se-1))
+#define SEKey(se) (1 << (se-1))
 
 
-static inline void FHAddSelf(int *error,
-  _fh_Ccac_(sig,[nsig]), const int rotate)
+static inline void FHAddSelf(int *error, const int n,
+  _fh_Ccac_(sig,[n]), const int flags)
 {
-  _fh_Dc_(sig,[nsig]);
-  _fh_Ic_(sig,[nsig]);
-  FORTRAN(fhaddself)(error, _fh_Pcac_(sig,[nsig]), &rotate);
+  _fh_Dc_(sig,[n]);
+  _fh_Ic_(sig,[n]);
+  FORTRAN(fhaddself)(error, &n, _fh_Pcac_(sig,[n]), &flags);
 }
 
 

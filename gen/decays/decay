@@ -328,6 +328,7 @@ split[x_] :=
 split[x_] := ReTilde[x /. reim -> re] + cI ImTilde[x /. reim -> im];
 
 
+$CKM = True;
 cMSSMhgaga = {"MSSMQCD", "dAlfa", "KW", "FV", "Kf", "HGpGm", "EnhYuk", "HMixExt"};
 cMSSM = DeleteCases[cMSSMhgaga, "HGpGm"];
 SM = {"SMQCD", "dAlfa", "EnhYuk", "dZH1"};

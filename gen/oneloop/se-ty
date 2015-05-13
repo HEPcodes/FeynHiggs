@@ -21,6 +21,7 @@ AppendTo[$Echo, "stdout"];
 
 Alfa = Alfa1L;
 EL = EL1L;
+EL1L/: EL1L^2 := 4 Pi Alfa1L;
 
 Mf[3,g_] := Mf[tM1,g];
 Mf2[3,g_] := Mf2[tM1,g];
@@ -219,6 +220,8 @@ td := {{}, Identity};
 se := {{"k2"}, Identity};
 dse := {{"k2"}, D[#, k2]&};
 
+
+$FV = {11, 12, 13, 14}
 
 fvmod["f-nmfv"] = "FV";
 _fvmod = Sequence[];

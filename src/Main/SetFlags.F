@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 20 Dec 13 th
+* last modified 2 May 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -39,7 +39,7 @@
 	  print *, "FeynHiggs "//FHVERSION
 	  print *, "built on "//FHBUILDDATE
 	  print *, "T. Hahn, S. Heinemeyer, W. Hollik, H. Rzehak, G. Weiglein, K. Williams"
-	  print *, "http://www.feynhiggs.de"
+	  print *, "http://feynhiggs.de"
 	  print *, "----------------------------------------------------------------------"
 	  blurb = .FALSE.
 c	  call setfpu
@@ -60,7 +60,7 @@ c	  call setfpu
 
 	call getenv("FHDEBUG", env)
 	read(env, *, end=10, err=10) debuglevel
-	DFLAGS "debug level ", debuglevel ENDL
+	print *, "debug level ", debuglevel
 10	continue
 
 	call getenv("FHDEBUGFILE", env)
@@ -68,13 +68,13 @@ c	  call setfpu
 	if( l .gt. 0 ) then
 	  open(66, file=env, status="unknown", err=11)
 	  debugunit = 66
-	  DFLAGS "debug file ", env(1:l) ENDL
+	  print *, "debug file ", env(1:l)
 	endif
 11	continue
 
 	call getenv("FHSELECTUZ", env)
 	read(env, *, end=12, err=12) uzint, uzext, mfeff
-	DFLAGS "uzint, uzext, mfeff ", uzint, uzext, mfeff ENDL
+	print *, "uzint, uzext, mfeff ", uzint, uzext, mfeff
 12	continue
 	Check(uzint, 1, 2, "FHSELECTUZ(uzint)")
 	Check(uzext, 1, 2, "FHSELECTUZ(uzext)")
@@ -83,7 +83,7 @@ c	  call setfpu
 	call getenv("FHEXTSE", extSE)
 	l = len_trim(extSE)
 	if( extSE(1:1) .ne. ' ' )
-     &    DFLAGS "extSE ", extSE(1:len_trim(extSE)) ENDL
+     &    print *, "extSE ", extSE(1:len_trim(extSE))
 
 	error = 0
 

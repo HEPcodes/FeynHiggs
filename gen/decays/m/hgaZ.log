@@ -4,12 +4,12 @@ Copyright 1988-2013 Wolfram Research, Inc.
 In[1]:= 
 FeynArts 3.9
 by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
-last revised 6 Sep 13
+last revised 10 Apr 14
 
 In[2]:= In[2]:= 
 FormCalc 8.4
 by Thomas Hahn
-last revised 17 Feb 14
+last revised 29 Apr 14
 
 In[3]:= In[3]:= 
 In[4]:= 
@@ -102,28 +102,29 @@ In[90]:=
 In[91]:= 
 In[92]:= 
 In[93]:= 
-In[94]:= In[94]:= 
-Out[94]= Hel[2]
+In[94]:= 
+In[95]:= In[95]:= 
+Out[95]= Hel[2]
 
-In[95]:= In[95]:= In[95]:= 
-In[96]:= In[96]:= 
-In[97]:= In[97]:= In[97]:= 
-In[98]:= In[98]:= 
-In[99]:= In[99]:= In[99]:= 
-In[100]:= In[100]:= 
-In[101]:= In[101]:= In[101]:= 
-In[102]:= 
-In[103]:= In[103]:= In[103]:= 
-In[104]:= In[104]:= 
+In[96]:= In[96]:= In[96]:= 
+In[97]:= In[97]:= 
+In[98]:= In[98]:= In[98]:= 
+In[99]:= In[99]:= 
+In[100]:= In[100]:= In[100]:= 
+In[101]:= In[101]:= 
+In[102]:= In[102]:= In[102]:= 
+In[103]:= 
+In[104]:= In[104]:= In[104]:= 
 In[105]:= In[105]:= 
 In[106]:= In[106]:= 
 In[107]:= In[107]:= 
 In[108]:= In[108]:= 
 In[109]:= In[109]:= 
 In[110]:= In[110]:= 
-In[111]:= In[111]:= In[111]:=                                                   
-In[112]:= In[112]:= In[112]:= 
+In[111]:= In[111]:= 
+In[112]:= In[112]:= In[112]:=                                                   
 In[113]:= In[113]:= In[113]:= 
+In[114]:= In[114]:= In[114]:= 
 loading generic model file /Users/hahn/FeynArts/Models/Lorentz.gen
 > $GenericMixing is OFF
 generic model {Lorentz} initialized
@@ -156,8 +157,8 @@ CT InsertFields done
 creating amplitudes at level(s) {Generic, Classes}
 in total: 0 Generic, 0 Classes amplitudes
 CreateFeynAmp done
-CalcFeynAmp done 1.032489
-v0 done 1.033040
+CalcFeynAmp done 1.029123
+v0 done 1.029675
 
 inserting at level(s) {Generic, Classes}
 > Top. 1: 10 Generic, 36 Classes insertions
@@ -186,12 +187,12 @@ CreateFeynAmp done
 
 preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-amp-2.frm
 running FORM... ok
-CalcFeynAmp done 9.961181
-v1 done 11.584324
+CalcFeynAmp done 10.666507
+v1 done 12.456294
 
 ColourME::nomat: Warning: No matrix elements to compute.
-FindRenConst done 12.729744
-WriteSquaredME done 14.839921
+FindRenConst done 13.702418
+WriteSquaredME done 15.757426
 dZZA1
 
 inserting at level(s) {Generic, Classes}
@@ -206,6 +207,6 @@ in total: 7 Generic, 20 Classes amplitudes
 
 preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-2.frm
 running FORM... ok
-WriteRenConst done 19.193208
+WriteRenConst done 20.231661
 
-In[114]:= In[114]:= 
+In[115]:= In[115]:= 

@@ -73,7 +73,7 @@ if ($nfun>0) {
 if(-e $filename){system("rm -f $filename")};
 open(MAKEFILE, ">", "$filename") || die "cannot open $filename\n";
 	print MAKEFILE "CC = $Ccompiler
-CXXFLAGS = -Ofast -static -march=native
+CXXFLAGS = -O3 -march=native
 LDFLAGS	= $soboldir/sobol.o $integpath/libcuba.a -lm
 OBJS = $funlisto$gunlisto
 MAIN = intfile$kk

@@ -2,7 +2,12 @@
 
 debug = True
 
-plotmax = 2000
+(*
+plotmin = 200;
+plotmax = 600;
+*)
+plotmin = 30;
+plotmax = 2000;
 
 get[tag_, file_String] := Select[getf[tag, file],
   !MemberQ[ {0., Indeterminate}, #[[-1]] ] &]
@@ -20,14 +25,14 @@ log["ststh-lhc14.dat", _][{mh_, mst_, xs_?NumberQ}] :=
 log["tHm-lhc14.dat", _][{mh_, mt_, tb_, xsLO_, xsNLO_, ratio_}] :=
   {Sqrt[mh], tb, foo[1000 xsNLO]} //N
 
-log["tHm2-lhc8.dat", _][{mh_, tb_, xsNLO_, xsNLOhi_, xsNLOlo_}] :=
+log["tHm2-lhc8.dat", _][{mh_, tb_, xsNLO_, unclo_, unchi_}] :=
   {Sqrt[mh], tb, foo[1000 xsNLO]} //N
 
-log["tHm2-lhc8lo.dat", _][{mh_, tb_, xsNLO_, xsNLOhi_, xsNLOlo_}] :=
-  {Sqrt[mh], tb, foo[1000 xsNLOlo]} //N
+log["tHm2-lhc8lo.dat", _][{mh_, tb_, xsNLO_, unclo_, unchi_}] :=
+  {Sqrt[mh], tb, foo[1000 (xsNLO - unclo)]} //N
 
-log["tHm2-lhc8hi.dat", _][{mh_, tb_, xsNLO_, xsNLOhi_, xsNLOlo_}] :=
-  {Sqrt[mh], tb, foo[1000 xsNLOhi]} //N
+log["tHm2-lhc8hi.dat", _][{mh_, tb_, xsNLO_, unclo_, unchi_}] :=
+  {Sqrt[mh], tb, foo[1000 (xsNLO + unchi)]} //N
 
 log["bbh-tev.dat" | "bbh-lhc14.dat", _][{mh_, xs_?NumberQ}] :=
   {Sqrt[mh], foo[1000 xs]} //N
@@ -85,7 +90,12 @@ fitfunc[tHm, _LHC] = If@@ {
   sqrtm < Sqrt[600.],    poly[sqrtm, tb, 9],
                          poly[sqrtm, tb, 8] }
 
-fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = poly[sqrtm, tb, 2]
+(*fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = poly[sqrtm, tb, (*2*) 5]*)
+
+fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = Which@@ {
+  tb < 20., poly[sqrtm, tb, 8],
+  tb < 30., poly[sqrtm, tb, 5],
+  True,     poly[sqrtm, tb, (*2*) 4, "b"] }
 
 fitfunc[_StSth, _LHC] = poly[sqrtm, mst1, 2]/poly[sqrtm, mst1, 2, "b"]
 
@@ -149,19 +159,25 @@ complete[d_] := d /; Length[ d[[1]] ] =!= 3
 complete[d_] := Join[d, {Sqrt[2000], #, 10^-10}&/@ Union[#2&@@@ d]]
 
 
-overlap = 10;
-ran[-Infinity, b_] = #[[1]]^2 <= b^2 + overlap &;
-ran[a_, Infinity] = #[[1]]^2 >= a^2 - overlap &
-ran[a_, b_] = #[[1]]^2 >= a^2 - overlap && #[[1]]^2 <= b^2 + overlap &;
+ran[m] = ran[1, 20];
+ran[sqrtm] = ran[1, 10];
+ran[tb] = ran[2, 5];
+ran[i_, overlap_][-Infinity, b_] =
+  #[[i]]^2 <= b^2 + overlap &;
+ran[i_, overlap_][a_, Infinity] =
+  #[[i]]^2 >= a^2 - overlap &;
+ran[i_, overlap_][a_, b_] =
+  #[[i]]^2 >= a^2 - overlap &&
+  #[[i]]^2 <= b^2 + overlap &;
 
 dofit[d_, If[x_ < y_, a_, b_] + r_.] := IndexIf@@ {
-  x < y, dofit[Select[d, ran[-Infinity, y]], a + r],
-         dofit[Select[d, ran[y, +Infinity]], b + r]}
+  x < y, dofit[Select[d, ran[x][-Infinity, y]], a + r],
+         dofit[Select[d, ran[x][y, +Infinity]], b + r]}
 
 dofit[d_, Which[x_ < y_, a_, x_ < z_, b_, True, c_] + r_.] := IndexIf@@ {
-  x < y, dofit[Select[d, ran[-Infinity, y]], a + r],
-  x < z, dofit[Select[d, ran[y, z]], b + r],
-         dofit[Select[d, ran[z, Infinity]], c + r]}
+  x < y, dofit[Select[d, ran[x][-Infinity, y]], a + r],
+  x < z, dofit[Select[d, ran[x][y, z]], b + r],
+         dofit[Select[d, ran[x][z, Infinity]], c + r]}
 
 dofit[d_, fitfun_] := fitfun /. FindFit[d, fitfun,
   Complement[
@@ -200,17 +216,16 @@ cat[{mh_, r___, xs_}] := thecat[r] = {thecat[r], {mh, xs}}
 
 
 plot[True, id_, f_, d_, r___] :=
-Block[ {dd = Level[d, {-2}], rul = Thread[Rest[fitvars] -> {r}]},
+Block[ {dd = Level[d, {-2}], rul = Thread[Rest[fitvars] -> {r}], p1, p2},
   If[ !FreeQ[f, sqrtm], dd = {#1^2, #2}&@@@ dd ];
-  Show[
-    ListPlot[Sort[dd],
-      PlotStyle -> Red,
-      DisplayFunction :> Identity],
-    Plot[Evaluate[f /. rul /. sqrtm -> Sqrt[m]],
-      {m, 30, plotmax},
+  Block[ {$DisplayFunction = Identity},
+    p1 = ListPlot[Sort[dd], PlotStyle -> Red];
+    p2 = Plot[Evaluate[f /. rul /. sqrtm -> Sqrt[m]],
+      {m, plotmin, plotmax},
       PlotStyle -> Blue,
-      PlotRange -> All (* ({Min[#], Max[#]}&[Last/@ dd]) *),
-      DisplayFunction :> Identity],
+      PlotRange -> All (* ({Min[#], Max[#]}&[Last/@ dd]) *)];
+  ];
+  Show[ p1, p2,
     DisplayFunction :> $DisplayFunction,
     PlotLabel -> ToString[id] <>
       ({" ", ToString[#1], "=", ToString[#2]}&@@@ rul),
@@ -334,4 +349,9 @@ t := write["test", fit[LHC[all]]/@ {
 
 tnlo := write["test", fit[LHC[all]]/@ {
   gghSMNLO[h] -> "ggh-smnlo-lhc.dat" }]
+
+ccc := write["CHiggsProdFits-LHC8", fit[LHC[8]]/@ {
+  tHm2 -> "tHm2-lhc8.dat" (*,
+  tHm2lo -> "tHm2-lhc8lo.dat",
+  tHm2hi -> "tHm2-lhc8hi.dat"*) } /. tb -> TBeff]
 

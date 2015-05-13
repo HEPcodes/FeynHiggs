@@ -4,7 +4,7 @@
 		program) rather than deliver NaNs
 		necessary only for g77/gfortran
 		this file is part of FeynHiggs
-		last modified 20 Jul 11 th
+		last modified 4 Aug 14 th
 */
 
 
@@ -22,6 +22,7 @@
 #include "externals.h"
 
 #if NOUNDERSCORE
+#undef setfpu_
 #define setfpu_ setfpu
 #endif
 

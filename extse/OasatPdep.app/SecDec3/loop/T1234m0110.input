@@ -42,7 +42,7 @@ prefactorflag=2
 # if option 2 has been chosen above: prefactor in Mathematica syntax,
 # in combination with options 0 or 1 above this entry will be ignored
 # NB use Nn, Nloops, Dim to denote number of propagators, loops, and dimension (4-2eps by default)
-prefactor=(29998.24*Exp[EulerGamma])^(-2*eps)
+prefactor=(*Exp[EulerGamma])^(-2*eps)
 # flag to use integration by parts (IBP) to deal with numerical instability in functions with 
 # many subtractions. '0' for never, '1' for always, '2' for a mixed approach. 
 # '2' is designed to use IBP when it is more efficient to do so, and not otherwise.

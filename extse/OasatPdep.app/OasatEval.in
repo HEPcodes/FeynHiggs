@@ -12,9 +12,9 @@ SetOptions[MagicSimplify, Feedback -> False];
 
 (* simplifying definitions contained in Sij_eff *)
 
-<< analytexpr/T134m123.m;
-<< analytexpr/T234m100.m;
-<< analytexpr/B0_gudrun.m;
+<< analytexpr/definitions.m;
+<< analytexpr/oneloop.m;
+<< analytexpr/twoloop.m;
 
 << analytexpr/oasatpdepwithoutGrams.m;
 

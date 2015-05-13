@@ -1,31 +1,31 @@
-CC = gcc
-CFLAGS = -O3 -fomit-frame-pointer -ffast-math -Wall -DHAVE_CONFIG_H -I$(common) -I. -I$(srcdir)
-MCFLAGS = 
-F77 = g77
-FFLAGS = -g -O2
-LIBS = -lm
-INSTALL = /usr/bin/install -c
-INSTALL_DATA = ${INSTALL} -m 644
-INSTALL_PROGRAM = ${INSTALL}
-RANLIB = ranlib
-EXE = 
+CC = @CC@
+CFLAGS = @CFLAGS@ @DEFS@ -I$(common) -I. -I$(srcdir)
+MCFLAGS = @MCFLAGS@
+F77 = @F77@
+FFLAGS = @FFLAGS@
+LIBS = @LIBS@
+INSTALL = @INSTALL@
+INSTALL_DATA = @INSTALL_DATA@
+INSTALL_PROGRAM = @INSTALL_PROGRAM@
+RANLIB = @RANLIB@
+EXE = @EXEEXT@
 
-prefix = /usr/local
-exec_prefix = ${prefix}
-srcdir = .
-bindir = ${exec_prefix}/bin
-libdir = ${exec_prefix}/lib
-includedir = ${prefix}/include
-datarootdir = ${prefix}/share
-datadir = ${datarootdir}
+prefix = @prefix@
+exec_prefix = @exec_prefix@
+srcdir = @srcdir@
+bindir = @bindir@
+libdir = @libdir@
+includedir = @includedir@
+datarootdir = @datarootdir@
+datadir = @datadir@
 
-MATH_DEFAULT = math
-TOOLS_DEFAULT = tools
-DEMO_FORTRAN_DEFAULT = demo-fortran$(EXE)
+MATH_DEFAULT = @MATH_DEFAULT@
+TOOLS_DEFAULT = @TOOLS_DEFAULT@
+DEMO_FORTRAN_DEFAULT = @DEMO_FORTRAN_DEFAULT@$(EXE)
 
 MCC = CC="$(tools)/fcc" CXX="$(tools)/fcc" REALCC="$(CC)" PATH="$(PATH):$(tools)" mcc
 
-TARDIR = Cuba-3.2
+TARDIR = @PACKAGE_NAME@-@PACKAGE_VERSION@
 TARFILE = $(TARDIR).tar.gz
 
 

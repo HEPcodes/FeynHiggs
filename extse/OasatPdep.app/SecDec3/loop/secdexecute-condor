@@ -55,7 +55,7 @@ IFS=$' \t\n'
 
 while true ; do
   set -- T*/*0.gpdat
-  test $# -ge $nints && break
   sleep 5
+  test $# -ge $nints && break
 done
 

@@ -1,6 +1,6 @@
 * se_h0HH.F
 * this file is part of FeynHiggs
-* generated 05 Nov 2013 19:22
+* generated 13 May 2014 09:33
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 	ComplexType se_h0HH_mfv, se_h0HH_nmfv
 	external se_h0HH_mfv, se_h0HH_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  se_h0HH = se_h0HH_mfv(k2, bX)
 	else
 	  se_h0HH = se_h0HH_nmfv(k2, bX)
@@ -252,8 +252,8 @@
      &                CBA*CW2*(k2 + MA02)*SBA)*B0(k2,MA02,MZ2) + 
      &             MW2*((4*CAB*S2A**2*SAB - 
      &                   C2A*
-     &                    (2*CAB**2*S2A + C2A*CAB*SAB - 
-     &                      2*S2A*SAB**2))*B0(k2,Mh02,MHH2) + 
+     &                    (C2A*CAB*SAB + S2A*(2*CAB**2 - 2*SAB**2))
+     &                   )*B0(k2,Mh02,MHH2) + 
      &                (-4*CBA*CW2**2*SBA + 
      &                   C2B*
      &                    ((C2B*CAB - 2*CBA*CW2)*SAB + 
@@ -339,9 +339,9 @@
 	dup16 = CA*ZNeuC(Neu4,3) - SA*ZNeuC(Neu4,4)
 
         dup17 = dup10*(dup12*dup14 + dup11*dup15)*dup5 + 
-     &    dup12*dup14*dup7*dup8 + 
-     &    dup13*dup14*(dup6*dup8 + dup5*dup9) + 
-     &    dup11*((dup16*dup6 + dup15*dup7)*dup8 + dup16*dup5*dup9)
+     &    dup11*((dup16*dup6 + dup15*dup7)*dup8 + 
+     &       dup16*dup5*dup9) + 
+     &    dup14*(dup12*dup7*dup8 + dup13*(dup6*dup8 + dup5*dup9))
 
         se_h0HH_mfv = se_h0HH_mfv + 
      &    1/(16.D0*Pi)*(Alfa1L*
@@ -643,8 +643,8 @@
      &                CBA*CW2*(k2 + MA02)*SBA)*B0(k2,MA02,MZ2) + 
      &             MW2*((4*CAB*S2A**2*SAB - 
      &                   C2A*
-     &                    (2*CAB**2*S2A + C2A*CAB*SAB - 
-     &                      2*S2A*SAB**2))*B0(k2,Mh02,MHH2) + 
+     &                    (C2A*CAB*SAB + S2A*(2*CAB**2 - 2*SAB**2))
+     &                   )*B0(k2,Mh02,MHH2) + 
      &                (-4*CBA*CW2**2*SBA + 
      &                   C2B*
      &                    ((C2B*CAB - 2*CBA*CW2)*SAB + 
@@ -730,9 +730,9 @@
 	dup16 = CA*ZNeuC(Neu4,3) - SA*ZNeuC(Neu4,4)
 
         dup17 = dup10*(dup12*dup14 + dup11*dup15)*dup5 + 
-     &    dup12*dup14*dup7*dup8 + 
-     &    dup13*dup14*(dup6*dup8 + dup5*dup9) + 
-     &    dup11*((dup16*dup6 + dup15*dup7)*dup8 + dup16*dup5*dup9)
+     &    dup11*((dup16*dup6 + dup15*dup7)*dup8 + 
+     &       dup16*dup5*dup9) + 
+     &    dup14*(dup12*dup7*dup8 + dup13*(dup6*dup8 + dup5*dup9))
 
         se_h0HH_nmfv = se_h0HH_nmfv + 
      &    1/(16.D0*Pi)*(Alfa1L*

@@ -39,7 +39,7 @@ ${arg:+	RealType $arg
 	ComplexType ${se}_mfv, ${se}_nmfv
 	external ${se}_mfv, ${se}_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  $se = ${se}_mfv($arg${arg:+, }bX)
 	else
 	  $se = ${se}_nmfv($arg${arg:+, }bX)

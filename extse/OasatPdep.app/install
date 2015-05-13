@@ -9,7 +9,6 @@ OasatPdep.app folder to a different location.
 
 _EOF_
 
-
 cd `dirname ${BASH_SOURCE[0]}`
 shopt -s nullglob 2> /dev/null
 
@@ -21,7 +20,14 @@ for arg in "$@" ; do
   fast)	echo "Not recompiling libraries and executables"
 	fast=1 ;;
   condor)
-	echo "Setting scripts up for Condor"
+	cat << _EOF_
+Setting scripts up for Condor
+
+Note: the environment variable FHEXTSE_TMPDIR MUST be set
+to a directory visible to all HTCondor hosts, e.g.
+FHEXTSE_WORKDIR=/.th/`hostname`/scratch/
+
+_EOF_
 	version=condor ;;
   *=*)
 	eval "${arg/=/=\"}\"" ;;

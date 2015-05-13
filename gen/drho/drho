@@ -42,7 +42,7 @@ NClear[];
 N[sqrt2] = Sqrt[2.];
 
 opt["sf"] := SetOptions[InsertFields,
-  Model -> {(*FV*)MSSM (*, Gen3*)},
+  Model -> {MSSM, FV (*, Gen3*)},
 (*
   InsertionLevel -> {Particles},
   LastSelections -> S[13|14, {_, 3}],

@@ -4,12 +4,12 @@ Copyright 1988-2013 Wolfram Research, Inc.
 In[1]:= 
 FeynArts 3.9
 by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
-last revised 6 Sep 13
+last revised 10 Apr 14
 
 In[2]:= In[2]:= 
 FormCalc 8.4
 by Thomas Hahn
-last revised 17 Feb 14
+last revised 29 Apr 14
 
 In[3]:= In[3]:= 
 In[4]:= 
@@ -102,40 +102,44 @@ In[90]:=
 In[91]:= 
 In[92]:= 
 In[93]:= 
-In[94]:= In[94]:= 
-Out[94]= Hel[2]
+In[94]:= 
+In[95]:= In[95]:= 
+Out[95]= Hel[2]
 
-In[95]:= In[95]:= In[95]:= 
-In[96]:= In[96]:= 
-In[97]:= In[97]:= In[97]:= 
-In[98]:= In[98]:= 
-In[99]:= In[99]:= In[99]:= 
-In[100]:= In[100]:= 
-In[101]:= In[101]:= In[101]:= 
-In[102]:= 
-In[103]:= In[103]:= In[103]:= 
-In[104]:= In[104]:= 
+In[96]:= In[96]:= In[96]:= 
+In[97]:= In[97]:= 
+In[98]:= In[98]:= In[98]:= 
+In[99]:= In[99]:= 
+In[100]:= In[100]:= In[100]:= 
+In[101]:= In[101]:= 
+In[102]:= In[102]:= In[102]:= 
+In[103]:= 
+In[104]:= In[104]:= In[104]:= 
 In[105]:= In[105]:= 
 In[106]:= In[106]:= 
 In[107]:= In[107]:= 
 In[108]:= In[108]:= 
 In[109]:= In[109]:= 
 In[110]:= In[110]:= 
-In[111]:= In[111]:= In[111]:=                                                   
-In[112]:= In[112]:= In[112]:= 
+In[111]:= In[111]:= 
+In[112]:= In[112]:= In[112]:=                                                   
 In[113]:= In[113]:= In[113]:= 
+In[114]:= In[114]:= In[114]:= 
 loading generic model file /Users/hahn/FeynArts/Models/Lorentz.gen
 > $GenericMixing is OFF
 generic model {Lorentz} initialized
 
 loading classes model file /Users/hahn/FeynArts/Models/SMQCD.mod
   loading classes model file /Users/hahn/FeynArts/Models/SM.mod
+
+$CKM is True
+
 loading classes model file /Users/hahn/fh-2a/gen/decays/dAlfa.mod
 loading classes model file /Users/hahn/fh-2a/gen/decays/dZH1.mod
 > 49 particles (incl. antiparticles) in 18 classes
 > $CounterTerms are ON
 > 93 vertices
-> 120 counter terms of order 1
+> 121 counter terms of order 1
 > 6 counter terms of order 2
 classes model {SMQCD, dAlfa, dZH1} initialized
 
@@ -164,8 +168,8 @@ CreateFeynAmp done
 
 preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-amp-2.frm
 running FORM... ok
-CalcFeynAmp done 0.599062
-v0 done 0.600436
+CalcFeynAmp done 0.612747
+v0 done 0.614068
 
 Excluding 0 Generic, 2 Classes, and 2 Particles fields
 
@@ -199,10 +203,10 @@ CreateFeynAmp done
 
 preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-amp-2.frm
 running FORM... ok
-CalcFeynAmp done 7.300916
-v1 done 8.491955
-FindRenConst done 9.151322
-WriteSquaredME done 10.280308
+CalcFeynAmp done 7.364516
+v1 done 8.413325
+FindRenConst done 8.996800
+WriteSquaredME done 9.998256
 dMWsq1
 
 inserting at level(s) {Generic, Classes}
@@ -343,31 +347,6 @@ in total: 2 Generic, 5 Classes amplitudes
 preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-2.frm
 running FORM... ok
 dZfR1[3, gno1, gno2]
+WriteRenConst done 28.749135
 
-Rule::argr: Rule called with 1 argument; 2 arguments are expected.
-
-Block::lvlist: Local variable specification Rule[Sequence[]] is not a List.
-
-OnePassOrder::recurs: 
-   Recursive definition among {}
-     (full list in $OnePassDebug).  Returning list unordered.
-
-Transpose::nmtx: 
-   The first two levels of the one-dimensional list 
-    {{uzext == 2, 0}, Transpose[dZH1 -> {<<2>>}]} cannot be transposed.
-
-Transpose::nmtx: 
-   The first two levels of the one-dimensional list 
-    {Transpose[dZH1 -> {<<2>>}]} cannot be transposed.
-
-$RecursionLimit::reclim: Recursion depth of 1024 exceeded.
-
-$RecursionLimit::reclim: Recursion depth of 1024 exceeded.
-
-$RecursionLimit::reclim: Recursion depth of 1024 exceeded.
-
-General::stop: Further output of $RecursionLimit::reclim
-     will be suppressed during this calculation.
-WriteRenConst done 23.544204
-
-In[114]:= In[114]:= 
+In[115]:= In[115]:= 

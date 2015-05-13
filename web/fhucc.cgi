@@ -1,7 +1,7 @@
 #! /bin/sh
 # the mother of all FHUCC CGI scripts, the motherFHUCCer
 # this file is part of FeynHiggs
-# last modified 24 Apr 14 th
+# last modified 16 Jul 14 th
 
 debug=1
 
@@ -440,7 +440,7 @@ detailedSMPara() {
 
 	<p><table>
 	<tr>
-	<td align=right>1/&alpha;<sub>em</sub> = `real invAlfa`</td>
+	<td align=right>1/&alpha;<sub>em</sub> = `real invAlfaMZ`</td>
 	</tr>
 
 	<tr>
@@ -779,7 +779,8 @@ runFeynHiggs() {
   trap "rm -f $parafile" 0 1 2 3 9 15
 
   sed '/^ *$/d' <<- _EOF_ > $parafile
-	${invAlfa:+invAlfa} $invAlfa
+	${scalefactor:+scalefactor} $scalefactor
+	${invAlfaMZ:+invAlfaMZ} $invAlfaMZ
 	${AlfasMZ:+AlfasMZ} $AlfasMZ
 	${GF:+GF} $GF
 	${ME:+ME} $ME
@@ -929,7 +930,7 @@ $tlCplxApprox"
 	<pre>
 _EOF_
 
-  $FHEXE $parafile $flags $scalefactor | sed '
+  $FHEXE $parafile $flags | sed '
 	s/%//
 	s/^|//
 	s:^-* \([-A-Z ]*\) -*$:</pre><h2>\1</h2><pre>:

@@ -3,7 +3,7 @@
 * to the MSSM Higgs sector
 * this file is part of FeynHiggs
 * V1.0 by Markus Frank 21/08/2002
-* last modified 21 Mar 14 th
+* last modified 16 Jul 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -102,21 +102,32 @@
 	  endif
 	endif
 
-* sort the masses
+* sort the masses:
+
+* Higgs masses in ascending order
+#define sortby(i,j) MHiggs2(i)
+
+* biggest overlap with ('closest to') {h, H, A}
+*#define sortby(i,j) -abs(ZHiggs(i,j))
+
 	do i = 1, hmix - 1
 	  p = i
-	  m = MHiggs2(i)
+	  m = sortby(i,i)
 	  do j = i + 1, hmix
-	    if( MHiggs2(j) .lt. m ) then
-	      m = MHiggs2(j)
+	    if( sortby(j,i) .lt. m ) then
+	      m = sortby(j,i)
 	      p = j
 	    endif
 	  enddo
 
 	  if( p .ne. i ) then
+	    m = MHiggs2(p)
 	    MHiggs2(p) = MHiggs2(i)
 	    MHiggs2(i) = m
 	    do j = 1, hmix
+	      c = UHiggs(i,j)
+	      UHiggs(i,j) = UHiggs(p,j)
+	      UHiggs(p,j) = c
 	      c = ZHiggs(i,j)
 	      ZHiggs(i,j) = ZHiggs(p,j)
 	      ZHiggs(p,j) = c
@@ -193,10 +204,10 @@
 
 #define Need(i) -ibits(i-1-higgsmix,4,1)
 
-	key = Key(h0h0) + Key(HHHH) + Key(HmHp) +
-     &    iand(not(Key(inputmass)), Key(A0A0)) +
-     &    iand(Need(2), Key(h0HH)) +
-     &    iand(Need(3), Key(h0A0) + Key(HHA0)) +
+	key = SEKey(h0h0) + SEKey(HHHH) + SEKey(HmHp) +
+     &    iand(not(SEKey(inputmass)), SEKey(A0A0)) +
+     &    iand(Need(2), SEKey(h0HH)) +
+     &    iand(Need(3), SEKey(h0A0) + SEKey(HHA0)) +
      &    iand(Need(4), goldstones)
 
 * calculate masses^2 & mixing angles at k^2 = 0
@@ -205,6 +216,7 @@
 	M(1,1) = Msq(h0h0) - seU(h0h0)
 	M(2,2) = Msq(HHHH) - seU(HHHH)
 	M(3,3) = Msq(A0A0) - seU(A0A0)
+c	MHiggs2(A0A0) = M(3,3)
 	M(1,2) = -seU(h0HH)
 	M(1,3) = -seU(h0A0)
 	M(2,3) = -seU(HHA0)
@@ -273,6 +285,7 @@
 	data perm /1,2,3, 2,1,3, 1,3,2, 2,3,1, 3,1,2, 3,2,1/
 	data nperm /0, 2, 6/
 
+	hX = 0
 	hmix = higgsmix - ishft(higgsmix, -2)
 
 	do i = 1, NHiggs
@@ -281,7 +294,7 @@
 
 	  p2 = ToComplex(MHiggs2(i), UNINITIALIZED)
 
-	  if( i .eq. inputmass ) then
+	  if( i .eq. inputmass .and. i .gt. higgsmix ) then
 	    MHiggs2(i) = Msq(i)
 	  else
 	    hX = i
@@ -380,14 +393,14 @@ c	      c = p2 + 1D-1
 	p2 = p2in
 
 	if( higgsmix - ishft(higgsmix, -2) .lt. max(2, i) ) then
-	  key = iand(not(Key(inputmass)), Key(i))
+	  key = iand(not(SEKey(inputmass)), SEKey(i))
 	  call CalcSelf(p2re, key, key)
 	  if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
 
 	  m2 = Msq(i) - seEV(i)
 	else
 	  key = cpeven +
-     &      iand(Need(3), iand(not(Key(inputmass)), cpodd)) +
+     &      iand(Need(3), iand(not(SEKey(inputmass)), cpodd)) +
      &      iand(Need(4), goldstones)
 	  call CalcSelf(p2re, key, key)
 	  if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
@@ -486,13 +499,13 @@ c	RealType mgamma
 	needi = Need(i)
 	needj = Need(j)
 	needk = Need(k)
-	key = iand( not(Key(inputmass)),
-     &    Key(i) +
-     &    iand(needj, Key(j) +
-     &                iand(needi, Key(ij))) +
-     &    iand(needk, Key(k) +
-     &                iand(needi, Key(ik)) +
-     &                iand(needj, Key(jk))) )
+	key = iand( not(SEKey(inputmass)),
+     &    SEKey(i) +
+     &    iand(needj, SEKey(j) +
+     &                iand(needi, SEKey(ij))) +
+     &    iand(needk, SEKey(k) +
+     &                iand(needi, SEKey(ik)) +
+     &                iand(needj, SEKey(jk))) )
 	call CalcSelf(p2re, key, key)
 	if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
 
@@ -642,11 +655,13 @@ c	widening_eps = abs(Re(x))/2**17
 	do try = 1, 20
 	  if( abs(Re(lim(1,1) - lim(1,0))) .lt. prec ) return
 #if 1
+	  s1 = 0
 	  w1 = 0
 	  if( Re(lim(2,0))*Re(lim(2,1)) .lt. 0 ) then
 	    s1 = abs(Re(lim(2,0))/(Re(lim(2,0)) - Re(lim(2,1))))
 	    w1 = log(max(abs(Re(lim(2,0))), abs(Re(lim(2,1)))))
 	  endif
+	  s2 = 0
 	  w2 = 0
 	  if( Im(lim(2,0))*Im(lim(2,1)) .lt. 0 ) then
 	    s2 = abs(Im(lim(2,0))/(Im(lim(2,0)) - Im(lim(2,1))))

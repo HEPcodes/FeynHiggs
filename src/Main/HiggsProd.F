@@ -5,7 +5,7 @@
 * charged-Higgs cross-section data are from Tilman Plehn
 *   http://www.ph.ed.ac.uk/~tplehn/charged_higgs
 * this file is part of FeynHiggs
-* last modified 18 Dec 13 th
+* last modified 9 Jun 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -91,7 +91,10 @@
 	  DPROD "Z-"//higgs(h)//"      =", Zh(h), ZhSM(h)	ENDL
 	  DPROD "St-St-"//higgs(h)//"  =", StSth(h)		ENDL
 	enddo
-	DPROD "t-Hm      =", tHm ENDL
+	DPROD "t-Hm        =", tHm	ENDL
+	DPROD "t-Hm alt    =", tHm2	ENDL
+	DPROD "t-Hm alt lo =", tHm2lo	ENDL
+	DPROD "t-Hm alt hi =", tHm2hi	ENDL
 	end
 
 
@@ -158,7 +161,7 @@
 
 	integer h
 	RealType logsqrts, m, sqrtm, logm, mst1
-	RealType c, TBeff, ck(nck)
+	RealType c, enh, TBeff, ck(nck)
 	RealType gghSMNLO(3)
 
 	logsqrts = log(sqrts)
@@ -231,19 +234,29 @@
 	if( MHiggs(4) .gt. 80 ) then
 	  m = MHiggs(4)
 	  sqrtm = sqrt(m)
-	  TBeff = TB/sqrt(abs(1 + Deltaf(bTR,3)))
+	  enh = 1/abs(1 + Deltaf(bTR,3))
+	  TBeff = TB*sqrt(enh)
 
 	  if( abs(sqrts - 14) .lt. 1D-5 ) then
 
 #include "CHiggsProdFits-LHC14.f"
 
-	    tHm = tHm/abs(1 + Deltaf(bTR,3))
+	    tHm = tHm*enh
 	  endif
 
-	  if( abs(sqrts - 8) .lt. 1D-5 .and. TBeff .ge. 30 ) then
+	  if( abs(sqrts - 8) .lt. 1D-5 .and. TBeff .ge. 1 ) then
 
 #include "CHiggsProdFits-LHC8.f"
 
+        PRINT *, "XXX:TBeff=", TBeff
+        PRINT *, "XXX:enh=", enh
+        PRINT *, "XXX:tHm2=", tHm2
+        PRINT *, "XXX:tHm2lo=", tHm2lo
+        PRINT *, "XXX:tHm2hi=", tHm2hi
+
+c	    tHm2 = tHm2*enh
+	    tHm2lo = tHm2lo*enh
+	    tHm2hi = tHm2hi*enh
 	  endif
 	endif
 	end

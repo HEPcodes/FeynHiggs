@@ -1,6 +1,6 @@
 * dse_A0A0.F
 * this file is part of FeynHiggs
-* generated 05 Nov 2013 19:22
+* generated 13 May 2014 09:33
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 	ComplexType dse_A0A0_mfv, dse_A0A0_nmfv
 	external dse_A0A0_mfv, dse_A0A0_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  dse_A0A0 = dse_A0A0_mfv(k2, bX)
 	else
 	  dse_A0A0 = dse_A0A0_nmfv(k2, bX)
@@ -163,22 +163,22 @@
 
         dse_A0A0_mfv = dse_A0A0_mfv - 
      &    1/(16.D0*Pi)*(Alfa1L*
-     &        (CW2*(CBA2*B0(k2,Mh02,MZ2) + SBA2*B0(k2,MHH2,MZ2)) - 
-     &          C2B**2*MW2*
-     &           (SAB**2*DB0(k2,MA02,Mh02) + 
-     &             CAB**2*DB0(k2,MA02,MHH2)) + 
+     &        (-(C2B**2*MW2*
+     &             (SAB**2*DB0(k2,MA02,Mh02) + 
+     &               CAB**2*DB0(k2,MA02,MHH2))) + 
      &          (CBA2*CW2*(k2 + Mh02) - MW2*S2B**2*SAB**2)*
      &           DB0(k2,Mh02,MZ2) - 
      &          (CAB**2*MW2*S2B**2 - CW2*(k2 + MHH2)*SBA2)*
-     &           DB0(k2,MHH2,MZ2) - 
-     &          2*CW2*(CBA2*B1(k2,Mh02,MZ2) + 
-     &             SBA2*B1(k2,MHH2,MZ2) + 
-     &             k2*(CBA2*DB1(k2,Mh02,MZ2) + 
-     &                SBA2*DB1(k2,MHH2,MZ2)) - 
-     &             CW2*(B0(k2,MHp2,MW2) + 
-     &                (k2 + MHp2 - MW2)*DB0(k2,MHp2,MW2) - 
-     &                2*(B1(k2,MHp2,MW2) + k2*DB1(k2,MHp2,MW2))))))
-     &       /(CW2**2*SW2)
+     &           DB0(k2,MHH2,MZ2) + 
+     &          CW2*(CBA2*B0(k2,Mh02,MZ2) + SBA2*B0(k2,MHH2,MZ2) - 
+     &             2*(CBA2*B1(k2,Mh02,MZ2) + 
+     &                SBA2*B1(k2,MHH2,MZ2) + 
+     &                k2*(CBA2*DB1(k2,Mh02,MZ2) + 
+     &                   SBA2*DB1(k2,MHH2,MZ2)) - 
+     &                CW2*(B0(k2,MHp2,MW2) + 
+     &                   (k2 + MHp2 - MW2)*DB0(k2,MHp2,MW2) - 
+     &                   2*(B1(k2,MHp2,MW2) + k2*DB1(k2,MHp2,MW2)))
+     &                ))))/(CW2**2*SW2)
 
 	LOOP(Cha4, 1,2,1)
 	LOOP(Cha3, 1,2,1)
@@ -426,22 +426,22 @@
 
         dse_A0A0_nmfv = dse_A0A0_nmfv - 
      &    1/(16.D0*Pi)*(Alfa1L*
-     &        (CW2*(CBA2*B0(k2,Mh02,MZ2) + SBA2*B0(k2,MHH2,MZ2)) - 
-     &          C2B**2*MW2*
-     &           (SAB**2*DB0(k2,MA02,Mh02) + 
-     &             CAB**2*DB0(k2,MA02,MHH2)) + 
+     &        (-(C2B**2*MW2*
+     &             (SAB**2*DB0(k2,MA02,Mh02) + 
+     &               CAB**2*DB0(k2,MA02,MHH2))) + 
      &          (CBA2*CW2*(k2 + Mh02) - MW2*S2B**2*SAB**2)*
      &           DB0(k2,Mh02,MZ2) - 
      &          (CAB**2*MW2*S2B**2 - CW2*(k2 + MHH2)*SBA2)*
-     &           DB0(k2,MHH2,MZ2) - 
-     &          2*CW2*(CBA2*B1(k2,Mh02,MZ2) + 
-     &             SBA2*B1(k2,MHH2,MZ2) + 
-     &             k2*(CBA2*DB1(k2,Mh02,MZ2) + 
-     &                SBA2*DB1(k2,MHH2,MZ2)) - 
-     &             CW2*(B0(k2,MHp2,MW2) + 
-     &                (k2 + MHp2 - MW2)*DB0(k2,MHp2,MW2) - 
-     &                2*(B1(k2,MHp2,MW2) + k2*DB1(k2,MHp2,MW2))))))
-     &       /(CW2**2*SW2)
+     &           DB0(k2,MHH2,MZ2) + 
+     &          CW2*(CBA2*B0(k2,Mh02,MZ2) + SBA2*B0(k2,MHH2,MZ2) - 
+     &             2*(CBA2*B1(k2,Mh02,MZ2) + 
+     &                SBA2*B1(k2,MHH2,MZ2) + 
+     &                k2*(CBA2*DB1(k2,Mh02,MZ2) + 
+     &                   SBA2*DB1(k2,MHH2,MZ2)) - 
+     &                CW2*(B0(k2,MHp2,MW2) + 
+     &                   (k2 + MHp2 - MW2)*DB0(k2,MHp2,MW2) - 
+     &                   2*(B1(k2,MHp2,MW2) + k2*DB1(k2,MHp2,MW2)))
+     &                ))))/(CW2**2*SW2)
 
 	LOOP(Cha4, 1,2,1)
 	LOOP(Cha3, 1,2,1)

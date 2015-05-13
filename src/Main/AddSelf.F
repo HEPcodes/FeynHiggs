@@ -1,7 +1,7 @@
 * AddSelf.F
 * Add user-specified values to the Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 26 Mar 14 th
+* last modified 15 May 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -18,22 +18,22 @@
 #define __SUBROUTINE__ "FHAddSelf"
 
 	integer error, n, flags
-	ComplexType sig(semax,*)
+	ComplexType sig(semax,0:*)
 
 	ComplexType sub_h0h0, sub_HHHH, sub_h0HH
-	integer i, h
+	integer h, i
 
-	character*4 p2(4)
-	data p2 /"Mh02", "MHH2", "MA02", "MHp2"/
+	character*4 p2(0:4)
+	data p2 /"0", "Mh02", "MHH2", "MA02", "MHp2"/
 
 	error = 0
 	CheckPara(error)
 	if( error .gt. 0 ) return
 
-	if( n .gt. seXmax )
+	if( n .gt. seXmax + 1 )
      &    Warning("User self-energies at too many points given")
 
-	do i = 1, semax*seXmax
+	do i = 1, semax*(seXmax + 1)
 	  seX_flat(i) = 0
 	enddo
 
@@ -54,14 +54,15 @@
      &    ibits(flags, atab, 1)*se2Rcat(se12,atab)
 
 	if( debuglevel .ge. 3 ) then
-	  DSELF "h0h0 subtraction = ", sub_h0h0 ENDL
-	  DSELF "HHHH subtraction = ", sub_HHHH ENDL
-	  DSELF "h0HH subtraction = ", sub_h0HH ENDL
+	  DSELF "AddSelf points =", n ENDL
+	  DSELF "h0h0 sub =", sub_h0h0 ENDL
+	  DSELF "HHHH sub =", sub_HHHH ENDL
+	  DSELF "h0HH sub =", sub_h0HH ENDL
 	endif
 
 #define DSEX(s,se) if( se .ne. 0 ) DSELF s, se ENDL
 
-	do h = 1, min(n, seXmax)
+	do h = 0, min(n-1, seXmax)
 	  if( debuglevel .ge. 3 )
      &      DSELF "User additions for p2 = ", p2(h) ENDL
 
@@ -110,6 +111,15 @@
 	    DSEX("sig(HmGp) +=", seX(HmGp,h))
 	  endif
 	enddo
+
+* special case for constant shifts (i.e., same for Mh0, MHH, MA0, MHp)
+	if( n .eq. 1 ) then
+	  do h = 1, seXmax
+	    do i = 1, semax
+	      seX(i,h) = sig(i,0)
+	    enddo
+	  enddo
+	endif
 
 	higgs_valid = 0
 	coup_valid = 0

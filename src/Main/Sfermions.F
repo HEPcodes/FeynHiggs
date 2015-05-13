@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 3 Jun 13 th
+* last modified 13 May 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -363,32 +363,33 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	h = Hex(ty)
 
 	DPARA "----------------------------" ENDL
-	DPARA "Mf("//h//",3)  =", Mf(ty,3) ENDL
-	DPARA "MSf("//h//",1) =", MSf(1,ty,1), MSf(2,ty,1) ENDL
-	DPARA "MSf("//h//",2) =", MSf(1,ty,2), MSf(2,ty,2) ENDL
-	DPARA "MSf("//h//",3) =", MSf(1,ty,3), MSf(2,ty,3) ENDL
+	DPARA "Type ", h, " = ", SfType(ty)			ENDL
+	DPARA "Mf(",h,",3)  =", Mf(ty,3)			ENDL
+	DPARA "MSf(",h,",1) =", MSf(1,ty,1), MSf(2,ty,1)	ENDL
+	DPARA "MSf(",h,",2) =", MSf(1,ty,2), MSf(2,ty,2)	ENDL
+	DPARA "MSf(",h,",3) =", MSf(1,ty,3), MSf(2,ty,3)	ENDL
 
 	if( debuglevel .lt. 2 ) return
 
-	DPARA "USf(1,1,"//h//",3) =", USf(1,1,ty,3) ENDL
-	DPARA "   (1,2)     =", USf(1,2,ty,3) ENDL
-	DPARA "   (2,1)     =", USf(2,1,ty,3) ENDL
-	DPARA "   (2,2)     =", USf(2,2,ty,3) ENDL
-	DPARA "   11^2+12^2 =", USf2(1,1,ty,3) + USf2(1,2,ty,3) ENDL
+	DPARA "USf(1,1,",h,",3) =", USf(1,1,ty,3)		ENDL
+	DPARA "   (1,2)     =", USf(1,2,ty,3)			ENDL
+	DPARA "   (2,1)     =", USf(2,1,ty,3)			ENDL
+	DPARA "   (2,2)     =", USf(2,2,ty,3)			ENDL
+	DPARA "   11^2+12^2 =", USf2(1,1,ty,3) + USf2(1,2,ty,3)	ENDL
 
 	if( debuglevel .lt. 3 ) return
 
-	DPARA "USf(1,1,"//h//",2) =", USf(1,1,ty,2) ENDL
-	DPARA "   (1,2)     =", USf(1,2,ty,2) ENDL
-	DPARA "   (2,1)     =", USf(2,1,ty,2) ENDL
-	DPARA "   (2,2)     =", USf(2,2,ty,2) ENDL
-	DPARA "   11^2+12^2 =", USf2(1,1,ty,2) + USf2(1,2,ty,2) ENDL
+	DPARA "USf(1,1,",h,",2) =", USf(1,1,ty,2)		ENDL
+	DPARA "   (1,2)     =", USf(1,2,ty,2)			ENDL
+	DPARA "   (2,1)     =", USf(2,1,ty,2)			ENDL
+	DPARA "   (2,2)     =", USf(2,2,ty,2)			ENDL
+	DPARA "   11^2+12^2 =", USf2(1,1,ty,2) + USf2(1,2,ty,2)	ENDL
 
-	DPARA "USf(1,1,"//h//",1) =", USf(1,1,ty,1) ENDL
-	DPARA "   (1,2)     =", USf(1,2,ty,1) ENDL
-	DPARA "   (2,1)     =", USf(2,1,ty,1) ENDL
-	DPARA "   (2,2)     =", USf(2,2,ty,1) ENDL
-	DPARA "   11^2+12^2 =", USf2(1,1,ty,1) + USf2(1,2,ty,1) ENDL
+	DPARA "USf(1,1,",h,",1) =", USf(1,1,ty,1)		ENDL
+	DPARA "   (1,2)     =", USf(1,2,ty,1)			ENDL
+	DPARA "   (2,1)     =", USf(2,1,ty,1)			ENDL
+	DPARA "   (2,2)     =", USf(2,2,ty,1)			ENDL
+	DPARA "   11^2+12^2 =", USf2(1,1,ty,1) + USf2(1,2,ty,1)	ENDL
 	end
 
 ************************************************************************
@@ -432,7 +433,7 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 
 	integer t, ts, ty, nQ, nU, as, g, j
 	ComplexType MX2(6,6), m1, m2, m3
-	character h
+	character*4 h
 
 	ty = nib2(ty_ts_t)
 	ts = nib1(ty_ts_t)
@@ -528,49 +529,50 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 
 	h = Hex(ty)
 
-	DPARA "----------------------------"	ENDL
-	DPARA "MASf("//h//") =", MASf(1,ty), MASf(2,ty) ENDL
-	DPARA "         ", MASf(3,ty), MASf(4,ty) ENDL
-	DPARA "         ", MASf(5,ty), MASf(6,ty) ENDL
+	DPARA "----------------------------"		ENDL
+	DPARA "Type ", h, " = ", SfType(ty)		ENDL
+	DPARA "MASf(",h,") =", MASf(1,ty), MASf(2,ty)	ENDL
+	DPARA "         ", MASf(3,ty), MASf(4,ty)	ENDL
+	DPARA "         ", MASf(5,ty), MASf(6,ty)	ENDL
 
 	if( debuglevel .lt. 2 ) return
 
-	DPARA "UASf(1,1,"//h//") =", UASf(1,1,ty) ENDL
-	DPARA "    (1,2)   =", UASf(1,2,ty)	ENDL
-	DPARA "    (1,3)   =", UASf(1,3,ty)	ENDL
-	DPARA "    (1,4)   =", UASf(1,4,ty)	ENDL
-	DPARA "    (1,5)   =", UASf(1,5,ty)	ENDL
-	DPARA "    (1,6)   =", UASf(1,6,ty)	ENDL
-	DPARA "    (2,1)   =", UASf(2,1,ty)	ENDL
-	DPARA "    (2,2)   =", UASf(2,2,ty)	ENDL
-	DPARA "    (2,3)   =", UASf(2,3,ty)	ENDL
-	DPARA "    (2,4)   =", UASf(2,4,ty)	ENDL
-	DPARA "    (2,5)   =", UASf(2,5,ty)	ENDL
-	DPARA "    (2,6)   =", UASf(2,6,ty)	ENDL
-	DPARA "    (3,1)   =", UASf(3,1,ty)	ENDL
-	DPARA "    (3,2)   =", UASf(3,2,ty)	ENDL
-	DPARA "    (3,3)   =", UASf(3,3,ty)	ENDL
-	DPARA "    (3,4)   =", UASf(3,4,ty)	ENDL
-	DPARA "    (3,5)   =", UASf(3,5,ty)	ENDL
-	DPARA "    (3,6)   =", UASf(3,6,ty)	ENDL
-	DPARA "    (4,1)   =", UASf(4,1,ty)	ENDL
-	DPARA "    (4,2)   =", UASf(4,2,ty)	ENDL
-	DPARA "    (4,3)   =", UASf(4,3,ty)	ENDL
-	DPARA "    (4,4)   =", UASf(4,4,ty)	ENDL
-	DPARA "    (4,5)   =", UASf(4,5,ty)	ENDL
-	DPARA "    (4,6)   =", UASf(4,6,ty)	ENDL
-	DPARA "    (5,1)   =", UASf(5,1,ty)	ENDL
-	DPARA "    (5,2)   =", UASf(5,2,ty)	ENDL
-	DPARA "    (5,3)   =", UASf(5,3,ty)	ENDL
-	DPARA "    (5,4)   =", UASf(5,4,ty)	ENDL
-	DPARA "    (5,5)   =", UASf(5,5,ty)	ENDL
-	DPARA "    (5,6)   =", UASf(5,6,ty)	ENDL
-	DPARA "    (6,1)   =", UASf(6,1,ty)	ENDL
-	DPARA "    (6,2)   =", UASf(6,2,ty)	ENDL
-	DPARA "    (6,3)   =", UASf(6,3,ty)	ENDL
-	DPARA "    (6,4)   =", UASf(6,4,ty)	ENDL
-	DPARA "    (6,5)   =", UASf(6,5,ty)	ENDL
-	DPARA "    (6,6)   =", UASf(6,6,ty)	ENDL
+	DPARA "UASf(1,1,",h,") =", UASf(1,1,ty) 	ENDL
+	DPARA "    (1,2)   =", UASf(1,2,ty)		ENDL
+	DPARA "    (1,3)   =", UASf(1,3,ty)		ENDL
+	DPARA "    (1,4)   =", UASf(1,4,ty)		ENDL
+	DPARA "    (1,5)   =", UASf(1,5,ty)		ENDL
+	DPARA "    (1,6)   =", UASf(1,6,ty)		ENDL
+	DPARA "    (2,1)   =", UASf(2,1,ty)		ENDL
+	DPARA "    (2,2)   =", UASf(2,2,ty)		ENDL
+	DPARA "    (2,3)   =", UASf(2,3,ty)		ENDL
+	DPARA "    (2,4)   =", UASf(2,4,ty)		ENDL
+	DPARA "    (2,5)   =", UASf(2,5,ty)		ENDL
+	DPARA "    (2,6)   =", UASf(2,6,ty)		ENDL
+	DPARA "    (3,1)   =", UASf(3,1,ty)		ENDL
+	DPARA "    (3,2)   =", UASf(3,2,ty)		ENDL
+	DPARA "    (3,3)   =", UASf(3,3,ty)		ENDL
+	DPARA "    (3,4)   =", UASf(3,4,ty)		ENDL
+	DPARA "    (3,5)   =", UASf(3,5,ty)		ENDL
+	DPARA "    (3,6)   =", UASf(3,6,ty)		ENDL
+	DPARA "    (4,1)   =", UASf(4,1,ty)		ENDL
+	DPARA "    (4,2)   =", UASf(4,2,ty)		ENDL
+	DPARA "    (4,3)   =", UASf(4,3,ty)		ENDL
+	DPARA "    (4,4)   =", UASf(4,4,ty)		ENDL
+	DPARA "    (4,5)   =", UASf(4,5,ty)		ENDL
+	DPARA "    (4,6)   =", UASf(4,6,ty)		ENDL
+	DPARA "    (5,1)   =", UASf(5,1,ty)		ENDL
+	DPARA "    (5,2)   =", UASf(5,2,ty)		ENDL
+	DPARA "    (5,3)   =", UASf(5,3,ty)		ENDL
+	DPARA "    (5,4)   =", UASf(5,4,ty)		ENDL
+	DPARA "    (5,5)   =", UASf(5,5,ty)		ENDL
+	DPARA "    (5,6)   =", UASf(5,6,ty)		ENDL
+	DPARA "    (6,1)   =", UASf(6,1,ty)		ENDL
+	DPARA "    (6,2)   =", UASf(6,2,ty)		ENDL
+	DPARA "    (6,3)   =", UASf(6,3,ty)		ENDL
+	DPARA "    (6,4)   =", UASf(6,4,ty)		ENDL
+	DPARA "    (6,5)   =", UASf(6,5,ty)		ENDL
+	DPARA "    (6,6)   =", UASf(6,6,ty)		ENDL
 	end
 
 ************************************************************************

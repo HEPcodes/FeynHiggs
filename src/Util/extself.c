@@ -3,7 +3,7 @@
 		call external program with preset environment
 		for the computation of the Higgs SE
 		this file is part of FeynHiggs
-		last modified 2 May th
+		last modified 4 Aug 14 th
 */
 
 #define _XOPEN_SOURCE 700
@@ -23,11 +23,22 @@
 #include "externals.h"
 #include "ftypes.h"
 
+/* (a < 0) ? -1 : 0 */
+#define NegQ(a) ((a) >> (sizeof(a)*8 - 1))
+
+/* (a < 0) ? 0 : a */
+#define IDim(a) ((a) & NegQ(-(a)))
+
+/* (a > b) ? a : b */
+#define IMax(a, b) ((b) + IDim((a) - (b)))
+
+
 typedef int (*ftwfun)(const char *, const struct stat *, int, struct FTW *);
 
 static int firstrun = 1;
 
 #if NOUNDERSCORE
+#undef extself_
 #define extself_ extself
 #endif
 
@@ -54,12 +65,12 @@ static void cleanup(int sig) {
   if( keep == 0 ) nftw(tmpdir, (ftwfun)remove, 64, FTW_DEPTH | FTW_PHYS);
 }
 
-void extself_(int *flags, cplx *se, const char *cmd, ...) {
+void extself_(int *flags, int *n, cplx *se, const char *cmd, ...) {
   int fd[2];
   char buf[256], val[32], *s;
   RealType *r;
   va_list v1, v2;
-  int cmd_len, s_len, i, rot, sub;
+  int cmd_len, s_len, i, rot, sub, np = 0;
   FILE *h;
 
 #define higgs_se(tag,off) \
@@ -80,16 +91,17 @@ void extself_(int *flags, cplx *se, const char *cmd, ...) {
   {"F2F2" tag, off+0x81}, \
   {"F1F2" tag, off+0x84}
 
-  static hid_t hid[seXmax*(semax+3)] = {
-    higgs_se("@Mh0", 0*semax),
-    higgs_se("@MHH", 1*semax),
-    higgs_se("@MA0", 2*semax),
-    higgs_se("@MHp", 3*semax) };
+  static hid_t hid[(seXmax+1)*(semax+3)] = {
+    higgs_se("@0", 0*semax),
+    higgs_se("@Mh0", 1*semax),
+    higgs_se("@MHH", 2*semax),
+    higgs_se("@MA0", 3*semax),
+    higgs_se("@MHp", 4*semax) };
 
   if( *tmpdir_template == 0 ) {
     char *env = getenv("FHEXTSE_TMPDIR");
-    char *s = strcpy(tmpdir_template, env ? env : "/tmp");
-    strcat(s, "/fh-extse.XXXXXX");
+    strcpy(tmpdir_template, env ? env : "/tmp");
+    strcat(tmpdir_template, "/fh-extse.XXXXXX");
   }
   strcpy(tmpdir, tmpdir_template);
   assert( mkdtemp(tmpdir) != NULL &&
@@ -156,10 +168,11 @@ void extself_(int *flags, cplx *se, const char *cmd, ...) {
         else if( strncmp(s, "atab", 4) == 0 ) sub |= 16;
       }
       else for( i = 0; i < lengthof(hid); ++i ) {
-        if( strncmp(s, hid[i].tag, 8) == 0 ) {
+        if( strncmp(s, hid[i].tag, strlen(hid[i].tag)) == 0 ) {
           cplx *sei = &se[hid[i].off & 0x7f];
           rot |= hid[i].off;
           sscanf(s+8, " %lg %lg", &sei->re, &sei->im);
+          np = IMax(i/(semax + 3) + 1, np);
           break;
         }
       }
@@ -174,5 +187,6 @@ void extself_(int *flags, cplx *se, const char *cmd, ...) {
   firstrun = 0;
 
   *flags = (rot >> 7) + sub;
+  *n = np;
 }
 

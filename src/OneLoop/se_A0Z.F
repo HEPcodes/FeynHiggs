@@ -1,6 +1,6 @@
 * se_A0Z.F
 * this file is part of FeynHiggs
-* generated 05 Nov 2013 19:22
+* generated 13 May 2014 09:33
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 	ComplexType se_A0Z_mfv, se_A0Z_nmfv
 	external se_A0Z_mfv, se_A0Z_nmfv
 
-	if( ibits(fv, 3, 2) .eq. 0 ) then
+	if( fv .eq. 0 ) then
 	  se_A0Z = se_A0Z_mfv(k2, bX)
 	else
 	  se_A0Z = se_A0Z_nmfv(k2, bX)
@@ -223,17 +223,17 @@
         dup14 = ZNeu(Neu3,3)*ZNeuC(Neu4,3) - 
      &    ZNeu(Neu3,4)*ZNeuC(Neu4,4)
 
-        dup15 = dup10*dup11*dup12 + 
-     &    dup14*(dup6*dup7 + dup5*dup8) + dup11*dup13*dup9
+        dup15 = dup14*(dup6*dup7 + dup5*dup8) + 
+     &    dup11*(dup10*dup12 + dup13*dup9)
 
         se_A0Z_mfv = se_A0Z_mfv + 
      &    cI/(16.D0*Pi)*(Alfa1L*
      &        (dup15*B0(k2,MNeu2(Neu3),MNeu2(Neu4))*MNeu(Neu3) + 
      &          B1(k2,MNeu2(Neu3),MNeu2(Neu4))*
      &           (dup15*MNeu(Neu3) - 
-     &             (dup10*dup12*dup14 + 
-     &                dup11*(dup6*dup7 + dup5*dup8) + 
-     &                dup13*dup14*dup9)*MNeu(Neu4))))/(CW2*SW2)
+     &             (dup11*(dup6*dup7 + dup5*dup8) + 
+     &                dup14*(dup10*dup12 + dup13*dup9))*MNeu(Neu4))
+     &          ))/(CW2*SW2)
 
 	ENDLOOP(Neu3)
 	ENDLOOP(Neu4)
@@ -468,17 +468,17 @@
         dup14 = ZNeu(Neu3,3)*ZNeuC(Neu4,3) - 
      &    ZNeu(Neu3,4)*ZNeuC(Neu4,4)
 
-        dup15 = dup10*dup11*dup12 + 
-     &    dup14*(dup6*dup7 + dup5*dup8) + dup11*dup13*dup9
+        dup15 = dup14*(dup6*dup7 + dup5*dup8) + 
+     &    dup11*(dup10*dup12 + dup13*dup9)
 
         se_A0Z_nmfv = se_A0Z_nmfv + 
      &    cI/(16.D0*Pi)*(Alfa1L*
      &        (dup15*B0(k2,MNeu2(Neu3),MNeu2(Neu4))*MNeu(Neu3) + 
      &          B1(k2,MNeu2(Neu3),MNeu2(Neu4))*
      &           (dup15*MNeu(Neu3) - 
-     &             (dup10*dup12*dup14 + 
-     &                dup11*(dup6*dup7 + dup5*dup8) + 
-     &                dup13*dup14*dup9)*MNeu(Neu4))))/(CW2*SW2)
+     &             (dup11*(dup6*dup7 + dup5*dup8) + 
+     &                dup14*(dup10*dup12 + dup13*dup9))*MNeu(Neu4))
+     &          ))/(CW2*SW2)
 
 	ENDLOOP(Neu3)
 	ENDLOOP(Neu4)

@@ -1,8 +1,11 @@
 #! /bin/sh
 # configure script for FeynHiggs
 # note: has nothing to do with GNU autoconf
-# this file is part of FeynHiggs
-# last modified 1 Apr 14 th
+# last modified 29 Jul 14 th
+
+
+exec 2> ${LOGFILE:-/dev/null} 3>&1
+eval ${LOGFILE:+set -x}
 
 
 LC_ALL=C
@@ -27,12 +30,12 @@ fi
 
 
 findprog() {
-  echo $echo_n "looking for $1... $echo_c" 1>&2
+  echo $echo_n "looking for $1... $echo_c" 1>&3
   shift
   test -n "$CONF_TARGET" && for prog in "$@" ; do
     full="`which \"$CONF_TARGET-$prog\" 2> /dev/null`"
     test -x "$full" && {
-      echo $full 1>&2
+      echo $full 1>&3
       echo $CONF_TARGET-$prog
       return 0
     }
@@ -40,19 +43,18 @@ findprog() {
   for prog in "$@" ; do
     full="`which \"$prog\" 2> /dev/null`"
     test -x "$full" && {
-      echo $full 1>&2
+      echo $full 1>&3
       echo $prog
       return 0
     }
   done
-  echo "no $@ in your path" 1>&2
+  echo "no $@ in your path" 1>&3
   return 1
 }
 
 
 getldflags() {
-  # Mma 5.1's mcc needs -lpthread for static linking
-  ldflags="$LDFLAGS -lpthread"
+  ldflags="$LDFLAGS"
 
   while read line ; do
     set -- `echo $line | tr ':,()' '    '`
@@ -63,7 +65,7 @@ getldflags() {
     while test $# -gt 1 ; do
       shift
       case $1 in
-      *.o | -lc | -lgcc)
+      *.o | -lc | -lgcc*)
         ;;
       -l* | -L* | *.a)
         ldflags="$ldflags $1" ;;
@@ -89,16 +91,17 @@ CONF_OS=`uname -s`
 CONF_MACH=`uname -m`
 CONF_DEFPREFIX="$CONF_MACH-$CONF_OS"
 CONF_PREFIX="$CONF_DEFPREFIX"
-test "$CONF_PREFIX" = x86_64-Linux && CONF_LIBDIRSUFFIX=64
 CONF_TARGET=
 CONF_STATIC=
 CONF_STATIC_EXT=
 CONF_QUAD=
 CONF_DEBUG=
 CONF_BITS=
+  # Mma 5.1's mcc needs -lpthread for static linking
+CONF_MCLIBS=-lpthread
 CONF_EXE=
 case "$CONF_OS" in
-CYG*) CONF_EXE=.exe ;;
+CYG*)	CONF_EXE=.exe ;;
 esac
 
 CONF_GM2FULL=0
@@ -137,7 +140,7 @@ for arg in "$@" ; do
   --64)
 	CONF_BITS=64 ;;
   --help)
-	cat << _EOF_ 1>&2
+	cat << _EOF_ 1>&3
 $0 configures FeynHiggs, i.e. determines or guesses the
 compiler and flags and writes out a makefile.
 
@@ -167,13 +170,15 @@ $0 understands the following options:
 _EOF_
 	exit 1 ;;
   -*)
-	echo "Warning: $arg is not a valid option." 1>&2 ;;
+	echo "Warning: $arg is not a valid option." 1>&3 ;;
   *=*)
 	eval `echo $arg\" | sed 's/=/="/'` ;;
   *)
-	echo "Warning: $arg is not a valid argument." 1>&2 ;;
+	echo "Warning: $arg is not a valid argument." 1>&3 ;;
   esac
 done
+
+test "$CONF_OS" = Linux -a "$CONF_BITS" \!= 32 && CONF_LIBDIRSUFFIX=64
 
 CONF_M=${CONF_BITS:+-m$CONF_BITS}
 
@@ -186,7 +191,7 @@ CONF_CC=`findprog gcc $CC clang gcc` || exit 1
 
 CONF_CXX=`findprog g++ $CXX clang++ g++` || exit 1
 
-CONF_FC=`findprog f77 $FC ${CONF_QUAD:+ifort gfortran xlf} ifort pgf90 pgf77 xlf gfortran g77 g95 f77 f90 fort77` || exit 1
+CONF_FC=`findprog fortran $FC ${CONF_QUAD:+ifort gfortran xlf} ifort pgf90 pgf77 xlf gfortran g77 g95 f77 f90 fort77` || exit 1
 
 CONF_AR=`findprog ar $AR ar`
 
@@ -202,7 +207,7 @@ case "`$CONF_FC --version -c 2>&1`" in
 *G95*)
   CONF_FFLAGS="$FFLAGS -O0 -g -ffixed-line-length-132 -freal-loops $CONF_M $CONF_STATIC ${CONF_DEBUG:+-Wall}" ;;
 *GNU*)
-  CONF_FFLAGS="$FFLAGS -O0 -g -ffixed-line-length-none $CONF_M $CONF_STATIC ${CONF_DEBUG:+-Wall}"
+  CONF_FFLAGS="$FFLAGS -O1 -g -ffixed-line-length-none $CONF_M $CONF_STATIC ${CONF_DEBUG:+-Wall}"
   case "$CONF_FC" in
   *gfortran*)
 	CONF_FFLAGS="$CONF_FFLAGS ${CONF_DEBUG:+-Wtabs -ffpe-trap=invalid,overflow,zero} ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc} ${CONF_QUAD:+-fdefault-real-8 -DDBLE=REAL -DDIMAG=IMAG -DDCONJG=CONJG}" ;;
@@ -231,7 +236,7 @@ esac
 
 ## find the Fortran libraries
 
-echo $echo_n "extracting the Fortran libraries... $echo_c" 1>&2
+echo $echo_n "extracting the Fortran libraries... $echo_c" 1>&3
 
 rm -fr $test*
 
@@ -240,10 +245,11 @@ cat > $test.f << _EOF_
 	print *, "Hi"
 	end
 _EOF_
+eval ${LOGFILE:+cat $test.f 1>&2}
 
 CONF_LDFLAGS=`$CONF_FC $CONF_FFLAGS -v -o $test $test.f 2>&1 | getldflags`
 
-echo $CONF_LDFLAGS 1>&2
+echo $CONF_LDFLAGS 1>&3
 
 
 test -z "$CONF_BITS" && case "$CONF_MACH" in
@@ -265,7 +271,7 @@ CONF_CXXFLAGS="$CXXFLAGS $CONF_M $CONF_STATIC ${CONF_STATIC_GCC:+-static-libstdc
 
 ## does Fortran need externals for U77 routines?
 
-echo $echo_n "does $CONF_FC need externals for U77 routines... $echo_c" 1>&2
+echo $echo_n "does $CONF_FC need externals for U77 routines... $echo_c" 1>&3
 
 rm -fr $test*
 
@@ -275,49 +281,47 @@ cat > $test.f << _EOF_
 	print *, iargc(), len_trim("Hi")
 	end
 _EOF_
+eval ${LOGFILE:+cat $test.f 1>&2}
 
-if $CONF_FC $CONF_FFLAGS -c $test.f > /dev/null 2>&1 ; then
-  echo "no" 1>&2
+if $CONF_FC $CONF_FFLAGS -c $test.f 1>&2 ; then
+  echo "no" 1>&3
   CONF_U77EXT=0
 else
-  echo "yes" 1>&2
+  echo "yes" 1>&3
   CONF_U77EXT=1
 fi
 
 
 ## does Fortran append underscores to symbols?
 
-echo $echo_n "does $CONF_FC append underscores... $echo_c" 1>&2
+echo $echo_n "does $CONF_FC append underscores... $echo_c" 1>&3
 
 rm -fr $test*
 
+echo "void uscore$$_() {}" > $test-c.c
+eval ${LOGFILE:+cat $test-c.c 1>&2}
+
 cat > $test.f << _EOF_
-	subroutine uscore
+	program test_uscore
+	call uscore$$
 	end
 _EOF_
+eval ${LOGFILE:+cat $test.f 1>&2}
 
-cat > $test-c.c << _EOF_
-int main() {
-  void uscore_();
-  uscore_();
-  return 0;
-}
-_EOF_
+$CONF_CC $CONF_CFLAGS -c $test-c.c 1>&2
 
-$CONF_FC $CONF_FFLAGS -c $test.f > /dev/null 2>&1
-
-if $CONF_CC $CONF_CFLAGS -o $test-c $test-c.c $test.o $CONF_LDFLAGS > /dev/null 2>&1 ; then
-  echo "yes" 1>&2
+if $CONF_FC $CONF_FFLAGS -o $test $test.f $test-c.o 1>&2 ; then
+  echo "yes" 1>&3
   CONF_NOUNDERSCORE=0
 else
-  echo "no" 1>&2
+  echo "no" 1>&3
   CONF_NOUNDERSCORE=1
 fi
 
 
 ## are we on a big-endian machine?
 
-echo $echo_n "are we big-endian... $echo_c" 1>&2
+echo $echo_n "are we big-endian... $echo_c" 1>&3
 
 rm -fr $test*
 
@@ -330,21 +334,22 @@ int main() {
   printf("%d\n", u.i != 0);
 }
 _EOF_
+eval ${LOGFILE:+cat $test.c 1>&2}
 
-$CONF_CC $CONF_CFLAGS -o $test$CONF_EXE $test.c > /dev/null 2>&1
+$CONF_CC $CONF_CFLAGS -o $test$CONF_EXE $test.c 1>&2
 
-if test "`./$test$CONF_EXE 2> /dev/null`" = 1 ; then
-  echo "yes" 1>&2
+if test "`./$test$CONF_EXE`" = 1 ; then
+  echo "yes" 1>&3
   CONF_BIGENDIAN=1
 else
-  echo "no" 1>&2
+  echo "no" 1>&3
   CONF_BIGENDIAN=0
 fi
 
 
 ## can we do MathLink compilations
 
-echo $echo_n "do we have MathLink... $echo_c" 1>&2
+echo $echo_n "do we have MathLink... $echo_c" 1>&3
 
 rm -fr $test*
 
@@ -367,21 +372,22 @@ int main(int argc, char **argv) {
   return MLMain(argc, argv);
 }
 _EOF_
+eval ${LOGFILE:+cat $test.tm 1>&2}
 
 CONF_MCC=${MCC:-mcc}
-CONF_MCFLAGS="${CONF_STATIC:+-st} ${CONF_STATIC_EXT:+-st} ${CONF_BITS:+-b$CONF_BITS}"
+CONF_MCFLAGS="-st ${CONF_BITS:+-b$CONF_BITS}"
 
 NM="$CONF_NM" DLLTOOL="$CONF_DLLTOOL" \
 CC="$CONF_SRC/tools/fcc.in" REALCC="$CONF_CC $CONF_CFLAGS" \
 CXX="$CONF_SRC/tools/f++.in" REALCXX="$CONF_CXX $CONF_CXXFLAGS" \
 PATH="$PATH:$CONF_SRC/tools" \
-  "$CONF_MCC" $CONF_MCFLAGS -o $test$CONF_EXE $test.tm > /dev/null 2>&1
+  "$CONF_MCC" $CONF_MCFLAGS -o $test$CONF_EXE $test.tm $CONF_MCLIBS 1>&2
 
 if test -x $test$CONF_EXE ; then
-  echo "yes" 1>&2
+  echo "yes" 1>&3
   CONF_ML=1
 else
-  echo "no" 1>&2
+  echo "no" 1>&3
   CONF_ML=0
 fi
 
@@ -394,7 +400,7 @@ esac
 test "${cpus:-1}" -gt 1 && CONF_PARALLEL="-j $cpus"
 
 
-echo "creating makefile" 1>&2
+echo "creating makefile" 1>&3
 
 cat - `dirname $0`/makefile.in > makefile << _EOF_
 # --- variables defined by configure ---
@@ -419,10 +425,11 @@ CFLAGS = $CONF_CFLAGS -DBIGENDIAN=$CONF_BIGENDIAN
 CXX = $CONF_CXX
 CXXFLAGS = $CONF_CXXFLAGS
 
-QUAD = ${CONF_QUAD}
+QUAD = $CONF_QUAD
 ML = $CONF_ML
 MCC = $CONF_MCC
 MCFLAGS = $CONF_MCFLAGS
+MCLIBS = $CONF_MCLIBS
 
 LDFLAGS = $CONF_LDFLAGS $CONF_M
 
@@ -439,9 +446,11 @@ PARALLEL = $CONF_PARALLEL
 _EOF_
 
 
-echo "" 1>&2
-echo "now you must run $CONF_MAKE" 1>&2
-echo "" 1>&2
+cat << _EOF_ 1>&3
+
+now you must run $CONF_MAKE
+
+_EOF_
 
 exit 0
 
