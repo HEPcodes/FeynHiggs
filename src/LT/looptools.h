@@ -1,7 +1,7 @@
 * looptools.h
 * the declarations for LoopTools Light
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 27 Jan 15 th
 
 #include "ltdefs.h"
 #include "ltcache.h"
@@ -35,5 +35,7 @@
 #endif
 
 	RealType A0del, A0delq, myG
+	ComplexType B0del, DB0del
 	external A0del, A0delq, myG
+	external B0del, DB0del
 

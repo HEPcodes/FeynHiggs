@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 18 Dec 13 th
+* last modified 25 Sep 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -109,6 +109,13 @@ c#define HFFTEST 1
 	do i = 1, H0FF(3,4,3,3)
 	  ratios(i) = 0
 	enddo
+
+	uzext0 = uzext
+	uzext1 = uzext
+	if( uzext .eq. 3 ) then
+	  uzext0 = 1
+	  uzext1 = 2
+	endif
 
 * We first compute DD(1,2) = (U,Z)Higgs.Y, where
 * Y = {{CA, -SA, 0}, {SA, CA, 0}, {0, 0, 1}}
@@ -278,8 +285,8 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 	  CouplingSM(H0VV(h,4)) = cI*EL0*MW/SW
 	  Coupling(H0VV(h,4)) = CouplingSM(H0VV(h,4))*cL(uzint)
 
-	  ratios(H0VV(h,3)) = Sq(cL(uzext))
-	  ratios(H0VV(h,4)) = Sq(cL(uzext))
+	  ratios(H0VV(h,3)) = Sq(cL(uzext0))
+	  ratios(H0VV(h,4)) = Sq(cL(uzext0))
 
 #if HVV == LO
 #include "NHiggsDecayFitsLO.f"
@@ -329,8 +336,8 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 	      LCoupling(H0FF(h,t,g,g)) = c*xhffL(h,i,tc,g, uzint)
 	      RCoupling(H0FF(h,t,g,g)) = c*xhffR(h,i,tc,g, uzint)
 
-	      cL(1) = xhffL(h,i,t,g, uzext)
-	      cR(1) = xhffR(h,i,t,g, uzext)
+	      cL(1) = xhffL(h,i,t,g, uzext1)
+	      cR(1) = xhffR(h,i,t,g, uzext1)
 	      ratios(H0FF(h,t,g,g)) = .5D0*(Sq(cL(1)) + Sq(cR(1)))
 	    enddo
 	  enddo
@@ -362,7 +369,7 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 	    ty = t + ifQ(t, tT - 3) + ifB(t, bHR - bTR)
 	    do g = 1, 3
 	      call H0SfSfCouplings(chss, X5(h,tc,t,g,uzint), DD)
-	      call H0SfSfCouplings(chssy, X5(h,ty,t,g,uzext), DD)
+	      call H0SfSfCouplings(chssy, X5(h,ty,t,g,uzext0), DD)
 	      do s2 = 1, 2
 	        do s1 = 1, 2
 	          Coupling(H0SfSf(h,s1,s2,t,g)) = chss(s1,s2)
@@ -474,7 +481,7 @@ c	  i = -iand(isB(t), isMFV(t))
 	    Gamma(H0HV(h,hv)) =
      &        HXVWidth(MHiggs(h), MHiggs(hv), MZ, GammaZ,
      &          1.8D0, 2.4D0, 0)*
-     &        Sq(cL(uzext))
+     &        Sq(cL(uzext0))
 	    GammaTot(h) = GammaTot(h) + Gamma(H0HV(h,hv))
 	  enddo
 	enddo
@@ -491,7 +498,7 @@ c	  i = -iand(isB(t), isMFV(t))
 	  Gamma(HpHV(hv)) =
      &      HXVWidth(MHiggs(4), MHiggs(hv), MW, GammaW,
      &        1.7D0, 2.2D0, 0)*
-     &      Sq(cL(uzext))
+     &      Sq(cL(uzext0))
 	  GammaTot(4) = GammaTot(4) + Gamma(HpHV(hv))
 	enddo
 
@@ -513,7 +520,7 @@ c	  i = -iand(isB(t), isMFV(t))
 	  Coupling(H0HH(h,4,4)) = chhh(h,4,4,uzint)
 	  Gamma(H0HH(h,4,4)) = 1/(32*pi*MHiggs(h))*
      &      Kallen(MHiggs(h), MHiggs(4), MHiggs(4))*
-     &      Sq(chhh(h,4,4,uzext))
+     &      Sq(chhh(h,4,4,uzext0))
 	  GammaTot(h) = GammaTot(h) + Gamma(H0HH(h,4,4))
 	enddo
 
@@ -572,7 +579,7 @@ c	  i = -iand(isB(t), isMFV(t))
 
 	      Gamma(H0ChaCha(h,c1,c2)) = MHiggs(h)/(8*pi)*
      &          KallenLR(MHiggs(h), MCha(c1), MCha(c2),
-     &            cL(uzext), cR(uzext))
+     &            cL(uzext0), cR(uzext0))
 	      GammaTot(h) = GammaTot(h) + Gamma(H0ChaCha(h,c1,c2))
 	    enddo
 	  enddo
@@ -603,7 +610,7 @@ c	  i = -iand(isB(t), isMFV(t))
 
 	      Gamma(H0NeuNeu(h,n1,n2)) = MHiggs(h)/(16*pi)*
      &          KallenLR(MHiggs(h), MNeu(n1), MNeu(n2),
-     &            cL(uzext), cR(uzext))
+     &            cL(uzext0), cR(uzext0))
 	      GammaTot(h) = GammaTot(h) + Gamma(H0NeuNeu(h,n1,n2))
 	      if( n1 .ne. n2 )
      &          Gamma(H0NeuNeu(h,n1,n2)) = 2*Gamma(H0NeuNeu(h,n1,n2))

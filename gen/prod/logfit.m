@@ -2,12 +2,12 @@
 
 debug = True
 
-(*
 plotmin = 200;
 plotmax = 600;
-*)
+(*
 plotmin = 30;
 plotmax = 2000;
+*)
 
 get[tag_, file_String] := Select[getf[tag, file],
   !MemberQ[ {0., Indeterminate}, #[[-1]] ] &]

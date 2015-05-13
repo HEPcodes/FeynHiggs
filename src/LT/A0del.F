@@ -1,7 +1,7 @@
-* myA0del.F
-* another version of the one-point function
+* A0del.F
+* the (D-4)-dimensional part of A0
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 27 Jan 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -28,7 +28,7 @@
 #include "lt.h"
 
 	if( m .ne. 0 ) then
-	  A0delq = .5D0*m*((1 - log(m/q))**2 + 1 + pi**2/6D0)
+	  A0delq = .5D0*m*((1 - log(m/q))**2 + 1 + zeta2)
 	else
 	  A0delq = 0
 	endif

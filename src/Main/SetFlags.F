@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 2 May 14 th
+* last modified 30 Sep 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -55,7 +55,7 @@ c	  call setfpu
 	debuglevel = 0
 	debugunit = 6
 	uzint = 1
-	uzext = 2
+	uzext = 3
 	mfeff = 1
 
 	call getenv("FHDEBUG", env)
@@ -77,7 +77,7 @@ c	  call setfpu
 	print *, "uzint, uzext, mfeff ", uzint, uzext, mfeff
 12	continue
 	Check(uzint, 1, 2, "FHSELECTUZ(uzint)")
-	Check(uzext, 1, 2, "FHSELECTUZ(uzext)")
+	Check(uzext, 1, 3, "FHSELECTUZ(uzext)")
 	Check(mfeff, 0, 2, "FHSELECTUZ(mfeff)")
 
 	call getenv("FHEXTSE", extSE)

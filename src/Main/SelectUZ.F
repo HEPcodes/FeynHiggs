@@ -1,7 +1,7 @@
 * SelectUZ.F
 * select UHiggs or ZHiggs for the couplings and decay rates
 * this file is part of FeynHiggs
-* last modified 5 Jun 12 th
+* last modified 25 Sep 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -17,7 +17,7 @@
 
 	error = 0
 	Check(uzint_, 0, 2, "uzint")
-	Check(uzext_, 0, 2, "uzext")
+	Check(uzext_, 0, 3, "uzext")
 	Check(mfeff_, 0, 2, "mfeff")
 	if( error .ne. 0 ) return
 

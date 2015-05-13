@@ -3,7 +3,7 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 30 Nov 11 th
+* last modified 1 Jan 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -35,7 +35,7 @@
 	ComplexType x1, x2, y1, y2, r
 	RealType minacc
 
-	minacc = acc*(m1 + m2)
+	minacc = diffeps*(m1 + m2)
 * general case
 	if( abs(p) .gt. minacc ) then
 	  call roots(p, m1, m2, x1, x2, y1, y2, r)

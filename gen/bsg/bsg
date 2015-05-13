@@ -11,12 +11,14 @@ echo "$name" | grep -E '^m/(bsgamma|bsglu)-(Hp|Cha|Neu|Glu|SM)$' || {
 
 test -d m || mkdir m
 
+rm -f $name.*
+
 mma="math -run me=\"$me\" -run tag=\"$1\" -run name=\"$name\" -run debug=${DEBUG:-0}"
 
 
 ### STEP 1: GENERATE B -> S GAMMA AMPLITUDES
 
-$mma << \_EOF_
+$mma << \_EOF_ > $name.log
 AppendTo[$Echo, "stdout"];
 
 << FeynArts`
@@ -57,9 +59,8 @@ ins = InsertFields[tops,
 
 If[ debug === 1, Paint[ins,
   ColumnsXRows -> {3, 4},
-  DisplayFunction ->
-    (Export[ToFileName[MkDir["d"], name <> ".ps"], #,
-      ImageSize -> 72 {6,8}]&)] ];
+  DisplayFunction -> (Export[name <> ".ps", #,
+    ImageSize -> 72 2 {3, 4}]&)] ];
 
 vert = CalcFeynAmp[CreateFeynAmp[ins],
   MomElim -> 2,
@@ -106,7 +107,7 @@ gzip $name.ps
 
 ### STEP 2: REDUCE & CANONICALLY ORDER THE TENSOR INTEGRALS
 
-$mma << \_EOF_
+$mma << \_EOF_ >> $name.log
 AppendTo[$Echo, "stdout"];
 
 << FeynCalc`
@@ -125,7 +126,7 @@ _EOF_
 
 ### STEP 3: SIMPLIFY
 
-$mma << \_EOF_
+$mma << \_EOF_ >> $name.log
 AppendTo[$Echo, "stdout"];
 
 << FormCalc`
@@ -185,9 +186,12 @@ coeff = {
   ToSymbol[C8L, tag] -> SplitSums[Coefficient[test, Mat[O8[6]]]/I],
   ToSymbol[C7R, tag] -> SplitSums[Coefficient[test, Mat[O7[7]]]/I],
   ToSymbol[C8R, tag] -> SplitSums[Coefficient[test, Mat[O8[7]]]/I]
-} /. {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
+};
 
-coeff = DeleteCases[coeff, _ -> {0}];
+Put[coeff, name <> ".coeff"];
+
+coeff = DeleteCases[coeff, _ -> {0}] /.
+  {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
 
 hh = OpenFortran[name <> ".F"];
 

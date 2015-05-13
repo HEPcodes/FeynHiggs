@@ -3,7 +3,7 @@
 * these functions are adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 26 Nov 13 th
+* last modified 27 Jan 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -11,9 +11,8 @@
 
 	ComplexType function spence(i_in, z_in, s)
 	implicit none
-	integer i_in
+	integer i_in, s
 	ComplexType z_in
-	RealType s
 
 #include "lt.h"
 
@@ -28,7 +27,7 @@
 
 #ifdef WARNINGS
 	if( s .eq. 0 .and. 
-     &    Im(z) .eq. 0 .and. abs(Re(z1)) .lt. acc )
+     &    Im(z) .eq. 0 .and. abs(Re(z1)) .lt. diffeps )
      &    print *, "spence: argument on cut"
 #endif
 
@@ -59,7 +58,7 @@
 	ComplexType function Li2series(z1, s)
 	implicit none
 	ComplexType z1
-	RealType s
+	integer s
 
 	ComplexType xm, x2, new
 	integer j

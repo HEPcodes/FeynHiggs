@@ -1,4 +1,4 @@
-.TH FHSELECTUZ 1 "19-Jun-2012"
+.TH FHSELECTUZ 1 "25-Sep-2014"
 .SH NAME
 .PP
 FHSelectUZ \- chooses Higgs mixing and use of resummed masses
@@ -25,8 +25,10 @@ whether to use no mixing (0), UHiggs (1), or ZHiggs (2) for internal
 Higgs bosons, i.e. in the couplings.  Default: 1.
 .TP
 .B uzext (input)
-whether to use no mixing (0), UHiggs (1), or ZHiggs (2) for external
-Higgs bosons, i.e. in the decay rates.  Default: 2.
+whether to use no mixing (0), UHiggs (1), ZHiggs (2), or a combination
+(3) for external Higgs bosons, i.e. in the decay rates.  The combination
+uses UHiggs in the decays available at tree-level only and ZHiggs in the
+one-loop decays.  Default: 3.
 .TP
 .B mfeff (input)
 which effective bottom mass to use in the H0FF, HpFF, H0SfSf, HpSfSf 

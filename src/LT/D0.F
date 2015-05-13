@@ -3,13 +3,14 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs
-* last modified 3 Dec 11 th
+* last modified 4 Jan 15 th
 
 #include "externals.h"
 #include "types.h"
 
 
-#define AddEps(k) k*ToComplex(1D0, -sign(eps, k))
+#define AddEps(k) (k - max(abs(k), 1D0)*cIeps)
+
 #define k2r(k) (.5D0*k*(1 + Sqrtc((1 - 2/k)*(1 + 2/k))))
 #define Sgn(i) (1 - 2*iand(i,1))
 
@@ -33,60 +34,60 @@
 
 * check IR cases first
 	if( m1 .eq. 0 ) then
-	  if( abs(p1 - m2) + abs(p4 - m4) .lt. acc ) then
+	  if( abs(p1 - m2) + abs(p4 - m4) .lt. diffeps ) then
 	    D0p = D0ir(p1, p2, p3, p4, p1p2, p2p3, m3)
 	    return
 	  endif
-	  if( abs(p1 - m2) + abs(p1p2 - m3) .lt. acc ) then
+	  if( abs(p1 - m2) + abs(p1p2 - m3) .lt. diffeps ) then
 	    D0p = D0ir(p1, p2p3, p3, p1p2, p4, p2, m4)
 	    return
 	  endif
-	  if( abs(p4 - m4) + abs(p1p2 - m3) .lt. acc ) then
+	  if( abs(p4 - m4) + abs(p1p2 - m3) .lt. diffeps ) then
 	    D0p = D0ir(p1p2, p2, p2p3, p4, p1, p3, m2)
 	    return
 	  endif
 	endif
 
 	if( m2 .eq. 0 ) then
-	  if( abs(p1 - m1) + abs(p2 - m3) .lt. acc ) then
+	  if( abs(p1 - m1) + abs(p2 - m3) .lt. diffeps ) then
 	    D0p = D0ir(p1, p4, p3, p2, p2p3, p1p2, m4)
 	    return
 	  endif
-	  if( abs(p1 - m1) + abs(p2p3 - m4) .lt. acc ) then
+	  if( abs(p1 - m1) + abs(p2p3 - m4) .lt. diffeps ) then
 	    D0p = D0ir(p1, p1p2, p3, p2p3, p2, p4, m3)
 	    return
 	  endif
-	  if( abs(p2 - m3) + abs(p2p3 - m4) .lt. acc ) then
+	  if( abs(p2 - m3) + abs(p2p3 - m4) .lt. diffeps ) then
 	    D0p = D0ir(p2, p1p2, p4, p2p3, p1, p3, m1)
 	    return
 	  endif
 	endif
 
 	if( m3 .eq. 0 ) then
-	  if( abs(p2 - m2) + abs(p3 - m4) .lt. acc ) then
+	  if( abs(p2 - m2) + abs(p3 - m4) .lt. diffeps ) then
 	    D0p = D0ir(p2, p1, p4, p3, p1p2, p2p3, m1)
 	    return
 	  endif
-	  if( abs(p2 - m2) + abs(p1p2 - m1) .lt. acc ) then
+	  if( abs(p2 - m2) + abs(p1p2 - m1) .lt. diffeps ) then
 	    D0p = D0ir(p2, p2p3, p4, p1p2, p3, p1, m4)
 	    return
 	  endif
-	  if( abs(p3 - m4) + abs(p1p2 - m1) .lt. acc ) then
+	  if( abs(p3 - m4) + abs(p1p2 - m1) .lt. diffeps ) then
 	    D0p = D0ir(p1p2, p1, p2p3, p3, p2, p4, m2)
 	    return
 	  endif
 	endif
 
 	if( m4 .eq. 0 ) then
-	  if( abs(p4 - m1) + abs(p3 - m3) .lt. acc ) then
+	  if( abs(p4 - m1) + abs(p3 - m3) .lt. diffeps ) then
 	    D0p = D0ir(p3, p2, p1, p4, p2p3, p1p2, m2)
 	    return
 	  endif
-	  if( abs(p4 - m1) + abs(p2p3 - m2) .lt. acc ) then
+	  if( abs(p4 - m1) + abs(p2p3 - m2) .lt. diffeps ) then
 	    D0p = D0ir(p2p3, p2, p1p2, p4, p3, p1, m3)
 	    return
 	  endif
-	  if( abs(p3 - m3) + abs(p2p3 - m2) .lt. acc ) then
+	  if( abs(p3 - m3) + abs(p2p3 - m2) .lt. diffeps ) then
 	    D0p = D0ir(p3, p1p2, p1, p2p3, p4, p2, m1)
 	    return
 	  endif
@@ -137,16 +138,16 @@
 	    if( d .ne. 0 ) D0ir = -logxs*D0ir
 	    return
 	  endif
-	  y = m1_/m4_*(p3 - p4 + Ieps)/
-     &                (p2 - p1 + Ieps)
+	  y = m1_/m4_*(p3 - p4 + cIeps)/
+     &                (p2 - p1 + cIeps)
 	  logy = log(y)
 	  c = ln(lambda/m1_/m4_, 0D0) +
      &      ln((p2 - p1)/p1p2, p1 - p2) + ln((p3 - p4)/p1p2, p4 - p3)
 	  if( d .ne. 0 ) then
 	    D0ir = f*(zeta2 - .5D0*(logxs - logy)*(logxs + logy) -
-     &        spence(0, xs/y, 0D0) - (logxs + log(1/y))*log(1 - xs/y) -
-     &        spence(0, xs*y, 0D0) - (logxs + logy)*log(1 - xs*y) +
-     &        spence(0, xs**2, 0D0) +
+     &        spence(0, xs/y, 0) - (logxs + log(1/y))*log(1 - xs/y) -
+     &        spence(0, xs*y, 0) - (logxs + logy)*log(1 - xs*y) +
+     &        spence(0, xs**2, 0) +
      &        logxs*(2*log((1 - xs)*(1 + xs)) - c))
 	    return
 	  endif
@@ -166,14 +167,14 @@
 	  log1x2 = log(1/x2)
 	  D0ir = f*(.5D0*pi**2 +
      &      2*log(xs)*(log((1 - xs)*(1 + xs)) - c) +
-     &      spence(0, xs**2, 0D0) + logx2**2 + logx3**2 -
-     &      spence(0, xs/x2/x3, 0D0) -
+     &      spence(0, xs**2, 0) + logx2**2 + logx3**2 -
+     &      spence(0, xs/x2/x3, 0) -
      &      (logxs + log1x2 + log1x3)*log(1 - xs/x2/x3) -
-     &      spence(0, xs*x2/x3, 0D0) -
+     &      spence(0, xs*x2/x3, 0) -
      &      (logxs + logx2 + log1x3)*log(1 - xs*x2/x3) -
-     &      spence(0, xs/x2*x3, 0D0) -
+     &      spence(0, xs/x2*x3, 0) -
      &      (logxs + log1x2 + logx3)*log(1 - xs/x2*x3) -
-     &      spence(0, xs*x2*x3, 0D0) -
+     &      spence(0, xs*x2*x3, 0) -
      &      (logxs + logx2 + logx3)*log(1 - xs*x2*x3))
 	  return
 	endif
@@ -329,7 +330,7 @@
 
 	a = k34*k24 - k23
 	b = k13*k24 + k12*k34 - k14*k23
-	c = k13*k12 - k23*(1 - Ieps)
+	c = k13*k12 - k23*(1 - cIeps)
 	disc = sqrt(b**2 - 4*a*c)
 	x4(1) = .5D0/a*(-b + disc)
 	x4(2) = .5D0/a*(-b - disc)
@@ -348,7 +349,8 @@
 	c = log(k12c) + log(k13c) - log(k23c)
 
 	r14 = k2r(k14)
-	r14 = r14*ToComplex(1D0, sign(eps, Re(1/r14 - r14)))
+	r14 = r14*(1 + cIeps*sign(1D0, Re(1/r14 - r14)))
+c	r14 = r14*ToComplex(1D0, sign(eps, Re(1/r14 - r14)))
 
 	D0m00 = 0
 	do i = 1, 2
@@ -394,7 +396,7 @@
 
 	a = k34*k24
 	b = k13*k24 + k12*k34 - k14*k23
-	c = k13*k12 - k23*(1 - Ieps)
+	c = k13*k12 - k23*(1 - cIeps)
 	disc = sqrt(b*b - 4*a*c)
 	x4(1) = .5D0/a*(-b + disc)
 	x4(2) = .5D0/a*(-b - disc)
@@ -452,7 +454,7 @@
 
 	a = k34*k24
 	b = k13*k24 + k12*k34 - k14*k23
-	c = k13*k12 + Ieps*k23
+	c = k13*k12 + cIeps*k23
 	disc = sqrt(b*b - 4*a*c)
 	x4(1) = .5D0/a*(-b + disc)
 	x4(2) = .5D0/a*(-b - disc)
@@ -586,7 +588,7 @@
 
 	do j = 1, 6
 	  if( Im(rij(j)) .eq. 0 ) then
-	    ki = kij(j) - Ieps
+	    ki = kij(j) - cIeps
 	    irij(j) = sign(1D0, abs(rij(j)) - 1)*
      &        Im(k2r(ki))
 	  else
@@ -601,7 +603,7 @@
 	b = (1/r13 - r13)*(1/r24 - r24) + k12*k34 - k14*k23
 	c = k34*r24 - k23 + (k12 - k14*r24)/r13
 	d = k23 + (r24*k14 - k12)*r13 - r24*k34
-	disc = sqrt(b**2 - 4*a*(c + Ieps*d))
+	disc = sqrt(b**2 - 4*a*(c + cIeps*d))
 	ix(1,4) = Im(.5D0/a*(-b + disc))
 	ix(2,4) = Im(.5D0/a*(-b - disc))
 
@@ -694,7 +696,7 @@
 	if( d .eq. 0 ) then
 	  bdK = 1
 	else
-	  t = 4*m1*m2/(d + Ieps)
+	  t = 4*m1*m2/(d + cIeps)
 	  bdK = -t/(sqrt(1 - t) + 1)**2
 	endif
 	end

@@ -1,0 +1,8 @@
+<< FeynArts`
+
+InitializeModel[{"MSSMQCD", "Yuk"}];
+M$CouplingMatrices >> cm1;
+
+InitializeModel[{"MSSMQCD", "Yuk2"}];
+M$CouplingMatrices >> cm2;
+

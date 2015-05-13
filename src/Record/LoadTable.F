@@ -1,7 +1,7 @@
 * LoadTable.F
 * load a table file into memory
 * this file is part of FeynHiggs
-* last modified 9 Aug 11 th
+* last modified 20 Feb 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -75,6 +75,8 @@
 
 2	  continue
 	enddo
+
+	Warning("Table too large, increase maxrows in FHRecord.h")
 
 99	close(unit)
 	return

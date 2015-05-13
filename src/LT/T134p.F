@@ -2,7 +2,7 @@
 * the derivative of T134
 * code taken from HDecay
 * this file is part of FeynHiggs
-* last modified 26 Nov 13 th
+* last modified 27 Jan 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -32,7 +32,7 @@
 	  l2 = log(mu/x2)
 	  l2 = x2*(l2*(l2 + 3) + 3.5D0)
 	  T134p = ( l1 + l2 +
-     &      (x2 - x1)*Re(spence(1, ToComplex(x1/x2), 0D0)) -
+     &      (x2 - x1)*Re(spence(1, ToComplex(x1/x2), 0)) -
      &      .5D0*x1*log(x1/x2)**2 )/mu
 	endif
 	end

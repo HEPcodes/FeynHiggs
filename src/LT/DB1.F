@@ -3,7 +3,7 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 30 Nov 11 th
+* last modified 1 Jan 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -21,21 +21,21 @@
 	ComplexType x1, x2, y1, y2, r
 	RealType minacc
 
-	minacc = acc*(m1 + m2)
+	minacc = diffeps*(m1 + m2)
 	if( abs(p) .gt. minacc ) then
 * IR divergent case
-	  if( m2 .eq. 0 .and. abs(p - m1) .lt. acc ) then
+	  if( m2 .eq. 0 .and. abs(p - m1) .lt. diffeps ) then
 	    DB1 = .5D0*(3 + log(lambda/p))/p
 	    return
 	  endif
 * general case
 	  call roots(p, m1, m2, x1, x2, y1, y2, r)
-	  if( abs(x1 - x2) .gt. acc*abs(x1 + x2) ) then
+	  if( abs(x1 - x2) .gt. diffeps*abs(x1 + x2) ) then
 	    DB1 = (yfpv(2, x1, y1) - yfpv(2, x2, y2))/r
 	  else if( abs(x1) .gt. 10 ) then
 	    DB1 =
      &        Re((2/3D0 + (2 - 3*x1)*fpv(3, x1, y1))/x1**2)/p
-	  else if( abs(y1) .gt. acc ) then
+	  else if( abs(y1) .gt. diffeps ) then
 	    DB1 =
      &        Re(3/2D0 + (2 - 3*x1)*fpv(1, x1, y1))/p
 	  else

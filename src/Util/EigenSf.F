@@ -1,7 +1,7 @@
 * EigenSf.F
 * diagonalization of the Hermitian 2-by-2 sfermion mass matrix
 * this file is part of FeynHiggs
-* last modified 5 Dec 13 th
+* last modified 31 Dec 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -19,8 +19,11 @@
 
 #include "FH.h"
 
-	RealType m1, m2, M12sq, delta, h, c
+	RealType m1, m2, M12sq, h, c
 	ComplexType M12, s
+
+	RealType delta
+	common /eigensfvars/ delta
 
 * Note the conventions for better numerical stability:
 * - M11(1) is the difference M11 - M22,

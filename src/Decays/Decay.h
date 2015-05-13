@@ -1,7 +1,7 @@
 * Decay.h
 * common definitions for all decays
 * this file is part of FeynHiggs
-* last modified 17 Feb 14 th
+* last modified 25 Sep 14 th
 
 #include "FH.h"
 #include "looptools.h"
@@ -42,6 +42,8 @@
 	ComplexType HffDb(0:1,3,2:4,3)
 	RealType AlfasMH, Divergence
 	integer hno, hno1, hno2, gno1, gno2, sub1L
+	integer uzext0, uzext1
 	common /decay/ HffDb
 	common /decay/ AlfasMH, Divergence
 	common /decay/ hno, hno1, hno2, gno1, gno2, sub1L
+	common /decay/ uzext0, uzext1

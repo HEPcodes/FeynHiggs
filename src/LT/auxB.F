@@ -3,7 +3,7 @@
 * these functions are adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 1 Dec 11 th
+* last modified 2 Jan 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -21,25 +21,25 @@
 	qx = p + m1 - m2
 	qy = p - m1 + m2
 	r = Sqrtc(p*(p - m1 - m2) - m1*qy - m2*qx)
-	x1 = (qx + r)/2D0/p
-	x2 = (qx - r)/2D0/p
+	x1 = .5D0*(qx + r)/p
+	x2 = .5D0*(qx - r)/p
 	if( abs(x2) .gt. abs(x1) ) then
 	  x1 = m1/(p*x2)
 	else if( abs(x1) .gt. abs(x2) ) then
 	  x2 = m1/(p*x1)
 	endif
-	x1 = x1 + abs(p*x1)/p*Ieps
-	x2 = x2 - abs(p*x2)/p*Ieps
+	x1 = x1 + abs(p*x1)/p*cIeps
+	x2 = x2 - abs(p*x2)/p*cIeps
 
-	y2 = (qy + r)/2D0/p
-	y1 = (qy - r)/2D0/p
+	y2 = .5D0*(qy + r)/p
+	y1 = .5D0*(qy - r)/p
 	if( abs(y2) .gt. abs(y1) ) then
 	  y1 = m2/(p*y2)
 	else if( abs(y1) .gt. abs(y2) ) then
 	  y2 = m2/(p*y1)
 	endif
-	y1 = y1 - abs(p*y1)/p*Ieps
-	y2 = y2 + abs(p*y2)/p*Ieps
+	y1 = y1 - abs(p*y1)/p*cIeps
+	y2 = y2 + abs(p*y2)/p*cIeps
 	end
 
 ************************************************************************
@@ -57,7 +57,7 @@
 	if( abs(x) .lt. 5 ) then
 	  if( n .eq. 0 ) then
 	    fpv = -log(-y/x)
-	  else if( abs(x) .lt. acc ) then
+	  else if( abs(x) .lt. diffeps ) then
 	    fpv = -1D0/n
 	  else
 	    xm = -log(-y/x)
@@ -72,7 +72,7 @@
 	  do m = 1, 50
 	    xm = xm/x
 	    fpv = fpv + xm/(m + n)
-	    if( abs(xm/fpv) .lt. acc**2 ) return
+	    if( abs(xm/fpv) .lt. diffeps**2 ) return
 	  enddo
 	endif
 	end

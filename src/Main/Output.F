@@ -1,7 +1,7 @@
 * Output.F
 * run FH functions encoded in key and write output to unit
 * this file is part of FeynHiggs
-* last modified 15 Jul 14 th
+* last modified 27 Feb 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -306,15 +306,15 @@
 	write(unit,141) (higgs(h), GammaTot(h), h = 1, 4)
 	write(unit,141) ("SM"//higgs(h), GammaSMTot(h), h = 1, 3)
 
-#define GAMMA_BR_FMT GAMMA_EQU, 1P, 3 GAMMA_FMT
+#define GAMMA_BR_FMT GAMMA_EQU, 1P, 4 GAMMA_FMT
 
-142	format(SKIP/SKIP,"  Channel", T29,A, T44,A,:,T59,A)
+142	format(SKIP/SKIP,"  Channel", T29,A, T44,A,:,T59,A,T74,A)
 143	format(SKIP, TAG, A,"-",A, GAMMA_BR_FMT)
 144	format(SKIP, TAG, A,"-",A,I1,"-",A,I1, GAMMA_BR_FMT)
 145	format(SKIP, TAG, A,"-",A,"-",A, GAMMA_BR_FMT)
 
 	do h = 1, 3
-	  write(unit,142) "Gamma", "BR", "BRSM"
+	  write(unit,142) "Gamma", "BR", "GammaSM", "BRSM"
 
 	  do vv = 1, 5
 	    if( Gamma(H0VV(h,vv)) .ne. 0 .or.
@@ -322,6 +322,7 @@
      &        write(unit,143) higgs(h), v_v(vv),
      &          Gamma(H0VV(h,vv)),
      &          BR(H0VV(h,vv)),
+     &          GammaSM(H0VV(h,vv)),
      &          BRSM(H0VV(h,vv))
 	  enddo
 
@@ -332,6 +333,7 @@
      &          write(unit,143) higgs(h), f_f(t,g),
      &            Gamma(H0FF(h,t,g,g)),
      &            BR(H0FF(h,t,g,g)),
+     &            GammaSM(H0FF(h,t,g,g)),
      &            BRSM(H0FF(h,t,g,g))
 	    enddo
 	  enddo

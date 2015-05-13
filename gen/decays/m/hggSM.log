@@ -1,15 +1,15 @@
-Mathematica 9.0 for Mac OS X x86 (64-bit)
-Copyright 1988-2013 Wolfram Research, Inc.
+Mathematica 10.0 for Mac OS X x86 (64-bit)
+Copyright 1988-2014 Wolfram Research, Inc.
 
 In[1]:= 
 FeynArts 3.9
 by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
-last revised 10 Apr 14
+last revised 24 Oct 14
 
 In[2]:= In[2]:= 
 FormCalc 8.4
 by Thomas Hahn
-last revised 29 Apr 14
+last revised 27 Feb 15
 
 In[3]:= In[3]:= 
 In[4]:= 
@@ -66,65 +66,57 @@ In[54]:=
 In[55]:= 
 In[56]:= 
 In[57]:= In[57]:= In[57]:= 
-In[58]:= 
-In[59]:= In[59]:=                                                                                  
+In[58]:= In[58]:=                   
+In[59]:= In[59]:= In[59]:= 
 In[60]:= In[60]:= In[60]:= 
-In[61]:= In[61]:= In[61]:= 
-In[62]:= In[62]:= 
+In[61]:= In[61]:= 
+In[62]:= 
 In[63]:= 
-In[64]:= 
+In[64]:= In[64]:= 
 In[65]:= In[65]:= 
-In[66]:= In[66]:= 
+In[66]:= 
 In[67]:= 
-In[68]:= 
-In[69]:= In[69]:= 
-In[70]:= 
+In[68]:= In[68]:= 
+In[69]:= 
+In[70]:= In[70]:= 
 In[71]:= In[71]:= 
-In[72]:= In[72]:= 
+In[72]:= In[72]:= In[72]:= 
 In[73]:= In[73]:= In[73]:= 
-In[74]:= In[74]:= In[74]:= 
+In[74]:= In[74]:= 
 In[75]:= In[75]:= 
-In[76]:= In[76]:= 
-In[77]:= In[77]:= In[77]:= 
-In[78]:= In[78]:= 
+In[76]:= In[76]:= In[76]:= 
+In[77]:= In[77]:= 
+In[78]:= In[78]:= In[78]:= 
 In[79]:= In[79]:= 
 In[80]:= In[80]:= 
-In[81]:= In[81]:= 
+In[81]:= In[81]:= In[81]:= 
 In[82]:= In[82]:= In[82]:= 
-In[83]:= In[83]:= 
-In[84]:= In[84]:= In[84]:= 
-In[85]:= In[85]:= 
-In[86]:= In[86]:= 
-In[87]:= In[87]:=                                              
-In[88]:= In[88]:= 
-In[89]:= In[89]:= In[89]:= 
-In[90]:= 
-In[91]:= 
-In[92]:= 
-In[93]:= 
-In[94]:= 
-In[95]:= In[95]:= 
-Out[95]= Hel[2]
+In[83]:= 
+In[84]:= 
+In[85]:= 
+In[86]:= 
+In[87]:= In[87]:= 
+Out[87]= Hel[2]
 
-In[96]:= In[96]:= In[96]:= 
+In[88]:= In[88]:= In[88]:= 
+In[89]:= In[89]:= 
+In[90]:= In[90]:= In[90]:= 
+In[91]:= In[91]:= 
+In[92]:= In[92]:= In[92]:= 
+In[93]:= In[93]:= 
+In[94]:= In[94]:= In[94]:= 
+In[95]:= In[95]:= In[95]:= 
+In[96]:= In[96]:= 
 In[97]:= In[97]:= 
-In[98]:= In[98]:= In[98]:= 
+In[98]:= In[98]:= 
 In[99]:= In[99]:= 
-In[100]:= In[100]:= In[100]:= 
+In[100]:= In[100]:= 
 In[101]:= In[101]:= 
-In[102]:= In[102]:= In[102]:= 
-In[103]:= 
-In[104]:= In[104]:= In[104]:= 
-In[105]:= In[105]:= 
-In[106]:= In[106]:= 
-In[107]:= In[107]:= 
-In[108]:= In[108]:= 
-In[109]:= In[109]:= 
-In[110]:= In[110]:= 
-In[111]:= In[111]:= 
-In[112]:= In[112]:= In[112]:=                                                   
-In[113]:= In[113]:= In[113]:= 
-In[114]:= In[114]:= In[114]:= 
+In[102]:= In[102]:= 
+In[103]:= In[103]:= 
+In[104]:= In[104]:= In[104]:=                                                   
+In[105]:= In[105]:= In[105]:= 
+In[106]:= In[106]:= In[106]:= 
 loading generic model file /Users/hahn/FeynArts/Models/Lorentz.gen
 > $GenericMixing is OFF
 generic model {Lorentz} initialized
@@ -132,33 +124,25 @@ generic model {Lorentz} initialized
 loading classes model file /Users/hahn/FeynArts/Models/SMQCD.mod
   loading classes model file /Users/hahn/FeynArts/Models/SM.mod
 
-$CKM is True
+$CKM = True
 
 loading classes model file /Users/hahn/fh-2a/gen/decays/dAlfa.mod
-loading classes model file /Users/hahn/fh-2a/gen/decays/EnhYuk.mod
+loading classes model file /Users/hahn/fh-2a/gen/decays/Yuk.mod
 loading classes model file /Users/hahn/fh-2a/gen/decays/dZH1.mod
 > 49 particles (incl. antiparticles) in 18 classes
 > $CounterTerms are ON
 > 93 vertices
 > 121 counter terms of order 1
 > 6 counter terms of order 2
-classes model {SMQCD, dAlfa, EnhYuk, dZH1} initialized
+classes model {SMQCD, dAlfa, Yuk, dZH1} initialized
 
 inserting at level(s) {Generic, Classes}
 > Top. 1: 0 Generic, 0 Classes insertions
 in total: 0 Generic, 0 Classes insertions
-V InsertFields done
-CT top
 in total: 0 Generic, 0 Classes insertions
-CT ins
-CT sel
-CT InsertFields done
 
 creating amplitudes at level(s) {Generic, Classes}
 in total: 0 Generic, 0 Classes amplitudes
-CreateFeynAmp done
-CalcFeynAmp done 0.528070
-v0 done 0.528695
 
 inserting at level(s) {Generic, Classes}
 > Top. 1: 1 Generic, 4 Classes insertions
@@ -166,27 +150,28 @@ inserting at level(s) {Generic, Classes}
 > Top. 3: 0 Generic, 0 Classes insertions
 > Top. 4: 0 Generic, 0 Classes insertions
 in total: 1 Generic, 4 Classes insertions
-V InsertFields done
-CT top
 
 inserting at level(s) {Generic, Classes}
 > Top. 1: 0 Generic, 0 Classes insertions
 in total: 0 Generic, 0 Classes insertions
-CT ins
-CT sel
-CT InsertFields done
 
 creating amplitudes at level(s) {Generic, Classes}
 > Top. 1: 1 Generic, 4 Classes amplitudes
 in total: 1 Generic, 4 Classes amplitudes
-CreateFeynAmp done
 
-preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-amp-2.frm
-running FORM... ok
-CalcFeynAmp done 0.635149
-v1 done 0.860040
-FindRenConst done 0.969821
-WriteSquaredME done 1.215913
-WriteRenConst done 1.215986
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-amp-1.frm
+running FORM... 
+ok
 
-In[115]:= In[115]:= 
+
+In[107]:= In[107]:= 
+In[108]:= 
+
+LinkObject::linkn: 
+   Argument LinkObject['/Users/hahn/FormCalc/MacOSX-x86-64/ReadForm', 66, 1]
+     in LinkClose[LinkObject['/Users/hahn/FormCalc/MacOSX-x86-64/ReadForm', 
+      66, 1]] has an invalid LinkObject number; the link may be closed.
+
+Unset::norep: Assignment on LinkPatterns for 
+    LinkPatterns[LinkObject['/Users/hahn/FormCalc/MacOSX-x86-64/ReadForm', 
+      66, 1]] not found.

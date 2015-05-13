@@ -3,7 +3,7 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of LoopTools
-* last modified 31 Jan 14 th
+* last modified 27 Jan 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -19,13 +19,13 @@
 	external C0ir, C0reg
 
 	if( m1 .eq. 0 .and.
-     &      (abs(p1 - m2) + abs(p1p2 - m3)) .lt. acc ) then
+     &      (abs(p1 - m2) + abs(p1p2 - m3)) .lt. diffeps ) then
 	  C0 = C0ir(p2, p1, p1p2)
 	else if( m2 .eq. 0 .and.
-     &      (abs(p1 - m1) + abs(p2 - m3)) .lt. acc ) then
+     &      (abs(p1 - m1) + abs(p2 - m3)) .lt. diffeps ) then
 	  C0 = C0ir(p1p2, p1, p2)
 	else if( m3 .eq. 0 .and.
-     &      (abs(p2 - m2) + abs(p1p2 - m1)) .lt. acc ) then
+     &      (abs(p2 - m2) + abs(p1p2 - m1)) .lt. diffeps ) then
 	  C0 = C0ir(p1, p2, p1p2)
 	else
 	  C0 = C0reg(p1, p2, p1p2, m1, m2, m3)
@@ -92,8 +92,8 @@
 	      y4 = h3/(a**2*q(i)*y3)
 	    endif
 	    if( a*b .ne. 0 ) then
-	      y3 = y3 + Ieps*abs(a*b*y3)/(a*b)
-	      y4 = y4 - Ieps*abs(a*b*y4)/(a*b)
+	      y3 = y3 + cIeps*abs(a*b*y3)/(a*b)
+	      y4 = y4 - cIeps*abs(a*b*y4)/(a*b)
 	    else
 	      y3 = y3*onePeps
 	      y4 = y4*oneMeps
@@ -113,11 +113,11 @@
 	    endif
 
 	    C0reg = C0reg +
-     &        spence(0, y2/y3, 0D0) + spence(0, y2/y4, 0D0) -
-     &        spence(0, y1/y3, 0D0) - spence(0, y1/y4, 0D0)
+     &        spence(0, y2/y3, 0) + spence(0, y2/y4, 0) -
+     &        spence(0, y1/y3, 0) - spence(0, y1/y4, 0)
 
 	    if( Im(a) .ne. 0 ) then
-	      h3 = abs(b)/b*Ieps
+	      h3 = abs(b)/b*cIeps
 	      x1 = -.5D0*(q(i) - mij + b)/q(i) - h3
 	      x2 = -.5D0*(q(i) - mij - b)/q(i) - h3
 	      x3 = -.5D0*(-q(i) - mij + b)/q(i) - h3
@@ -195,16 +195,16 @@
 	    endif
 	    qijk = ar/q(i)
 	    if( qijk .ne. 0 ) then
-	      y3 = y3 + Ieps/qijk*abs(qijk*y3)
-	      y4 = y4 - Ieps/qijk*abs(qijk*y4)
+	      y3 = y3 + cIeps/qijk*abs(qijk*y3)
+	      y4 = y4 - cIeps/qijk*abs(qijk*y4)
 	    else
 	      y3 = y3*onePeps
 	      y4 = y4*oneMeps
 	    endif
 
 	    C0reg = C0reg +
-     &        spence(0, y2/y3, 0D0) + spence(0, y2/y4, 0D0) -
-     &        spence(0, y1/y3, 0D0) - spence(0, y1/y4, 0D0)
+     &        spence(0, y2/y3, 0) + spence(0, y2/y4, 0) -
+     &        spence(0, y1/y3, 0) - spence(0, y1/y4, 0)
 	  enddo
 	  C0reg = C0reg/ar
 	  return
@@ -241,8 +241,8 @@
 	  y1 = -q(3) - mkj
 	  y2 = -mkj
 	  qijk = -mkj - q(3)*m(2)/mki
-	  y3 = qijk - Ieps*sign(1D0, -q(3)/mki)*abs(qijk)
-	  C0reg = C0reg + spence(0, y2/y3, 0D0) - spence(0, y1/y3, 0D0)
+	  y3 = qijk - cIeps*sign(1D0, -q(3)/mki)*abs(qijk)
+	  C0reg = C0reg + spence(0, y2/y3, 0) - spence(0, y1/y3, 0)
 	endif
 
 	b = Sqrtc((q(3) - mij)**2 - 4*q(3)*m(1))
@@ -257,12 +257,12 @@
 	else
 	  y4 = h0/y3
 	endif
-	y3 = y3 - Ieps*abs(y3)
-	y4 = y4 + Ieps*abs(y4)
+	y3 = y3 - cIeps*abs(y3)
+	y4 = y4 + cIeps*abs(y4)
 
 	C0reg = -(C0reg +
-     &    spence(0, y2/y3, 0D0) + spence(0, y2/y4, 0D0) -
-     &    spence(0, y1/y3, 0D0) - spence(0, y1/y4, 0D0))/q(3)
+     &    spence(0, y2/y3, 0) + spence(0, y2/y4, 0) -
+     &    spence(0, y1/y3, 0) - spence(0, y1/y4, 0))/q(3)
 	end
 
 ************************************************************************
@@ -279,14 +279,14 @@
 	RealType a, h1, h2, h3, ps
 	ComplexType c
 
-	if( abs(p1p2) .lt. acc .or. abs(p1) .lt. acc ) then
+	if( abs(p1p2) .lt. diffeps .or. abs(p1) .lt. diffeps ) then
 	  print *, "C0ir: mass singular case"
 	  C0ir = nan
 	  return
 	endif
 
-	if( abs(p2) .lt. acc ) then
-	  if( abs(p1 - p1p2) .lt. acc ) then
+	if( abs(p2) .lt. diffeps ) then
+	  if( abs(p1 - p1p2) .lt. diffeps ) then
 	    C0ir = -.5D0*log(p1/lambda)/p1
 	  else
 	    C0ir = -.25D0*log(p1p2*p1/lambda**2)*
@@ -318,14 +318,14 @@
 	  h3 = -2*p1*p2/(a + ps)
 	endif
 
-	c = ln(-a/p2, -1D0)
+	c = ln(-a/p2, -1)
 	C0ir = (-pi**2/6D0 +
-     &    spence(0, ToComplex(h2/a), -1D0) +
-     &    spence(0, ToComplex(h3/a), -1D0) -
-     &    .5D0*(ln(-h2/p2, -1D0)**2 + ln(-h3/p2, -1D0)**2) +
-     &    .25D0*(ln(-p1/p2, -1D0)**2 + ln(-p1p2/p2, -1D0)**2) -
-     &    c*(ln(-h1/p2, -1D0) - c) +
-     &    ln(-lambda/p2, -1D0)*ln(h1/sqrt(p1*p1p2), 1D0))/a
+     &    spence(0, ToComplex(h2/a), -1) +
+     &    spence(0, ToComplex(h3/a), -1) -
+     &    .5D0*(ln(-h2/p2, -1)**2 + ln(-h3/p2, -1)**2) +
+     &    .25D0*(ln(-p1/p2, -1)**2 + ln(-p1p2/p2, -1)**2) -
+     &    c*(ln(-h1/p2, -1) - c) +
+     &    ln(-lambda/p2, -1)*ln(h1/sqrt(p1*p1p2), 1))/a
 	end
 
 ************************************************************************

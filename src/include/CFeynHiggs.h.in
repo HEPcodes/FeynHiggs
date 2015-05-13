@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 30 Jul 14 th
+		last modified 9 Feb 15 th
 */
 
 
@@ -546,7 +546,7 @@ static inline void FHGetSelf(int *error, _fh_Ccr_(k2,[1]),
 
 
 static inline void FHAddSelf(int *error, const int n,
-  _fh_Ccac_(sig,[n]), const int flags)
+  _fh_Ccac_(sig,[]), const int flags)
 {
   _fh_Dc_(sig,[n]);
   _fh_Ic_(sig,[n]);

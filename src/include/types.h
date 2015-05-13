@@ -1,7 +1,7 @@
 * types.h
 * real-based type declarations
 * this file is part of FeynHiggs
-* last modified 9 Jul 12 th
+* last modified 3 Jan 15 th
 
 
 #ifndef TYPES_H
@@ -16,6 +16,7 @@
 
 #define Sq(c) Re((c)*Conjugate(c))
 #define Sqrtc(c) sqrt(ToComplex(c))
+#define Logc(c) log(ToComplex(c))
 
 #endif
 

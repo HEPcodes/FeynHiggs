@@ -1,7 +1,7 @@
 * FHRecord.h.in
 * the data structures for a FH record
 * this file is part of FeynHiggs
-* last modified 11 Jul 11 th
+* last modified 20 Feb 15 th
 
 
 #ifndef FHRangeR
@@ -34,7 +34,7 @@
 	common /fhrecnames/ FHName
 
 	integer maxcols, maxrows
-	parameter (maxcols = FHRecordN, maxrows = 2400)
+	parameter (maxcols = FHRecordN, maxrows = 10000)
 
 	double precision tabledata(maxcols,maxrows)
 	integer tableflag(0:maxcols), tablerows

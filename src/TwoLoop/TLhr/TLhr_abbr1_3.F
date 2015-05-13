@@ -1,6 +1,6 @@
 * TLhr_abbr1_3.F
 * this file is part of FeynHiggs
-* generated 30 Nov 2011 16:05
+* generated 24-Sep-2014 23:09
 
 #include "externals.h"
 #include "types.h"
@@ -91,7 +91,7 @@
 	Cd(5477) = 10*MTy2 - 3*MStop2(1)
 
         Cd(540) = -2*MStop2(1)*
-     &   (Cr(28)*MStop2(1) - 2*Cd(535)*UStop2(1,1)*UStop2(1,2))
+     &    (Cr(28)*MStop2(1) - 2*Cd(535)*UStop2(1,1)*UStop2(1,2))
 
 	Cd(541) = MStop2(2) + MStop2(4)*UStop2(1,2)
 
@@ -179,7 +179,8 @@
 
 	Cd(555) = 7*MStop2(2) - 3*MStop2(3)
 
-	Cd(556) = -(Cr(115)*MStop2(1)) + Cd(555)*UStop2(1,1)*UStop2(1,2)
+        Cd(556) = -(Cr(115)*MStop2(1)) + 
+     &    Cd(555)*UStop2(1,1)*UStop2(1,2)
 
 	Cd(5641) = 151*MTy2 + 72*MStop2(1)
 
@@ -435,7 +436,7 @@
 
 	Cd(57) = 2*MGlpT2 - MStop2(1)
 
-	Cd(586) = (-Cd(584) + 8*MTy*Cd(585)*MStop2(3))/MStop2(3)
+	Cd(586) = -((Cd(584) - 8*MTy*Cd(585)*MStop2(3))/MStop2(3))
 
 	Cd(5969) = MTy2*Cd(5370) + 3*MStop2(1)*MStop2(2)
 
@@ -443,7 +444,7 @@
 
 	Cd(587) = 2*Cd(424)*Cd(577) - 2*Cd(426)*MStop2(4)
 
-	Cd(588) = (-Cd(587) + 4*MTy*Cd(13)*MStop2(3))/MStop2(3)
+	Cd(588) = -((Cd(587) - 4*MTy*Cd(13)*MStop2(3))/MStop2(3))
 
 	Cd(589) = MStop2(3) + MStop2(1)*UStop2(1,1)
 
@@ -471,9 +472,9 @@
 
 	Cd(6029) = 7*MTy2 + 10*MStop2(1)
 
-        Cd(593) = 1/(256.D0*Pi**3)*
-     &   (Alfas2L*Cr(9)**2*(-(SA2*Cd(591)) + Cd(592)*MStop2(3)))/
-     &    (SB2*SW2*MStop2(3))
+        Cd(593) = -(1/(256.D0*Pi**3)*
+     &      (Alfas2L*Cr(9)**2*(SA2*Cd(591) - Cd(592)*MStop2(3)))/
+     &       (SB2*SW2*MStop2(3)))
 
 	Cd(594) = 5*MStop2(1) + MStop2(3)
 
@@ -510,7 +511,7 @@
 	Cd(6070) = 9*MStop2(3) + 11*MStop2(4)
 
         Cd(6071) = Cd(1124)*Cd(6069)*MStop2(2)**2 + 
-     &   Cd(6070)*MStop2(3)**3
+     &    Cd(6070)*MStop2(3)**3
 
 	Cd(6073) = 9*MStop2(2) - 19*MStop2(3)
 
@@ -532,9 +533,10 @@
 
 	Cd(599) = 2*UStop2(1,1)**3 - UStop2(1,2)**3
 
-	Cd(6104) = (-8*MStop2(2) + 4*MStop2(3))/MStop2(3)
+	Cd(6104) = -((8*MStop2(2) - 4*MStop2(3))/MStop2(3))
 
-	Cd(600) = 2*Cd(599)*MStop2(2) + Cd(598)*UStop2(1,1)*UStop2(1,2)
+        Cd(600) = 2*Cd(599)*MStop2(2) + 
+     &    Cd(598)*UStop2(1,1)*UStop2(1,2)
 
 	Cd(602) = 5*MStop2(1) + MStop2(3)
 
@@ -548,7 +550,8 @@
 
 	Cd(6148) = 16*MTy2 + 5*MStop2(1)
 
-	Cd(605) = Cd(599)*MStop2(2) + 2*Cd(604)*UStop2(1,1)*UStop2(1,2)
+        Cd(605) = Cd(599)*MStop2(2) + 
+     &    2*Cd(604)*UStop2(1,1)*UStop2(1,2)
 
 	Cd(6157) = 11*MTy2 + 32*MStop2(1)
 
@@ -741,7 +744,7 @@
 	Cd(6452) = 8*MStop2(2)**2 - MStop2(3)*MStop2(4)
 
         Cd(635) = 4*Cd(634)*MStop2(2)*UStop2(1,1) - 
-     &   2*Cd(632)*UStop2(1,1)**3
+     &    2*Cd(632)*UStop2(1,1)**3
 
 	Cd(6461) = 25*MTy2 + 37*MStop2(1)
 
@@ -791,7 +794,8 @@
 
 	Cd(6573) = 10*MTy2**2 - 3*MStop2(1)**2
 
-	Cd(647) = -(Cd(646)*MStop2(2)) + Cd(645)*UStop2(1,1)*UStop2(1,2)
+        Cd(647) = -(Cd(646)*MStop2(2)) + 
+     &    Cd(645)*UStop2(1,1)*UStop2(1,2)
 
 	Cd(648) = Cr(85)*MStop2(2) - Cd(256)*UStop2(1,1)
 
@@ -828,15 +832,15 @@
 	Cd(6664) = 12*MTy2 + MStop2(3)
 
         Cd(656) = -2*MUEC*Cd(655)*UCStopC(1,3)**2 + 
-     &   2*MUE*Cd(649)*MStop2(3)*UStop2(1,2)
+     &    2*MUE*Cd(649)*MStop2(3)*UStop2(1,2)
 
         Cd(657) = 2*MUE*Cd(651)*UCStop(1,3)**2 + 
-     &   MUEC*Cd(647)*UStop2(1,2)
+     &    MUEC*Cd(647)*UStop2(1,2)
 
 	Cd(6681) = 40*MStop2(2) - 9*MStop2(3)
 
         Cd(658) = 2*MUE*MStop2(3)*UCStop(1,3) + 
-     &   MUEC*Cd(653)*UCStopC(1,3)
+     &    MUEC*Cd(653)*UCStopC(1,3)
 
 	Cd(659) = AtC*Cd(657) + 4*MTy*Cd(658)*UStop2(1,2)
 
@@ -848,14 +852,15 @@
 
 	Cd(6716) = -4*MTy2 + Cd(607)
 
-	Cd(662) = Cd(661)*UStop2(1,1)**3 + 4*UStop2(1,1)*UStop2(1,2)**3
+        Cd(662) = Cd(661)*UStop2(1,1)**3 + 
+     &    4*UStop2(1,1)*UStop2(1,2)**3
 
 	Cd(6730) = MTy2 + 4*MStop2(1)
 
 	Cd(6733) = MStop2(2) + 2*MStop2(3)
 
         Cd(663) = Cd(662)*MStop2(2) + 
-     &   4*MStop2(3)*UStop2(1,1)**2*UStop2(1,2)**2
+     &    4*MStop2(3)*UStop2(1,1)**2*UStop2(1,2)**2
 
 	Cd(6740) = 15*MTy2 + 4*MStop2(1)
 
@@ -956,7 +961,7 @@
 	Cd(691) = Cd(689)*UStopC(1,1) + Cd(690)*UStopC(1,2)
 
         Cd(692) = -2*Cd(689)*Cd(691)*MStop2(1) + 
-     &   2*CA2*MStop2(2)*MStop2(3)*UStop(1,1)
+     &    2*CA2*MStop2(2)*MStop2(3)*UStop(1,1)
 
 	Cd(7032) = 3*MStop2(2) - 5*MStop2(3)
 
@@ -1049,7 +1054,7 @@
 	Cd(709) = -(Cd(708)*UCStop(1,3)) + 2*MTy*S2A*UStop2(1,1)
 
         Cd(710) = MUE*Cd(709)*UCStopC(3,4) + 
-     &   Cd(689)*Cd(690)*UUStopC(3,3)
+     &    Cd(689)*Cd(690)*UUStopC(3,3)
 
 	Cd(7205) = MStop2(3) + 18*MStop2(4)
 
@@ -1076,7 +1081,7 @@
 	Cd(712) = CA2*MStop2(3)*UCStopC(3,1) - Cd(694)**2*UUStopC(3,2)
 
         Cd(713) = CA2*MStop2(3)*UCStopC(3,1) + 
-     &   Cd(693)*Cd(694)*UUStopC(3,3)
+     &    Cd(693)*Cd(694)*UUStopC(3,3)
 
 	Cd(7234) = 50*MStop2(2) - 11*MStop2(3)
 
@@ -1089,7 +1094,7 @@
 	Cd(714) = Cd(712) - Cd(713)
 
         Cd(715) = 2*(Cd(714)*MStop2(2) + 
-     &     Cd(690)*Cd(694)*MStop2(1)*UUStopC(2,2))
+     &      Cd(690)*Cd(694)*MStop2(1)*UUStopC(2,2))
 
 	Cd(7258) = 4*MTy2 + 15*MStop2(1)
 
@@ -1102,7 +1107,7 @@
 	Cd(7278) = 15*MStop2(2)**2 - Cd(5717)*MStop2(3)
 
         Cd(719) = 2*Conjugate(dY33eps(0))*MStop2(1) + 
-     &   Conjugate(dY33eps(-1))*MStop2(3)
+     &    Conjugate(dY33eps(-1))*MStop2(3)
 
 	Cd(7301) = -MGl2 + Cd(5349)
 
@@ -1181,7 +1186,7 @@
 	Cd(7386) = 22*MTy2 + 15*MStop2(4)
 
         Cd(729) = 2*Conjugate(dY33eps(1))*MStop2(1) + 
-     &   Conjugate(dY33eps(0))*MStop2(3)
+     &    Conjugate(dY33eps(0))*MStop2(3)
 
 	Cd(7393) = 5*MTy2 - 27*MStop2(1)
 
@@ -1211,8 +1216,9 @@
 
 	Cd(7456) = MTy2 - 30*MStop2(1)
 
-        Cd(736) = Cd(694)*
-     &   (-2*Cd(735)*MStop2(2) + 2*Cd(690)*MStop2(1)*UUStopC(2,2))
+        Cd(736) = -(Cd(694)*
+     &      (2*Cd(735)*MStop2(2) - 
+     &        2*Cd(690)*MStop2(1)*UUStopC(2,2)))
 
 	Cd(7464) = 19*MStop2(3) + 30*MStop2(4)
 
@@ -1386,7 +1392,7 @@
 
 	Cd(7832) = 9*MStop2(2) + 5*MStop2(3)
 
-	Cd(7849) = (-4*MStop2(2) + 2*MStop2(3))/MStop2(3)
+	Cd(7849) = -((4*MStop2(2) - 2*MStop2(3))/MStop2(3))
 
 	Cd(774) = MStop2(2) - 5*MStop2(3)
 
@@ -1482,7 +1488,8 @@
 
 	Cd(8013) = 5*MStop2(2) - 12*MStop2(3)
 
-	Cd(791) = Cd(790)*MStop2(4) - Cd(786)*UStop2(1,1)**2*UStop2(1,2)
+        Cd(791) = Cd(790)*MStop2(4) - 
+     &    Cd(786)*UStop2(1,1)**2*UStop2(1,2)
 
 	Cd(8023) = 4*MTy2 - 27*MStop2(1)
 
@@ -1573,7 +1580,7 @@
 	Cd(811) = 2*Cd(512)*MStop2(1) - Cd(523)*UStop2(1,2)
 
         Cd(812) = Cd(607)*UStop2(1,1)**3 - 
-     &   Cr(75)*MStop2(4)*UStop2(1,2)**2
+     &    Cr(75)*MStop2(4)*UStop2(1,2)**2
 
 	Cd(8232) = MTy2*Cd(315) - MStop2(2)*MStop2(4)
 
@@ -1588,7 +1595,7 @@
 	Cd(8263) = (MTy2*Cd(181) + Cd(2567)*MStop2(1))*MStop2(3)
 
         Cd(8292) = Cd(1430)*Cr(26)*MStop2(2)**2 - 
-     &   2*Cd(1755)*MStop2(3)**3
+     &    2*Cd(1755)*MStop2(3)**3
 
 	Cd(8310) = 7*MTy2 - MStop2(1)
 
@@ -1602,7 +1609,8 @@
 
 	Cd(8332) = 5*MGlmT2 - 7*MStop2(1)
 
-	Cd(824) = 8*MTy2*UStop2(1,2)*UUStop(1,1) - MStop2(3)*UUStop(2,1)
+        Cd(824) = 8*MTy2*UStop2(1,2)*UUStop(1,1) - 
+     &    MStop2(3)*UUStop(2,1)
 
 	Cd(825) = Cd(769) - UCStop(3,1)**2
 
@@ -1825,7 +1833,7 @@
 	Cd(8851) = 3*MGl2 - 4*MTy2
 
         Cd(8854) = 2*Cd(3718)*MStop2(3)*UUStop(1,2) - 
-     &   Cd(44)*MStop2(1)*UUStop(2,2)
+     &    Cd(44)*MStop2(1)*UUStop(2,2)
 
 	Cd(876) = 4*Cd(875) + 6*Cd(831)*UStop2(1,2)
 
@@ -1932,7 +1940,7 @@
 	Cd(9061) = 83*UUStop(1,1) - 2*UUStop(2,1)
 
         Cd(897) = 2*MStop2(1)*MStop2(2)*UCStopC(3,1)**2 + 
-     &   8*MTy2*MStop2(4)*UStop2(1,1)*UStop2(1,2)**2
+     &    8*MTy2*MStop2(4)*UStop2(1,1)*UStop2(1,2)**2
 
 	Cd(9063) = 106*UUStop(1,1) - 3*UUStop(2,1)
 
@@ -1951,10 +1959,10 @@
 	Cd(9076) = 3*MTy2 + 7*MStop2(2)
 
         Cd(9080) = 2*Cd(3969)*MStop2(3)*UUStop(1,2) + 
-     &   Cd(48)*MStop2(2)*UUStop(2,2)
+     &    Cd(48)*MStop2(2)*UUStop(2,2)
 
         Cd(899) = 16*MTy2*Cd(523)*UUStop(1,1) - 
-     &   MStop2(1)*MStop2(2)*MStop2(3)*UUStop(2,1)
+     &    MStop2(1)*MStop2(2)*MStop2(3)*UUStop(2,1)
 
 	Cd(9085) = 9*MTy2 + MStop2(2)
 
@@ -1963,17 +1971,17 @@
 	Cd(9102) = 3*MGl2 + Cd(4852)
 
         Cd(901) = Cd(900)*UStop2(1,2) - 
-     &   MStop2(1)*MStop2(2)*MStop2(3)*UUStop(2,1)
+     &    MStop2(1)*MStop2(2)*MStop2(3)*UUStop(2,1)
 
 	Cd(902) = 3*MStop2(2)**2 - Cd(307)*MStop2(3)
 
 	Cd(903) = 8*MTy2*UUStop(1,1) - 3*MStop2(3)*UUStop(2,1)
 
         Cd(904) = Cd(903)*MStop2(1)*MStop2(2) + 
-     &   8*MTy2*Cd(902)*UStop2(1,2)*UUStop(1,1)
+     &    8*MTy2*Cd(902)*UStop2(1,2)*UUStop(1,1)
 
         Cd(905) = 4*MTy2*UStop2(1,1)**4 + 
-     &   MStop2(3)*UCStopC(3,1)**2*UStop2(1,2)
+     &    MStop2(3)*UCStopC(3,1)**2*UStop2(1,2)
 
 	Cd(9143) = Cd(86)*UStop(1,1) - M_3*MTy*UStop(1,2)
 
@@ -2010,17 +2018,17 @@
 	Cd(9210) = 4*MStop2(2) - 17*MStop2(3)
 
         Cd(9211) = MStop2(3)*
-     &   (Cd(9210)*MStop2(1)**2 + 4*Cd(47)*MStop2(3)*UStop2(1,2))
+     &    (Cd(9210)*MStop2(1)**2 + 4*Cd(47)*MStop2(3)*UStop2(1,2))
 
         Cd(912) = -2*Cd(689)*Cd(911)*MStop2(2) + 
-     &   2*CA2*MStop2(3)**2*UStop2(1,1)
+     &    2*CA2*MStop2(3)**2*UStop2(1,1)
 
 	Cd(913) = Cd(694)*UUStopC(3,2) + Cd(693)*UUStopC(3,4)
 
 	Cd(9229) = 11*MTy2 + 14*MStop2(1)
 
         Cd(914) = -2*Cd(690)*Cd(913)*MStop2(2) + 
-     &   2*CA2*MStop2(3)**2*UStop2(1,2)
+     &    2*CA2*MStop2(3)**2*UStop2(1,2)
 
 	Cd(9241) = -(MTy2*Cd(786)) + MStop2(1)*MStop2(3)
 
@@ -2161,7 +2169,7 @@
 	Cd(928) = Cd(689)*UUStopC(3,1) + Cd(690)*UUStopC(3,4)
 
         Cd(929) = -4*Cd(693)*Cd(928)*MStop2(1) + 
-     &   4*CA2*MStop2(3)**2*UStop2(1,2)
+     &    4*CA2*MStop2(3)**2*UStop2(1,2)
 
 	Cd(9392) = 8*MTy2*UUStop(1,3) + MStop2(3)*UUStop(2,3)
 
@@ -2173,12 +2181,13 @@
 
 	Cd(9416) = 84*MStop2(2) - 31*MStop2(3)
 
-	Cd(933) = CA2*MStop2(2)*UStop(2,1) + Cd(689)*Cd(690)*UStopC(2,2)
+        Cd(933) = CA2*MStop2(2)*UStop(2,1) + 
+     &    Cd(689)*Cd(690)*UStopC(2,2)
 
 	Cd(9427) = 8*MTy2*UUStop(1,1) - MStop2(3)*UUStop(2,1)
 
         Cd(934) = Cd(693)*Cd(928)*MStop2(2) + 
-     &   Cd(933)*MStop2(3)*UStopC(2,1)
+     &    Cd(933)*MStop2(3)*UStopC(2,1)
 
 	Cd(9435) = 8*MTy2*UUStop(1,2) + MStop2(3)*UUStop(2,2)
 
@@ -2380,7 +2389,8 @@
 
 	Cd(9780) = Cd(9779)*UStop2(1,1) + 2*MStop2(3)*UStop2(1,2)**2
 
-	Cd(9783) = MTy*Cd(9780) + AtC*MStop2(4)*UCStop(1,3)*UStop2(1,2)
+        Cd(9783) = MTy*Cd(9780) + 
+     &    AtC*MStop2(4)*UCStop(1,3)*UStop2(1,2)
 
 	Cd(970) = 3 - UStop2(1,2)**2
 
@@ -2424,7 +2434,8 @@
 
 	Cd(9841) = Cd(780) - Cd(814)*UStop2(1,1)
 
-	Cd(9842) = Cd(9841)*UStop2(1,1)**2 - 2*MStop2(4)*UStop2(1,2)**2
+        Cd(9842) = Cd(9841)*UStop2(1,1)**2 - 
+     &    2*MStop2(4)*UStop2(1,2)**2
 
 	Cd(976) = 3*MStop2(2)*MStop2(3) - Cd(975)*UStop2(1,2)
 
@@ -2442,7 +2453,8 @@
 
 	Cd(9866) = 2*MStop2(1)*MStop2(2) + Cd(861)*UStop2(1,2)
 
-	Cd(978) = 4*Cd(977)*MStop2(1) - 4*Cd(970)*MStop2(2)*UStop2(1,2)
+        Cd(978) = 4*Cd(977)*MStop2(1) - 
+     &    4*Cd(970)*MStop2(2)*UStop2(1,2)
 
 	Cd(9872) = MTy2 - AtC*MTy*UCStop(1,3)
 
@@ -2453,20 +2465,22 @@
 	Cd(9878) = Cd(424)*Cd(577) - Cd(426)*MStop2(4)
 
         Cd(9879) = ((2*Cd(9878) - 4*MTy*Cd(13)*MStop2(3))*
-     &     UStop2(1,1)*UStop2(1,2))/MStop2(3)
+     &      UStop2(1,1)*UStop2(1,2))/MStop2(3)
 
 	Cd(9880) = 2*MUE2*Cd(577) - Cd(427)*MStop2(4)
 
-	Cd(9883) = Cr(28)*MStop2(2) - 2*Cd(286)*UStop2(1,1)*UStop2(1,2)
+        Cd(9883) = Cr(28)*MStop2(2) - 
+     &    2*Cd(286)*UStop2(1,1)*UStop2(1,2)
 
         Cd(9884) = -2*MStop2(2)*
-     &   (Cr(28)*MStop2(2) - 2*Cd(286)*UStop2(1,1)*UStop2(1,2))
+     &    (Cr(28)*MStop2(2) - 2*Cd(286)*UStop2(1,1)*UStop2(1,2))
 
-	Cd(9885) = Cd(425)*Cd(9884) + 2*At*AtC*Cd(9883)*Cr(28)*MStop2(2)
+        Cd(9885) = Cd(425)*Cd(9884) + 
+     &    2*At*AtC*Cd(9883)*Cr(28)*MStop2(2)
 
         Cd(9886) = (Cd(9885) + 
-     &     8*MStop2(2)*MStop2(3)**2*UStop2(1,1)*UStop2(1,2))/
-     &   (MZ2*SW2*MStop2(3)**2)
+     &      8*MStop2(2)*MStop2(3)**2*UStop2(1,1)*UStop2(1,2))/
+     &    (MZ2*SW2*MStop2(3)**2)
 
 	Cd(980) = 4*Cd(976) + Cd(979)*UStop2(1,1)
 
@@ -2477,37 +2491,39 @@
 	Cd(9889) = CA2*Cd(9888) + MZ2*SA2*SW2*Cd(9886)*MStop2(3)**2
 
         Cd(9890) = 1/(64.D0*Pi**3)*
-     &   (Alfas2L*(Cd(9889) + S2A*Cd(9887)*MStop2(2)))/
-     &    (SB2*SW2*MStop2(2)**2*MStop2(3)**2)
+     &    (Alfas2L*(Cd(9889) + S2A*Cd(9887)*MStop2(2)))/
+     &     (SB2*SW2*MStop2(2)**2*MStop2(3)**2)
 
         Cd(9892) = (8*Cr(75)**2*
-     &     (Cd(471)*MStop2(1) + MStop2(3)**2))/MStop2(3)**2
+     &      (Cd(471)*MStop2(1) + MStop2(3)**2))/MStop2(3)**2
 
 	Cd(9895) = Cr(28) - 2*UStop2(1,1)*UStop2(1,2)
 
 	Cd(981) = Cd(978)*MStop2(3) - Cd(980)*UStop2(1,1)
 
-	Cd(9900) = Cr(28)*MStop2(2) - MStop2(4)*UStop2(1,1)*UStop2(1,2)
+        Cd(9900) = Cr(28)*MStop2(2) - 
+     &    MStop2(4)*UStop2(1,1)*UStop2(1,2)
 
 	Cd(9901) = 2*Cd(9900) - Cr(28)*MStop2(3)
 
         Cd(9903) = Cr(28)*MStop2(4) - 
-     &   2*MStop2(1)*UStop2(1,1)*UStop2(1,2)
+     &    2*MStop2(1)*UStop2(1,1)*UStop2(1,2)
 
-	Cd(9904) = Cd(1213)*MStop2(2) - Cd(9903)*UStop2(1,1)*UStop2(1,2)
+        Cd(9904) = Cd(1213)*MStop2(2) - 
+     &    Cd(9903)*UStop2(1,1)*UStop2(1,2)
 
 	Cd(982) = 6*MStop2(1)**2 + MStop2(3)*MStop2(4)
 
         Cd(9911) = Cd(9792)*Cd(9807)*UUStopC(3,1) - 
-     &   Cd(9793)*Cd(9810)*UUStopC(3,3)
+     &    Cd(9793)*Cd(9810)*UUStopC(3,3)
 
         Cd(9912) = -2*Cd(9911)*MStop2(2) + 
-     &   2*SA2*MStop2(3)**2*UStop2(1,1)
+     &    2*SA2*MStop2(3)**2*UStop2(1,1)
 
 	Cd(9913) = Cd(9793)*UUStopC(3,2) - Cd(9792)*UUStopC(3,4)
 
         Cd(9914) = -2*Cd(9808)*Cd(9913)*MStop2(2) + 
-     &   2*SA2*MStop2(3)**2*UStop2(1,2)
+     &    2*SA2*MStop2(3)**2*UStop2(1,2)
 
 	Cd(983) = MStop2(1)*MStop2(2) + Cd(951)*UStop2(1,2)
 
@@ -2524,49 +2540,49 @@
 	Cd(9929) = Cd(9807)*UUStopC(3,1) - Cd(9808)*UUStopC(3,4)
 
         Cd(9930) = -4*Cd(9792)*Cd(9929)*MStop2(1) + 
-     &   4*SA2*MStop2(3)**2*UStop2(1,2)
+     &    4*SA2*MStop2(3)**2*UStop2(1,2)
 
 	Cd(9931) = 8*Cd(9808)*UUStopC(3,2) - 8*Cd(9810)*UUStopC(3,3)
 
-	Cd(9934) = 2*SA2*MStop2(2)*UStop(2,2) + Cd(9808)**2*UStopC(2,2)
+        Cd(9934) = 2*SA2*MStop2(2)*UStop(2,2) + 
+     &    Cd(9808)**2*UStopC(2,2)
 
-        Cd(986) = 4*(3*MStop2(3) + 
-     &     UStop2(1,2)*(-2*MStop2(1) + Cd(607)*UStop2(1,2)))
+        Cd(986) = 4*(3*MStop2(3) - 
+     &      UStop2(1,2)*(2*MStop2(1) - Cd(607)*UStop2(1,2)))
 
         Cd(9958) = UStop2(1,1)*(UStop2(1,1) - UStop2(1,2)) + 
-     &   3*UStop2(1,2)**2
+     &    3*UStop2(1,2)**2
 
-        Cd(9961) = Cd(9948)*Cd(9960) + 2*M_3C*UCStop(1,3)**2 + 
-     &   At*Cd(9958)*UStop2(1,1)
+        Cd(9961) = Cd(9948)*Cd(9960) + 
+     &    2*M_3C*UCStop(1,3)**2 + At*Cd(9958)*UStop2(1,1)
 
         Cd(9964) = Cd(9963)*UCStop(1,3)**2 + 
-     &   UStop2(1,1)*(Cd(9948)*Cd(9962) + At*UStop2(1,2)**2)
+     &    UStop2(1,1)*(Cd(9948)*Cd(9962) + At*UStop2(1,2)**2)
 
 	Cd(9972) = 1 - Cd(9955)
 
         Cd(9996) = Cd(9995)*UCStopC(1,3)**2 + 
-     &   UStop2(1,1)*(Cd(9948)*Cd(9994) + AtC*UStop2(1,2)**2)
+     &    UStop2(1,1)*(Cd(9948)*Cd(9994) + AtC*UStop2(1,2)**2)
 
-        Cd(10017) = Cd(10015)*Cd(10016)*UCStop(1,3) - 
-     &   3*M_3C*AtC*UCStop(1,3)**3 + 
-     &   M_3*At*Cd(10016)*UCStopC(1,3)
+        Cd(10017) = -3*M_3C*AtC*UCStop(1,3)**3 + 
+     &    Cd(10016)*(Cd(10015)*UCStop(1,3) + M_3*At*UCStopC(1,3))
 
         Cd(10018) = UStop2(1,1)**2 + 
-     &   (Cd(9948) - UStop2(1,1))*UStop2(1,2)
+     &    (Cd(9948) - UStop2(1,1))*UStop2(1,2)
 
         Cd(10020) = UStop2(1,1)*(UStop2(1,1) - UStop2(1,2)) + 
-     &   UStop2(1,2)**2
+     &    UStop2(1,2)**2
 
 	Cd(10025) = Cd(290) - 2*UStop2(1,1)
 
 	Cd(10028) = 2*Cd(9948) + Cd(10721)
 
         Cd(10029) = -(Cd(10028)*UStop2(1,1)) + 
-     &   2*UStop2(1,1)**2 - Cd(10027)*UStop2(1,2)
+     &    2*UStop2(1,1)**2 - Cd(10027)*UStop2(1,2)
 
-        Cd(10036) = M_3C*AtC*Cd(10016)*UCStop(1,3) + 
-     &   Cd(10015)*Cd(10016)*UCStopC(1,3) - 
-     &   3*M_3*At*UCStopC(1,3)**3
+        Cd(10036) = -3*M_3*At*UCStopC(1,3)**3 + 
+     &    Cd(10016)*(M_3C*AtC*UCStop(1,3) + 
+     &       Cd(10015)*UCStopC(1,3))
 
 	Cd(10049) = Cd(10382) + MUEC*Cd(9948)*UStop2(1,1)**2
 
@@ -2581,42 +2597,42 @@
 	Cd(10088) = -Cd(10454) + M_3*Cd(9948)*UStop2(1,1)
 
         Cd(10091) = (Cd(9948) - UStop2(1,1))*UStop2(1,1) - 
-     &   UStop2(1,2)**2
+     &    UStop2(1,2)**2
 
 	Cd(10095) = -Cd(10764) + M_3C*Cd(9948)*Cr(75)
 
 	Cd(10096) = -Cd(10321) + M_3C*Cd(9948)*UStop2(1,1)
 
         Cd(10112) = 2*Cd(9948)*UStop2(1,1) + UStop2(1,1)**2 + 
-     &   UStop2(1,2)**2
+     &    UStop2(1,2)**2
 
 	Cd(10114) = Cd(425) + 2*At*AtC*Cd(9981)*UStop2(1,1)
 
 	Cd(98) = Cd(2930) + 4*MStop2(2)
 
         Cd(10138) = AtC*Cd(10136)*UCStop(1,3) + 
-     &   At*UCStopC(1,3)*(Cd(10016)*Cd(10137) - 
-     &      3*M_3*At*UCStopC(1,3)**2)
+     &    At*UCStopC(1,3)*(Cd(10016)*Cd(10137) - 
+     &       3*M_3*At*UCStopC(1,3)**2)
 
         Cd(10143) = Cd(10142)*UCStopC(1,3) + 
-     &   UCStop(1,3)*(2*M_3C*UStop2(1,1) + AtC*UStop2(1,2))
+     &    UCStop(1,3)*(2*M_3C*UStop2(1,1) + AtC*UStop2(1,2))
 
         Cd(10153) = AtC**2*Cd(10032) + 
-     &   At*(At*Cd(10039)*UCStopC(1,3) + 
-     &      2*AtC*Cr(5)*UStop2(1,1)*UStop2(1,2))
+     &    At*(At*Cd(10039)*UCStopC(1,3) + 
+     &       2*AtC*Cr(5)*UStop2(1,1)*UStop2(1,2))
 
         Cd(10163) = (Cd(10162) - 4*UStop2(1,1))*UStop2(1,1) + 
-     &   Cd(2361)*UStop2(1,2)
+     &    Cd(2361)*UStop2(1,2)
 
-        Cd(10172) = M_3*Cd(9948)*Cd(9983) - 
-     &   2*M_3C*UCStop(1,3)**2 + M_3*Cr(75)**2*UStop2(1,1)
+        Cd(10172) = -2*M_3C*UCStop(1,3)**2 + 
+     &    M_3*(Cd(9948)*Cd(9983) + Cr(75)**2*UStop2(1,1))
 
-        Cd(10182) = 4*Cd(9948)*Cd(10181) + 
-     &   Cd(10180)*UCStopC(1,3)**2 + 4*M_3C*Cr(75)**2*UStop2(1,1)
+        Cd(10182) = Cd(10180)*UCStopC(1,3)**2 + 
+     &    4*(Cd(9948)*Cd(10181) + M_3C*Cr(75)**2*UStop2(1,1))
 
 	Cd(10191) = Cd(425) + 2*At*AtC*UStop2(1,1)*UStop2(1,2)
 
-        Cd(10201) = 4*M_3*MTy2 + 
-     &   At*(-2*MGlpTmSt2(1) + M_3*At*UCStopC(1,3)**2)
+        Cd(10201) = 4*M_3*MTy2 - 
+     &    At*(2*MGlpTmSt2(1) - M_3*At*UCStopC(1,3)**2)
 
 	end

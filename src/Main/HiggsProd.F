@@ -5,7 +5,7 @@
 * charged-Higgs cross-section data are from Tilman Plehn
 *   http://www.ph.ed.ac.uk/~tplehn/charged_higgs
 * this file is part of FeynHiggs
-* last modified 9 Jun 14 th
+* last modified 25 Sep 14 th
 
 #include "externals.h"
 #include "types.h"
@@ -248,13 +248,7 @@
 
 #include "CHiggsProdFits-LHC8.f"
 
-        PRINT *, "XXX:TBeff=", TBeff
-        PRINT *, "XXX:enh=", enh
-        PRINT *, "XXX:tHm2=", tHm2
-        PRINT *, "XXX:tHm2lo=", tHm2lo
-        PRINT *, "XXX:tHm2hi=", tHm2hi
-
-c	    tHm2 = tHm2*enh
+	    tHm2 = tHm2*enh
 	    tHm2lo = tHm2lo*enh
 	    tHm2hi = tHm2hi*enh
 	  endif

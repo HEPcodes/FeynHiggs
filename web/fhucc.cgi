@@ -1,7 +1,7 @@
 #! /bin/sh
 # the mother of all FHUCC CGI scripts, the motherFHUCCer
 # this file is part of FeynHiggs
-# last modified 16 Jul 14 th
+# last modified 12 Sep 14 th
 
 debug=1
 
@@ -10,8 +10,8 @@ if test $debug = 1 ; then
   FHEXT=/home/pcl301/hahn/fh-2a/extse/OasatPdep
   FHURL=http://wwwth.mpp.mpg.de/members/hahn/cgi-bin/fhucc.cgi
 else
-  FHEXE=/home/pcl305/members/heinemey/feynhiggs/bin/FeynHiggs2.10.1_Linux
-  FHEXT=/home/pcl305/members/heinemey/feynhiggs/bin/extse2.10.1/OasatPdep
+  FHEXE=/home/pcl305/members/heinemey/feynhiggs/bin/FeynHiggs2.10.2_Linux
+  FHEXT=/home/pcl305/members/heinemey/feynhiggs/bin/extse2.10.2/OasatPdep
   FHURL=http://wwwth.mpp.mpg.de/members/heinemey/feynhiggs/cgi-bin/fhucc.cgi
 fi
 export FHEXTSE_TMPDIR=/.th/pcl305/scratch
@@ -178,6 +178,54 @@ cpxScenario() {
   ArgM_2=0
   AbsM_3=1000
   ArgM_3=1.57
+}
+
+#######################################################################
+
+lightstauScenario() {
+  scenario="Light Stau"
+  higgsmix=2
+
+  TB=20
+
+  inputM=MA0
+  MA0orMHp=600
+  AbsMUE=500
+  ArgMUE=
+
+  M3SQ=1000
+  M3SU=$M3SQ
+  M3SD=$M3SQ
+  M3SL=$M3SQ
+  M3SE=$M3SQ
+
+  M2SQ=1500
+  M2SU=$M2SQ
+  M2SD=$M2SQ
+  M2SL=$M2SQ
+  M2SE=$M2SQ
+
+  M1SQ=$M2SQ
+  M1SU=$M1SQ
+  M1SD=$M1SQ
+  M1SL=$M1SQ
+  M1SE=$M1SQ
+
+  MSusy=500
+  inputA=Xt
+  AbsAtorXt=1600
+  ArgAtorXt=
+  AbsAc=0
+  ArgAc=
+  AbsAs=0
+  ArgAs=
+  AbsAmu=0
+  ArgAmu=
+
+  AbsM_2=200
+  ArgM_2=
+  AbsM_3=1500
+  ArgM_3=
 }
 
 #######################################################################

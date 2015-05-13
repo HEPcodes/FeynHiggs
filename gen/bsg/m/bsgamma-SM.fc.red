@@ -1,15 +1,14 @@
-((I/6)*Alfa*Pi*Mat[O7[6]]*(-Finite - 
+((-I/6)*Alfa*Pi*Mat[O7[6]]*(Finite - 6*B0[0, MW2, MW2] + 
     (2*C0[MB2, 0, 0, MW2, Mf2[3, Gen4], Mf2[3, Gen4]]*
       (MB2 + MW2 - Mf2[3, Gen4])*(2*MW2 + Mf2[3, Gen4]))/MW2 + 
-    6*(B0[0, MW2, MW2] + (1/4 + (MW2*C0[MB2, 0, 0, MW2, Mf2[3, Gen4], MW2])/
-         2 - (B0[0, MW2, Mf2[3, Gen4]]*(MW2 - Mf2[3, Gen4]))/(4*MB2) + 
-        (B0[MB2, MW2, Mf2[3, Gen4]]*(MB2 + MW2 - Mf2[3, Gen4]))/(4*MB2))*
-       (2 + Mf2[3, Gen4]/MW2)) - (2*(2*MW2 + Mf2[3, Gen4])*
-      (B0[0, Mf2[3, Gen4], Mf2[3, Gen4]] - 
+    (2*(2*MW2 + Mf2[3, Gen4])*(B0[0, Mf2[3, Gen4], Mf2[3, Gen4]] - 
+       3*(1/4 + (MW2*C0[MB2, 0, 0, MW2, Mf2[3, Gen4], MW2])/2 - 
+         (B0[0, MW2, Mf2[3, Gen4]]*(MW2 - Mf2[3, Gen4]))/(4*MB2) + 
+         (B0[MB2, MW2, Mf2[3, Gen4]]*(MB2 + MW2 - Mf2[3, Gen4]))/(4*MB2)) - 
        2*(1/4 + (B0[0, MW2, Mf2[3, Gen4]]*(MW2 - Mf2[3, Gen4]))/(4*MB2) + 
          (C0[MB2, 0, 0, MW2, Mf2[3, Gen4], Mf2[3, Gen4]]*Mf2[3, Gen4])/2 + 
          (B0[MB2, MW2, Mf2[3, Gen4]]*(MB2 - MW2 + Mf2[3, Gen4]))/(4*MB2))))/
-     MW2 - (-(Finite*MW2) + 2*MW2*B0[MB2, MW2, Mf2[3, Gen4]] + 
+     MW2 + (-(Finite*MW2) + 2*MW2*B0[MB2, MW2, Mf2[3, Gen4]] + 
       6*MB2*MW2*(-(B0[0, MW2, Mf2[3, Gen4]]/MB2) + B0[MB2, MW2, Mf2[3, Gen4]]/
          MB2) + 6*MB2*MW2*C0[MB2, 0, 0, MW2, Mf2[3, Gen4], MW2] + 
       8*MB2*MW2*(-(B0[0, Mf2[3, Gen4], Mf2[3, Gen4]]/MB2) + 

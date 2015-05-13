@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 13 May 14 th
+* last modified 20 Feb 15 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -175,7 +175,7 @@
 	loop = 0
 
 2	call FHLoopRecord(error, record)
-	if( error .eq. -2 ) goto 2
+c	if( error .eq. -2 ) goto 2
 	if( error .ne. 0 ) goto 1
 
 	loop = loop + 1

@@ -31,8 +31,8 @@ REC = RecordIndex.o ClearRecord.o \
 
 LT = cache.o ini.o auxB.o auxCD.o A0.o \
   B0.o B1.o B00.o B11.o DB0.o DB1.o DB00.o DB11.o \
-  C0.o Cget.o Dget.o \
-  A0del.o myG.o TF.o T134.o T134p.o Li2.o Dilog.o CD0.o D0.o
+  C0.o Cget.o D0.o Dget.o CD0.o \
+  A0del.o myG.o TF.o T134.o T134p.o Li2.o Dilog.o
 
 UTIL = Gauss.o ODESolve.o EigenSf.o SfEigensystem.o \
   HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o LU.o \
@@ -54,9 +54,10 @@ ONELOOP = se_h0h0.o se_HHHH.o se_A0A0.o se_HmHp.o \
   dse_GmGp.o dse_HmGp.o \
   dse_ZZ.o dse_WW.o
 
-TLPS = TLShifts.o TLasat.o TLasab.o TLatab.o TLatat.o \
+TLPS = TLps.o TLps_asat.o TLps_asab.o TLps_atab.o TLps_atat.o \
   Pi11t.o Pi12t.o Pi22t.o Pi11b.o Pi12b.o Pi22b.o Pitt.o \
-  Resum4H.o
+
+$(TLPS): TLps.h
 
 TLHR = TLhr_abbr0.o TLhr_abbr1_1.o TLhr_abbr1_2.o TLhr_abbr1_3.o \
   TLhr_abbr1_4.o TLhr_abbr1_5.o TLhr_abbr1_6.o TLhr_abbr1_7.o \
@@ -68,7 +69,13 @@ TLHR = TLhr_abbr0.o TLhr_abbr1_1.o TLhr_abbr1_2.o TLhr_abbr1_3.o \
   TLhr_rcs.o TLhr_self1.o TLhr_self2.o TLhr_self3.o \
   TLhr.o MTrepara.o
 
-TWOLOOP = $(TLPS) $(TLHR) InvTri.o Phi.o
+TLSP = TLsp_atat1.o TLsp_atat2.o TLsp_atat3.o \
+  TLsp_atat4.o TLsp_atat5.o TLsp.o
+
+$(TLSP): TLsp.h
+
+TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
+  CalcRenSETL.o Resum4H.o InvTri.o Phi.o TLSf.o
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 
@@ -124,10 +131,8 @@ HEE = hee-SquaredME.o hee-CalcRenConst.o \
   hee-v1_All4_All5_Ind1_Ind2_Neu4.o \
   hee-v1_All4_Ind1.o \
   hee-v1_All4_Neu4_Neu5.o \
+  hee-v1_Cha4.o \
   hee-v1_Cha4_Cha5.o \
-  hee-v1_Cha4_Cha5_Gen4.o \
-  hee-v1_Cha4_Gen4.o \
-  hee-v1.o \
   hee-v1_Gen4.o \
   hee-v1_Neu4_Neu5.o
 
