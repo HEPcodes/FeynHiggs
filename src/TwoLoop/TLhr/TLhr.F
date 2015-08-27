@@ -1,7 +1,7 @@
 * TLhr.F
 * master file for Heidi Rzehak's 2L asat corrections
 * this file is part of FeynHiggs
-* last modified 15 May 15 th
+* last modified 8 Jun 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -60,14 +60,16 @@
 	call TLhr_abbr_c2
 	call TLhr_self_c
 
-	se2U(A0A0) = se2U(A0A0) + selfA0A0
-	se2U(HmHp) = se2U(HmHp) + selfHmHp
+	if( TLallow(asat, A0A0) ) se2U(A0A0) = se2U(A0A0) + selfA0A0
+	if( TLallow(asat, HmHp) ) se2U(HmHp) = se2U(HmHp) + selfHmHp
 	if( inputmass .eq. 3 ) then
 	  seinput = selfA0A0
-	  se2R(HmHp) = se2R(HmHp) + selfHmHp - seinput
+	  if( TLallow(asat, HmHp) )
+     &      se2R(HmHp) = se2R(HmHp) + selfHmHp - seinput
 	else
 	  seinput = selfHmHp
-	  se2R(A0A0) = se2R(A0A0) + selfA0A0 - seinput
+	  if( TLallow(asat, A0A0) )
+     &      se2R(A0A0) = se2R(A0A0) + selfA0A0 - seinput
 	endif
 
 	if( debuglevel .ge. 2 ) then
@@ -94,15 +96,22 @@
 
 	c = EL2L/(2*SW*MW)
 
-	se2U(h0h0) = se2U(h0h0) + selfh0h0
-	se2Rcat(se11,asat) = selfh0h0 - CBA2*seinput +
-     &    c*SBA*(CBA*SBA*tadHH - (1 + CBA2)*tadh0)
-	se2R(h0h0) = se2R(h0h0) + se2Rcat(se11,asat)
+	se2U(h0td) = se2U(h0td) + tadh0
+	se2U(HHtd) = se2U(HHtd) + tadHH
 
-	se2U(HHHH) = se2U(HHHH) + selfHHHH
-	se2Rcat(se22,asat) = selfHHHH - SBA2*seinput +
-     &    c*CBA*(CBA*SBA*tadh0 - (1 + SBA2)*tadHH)
-	se2R(HHHH) = se2R(HHHH) + se2Rcat(se22,asat)
+	if( TLallow(asat, h0h0) ) then
+	  se2U(h0h0) = se2U(h0h0) + selfh0h0
+	  se2Rcat(se11,asat) = selfh0h0 - CBA2*seinput +
+     &      c*SBA*(CBA*SBA*tadHH - (1 + CBA2)*tadh0)
+	  se2R(h0h0) = se2R(h0h0) + se2Rcat(se11,asat)
+	endif
+
+	if( TLallow(asat, HHHH) ) then
+	  se2U(HHHH) = se2U(HHHH) + selfHHHH
+	  se2Rcat(se22,asat) = selfHHHH - SBA2*seinput +
+     &      c*CBA*(CBA*SBA*tadh0 - (1 + SBA2)*tadHH)
+	  se2R(HHHH) = se2R(HHHH) + se2Rcat(se22,asat)
+	endif
 
 	if( debuglevel .ge. 2 ) then
 	  DSELF "se2R(h0h0) =", se2R(h0h0)	ENDL
@@ -116,10 +125,12 @@
 	call TLhr_abbr_e3
 	call TLhr_self_e
 
-	se2U(h0HH) = se2U(h0HH) + selfh0HH
-	se2Rcat(se12,asat) = selfh0HH + CBA*SBA*seinput -
-     &    c*(CBA**3*tadh0 + SBA**3*tadHH)
-	se2R(h0HH) = se2R(h0HH) + se2Rcat(se12,asat)
+	if( TLallow(asat, h0HH) ) then
+	  se2U(h0HH) = se2U(h0HH) + selfh0HH
+	  se2Rcat(se12,asat) = selfh0HH + CBA*SBA*seinput -
+     &      c*(CBA**3*tadh0 + SBA**3*tadHH)
+	  se2R(h0HH) = se2R(h0HH) + se2Rcat(se12,asat)
+	endif
 
 	if( debuglevel .ge. 2 ) then
 	  DSELF "se2R(h0HH) =", se2R(h0HH)	ENDL
@@ -132,11 +143,17 @@
 	call TLhr_abbr_o3
 	call TLhr_self_o
 
-	se2U(h0A0) = se2U(h0A0) + selfh0A0
-	se2R(h0A0) = se2R(h0A0) + selfh0A0 - c*SBA*tadA0
+	se2U(A0td) = se2U(A0td) + tadA0
 
-	se2U(HHA0) = se2U(HHA0) + selfHHA0
-	se2R(HHA0) = se2R(HHA0) + selfHHA0 - c*CBA*tadA0
+	if( TLallow(asat, h0A0) ) then
+	  se2U(h0A0) = se2U(h0A0) + selfh0A0
+	  se2R(h0A0) = se2R(h0A0) + selfh0A0 - c*SBA*tadA0
+	endif
+
+	if( TLallow(asat, HHA0) ) then
+	  se2U(HHA0) = se2U(HHA0) + selfHHA0
+	  se2R(HHA0) = se2R(HHA0) + selfHHA0 - c*CBA*tadA0
+	endif
 
 	if( debuglevel .ge. 2 ) then
 	  DSELF "se2R(h0A0) =", se2R(h0A0)	ENDL

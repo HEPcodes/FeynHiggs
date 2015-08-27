@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 15 May 15 th
+* last modified 8 Jun 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -45,7 +45,7 @@
 	data tlnames(dMTH) /"dMTH"/
 	data tlnames(dMTA) /"dMTA"/
 
-	tlx = ior(tlxbits(tlCplxApprox), tlmask)
+	tlx = ior(tlxbits(tlCplxApprox), tlpsmask)
 	if( tlx .ne. 0 ) then
 	  call TLSetupInterpol(error)
 	  if( error .ne. 0 ) return
@@ -65,6 +65,9 @@
 
 	dMT1OS = 1 - Delta(tM2, tD)
 
+	do i = 1, semax
+	  se2U(i) = 0
+	enddo
 	do i = 1, semax
 	  se2R(i) = 0
 	enddo
@@ -159,12 +162,18 @@
      &        dPhi(se12,i,1), dPhi(se12,i,1),se2Rn*se2Rc)
 	    call TLInterpolate(error,
      &        dPhi(se22,i,1), dPhi(se22,i,1),se2Rn*se2Rc)
-	    se2Rcat(se11,i) = Ra11(i)
-	    se2R(h0h0) = se2R(h0h0) + se2Rcat(se11,i)
-	    se2Rcat(se22,i) = Ra22(i)
-	    se2R(HHHH) = se2R(HHHH) + se2Rcat(se22,i)
-	    se2Rcat(se12,i) = Ra12(i)
-	    se2R(h0HH) = se2R(h0HH) + se2Rcat(se12,i)
+	    if( TLallow(i, h0h0) ) then
+	      se2Rcat(se11,i) = Ra11(i)
+	      se2R(h0h0) = se2R(h0h0) + se2Rcat(se11,i)
+	    endif
+	    if( TLallow(i, HHHH) ) then
+	      se2Rcat(se22,i) = Ra22(i)
+	      se2R(HHHH) = se2R(HHHH) + se2Rcat(se22,i)
+	    endif
+	    if( TLallow(i, h0HH) ) then
+	      se2Rcat(se12,i) = Ra12(i)
+	      se2R(h0HH) = se2R(h0HH) + se2Rcat(se12,i)
+	    endif
 	  endif
 	enddo
 

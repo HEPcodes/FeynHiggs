@@ -134,7 +134,8 @@
 	SelfID = {h0h0, HHHH, A0A0, HmHp,
 	  h0HH, h0A0, HHA0,
 	  G0G0, h0G0, HHG0, A0G0,
-	  GmGp, HmGp}]
+	  GmGp, HmGp,
+	  h0td, HHtd, A0td}]
 
 :Evaluate: Module[ {offset = 1, indexdef},
 	Attributes[indexdef] = {HoldAll, Listable};
@@ -651,7 +652,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 24 Apr 15 th
+		last modified 8 Jun 15 th
 */
 
 
@@ -1611,7 +1612,7 @@ static void mFHConstraints(void)
 
   if( error ) MLPutStatus(stdlink, error);
   else {
-    MLPutFunction(stdlink, "List", 9);
+    MLPutFunction(stdlink, "List", 10);
 
     MLPutRRule(stdlink, gm2);
     MLPutRRule(stdlink, DeltaRho);

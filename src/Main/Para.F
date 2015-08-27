@@ -1,3 +1,5 @@
+#define HTNNLO
+
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
@@ -131,7 +133,8 @@ c	call AlphaS(AlfasMT, nf, MT)
 	  HTSMMT = .93697D0 + .00550D0*(Mf(3,3) - 173.35D0) -
      &      .6D0*(AlfasMZ - .1184D0)
 	PRINT *, "ht new =", HTSMMT
-	PRINT *, "ht old =", sqrt(4*pi*AlfatSMMT)
+c	PRINT *, "ht old =", sqrt(4*pi*AlfatSMMT)
+	PRINT *, "ht old =", Mf(tT,3)/(vev/sqrt2)
 	  AlfatSMMT = HTSMMT**2/(4*pi)
 	PRINT *, "MT(MT) old =", Mf(tT,3)
 c	  Mf(tT,3) = MT/(1 - AlfatSMMT/(2*pi) + 4/(3*pi)*AlfasMT)

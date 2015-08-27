@@ -6,7 +6,6 @@
 #define MUEr vr(1,vs)
 #define Xtc vc(2,vs)
 #define Atc vc(3,vs)
-#define Atr vr(5,vs)
 #define Xbc vc(4,vs)
 #define Abc vc(5,vs)
 #define Abr vr(9,vs)

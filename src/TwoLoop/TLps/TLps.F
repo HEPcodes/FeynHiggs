@@ -1,7 +1,7 @@
 * TLps.F
 * computes the two-loop corrections of P. Slavich et al.
 * this file is part of FeynHiggs
-* last modified 9 May 15 th
+* last modified 12 Jun 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -104,10 +104,11 @@
 	ht2 = ht**2
 
 	call TLps_Sf(error, StopPara(1),
-     &    DSS2(1,3,3), Mf(tS2,3), Xtc,
+     &    DSS2(1,3,3), Mf(tS1,3), Xtc,
      &    "normal TB: Mstop^2 negative")
 
-	Xtr = -.5D0*MSt2diff*s2tt/Mf(tS2,3)
+	Xtr = -.5D0*MSt2diff*s2tt/Mf(tM1,3)
+	Atr = Xtr + MUEr/TB
 	Ytr = Atr + MUEr*TB
 
 	pMB = MB_
@@ -170,7 +171,7 @@ c	DSS2large(2) = DSS2(2,3,3) - MZ2*C2B*Qu*SW2
 	DSS2large(1) = Re(MSS2(3,3,tQ(3))) - DSS2large(2)
 
 	call TLps_Sf(error, StopPara(1),
-     &    DSS2large, Mf(tS2,3), Atc,
+     &    DSS2large, Mf(tS1,3), Atc,
      &    "large TB: Mstop^2 negative")
 
 	DSS2large(1) = BSS2(1) - MZ2*C2B*(-.5D0 - 2*Qd*SW2)

@@ -4,7 +4,7 @@
 * Based on G. Degrassi, P. Slavich, and F. Zwirner,
 * Nucl. Phys. B611 (2001) 403 [hep-ph/0105096].
 * this file is part of FeynHiggs
-* last modified 13 May 15 th
+* last modified 20 May 15 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -29,7 +29,7 @@
 
 	RealType F1, s2ttF2, s2ttF3, F1o, F2o, F3o
 	RealType s2ttAtrdF2, s2ttAtrdF3, s2ttdAtr
-	RealType dpMTpMT, dMSt12, dMSt22, ds2tt, k
+	RealType dpMTpMT, dpMTpMTx, dMSt12, dMSt22, ds2tt, k
 
 	RealType x1, x6, x3, x4, x5, x7, x8, x9, x10, x13, x14
 	RealType x11, x12
@@ -221,7 +221,7 @@
      &      tmp2*x12 - MSt12*x4 - MSt22*x5 + 6*pMT2*x7 + 
      &      2*pMGl2*(-1 + x3 - x8) + MSt12*x8 + MSt22*x8 - 6*pMT2*x8)
      &     /pMT2
-	  dpMTpMT = dpMTpMT*dMT1OS
+	  dpMTpMTx = dpMTpMT*dMT1OS
 
 	  dMSt12 = -2*(pMGl2 + 3*MSt12 + pMT2 + tmp1*x13) + 
      &     2*(pMGl2*(x3 - x8) + pMT2*(x7 - x8)) - 
@@ -241,18 +241,18 @@
 	  k = s2tt*(dMSt12/MSt12 - dMSt22/MSt22)
 
 * Eq. (37)
-	  F1 = F1 + dMSt12/MSt12 + dMSt22/MSt22 - 4*dpMTpMT*(1 - F1o)
+	  F1 = F1 + dMSt12/MSt12 + dMSt22/MSt22 - 4*dpMTpMTx*(1 - F1o)
 
 * Eq. (38)
-	  s2ttF2 = s2ttF2 + k + (3*s2tt*dpMTpMT + ds2tt)*F2o
+	  s2ttF2 = s2ttF2 + k + (3*s2tt*dpMTpMTx + ds2tt)*F2o
 
 * Eq. (39)
-	  s2ttF3 = s2ttF3 + 2*(s2tt*dpMTpMT + ds2tt)*F3o +
+	  s2ttF3 = s2ttF3 + 2*(s2tt*dpMTpMTx + ds2tt)*F3o +
      &      k*(2*MSt12*MSt22/MSt2diff*F2o + MSt2sum)/MSt2diff
 
 * Eq. (B8)
 	  s2ttdAtr = Xtr*(ds2tt +
-     &      s2tt*((dMSt22 - dMSt12)/MSt2diff - dpMTpMT))
+     &      s2tt*((dMSt22 - dMSt12)/MSt2diff - dpMTpMTx))
 	  s2ttAtrdF2 = s2ttAtrdF2 + s2ttdAtr*F2o
 	  s2ttAtrdF3 = s2ttAtrdF3 + s2ttdAtr*F3o
 	endif

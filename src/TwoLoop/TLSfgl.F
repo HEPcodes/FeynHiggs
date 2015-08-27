@@ -1,7 +1,7 @@
 * TLSfgl.F
 * sfermion masses in the gaugeless limit
 * this file is part of FeynHiggs
-* last modified 18 May 15 th
+* last modified 12 Jun 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -31,7 +31,7 @@
      &    DSStop2(1) = -.2D0*sqrt(DSStop2(2))
 	fail = 0
 	call EigenSf(fail, 1, MStop, MStop2, UStop,
-     &    DSStop2, Mf(tS2,3), Xf(3,3), 0)
+     &    DSStop2, Mf(tS1,3), Xf(3,3), 0)
 	if( fail .ne. 0 ) then
 	  Error(error, "negative stop mass squares")
 	  return
@@ -58,11 +58,20 @@
 	  endif
 	endif
 
-	d2 = (DSSbot2(2) - DSStop2(2)) - Mf2(tS2,3)
-	MSq2Diff(1,1) = d2 - delta
-	MSq2Diff(2,1) = MSq2Diff(1,1) - DSStop2(1)
+	d2 = (DSSbot2(2) - DSStop2(2)) - Mf2(tS1,3)
+	MSq2Diff(1,1) = d2 - delta + (DSSbot2(1) - DSStop2(1))
+	MSq2Diff(2,1) = d2 - delta - DSStop2(1)
+	MSq2Diff(1,2) = d2 + delta + DSSbot2(1)
 	MSq2Diff(2,2) = d2 + delta
-	MSq2Diff(1,2) = MSq2Diff(2,2) + DSStop2(1)
+#if 0
+	PRINT *, "MSS2(1,3,3)=", MSS2(3,3,tQ(3)), DSStop2(1)+DSStop2(2)
+	PRINT *, "MSS2(1,4,3)=", MSS2(3,3,tQ(4)), DSSbot2(1)+DSSbot2(2)
+	PRINT *, "MSq2Diff(1,1)=", MSq2Diff(1,1), MSbot2(1) - MStop2(1)
+	PRINT *, "MSq2Diff(1,1)=", -delta
+	PRINT *, "MSq2Diff(1,2)=", MSq2Diff(1,2), MSbot2(1) - MStop2(2)
+	PRINT *, "MSq2Diff(2,1)=", MSq2Diff(2,1), MSbot2(2) - MStop2(1)
+	PRINT *, "MSq2Diff(2,2)=", MSq2Diff(2,2), MSbot2(2) - MStop2(2)
+#endif
 
 	UStop2(1,1) = Sq(UStop(1,1))
 	UStop2(2,1) = Sq(UStop(2,1))

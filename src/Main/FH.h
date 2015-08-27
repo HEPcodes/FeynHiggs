@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 11 May 15 th
+* last modified 12 Jun 15 th
 
 
 #ifndef SignSq
@@ -25,7 +25,7 @@
 #define tQ(t) Ncolor(t)
 #define tU(t) (t + isQ(t))
 
-#define tS2 (iand(tM1,7)+2*ibits(tM1,3,1))
+#define tS1 (iand(tM1,7)+2*ibits(tM1,3,1))
 
 * for encoding sfermion type in SfUpdate and Couplings.F:
 #define X2(x1,x0) (x1)*16 + x0
@@ -225,7 +225,7 @@
 *   (latter used for neutral Higgs masses only)
 *
 * Sf(*,9=tD) = Sup with DRbar MT(MT)		- set in Sfermions.F
-*   (cave: 3 -> 2*3(tT) -> 3*3(tD) used in SetFlags + Uncertainties + tS2)
+*   (cave: 3 -> 2*3(tT) -> 3*3(tD) used in SetFlags + Uncertainties + tS1)
 *
 * Sf(*,10=tH) = Sup with MT(Mh) for Decays	- set in Couplings.F
 * Sf(*,11=bH) = Sdown with MB(Mh) for Decays	- set in Couplings.F
@@ -254,13 +254,15 @@
 	integer h0HH, h0A0, HHA0
 	integer G0G0, h0G0, HHG0, A0G0
 	integer GmGp, HmGp
-	integer semax
+	integer h0td, HHtd, A0td
+	integer seonly, semax
 	integer cpeven, cpodd, goldstones
 	parameter (h0h0 = 1, HHHH = 2, A0A0 = 3, HmHp = 4)
 	parameter (h0HH = 5, h0A0 = 6, HHA0 = 7)
 	parameter (G0G0 = 8, h0G0 = 9, HHG0 = 10, A0G0 = 11)
 	parameter (GmGp = 12, HmGp = 13)
-	parameter (semax = HmGp)
+	parameter (h0td = 14, HHtd = 15, A0td = 16)
+	parameter (seonly = HmGp, semax = A0td)
 	parameter (cpeven = SEKey(h0h0) + SEKey(HHHH) + SEKey(h0HH))
 	parameter (cpodd = SEKey(A0A0) + SEKey(h0A0) + SEKey(HHA0))
 	parameter (goldstones = SEKey(G0G0) + SEKey(h0G0) +
@@ -353,7 +355,7 @@
 	integer higgsmix, p2approx, looplevel
 	integer runningMT, botResum, tlCplxApprox
 	integer debuglevel, debugunit, fv
-	integer uzint, uzext, mfeff, tlmask
+	integer uzint, uzext, mfeff, tlpsmask, tlzeromask(4)
 	integer tM1, tM2, bM, bM0, gM
 	character*256 extSE
 
@@ -367,7 +369,7 @@
      &    higgsmix, p2approx, looplevel,
      &    runningMT, botResum, tlCplxApprox,
      &    debuglevel, debugunit, fv,
-     &    uzint, uzext, mfeff, tlmask,
+     &    uzint, uzext, mfeff, tlpsmask, tlzeromask,
      &    tM1, tM2, bM, bM0, gM,
      &    extSE
 

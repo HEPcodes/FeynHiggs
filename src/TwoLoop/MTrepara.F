@@ -1,8 +1,8 @@
 * MTrepara.F
 * terms correcting the use of MT-DRbar at 1L
-* arXiv:1103.1335 Eqs. (95)-(102) and App. C
+* arXiv:1103.1335 Eqs. (97)-(102) and App. C
 * this file is part of FeynHiggs
-* last modified 11 Mar 15 th
+* last modified 26 May 15 th
 
 #include "externals.h"
 #include "types.h"

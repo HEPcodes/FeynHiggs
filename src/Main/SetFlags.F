@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 18 May 15 th
+* last modified 20 May 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -57,7 +57,11 @@ c	  call setfpu
 	uzint = 1
 	uzext = 3
 	mfeff = 1
-	tlmask = 0
+	tlpsmask = 0
+	tlzeromask(1) = 0
+	tlzeromask(2) = 0
+	tlzeromask(3) = 0
+	tlzeromask(4) = 0
 
 	call getenv("FHDEBUG", env)
 	read(env, *, end=10, err=10) debuglevel
@@ -81,10 +85,16 @@ c	  call setfpu
 	Check(uzext, 1, 3, "FHSELECTUZ(uzext)")
 	Check(mfeff, 0, 2, "FHSELECTUZ(mfeff)")
 
-	call getenv("FHTLMASK", env)
-	read(env, *, end=13, err=13) tlmask
-	print *, "tlmask ", tlmask
+	call getenv("FHTLPSMASK", env)
+	read(env, *, end=13, err=13) tlpsmask
+	print *, "tlpsmask ", tlpsmask
 13	continue
+
+	call getenv("FHTLZEROMASK", env)
+	read(env, *, end=14, err=14)
+     &    tlzeromask(1), tlzeromask(2), tlzeromask(3), tlzeromask(4)
+	print *, "tlzeromask ", tlzeromask
+14	continue
 
 	call getenv("FHEXTSE", extSE)
 	l = len_trim(extSE)
@@ -141,9 +151,6 @@ c	  call setfpu
 
 	if( looplevel .eq. 3 .and. runningMT .ne. 1 )
      &    Error(error, "looplevel = 3 only with runningMT = 1")
-
-	if( runningMT .eq. 2 .and. tlCplxApprox .ne. 1 )
-     &    Error(error, "runningMT = 2 only with tlCplxApprox = 1")
 
 	if( error .eq. 0 ) flags_valid = valid
 

@@ -1,7 +1,7 @@
 * Output.F
 * run FH functions encoded in key and write output to unit
 * this file is part of FeynHiggs
-* last modified 27 Feb 15 th
+* last modified 1 Jun 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -215,6 +215,14 @@
 
 111	format(TAG, A, EQU, 2 TRIG_FMT)
 
+112	format(TAG, A, EQU, 2 TRIG_FMT,
+     &                CONT, 2 TRIG_FMT)
+
+113	format(TAG, A, EQU, 4 TRIG_FMT,
+     &                CONT, 4 TRIG_FMT,
+     &                CONT, 4 TRIG_FMT,
+     &                CONT, 4 TRIG_FMT)
+
 	write(unit,101) "MSnu_e", MSf(1,1,1)
 	write(unit,101) "MSnu_mu", MSf(1,1,2)
 	write(unit,101) "MSnu_tau", MSf(1,1,3)
@@ -235,7 +243,21 @@
 	write(unit,111) "ssbot", USf(1,2,bBR,3)
 
 	write(unit,101) "MCha", MCha
+	write(unit,112) "UChaRe",
+     &    ((Re(UCha(i,j)), j = 1, 2), i = 1, 2)
+	write(unit,112) "UChaIm",
+     &    ((Im(UCha(i,j)), j = 1, 2), i = 1, 2)
+	write(unit,112) "VChaRe",
+     &    ((Re(VCha(i,j)), j = 1, 2), i = 1, 2)
+	write(unit,112) "VChaIm",
+     &    ((Im(VCha(i,j)), j = 1, 2), i = 1, 2)
+
 	write(unit,101) "MNeu", MNeu
+	write(unit,113) "ZNeuRe",
+     &    ((Re(ZNeu(i,j)), j = 1, 4), i = 1, 4)
+	write(unit,113) "ZNeuIm",
+     &    ((Im(ZNeu(i,j)), j = 1, 4), i = 1, 4)
+
 	write(unit,101) "Deltab", Deltaf(bTR,3)
 	write(unit,101) "MGl", MGl
 

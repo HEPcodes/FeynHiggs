@@ -1,7 +1,7 @@
 * TLps.h
 * declarations for the two-loop routines
 * this file is part of FeynHiggs
-* last modified 11 May 15 th
+* last modified 20 May 15 th
 
 #include "TL.h"
 
@@ -69,12 +69,12 @@
 	RealType StopPara(12), SbotPara(12)
 	RealType pMT, pMT2, pMB, pMB2, Q
 	RealType pSB2, pCB2
-	RealType Xtr, Ytr, ht2, ht, hb2, hb
+	RealType Atr, Xtr, Ytr, ht2, ht, hb2, hb
 	integer vs, nvars
 
 	common /TLps/ StopPara, SbotPara,
      &    pMT, pMT2, pMB, pMB2, Q,
      &    pSB2, pCB2,
-     &    Xtr, Ytr, ht2, ht, hb2, hb,
+     &    Atr, Xtr, Ytr, ht2, ht, hb2, hb,
      &    vs, nvars
 

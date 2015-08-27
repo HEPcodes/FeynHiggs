@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 15 May 15 th
+* last modified 28 May 15 th
 
 #include "externals.h"
 #include "types.h"

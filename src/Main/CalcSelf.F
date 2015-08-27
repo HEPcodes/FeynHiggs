@@ -1,7 +1,7 @@
 * CalcSelf.F
 * Calculation of the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 4 May 15 th
+* last modified 8 Jun 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -35,16 +35,16 @@
      &    ((p2approx .eq. 0 .or. p2approx .eq. 3) .and. p2 .eq. -1)
 	if( p2approx .eq. 1 .or. p2 .eq. -1 ) p2 = 0
 
-	do i = 1, semax
+	do i = 1, seonly
 	  seR(i) = 0
 	enddo
-	do i = 1, semax
+	do i = 1, seonly
 	  dseR(i) = 0
 	enddo
-	do i = 1, semax
+	do i = 1, seonly
 	  seU(i) = 0
 	enddo
-	do i = 1, semax
+	do i = 1, seonly
 	  dseU(i) = 0
 	enddo
 
@@ -474,9 +474,12 @@
 
 * and finally the Higgs mass counterterms:
 	dMZ2 = Re(se_ZZ(MZ2, bM0))
-	dTh0 = -Re(td_h0(bM0))
-	dTHH = -Re(td_HH(bM0))
-	dTA0 = -Re(td_A0(bM0))
+	seU(h0td) = td_h0(bM0)
+	dTh0 = -Re(seU(h0td))
+	seU(HHtd) = td_HH(bM0)
+	dTHH = -Re(seU(HHtd))
+	seU(A0td) = td_A0(bM0)
+	dTA0 = -Re(seU(A0td))
 
 	dMsq(h0h0) = dMA2*CBA2 + dMZ2*SAB**2 +
      &    c*SBA*(dTHH*CBA*SBA - dTh0*(1 + CBA2)) -

@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 24 Apr 15 th
+		last modified 8 Jun 15 th
 */
 
 
@@ -12,7 +12,7 @@
 #include <string.h>
 #include "FHCouplings.h"
 
-enum { nsig = 13 };
+enum { nsig = 16 };
 enum { nrecord = 4*FHRecordN };
 
 #define couplingS(c) couplings[c-1]
