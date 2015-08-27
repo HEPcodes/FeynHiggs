@@ -38,6 +38,7 @@ MA0 = MA0in;
 MA02 = MA02in;
 MHp = MHpin;
 MHp2 = MHp2in;
+MMUE2 = MUE2;
 
 (*Sq[ht] = 4 Pi Alfat;*)
 

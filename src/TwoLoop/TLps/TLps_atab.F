@@ -4,7 +4,7 @@
 * Written by P. Slavich (e-mail: slavich@lpthe.jussieu.fr).
 * Based on A. Dedes, G. Degrassi, and P. Slavich, hep-ph/0305127.
 * this file is part of FeynHiggs
-* last modified 4 Mar 15 th
+* last modified 11 May 15 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -5096,7 +5096,7 @@ c#define COMPLETE_REN
      &          4*ctb2*stt2*fW(MSt22,MSb12) + 
      &          4*stb2*stt2*fW(MSt22,MSb22)))/pMT2)
 
-	  dpMTpMT = Pitt(pMT2)/pMT
+	  dpMTpMT = dMT1OS*Pitt(pMT2)/pMT
 	  dMSt12 = Pi11t(MSt12)
 	  dMSt22 = Pi22t(MSt22)
 	  pi1 = Pi12t(MSt12)

@@ -1,11 +1,9 @@
 * TLhr.h
 * declarations for Heidi Rzehak's two-loop corrections
 * this file is part of FeynHiggs
-* last modified 4 May 15 th
+* last modified 11 May 15 th
 
-#include "FH.h"
-#include "looptools.h"
-#include "debug.h"
+#include "TL.h"
 #include "TLSfgl.h"
 #include "TLhrvars.h"
 

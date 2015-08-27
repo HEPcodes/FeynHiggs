@@ -4,7 +4,7 @@
 * Based on G. Degrassi, P. Slavich, and F. Zwirner,
 * Nucl. Phys. B611 (2001) 403 [hep-ph/0105096].
 * this file is part of FeynHiggs
-* last modified 4 Mar 15 th
+* last modified 13 May 15 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -221,6 +221,7 @@
      &      tmp2*x12 - MSt12*x4 - MSt22*x5 + 6*pMT2*x7 + 
      &      2*pMGl2*(-1 + x3 - x8) + MSt12*x8 + MSt22*x8 - 6*pMT2*x8)
      &     /pMT2
+	  dpMTpMT = dpMTpMT*dMT1OS
 
 	  dMSt12 = -2*(pMGl2 + 3*MSt12 + pMT2 + tmp1*x13) + 
      &     2*(pMGl2*(x3 - x8) + pMT2*(x7 - x8)) - 

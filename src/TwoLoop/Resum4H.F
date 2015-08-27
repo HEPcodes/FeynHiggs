@@ -1,7 +1,7 @@
 * Resum4H.F
 * resum the quartic Higgs coupling
 * this file is part of FeynHiggs
-* last modified 21 Nov 13 th
+* last modified 11 May 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -20,7 +20,7 @@
 
 #include "TLps.h"
 
-	RealType MX2, logMX2, logMT2, llog, lam12
+	RealType MX2, logMX2, MTy2, logMT2, llog, lam12
 	RealType x, gs2MT, ht2MT, y(3)
 	RealType XtOS, XtMS
 	external rge
@@ -29,15 +29,16 @@
 	parameter (CNf = 2/3D0*Nf - 11)
 
 	MX2 = sqrt(MSf2(1,3,3)*MSf2(2,3,3))
+	MTy2 = Mf2(tT,3)
 c	XtOS = Xf(3,3)
 	XtOS = Re(Xtc)
 	gs2MT = 4*pi*AlfasMT
-	ht2MT = 4*pi*Alfat
+	ht2MT = 4*pi*AlfatSMMT
 
 * high scale
 	logMX2 = log(MX2)
 * low scale
-	logMT2 = log(Mf2(tT,3))
+	logMT2 = log(MTy2)
 	llog = logMX2 - logMT2
 
 	XtMS = (1 + llog*(AlfasMT/pi - 3/(64*pi**2)*ht2MT))*XtOS
@@ -89,7 +90,7 @@ c	XtOS = Xf(3,3)
 * subtract leading logs
 	x = XtOS**2/MX2
 	lam12 = 3/(8*pi**2)*ht2MT**2*(x*(1 - 1/12D0*x) + llog)
-	ht2MT = Mf2(tM2,3)/Mf2(tT,3)*ht2MT
+	ht2MT = Mf2(tM2,3)/MTy2*ht2MT
 	llog = logMX2 - log(Mf2(tM2,3))
 	lam12 = lam12 + 3/(8*pi**2)*ht2MT**2*llog*(
      &    1/(32*pi**2)*ht2MT*(3*(llog + x) - 10) -

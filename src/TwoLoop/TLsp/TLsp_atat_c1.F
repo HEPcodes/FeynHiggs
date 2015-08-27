@@ -1,6 +1,6 @@
 * TLsp_atat_c1.F
 * this file is part of FeynHiggs
-* generated 6-May-2015 14:10
+* generated 11-May-2015 12:08
 
 #include "externals.h"
 #include "types.h"
@@ -17,11 +17,11 @@
 
 	Ccl(10) = A0(MStop2(2))
 
-	Ccl(11) = B0(MTy2,MMUE2,MSbot2(1))
+	Ccl(11) = B0(MTy2,MUE2,MSbot2(1))
 
-	Ccl(12) = B0(MTy2,MMUE2,MStop2(1))
+	Ccl(12) = B0(MTy2,MUE2,MStop2(1))
 
-	Ccl(13) = B0(MTy2,MMUE2,MStop2(2))
+	Ccl(13) = B0(MTy2,MUE2,MStop2(2))
 
 	Ccl(14) = B0(MStop2(1),0.D0,MStop2(2))
 
@@ -31,9 +31,9 @@
 
 	Ccl(17) = B0(MStop2(1),MHp2in,MStop2(1))
 
-	Ccl(18) = B0(MStop2(1),0.D0,MMUE2)
+	Ccl(18) = B0(MStop2(1),0.D0,MUE2)
 
-	Ccl(19) = B0(MStop2(1),MMUE2,MTy2)
+	Ccl(19) = B0(MStop2(1),MUE2,MTy2)
 
 	Ccl(2) = A0(MHp2in)
 
@@ -49,21 +49,21 @@
 
 	Ccl(25) = B0(MStop2(2),MHp2in,MStop2(1))
 
-	Ccl(26) = B0(MStop2(2),0.D0,MMUE2)
+	Ccl(26) = B0(MStop2(2),0.D0,MUE2)
 
 	Ccl(27) = B0(MStop2(2),0.D0,MSbot2(1))
 
 	Ccl(28) = B0(MStop2(2),MHp2in,MSbot2(1))
 
-	Ccl(29) = B0(MStop2(2),MMUE2,MTy2)
+	Ccl(29) = B0(MStop2(2),MUE2,MTy2)
 
 	Ccl(3) = B0(MTy2,0.D0,MHp2in)
 
-	Ccl(30) = B0(MMUE2,MTy2,MSbot2(1))
+	Ccl(30) = B0(MUE2,MTy2,MSbot2(1))
 
-	Ccl(31) = B0(MMUE2,0.D0,MStop2(2))
+	Ccl(31) = B0(MUE2,0.D0,MStop2(2))
 
-	Ccl(32) = B0(MMUE2,0.D0,MStop2(1))
+	Ccl(32) = B0(MUE2,0.D0,MStop2(1))
 
 	Ccl(33) = T134sub(MTy2,MHp2in,0.D0)
 
@@ -81,9 +81,9 @@
 
 	Ccl(4) = A0(MTy2)
 
-	Ccl(40) = T134sub(MStop2(2),MTy2,MMUE2)
+	Ccl(40) = T134sub(MStop2(2),MTy2,MUE2)
 
-	Ccl(41) = T134sub(MStop2(1),MTy2,MMUE2)
+	Ccl(41) = T134sub(MStop2(1),MTy2,MUE2)
 
 	Ccl(42) = T134sub(MStop2(1),MStop2(1),0.D0)
 
@@ -91,11 +91,11 @@
 
 	Ccl(44) = T134sub(MStop2(2),MStop2(2),0.D0)
 
-	Ccl(45) = T134sub(MSbot2(1),MTy2,MMUE2)
+	Ccl(45) = T134sub(MSbot2(1),MTy2,MUE2)
 
-	Ccl(46) = T134sub(MStop2(2),MMUE2,0.D0)
+	Ccl(46) = T134sub(MStop2(2),MUE2,0.D0)
 
-	Ccl(47) = T134sub(MStop2(1),MMUE2,0.D0)
+	Ccl(47) = T134sub(MStop2(1),MUE2,0.D0)
 
 	Ccl(48) = T134sub(MStop2(2),MStop2(1),MHp2in)
 
@@ -107,7 +107,7 @@
 
 	Ccl(51) = T134sub(MStop2(2),MSbot2(1),MHp2in)
 
-	Ccl(52) = T134sub(MSbot2(1),MMUE2,0.D0)
+	Ccl(52) = T134sub(MSbot2(1),MUE2,0.D0)
 
 	Ccl(53) = T134sub(MSbot2(1),MSbot2(1),MHp2in)
 
@@ -115,16 +115,15 @@
 
 	Ccl(6) = B0(MTy2,MHp2in,MTy2)
 
-	Ccl(7) = A0(MMUE2)
+	Ccl(7) = A0(MUE2)
 
 	Ccl(8) = A0(MSbot2(1))
 
 	Ccl(9) = A0(MStop2(1))
 
-        Ccx(209) = -2 + 
-     &    (Ccl(7) + (Ccl(4)*(MMUE2 + Ccl(7)))/MTy2)/MMUE2
+	Ccx(209) = -2 + (Ccl(7) + (Ccl(4)*(MUE2 + Ccl(7)))/MTy2)/MUE2
 
-	Ccx(313) = MMUE2*(MMUE2 - 3*MStop2(2)) + 3*MStop2(2)**2
+	Ccx(313) = MUE2*(MUE2 - 3*MStop2(2)) + 3*MStop2(2)**2
 
 	Ccx(413) = MHp2in*(2*MHp2in - MStop2(1)) + 7*MStop2(1)**2
 
@@ -145,47 +144,49 @@
 
 	Ccx(818) = MStop2(1)*UStop2(1,1) - MStop2(2)*UStop2(1,2)
 
-        Ccx(207) = (MMUE2 - MTy2)**3 - 
-     &    (MMUE2 - MTy2)*(5*MMUE2 + MTy2)*MStop2(1) + 
-     &    (7*MMUE2 + 3*MTy2)*MStop2(1)**2 - 3*MStop2(1)**3
+        Ccx(207) = -(MTy2 - MUE2)**3 + 
+     &    (MTy2 - MUE2)*(MTy2 + 5*MUE2)*MStop2(1) + 
+     &    (3*MTy2 + 7*MUE2)*MStop2(1)**2 - 3*MStop2(1)**3
 
-        Ccx(210) = -((Ccx(209)*(MMUE2 + MTy2 - MStop2(1)) - 
-     &        (Ccl(4)*Ccl(9)*(MMUE2 - MTy2 - MStop2(1)))/
-     &         (MTy2*MStop2(1)))*(MMUE2 + MTy2 - MStop2(1)))
+        Ccx(210) = -((MTy2 + MUE2 - MStop2(1))*
+     &      (Ccx(209)*(MTy2 + MUE2 - MStop2(1)) + 
+     &        (Ccl(4)*Ccl(9)*(MTy2 - MUE2 + MStop2(1)))/
+     &         (MTy2*MStop2(1))))
 
-        Ccx(211) = 2*Ccl(41) - 
-     &    (Ccl(7)*Ccl(9)*(MMUE2 - MTy2 + MStop2(1)))/
-     &     (MMUE2*MStop2(1))
+        Ccx(211) = 2*Ccl(41) + 
+     &    (Ccl(7)*Ccl(9)*(MTy2 - MUE2 - MStop2(1)))/
+     &     (MUE2*MStop2(1))
 
-        Ccx(223) = (MMUE2 - MTy2)**3 - 
-     &    (MMUE2 - MTy2)*(5*MMUE2 + MTy2)*MStop2(2) + 
-     &    (7*MMUE2 + 3*MTy2)*MStop2(2)**2 - 3*MStop2(2)**3
+        Ccx(223) = -(MTy2 - MUE2)**3 + 
+     &    (MTy2 - MUE2)*(MTy2 + 5*MUE2)*MStop2(2) + 
+     &    (3*MTy2 + 7*MUE2)*MStop2(2)**2 - 3*MStop2(2)**3
 
-        Ccx(225) = -((Ccx(209)*(MMUE2 + MTy2 - MStop2(2)) - 
-     &        (Ccl(4)*Ccl(10)*(MMUE2 - MTy2 - MStop2(2)))/
-     &         (MTy2*MStop2(2)))*(MMUE2 + MTy2 - MStop2(2)))
+        Ccx(225) = -((MTy2 + MUE2 - MStop2(2))*
+     &      (Ccx(209)*(MTy2 + MUE2 - MStop2(2)) + 
+     &        (Ccl(4)*Ccl(10)*(MTy2 - MUE2 + MStop2(2)))/
+     &         (MTy2*MStop2(2))))
 
-        Ccx(226) = 2*Ccl(40) - 
-     &    (Ccl(7)*Ccl(10)*(MMUE2 - MTy2 + MStop2(2)))/
-     &     (MMUE2*MStop2(2))
+        Ccx(226) = 2*Ccl(40) + 
+     &    (Ccl(7)*Ccl(10)*(MTy2 - MUE2 - MStop2(2)))/
+     &     (MUE2*MStop2(2))
 
 	Ccx(261) = (Ccl(10)*MStop2(1))/MStop2(2) - MStop2(2)
 
         Ccx(268) = U2s1XtpMT*Ccl(42) - 
      &    (MTy + 3*U2s1Xt)*Ccl(43) + 2*U2s1Xt*Ccl(44)
 
-        Ccx(306) = (Ccl(4)*(MMUE2 - MTy2 - MSbot2(1)))/MTy2 - 
-     &    2*MSbot2(1)
+        Ccx(306) = (Ccl(4)*(MUE2 - MSbot2(1)) - 
+     &      MTy2*(Ccl(4) + 2*MSbot2(1)))/MTy2
 
-        Ccx(314) = -2*MMUE2**2 + 
-     &    2*(MMUE2*Ccl(7) + (Ccl(10)*Ccx(313))/MStop2(2)) + 
-     &    5*MMUE2*MStop2(2) + MStop2(2)**2
+        Ccx(314) = -2*MUE2**2 + 
+     &    2*(MUE2*Ccl(7) + (Ccl(10)*Ccx(313))/MStop2(2)) + 
+     &    5*MUE2*MStop2(2) + MStop2(2)**2
 
 	Ccx(315) = -Ccl(46) + (Ccl(7)*Ccl(10))/MStop2(2)
 
-	Ccx(316) = MMUE2 - 2*U2s2Yt**2 - MStop2(2)
+	Ccx(316) = MUE2 - 2*U2s2Yt**2 - MStop2(2)
 
-	Ccx(331) = MMUE2*(MMUE2 - 3*MStop2(1)) + 3*MStop2(1)**2
+	Ccx(331) = MUE2*(MUE2 - 3*MStop2(1)) + 3*MStop2(1)**2
 
 	Ccx(360) = Ccl(9) - Ccl(10)*(1 - (2*MStop2(3))/MStop2(2))
 
@@ -282,62 +283,61 @@
 
 	Ccx(141) = 2*U2s2Yt + cI*(XtC*UCStop(1,3))
 
-        Ccx(181) = (Ccl(7) + 
-     &      ((MMUE2 - Ccl(7))*Ccl(10))/MStop2(2))/MMUE2
+	Ccx(181) = (Ccl(7) + ((MUE2 - Ccl(7))*Ccl(10))/MStop2(2))/MUE2
 
-	Ccx(182) = Ccl(4)/MTy2 + Ccl(7)/MMUE2
+	Ccx(182) = Ccl(4)/MTy2 + Ccl(7)/MUE2
 
-        Ccx(183) = 2*MMUE2*Ccx(182) - 
-     &    ((1 - Ccl(4)/MTy2)*Ccl(10)*(MMUE2 - MTy2 + MStop2(2)))/
-     &     MStop2(2) - (Ccl(4)*
-     &       (MMUE2 - MTy2 + 2*Ccl(7) + MStop2(2)))/MTy2
+        Ccx(183) = 2*MUE2*Ccx(182) + 
+     &    (Ccl(4)*(MTy2 - MUE2 - 2*Ccl(7) - MStop2(2)) + 
+     &       ((MTy2 - Ccl(4))*Ccl(10)*(MTy2 - MUE2 - MStop2(2)))/
+     &        MStop2(2))/MTy2
 
-	Ccx(185) = 2*Ccl(4) + ((MMUE2 + MTy2)*Ccl(7))/MMUE2
+	Ccx(185) = 2*Ccl(4) + ((MTy2 + MUE2)*Ccl(7))/MUE2
 
         Ccx(187) = (Ccl(4) + Ccl(7))*(1 - Ccl(10)/MStop2(2)) + 
-     &    ((MMUE2 + MTy2)*Ccl(10))/MStop2(2)
+     &    ((MTy2 + MUE2)*Ccl(10))/MStop2(2)
 
-        Ccx(191) = -MMUE2 - MTy2 - 
+        Ccx(191) = -MTy2 - MUE2 - 
      &    2*(Ccl(4) + Ccl(7) + Ccl(9)) + Ccl(41) - MStop2(1)
 
-	dup1 = MMUE2 - MTy2 + Ccl(4) - Ccl(7)
+	dup1 = -MTy2 + MUE2 + Ccl(4) - Ccl(7)
 
-        Ccx(192) = MMUE2*Ccx(185) + 
-     &    (dup1*(MMUE2 - MTy2)*Ccl(9))/MStop2(1)
+        Ccx(192) = MUE2*Ccx(185) - 
+     &    (dup1*(MTy2 - MUE2)*Ccl(9))/MStop2(1)
 
         Ccx(193) = (Ccl(4) + Ccl(7))*(1 - Ccl(9)/MStop2(1)) + 
-     &    ((MMUE2 + MTy2)*Ccl(9))/MStop2(1)
+     &    ((MTy2 + MUE2)*Ccl(9))/MStop2(1)
 
-        Ccx(194) = Ccl(4)*(MMUE2 - MTy2 + 2*Ccl(7)) + 
+        Ccx(194) = -(Ccl(4)*(MTy2 - MUE2 - 2*Ccl(7))) + 
      &    Ccx(193)*MStop2(1)
 
-        Ccx(200) = (MMUE2 - MTy2)**2 - 
-     &    4*(MMUE2 + MTy2)*MStop2(1) + 3*MStop2(1)**2
+        Ccx(200) = (MTy2 - MUE2)**2 - 
+     &    4*(MTy2 + MUE2)*MStop2(1) + 3*MStop2(1)**2
 
 	Ccx(201) = Ccl(4)/MTy2 + Ccl(9)/MStop2(1)
 
-        Ccx(202) = MMUE2**4 - 
+        Ccx(202) = MUE2**4 - 
      &    (MTy2 - 3*MStop2(1))*(MTy2 - MStop2(1))**3 - 
-     &    2*MMUE2**2*(MMUE2 + MStop2(1))*(MTy2 + MStop2(1)) + 
-     &    2*MMUE2*(MTy2 - MStop2(1))*(MTy2**2 - 3*MStop2(1)**2)
+     &    2*MUE2**2*(MTy2 + MStop2(1))*(MUE2 + MStop2(1)) + 
+     &    2*MUE2*(MTy2 - MStop2(1))*(MTy2**2 - 3*MStop2(1)**2)
 
-	Ccx(212) = Ccx(210) + Ccx(211)*(MMUE2 + MTy2 - MStop2(1))
+	Ccx(212) = Ccx(210) + Ccx(211)*(MTy2 + MUE2 - MStop2(1))
 
-        Ccx(216) = (MMUE2 - MTy2)**2 - 
-     &    4*(MMUE2 + MTy2)*MStop2(2) + 3*MStop2(2)**2
+        Ccx(216) = (MTy2 - MUE2)**2 - 
+     &    4*(MTy2 + MUE2)*MStop2(2) + 3*MStop2(2)**2
 
 	Ccx(217) = Ccl(4)/MTy2 + Ccl(10)/MStop2(2)
 
-        Ccx(218) = MMUE2**4 - 
+        Ccx(218) = MUE2**4 - 
      &    (MTy2 - 3*MStop2(2))*(MTy2 - MStop2(2))**3 - 
-     &    2*MMUE2**2*(MMUE2 + MStop2(2))*(MTy2 + MStop2(2)) + 
-     &    2*MMUE2*(MTy2 - MStop2(2))*(MTy2**2 - 3*MStop2(2)**2)
+     &    2*MUE2**2*(MTy2 + MStop2(2))*(MUE2 + MStop2(2)) + 
+     &    2*MUE2*(MTy2 - MStop2(2))*(MTy2**2 - 3*MStop2(2)**2)
 
-	Ccx(227) = Ccx(225) + Ccx(226)*(MMUE2 + MTy2 - MStop2(2))
+	Ccx(227) = Ccx(225) + Ccx(226)*(MTy2 + MUE2 - MStop2(2))
 
 	Ccx(235) = Ccl(4) - (dup1*Ccl(9))/MStop2(1)
 
-	Ccx(240) = 2*MMUE2 + Ccl(4) - 2*Ccl(7)
+	Ccx(240) = 2*MUE2 + Ccl(4) - 2*Ccl(7)
 
 	Ccx(247) = Ccl(4) - (dup1*Ccl(10))/MStop2(2)
 
@@ -360,10 +360,9 @@
 
 	Ccx(294) = U2s1XtpMT**2 + U2s2Xt*(U2s2Xt + 4*U2s2Yt)
 
-        Ccx(307) = -((MMUE2**2*Ccx(182) - 
-     &        Ccl(7)*(2*Ccl(8) + Ccx(306)) + 
-     &        MMUE2*(2*Ccl(8) - Ccx(182)*(MTy2 + MSbot2(1))))/MMUE2
-     &      )
+        Ccx(307) = -((2*(MUE2 - Ccl(7))*Ccl(8) - 
+     &         Ccl(7)*Ccx(306))/MUE2) + 
+     &    Ccx(182)*(MTy2 - MUE2 + MSbot2(1))
 
 	Ccx(311) = -1 + Ccl(8)/MSbot2(1) + Ccl(10)/MStop2(2)
 
@@ -372,17 +371,17 @@
         Ccx(324) = U2s2Yt*(1 - Ccl(10)/MStop2(2))*
      &     UCStopC(3,1) - U2c2YtC*UStop2(1,1)
 
-        Ccx(332) = -2*MMUE2**2 + 
-     &    2*(MMUE2*Ccl(7) + (Ccl(9)*Ccx(331))/MStop2(1)) + 
-     &    5*MMUE2*MStop2(1) + MStop2(1)**2
+        Ccx(332) = -2*MUE2**2 + 
+     &    2*(MUE2*Ccl(7) + (Ccl(9)*Ccx(331))/MStop2(1)) + 
+     &    5*MUE2*MStop2(1) + MStop2(1)**2
 
-	Ccx(333) = MMUE2 - 2*U2s2Yt**2 - MStop2(1)
+	Ccx(333) = MUE2 - 2*U2s2Yt**2 - MStop2(1)
 
-	Ccx(342) = MMUE2 + 2*(Ccl(7) + Ccl(10)) + MStop2(2)
+	Ccx(342) = MUE2 + 2*(Ccl(7) + Ccl(10)) + MStop2(2)
 
 	Ccx(355) = MStop2(1)*(MStop2(1) - 4*MStop2(2)) + MStop2(2)**2
 
-	Ccx(361) = Ccl(7)*Ccx(360) + Ccl(47)*(MMUE2 - MStop2(1))
+	Ccx(361) = Ccl(7)*Ccx(360) + Ccl(47)*(MUE2 - MStop2(1))
 
 	Ccx(369) = U2s2Yt*UCStopC(3,1) + U2c2YtC*UStop2(1,2)
 
@@ -487,7 +486,7 @@
      &    (MSq2Diff(1,2)**2*MStop2(2))
 
         Ccx(645) = -(Ccl(7)*(Ccl(8) - Ccl(9))) + 
-     &    MMUE2*(Ccl(47) - Ccl(52)) + Ccl(52)*MSbot2(1) - 
+     &    MUE2*(Ccl(47) - Ccl(52)) + Ccl(52)*MSbot2(1) - 
      &    Ccl(47)*MStop2(1)
 
         Ccx(647) = MStop2(1) - 
@@ -520,50 +519,48 @@
 
 	Ccx(720) = MTy*UCStopC(3,1) + YtC*UCStopC(3,4)
 
-        Ccx(734) = -MMUE2 - MTy2 + 2*Ccl(4) + 
-     &    (Ccl(9)*(MMUE2 - MTy2 - MStop2(1)))/MStop2(1) + MStop2(1)
+        Ccx(734) = -MTy2 - MUE2 + 2*Ccl(4) + MStop2(1) - 
+     &    (Ccl(9)*(MTy2 - MUE2 + MStop2(1)))/MStop2(1)
 
-        Ccx(735) = MMUE2 + MTy2 - MStop2(1) + 
-     &    (Ccl(9)*(MMUE2 - MTy2 + MStop2(1)))/MStop2(1)
+        Ccx(735) = MTy2**2 + MUE2*(MUE2 - MStop2(1)) - 
+     &    MTy2*(2*MUE2 + MStop2(1))
 
-        Ccx(736) = MMUE2**2 + MTy2*(MTy2 - MStop2(1)) - 
-     &    MMUE2*(2*MTy2 + MStop2(1))
+        Ccx(736) = MTy2 + MUE2 - 
+     &    (Ccl(9)*(MTy2 - MUE2 - MStop2(1)))/MStop2(1) - MStop2(1)
 
-        Ccx(744) = (MMUE2*Ccl(8) - 
-     &      Ccl(7)*(Ccl(8) - MSbot2(1)))/(MMUE2*MSbot2(1))
+        Ccx(744) = (MUE2*Ccl(8) - Ccl(7)*(Ccl(8) - MSbot2(1)))/
+     &    (MUE2*MSbot2(1))
 
-        Ccx(745) = 2*MMUE2*Ccx(182) - 
-     &    ((1 - Ccl(4)/MTy2)*Ccl(8)*(MMUE2 - MTy2 + MSbot2(1)))/
-     &     MSbot2(1) - (Ccl(4)*
-     &       (MMUE2 - MTy2 + 2*Ccl(7) + MSbot2(1)))/MTy2
+        Ccx(745) = 2*MUE2*Ccx(182) + 
+     &    (Ccl(4)*(MTy2 - MUE2 - 2*Ccl(7) - MSbot2(1)) + 
+     &       ((MTy2 - Ccl(4))*Ccl(8)*(MTy2 - MUE2 - MSbot2(1)))/
+     &        MSbot2(1))/MTy2
 
         Ccx(750) = (Ccl(4) + Ccl(7))*(1 - Ccl(8)/MSbot2(1)) + 
-     &    ((MMUE2 + MTy2)*Ccl(8))/MSbot2(1)
+     &    ((MTy2 + MUE2)*Ccl(8))/MSbot2(1)
 
-        Ccx(759) = Ccl(4)*(MMUE2 - MTy2 + 2*Ccl(7)) + 
+        Ccx(759) = -(Ccl(4)*(MTy2 - MUE2 - 2*Ccl(7))) + 
      &    Ccx(750)*MSbot2(1)
 
 	Ccx(768) = UStop2(1,1)**2 + Ccx(767)*UStop2(1,2)
 
-        Ccx(778) = (MMUE2*Ccl(4) + (MTy2 - Ccl(4))*Ccl(7))/
-     &    (MMUE2*MTy2)
+	Ccx(778) = (MUE2*Ccl(4) + (MTy2 - Ccl(4))*Ccl(7))/(MTy2*MUE2)
 
-	Ccx(780) = 2*Ccl(7) - (Ccl(4)*(MMUE2 + MTy2 - MStop2(1)))/MTy2
+	Ccx(780) = 2*Ccl(7) - (Ccl(4)*(MTy2 + MUE2 - MStop2(1)))/MTy2
 
-	Ccx(785) = 2*Ccl(7) - (Ccl(4)*(MMUE2 + MTy2 - MStop2(2)))/MTy2
+	Ccx(785) = 2*Ccl(7) - (Ccl(4)*(MTy2 + MUE2 - MStop2(2)))/MTy2
 
         Ccx(789) = Ccl(46)*MSq2Diff(1,1) - 
      &    Ccl(47)*MSq2Diff(1,2) - Ccl(52)*MStop2(3)
 
-        Ccx(799) = -MMUE2 - MTy2 + 2*Ccl(4) + 
-     &    (Ccl(10)*(MMUE2 - MTy2 - MStop2(2)))/MStop2(2) + 
-     &    MStop2(2)
+        Ccx(799) = -MTy2 - MUE2 + 2*Ccl(4) + MStop2(2) - 
+     &    (Ccl(10)*(MTy2 - MUE2 + MStop2(2)))/MStop2(2)
 
-        Ccx(800) = MMUE2 + MTy2 - MStop2(2) + 
-     &    (Ccl(10)*(MMUE2 - MTy2 + MStop2(2)))/MStop2(2)
+        Ccx(800) = MTy2**2 + MUE2*(MUE2 - MStop2(2)) - 
+     &    MTy2*(2*MUE2 + MStop2(2))
 
-        Ccx(801) = MMUE2**2 + MTy2*(MTy2 - MStop2(2)) - 
-     &    MMUE2*(2*MTy2 + MStop2(2))
+        Ccx(801) = MTy2 + MUE2 - 
+     &    (Ccl(10)*(MTy2 - MUE2 - MStop2(2)))/MStop2(2) - MStop2(2)
 
 	Ccx(803) = Ccl(8) - Ccl(10)*(1 - 2*UStop2(1,2))
 
@@ -616,79 +613,78 @@
 
 	Ccx(170) = MTy2*UStop(1,1) + MTy*Xt*UStop(1,2)
 
-        Ccx(180) = -MMUE2 - MTy2 - 
+        Ccx(180) = -MTy2 - MUE2 - 
      &    2*(Ccl(4) + Ccl(7) + Ccl(10)) + Ccl(40) - MStop2(2)
 
-        Ccx(184) = MTy2*Ccx(183) + 
-     &    MMUE2*Ccx(181)*(MMUE2 - MTy2 - MStop2(2))
+        Ccx(184) = MTy2*Ccx(183) - 
+     &    MUE2*Ccx(181)*(MTy2 - MUE2 + MStop2(2))
 
-        Ccx(186) = MMUE2*Ccx(185) + 
-     &    (dup1*(MMUE2 - MTy2)*Ccl(10))/MStop2(2)
+        Ccx(186) = MUE2*Ccx(185) - 
+     &    (dup1*(MTy2 - MUE2)*Ccl(10))/MStop2(2)
 
-        Ccx(188) = Ccl(4)*(MMUE2 - MTy2 + 2*Ccl(7)) - 
-     &    Ccx(180)*(MMUE2 + MTy2 - MStop2(2)) + Ccx(187)*MStop2(2)
+        Ccx(188) = -(Ccl(4)*(MTy2 - MUE2 - 2*Ccl(7))) - 
+     &    Ccx(180)*(MTy2 + MUE2 - MStop2(2)) + Ccx(187)*MStop2(2)
 
         Ccx(195) = (Ccx(192) - Ccx(194) + 
-     &      Ccx(191)*(MMUE2 + MTy2 - MStop2(1)))*
-     &    (MMUE2 + MTy2 - MStop2(1))
+     &      Ccx(191)*(MTy2 + MUE2 - MStop2(1)))*
+     &    (MTy2 + MUE2 - MStop2(1))
 
-	dup2 = MMUE2 + MTy2 - Ccl(4) - Ccl(7)
+	dup2 = MTy2 + MUE2 - Ccl(4) - Ccl(7)
 
 	Ccx(196) = Ccl(41) + dup2*Ccx(112)
 
-	Ccx(199) = Ccl(4) + Ccl(7) + ((MMUE2 + MTy2)*Ccl(9))/MStop2(1)
+	Ccx(199) = Ccl(4) + Ccl(7) + ((MTy2 + MUE2)*Ccl(9))/MStop2(1)
 
-        Ccx(203) = Ccx(201)*Ccx(202) - 
-     &    Ccx(200)*(MMUE2 + MTy2 - MStop2(1))*
-     &     (MMUE2 - MTy2 + MStop2(1))
+        Ccx(203) = Ccx(201)*Ccx(202) + 
+     &    Ccx(200)*(MTy2 - MUE2 - MStop2(1))*
+     &     (MTy2 + MUE2 - MStop2(1))
 
         Ccx(205) = Ccl(4) + Ccl(7) + Ccl(9) + 
-     &    1/2.D0*(MMUE2 + MTy2 + MStop2(1))
+     &    1/2.D0*(MTy2 + MUE2 + MStop2(1))
 
-        Ccx(215) = Ccl(4) + Ccl(7) + 
-     &    ((MMUE2 + MTy2)*Ccl(10))/MStop2(2)
+	Ccx(215) = Ccl(4) + Ccl(7) + ((MTy2 + MUE2)*Ccl(10))/MStop2(2)
 
-        Ccx(219) = Ccx(217)*Ccx(218) - 
-     &    Ccx(216)*(MMUE2 + MTy2 - MStop2(2))*
-     &     (MMUE2 - MTy2 + MStop2(2))
+        Ccx(219) = Ccx(217)*Ccx(218) + 
+     &    Ccx(216)*(MTy2 - MUE2 - MStop2(2))*
+     &     (MTy2 + MUE2 - MStop2(2))
 
         Ccx(221) = Ccl(4) + Ccl(7) + Ccl(10) + 
-     &    1/2.D0*(MMUE2 + MTy2 + MStop2(2))
+     &    1/2.D0*(MTy2 + MUE2 + MStop2(2))
 
-	Ccx(222) = Ccl(7)/MMUE2 + Ccl(10)/MStop2(2)
+	Ccx(222) = Ccl(7)/MUE2 + Ccl(10)/MStop2(2)
 
-	Ccx(231) = 2*Ccl(4) + ((MMUE2 + MTy2 - Ccl(4))*Ccl(7))/MMUE2
+	Ccx(231) = 2*Ccl(4) + ((MTy2 + MUE2 - Ccl(4))*Ccl(7))/MUE2
 
-	Ccx(232) = 2*Ccl(4) + ((MMUE2 + MTy2 - 2*Ccl(4))*Ccl(7))/MMUE2
+	Ccx(232) = 2*Ccl(4) + ((MTy2 + MUE2 - 2*Ccl(4))*Ccl(7))/MUE2
 
-        Ccx(234) = (Ccl(4)*Ccl(7)*(MMUE2 - MStop2(1)))/MTy2 + 
-     &    Ccx(201)*(MMUE2 + MTy2 - MStop2(1))*MStop2(1)
+        Ccx(234) = (Ccl(4)*Ccl(7)*(MUE2 - MStop2(1)))/MTy2 + 
+     &    Ccx(201)*(MTy2 + MUE2 - MStop2(1))*MStop2(1)
 
-	Ccx(236) = (MMUE2 - MTy2)*Ccx(235) + Ccx(193)*MStop2(1)
+	Ccx(236) = -((MTy2 - MUE2)*Ccx(235)) + Ccx(193)*MStop2(1)
 
-	Ccx(237) = MMUE2 + MTy2 - 4*U2s2Yt**2 - MStop2(1)
+	Ccx(237) = MTy2 + MUE2 - 4*U2s2Yt**2 - MStop2(1)
 
-        Ccx(239) = (Ccl(4)*Ccl(9)*(MMUE2 - MStop2(1)))/MTy2 + 
-     &    MMUE2*Ccx(182)*(MMUE2 - MTy2 - MStop2(1))
+        Ccx(239) = (Ccl(4)*Ccl(9)*(MUE2 - MStop2(1)))/MTy2 - 
+     &    MUE2*Ccx(182)*(MTy2 - MUE2 + MStop2(1))
 
 	Ccx(241) = 2*Ccl(7) + (Ccl(9)*Ccx(240))/MStop2(1)
 
-        Ccx(242) = -MMUE2 - MTy2 - 
+        Ccx(242) = -MTy2 - MUE2 - 
      &    2*(Ccl(4) + Ccl(7) + Ccl(9)) + Ccl(41) - MStop2(1)
 
-        Ccx(246) = (Ccl(4)*Ccl(7)*(MMUE2 - MStop2(2)))/MTy2 + 
-     &    Ccx(217)*(MMUE2 + MTy2 - MStop2(2))*MStop2(2)
+        Ccx(246) = (Ccl(4)*Ccl(7)*(MUE2 - MStop2(2)))/MTy2 + 
+     &    Ccx(217)*(MTy2 + MUE2 - MStop2(2))*MStop2(2)
 
-	Ccx(248) = (MMUE2 - MTy2)*Ccx(247) + Ccx(187)*MStop2(2)
+	Ccx(248) = -((MTy2 - MUE2)*Ccx(247)) + Ccx(187)*MStop2(2)
 
-	Ccx(249) = MMUE2 + MTy2 - 4*U2s2Yt**2 - MStop2(2)
+	Ccx(249) = MTy2 + MUE2 - 4*U2s2Yt**2 - MStop2(2)
 
-        Ccx(251) = (Ccl(4)*Ccl(10)*(MMUE2 - MStop2(2)))/MTy2 + 
-     &    MMUE2*Ccx(182)*(MMUE2 - MTy2 - MStop2(2))
+        Ccx(251) = (Ccl(4)*Ccl(10)*(MUE2 - MStop2(2)))/MTy2 - 
+     &    MUE2*Ccx(182)*(MTy2 - MUE2 + MStop2(2))
 
 	Ccx(252) = 2*Ccl(7) + (Ccl(10)*Ccx(240))/MStop2(2)
 
-        Ccx(253) = MMUE2 + MTy2 + 
+        Ccx(253) = MTy2 + MUE2 + 
      &    2*(Ccl(4) + Ccl(7) + Ccl(10)) - Ccl(40) + MStop2(2)
 
         Ccx(260) = (U2c1XtC**2 + U2c2XtC**2)*U2c2Yt**2 + 
@@ -711,18 +707,18 @@
 
 	Ccx(304) = Ccl(4)/MTy2 + Ccl(8)/MSbot2(1)
 
-        Ccx(305) = -MMUE2 - MTy2 - 
+        Ccx(305) = -MTy2 - MUE2 - 
      &    2*(Ccl(4) + Ccl(7) + Ccl(8)) + Ccl(45) - MSbot2(1)
 
-        Ccx(308) = -(MMUE2*Ccx(307)) + 
-     &    (Ccl(4)*Ccl(8)*(MMUE2 + MTy2 - MSbot2(1)))/MTy2
+        Ccx(308) = -(MUE2*Ccx(307)) + 
+     &    (Ccl(4)*Ccl(8)*(MTy2 + MUE2 - MSbot2(1)))/MTy2
 
         Ccx(310) = (Ccl(10)*MSbot2(1) - 
      &      Ccl(8)*(Ccl(10) - MStop2(2)))/(MSbot2(1)*MStop2(2))
 
 	Ccx(312) = 2*U2s2Yt**2*Ccx(311) + Ccx(310)*MStop2(2)
 
-	Ccx(318) = Ccl(10) + Ccx(317)/(MMUE2 - MStop2(2))
+	Ccx(318) = Ccl(10) + Ccx(317)/(MUE2 - MStop2(2))
 
 	Ccx(322) = U2s2Yt*UCStopC(3,1) - U2c2YtC*UStop2(1,1)
 
@@ -735,17 +731,17 @@
      &        Ccx(333)*(Ccl(7)*Ccl(9) - Ccl(47)*MStop2(1)))/
      &      MStop2(1))
 
-	Ccx(339) = MMUE2 - Ccl(7) - MStop2(1)
+	Ccx(339) = MUE2 - Ccl(7) - MStop2(1)
 
-        Ccx(343) = Ccx(342)*(MMUE2 - MStop2(1)) - 
-     &    MMUE2*Ccx(222)*(2*MMUE2 - MStop2(4))
+        Ccx(343) = Ccx(342)*(MUE2 - MStop2(1)) - 
+     &    MUE2*Ccx(222)*(2*MUE2 - MStop2(4))
 
 	Ccx(348) = -3 + Ccl(9)/MStop2(1) + Ccl(10)/MStop2(2)
 
         Ccx(356) = 2*U2s2Yt**2*Ccx(355) + 
      &    MStop2(1)*MStop2(2)*MStop2(4)
 
-	Ccx(362) = Ccx(361) - Ccl(46)*(MMUE2 - MStop2(1) + MStop2(3))
+	Ccx(362) = -Ccx(361) + Ccl(46)*(MUE2 - MStop2(1) + MStop2(3))
 
         Ccx(367) = (1 - Ccl(10)/MStop2(2))*UStop2(1,1) + 
      &    ((Ccl(9) - MStop2(1))*UStop2(1,2))/MStop2(1)
@@ -891,8 +887,7 @@
 
 	dup3 = Ccl(47) + (Ccl(9)*Ccx(339))/MStop2(1)
 
-        Ccx(646) = -2*dup3 + MMUE2 + Ccx(645)/MSq2Diff(1,1) + 
-     &    MStop2(1)
+	Ccx(646) = -2*dup3 + MUE2 + Ccx(645)/MSq2Diff(1,1) + MStop2(1)
 
         Ccx(649) = (Ccl(9)*
      &      (Ccl(9)*Ccx(647) + 2*Ccx(648)*MStop2(1)))/MStop2(1)**2
@@ -926,57 +921,58 @@
 
 	Ccx(727) = U2c1YtC*U2s1Yt - U2c2YtC*U2s2Yt
 
-        Ccx(737) = Ccl(7)*Ccx(734) - Ccl(4)*Ccx(735) - 
-     &    Ccx(191)*(MMUE2 + MTy2 - MStop2(1)) - 
-     &    (Ccl(9)*Ccx(736))/MStop2(1)
+        Ccx(737) = Ccl(7)*Ccx(734) - Ccl(4)*Ccx(736) - 
+     &    Ccx(191)*(MTy2 + MUE2 - MStop2(1)) - 
+     &    (Ccl(9)*Ccx(735))/MStop2(1)
 
-        Ccx(746) = MTy2*Ccx(745) + 
-     &    MMUE2*Ccx(744)*(MMUE2 - MTy2 - MSbot2(1))
+        Ccx(746) = MTy2*Ccx(745) - 
+     &    MUE2*Ccx(744)*(MTy2 - MUE2 + MSbot2(1))
 
 	Ccx(748) = Ccl(41) - dup2*Ccx(582)
 
-        Ccx(749) = MMUE2*Ccx(185) + 
-     &    (dup1*(MMUE2 - MTy2)*Ccl(8))/MSbot2(1)
+        Ccx(749) = MUE2*Ccx(185) - 
+     &    (dup1*(MTy2 - MUE2)*Ccl(8))/MSbot2(1)
 
-        Ccx(751) = Ccl(4)*(MMUE2 - MTy2 + 2*Ccl(7)) - 
-     &    Ccx(305)*(MMUE2 + MTy2 - MSbot2(1)) + Ccx(750)*MSbot2(1)
+        Ccx(751) = -(Ccl(4)*(MTy2 - MUE2 - 2*Ccl(7))) - 
+     &    Ccx(305)*(MTy2 + MUE2 - MSbot2(1)) + Ccx(750)*MSbot2(1)
 
 	Ccx(753) = 7*UStop2(1,1) - UStop2(1,2)
 
         Ccx(760) = (Ccx(749) - Ccx(759) + 
-     &      Ccx(305)*(MMUE2 + MTy2 - MSbot2(1)))*
-     &    (MMUE2 + MTy2 - MSbot2(1))
+     &      Ccx(305)*(MTy2 + MUE2 - MSbot2(1)))*
+     &    (MTy2 + MUE2 - MSbot2(1))
 
 	Ccx(761) = Ccl(45) + dup2*Ccx(595)
 
 	Ccx(765) = Ccl(8) + Ccl(10)*(1 - (2*MSbot2(1))/MStop2(2))
 
-        Ccx(779) = MMUE2*Ccx(778)*(MMUE2 - MTy2 - MStop2(1)) + 
-     &    Ccl(41)*(MMUE2 - MTy2 + MStop2(1))
+        Ccx(779) = -(Ccl(41)*(MTy2 - MUE2 - MStop2(1))) - 
+     &    MUE2*Ccx(778)*(MTy2 - MUE2 + MStop2(1))
 
-        Ccx(781) = Ccx(780) + 
-     &    (Ccl(9)*(MMUE2 - MTy2 - Ccx(780) + MStop2(1)))/MStop2(1)
+        Ccx(781) = -((Ccl(9)*
+     &         (MTy2 - MUE2 + Ccx(780) - MStop2(1)) - 
+     &        Ccx(780)*MStop2(1))/MStop2(1))
 
-        Ccx(784) = MMUE2*Ccx(778)*(MMUE2 - MTy2 - MStop2(2)) + 
-     &    Ccl(40)*(MMUE2 - MTy2 + MStop2(2))
+        Ccx(784) = -(Ccl(40)*(MTy2 - MUE2 - MStop2(2))) - 
+     &    MUE2*Ccx(778)*(MTy2 - MUE2 + MStop2(2))
 
-        Ccx(786) = Ccx(785) + 
-     &    (Ccl(10)*(MMUE2 - MTy2 - Ccx(785) + MStop2(2)))/MStop2(2)
+        Ccx(786) = Ccx(785) - 
+     &    (Ccl(10)*(MTy2 - MUE2 + Ccx(785) - MStop2(2)))/MStop2(2)
 
-	Ccx(790) = Ccl(7)*Ccx(616) + Ccx(789)*(MMUE2 - MStop2(1))
+	Ccx(790) = Ccl(7)*Ccx(616) + Ccx(789)*(MUE2 - MStop2(1))
 
-        Ccx(795) = -MMUE2 - MTy2 + 2*Ccl(4) + 
-     &    (Ccl(8)*(MMUE2 - MTy2 - MSbot2(1)))/MSbot2(1) + MSbot2(1)
+        Ccx(795) = -MTy2 - MUE2 + 2*Ccl(4) + MSbot2(1) - 
+     &    (Ccl(8)*(MTy2 - MUE2 + MSbot2(1)))/MSbot2(1)
 
-        Ccx(796) = MMUE2 + MTy2 - MSbot2(1) + 
-     &    (Ccl(8)*(MMUE2 - MTy2 + MSbot2(1)))/MSbot2(1)
+        Ccx(796) = MTy2**2 + MUE2*(MUE2 - MSbot2(1)) - 
+     &    MTy2*(2*MUE2 + MSbot2(1))
 
-        Ccx(797) = MMUE2**2 + MTy2*(MTy2 - MSbot2(1)) - 
-     &    MMUE2*(2*MTy2 + MSbot2(1))
+        Ccx(797) = MTy2 + MUE2 - 
+     &    (Ccl(8)*(MTy2 - MUE2 - MSbot2(1)))/MSbot2(1) - MSbot2(1)
 
-        Ccx(802) = Ccl(7)*Ccx(799) - Ccl(4)*Ccx(800) - 
-     &    Ccx(180)*(MMUE2 + MTy2 - MStop2(2)) - 
-     &    (Ccl(10)*Ccx(801))/MStop2(2)
+        Ccx(802) = Ccl(7)*Ccx(799) - Ccl(4)*Ccx(801) - 
+     &    Ccx(180)*(MTy2 + MUE2 - MStop2(2)) - 
+     &    (Ccl(10)*Ccx(800))/MStop2(2)
 
         Ccx(804) = (Ccl(8) - Ccl(10))*Ccx(803) + 
      &    2*Ccl(10)*MSq2Diff(1,2)*(2 - Ccl(10)/MStop2(2))*
@@ -1044,62 +1040,62 @@
         Ccx(169) = -Ccl(8) + Ccl(34) - MSbot2(1) + 
      &    (Ccl(9)*Ccx(168))/MStop2(1) - MStop2(1)
 
-	Ccx(174) = -MMUE2 - MTy2 + Ccl(7) - MStop2(1)
+	Ccx(174) = -MTy2 - MUE2 + Ccl(7) - MStop2(1)
 
-        Ccx(175) = -MMUE2 + MTy2 + Ccl(7) + MStop2(1) - 
+        Ccx(175) = MTy2 - MUE2 + Ccl(7) + MStop2(1) - 
      &    (Ccl(9)*(MTy2 + MStop2(1)))/MStop2(1)
 
-	Ccx(176) = -MMUE2 - MTy2 + Ccl(7) - MStop2(2)
+	Ccx(176) = -MTy2 - MUE2 + Ccl(7) - MStop2(2)
 
-        Ccx(177) = -MMUE2 + MTy2 + Ccl(7) + MStop2(2) - 
+        Ccx(177) = MTy2 - MUE2 + Ccl(7) + MStop2(2) - 
      &    (Ccl(10)*(MTy2 + MStop2(2)))/MStop2(2)
 
         Ccx(189) = Ccx(184) + 
-     &    Ccx(180)*(MMUE2 + MTy2 - MStop2(2)) - 
-     &    ((Ccx(186) - Ccx(188))*(MMUE2 + MTy2 - MStop2(1)))/
+     &    Ccx(180)*(MTy2 + MUE2 - MStop2(2)) - 
+     &    ((Ccx(186) - Ccx(188))*(MTy2 + MUE2 - MStop2(1)))/
      &     MStop2(3)
 
-	Ccx(206) = Ccl(7)/MMUE2 + Ccl(9)/MStop2(1)
+	Ccx(206) = Ccl(7)/MUE2 + Ccl(9)/MStop2(1)
 
         Ccx(233) = -4*U2s2Yt**2*Ccx(232) + 
-     &    Ccx(231)*(MMUE2 + MTy2 - MStop2(1))
+     &    Ccx(231)*(MTy2 + MUE2 - MStop2(1))
 
         Ccx(238) = Ccx(236)*Ccx(237) + 
-     &    Ccx(234)*(MMUE2 + MTy2 - MStop2(1))
+     &    Ccx(234)*(MTy2 + MUE2 - MStop2(1))
 
         Ccx(243) = Ccx(239) + 
-     &    2*(MMUE2 - 2*U2s2Yt**2)*Ccx(242) + Ccx(241)*MStop2(1)
+     &    2*(MUE2 - 2*U2s2Yt**2)*Ccx(242) + Ccx(241)*MStop2(1)
 
         Ccx(245) = -4*U2s2Yt**2*Ccx(232) + 
-     &    Ccx(231)*(MMUE2 + MTy2 - MStop2(2))
+     &    Ccx(231)*(MTy2 + MUE2 - MStop2(2))
 
         Ccx(250) = Ccx(248)*Ccx(249) + 
-     &    Ccx(246)*(MMUE2 + MTy2 - MStop2(2))
+     &    Ccx(246)*(MTy2 + MUE2 - MStop2(2))
 
         Ccx(254) = Ccx(251) - 
-     &    2*(MMUE2 - 2*U2s2Yt**2)*Ccx(253) + Ccx(252)*MStop2(2)
+     &    2*(MUE2 - 2*U2s2Yt**2)*Ccx(253) + Ccx(252)*MStop2(2)
 
 	Ccx(256) = 6*MStop2(1) + MStop2(1)**3/MStop2(2)**2
 
         Ccx(302) = (MTy2*Ccl(8) - Ccl(4)*(Ccl(8) - MSbot2(1)))/
      &    (MTy2*MSbot2(1))
 
-        Ccx(303) = MMUE2**2 + (MTy2 - MSbot2(1))**2 - 
-     &    2*MMUE2*(MTy2 + MSbot2(1))
+        Ccx(303) = MTy2**2 + (MUE2 - MSbot2(1))**2 - 
+     &    2*MTy2*(MUE2 + MSbot2(1))
 
-        Ccx(309) = -((MMUE2 + MTy2 - MSbot2(1))*
-     &      (Ccx(308) - Ccx(304)*(MMUE2 + MTy2 - MSbot2(1))*
-     &         MSbot2(1) + Ccx(305)*(MMUE2 - MTy2 + MSbot2(1))))
+        Ccx(309) = -((MTy2 + MUE2 - MSbot2(1))*
+     &      (Ccx(308) - Ccx(305)*(MTy2 - MUE2 - MSbot2(1)) - 
+     &        Ccx(304)*(MTy2 + MUE2 - MSbot2(1))*MSbot2(1)))
 
-        Ccx(319) = MMUE2 - 2*MMUE2*Ccx(222) + 
+        Ccx(319) = MUE2 - 2*MUE2*Ccx(222) + 
      &    2*(Ccl(7) + Ccx(318)) + (Ccx(312)*MSbot2(1))/MStop2(2) + 
      &    MStop2(2)
 
-	Ccx(321) = MMUE2 + 2*Ccl(10) + MStop2(2)
+	Ccx(321) = MUE2 + 2*Ccl(10) + MStop2(2)
 
 	Ccx(323) = -(U2c2Yt*Ccx(322)) + U2c2YtC*U2s2Yt*UCStop(3,1)
 
-        Ccx(326) = (Ccl(7)*Ccx(325))/MMUE2 + 
+        Ccx(326) = (Ccl(7)*Ccx(325))/MUE2 + 
      &    (Ccl(10)*Ccx(323))/MStop2(2)
 
         Ccx(328) = (Ccl(9)*MSbot2(1) - 
@@ -1107,16 +1103,16 @@
 
 	Ccx(330) = 2*U2s2Yt**2*Ccx(329) + Ccx(328)*MStop2(1)
 
-	Ccx(335) = Ccl(9) + Ccx(334)/(MMUE2 - MStop2(1))
+	Ccx(335) = Ccl(9) + Ccx(334)/(MUE2 - MStop2(1))
 
         Ccx(337) = Ccl(9) + Ccl(10) + 
      &    6*U2s2Yt**2*(Ccl(9)/MStop2(1) + Ccl(10)/MStop2(2))
 
-	Ccx(340) = -2*dup3 + MMUE2 + MStop2(1)
+	Ccx(340) = -2*dup3 + MUE2 + MStop2(1)
 
 	Ccx(341) = U2c2YtC*UCStop(3,1) - U2c2Yt*UCStopC(3,1)
 
-	Ccx(346) = -2*dup3 + MMUE2 + Ccl(46) + MStop2(1)
+	Ccx(346) = -2*dup3 + MUE2 + Ccl(46) + MStop2(1)
 
 	Ccx(349) = -((Ccl(9)*Ccx(348))/MStop2(1)) + Ccl(10)/MStop2(2)
 
@@ -1130,9 +1126,9 @@
 	Ccx(353) = U2c2Yt2 - U2s2Yt**2
 
         Ccx(359) = Ccl(7)*(Ccl(9) - Ccl(10)) - 
-     &    (Ccl(46) - Ccl(47))*(MMUE2 - MStop2(1))
+     &    (Ccl(46) - Ccl(47))*(MUE2 - MStop2(1))
 
-	Ccx(363) = -(Ccx(362)*UStop2(1,1)) + Ccx(359)*UStop2(1,2)
+	Ccx(363) = Ccx(362)*UStop2(1,1) + Ccx(359)*UStop2(1,2)
 
 	Ccx(368) = U2c2YtC*Ccx(367) - 2*U2s2Yt*UCStopC(3,1)
 
@@ -1263,46 +1259,46 @@
 	Ccx(723) = Ccl(51) - Ccl(49)*(1 - MStop2(3)/MSq2Diff(1,2))
 
         Ccx(740) = Ccl(47) + 
-     &    (Ccl(9)*(MMUE2 - Ccl(7) - MStop2(1)))/MStop2(1)
+     &    (Ccl(9)*(MUE2 - Ccl(7) - MStop2(1)))/MStop2(1)
 
 	Ccx(742) = MStop2(1)*UStop2(1,1) + MStop2(2)*UStop2(1,2)
 
-	Ccx(747) = Ccx(746) + Ccx(305)*(MMUE2 + MTy2 - MSbot2(1))
+	Ccx(747) = Ccx(746) + Ccx(305)*(MTy2 + MUE2 - MSbot2(1))
 
 	Ccx(762) = Ccl(40) - Ccx(760)/Ccx(303) - Ccx(761)
 
         Ccx(763) = Ccx(184) + 
-     &    ((Ccx(186) - Ccx(188))*(MMUE2 + MTy2 - MSbot2(1)))/
-     &     MSq2Diff(1,2) + Ccx(180)*(MMUE2 + MTy2 - MStop2(2))
+     &    ((Ccx(186) - Ccx(188))*(MTy2 + MUE2 - MSbot2(1)))/
+     &     MSq2Diff(1,2) + Ccx(180)*(MTy2 + MUE2 - MStop2(2))
 
         Ccx(764) = -2*Ccl(10) - 
-     &    MMUE2*(1 - (2*Ccl(10))/MStop2(2)) - MStop2(2)
+     &    MUE2*(1 - (2*Ccl(10))/MStop2(2)) - MStop2(2)
 
         Ccx(766) = Ccl(7)*Ccx(765) + 
-     &    Ccl(52)*(MMUE2 - MSbot2(1)) - 
-     &    Ccl(46)*(MMUE2 - 2*MSbot2(1) + MStop2(2))
+     &    Ccl(52)*(MUE2 - MSbot2(1)) - 
+     &    Ccl(46)*(MUE2 - 2*MSbot2(1) + MStop2(2))
 
         Ccx(774) = Ccl(8)**2 + 
      &    (Ccl(8) - Ccl(10))*(Ccl(9) - Ccl(10))*
      &     (UStop2(1,1) - UStop2(1,2))
 
-	Ccx(776) = (MMUE2*Ccl(4) + (MTy2 - Ccl(4))*Ccl(7))/MTy2
+	Ccx(776) = (MUE2*Ccl(4) + (MTy2 - Ccl(4))*Ccl(7))/MTy2
 
         Ccx(777) = (MTy2*Ccl(9) - Ccl(4)*(Ccl(9) - MStop2(1)))/
      &    (MTy2*MStop2(1))
 
-        Ccx(782) = (MMUE2 + MTy2 - MStop2(1))*
-     &    (Ccx(779) + Ccx(781)*MStop2(1) - 
-     &      2*Ccx(205)*(MMUE2 - MTy2 + MStop2(1)))
+        Ccx(782) = (MTy2 + MUE2 - MStop2(1))*
+     &    (Ccx(779) + 2*Ccx(205)*(MTy2 - MUE2 - MStop2(1)) + 
+     &      Ccx(781)*MStop2(1))
 
 	Ccx(783) = (Ccl(4) + ((MTy2 - Ccl(4))*Ccl(10))/MStop2(2))/MTy2
 
-        Ccx(787) = (MMUE2 + MTy2 - MStop2(2))*
-     &    (Ccx(784) + Ccx(786)*MStop2(2) - 
-     &      2*Ccx(221)*(MMUE2 - MTy2 + MStop2(2)))
+        Ccx(787) = (MTy2 + MUE2 - MStop2(2))*
+     &    (Ccx(784) + 2*Ccx(221)*(MTy2 - MUE2 - MStop2(2)) + 
+     &      Ccx(786)*MStop2(2))
 
         Ccx(788) = Ccl(46) + 
-     &    (Ccl(10)*(MMUE2 - Ccl(7) - MStop2(2)))/MStop2(2)
+     &    (Ccl(10)*(MUE2 - Ccl(7) - MStop2(2)))/MStop2(2)
 
         Ccx(79) = U2c2YtC*Ccl(9)*UCStop(3,4) + 
      &    U2c2Yt*Ccl(10)*UCStopC(3,3)
@@ -1314,9 +1310,9 @@
      &    (Ccl(8) + 4*(Ccl(9) - Ccl(10))*
      &       (UStop2(1,1) - UStop2(1,2)))
 
-        Ccx(798) = Ccl(7)*Ccx(795) - Ccl(4)*Ccx(796) - 
-     &    Ccx(305)*(MMUE2 + MTy2 - MSbot2(1)) - 
-     &    (Ccl(8)*Ccx(797))/MSbot2(1)
+        Ccx(798) = Ccl(7)*Ccx(795) - Ccl(4)*Ccx(797) - 
+     &    Ccx(305)*(MTy2 + MUE2 - MSbot2(1)) - 
+     &    (Ccl(8)*Ccx(796))/MSbot2(1)
 
         Ccx(80) = U2c2YtC*Ccl(10)*UCStop(3,4) + 
      &    U2c2Yt*Ccl(9)*UCStopC(3,3)
@@ -1356,39 +1352,39 @@
      &    (Ccl(9)*Ccx(174))/MStop2(1) - 
      &    (Ccl(10)*Ccx(176))/MStop2(2)
 
-        Ccx(179) = MMUE2**2 + (MTy2 - MStop2(2))**2 - 
-     &    2*MMUE2*(MTy2 + MStop2(2))
+        Ccx(179) = MTy2**2 + (MUE2 - MStop2(2))**2 - 
+     &    2*MTy2*(MUE2 + MStop2(2))
 
 	Ccx(18) = 1/2.D0*(Xt*XtC*(UStop2(1,1)**2 + UStop2(1,2)**2))
 
 	Ccx(19) = U2s1XtpMT**2 + U2s2Xt**2
 
-        Ccx(190) = MMUE2**2 + (MTy2 - MStop2(1))**2 - 
-     &    2*MMUE2*(MTy2 + MStop2(1))
+        Ccx(190) = MTy2**2 + (MUE2 - MStop2(1))**2 - 
+     &    2*MTy2*(MUE2 + MStop2(1))
 
 	Ccx(20) = 1/2.D0*(Yt*YtC*(UStop2(1,1)**2 + UStop2(1,2)**2))
 
 	Ccx(21) = U2s1YtpMT**2 + U2s2Yt**2
 
-        Ccx(244) = -(MMUE2*Ccx(233)) + Ccx(238) - 
-     &    Ccx(243)*(MMUE2 + MTy2 - MStop2(1))
+        Ccx(244) = -(MUE2*Ccx(233)) + Ccx(238) - 
+     &    Ccx(243)*(MTy2 + MUE2 - MStop2(1))
 
-        Ccx(255) = -(MMUE2*Ccx(245)) + Ccx(250) - 
-     &    Ccx(254)*(MMUE2 + MTy2 - MStop2(2))
+        Ccx(255) = -(MUE2*Ccx(245)) + Ccx(250) - 
+     &    Ccx(254)*(MTy2 + MUE2 - MStop2(2))
 
 	Ccx(30) = -(U2c1Xt*U2s1XtmMT) - U2c2Xt*U2s2Xt
 
 	Ccx(31) = U2c1Xt*U2s1XtpMT + U2c2Xt*U2s2Xt
 
-        Ccx(320) = (Ccl(4)*(MMUE2 - Ccl(7)))/MTy2 + Ccl(7) + 
+        Ccx(320) = (Ccl(4)*(MUE2 - Ccl(7)))/MTy2 + Ccl(7) + 
      &    Ccl(45) + Ccx(309)/Ccx(303) - Ccx(302)*MSbot2(1) + 
      &    Ccx(319)*UStop2(1,1)
 
-	Ccx(327) = -((2*Ccl(7) + Ccx(321))*Ccx(323)) + MMUE2*Ccx(326)
+	Ccx(327) = (2*Ccl(7) + Ccx(321))*Ccx(323) - MUE2*Ccx(326)
 
 	Ccx(33) = -(U2c1Yt*U2s1YtmMT) - U2c2Yt*U2s2Yt
 
-        Ccx(336) = MMUE2 - 2*MMUE2*Ccx(206) + 
+        Ccx(336) = MUE2 - 2*MUE2*Ccx(206) + 
      &    2*(Ccl(7) + Ccx(335)) + (Ccx(330)*MSbot2(1))/MStop2(1) + 
      &    MStop2(1)
 
@@ -1404,8 +1400,8 @@
      &    U2c2Yt2*Ccx(351)*UStop2(1,1)*UStop2(1,2)
 
         Ccx(36) = 2*Re(Ccl(7)) + 
-     &    (MMUE2 - MStop2(1))*Re(Ccl(18)) + 
-     &    (MMUE2 - MStop2(2))*Re(Ccl(26))
+     &    (MUE2 - MStop2(1))*Re(Ccl(18)) + 
+     &    (MUE2 - MStop2(2))*Re(Ccl(26))
 
 	Ccx(364) = -2*U2s2Yt*Ccx(341)*Ccx(359) + U2c2Yt2*Ccx(363)
 
@@ -1477,7 +1473,7 @@
 
 	Ccx(74) = Ccx(73)/MSq2Diff(1,2) - 18*Re(Ccl(10))
 
-        Ccx(741) = MMUE2 - 2*Ccx(740) + MStop2(1) + 
+        Ccx(741) = MUE2 - 2*Ccx(740) + MStop2(1) + 
      &    8*Ccl(9)*(2 - Ccl(9)/MStop2(1))*UStop2(1,1)
 
         Ccx(743) = Ccx(10)*Ccx(491)*Ccx(742) + 
@@ -1515,16 +1511,16 @@
      &    CB2*(Ccx(20)*Re(Ccl(16)) + Ccx(21)*Re(Ccl(17)))
 
         Ccx(23) = Re(Ccl(7)) - Re(Ccl(8)) + 
-     &    (MMUE2 - MStop2(1))*Re(Ccl(18))
+     &    (MUE2 - MStop2(1))*Re(Ccl(18))
 
         Ccx(24) = -Re(Ccl(4)) - Re(Ccl(7)) + 
      &    Ccx(10)*Re(Ccl(10)) - 
-     &    (MMUE2 + MTy2 - MStop2(1))*Re(Ccl(19)) + 
+     &    (MTy2 + MUE2 - MStop2(1))*Re(Ccl(19)) + 
      &    SB2*Ccx(11)*Ccx(12)*Re(Ccl(20)) + 
      &    CB2*(Ccx(13)*Ccx(14)*Re(Ccl(21)) + 
      &       Re(Ccl(2))*(1 + UStop2(1,2)))
 
-        Ccx(26) = 4*MMUE2 - 2*(CB2*MHp2in + MSbot2(1)) - 
+        Ccx(26) = 4*MUE2 - 2*(CB2*MHp2in + MSbot2(1)) - 
      &    MStop2(4) + 8*MStop2(3)*(UStop2(1,1) - UStop2(1,2))
 
 	Ccx(27) = MTy*UStopC(2,1) + XtC*UStopC(2,2)
@@ -1564,9 +1560,9 @@
      &    CB2*Ccx(14)*Ccx(41)*(Re(Ccl(21)) + Re(Ccl(28)))
 
         Ccx(5) = -3*Re(Ccl(7)) + Re(Ccl(8)) + Re(Ccl(9)) + 
-     &    Re(Ccl(10)) + (MMUE2 + MTy2 - MSbot2(1))*Re(Ccl(11)) + 
-     &    (MMUE2 + MTy2 - MStop2(1))*Re(Ccl(12)) + 
-     &    (MMUE2 + MTy2 - MStop2(2))*Re(Ccl(13))
+     &    Re(Ccl(10)) + (MTy2 + MUE2 - MSbot2(1))*Re(Ccl(11)) + 
+     &    (MTy2 + MUE2 - MStop2(1))*Re(Ccl(12)) + 
+     &    (MTy2 + MUE2 - MStop2(2))*Re(Ccl(13))
 
         Ccx(51) = U2s1XtmMT**2 + U2s2Xt**2 + 
      &    1/2.D0*(Xt*XtC*(UStop2(1,1)**2 + UStop2(1,2)**2))
@@ -1574,27 +1570,27 @@
         Ccx(52) = U2s1YtmMT**2 + U2s2Yt**2 + 
      &    1/2.D0*(Yt*YtC*(UStop2(1,1)**2 + UStop2(1,2)**2))
 
-	Ccx(53) = 2*MMUE2 - MSbot2(1) - MStop2(2)
+	Ccx(53) = 2*MUE2 - MSbot2(1) - MStop2(2)
 
         Ccx(59) = SB2*(Ccx(57)*Re(Ccl(22)) + 
      &       Ccx(18)*Re(Ccl(23))) + 
      &    CB2*(Ccx(58)*Re(Ccl(24)) + Ccx(20)*Re(Ccl(25)))
 
         Ccx(60) = Re(Ccl(7)) - Re(Ccl(8)) + 
-     &    (MMUE2 - MStop2(2))*Re(Ccl(26))
+     &    (MUE2 - MStop2(2))*Re(Ccl(26))
 
         Ccx(61) = -Re(Ccl(4)) - Re(Ccl(7)) + 
      &    Ccx(10)*Re(Ccl(9)) + SB2*Ccx(27)*Ccx(40)*Re(Ccl(27)) + 
      &    CB2*Ccx(28)*Ccx(41)*Re(Ccl(28)) - 
-     &    (MMUE2 + MTy2 - MStop2(2))*Re(Ccl(29)) + 
+     &    (MTy2 + MUE2 - MStop2(2))*Re(Ccl(29)) + 
      &    CB2*Re(Ccl(2))*(1 + UStop2(1,1))
 
         Ccx(639) = Ccx(638) + 
      &    (2*Ccx(21)*Ccx(637))/(MHp2in - 4*MStop2(1))
 
-	Ccx(64) = Re(Ccl(10)) + (MMUE2 - MStop2(2))*Re(Ccl(31))
+	Ccx(64) = Re(Ccl(10)) + (MUE2 - MStop2(2))*Re(Ccl(31))
 
-	Ccx(65) = Re(Ccl(9)) + (MMUE2 - MStop2(1))*Re(Ccl(32))
+	Ccx(65) = Re(Ccl(9)) + (MUE2 - MStop2(1))*Re(Ccl(32))
 
 	Ccx(67) = 4*MSbot2(1) - MSq2Diff(1,2) + 2*MStop2(2)
 
@@ -1611,7 +1607,7 @@
         Ccx(8) = U2s1YtpMT**2 + U2s2Yt**2 + 
      &    1/2.D0*(Yt*YtC*(UStop2(1,1)**2 + UStop2(1,2)**2))
 
-        Ccx(9) = -2*MMUE2 + MSbot2(1) + MStop2(1) + 
+        Ccx(9) = -2*MUE2 + MSbot2(1) + MStop2(1) + 
      &    8*MStop2(1)*UStop2(1,1)
 
         Ccx(25) = 2*Ccx(22) + Ccx(24) - 
@@ -1638,7 +1634,7 @@
      &    UStop2(1,1)*(Ccx(60) - 8*Re(Ccl(10))*UStop2(1,2))
 
         Ccx(63) = -Re(Ccl(4)) + Re(Ccl(8)) + 
-     &    (MMUE2 + MTy2 - MSbot2(1))*Re(Ccl(30))
+     &    (MTy2 + MUE2 - MSbot2(1))*Re(Ccl(30))
 
 	Ccx(66) = Ccx(64)*UStop2(1,1) + Ccx(65)*UStop2(1,2)
 
@@ -1686,7 +1682,7 @@
 	DTLSP "dMu1(-1) =", dMu1(-1) ENDL
 
         dMu1(0) = 3/(64.D0*Pi**2)*
-     &    (dMu1OS*ht**2*MUE*(Ccx(63) + Ccx(66)))/MMUE2
+     &    (dMu1OS*ht**2*MUE*(Ccx(63) + Ccx(66)))/MUE2
 
 	DTLSP "dMu1(0) =", dMu1(0) ENDL
 
@@ -1724,11 +1720,11 @@
         Ccx(154) = Conjugate(dMSfsq1(0,13,2,2,3,3)) + 
      &    2*cI*Im(dMSfsq1(0,13,1,1,3,3))
 
-        Ccx(208) = Ccx(206)*Ccx(207) - 
-     &    Ccx(200)*(MMUE2 - MTy2 - MStop2(1))
+        Ccx(208) = Ccx(206)*Ccx(207) + 
+     &    Ccx(200)*(MTy2 - MUE2 + MStop2(1))
 
-        Ccx(224) = Ccx(222)*Ccx(223) - 
-     &    Ccx(216)*(MMUE2 - MTy2 - MStop2(2))
+        Ccx(224) = Ccx(222)*Ccx(223) + 
+     &    Ccx(216)*(MTy2 - MUE2 + MStop2(2))
 
         Ccx(262) = -((Ccl(9)*
      &         (Ccl(10) + Ccx(261) + 4*MStop2(1)) + 
@@ -1874,10 +1870,10 @@
      &     UCStop(3,1) + Ccx(154)*UStop2(1,1)*UStop2(1,2)
 
         Ccx(213) = 2*MTy2*Ccx(212) + 
-     &    (Ccx(208)*(MMUE2 + MTy2 - MStop2(1)))/MStop2(1)
+     &    (Ccx(208)*(MTy2 + MUE2 - MStop2(1)))/MStop2(1)
 
         Ccx(228) = 2*MTy2*Ccx(227) + 
-     &    (Ccx(224)*(MMUE2 + MTy2 - MStop2(2)))/MStop2(2)
+     &    (Ccx(224)*(MTy2 + MUE2 - MStop2(2)))/MStop2(2)
 
         Ccx(258) = MStop2(2)**2*(6*MStop2(1) - MStop2(3)) + 
      &    (Ccx(96)*Ccx(257)*MStop2(3)**2*MStop2(4))/MStop2(2)**2
@@ -1914,7 +1910,7 @@
 	Ccx(299) = 2*Ccx(298) + (Ccl(9)**2*Ccx(297))/MStop2(1)**2
 
         Ccx(344) = (U2s2Yt*Ccl(7)*Ccl(10)*Ccx(341))/
-     &     (MMUE2*MStop2(2)) - U2c2Yt2*Ccx(222)*UStop2(1,1)
+     &     (MUE2*MStop2(2)) - U2c2Yt2*Ccx(222)*UStop2(1,1)
 
         Ccx(365) = U2s2Yt*Ccx(112)*Ccx(341)*MStop2(4) + 
      &    U2c2Yt2*(Ccl(9) - Ccl(10))*(UStop2(1,1) - UStop2(1,2))
@@ -2153,19 +2149,17 @@
 
 	Ccx(197) = Ccl(40) - Ccx(195)/Ccx(190) - Ccx(196)
 
-	Ccx(204) = -MMUE2 + Ccx(199) - MTy2*(1 + Ccx(203)/Ccx(190)**2)
+	Ccx(204) = -MUE2 + Ccx(199) - MTy2*(1 + Ccx(203)/Ccx(190)**2)
 
-        Ccx(214) = MMUE2*Ccx(213) + 
-     &    2*Ccx(190)*Ccx(205)*(MMUE2 + MTy2 - MStop2(1)) - 
-     &    2*(MMUE2 + MTy2 - MStop2(1))**3*
-     &     (MMUE2 + MTy2 + MStop2(1))
+        Ccx(214) = MUE2*Ccx(213) + 
+     &    2*Ccx(190)*Ccx(205)*(MTy2 + MUE2 - MStop2(1)) - 
+     &    2*(MTy2 + MUE2 - MStop2(1))**3*(MTy2 + MUE2 + MStop2(1))
 
-	Ccx(220) = -MMUE2 + Ccx(215) - MTy2*(1 + Ccx(219)/Ccx(179)**2)
+	Ccx(220) = -MUE2 + Ccx(215) - MTy2*(1 + Ccx(219)/Ccx(179)**2)
 
-        Ccx(229) = MMUE2*Ccx(228) + 
-     &    2*Ccx(179)*Ccx(221)*(MMUE2 + MTy2 - MStop2(2)) - 
-     &    2*(MMUE2 + MTy2 - MStop2(2))**3*
-     &     (MMUE2 + MTy2 + MStop2(2))
+        Ccx(229) = MUE2*Ccx(228) + 
+     &    2*Ccx(179)*Ccx(221)*(MTy2 + MUE2 - MStop2(2)) - 
+     &    2*(MTy2 + MUE2 - MStop2(2))**3*(MTy2 + MUE2 + MStop2(2))
 
         Ccx(259) = Ccx(258)/MStop2(1)**2 + 
      &    (7*MStop2(1)**2)/MStop2(2) - 6*MStop2(2)
@@ -2186,8 +2180,8 @@
      &    Ccx(293)/MStop2(2)
 
         Ccx(345) = U2s2Yt*Ccx(341)*Ccx(343) + 
-     &    MMUE2*Ccx(344)*(2*MMUE2 - MStop2(4)) + 
-     &    U2c2Yt2*(2*Ccl(7) + Ccx(321))*(MMUE2 - MStop2(1))*
+     &    MUE2*Ccx(344)*(2*MUE2 - MStop2(4)) + 
+     &    U2c2Yt2*(2*Ccl(7) + Ccx(321))*(MUE2 - MStop2(1))*
      &     UStop2(1,1)
 
 	Ccx(357) = Ccx(96)*Ccx(356) - 2*U2s2Yt**2*MStop2(3)**2
@@ -2381,11 +2375,11 @@
 
         Ccx(738) = Ccl(4) + Ccl(41) + 
      &    Ccl(7)*(1 - Ccl(9)/MStop2(1)) - 
-     &    (Ccx(737)*(MMUE2 + MTy2 - MStop2(1)))/Ccx(190) + 
-     &    ((MMUE2 + MTy2 - Ccl(4))*Ccl(9))/MStop2(1)
+     &    (Ccx(737)*(MTy2 + MUE2 - MStop2(1)))/Ccx(190) + 
+     &    ((MTy2 + MUE2 - Ccl(4))*Ccl(9))/MStop2(1)
 
         Ccx(752) = Ccl(45) - Ccx(195)/Ccx(190) - Ccx(748) + 
-     &    ((Ccx(749) - Ccx(751))*(MMUE2 + MTy2 - MStop2(1)))/
+     &    ((Ccx(749) - Ccx(751))*(MTy2 + MUE2 - MStop2(1)))/
      &     Ccx(303)
 
         Ccx(757) = ((Ccx(754) - Ccx(756))*MSq2Diff(1,1) - 
@@ -2400,8 +2394,8 @@
         Ccx(807) = Ccl(4) + Ccl(40) - Ccx(310)*Ccx(806) + 
      &    (4*Ccx(28)*Ccx(41)*Ccx(804))/MSq2Diff(1,2)**2 + 
      &    Ccl(7)*(1 - Ccl(10)/MStop2(2)) - 
-     &    (Ccx(802)*(MMUE2 + MTy2 - MStop2(2)))/Ccx(179) + 
-     &    ((MMUE2 + MTy2 - Ccl(4))*Ccl(10))/MStop2(2)
+     &    (Ccx(802)*(MTy2 + MUE2 - MStop2(2)))/Ccx(179) + 
+     &    ((MTy2 + MUE2 - Ccl(4))*Ccl(10))/MStop2(2)
 
         Ccx(810) = Ccx(57)*(Ccl(44) + Ccl(10)**2/MStop2(2)) - 
      &    2*Ccx(809)*MStop2(2)
@@ -2479,7 +2473,7 @@
      &        (2*Ccx(272) - Ccx(287)*MStop2(3)))/MStop2(3)**4
 
         Ccx(347) = U2s2Yt*Ccx(340)*Ccx(341) + 
-     &    Ccx(345)/(MMUE2 - MStop2(2)) - 
+     &    Ccx(345)/(MUE2 - MStop2(2)) - 
      &    U2c2Yt2*Ccx(346)*UStop2(1,2)
 
         Ccx(354) = -(U2c2Yt2*Ccx(96)) + 

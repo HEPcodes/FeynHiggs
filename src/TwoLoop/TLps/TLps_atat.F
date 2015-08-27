@@ -4,7 +4,7 @@
 * Based on A. Brignole, G. Degrassi, P. Slavich and F. Zwirner,
 * hep-ph/0112177.
 * this file is part of FeynHiggs
-* last modified 4 Mar 15 th
+* last modified 11 May 15 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -951,7 +951,8 @@
      &               (ctt2*MSt12*(x12 - x9))/(MbSL2 - MSt12)))/
      &           pMT2)))
 
-	  dpMTpMT = 1/4.D0*(MSt2sum - 2*pMT2 - 3*MUEr2 + 10*pMT2*pSB2 + 
+	  dpMTpMT = dMT1OS*1/4.D0*(
+     &      MSt2sum - 2*pMT2 - 3*MUEr2 + 10*pMT2*pSB2 + 
      &      MSt12*x10 + MSt22*x10 - 2*pMT2*x10 - 3*MUEr2*x10 + 
      &      5*pMT2*pSB2*x10 - MSt22*x11 + 
      &      pCB2*(MA02*(3 + 3*x10 - 3*x18 - 2*x33 - x34) + 
@@ -959,7 +960,7 @@
      &      MbSL2*(1 + x10 - x12 - x35) + pMT2*x35 + MUEr2*x35 - 
      &      MSt12*x36 + pMT2*x36 + MUEr2*x36 - MSt22*x37 + pMT2*x37 + 
      &      MUEr2*x37 + 2*pMT2*x7 - 5*pMT2*pSB2*x7 + 3*MUEr2*x8 - 
-     &      MSt12*x9)/pMT2
+     &      MSt12*x9 )/pMT2
 
 	  dMSt12 = -x39 - (1 + stt2)*x40 + 
      &      stt2*(x41 + (MSt12 - MUEr2)*x42) + pSB2*tmp13*x43 + 

@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 20 Mar 15 th
+* last modified 18 May 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -114,7 +114,11 @@ c	  call setfpu
 
 	runningMT = runningMT_
 	Check(runningMT, 0, 2, "runningMT")
-	tM1 = tT + (3 - tT)*signbit(runningMT - 1)
+
+* for safety:
+	if( tT - 3 .ne. tD - tT ) stop "bad tT, tD in FH.h"
+
+	tM1 = 3 + (tT - 3)*runningMT
 	tM2 = tM1
 
 	botResum = botResum_
@@ -137,6 +141,9 @@ c	  call setfpu
 
 	if( looplevel .eq. 3 .and. runningMT .ne. 1 )
      &    Error(error, "looplevel = 3 only with runningMT = 1")
+
+	if( runningMT .eq. 2 .and. tlCplxApprox .ne. 1 )
+     &    Error(error, "runningMT = 2 only with tlCplxApprox = 1")
 
 	if( error .eq. 0 ) flags_valid = valid
 

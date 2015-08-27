@@ -1,6 +1,6 @@
 * DRbartoOS.F
 * this file is part of FeynHiggs
-* last modified 30 Jul 13 th
+* last modified 11 May 15 th
 
 * Code by Pietro Slavich
 * 10/04/2013: different Ab conversion according to hep-ph/0206101
@@ -112,7 +112,7 @@
      &        CB2_*Yt*(2*MT_ + s2tt*Yt)*myB0(p, MSt12, MA02, Q) +
      &        SB2_*Xt*(2*MT_ - s2tt*Xt)*myB0(p, MSt22, 0D0, Q) +
      &        CB2_*Yt*(2*MT_ - s2tt*Yt)*myB0(p, MSt22, MA02, Q))) +
-     &    .5D0*(ht**2 - hb**2)*s2tt*myG(p, MB2_, MUE2, Q) -
+     &    .5D0*(ht + hb)*(ht - hb)*s2tt*myG(p, MB2_, MUE2, Q) -
      &    2*ht*hb*MB_*reMUE*c2tt*myB0(p, MB2_, MUE2, Q) -
      &    .5D0*hb**2*s2tt*(SB2_*myAA(MA02, Q) +
      &      stb2*myAA(MSb12, Q) + ctb2*myAA(MSb22, Q)) +

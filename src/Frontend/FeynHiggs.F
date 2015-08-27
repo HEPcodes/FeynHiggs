@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 20 Mar 15 th
+* last modified 11 May 15 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -32,7 +32,7 @@
 
 	character*54 dmssmpart(-1:5), dfieldren(-1:5),
      &    dtanbren(-1:3), dhiggsmix(0:5), dp2approx(-1:5),
-     &    dlooplevel(-1:4), drunningMT(-1:2),
+     &    dlooplevel(-1:4), drunningMT(-1:3),
      &    dbotResum(-1:3), dtlCplxApprox(-1:7)
 
 	data flags /"400242110"/
@@ -90,7 +90,8 @@
 	data drunningMT /
      &    "???",
      &    "use pole top mass",
-     &    "use running top mass",
+     &    "use running top mass (SM MSbar)",
+     &    "use running top mass (MSSM DRbar)",
      &    "???" /
 
 	data dbotResum /

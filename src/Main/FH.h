@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 24 Apr 15 th
+* last modified 11 May 15 th
 
 
 #ifndef SignSq
@@ -25,6 +25,8 @@
 #define tQ(t) Ncolor(t)
 #define tU(t) (t + isQ(t))
 
+#define tS2 (iand(tM1,7)+2*ibits(tM1,3,1))
+
 * for encoding sfermion type in SfUpdate and Couplings.F:
 #define X2(x1,x0) (x1)*16 + x0
 #define X3(x2,x1,x0) (x2)*256 + X2(x1,x0)
@@ -39,8 +41,8 @@
 #define Mf(t,g) Sf(g,t)
 #define Mf2(t,g) Sf(g+3,t)
 #define MSf(s,t,g) Sf(s+2*(g)+4,t)
-#define MASf(as,t) Sf(as+12,t)
-#define MSf2(s,t,g) Sf(s+4*(g)+14,t)
+#define MSf2(s,t,g) Sf(s+4*(g)+8,t)
+#define MASf(as,t) Sf(as+24,t)
 #define MASf2(as,t) Sf(as+30,t)
 #define USf2(s1,s2,t,g) Sf(s1+2*(s2)+4*(g)+36,t)
 #define USf(s1,s2,t,g) CSf(s1+2*(s2)+4*(g)+21,t)
@@ -101,7 +103,8 @@
 	RealType MW, MW2, MZ, MZ2
 	RealType SW, SW2, CW, CW2
 	RealType invAlfaMZ, GF, vev
-	RealType ELGF, AlfaGF, EL0, ELMZ, AlfaMZ, Alfat
+	RealType ELGF, AlfaGF, EL0, ELMZ, AlfaMZ
+	RealType HTSMMT, AlfatSMMT
 	RealType GSMT, AlfasMT, AlfasMZ, AlfasDb
 
 	common /smpara/
@@ -109,7 +112,8 @@
      &    Qf, MB_MT,
      &    MW, MW2, MZ, MZ2, CW, CW2, SW, SW2,
      &    invAlfaMZ, GF, vev,
-     &    ELGF, AlfaGF, EL0, ELMZ, AlfaMZ, Alfat,
+     &    ELGF, AlfaGF, EL0, ELMZ, AlfaMZ,
+     &    HTSMMT, AlfatSMMT,
      &    GSMT, AlfasMT, AlfasMZ, AlfasDb
 
 	RealType Alfa1L, Alfa2L, EL1L, EL2L
@@ -215,18 +219,21 @@
 *
 * Sf(*,5=bBR) = Sdown with MB(MB)/|1 + Db|	- set in Sfermions.F
 *
-* Sf(*,6=tT) = Sup with MT(MT)			- set in Sfermions.F
+* Sf(*,6=tT) = Sup with MSbar MT(MT)		- set in Sfermions.F
 * Sf(*,7=bTR) = Sdown with MB(MT)/|1 + Db|	- set in Sfermions.F
 * Sf(*,8=bTR0) = ditto but compatible with TLps	- set in TLShifts.F
 *   (latter used for neutral Higgs masses only)
 *
-* Sf(*,9=tH) = Sup with MT(Mh) for Decays	- set in Couplings.F
-* Sf(*,10=bH) = Sdown with MB(Mh) for Decays	- set in Couplings.F
-* Sf(*,11=bHR) = Sdown with MB(Mh)/|1 + Db|	- set in Couplings.F
+* Sf(*,9=tD) = Sup with DRbar MT(MT)		- set in Sfermions.F
+*   (cave: 3 -> 2*3(tT) -> 3*3(tD) used in SetFlags + Uncertainties + tS2)
+*
+* Sf(*,10=tH) = Sup with MT(Mh) for Decays	- set in Couplings.F
+* Sf(*,11=bH) = Sdown with MB(Mh) for Decays	- set in Couplings.F
+* Sf(*,12=bHR) = Sdown with MB(Mh)/|1 + Db|	- set in Couplings.F
 
 	integer SfSlots
 	integer*8 SfIni
-	parameter (SfSlots = 11, SfIni = O'12344344344')
+	parameter (SfSlots = 12, SfIni = O'123443443344')
 
 	RealType Sf(NSf,SfSlots)
 
@@ -236,9 +243,9 @@
 	ComplexType CSf(NSf/2,SfSlots)
 	equivalence (Sf, Sf_flat, CSf)
 
-	integer bBR, tT, bTR, bTR0, tH, bH, bHR
-	parameter (bBR = 5, tT = 6, bTR = 7, bTR0 = 8)
-	parameter (tH = 9, bH = 10, bHR = 11)
+	integer bBR, tT, bTR, bTR0, tD, tH, bH, bHR
+	parameter (bBR = 5, tT = 6, bTR = 7, bTR0 = 8, tD = 9)
+	parameter (tH = 10, bH = 11, bHR = 12)
 
 
 * Higgs results

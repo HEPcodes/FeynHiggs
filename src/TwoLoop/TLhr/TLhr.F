@@ -1,7 +1,7 @@
 * TLhr.F
 * master file for Heidi Rzehak's 2L asat corrections
 * this file is part of FeynHiggs
-* last modified 4 May 15 th
+* last modified 15 May 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -18,13 +18,13 @@
 
 	RealType c
 
-	call TLSfgl(error)
+	call TLSfgl(error, 0D0)
 
-	Xt = Xf(3,3)
-	At = Xt - MUETB(3)
-	MUEXt = MUE*Xt
 	MTy = Mf(tM2,3)
 	MTy2 = MTy**2
+	At = Kf(3,3,tM2)/MTy
+	Xt = At + MUETB(3)
+	MUEXt = MUE*Xt
 
 	Q = mudim
 	c = abs(At)
@@ -70,6 +70,11 @@
 	  se2R(A0A0) = se2R(A0A0) + selfA0A0 - seinput
 	endif
 
+	if( debuglevel .ge. 2 ) then
+	  DSELF "se2R(A0A0) =", se2R(A0A0)	ENDL
+	  DSELF "se2R(HmHp) =", se2R(HmHp)	ENDL
+	endif
+
 	if( ps ) return
 
 	call TLhr_abbr_d1
@@ -102,8 +107,6 @@
 	if( debuglevel .ge. 2 ) then
 	  DSELF "se2R(h0h0) =", se2R(h0h0)	ENDL
 	  DSELF "se2R(HHHH) =", se2R(HHHH)	ENDL
-	  DSELF "se2R(A0A0) =", se2R(A0A0)	ENDL
-	  DSELF "se2R(HmHp) =", se2R(HmHp)	ENDL
 	endif
 
 	if( higgsmix .lt. 2 ) return

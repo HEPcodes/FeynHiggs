@@ -57,18 +57,6 @@ ONELOOP = se_h0h0.o se_HHHH.o se_A0A0.o se_HmHp.o \
 TLPS = TLps.o TLps_asat.o TLps_asab.o TLps_atab.o TLps_atat.o \
   Pi11t.o Pi12t.o Pi22t.o Pi11b.o Pi12b.o Pi22b.o Pitt.o \
 
-$(TLPS): TLps.h
-
-xTLHR = TLhr_abbr0.o TLhr_abbr1_1.o TLhr_abbr1_2.o TLhr_abbr1_3.o \
-  TLhr_abbr1_4.o TLhr_abbr1_5.o TLhr_abbr1_6.o TLhr_abbr1_7.o \
-  TLhr_abbr1_8.o TLhr_abbr1_9.o TLhr_abbr1_10.o TLhr_abbr1_11.o \
-  TLhr_abbr1_12.o TLhr_abbr1_13.o TLhr_abbr1_14.o TLhr_abbr1_15.o \
-  TLhr_abbr1_16.o TLhr_abbr1_17.o TLhr_abbr1_18.o \
-  TLhr_abbr2_1.o TLhr_abbr2_2.o TLhr_abbr2_3.o \
-  TLhr_abbr3_1.o TLhr_abbr3_2.o TLhr_abbr3_3.o TLhr_abbr3_4.o \
-  TLhr_rcs.o TLhr_self1.o TLhr_self2.o TLhr_self3.o \
-  TLhr.o MTrepara.o
-
 TLHR = TLhr.o TLhr_abbr_r.o TLhr_rcs.o \
   TLhr_abbr_c1.o TLhr_abbr_c2.o TLhr_self_c.o \
   TLhr_abbr_d1.o TLhr_abbr_d2.o TLhr_abbr_d3.o TLhr_abbr_d4.o \
@@ -81,8 +69,6 @@ TLHR = TLhr.o TLhr_abbr_r.o TLhr_rcs.o \
 TLSP = TLsp.o TLsp_atat_c1.o TLsp_atat_c2.o \
   TLsp_atat_e1.o TLsp_atat_e2.o TLsp_atat_e3.o \
   TLsp_atat_o1.o TLsp_atat_o2.o
-
-$(TLSP): TLsp.h
 
 TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
   CalcRenSETL.o MTrepara.o Resum4H.o InvTri.o Phi.o TLSfgl.o
@@ -286,11 +272,13 @@ HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o Gauss.o LU.o: Util.h
 
 $(ONELOOP): looptools.h ltcache.h debug.h
 
-$(TLHR): TLhr.h TLhrvars.h FH.h looptools.h ltcache.h debug.h
+$(TLHR) MTrepara.o: TLhr.h TLhrvars.h TL.h FH.h looptools.h ltcache.h debug.h
+
+$(TLPS) CalcRenSETL.o: TLps.h TLpsvars.h TL.h FH.h looptools.h ltcache.h debug.h
+
+$(TLSP): TLsp.h TLspvars.h TL.h FH.h looptools.h ltcache.h debug.h
 
 MTrepara.o: MTrepara.h
-
-$(TLPS): TLps.h TLpsvars.h looptools.h ltcache.h
 
 Constraints.o $(GM2): gm2.h
 

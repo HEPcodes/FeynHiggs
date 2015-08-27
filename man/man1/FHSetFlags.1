@@ -1,4 +1,4 @@
-.TH FHSETFLAGS 1 "18-Dec-2013"
+.TH FHSETFLAGS 1 "11-May-2015"
 .SH NAME
 .PP
 FHSetFlags \- set the FeynHiggs flags
@@ -114,12 +114,14 @@ determines the inclusion of higher-order corrections:
 .br
 .B recommended: 2 or 3
 .TP
-.B runningMT = 0..1 (input)
+.B runningMT = 0..2 (input)
 determines which top mass shall be used in the 1-/2-loop corrections:
 .br
 0: pole MT
 .br
-1: running MT
+1: running MT (SM MSbar)
+.br
+2: running MT (MSSM DRbar)
 .br
 .B recommended: 1
 .TP

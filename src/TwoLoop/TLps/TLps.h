@@ -1,14 +1,12 @@
 * TLps.h
 * declarations for the two-loop routines
 * this file is part of FeynHiggs
-* last modified 26 Mar 14 th
+* last modified 11 May 15 th
 
-#include "FH.h"
-#include "looptools.h"
+#include "TL.h"
 
 #ifndef TLpsvars
 #define TLpsvars
-
 #include "TLpsvars.h"
 
 #define MSt12 StopPara(1)
@@ -38,7 +36,6 @@
 #define s2tb2 SbotPara(12)
 
 #define Li2omx(x) Re(spence(1, ToComplex(x), 0D0))
-
 #endif
 
 	integer Nc, MSDR

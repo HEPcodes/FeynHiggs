@@ -1,7 +1,7 @@
 * TLsp.F
 * master file for Sebastian Passehr's 2L atat corrections
 * this file is part of FeynHiggs
-* last modified 7 May 15 th
+* last modified 18 May 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -16,45 +16,43 @@
 #include "TLsp.h"
 #define __SUBROUTINE__ "TLspSE"
 
+	RealType shift
 	ComplexType se2Rcat2(h0A0:HHA0)
 
 	logical zden
-	RealType den, m1, m2, m3
+	RealType m1, m2, m3
 
 	ComplexType U2x1, U2x2, x, u, uc
 	U2x1(x, u, uc) = .5D0*(u*Conjugate(x) + uc*x)
 	U2x2(x, u, uc) = .5D0/cI*(u*Conjugate(x) - uc*x)
 
-c	den(m1, m2, m3) = m1*(m1 - 2*(m2 + m3)) + (m2 - m3)**2
-	den(m1, m2, m3) = m1**2 + (m2 - m3)**2 - 2*m1*(m2 + m3)
-	zden(m1, m2, m3) = abs(den(m1, m2, m3)) .lt. 1D-10
+	zden(m1, m2, m3) =
+     &    abs(m1**2 + (m2 - m3)**2 - 2*m1*(m2 + m3)) .lt.
+     &    1D-12*(m1**2 + m2**2 + m3**2)
 
-	call TLSfgl(error)
-
-	Xt = Xf(3,3)
-	Yt = Xt + 2/S2B*MUEC
+	Q = mudim
 	MTy = Mf(tM2,3)
-c	MTy = Mf(3,3)
 	MTy2 = MTy**2
-
+	Xt = Kf(3,3,tM2)/MTy + MUETB(3)
+	Yt = Xt + 2/S2B*MUEC
+	ht = sqrt2/vev*MTy/SB
 	MHin2 = MHtree2(inputmass)
+	MUE2 = Sq(MUE)
+
+	shift = 0
+1	call TLSfgl(error, shift)
 	if( zden(MHin2, MSbot2(1), MStop2(1)) .or.
      &      zden(MHin2, MSbot2(1), MStop2(2)) .or.
      &      zden(MHin2, MSbot2(2), MStop2(1)) .or.
      &      zden(MHin2, MSbot2(2), MStop2(2)) .or.
-     &      zden(MHin2, MStop2(1), MStop2(2)) )
-     &    MHin2 = MHin2 + .000123D0
-
-	MMUE2 = Sq(MUE)
-	if( zden(MMUE2, MTy2, MStop2(1)) .or.
-     &      zden(MMUE2, MTy2, MStop2(2)) .or.
-     &      zden(MMUE2, MTy2, MSbot2(1)) .or.
-     &      zden(MMUE2, MTy2, MSbot2(2)) )
-     &    MMUE2 = MMUE2 + .000132D0
-
-	Q = mudim
-	ht = sqrt2/vev*MTy/SB
-c	ht = sqrt(4*pi*Alfat)
+     &      zden(MHin2, MStop2(1), MStop2(2)) .or.
+     &      zden(MUE2, MTy2, MStop2(1)) .or.
+     &      zden(MUE2, MTy2, MStop2(2)) .or.
+     &      zden(MUE2, MTy2, MSbot2(1)) .or.
+     &      zden(MUE2, MTy2, MSbot2(2)) ) then
+	  shift = shift + .01D0
+	  goto 1
+	endif
 
 	U2s1Xt = Re(U2x1(Xt, UCStop(1,3), UCStopC(1,3)))
 	U2s1XtmMT = U2s1Xt - MTy
@@ -75,6 +73,21 @@ c	ht = sqrt(4*pi*Alfat)
 	U2c1Yt2 = Sq(U2c1Yt)
 	U2c2Yt = U2x2(Yt, UCStop(3,3), UCStop(3,4))
 	U2c2Yt2 = -Sq(U2c2Yt)
+
+#if 0
+	PRINT *, "TLsp: MTy=", MTy, MTy2
+	PRINT *, "TLsp: ht=", ht
+	PRINT *, "TLsp: CB=", CB, CB2
+	PRINT *, "TLsp: SB=", SB, SB2
+	PRINT *, "TLsp: S2B=", S2B
+	PRINT *, "TLsp: CW=", CW, CW2
+	PRINT *, "TLsp: SW=", SW, SW2
+	PRINT *, "TLsp: MW=", MW, MW2
+	PRINT *, "TLsp: MUE2=", MUE2
+	PRINT *, "TLsp: Xt=", Xt
+	PRINT *, "TLsp: Yt=", Yt
+	PRINT *, "TLsp: Q=", Q
+#endif
 
 	if( debuglevel .ge. 2 ) then
 	  DSELF "==========================="	ENDL

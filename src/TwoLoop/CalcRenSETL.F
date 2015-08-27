@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 24 Apr 15 th
+* last modified 15 May 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -63,6 +63,8 @@
 #define Ra2A(i) CA*dPhi(se1A,i,1) + SA*dPhi(se2A,i,1)
 #define RaAA(i) dPhi(seAA,i,1)
 
+	dMT1OS = 1 - Delta(tM2, tD)
+
 	do i = 1, semax
 	  se2R(i) = 0
 	enddo
@@ -75,13 +77,13 @@
 
 	dMT(0) = 0
 	dMT(1) = 0
-	if( btest(runningMT, 0) .or. tM1 .ne. tM2 ) then
+	if( tM1 .eq. tT .or. tM2 .eq. tT ) then
 	  i = ibits(tlx, asat, 1)
 	  tlx = ior(tlx, ishft(i, dMTH))
 	  dMT(i) = 4/(3*pi)*Alfas2L*Mf(tM2,3)
 	  i = ibits(tlx, atat, 1)
 	  tlx = ior(tlx, ishft(i, dMTH))
-	  dMT(i) = dMT(i) - 1/(2*pi)*Alfat*Mf(tM2,3)
+	  dMT(i) = dMT(i) - 1/(2*pi)*AlfatSMMT*Mf(tM2,3)
 	endif
 	tlx = ior(tlx, iand(2 - looplevel, ibset(0, dMTH)))
 
@@ -134,7 +136,7 @@
 	  endif
 
 	  if( btest(tlx, dMTH) ) then
-	    call TLSfgl(error)
+	    call TLSfgl(error, 0D0)
 	    if( error .eq. 0 ) call MTrepara(dPhi(1,dMTH,vs),
      &        dMT(1), MUEc, Xtc, 3)
 	  endif

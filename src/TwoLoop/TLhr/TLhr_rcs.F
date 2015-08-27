@@ -1,6 +1,6 @@
 * TLhr_rcs.F
 * this file is part of FeynHiggs
-* generated 5-May-2015 11:08
+* generated 10-May-2015 20:27
 
 #include "externals.h"
 #include "types.h"
@@ -27,9 +27,10 @@
 	dMf133eps(-1) = -(4/(3.D0*Pi)*(Alfas2L*MTy))
 
         dMf133eps(0) = 
-     &   1/(6.D0*Pi)*(Alfas2L*Cr(88) + 6*Pi*(dMTfin*MTy))/MTy
+     &   1/(6.D0*Pi)*(dMT1OS*(Alfas2L*Cr(88) + 6*Pi*(dMTfin*MTy)))/
+     &     MTy
 
-	dMf133eps(1) = 1/(12.D0*Pi)*(Alfas2L*Cr(135))/MTy
+	dMf133eps(1) = 1/(12.D0*Pi)*(Alfas2L*dMT1OS*Cr(135))/MTy
 
         dY33eps(-1) = 4/(3.D0*Pi)*
      &    (Alfas2L*(2*MTy*Cr(139) - Cr(117)*MStop2(3)*UCStop(3,1)))

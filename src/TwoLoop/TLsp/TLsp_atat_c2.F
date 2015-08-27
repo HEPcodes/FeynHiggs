@@ -1,6 +1,6 @@
 * TLsp_atat_c2.F
 * this file is part of FeynHiggs
-* generated 6-May-2015 14:10
+* generated 11-May-2015 12:08
 
 #include "externals.h"
 #include "types.h"
@@ -130,15 +130,15 @@
      &    Ccx(787)/Ccx(179) - Ccx(302)*MSbot2(1) - 
      &    (Ccx(718)*Ccx(791))/MSq2Diff(1,2) - Ccx(777)*MStop2(1) - 
      &    Ccx(783)*MStop2(2) + 
-     &    (MMUE2 - 2*Ccx(788) + MStop2(2))*UStop2(1,1)**2
+     &    (MUE2 - 2*Ccx(788) + MStop2(2))*UStop2(1,1)**2
 
         Ccx(794) = (Ccx(718)*Ccx(793))/MSq2Diff(1,1) + 
      &    2*Ccl(8)*(Ccl(9) - Ccl(10))*UStop2(1,1)*UStop2(1,2)
 
         Ccx(808) = Ccl(4) + Ccl(45) + SB2*Ccl(54) + 
      &    Ccl(7)*(1 - Ccl(8)/MSbot2(1)) - 
-     &    (Ccx(798)*(MMUE2 + MTy2 - MSbot2(1)))/Ccx(303) + 
-     &    ((MMUE2 + MTy2 - Ccl(4))*Ccl(8))/MSbot2(1) + 
+     &    (Ccx(798)*(MTy2 + MUE2 - MSbot2(1)))/Ccx(303) + 
+     &    ((MTy2 + MUE2 - Ccl(4))*Ccl(8))/MSbot2(1) + 
      &    Ccx(807)*UStop2(1,1)
 
         Ccx(871) = 4*Ccx(822) + 
@@ -157,7 +157,7 @@
      &       2*SB2*Xt*Ccx(95)*Conjugate(dMf1(0,3,3))*UCStopC(1,3))/
      &     (MTy*SB2)
 
-        Ccx(16) = -2*(MMUE2 + MTy2) + SB2*Ccx(11)*Ccx(12) + 
+        Ccx(16) = -2*(MTy2 + MUE2) + SB2*Ccx(11)*Ccx(12) + 
      &    CB2*Ccx(15) + MStop2(1) + Ccx(10)*MStop2(2)
 
         Ccx(173) = 2*Ccl(38) + 3*Ccl(39) - 
@@ -165,15 +165,17 @@
 
         Ccx(393) = 4*U2s2Yt**2*Ccx(230) + 
      &    2*(Ccx(178) + Ccx(10)*(4*Ccx(354) + Ccx(358))) - 
-     &    SB2*(Ccx(301) + 2*Ccx(392)) + 
-     &    8*(U2c2Yt2*Ccx(198) + Ccx(327)/(MMUE2 - MStop2(2)) + 
+     &    SB2*(Ccx(301) + 2*Ccx(392)) - 
+     &    8*(Ccx(327)/(MUE2 - MStop2(2)) + 
+     &       Ccx(364)/MStop2(3)**2) + 
+     &    8*(U2c2Yt2*Ccx(198) + 
      &       (Ccx(347) + 8*Ccx(352) + Ccx(372)*MSbot2(1))/MStop2(3)
-     &       ) - (8*(Ccx(364) + 4*(Ccl(9) - Ccl(10))**2*Ccx(376)))/
+     &       ) - (32*(Ccl(9) - Ccl(10))**2*Ccx(376))/
      &     MStop2(3)**2 - 2*
      &     (Ccx(244)/Ccx(190) + Ccx(255)/Ccx(179) + Ccx(320) + 
      &       (Ccx(336) + 8*Ccx(338)*UStop2(1,1))*UStop2(1,2))
 
-        Ccx(55) = -2*(MMUE2 + MTy2) + SB2*Ccx(27)*Ccx(40) + 
+        Ccx(55) = -2*(MTy2 + MUE2) + SB2*Ccx(27)*Ccx(40) + 
      &    CB2*Ccx(54) + Ccx(10)*MStop2(1) + MStop2(2)
 
 	Ccx(636) = -(CB2*(SB2*Ccl(34) - CB2*Ccx(635)))

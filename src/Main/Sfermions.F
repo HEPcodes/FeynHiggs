@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 20 Mar 15 th
+* last modified 15 May 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -17,11 +17,13 @@
 	integer error
 
 #include "FH.h"
+#include "looptools.h"
 #define __SUBROUTINE__ "Sfermions"
 
 	integer i, j, g, fail, nfdummy, pass
 	RealType Qew, Qqcd, asew, db2Lqcd, db2Lew, adb(3,3,2)
 	RealType Mdin(3), Mdbar(3)
+	RealType dMTs, dMTy, mx, a0t, a0st, MUE2
 	ComplexType MX2(3,3), db, Mcorr(3,3), se(3,3)
 	ComplexType DL(3,3), DR(3,3)
 
@@ -98,6 +100,62 @@
 	call SfUpdate(error, X3(4,4,4), 1, 1)
 	call SfUpdate(error, X3(tT,3,3), SORT_SF, 1)
 	if( error .ne. 0 ) return
+
+* for the DRbar-MT(MT) we keep the sf masses the same as for MT(os)
+* and adjust the breaking parameters
+* only Kf actually enters the Feynman rules
+* the tS2 definition in FH.h takes care that MT(os) is also used
+* in subsequent sf-mass computations in the two-loop sector
+
+	if( runningMT .eq. 2 ) then
+	  do i = 1, NSf
+	    Sf(i,tD) = Sf(i,3)
+	  enddo
+
+	  mx = 4*MT*Re(USf(1,2,3,3)*USfC(1,1,3,3)*M_3)
+	  a0st = Re(A0(MSf2(1,3,3))) + Re(A0(MSf2(2,3,3)))
+	  a0t = Re(A0(MT2))
+	  dMTs = AlfasMT/(6*pi*MT)*(
+     &      a0st +
+     &      (MGl2 + MT2 - MSf2(1,3,3) - mx)*
+     &        Re(B0(MT2, MGl2, MSf2(1,3,3))) +
+     &      (MGl2 + MT2 - MSf2(2,3,3) + mx)*
+     &        Re(B0(MT2, MGl2, MSf2(2,3,3))) -
+     &      2*Re(A0(MGl2)) - 6*a0t - 4*MT2 )
+
+* use same Alfat as in TLsp:
+#define alfat (sqrt2/vev*MT/SB)**2/(4*pi)
+	  MUE2 = Sq(MUE)
+	  dMTy = alfat/(16*pi*MT)*(
+     &      a0st + Re(A0(MSf2(1,4,3))) +
+     &      (MUE2 + MT2 - MSf2(1,3,3))*
+     &        Re(B0(MT2, MUE2, MSf2(1,3,3))) +
+     &      (MUE2 + MT2 - MSf2(2,3,3))*
+     &        Re(B0(MT2, MUE2, MSf2(2,3,3))) +
+     &      (MUE2 + MT2 - MSf2(1,4,3))*
+     &        Re(B0(MT2, MUE2, MSf2(1,4,3))) +
+     &      CB2*(3*Re(A0(MHp2)) -
+     &        (MHp2 - MT2)*Re(B0(MT2, 0D0, MHp2)) -
+     &        2*(MHp2 - 2*MT2)*Re(B0(MT2, MHp2, MT2))) +
+     &      SB2*MT2*(4 + Re(B0(MT2, 0D0, 0D0))) -
+     &      3*Re(A0(MUE2)) - 2*C2B*a0t )
+
+	  Mf(tD,3) = MT + dMTs + dMTy
+	  Mf2(tD,3) = Mf(tD,3)**2
+
+	  Kf(3,3,tD) = Kf(3,3,tD) - (dMTs + dMTy)*MUETB(3)
+
+	  if( debuglevel .ge. 3 ) then
+	    DPARA "dMTs       =", dMTs		ENDL
+	    DPARA "MTs        =", MT + dMTs	ENDL
+	    DPARA "dMTy       =", dMTy		ENDL
+	    DPARA "MT(tD,3)   =", Mf(tD,3)	ENDL
+	    if( debuglevel .ge. 4 ) then
+	      DPARA "Kf(3,3,3)  =", Kf(3,3,3)	ENDL
+	      DPARA "Kf(3,3,tD) =", Kf(3,3,tD)	ENDL
+	    endif
+	  endif
+	endif
 
 	do i = 1, NSf
 	  Sf(i,bTR) = Sf(i,4)
@@ -626,8 +684,9 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	data sftype(6) /"tT"/
 	data sftype(7) /"bTR"/
 	data sftype(8) /"bTR0"/
-	data sftype(9) /"tH"/
-	data sftype(10) /"bH"/
-	data sftype(11) /"bHR"/
+	data sftype(9) /"tD"/
+	data sftype(10) /"tH"/
+	data sftype(11) /"bH"/
+	data sftype(12) /"bHR"/
 	end
 
