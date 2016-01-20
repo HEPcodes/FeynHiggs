@@ -75,8 +75,8 @@ RenConst[dMNHiggs2[1, 1]] :=
   CBA (CBA dMCHiggs2[5, 5] - 2 CB^2 SBA MHptree^2 dTanB2) +
   ht SB SBA/(Sqrt[2] MT) (
     CB^2 SBA (CBA dTadh01 - SBA dTadHH1) dTanB1 -
-    (1 + CBA^2) (dTadh02 - dTadh01 (dMWsq1gl/(2 MW^2) + dSW1/SW)) +
-    CBA SBA (dTadHH2 - dTadHH1 (dMWsq1gl/(2 MW^2) + dSW1/SW)) )
+    (1 + CBA^2) (dTadh02 - dTadh01 (dMWsq1MW2/2 + dSW1/SW)) +
+    CBA SBA (dTadHH2 - dTadHH1 (dMWsq1MW2/2 + dSW1/SW)) )
 
 RenConst[dMNHiggs2[2, 2]] :=
   2 CB^2 CBA SBA dMCHiggs1[5, 5] dTanB1 +
@@ -85,7 +85,7 @@ RenConst[dMNHiggs2[2, 2]] :=
   ht CBA SB/(Sqrt[2] MT) (
     CB^2 CBA dTanB1 (CBA dTadh01 - SBA dTadHH1) +
     CBA SBA dTadh02 - (1 + SBA^2) dTadHH2 +
-    (dTadHH1 - CBA SBA dTadh01 + dTadHH1 SBA^2) (dMWsq1gl/(2 MW^2) + dSW1/SW) )
+    (dTadHH1 - CBA SBA dTadh01 + dTadHH1 SBA^2) (dMWsq1MW2/2 + dSW1/SW) )
 
 RenConst[dMNHiggs2[1, 2]] :=
   -CBA SBA dMCHiggs2[5, 5] +
@@ -93,16 +93,16 @@ RenConst[dMNHiggs2[1, 2]] :=
   1/4 CB^3 (CBA (SA + 3 SB CBA + 6 CB SBA) - SBA (CA + 3 SB SBA)) MHptree^2 dTanB1^2 +
   ht SB/(Sqrt[2] MT) (
     CB^2 CBA SBA dTanB1 (CBA dTadh01 - dTadHH1 SBA) +
-    CBA^3 (-dTadh02 + dTadh01 (dMWsq1gl/(2 MW^2) + dSW1/SW)) +
-    SBA^3 (-dTadHH2 + dTadHH1 (dMWsq1gl/(2 MW^2) + dSW1/SW)) )
+    CBA^3 (-dTadh02 + dTadh01 (dMWsq1MW2/2 + dSW1/SW)) +
+    SBA^3 (-dTadHH2 + dTadHH1 (dMWsq1MW2/2 + dSW1/SW)) )
 
 RenConst[dMNHiggs2[3, 3]] := dMCHiggs2[5, 5]
 
 RenConst[dMNHiggs2[1, 3]] :=
-  SB SBA ht/(Sqrt[2] MT) (-dTadA02 + dTadA01 (dMWsq1gl/(2 MW^2) + dSW1/SW))
+  SB SBA ht/(Sqrt[2] MT) (-dTadA02 + dTadA01 (dMWsq1MW2/2 + dSW1/SW))
 
 RenConst[dMNHiggs2[2, 3]] :=
-  CBA SB ht/(Sqrt[2] MT) (-dTadA02 + dTadA01 (dMWsq1gl/(2 MW^2) + dSW1/SW))
+  CBA SB ht/(Sqrt[2] MT) (-dTadA02 + dTadA01 (dMWsq1MW2/2 + dSW1/SW))
 
 RenConst[dMNHiggs2[j_, i_]] := Conjugate[dMNHiggs2[i, j]] /; j > i
 

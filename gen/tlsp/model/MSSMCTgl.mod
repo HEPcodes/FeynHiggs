@@ -95,29 +95,29 @@ M$ClassesDescription := {F[1] == {SelfConjugate -> False,
 M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] == 
      {{((-I)*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(Sqrt[2]*MT), 
        ((-I/4)*ht*SB*SW*IndexDelta[j1, j2]*(4*CB2*SW*dMf1[2, j1] + 
-          (-4*CB2*dSW1 - 4*CB*dCosB1*SW - (2*CB2*dMWsq1*SW)/MW2 + 
+          (-4*CB2*dSW1 - 4*CB*dCosB1*SW - 2*CB2*dMWsq1MW2*SW + 
             2*CB2*SW*dZbarfR1[2, j2, j2] + 2*CB2*SW*dZfL1[2, j1, j1] + 
             2*CB2*SW*dZNHiggs1[1, 1] + S2B*SW*dZNHiggs1[2, 1])*
            Mass[F[2, {j1}]]))/(Sqrt[2]*CB2*MT*SW2)}, 
       {((-I)*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(Sqrt[2]*MT), 
        ((-I/4)*ht*SB*SW*IndexDelta[j1, j2]*(4*CB2*SW*dMf1[2, j1] + 
-          (-4*CB2*dSW1 - 4*CB*dCosB1*SW - (2*CB2*dMWsq1*SW)/MW2 + 
+          (-4*CB2*dSW1 - 4*CB*dCosB1*SW - 2*CB2*dMWsq1MW2*SW + 
             2*CB2*SW*dZbarfL1[2, j2, j2] + 2*CB2*SW*dZfR1[2, j1, j1] + 
             2*CB2*SW*dZNHiggs1[1, 1] + S2B*SW*dZNHiggs1[2, 1])*
            Mass[F[2, {j1}]]))/(Sqrt[2]*CB2*MT*SW2)}}, 
     C[F[3, {j1, o1}], -F[3, {j2, o2}], S[1]] == 
      {{((-I)*ht*SB*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1, o1}]])/(Sqrt[2]*MT), 
-       ((-I/4)*ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (4*SB2*SW*dMf1[3, j1] - (4*dSW1*SB2 + 4*dSinB1*SB*SW + 
-            (2*dMWsq1*SB2*SW)/MW2 - 2*SB2*SW*dZbarfR1[3, j2, j2] - 
+       ((I/4)*ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
+         (-4*SB2*SW*dMf1[3, j1] + (4*dSW1*SB2 + 4*dSinB1*SB*SW + 
+            2*dMWsq1MW2*SB2*SW - 2*SB2*SW*dZbarfR1[3, j2, j2] - 
             2*SB2*SW*dZfL1[3, j1, j1] - 2*SB2*SW*dZNHiggs1[1, 1] + 
             S2B*SW*dZNHiggs1[2, 1])*Mass[F[3, {j1, o1}]]))/
         (Sqrt[2]*MT*SB2*SW2)}, {((-I)*ht*SB*IndexDelta[j1, j2]*
          IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]])/(Sqrt[2]*MT), 
-       ((-I/4)*ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (4*SB2*SW*dMf1[3, j1] - (4*dSW1*SB2 + 4*dSinB1*SB*SW + 
-            (2*dMWsq1*SB2*SW)/MW2 - 2*SB2*SW*dZbarfL1[3, j2, j2] - 
+       ((I/4)*ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
+         (-4*SB2*SW*dMf1[3, j1] + (4*dSW1*SB2 + 4*dSinB1*SB*SW + 
+            2*dMWsq1MW2*SB2*SW - 2*SB2*SW*dZbarfL1[3, j2, j2] - 
             2*SB2*SW*dZfR1[3, j1, j1] - 2*SB2*SW*dZNHiggs1[1, 1] + 
             S2B*SW*dZNHiggs1[2, 1])*Mass[F[3, {j1, o1}]]))/
         (Sqrt[2]*MT*SB2*SW2)}}, C[F[4, {j1, o1}], -F[4, {j2, o2}], S[1]] == 
@@ -127,53 +127,53 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
     C[F[2, {j1}], -F[2, {j2}], S[3]] == 
      {{(ht*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(Sqrt[2]*CB*MT), 
        (ht*SB*SW*IndexDelta[j1, j2]*(2*S2B*SW*dMf1[2, j1] + 
-          (-2*dSW1*S2B - (dMWsq1*S2B*SW)/MW2 - 4*dCosB1*SB*SW + 
+          (-2*dSW1*S2B - dMWsq1MW2*S2B*SW - 4*dCosB1*SB*SW + 
             S2B*SW*dZbarfR1[2, j2, j2] + S2B*SW*dZfL1[2, j1, j1] + 
             S2B*SW*dZNHiggs1[3, 3] - 2*CB2*SW*dZNHiggs1[4, 3])*
            Mass[F[2, {j1}]]))/(4*Sqrt[2]*CB2*MT*SW2)}, 
       {-((ht*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(Sqrt[2]*CB*MT)), 
        -(ht*SB*SW*IndexDelta[j1, j2]*(2*S2B*SW*dMf1[2, j1] + 
-           (-2*dSW1*S2B - (dMWsq1*S2B*SW)/MW2 - 4*dCosB1*SB*SW + 
+           (-2*dSW1*S2B - dMWsq1MW2*S2B*SW - 4*dCosB1*SB*SW + 
              S2B*SW*dZbarfL1[2, j2, j2] + S2B*SW*dZfR1[2, j1, j1] + 
              S2B*SW*dZNHiggs1[3, 3] - 2*CB2*SW*dZNHiggs1[4, 3])*
             Mass[F[2, {j1}]]))/(4*Sqrt[2]*CB2*MT*SW2)}}, 
     C[F[2, {j1}], -F[2, {j2}], S[4]] == 
      {{-((ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(Sqrt[2]*MT)), 
        -(ht*S2B*SW*IndexDelta[j1, j2]*(2*CB*SW*dMf1[2, j1] + 
-           (-2*CB*dSW1 - 2*dCosB1*SW - (CB*dMWsq1*SW)/MW2 + 
+           (-2*CB*dSW1 - 2*dCosB1*SW - CB*dMWsq1MW2*SW + 
              CB*SW*dZbarfR1[2, j2, j2] + CB*SW*dZfL1[2, j1, j1] - 
              SB*SW*dZNHiggs1[3, 4] + CB*SW*dZNHiggs1[4, 4])*
             Mass[F[2, {j1}]]))/(4*Sqrt[2]*CB2*MT*SW2)}, 
       {(ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(Sqrt[2]*MT), 
        (ht*S2B*SW*IndexDelta[j1, j2]*(2*CB*SW*dMf1[2, j1] + 
-          (-2*CB*dSW1 - 2*dCosB1*SW - (CB*dMWsq1*SW)/MW2 + 
+          (-2*CB*dSW1 - 2*dCosB1*SW - CB*dMWsq1MW2*SW + 
             CB*SW*dZbarfL1[2, j2, j2] + CB*SW*dZfR1[2, j1, j1] - 
             SB*SW*dZNHiggs1[3, 4] + CB*SW*dZNHiggs1[4, 4])*Mass[F[2, {j1}]]))/
         (4*Sqrt[2]*CB2*MT*SW2)}}, C[F[1, {j1}], -F[2, {j2}], S[5]] == 
      {{(I*ht*SB2*IndexDelta[j1, j2]*Mass[F[2, {j2}]])/(CB*MT), 
        ((I/4)*ht*SB*SW*IndexDelta[j1, j2]*(2*S2B*SW*dMf1[2, j2] + 
-          (-2*dSW1*S2B - (dMWsq1*S2B*SW)/MW2 - 4*dCosB1*SB*SW + 
+          (-2*dSW1*S2B - dMWsq1MW2*S2B*SW - 4*dCosB1*SB*SW + 
             S2B*SW*dZbarfR1[2, j2, j2] + S2B*SW*dZCHiggs1[5, 5] - 
             2*CB2*SW*dZCHiggs1[6, 5] + S2B*SW*dZfL1[1, j1, j1])*
            Mass[F[2, {j2}]]))/(CB2*MT*SW2)}, {0, 0}}, 
     C[F[1, {j1}], -F[2, {j2}], S[6]] == 
      {{((-I)*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j2}]])/MT, 
        ((-I/4)*ht*S2B*SW*IndexDelta[j1, j2]*(2*CB*SW*dMf1[2, j2] + 
-          (-2*CB*dSW1 - 2*dCosB1*SW - (CB*dMWsq1*SW)/MW2 + 
+          (-2*CB*dSW1 - 2*dCosB1*SW - CB*dMWsq1MW2*SW + 
             CB*SW*dZbarfR1[2, j2, j2] - SB*SW*dZCHiggs1[5, 6] + 
             CB*SW*dZCHiggs1[6, 6] + CB*SW*dZfL1[1, j1, j1])*
            Mass[F[2, {j2}]]))/(CB2*MT*SW2)}, {0, 0}}, 
     C[F[2, {j1}], -F[1, {j2}], -S[5]] == 
      {{0, 0}, {(I*ht*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(CB*MT), 
        ((I/4)*ht*SB*SW*IndexDelta[j1, j2]*(2*S2B*SW*dMf1[2, j1] + 
-          (-2*dSW1*S2B - (dMWsq1*S2B*SW)/MW2 - 4*dCosB1*SB*SW - 
+          (-2*dSW1*S2B - dMWsq1MW2*S2B*SW - 4*dCosB1*SB*SW - 
             2*CB2*SW*Conjugate[dZCHiggs1[6, 5]] + S2B*SW*dZbarCHiggs1[5, 5] + 
             S2B*SW*dZbarfL1[1, j2, j2] + S2B*SW*dZfR1[2, j1, j1])*
            Mass[F[2, {j1}]]))/(CB2*MT*SW2)}}, 
     C[F[2, {j1}], -F[1, {j2}], -S[6]] == 
      {{0, 0}, {((-I)*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/MT, 
        ((-I/4)*ht*S2B*SW*IndexDelta[j1, j2]*(2*CB*SW*dMf1[2, j1] + 
-          (-2*CB*dSW1 - 2*dCosB1*SW - (CB*dMWsq1*SW)/MW2 - 
+          (-2*CB*dSW1 - 2*dCosB1*SW - CB*dMWsq1MW2*SW - 
             SB*SW*Conjugate[dZCHiggs1[5, 6]] + CB*SW*Conjugate[
               dZCHiggs1[6, 6]] + CB*SW*dZbarfL1[1, j2, j2] + 
             CB*SW*dZfR1[2, j1, j1])*Mass[F[2, {j1}]]))/(CB2*MT*SW2)}}, 
@@ -181,31 +181,30 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
      {{(CB*ht*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]])/
         (Sqrt[2]*MT), (ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          (2*S2B*SW*dMf1[3, j1] + (-2*dSW1*S2B - 4*CB*dSinB1*SW - 
-            (dMWsq1*S2B*SW)/MW2 + S2B*SW*dZbarfR1[3, j2, j2] + 
+            dMWsq1MW2*S2B*SW + S2B*SW*dZbarfR1[3, j2, j2] + 
             S2B*SW*dZfL1[3, j1, j1] + S2B*SW*dZNHiggs1[3, 3] + 
             2*SB2*SW*dZNHiggs1[4, 3])*Mass[F[3, {j1, o1}]]))/
         (4*Sqrt[2]*MT*SB2*SW2)}, 
       {-((CB*ht*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]])/
          (Sqrt[2]*MT)), -(ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
           (2*S2B*SW*dMf1[3, j1] + (-2*dSW1*S2B - 4*CB*dSinB1*SW - 
-             (dMWsq1*S2B*SW)/MW2 + S2B*SW*dZbarfL1[3, j2, j2] + 
+             dMWsq1MW2*S2B*SW + S2B*SW*dZbarfL1[3, j2, j2] + 
              S2B*SW*dZfR1[3, j1, j1] + S2B*SW*dZNHiggs1[3, 3] + 
              2*SB2*SW*dZNHiggs1[4, 3])*Mass[F[3, {j1, o1}]]))/
         (4*Sqrt[2]*MT*SB2*SW2)}}, C[F[3, {j1, o1}], -F[3, {j2, o2}], S[4]] == 
      {{(ht*SB*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]])/
         (Sqrt[2]*MT), (ht*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (2*SB*SW*dMf1[3, j1] + (-2*dSW1*SB - 2*dSinB1*SW - 
-            (dMWsq1*SB*SW)/MW2 + SB*SW*dZbarfR1[3, j2, j2] + 
-            SB*SW*dZfL1[3, j1, j1] + CB*SW*dZNHiggs1[3, 4] + 
-            SB*SW*dZNHiggs1[4, 4])*Mass[F[3, {j1, o1}]]))/
-        (2*Sqrt[2]*MT*SW2)}, {-((ht*SB*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-          Mass[F[3, {j1, o1}]])/(Sqrt[2]*MT)), 
-       -(ht*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*(2*SB*SW*dMf1[3, j1] + 
-           (-2*dSW1*SB - 2*dSinB1*SW - (dMWsq1*SB*SW)/MW2 + 
-             SB*SW*dZbarfL1[3, j2, j2] + SB*SW*dZfR1[3, j1, j1] + 
-             CB*SW*dZNHiggs1[3, 4] + SB*SW*dZNHiggs1[4, 4])*
-            Mass[F[3, {j1, o1}]]))/(2*Sqrt[2]*MT*SW2)}}, 
-    C[F[4, {j1, o1}], -F[4, {j2, o2}], S[3]] == 
+         (2*SB*SW*dMf1[3, j1] + (-2*dSW1*SB - 2*dSinB1*SW - dMWsq1MW2*SB*SW + 
+            SB*SW*dZbarfR1[3, j2, j2] + SB*SW*dZfL1[3, j1, j1] + 
+            CB*SW*dZNHiggs1[3, 4] + SB*SW*dZNHiggs1[4, 4])*
+           Mass[F[3, {j1, o1}]]))/(2*Sqrt[2]*MT*SW2)}, 
+      {-((ht*SB*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]])/
+         (Sqrt[2]*MT)), -(ht*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
+          (2*SB*SW*dMf1[3, j1] + (-2*dSW1*SB - 2*dSinB1*SW - 
+             dMWsq1MW2*SB*SW + SB*SW*dZbarfL1[3, j2, j2] + 
+             SB*SW*dZfR1[3, j1, j1] + CB*SW*dZNHiggs1[3, 4] + 
+             SB*SW*dZNHiggs1[4, 4])*Mass[F[3, {j1, o1}]]))/
+        (2*Sqrt[2]*MT*SW2)}}, C[F[4, {j1, o1}], -F[4, {j2, o2}], S[3]] == 
      {{0, (ht*S2B*SB*dMf1[4, j1]*IndexDelta[j1, j2]*IndexDelta[o1, o2])/
         (2*Sqrt[2]*CB2*MT)}, {0, -(ht*S2B*SB*dMf1[4, j1]*IndexDelta[j1, j2]*
           IndexDelta[o1, o2])/(2*Sqrt[2]*CB2*MT)}}, 
@@ -216,13 +215,13 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
     C[F[2, {j1}], -F[2, {j2}], S[2]] == 
      {{((-I)*ht*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(Sqrt[2]*CB*MT), 
        ((-I/4)*ht*SB*SW*IndexDelta[j1, j2]*(2*S2B*SW*dMf1[2, j1] + 
-          (-2*dSW1*S2B - (dMWsq1*S2B*SW)/MW2 - 4*dCosB1*SB*SW + 
+          (-2*dSW1*S2B - dMWsq1MW2*S2B*SW - 4*dCosB1*SB*SW + 
             S2B*SW*dZbarfR1[2, j2, j2] + S2B*SW*dZfL1[2, j1, j1] + 
             2*CB2*SW*dZNHiggs1[1, 2] + S2B*SW*dZNHiggs1[2, 2])*
            Mass[F[2, {j1}]]))/(Sqrt[2]*CB2*MT*SW2)}, 
       {((-I)*ht*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]])/(Sqrt[2]*CB*MT), 
        ((-I/4)*ht*SB*SW*IndexDelta[j1, j2]*(2*S2B*SW*dMf1[2, j1] + 
-          (-2*dSW1*S2B - (dMWsq1*S2B*SW)/MW2 - 4*dCosB1*SB*SW + 
+          (-2*dSW1*S2B - dMWsq1MW2*S2B*SW - 4*dCosB1*SB*SW + 
             S2B*SW*dZbarfL1[2, j2, j2] + S2B*SW*dZfR1[2, j1, j1] + 
             2*CB2*SW*dZNHiggs1[1, 2] + S2B*SW*dZNHiggs1[2, 2])*
            Mass[F[2, {j1}]]))/(Sqrt[2]*CB2*MT*SW2)}}, 
@@ -230,14 +229,14 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
      {{(I*CB*ht*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]])/
         (Sqrt[2]*MT), ((I/4)*ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          (2*S2B*SW*dMf1[3, j1] + (-2*dSW1*S2B - 4*CB*dSinB1*SW - 
-            (dMWsq1*S2B*SW)/MW2 + S2B*SW*dZbarfR1[3, j2, j2] + 
+            dMWsq1MW2*S2B*SW + S2B*SW*dZbarfR1[3, j2, j2] + 
             S2B*SW*dZfL1[3, j1, j1] - 2*SB2*SW*dZNHiggs1[1, 2] + 
             S2B*SW*dZNHiggs1[2, 2])*Mass[F[3, {j1, o1}]]))/
         (Sqrt[2]*MT*SB2*SW2)}, {(I*CB*ht*IndexDelta[j1, j2]*
          IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]])/(Sqrt[2]*MT), 
        ((I/4)*ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          (2*S2B*SW*dMf1[3, j1] + (-2*dSW1*S2B - 4*CB*dSinB1*SW - 
-            (dMWsq1*S2B*SW)/MW2 + S2B*SW*dZbarfL1[3, j2, j2] + 
+            dMWsq1MW2*S2B*SW + S2B*SW*dZbarfL1[3, j2, j2] + 
             S2B*SW*dZfR1[3, j1, j1] - 2*SB2*SW*dZNHiggs1[1, 2] + 
             S2B*SW*dZNHiggs1[2, 2])*Mass[F[3, {j1, o1}]]))/
         (Sqrt[2]*MT*SB2*SW2)}}, C[F[4, {j1, o1}], -F[4, {j2, o2}], S[2]] == 
@@ -250,7 +249,7 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
         (CB2*MT)}, {(I*CB*ht*CKMC[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1, o1}]])/MT, ((I/4)*ht*SB*SW*CKMC[j1, j2]*
          IndexDelta[o1, o2]*(2*S2B*SW*dMf1[3, j1] + 
-          (-2*dSW1*S2B - 4*CB*dSinB1*SW - (dMWsq1*S2B*SW)/MW2 + 
+          (-2*dSW1*S2B - 4*CB*dSinB1*SW - dMWsq1MW2*S2B*SW + 
             S2B*SW*dZbarfL1[4, j2, j2] + S2B*SW*dZCHiggs1[5, 5] + 
             2*SB2*SW*dZCHiggs1[6, 5] + S2B*SW*dZfR1[3, j1, j1])*
            Mass[F[3, {j1, o1}]]))/(MT*SB2*SW2)}}, 
@@ -258,14 +257,14 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
      {{0, ((-I)*ht*SB*CKMC[j1, j2]*dMf1[4, j2]*IndexDelta[o1, o2])/MT}, 
       {(I*ht*SB*CKMC[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]])/MT, 
        ((I/2)*ht*SW*CKMC[j1, j2]*IndexDelta[o1, o2]*(2*SB*SW*dMf1[3, j1] + 
-          (-2*dSW1*SB - 2*dSinB1*SW - (dMWsq1*SB*SW)/MW2 + 
+          (-2*dSW1*SB - 2*dSinB1*SW - dMWsq1MW2*SB*SW + 
             SB*SW*dZbarfL1[4, j2, j2] + CB*SW*dZCHiggs1[5, 6] + 
             SB*SW*dZCHiggs1[6, 6] + SB*SW*dZfR1[3, j1, j1])*
            Mass[F[3, {j1, o1}]]))/(MT*SW2)}}, 
     C[F[4, {j1, o1}], -F[3, {j2, o2}], -S[5]] == 
      {{(I*CB*ht*CKM[j2, j1]*IndexDelta[o1, o2]*Mass[F[3, {j2, o1}]])/MT, 
        ((I/4)*ht*SB*SW*CKM[j2, j1]*IndexDelta[o1, o2]*(2*S2B*SW*dMf1[3, j2] + 
-          (-2*dSW1*S2B - 4*CB*dSinB1*SW - (dMWsq1*S2B*SW)/MW2 + 
+          (-2*dSW1*S2B - 4*CB*dSinB1*SW - dMWsq1MW2*S2B*SW + 
             2*SB2*SW*Conjugate[dZCHiggs1[6, 5]] + S2B*SW*dZbarCHiggs1[5, 5] + 
             S2B*SW*dZbarfR1[3, j2, j2] + S2B*SW*dZfL1[4, j1, j1])*
            Mass[F[3, {j2, o1}]]))/(MT*SB2*SW2)}, 
@@ -273,7 +272,7 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
         (CB2*MT)}}, C[F[4, {j1, o1}], -F[3, {j2, o2}], -S[6]] == 
      {{(I*ht*SB*CKM[j2, j1]*IndexDelta[o1, o2]*Mass[F[3, {j2, o1}]])/MT, 
        ((I/2)*ht*SW*CKM[j2, j1]*IndexDelta[o1, o2]*(2*SB*SW*dMf1[3, j2] + 
-          (-2*dSW1*SB - 2*dSinB1*SW - (dMWsq1*SB*SW)/MW2 + 
+          (-2*dSW1*SB - 2*dSinB1*SW - dMWsq1MW2*SB*SW + 
             CB*SW*Conjugate[dZCHiggs1[5, 6]] + SB*SW*Conjugate[
               dZCHiggs1[6, 6]] + SB*SW*dZbarfR1[3, j2, j2] + 
             SB*SW*dZfL1[4, j1, j1])*Mass[F[3, {j2, o1}]]))/(MT*SW2)}, 
@@ -302,43 +301,42 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USfC[s1, 1, 2, j1] - 4*CB2*dSW1*MUEC*Mass[F[2, {j1}]]*
            USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 4*CB*dCosB1*MUEC*SW*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
-          (2*CB2*dMWsq1*MUEC*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            USfC[s1, 1, 2, j1])/MW2 - 2*dSW1*S2B*Af[2, j1, j1]*
-           Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
-          (dMWsq1*S2B*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            USfC[s1, 1, 2, j1])/MW2 - 4*dCosB1*SB*SW*Af[2, j1, j1]*
+          2*CB2*dMWsq1MW2*MUEC*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USfC[s1, 1, 2, j1] - 2*dSW1*S2B*Af[2, j1, j1]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - dMWsq1MW2*S2B*SW*
+           Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USfC[s1, 1, 2, j1] - 4*dCosB1*SB*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 4*CB2*SW*Conjugate[dMu1]*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 
-          4*CB2*SW*Conjugate[dMu1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-           USfC[s1, 1, 2, j1] + 2*S2B*SW*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 2*CB2*MUEC*SW*
-           dZNHiggs1[3, 3]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-           USfC[s1, 1, 2, j1] + S2B*SW*Af[2, j1, j1]*dZNHiggs1[3, 3]*
+          2*S2B*SW*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USfC[s1, 1, 2, j1] + 2*CB2*MUEC*SW*dZNHiggs1[3, 3]*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 
-          MUEC*S2B*SW*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-           USfC[s1, 1, 2, j1] - 2*CB2*SW*Af[2, j1, j1]*dZNHiggs1[4, 3]*
+          S2B*SW*Af[2, j1, j1]*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + MUEC*S2B*SW*dZNHiggs1[4, 3]*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
-          2*CB2*MUE*SW*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*
-           USf[1, 1, 2, j1]*USfC[s1, 2, 2, j1] - S2B*SW*AfC[2, j1, j1]*
+          2*CB2*SW*Af[2, j1, j1]*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 2*CB2*MUE*SW*
            dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*USf[1, 1, 2, j1]*
-           USfC[s1, 2, 2, j1] - 2*CB2*MUE*SW*dZbarSl1[2, j2, 2, s2]*
-           Mass[F[2, {j1}]]*USf[2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
-          S2B*SW*AfC[2, j1, j1]*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
-           USf[2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 4*CB2*MUE*SW*dMf1[2, j1]*
-           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 2*S2B*SW*AfC[2, j1, j1]*
-           dMf1[2, j1]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
-          4*CB2*dSW1*MUE*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-           USfC[s1, 2, 2, j1] - 4*CB2*dMu1*SW*Mass[F[2, {j1}]]*
-           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 4*CB*dCosB1*MUE*SW*
-           Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
-          (2*CB2*dMWsq1*MUE*SW*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-            USfC[s1, 2, 2, j1])/MW2 + 2*dSW1*S2B*AfC[2, j1, j1]*
-           Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
-          (dMWsq1*S2B*SW*AfC[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-            USfC[s1, 2, 2, j1])/MW2 + 4*dCosB1*SB*SW*AfC[2, j1, j1]*
+           USfC[s1, 2, 2, j1] - S2B*SW*AfC[2, j1, j1]*dZbarSl1[2, j2, 1, s2]*
+           Mass[F[2, {j1}]]*USf[1, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
+          2*CB2*MUE*SW*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
+           USf[2, 1, 2, j1]*USfC[s1, 2, 2, j1] - S2B*SW*AfC[2, j1, j1]*
+           dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*USf[2, 1, 2, j1]*
+           USfC[s1, 2, 2, j1] - 4*CB2*MUE*SW*dMf1[2, j1]*USf[s2, 1, 2, j1]*
+           USfC[s1, 2, 2, j1] - 2*S2B*SW*AfC[2, j1, j1]*dMf1[2, j1]*
+           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 4*CB2*dSW1*MUE*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
-          2*S2B*SW*Conjugate[dAf1[2, j1, j1]]*Mass[F[2, {j1}]]*
-           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 2*CB2*MUE*SW*
-           dZNHiggs1[3, 3]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+          4*CB2*dMu1*SW*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+           USfC[s1, 2, 2, j1] + 4*CB*dCosB1*MUE*SW*Mass[F[2, {j1}]]*
+           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 2*CB2*dMWsq1MW2*MUE*SW*
+           Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
+          2*dSW1*S2B*AfC[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+           USfC[s1, 2, 2, j1] + dMWsq1MW2*S2B*SW*AfC[2, j1, j1]*
+           Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
+          4*dCosB1*SB*SW*AfC[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+           USfC[s1, 2, 2, j1] - 2*S2B*SW*Conjugate[dAf1[2, j1, j1]]*
+           Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
+          2*CB2*MUE*SW*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
            USfC[s1, 2, 2, j1] - S2B*SW*AfC[2, j1, j1]*dZNHiggs1[3, 3]*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
           MUE*S2B*SW*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
@@ -366,14 +364,14 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
           2*MUEC*S2B*SW*dMf1[2, j1]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
           4*CB2*SW*Af[2, j1, j1]*dMf1[2, j1]*USf[s2, 2, 2, j1]*
            USfC[s1, 1, 2, j1] - 2*dSW1*MUEC*S2B*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
-          (dMWsq1*MUEC*S2B*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            USfC[s1, 1, 2, j1])/MW2 - 4*dCosB1*MUEC*SB*SW*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 4*CB2*dSW1*Af[2, j1, j1]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - dMWsq1MW2*MUEC*S2B*SW*
+           Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
+          4*dCosB1*MUEC*SB*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USfC[s1, 1, 2, j1] + 4*CB2*dSW1*Af[2, j1, j1]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 4*CB*dCosB1*SW*
+           Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USfC[s1, 1, 2, j1] + 2*CB2*dMWsq1MW2*SW*Af[2, j1, j1]*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 
-          4*CB*dCosB1*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-           USfC[s1, 1, 2, j1] + (2*CB2*dMWsq1*SW*Af[2, j1, j1]*
-            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1])/MW2 + 
           2*S2B*SW*Conjugate[dMu1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
            USfC[s1, 1, 2, j1] - 4*CB2*SW*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*
            USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 2*CB2*MUEC*SW*
@@ -394,13 +392,13 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USfC[s1, 2, 2, j1] + 2*dSW1*MUE*S2B*Mass[F[2, {j1}]]*
            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 2*dMu1*S2B*SW*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
-          (dMWsq1*MUE*S2B*SW*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-            USfC[s1, 2, 2, j1])/MW2 + 4*dCosB1*MUE*SB*SW*Mass[F[2, {j1}]]*
+          dMWsq1MW2*MUE*S2B*SW*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+           USfC[s1, 2, 2, j1] + 4*dCosB1*MUE*SB*SW*Mass[F[2, {j1}]]*
            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 4*CB2*dSW1*AfC[2, j1, j1]*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
           4*CB*dCosB1*SW*AfC[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-           USfC[s1, 2, 2, j1] - (2*CB2*dMWsq1*SW*AfC[2, j1, j1]*
-            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1])/MW2 + 
+           USfC[s1, 2, 2, j1] - 2*CB2*dMWsq1MW2*SW*AfC[2, j1, j1]*
+           Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
           4*CB2*SW*Conjugate[dAf1[2, j1, j1]]*Mass[F[2, {j1}]]*
            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 2*CB2*MUE*SW*
            dZNHiggs1[3, 4]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
@@ -415,79 +413,54 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
          (Yt*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - YtC*USf[s2, 1, 3, j1]*
            USfC[s1, 2, 3, j1]))/(Sqrt[2]*MT), 
        (ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (S2B*SW*dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]*
-           (Yt*USf[s2, 2, 3, j1]*USfC[1, 1, 3, j1] - YtC*USf[s2, 1, 3, j1]*
-             USfC[1, 2, 3, j1]) + S2B*SW*dZSq1[13, 2, s1, j1, j1]*
-           Mass[F[3, {j1}]]*(Yt*USf[s2, 2, 3, j1]*USfC[2, 1, 3, j1] - 
-            YtC*USf[s2, 1, 3, j1]*USfC[2, 2, 3, j1]) + 
-          S2B*SW*Yt*dZbarSq1[13, 1, s2, j2, j2]*Mass[F[3, {j1}]]*
-           USf[1, 2, 3, j1]*USfC[s1, 1, 3, j1] + S2B*SW*Yt*
-           dZbarSq1[13, 2, s2, j2, j2]*Mass[F[3, {j1}]]*USf[2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] + 2*S2B*SW*Yt*dMf1[3, j1]*USf[s2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] - 2*dSW1*S2B*Yt*Mass[F[3, {j1}]]*
-           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 4*CB*dSinB1*SW*Yt*
-           Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
-          (dMWsq1*S2B*SW*Yt*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
-            USfC[s1, 1, 3, j1])/MW2 + 4*SB2*SW*Conjugate[dMu1]*
-           Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + 
-          2*S2B*SW*dAf1[3, j1, j1]*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] + S2B*SW*Yt*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]*
-           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + 2*SB2*SW*Xt*dZNHiggs1[4, 3]*
-           Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
-          S2B*SW*YtC*dZbarSq1[13, 1, s2, j2, j2]*Mass[F[3, {j1}]]*
-           USf[1, 1, 3, j1]*USfC[s1, 2, 3, j1] - S2B*SW*YtC*
-           dZbarSq1[13, 2, s2, j2, j2]*Mass[F[3, {j1}]]*USf[2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1] - 2*S2B*SW*YtC*dMf1[3, j1]*USf[s2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1] - 4*dMu1*SB2*SW*Mass[F[3, {j1}]]*
-           USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 2*dSW1*S2B*YtC*
-           Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 
-          4*CB*dSinB1*SW*YtC*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1] + (dMWsq1*S2B*SW*YtC*Mass[F[3, {j1}]]*
-            USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1])/MW2 - 
-          2*S2B*SW*Conjugate[dAf1[3, j1, j1]]*Mass[F[3, {j1}]]*
-           USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - S2B*SW*YtC*dZNHiggs1[3, 3]*
-           Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - 
-          2*SB2*SW*XtC*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1]))/(4*Sqrt[2]*MT*SB2*SW2)}}, 
+         (SW*Mass[F[3, {j1}]]*((2*SB2*Conjugate[dMu1] + S2B*dAf1[3, j1, j1])*
+             USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
+            (2*dMu1*SB2 + S2B*Conjugate[dAf1[3, j1, j1]])*USf[s2, 1, 3, j1]*
+             USfC[s1, 2, 3, j1] + CB*(SB*dZSq1[13, 1, s1, j1, j1]*(
+                Yt*USf[s2, 2, 3, j1]*USfC[1, 1, 3, j1] - YtC*USf[s2, 1, 3, 
+                  j1]*USfC[1, 2, 3, j1]) + SB*dZSq1[13, 2, s1, j1, j1]*(
+                Yt*USf[s2, 2, 3, j1]*USfC[2, 1, 3, j1] - YtC*USf[s2, 1, 3, 
+                  j1]*USfC[2, 2, 3, j1]) - (2*dSinB1 + dMWsq1MW2*SB - 
+                SB*dZNHiggs1[3, 3])*(Yt*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, 
+                  j1] - YtC*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1]))) - 
+          SB*(2*CB*dSW1*Mass[F[3, {j1}]]*(Yt*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, 
+                j1] - YtC*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1]) - 
+            SW*(2*CB*dMf1[3, j1]*(Yt*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
+                YtC*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1]) + Mass[F[3, {j1}]]*(
+                CB*dZbarSq1[13, 1, s2, j2, j2]*(Yt*USf[1, 2, 3, j1]*
+                   USfC[s1, 1, 3, j1] - YtC*USf[1, 1, 3, j1]*USfC[s1, 2, 3, 
+                    j1]) + CB*dZbarSq1[13, 2, s2, j2, j2]*
+                 (Yt*USf[2, 2, 3, j1]*USfC[s1, 1, 3, j1] - YtC*USf[2, 1, 3, 
+                    j1]*USfC[s1, 2, 3, j1]) + SB*dZNHiggs1[4, 3]*
+                 (Xt*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - XtC*USf[s2, 1, 3, 
+                    j1]*USfC[s1, 2, 3, j1]))))))/(2*Sqrt[2]*MT*SB2*SW2)}}, 
     C[S[4], S[13, {s1, j1, o1}], -S[13, {s2, j2, o2}]] == 
      {{(ht*SB*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]*
          (Xt*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - XtC*USf[s2, 1, 3, j1]*
            USfC[s1, 2, 3, j1]))/(Sqrt[2]*MT), 
-       (ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (2*SB2*SW*dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]*
-           (Xt*USf[s2, 2, 3, j1]*USfC[1, 1, 3, j1] - XtC*USf[s2, 1, 3, j1]*
-             USfC[1, 2, 3, j1]) + 2*SB2*SW*dZSq1[13, 2, s1, j1, j1]*
-           Mass[F[3, {j1}]]*(Xt*USf[s2, 2, 3, j1]*USfC[2, 1, 3, j1] - 
-            XtC*USf[s2, 1, 3, j1]*USfC[2, 2, 3, j1]) + 
-          2*SB2*SW*Xt*dZbarSq1[13, 1, s2, j2, j2]*Mass[F[3, {j1}]]*
-           USf[1, 2, 3, j1]*USfC[s1, 1, 3, j1] + 2*SB2*SW*Xt*
-           dZbarSq1[13, 2, s2, j2, j2]*Mass[F[3, {j1}]]*USf[2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] + 4*SB2*SW*Xt*dMf1[3, j1]*USf[s2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] - 4*dSW1*SB2*Xt*Mass[F[3, {j1}]]*
-           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 4*dSinB1*SB*SW*Xt*
-           Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
-          (2*dMWsq1*SB2*SW*Xt*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
-            USfC[s1, 1, 3, j1])/MW2 - 2*S2B*SW*Conjugate[dMu1]*
-           Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + 
-          4*SB2*SW*dAf1[3, j1, j1]*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] + S2B*SW*Yt*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]*
-           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + 2*SB2*SW*Xt*dZNHiggs1[4, 4]*
-           Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
-          2*SB2*SW*XtC*dZbarSq1[13, 1, s2, j2, j2]*Mass[F[3, {j1}]]*
-           USf[1, 1, 3, j1]*USfC[s1, 2, 3, j1] - 2*SB2*SW*XtC*
-           dZbarSq1[13, 2, s2, j2, j2]*Mass[F[3, {j1}]]*USf[2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1] - 4*SB2*SW*XtC*dMf1[3, j1]*USf[s2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1] + 2*dMu1*S2B*SW*Mass[F[3, {j1}]]*
-           USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 4*dSW1*SB2*XtC*
-           Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 
-          4*dSinB1*SB*SW*XtC*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1] + (2*dMWsq1*SB2*SW*XtC*Mass[F[3, {j1}]]*
-            USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1])/MW2 - 
-          4*SB2*SW*Conjugate[dAf1[3, j1, j1]]*Mass[F[3, {j1}]]*
-           USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - S2B*SW*YtC*dZNHiggs1[3, 4]*
-           Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - 
-          2*SB2*SW*XtC*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1]))/(4*Sqrt[2]*MT*SB2*SW2)}}, 
+       -(ht*SB*SW*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
+          (SB*Mass[F[3, {j1}]]*((2*dSW1*SB*Xt + SW*(2*dSinB1*Xt + 
+                 dMWsq1MW2*SB*Xt - CB*Yt*dZNHiggs1[3, 4] - SB*Xt*dZNHiggs1[4, 
+                   4]))*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + 
+             (-2*dSW1*SB*XtC + SW*(-2*dSinB1*XtC - dMWsq1MW2*SB*XtC + 
+                 CB*YtC*dZNHiggs1[3, 4] + SB*XtC*dZNHiggs1[4, 4]))*
+              USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1]) - 
+           SW*(2*SB2*dMf1[3, j1]*(Xt*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
+               XtC*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1]) - Mass[F[3, {j1}]]*
+              (-2*SB2*dAf1[3, j1, j1]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
+               dMu1*S2B*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 2*SB2*
+                Conjugate[dAf1[3, j1, j1]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, 
+                 j1] - SB*(-2*CB*Conjugate[dMu1]*USf[s2, 2, 3, j1]*
+                  USfC[s1, 1, 3, j1] + SB*(dZSq1[13, 1, s1, j1, j1]*
+                    (Xt*USf[s2, 2, 3, j1]*USfC[1, 1, 3, j1] - XtC*USf[s2, 1, 
+                       3, j1]*USfC[1, 2, 3, j1]) + dZSq1[13, 2, s1, j1, j1]*
+                    (Xt*USf[s2, 2, 3, j1]*USfC[2, 1, 3, j1] - XtC*USf[s2, 1, 
+                       3, j1]*USfC[2, 2, 3, j1]) + dZbarSq1[13, 1, s2, j2, 
+                     j2]*(Xt*USf[1, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
+                     XtC*USf[1, 1, 3, j1]*USfC[s1, 2, 3, j1]) + 
+                   dZbarSq1[13, 2, s2, j2, j2]*(Xt*USf[2, 2, 3, j1]*USfC[s1, 
+                       1, 3, j1] - XtC*USf[2, 1, 3, j1]*USfC[s1, 2, 3, 
+                       j1])))))))/(2*Sqrt[2]*MT*SB2*SW2)}}, 
     C[S[3], S[14, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
      {{0, (ht*S2B*dMf1[4, j1]*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          ((CB*MUEC + SB*Af[4, j1, j1])*USf[s2, 2, 4, j1]*USfC[s1, 1, 4, j1] - 
@@ -530,9 +503,9 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1] - 4*CB*CB2*dSW1*SW*
            Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1] - 
           4*CB2*dCosB1*SW2*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*
-           USfC[s1, 1, 2, j1] - (2*CB*CB2*dMWsq1*SW2*Mass[F[2, {j1}]]^2*
-            USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1])/MW2 + 
-          2*CB*CB2*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*
+           USfC[s1, 1, 2, j1] - 2*CB*CB2*dMWsq1MW2*SW2*Mass[F[2, {j1}]]^2*
+           USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1] + 2*CB*CB2*SW2*
+           dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*
            USfC[s1, 1, 2, j1] + 2*CB2*SB*SW2*dZNHiggs1[2, 1]*
            Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1] - 
           2*CB2*MUEC*SB*SW2*dMf1[2, j1]*USf[s2, 2, 2, j1]*
@@ -540,20 +513,20 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 2*CB2*dSW1*MUEC*SB*SW*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 
           dCosB1*MUEC*S2B*SW2*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-           USfC[s1, 1, 2, j1] + (CB2*dMWsq1*MUEC*SB*SW2*Mass[F[2, {j1}]]*
-            USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1])/MW2 - 2*CB*CB2*dSW1*SW*
+           USfC[s1, 1, 2, j1] + CB2*dMWsq1MW2*MUEC*SB*SW2*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 2*CB*CB2*dSW1*SW*
            Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
            USfC[s1, 1, 2, j1] - 2*CB2*dCosB1*SW2*Af[2, j1, j1]*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
-          (CB*CB2*dMWsq1*SW2*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            USfC[s1, 1, 2, j1])/MW2 - 2*CB2*SB*SW2*Conjugate[dMu1]*
+          CB*CB2*dMWsq1MW2*SW2*Af[2, j1, j1]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 2*CB2*SB*SW2*
+           Conjugate[dMu1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USfC[s1, 1, 2, j1] + 2*CB*CB2*SW2*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - CB2*MUEC*SB*SW2*
+           dZNHiggs1[1, 1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USfC[s1, 1, 2, j1] + CB*CB2*SW2*Af[2, j1, j1]*dZNHiggs1[1, 1]*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 
-          2*CB*CB2*SW2*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-           USfC[s1, 1, 2, j1] - CB2*MUEC*SB*SW2*dZNHiggs1[1, 1]*
-           Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 
-          CB*CB2*SW2*Af[2, j1, j1]*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + CB*CB2*MUEC*SW2*
-           dZNHiggs1[2, 1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+          CB*CB2*MUEC*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
            USfC[s1, 1, 2, j1] + CB2*SB*SW2*Af[2, j1, j1]*dZNHiggs1[2, 1]*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
           CB2*MUE*SB*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*
@@ -572,27 +545,27 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + dCosB1*MUE*S2B*SW2*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
           2*CB2*dMu1*SB*SW2*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-           USfC[s1, 2, 2, j1] + (CB2*dMWsq1*MUE*SB*SW2*Mass[F[2, {j1}]]*
-            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1])/MW2 - 2*CB*CB2*dSW1*SW*
+           USfC[s1, 2, 2, j1] + CB2*dMWsq1MW2*MUE*SB*SW2*Mass[F[2, {j1}]]*
+           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 2*CB*CB2*dSW1*SW*
            AfC[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
            USfC[s1, 2, 2, j1] - 2*CB2*dCosB1*SW2*AfC[2, j1, j1]*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
-          (CB*CB2*dMWsq1*SW2*AfC[2, j1, j1]*Mass[F[2, {j1}]]*
-            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1])/MW2 + 
-          2*CB*CB2*SW2*Conjugate[dAf1[2, j1, j1]]*Mass[F[2, {j1}]]*
-           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - CB2*MUE*SB*SW2*
-           dZNHiggs1[1, 1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-           USfC[s1, 2, 2, j1] + CB*CB2*SW2*AfC[2, j1, j1]*dZNHiggs1[1, 1]*
+          CB*CB2*dMWsq1MW2*SW2*AfC[2, j1, j1]*Mass[F[2, {j1}]]*
+           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 2*CB*CB2*SW2*
+           Conjugate[dAf1[2, j1, j1]]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+           USfC[s1, 2, 2, j1] - CB2*MUE*SB*SW2*dZNHiggs1[1, 1]*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
-          CB*CB2*MUE*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+          CB*CB2*SW2*AfC[2, j1, j1]*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]*
+           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + CB*CB2*MUE*SW2*
+           dZNHiggs1[2, 1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
            USfC[s1, 2, 2, j1] + CB2*SB*SW2*AfC[2, j1, j1]*dZNHiggs1[2, 1]*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
           8*CB*CB2*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
            USfC[s1, 2, 2, j1] - 4*CB*CB2*dSW1*SW*Mass[F[2, {j1}]]^2*
            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1] - 4*CB2*dCosB1*SW2*
            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1] - 
-          (2*CB*CB2*dMWsq1*SW2*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MW2 + 2*CB*CB2*SW2*dZNHiggs1[1, 1]*
+          2*CB*CB2*dMWsq1MW2*SW2*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
+           USfC[s1, 2, 2, j1] + 2*CB*CB2*SW2*dZNHiggs1[1, 1]*
            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1] + 
           2*CB2*SB*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
            USfC[s1, 2, 2, j1]))/(Sqrt[2]*CB*CB2*MT*SW2)}}, 
@@ -626,9 +599,9 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1] - 4*CB2*dSW1*SB*SW*
            Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1] - 
           2*dCosB1*S2B*SW2*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*
-           USfC[s1, 1, 2, j1] - (2*CB2*dMWsq1*SB*SW2*Mass[F[2, {j1}]]^2*
-            USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1])/MW2 + 
-          2*CB*CB2*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*
+           USfC[s1, 1, 2, j1] - 2*CB2*dMWsq1MW2*SB*SW2*Mass[F[2, {j1}]]^2*
+           USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1] + 2*CB*CB2*SW2*
+           dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*
            USfC[s1, 1, 2, j1] + 2*CB2*SB*SW2*dZNHiggs1[2, 2]*
            Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1]*USfC[s1, 1, 2, j1] + 
           2*CB*CB2*MUEC*SW2*dMf1[2, j1]*USf[s2, 2, 2, j1]*
@@ -636,15 +609,15 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 2*CB*CB2*dSW1*MUEC*SW*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
           2*CB2*dCosB1*MUEC*SW2*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-           USfC[s1, 1, 2, j1] - (CB*CB2*dMWsq1*MUEC*SW2*Mass[F[2, {j1}]]*
-            USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1])/MW2 - 2*CB2*dSW1*SB*SW*
+           USfC[s1, 1, 2, j1] - CB*CB2*dMWsq1MW2*MUEC*SW2*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 2*CB2*dSW1*SB*SW*
            Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
            USfC[s1, 1, 2, j1] - dCosB1*S2B*SW2*Af[2, j1, j1]*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - 
-          (CB2*dMWsq1*SB*SW2*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            USfC[s1, 1, 2, j1])/MW2 + 2*CB*CB2*SW2*Conjugate[dMu1]*
-           Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 
-          2*CB2*SB*SW2*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] - CB2*dMWsq1MW2*SB*SW2*
+           Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+           USfC[s1, 1, 2, j1] + 2*CB*CB2*SW2*Conjugate[dMu1]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 2*CB2*SB*SW2*
+           dAf1[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
            USfC[s1, 1, 2, j1] - CB2*MUEC*SB*SW2*dZNHiggs1[1, 2]*
            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1] + 
           CB*CB2*SW2*Af[2, j1, j1]*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]*
@@ -668,27 +641,27 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 2*CB*CB2*dMu1*SW2*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
           2*CB2*dCosB1*MUE*SW2*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-           USfC[s1, 2, 2, j1] - (CB*CB2*dMWsq1*MUE*SW2*Mass[F[2, {j1}]]*
-            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1])/MW2 - 2*CB2*dSW1*SB*SW*
+           USfC[s1, 2, 2, j1] - CB*CB2*dMWsq1MW2*MUE*SW2*Mass[F[2, {j1}]]*
+           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 2*CB2*dSW1*SB*SW*
            AfC[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
            USfC[s1, 2, 2, j1] - dCosB1*S2B*SW2*AfC[2, j1, j1]*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - 
-          (CB2*dMWsq1*SB*SW2*AfC[2, j1, j1]*Mass[F[2, {j1}]]*
-            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1])/MW2 + 
-          2*CB2*SB*SW2*Conjugate[dAf1[2, j1, j1]]*Mass[F[2, {j1}]]*
-           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] - CB2*MUE*SB*SW2*
-           dZNHiggs1[1, 2]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-           USfC[s1, 2, 2, j1] + CB*CB2*SW2*AfC[2, j1, j1]*dZNHiggs1[1, 2]*
+          CB2*dMWsq1MW2*SB*SW2*AfC[2, j1, j1]*Mass[F[2, {j1}]]*
+           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 2*CB2*SB*SW2*
+           Conjugate[dAf1[2, j1, j1]]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+           USfC[s1, 2, 2, j1] - CB2*MUE*SB*SW2*dZNHiggs1[1, 2]*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
-          CB*CB2*MUE*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+          CB*CB2*SW2*AfC[2, j1, j1]*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]*
+           USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + CB*CB2*MUE*SW2*
+           dZNHiggs1[2, 2]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
            USfC[s1, 2, 2, j1] + CB2*SB*SW2*AfC[2, j1, j1]*dZNHiggs1[2, 2]*
            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1] + 
           8*CB2*SB*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
            USfC[s1, 2, 2, j1] - 4*CB2*dSW1*SB*SW*Mass[F[2, {j1}]]^2*
            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1] - 2*dCosB1*S2B*SW2*
            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1] - 
-          (2*CB2*dMWsq1*SB*SW2*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MW2 + 2*CB*CB2*SW2*dZNHiggs1[1, 2]*
+          2*CB2*dMWsq1MW2*SB*SW2*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
+           USfC[s1, 2, 2, j1] + 2*CB*CB2*SW2*dZNHiggs1[1, 2]*
            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1] + 
           2*CB2*SB*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
            USfC[s1, 2, 2, j1]))/(Sqrt[2]*CB*CB2*MT*SW2)}}, 
@@ -717,17 +690,16 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] - 
           4*dSW1*SB*SW*Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*
            USfC[s1, 1, 3, j1] - 4*dSinB1*SW2*Mass[F[3, {j1}]]^2*
-           USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] - 
-          (2*dMWsq1*SB*SW2*Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*
-            USfC[s1, 1, 3, j1])/MW2 + 2*SB*SW2*dZNHiggs1[1, 1]*
-           Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] - 
-          2*CB*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*
-           USfC[s1, 1, 3, j1] + 2*SB*SW2*Xt*dMf1[3, j1]*USf[s2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] - 2*dSW1*SB*SW*Xt*Mass[F[3, {j1}]]*
-           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 2*dSinB1*SW2*Xt*
+           USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] - 2*dMWsq1MW2*SB*SW2*
+           Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] + 
+          2*SB*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*
+           USfC[s1, 1, 3, j1] - 2*CB*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
+           USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] + 2*SB*SW2*Xt*dMf1[3, j1]*
+           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 2*dSW1*SB*SW*Xt*
            Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
-          (dMWsq1*SB*SW2*Xt*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
-            USfC[s1, 1, 3, j1])/MW2 - 2*CB*SW2*Conjugate[dMu1]*
+          2*dSinB1*SW2*Xt*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
+           USfC[s1, 1, 3, j1] - dMWsq1MW2*SB*SW2*Xt*Mass[F[3, {j1}]]*
+           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 2*CB*SW2*Conjugate[dMu1]*
            Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + 
           2*SB*SW2*dAf1[3, j1, j1]*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
            USfC[s1, 1, 3, j1] + SB*SW2*Xt*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]*
@@ -744,8 +716,8 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USfC[s1, 2, 3, j1] - 2*dSW1*SB*SW*XtC*Mass[F[3, {j1}]]*
            USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - 2*dSinB1*SW2*XtC*
            Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - 
-          (dMWsq1*SB*SW2*XtC*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
-            USfC[s1, 2, 3, j1])/MW2 + 2*SB*SW2*Conjugate[dAf1[3, j1, j1]]*
+          dMWsq1MW2*SB*SW2*XtC*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
+           USfC[s1, 2, 3, j1] + 2*SB*SW2*Conjugate[dAf1[3, j1, j1]]*
            Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 
           SB*SW2*XtC*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
            USfC[s1, 2, 3, j1] - CB*SW2*YtC*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]*
@@ -753,12 +725,11 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1] - 
           4*dSW1*SB*SW*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*
            USfC[s1, 2, 3, j1] - 4*dSinB1*SW2*Mass[F[3, {j1}]]^2*
-           USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1] - 
-          (2*dMWsq1*SB*SW2*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*
-            USfC[s1, 2, 3, j1])/MW2 + 2*SB*SW2*dZNHiggs1[1, 1]*
-           Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1] - 
-          2*CB*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*
-           USfC[s1, 2, 3, j1]))/(Sqrt[2]*MT*SW2)}}, 
+           USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1] - 2*dMWsq1MW2*SB*SW2*
+           Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1] + 
+          2*SB*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*
+           USfC[s1, 2, 3, j1] - 2*CB*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
+           USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1]))/(Sqrt[2]*MT*SW2)}}, 
     C[S[2], S[13, {s1, j1, o1}], -S[13, {s2, j2, o2}]] == 
      {{(I*CB*ht*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]*
          (Yt*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + YtC*USf[s2, 1, 3, j1]*
@@ -784,46 +755,46 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] - 
           4*CB*dSW1*SB2*SW*Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*
            USfC[s1, 1, 3, j1] - 2*dSinB1*S2B*SW2*Mass[F[3, {j1}]]^2*
-           USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] - 
-          (2*CB*dMWsq1*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*
-            USfC[s1, 1, 3, j1])/MW2 - 2*SB*SB2*SW2*dZNHiggs1[1, 2]*
+           USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] - 2*CB*dMWsq1MW2*SB2*SW2*
+           Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] - 
+          2*SB*SB2*SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*
+           USfC[s1, 1, 3, j1] + 2*CB*SB2*SW2*dZNHiggs1[2, 2]*
            Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*USfC[s1, 1, 3, j1] + 
-          2*CB*SB2*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*USf[s2, 1, 3, j1]*
-           USfC[s1, 1, 3, j1] + 2*CB*SB2*SW2*Yt*dMf1[3, j1]*USf[s2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] - 2*CB*dSW1*SB2*SW*Yt*Mass[F[3, {j1}]]*
-           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - dSinB1*S2B*SW2*Yt*
-           Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
-          (CB*dMWsq1*SB2*SW2*Yt*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
-            USfC[s1, 1, 3, j1])/MW2 + 2*SB*SB2*SW2*Conjugate[dMu1]*
+          2*CB*SB2*SW2*Yt*dMf1[3, j1]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - 
+          2*CB*dSW1*SB2*SW*Yt*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
+           USfC[s1, 1, 3, j1] - dSinB1*S2B*SW2*Yt*Mass[F[3, {j1}]]*
+           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - CB*dMWsq1MW2*SB2*SW2*Yt*
            Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + 
-          2*CB*SB2*SW2*dAf1[3, j1, j1]*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] - SB*SB2*SW2*Xt*dZNHiggs1[1, 2]*
+          2*SB*SB2*SW2*Conjugate[dMu1]*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
+           USfC[s1, 1, 3, j1] + 2*CB*SB2*SW2*dAf1[3, j1, j1]*Mass[F[3, {j1}]]*
+           USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] - SB*SB2*SW2*Xt*
+           dZNHiggs1[1, 2]*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
+           USfC[s1, 1, 3, j1] + CB*SB2*SW2*Yt*dZNHiggs1[2, 2]*
            Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1] + 
-          CB*SB2*SW2*Yt*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
-           USfC[s1, 1, 3, j1] + CB*SB2*SW2*YtC*dZbarSq1[13, 1, s2, j2, j2]*
-           Mass[F[3, {j1}]]*USf[1, 1, 3, j1]*USfC[s1, 2, 3, j1] + 
-          2*CB*SB2*SW2*dZbarSq1[13, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
-           USf[1, 2, 3, j1]*USfC[s1, 2, 3, j1] + CB*SB2*SW2*YtC*
-           dZbarSq1[13, 2, s2, j2, j2]*Mass[F[3, {j1}]]*USf[2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1] + 2*CB*SB2*SW2*dZbarSq1[13, 2, s2, j2, j2]*
-           Mass[F[3, {j1}]]^2*USf[2, 2, 3, j1]*USfC[s1, 2, 3, j1] + 
-          2*CB*SB2*SW2*YtC*dMf1[3, j1]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 
-          2*dMu1*SB*SB2*SW2*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
-           USfC[s1, 2, 3, j1] - 2*CB*dSW1*SB2*SW*YtC*Mass[F[3, {j1}]]*
-           USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - dSinB1*S2B*SW2*YtC*
+          CB*SB2*SW2*YtC*dZbarSq1[13, 1, s2, j2, j2]*Mass[F[3, {j1}]]*
+           USf[1, 1, 3, j1]*USfC[s1, 2, 3, j1] + 2*CB*SB2*SW2*
+           dZbarSq1[13, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[1, 2, 3, j1]*
+           USfC[s1, 2, 3, j1] + CB*SB2*SW2*YtC*dZbarSq1[13, 2, s2, j2, j2]*
+           Mass[F[3, {j1}]]*USf[2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 
+          2*CB*SB2*SW2*dZbarSq1[13, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+           USf[2, 2, 3, j1]*USfC[s1, 2, 3, j1] + 2*CB*SB2*SW2*YtC*dMf1[3, j1]*
+           USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 2*dMu1*SB*SB2*SW2*
            Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - 
-          (CB*dMWsq1*SB2*SW2*YtC*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
-            USfC[s1, 2, 3, j1])/MW2 + 2*CB*SB2*SW2*Conjugate[dAf1[3, j1, j1]]*
-           Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - 
-          SB*SB2*SW2*XtC*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
+          2*CB*dSW1*SB2*SW*YtC*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
+           USfC[s1, 2, 3, j1] - dSinB1*S2B*SW2*YtC*Mass[F[3, {j1}]]*
+           USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - CB*dMWsq1MW2*SB2*SW2*YtC*
+           Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 
+          2*CB*SB2*SW2*Conjugate[dAf1[3, j1, j1]]*Mass[F[3, {j1}]]*
+           USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] - SB*SB2*SW2*XtC*
+           dZNHiggs1[1, 2]*Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*
            USfC[s1, 2, 3, j1] + CB*SB2*SW2*YtC*dZNHiggs1[2, 2]*
            Mass[F[3, {j1}]]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1] + 
           8*CB*SB2*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*USf[s2, 2, 3, j1]*
            USfC[s1, 2, 3, j1] - 4*CB*dSW1*SB2*SW*Mass[F[3, {j1}]]^2*
            USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1] - 2*dSinB1*S2B*SW2*
            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1] - 
-          (2*CB*dMWsq1*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*
-            USfC[s1, 2, 3, j1])/MW2 - 2*SB*SB2*SW2*dZNHiggs1[1, 2]*
+          2*CB*dMWsq1MW2*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*
+           USfC[s1, 2, 3, j1] - 2*SB*SB2*SW2*dZNHiggs1[1, 2]*
            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*USfC[s1, 2, 3, j1] + 
           2*CB*SB2*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j1]*
            USfC[s1, 2, 3, j1]))/(Sqrt[2]*MT*SB2*SW2)}}, 
@@ -855,16 +826,16 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USf[2, 2, 3, j1]*USfC[s2, 1, 4, j2] + 4*S2B^2*SW*dMf1[3, j1]*
            Mass[F[3, {j1}]]*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] - 
           2*dSW1*S2B^2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-           USfC[s2, 1, 4, j2] - (dMWsq1*S2B^2*SW*Mass[F[3, {j1}]]^2*
-            USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MW2 - 8*CB2*dSinB1*SB*SW*
+           USfC[s2, 1, 4, j2] - dMWsq1MW2*S2B^2*SW*Mass[F[3, {j1}]]^2*
+           USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] - 8*CB2*dSinB1*SB*SW*
            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] + 
           2*S2B*SB2*SW*Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {j1}]]^2*
            USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] + S2B^2*SW*dZbarCHiggs1[5, 5]*
            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] + 
           2*S2B^2*SW*Yt*dMf1[3, j1]*USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] - 
           2*dSW1*S2B^2*Yt*Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*
-           USfC[s2, 1, 4, j2] - (dMWsq1*S2B^2*SW*Yt*Mass[F[3, {j1}]]*
-            USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2])/MW2 - 8*CB2*dSinB1*SB*SW*Yt*
+           USfC[s2, 1, 4, j2] - dMWsq1MW2*S2B^2*SW*Yt*Mass[F[3, {j1}]]*
+           USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] - 8*CB2*dSinB1*SB*SW*Yt*
            Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] + 
           4*S2B*SB2*SW*Conjugate[dMu1]*Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*
            USfC[s2, 1, 4, j2] + 2*S2B*SB2*SW*Xt*Conjugate[dZCHiggs1[6, 5]]*
@@ -891,8 +862,8 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USf[2, 1, 4, j2]*USfC[s1, 1, 3, j1] + 4*S2B^2*SW*dMf1[3, j1]*
            Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1] - 
           2*dSW1*S2B^2*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-           USfC[s1, 1, 3, j1] - (dMWsq1*S2B^2*SW*Mass[F[3, {j1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MW2 - 8*CB2*dSinB1*SB*SW*
+           USfC[s1, 1, 3, j1] - dMWsq1MW2*S2B^2*SW*Mass[F[3, {j1}]]^2*
+           USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1] - 8*CB2*dSinB1*SB*SW*
            Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1] + 
           S2B^2*SW*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
            USfC[s1, 1, 3, j1] + 2*S2B*SB2*SW*dZCHiggs1[6, 5]*
@@ -906,16 +877,16 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
           2*S2B^2*SW*YtC*dMf1[3, j1]*USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 
           4*dMu1*S2B*SB2*SW*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
            USfC[s1, 2, 3, j1] - 2*dSW1*S2B^2*YtC*Mass[F[3, {j1}]]*
-           USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] - 
-          (dMWsq1*S2B^2*SW*YtC*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
-            USfC[s1, 2, 3, j1])/MW2 - 8*CB2*dSinB1*SB*SW*YtC*Mass[F[3, {j1}]]*
-           USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 2*S2B^2*SW*
-           Conjugate[dAf1[3, j1, j1]]*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
-           USfC[s1, 2, 3, j1] + S2B^2*SW*YtC*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]*
-           USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 2*S2B*SB2*SW*XtC*
-           dZCHiggs1[6, 5]*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
-           USfC[s1, 2, 3, j1] + 8*SB2*SW*dMf1[4, j2]*Mass[F[3, {j1}]]*
-           USf[s2, 2, 4, j2]*USfC[s1, 2, 3, j1]))/(MT*S2B*SB2*SW2)}}, 
+           USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] - dMWsq1MW2*S2B^2*SW*YtC*
+           Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] - 
+          8*CB2*dSinB1*SB*SW*YtC*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
+           USfC[s1, 2, 3, j1] + 2*S2B^2*SW*Conjugate[dAf1[3, j1, j1]]*
+           Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 
+          S2B^2*SW*YtC*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
+           USfC[s1, 2, 3, j1] + 2*S2B*SB2*SW*XtC*dZCHiggs1[6, 5]*
+           Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 
+          8*SB2*SW*dMf1[4, j2]*Mass[F[3, {j1}]]*USf[s2, 2, 4, j2]*
+           USfC[s1, 2, 3, j1]))/(MT*S2B*SB2*SW2)}}, 
     C[-S[5], S[12, {s2, j2}], -S[11, {j1}]] == 
      {{(I*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*
          (SB*Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1] + 
@@ -927,8 +898,8 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
              USfC[2, 1, 2, j1] + (2*CB2*MUE + S2B*AfC[2, j1, j1])*
              USfC[2, 2, 2, j1]) + 4*S2B*SW*dMf1[2, j1]*Mass[F[2, {j1}]]*
            USfC[s2, 1, 2, j1] - 2*dSW1*S2B*Mass[F[2, {j1}]]^2*
-           USfC[s2, 1, 2, j1] - (dMWsq1*S2B*SW*Mass[F[2, {j1}]]^2*
-            USfC[s2, 1, 2, j1])/MW2 - 4*dCosB1*SB*SW*Mass[F[2, {j1}]]^2*
+           USfC[s2, 1, 2, j1] - dMWsq1MW2*S2B*SW*Mass[F[2, {j1}]]^2*
+           USfC[s2, 1, 2, j1] - 4*dCosB1*SB*SW*Mass[F[2, {j1}]]^2*
            USfC[s2, 1, 2, j1] - 2*CB2*SW*Conjugate[dZCHiggs1[6, 5]]*
            Mass[F[2, {j1}]]^2*USfC[s2, 1, 2, j1] + S2B*SW*dZbarCHiggs1[5, 5]*
            Mass[F[2, {j1}]]^2*USfC[s2, 1, 2, j1] + 
@@ -938,20 +909,21 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
           4*CB2*dSW1*MUE*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 
           4*CB2*dMu1*SW*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 
           4*CB*dCosB1*MUE*SW*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 
-          (2*CB2*dMWsq1*MUE*SW*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1])/MW2 - 
+          2*CB2*dMWsq1MW2*MUE*SW*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 
           2*dSW1*S2B*AfC[2, j1, j1]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 
-          (dMWsq1*S2B*SW*AfC[2, j1, j1]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1])/
-           MW2 - 4*dCosB1*SB*SW*AfC[2, j1, j1]*Mass[F[2, {j1}]]*
-           USfC[s2, 2, 2, j1] + 2*S2B*SW*Conjugate[dAf1[2, j1, j1]]*
-           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + MUE*S2B*SW*
-           Conjugate[dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 
-          2*CB2*SW*AfC[2, j1, j1]*Conjugate[dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]*
-           USfC[s2, 2, 2, j1] + 2*CB2*MUE*SW*dZbarCHiggs1[5, 5]*
-           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + S2B*SW*AfC[2, j1, j1]*
-           dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 
-          2*CB2*MUE*SW*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]*
-           USfC[s2, 2, 2, j1] + S2B*SW*AfC[2, j1, j1]*dZbarSl1[1, j1, 1, 1]*
-           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]))/(CB2*MT*SW2)}}, 
+          dMWsq1MW2*S2B*SW*AfC[2, j1, j1]*Mass[F[2, {j1}]]*
+           USfC[s2, 2, 2, j1] - 4*dCosB1*SB*SW*AfC[2, j1, j1]*
+           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 2*S2B*SW*
+           Conjugate[dAf1[2, j1, j1]]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 
+          MUE*S2B*SW*Conjugate[dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]*
+           USfC[s2, 2, 2, j1] - 2*CB2*SW*AfC[2, j1, j1]*
+           Conjugate[dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 
+          2*CB2*MUE*SW*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]*
+           USfC[s2, 2, 2, j1] + S2B*SW*AfC[2, j1, j1]*dZbarCHiggs1[5, 5]*
+           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 2*CB2*MUE*SW*
+           dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 
+          S2B*SW*AfC[2, j1, j1]*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]*
+           USfC[s2, 2, 2, j1]))/(CB2*MT*SW2)}}, 
     C[S[5], S[11, {j1}], -S[12, {s2, j2}]] == 
      {{(I*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*
          (SB*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1] + 
@@ -964,7 +936,7 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
             (2*CB2*MUEC + S2B*Af[2, j1, j1])*USf[2, 2, 2, j1]) + 
           4*S2B*SW*dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1] - 
           2*dSW1*S2B*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] - 
-          (dMWsq1*S2B*SW*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1])/MW2 - 
+          dMWsq1MW2*S2B*SW*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] - 
           4*dCosB1*SB*SW*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] + 
           S2B*SW*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] - 
           2*CB2*SW*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] + 
@@ -973,20 +945,20 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
           2*S2B*SW*Af[2, j1, j1]*dMf1[2, j1]*USf[s2, 2, 2, j1] - 
           4*CB2*dSW1*MUEC*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 
           4*CB*dCosB1*MUEC*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 
-          (2*CB2*dMWsq1*MUEC*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1])/MW2 - 
+          2*CB2*dMWsq1MW2*MUEC*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 
           2*dSW1*S2B*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 
-          (dMWsq1*S2B*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1])/
-           MW2 - 4*dCosB1*SB*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1] + 4*CB2*SW*Conjugate[dMu1]*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1] + 2*S2B*SW*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1] + 2*CB2*MUEC*SW*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1] + S2B*SW*Af[2, j1, j1]*dZCHiggs1[5, 5]*
-           Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + MUEC*S2B*SW*dZCHiggs1[6, 5]*
-           Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 2*CB2*SW*Af[2, j1, j1]*
-           dZCHiggs1[6, 5]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 
-          2*CB2*MUEC*SW*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]*
-           USf[s2, 2, 2, j1] + S2B*SW*Af[2, j1, j1]*dZSl1[1, j1, 1, 1]*
-           Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]))/(CB2*MT*SW2)}}, 
+          dMWsq1MW2*S2B*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 
+          4*dCosB1*SB*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 
+          4*CB2*SW*Conjugate[dMu1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 
+          2*S2B*SW*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 
+          2*CB2*MUEC*SW*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 
+          S2B*SW*Af[2, j1, j1]*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1] + MUEC*S2B*SW*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1] - 2*CB2*SW*Af[2, j1, j1]*dZCHiggs1[6, 5]*
+           Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 2*CB2*MUEC*SW*
+           dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 
+          S2B*SW*Af[2, j1, j1]*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1]))/(CB2*MT*SW2)}}, 
     C[-S[6], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
      {{(I*ht*SB*CKM[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]*
          (Mass[F[3, {j1}]]*USf[s1, 1, 3, j1] + Xt*USf[s1, 2, 3, j1])*
@@ -1006,26 +978,25 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            Mass[F[3, {j1}]]*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] - 
           2*dSW1*S2B*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
            USfC[s2, 1, 4, j2] - 4*CB*dSinB1*SW*Mass[F[3, {j1}]]^2*
-           USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] - 
-          (dMWsq1*S2B*SW*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MW2 + 2*CB2*SW*Conjugate[dZCHiggs1[5, 6]]*
+           USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] - dMWsq1MW2*S2B*SW*
            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] + 
+          2*CB2*SW*Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {j1}]]^2*
+           USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] + 
           S2B*SW*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]^2*
            USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2] + 2*S2B*SW*Xt*dMf1[3, j1]*
            USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] - 2*dSW1*S2B*Xt*
            Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] - 
           4*CB*dSinB1*SW*Xt*Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*
-           USfC[s2, 1, 4, j2] - (dMWsq1*S2B*SW*Xt*Mass[F[3, {j1}]]*
-            USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2])/MW2 - 
-          4*CB2*SW*Conjugate[dMu1]*Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*
-           USfC[s2, 1, 4, j2] + 2*CB2*SW*Yt*Conjugate[dZCHiggs1[5, 6]]*
+           USfC[s2, 1, 4, j2] - dMWsq1MW2*S2B*SW*Xt*Mass[F[3, {j1}]]*
+           USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] - 4*CB2*SW*Conjugate[dMu1]*
            Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] + 
-          S2B*SW*Xt*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]*
-           USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] + 2*S2B*SW*dAf1[3, j1, j1]*
-           Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] + 
-          4*MUE*SB2*SW*dMf1[4, j2]*USf[s1, 1, 3, j1]*USfC[s2, 2, 4, j2] - 
-          2*S2B*SW*AfC[4, j2, j2]*dMf1[4, j2]*USf[s1, 1, 3, j1]*
-           USfC[s2, 2, 4, j2]))/(MT*S2B*SW2)}}, 
+          2*CB2*SW*Yt*Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {j1}]]*
+           USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] + S2B*SW*Xt*
+           Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]*USf[s1, 2, 3, j1]*
+           USfC[s2, 1, 4, j2] + 2*S2B*SW*dAf1[3, j1, j1]*Mass[F[3, {j1}]]*
+           USf[s1, 2, 3, j1]*USfC[s2, 1, 4, j2] + 4*MUE*SB2*SW*dMf1[4, j2]*
+           USf[s1, 1, 3, j1]*USfC[s2, 2, 4, j2] - 2*S2B*SW*AfC[4, j2, j2]*
+           dMf1[4, j2]*USf[s1, 1, 3, j1]*USfC[s2, 2, 4, j2]))/(MT*S2B*SW2)}}, 
     C[S[6], S[13, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
      {{(I*ht*SB*CKMC[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]*
          USf[s2, 1, 4, j2]*(Mass[F[3, {j1}]]*USfC[s1, 1, 3, j1] + 
@@ -1042,25 +1013,25 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USfC[s1, 1, 3, j1] - 2*dSW1*S2B*Mass[F[3, {j1}]]^2*
            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1] - 4*CB*dSinB1*SW*
            Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1] - 
-          (dMWsq1*S2B*SW*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 3, j1])/MW2 + 2*CB2*SW*dZCHiggs1[5, 6]*
+          dMWsq1MW2*S2B*SW*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
+           USfC[s1, 1, 3, j1] + 2*CB2*SW*dZCHiggs1[5, 6]*Mass[F[3, {j1}]]^2*
+           USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1] + S2B*SW*dZCHiggs1[6, 6]*
            Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1] + 
-          S2B*SW*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-           USfC[s1, 1, 3, j1] + 4*MUEC*SB2*SW*dMf1[4, j2]*USf[s2, 2, 4, j2]*
-           USfC[s1, 1, 3, j1] - 2*S2B*SW*Af[4, j2, j2]*dMf1[4, j2]*
-           USf[s2, 2, 4, j2]*USfC[s1, 1, 3, j1] + S2B*SW*XtC*
-           dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]*USf[1, 1, 4, j2]*
-           USfC[s1, 2, 3, j1] + S2B*SW*XtC*dZbarSq1[14, 2, s2, j2, j2]*
-           Mass[F[3, {j1}]]*USf[2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 
-          2*S2B*SW*XtC*dMf1[3, j1]*USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] - 
-          4*CB2*dMu1*SW*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
-           USfC[s1, 2, 3, j1] - 2*dSW1*S2B*XtC*Mass[F[3, {j1}]]*
-           USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] - 4*CB*dSinB1*SW*XtC*
+          4*MUEC*SB2*SW*dMf1[4, j2]*USf[s2, 2, 4, j2]*USfC[s1, 1, 3, j1] - 
+          2*S2B*SW*Af[4, j2, j2]*dMf1[4, j2]*USf[s2, 2, 4, j2]*
+           USfC[s1, 1, 3, j1] + S2B*SW*XtC*dZbarSq1[14, 1, s2, j2, j2]*
+           Mass[F[3, {j1}]]*USf[1, 1, 4, j2]*USfC[s1, 2, 3, j1] + 
+          S2B*SW*XtC*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]*
+           USf[2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 2*S2B*SW*XtC*dMf1[3, j1]*
+           USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] - 4*CB2*dMu1*SW*
            Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] - 
-          (dMWsq1*S2B*SW*XtC*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
-            USfC[s1, 2, 3, j1])/MW2 + 2*S2B*SW*Conjugate[dAf1[3, j1, j1]]*
+          2*dSW1*S2B*XtC*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
+           USfC[s1, 2, 3, j1] - 4*CB*dSinB1*SW*XtC*Mass[F[3, {j1}]]*
+           USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] - dMWsq1MW2*S2B*SW*XtC*
            Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 
-          2*CB2*SW*YtC*dZCHiggs1[5, 6]*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
+          2*S2B*SW*Conjugate[dAf1[3, j1, j1]]*Mass[F[3, {j1}]]*
+           USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1] + 2*CB2*SW*YtC*
+           dZCHiggs1[5, 6]*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
            USfC[s1, 2, 3, j1] + S2B*SW*XtC*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]*
            USf[s2, 1, 4, j2]*USfC[s1, 2, 3, j1]))/(MT*S2B*SW2)}}, 
     C[-S[6], S[12, {s2, j2}], -S[11, {j1}]] == 
@@ -1075,8 +1046,8 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
              USfC[2, 2, 2, j1]) + 8*CB2*SW*dMf1[2, j1]*Mass[F[2, {j1}]]*
            USfC[s2, 1, 2, j1] - 4*CB2*dSW1*Mass[F[2, {j1}]]^2*
            USfC[s2, 1, 2, j1] - 4*CB*dCosB1*SW*Mass[F[2, {j1}]]^2*
-           USfC[s2, 1, 2, j1] - (2*CB2*dMWsq1*SW*Mass[F[2, {j1}]]^2*
-            USfC[s2, 1, 2, j1])/MW2 - S2B*SW*Conjugate[dZCHiggs1[5, 6]]*
+           USfC[s2, 1, 2, j1] - 2*CB2*dMWsq1MW2*SW*Mass[F[2, {j1}]]^2*
+           USfC[s2, 1, 2, j1] - S2B*SW*Conjugate[dZCHiggs1[5, 6]]*
            Mass[F[2, {j1}]]^2*USfC[s2, 1, 2, j1] + 
           2*CB2*SW*Conjugate[dZCHiggs1[6, 6]]*Mass[F[2, {j1}]]^2*
            USfC[s2, 1, 2, j1] + 2*CB2*SW*dZbarSl1[1, j1, 1, 1]*
@@ -1084,18 +1055,18 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            USfC[s2, 2, 2, j1] + 4*CB2*SW*AfC[2, j1, j1]*dMf1[2, j1]*
            USfC[s2, 2, 2, j1] + 2*dSW1*MUE*S2B*Mass[F[2, {j1}]]*
            USfC[s2, 2, 2, j1] - 2*dMu1*S2B*SW*Mass[F[2, {j1}]]*
-           USfC[s2, 2, 2, j1] + (dMWsq1*MUE*S2B*SW*Mass[F[2, {j1}]]*
-            USfC[s2, 2, 2, j1])/MW2 + 4*dCosB1*MUE*SB*SW*Mass[F[2, {j1}]]*
+           USfC[s2, 2, 2, j1] + dMWsq1MW2*MUE*S2B*SW*Mass[F[2, {j1}]]*
+           USfC[s2, 2, 2, j1] + 4*dCosB1*MUE*SB*SW*Mass[F[2, {j1}]]*
            USfC[s2, 2, 2, j1] - 4*CB2*dSW1*AfC[2, j1, j1]*Mass[F[2, {j1}]]*
            USfC[s2, 2, 2, j1] - 4*CB*dCosB1*SW*AfC[2, j1, j1]*
-           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 
-          (2*CB2*dMWsq1*SW*AfC[2, j1, j1]*Mass[F[2, {j1}]]*
-            USfC[s2, 2, 2, j1])/MW2 + 4*CB2*SW*Conjugate[dAf1[2, j1, j1]]*
-           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 2*CB2*MUE*SW*
+           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 2*CB2*dMWsq1MW2*SW*
+           AfC[2, j1, j1]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 
+          4*CB2*SW*Conjugate[dAf1[2, j1, j1]]*Mass[F[2, {j1}]]*
+           USfC[s2, 2, 2, j1] - 2*CB2*MUE*SW*Conjugate[dZCHiggs1[5, 6]]*
+           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - S2B*SW*AfC[2, j1, j1]*
            Conjugate[dZCHiggs1[5, 6]]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 
-          S2B*SW*AfC[2, j1, j1]*Conjugate[dZCHiggs1[5, 6]]*Mass[F[2, {j1}]]*
-           USfC[s2, 2, 2, j1] - MUE*S2B*SW*Conjugate[dZCHiggs1[6, 6]]*
-           Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] + 2*CB2*SW*AfC[2, j1, j1]*
+          MUE*S2B*SW*Conjugate[dZCHiggs1[6, 6]]*Mass[F[2, {j1}]]*
+           USfC[s2, 2, 2, j1] + 2*CB2*SW*AfC[2, j1, j1]*
            Conjugate[dZCHiggs1[6, 6]]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1] - 
           MUE*S2B*SW*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]*
            USfC[s2, 2, 2, j1] + 2*CB2*SW*AfC[2, j1, j1]*dZbarSl1[1, j1, 1, 1]*
@@ -1113,19 +1084,19 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
           8*CB2*SW*dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1] - 
           4*CB2*dSW1*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] - 
           4*CB*dCosB1*SW*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] - 
-          (2*CB2*dMWsq1*SW*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1])/MW2 - 
+          2*CB2*dMWsq1MW2*SW*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] - 
           S2B*SW*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] + 
           2*CB2*SW*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] + 
           2*CB2*SW*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1] - 
           2*MUEC*S2B*SW*dMf1[2, j1]*USf[s2, 2, 2, j1] + 
           4*CB2*SW*Af[2, j1, j1]*dMf1[2, j1]*USf[s2, 2, 2, j1] + 
           2*dSW1*MUEC*S2B*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 
-          (dMWsq1*MUEC*S2B*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1])/MW2 + 
+          dMWsq1MW2*MUEC*S2B*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] + 
           4*dCosB1*MUEC*SB*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 
           4*CB2*dSW1*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 
           4*CB*dCosB1*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1] - 
-          (2*CB2*dMWsq1*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1])/
-           MW2 - 2*S2B*SW*Conjugate[dMu1]*Mass[F[2, {j1}]]*
+          2*CB2*dMWsq1MW2*SW*Af[2, j1, j1]*Mass[F[2, {j1}]]*
+           USf[s2, 2, 2, j1] - 2*S2B*SW*Conjugate[dMu1]*Mass[F[2, {j1}]]*
            USf[s2, 2, 2, j1] + 4*CB2*SW*dAf1[2, j1, j1]*Mass[F[2, {j1}]]*
            USf[s2, 2, 2, j1] - 2*CB2*MUEC*SW*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]*
            USf[s2, 2, 2, j1] - S2B*SW*Af[2, j1, j1]*dZCHiggs1[5, 6]*
@@ -1138,83 +1109,80 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
     C[F[11, {n1}], -F[2, {j1}], S[12, {s2, j2}]] == 
      {{((-I)*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1]*
          gl[ZNeuC][n1, 3])/(CB*MT), ((-I/8)*IndexDelta[j1, j2]*
-         ((Sqrt[2]*CW*CW2*ht*MW2*rMUEC*S2B*SW2*dZfL1[11, 3, n1]*
-            Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1])/MT - 
-          (I*Sqrt[2]*CW*CW2*ht*MW2*rMUEC*S2B*SW2*dZfL1[11, 4, n1]*
-            Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1])/MT + 
-          2*((CW*CW2*ht*MW2*S2B*SW2*dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*
+         ((Sqrt[2]*CW*CW2*ht*rMUEC*S2B*SW2*dZfL1[11, 3, n1]*Mass[F[2, {j1}]]*
+            USfC[s2, 1, 2, j1])/MT - (I*Sqrt[2]*CW*CW2*ht*rMUEC*S2B*SW2*
+            dZfL1[11, 4, n1]*Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1])/MT + 
+          2*((CW*CW2*ht*S2B*SW2*dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*
               USfC[1, 1, 2, j1]*gl[ZNeuC][n1, 3])/MT + 
-            (CW*CW2*ht*MW2*S2B*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
+            (CW*CW2*ht*S2B*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
               USfC[2, 1, 2, j1]*gl[ZNeuC][n1, 3])/MT + 
-            (2*CW*CW2*ht*MW2*S2B*SW2*dMf1[2, j1]*USfC[s2, 1, 2, j1]*
-              gl[ZNeuC][n1, 3])/MT - (2*CW*CW2*dSW1*ht*MW2*S2B*SW*
+            (2*CW*CW2*ht*S2B*SW2*dMf1[2, j1]*USfC[s2, 1, 2, j1]*
+              gl[ZNeuC][n1, 3])/MT - (2*CW*CW2*dSW1*ht*S2B*SW*
               Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1]*gl[ZNeuC][n1, 3])/MT - 
-            (CW*CW2*dMWsq1*ht*S2B*SW2*Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1]*
-              gl[ZNeuC][n1, 3])/MT - (4*CW*CW2*dCosB1*ht*MW2*SB*SW2*
+            (CW*CW2*dMWsq1MW2*ht*S2B*SW2*Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1]*
+              gl[ZNeuC][n1, 3])/MT - (4*CW*CW2*dCosB1*ht*SB*SW2*
               Mass[F[2, {j1}]]*USfC[s2, 1, 2, j1]*gl[ZNeuC][n1, 3])/MT + 
-            (CW*CW2*ht*MW2*S2B*SW2*dZbarfR1[2, j1, j1]*Mass[F[2, {j1}]]*
-              USfC[s2, 1, 2, j1]*gl[ZNeuC][n1, 3])/MT)))/
-        (CB2*CW*CW2*MW2*SW2)}, {((-I)*ht*SB*IndexDelta[j1, j2]*
-         Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*gl[ZNeu][n1, 3])/(CB*MT), 
-       (IndexDelta[j1, j2]*(((-I)*Sqrt[2]*CW*CW2*ht*MW2*rMUE*S2B*SW2*
-            dZfR1[11, 3, n1]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1])/MT + 
-          (Sqrt[2]*CW*CW2*ht*MW2*rMUE*S2B*SW2*dZfR1[11, 4, n1]*
-            Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1])/MT - 
-          ((2*I)*CW*CW2*ht*MW2*S2B*SW2*dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*
-            USfC[1, 2, 2, j1]*gl[ZNeu][n1, 3])/MT - 
-          ((2*I)*CW*CW2*ht*MW2*S2B*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
-            USfC[2, 2, 2, j1]*gl[ZNeu][n1, 3])/MT - 
-          ((4*I)*CW*CW2*ht*MW2*S2B*SW2*dMf1[2, j1]*USfC[s2, 2, 2, j1]*
-            gl[ZNeu][n1, 3])/MT + ((4*I)*CW*CW2*dSW1*ht*MW2*S2B*SW*
+            (CW*CW2*ht*S2B*SW2*dZbarfR1[2, j1, j1]*Mass[F[2, {j1}]]*
+              USfC[s2, 1, 2, j1]*gl[ZNeuC][n1, 3])/MT)))/(CB2*CW*CW2*SW2)}, 
+      {((-I)*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
+         gl[ZNeu][n1, 3])/(CB*MT), (IndexDelta[j1, j2]*
+         (((-I)*Sqrt[2]*CW*CW2*ht*rMUE*S2B*SW2*dZfR1[11, 3, n1]*
+            Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1])/MT + 
+          (Sqrt[2]*CW*CW2*ht*rMUE*S2B*SW2*dZfR1[11, 4, n1]*Mass[F[2, {j1}]]*
+            USfC[s2, 2, 2, j1])/MT - ((2*I)*CW*CW2*ht*S2B*SW2*
+            dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*USfC[1, 2, 2, j1]*
+            gl[ZNeu][n1, 3])/MT - ((2*I)*CW*CW2*ht*S2B*SW2*
+            dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*USfC[2, 2, 2, j1]*
+            gl[ZNeu][n1, 3])/MT - ((4*I)*CW*CW2*ht*S2B*SW2*dMf1[2, j1]*
+            USfC[s2, 2, 2, j1]*gl[ZNeu][n1, 3])/MT + 
+          ((4*I)*CW*CW2*dSW1*ht*S2B*SW*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
+            gl[ZNeu][n1, 3])/MT + ((2*I)*CW*CW2*dMWsq1MW2*ht*S2B*SW2*
             Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*gl[ZNeu][n1, 3])/MT + 
-          ((2*I)*CW*CW2*dMWsq1*ht*S2B*SW2*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
-            gl[ZNeu][n1, 3])/MT + ((8*I)*CW*CW2*dCosB1*ht*MW2*SB*SW2*
-            Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*gl[ZNeu][n1, 3])/MT - 
-          ((2*I)*CW*CW2*ht*MW2*S2B*SW2*dZbarfL1[2, j1, j1]*Mass[F[2, {j1}]]*
-            USfC[s2, 2, 2, j1]*gl[ZNeu][n1, 3])/MT))/(8*CB2*CW*CW2*MW2*
-         SW2)}}, C[F[11, {n1}], -F[3, {j1, o1}], S[13, {s2, j2, o2}]] == 
+          ((8*I)*CW*CW2*dCosB1*ht*SB*SW2*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
+            gl[ZNeu][n1, 3])/MT - ((2*I)*CW*CW2*ht*S2B*SW2*
+            dZbarfL1[2, j1, j1]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
+            gl[ZNeu][n1, 3])/MT))/(8*CB2*CW*CW2*SW2)}}, 
+    C[F[11, {n1}], -F[3, {j1, o1}], S[13, {s2, j2, o2}]] == 
      {{((-I)*ht*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]]*
          USfC[s2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT, 
        ((I/12)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         ((3*Sqrt[2]*CW*CW2*ht*MW2*rMUEC*SB2*SW2*dZfL1[11, 3, n1]*
+         ((3*Sqrt[2]*CW*CW2*ht*rMUEC*SB2*SW2*dZfL1[11, 3, n1]*
             Mass[F[3, {j1, o1}]]*USfC[s2, 1, 3, j1])/MT + 
-          ((3*I)*Sqrt[2]*CW*CW2*ht*MW2*rMUEC*SB2*SW2*dZfL1[11, 4, n1]*
+          ((3*I)*Sqrt[2]*CW*CW2*ht*rMUEC*SB2*SW2*dZfL1[11, 4, n1]*
             Mass[F[3, {j1, o1}]]*USfC[s2, 1, 3, j1])/MT + 
-          2*((-3*CW*CW2*ht*MW2*SB2*SW2*dZSq1[13, 1, s2, j2, j2]*
+          2*((-3*CW*CW2*ht*SB2*SW2*dZSq1[13, 1, s2, j2, j2]*
               Mass[F[3, {j1, o1}]]*USfC[1, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT - 
-            (3*CW*CW2*ht*MW2*SB2*SW2*dZSq1[13, 2, s2, j2, j2]*
-              Mass[F[3, {j1, o1}]]*USfC[2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT - 
-            (6*CW*CW2*ht*MW2*SB2*SW2*dMf1[3, j1]*USfC[s2, 1, 3, j1]*
-              gl[ZNeuC][n1, 4])/MT + (6*CW*CW2*dSW1*ht*MW2*SB2*SW*
+            (3*CW*CW2*ht*SB2*SW2*dZSq1[13, 2, s2, j2, j2]*Mass[F[3, 
+                {j1, o1}]]*USfC[2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT - 
+            (6*CW*CW2*ht*SB2*SW2*dMf1[3, j1]*USfC[s2, 1, 3, j1]*
+              gl[ZNeuC][n1, 4])/MT + (6*CW*CW2*dSW1*ht*SB2*SW*
               Mass[F[3, {j1, o1}]]*USfC[s2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT + 
-            (6*CW*CW2*dSinB1*ht*MW2*SB*SW2*Mass[F[3, {j1, o1}]]*
-              USfC[s2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT + 
-            (3*CW*CW2*dMWsq1*ht*SB2*SW2*Mass[F[3, {j1, o1}]]*
-              USfC[s2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT - 
-            (3*CW*CW2*ht*MW2*SB2*SW2*dZbarfR1[3, j1, j1]*Mass[F[3, {j1, o1}]]*
-              USfC[s2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT)))/
-        (CW*CW2*MW2*SB2*SW2)}, {((-I)*ht*IndexDelta[j1, j2]*
-         IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]]*USfC[s2, 2, 3, j1]*
-         gl[ZNeu][n1, 4])/MT, (IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (((3*I)*Sqrt[2]*CW*CW2*ht*MW2*rMUE*SB2*SW2*dZfR1[11, 3, n1]*
+            (6*CW*CW2*dSinB1*ht*SB*SW2*Mass[F[3, {j1, o1}]]*USfC[s2, 1, 3, 
+               j1]*gl[ZNeuC][n1, 4])/MT + (3*CW*CW2*dMWsq1MW2*ht*SB2*SW2*
+              Mass[F[3, {j1, o1}]]*USfC[s2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT - 
+            (3*CW*CW2*ht*SB2*SW2*dZbarfR1[3, j1, j1]*Mass[F[3, {j1, o1}]]*
+              USfC[s2, 1, 3, j1]*gl[ZNeuC][n1, 4])/MT)))/(CW*CW2*SB2*SW2)}, 
+      {((-I)*ht*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]]*
+         USfC[s2, 2, 3, j1]*gl[ZNeu][n1, 4])/MT, 
+       (IndexDelta[j1, j2]*IndexDelta[o1, o2]*
+         (((3*I)*Sqrt[2]*CW*CW2*ht*rMUE*SB2*SW2*dZfR1[11, 3, n1]*
             Mass[F[3, {j1, o1}]]*USfC[s2, 2, 3, j1])/MT + 
-          (3*Sqrt[2]*CW*CW2*ht*MW2*rMUE*SB2*SW2*dZfR1[11, 4, n1]*
+          (3*Sqrt[2]*CW*CW2*ht*rMUE*SB2*SW2*dZfR1[11, 4, n1]*
             Mass[F[3, {j1, o1}]]*USfC[s2, 2, 3, j1])/MT - 
-          ((6*I)*CW*CW2*ht*MW2*SB2*SW2*dZSq1[13, 1, s2, j2, j2]*
+          ((6*I)*CW*CW2*ht*SB2*SW2*dZSq1[13, 1, s2, j2, j2]*
             Mass[F[3, {j1, o1}]]*USfC[1, 2, 3, j1]*gl[ZNeu][n1, 4])/MT - 
-          ((6*I)*CW*CW2*ht*MW2*SB2*SW2*dZSq1[13, 2, s2, j2, j2]*
+          ((6*I)*CW*CW2*ht*SB2*SW2*dZSq1[13, 2, s2, j2, j2]*
             Mass[F[3, {j1, o1}]]*USfC[2, 2, 3, j1]*gl[ZNeu][n1, 4])/MT - 
-          ((12*I)*CW*CW2*ht*MW2*SB2*SW2*dMf1[3, j1]*USfC[s2, 2, 3, j1]*
-            gl[ZNeu][n1, 4])/MT + ((12*I)*CW*CW2*dSW1*ht*MW2*SB2*SW*
+          ((12*I)*CW*CW2*ht*SB2*SW2*dMf1[3, j1]*USfC[s2, 2, 3, j1]*
+            gl[ZNeu][n1, 4])/MT + ((12*I)*CW*CW2*dSW1*ht*SB2*SW*
             Mass[F[3, {j1, o1}]]*USfC[s2, 2, 3, j1]*gl[ZNeu][n1, 4])/MT + 
-          ((12*I)*CW*CW2*dSinB1*ht*MW2*SB*SW2*Mass[F[3, {j1, o1}]]*
+          ((12*I)*CW*CW2*dSinB1*ht*SB*SW2*Mass[F[3, {j1, o1}]]*
             USfC[s2, 2, 3, j1]*gl[ZNeu][n1, 4])/MT + 
-          ((6*I)*CW*CW2*dMWsq1*ht*SB2*SW2*Mass[F[3, {j1, o1}]]*
+          ((6*I)*CW*CW2*dMWsq1MW2*ht*SB2*SW2*Mass[F[3, {j1, o1}]]*
             USfC[s2, 2, 3, j1]*gl[ZNeu][n1, 4])/MT - 
-          ((6*I)*CW*CW2*ht*MW2*SB2*SW2*dZbarfL1[3, j1, j1]*
-            Mass[F[3, {j1, o1}]]*USfC[s2, 2, 3, j1]*gl[ZNeu][n1, 4])/MT))/
-        (12*CW*CW2*MW2*SB2*SW2)}}, C[F[11, {n1}], -F[4, {j1, o1}], 
-      S[14, {s2, j2, o2}]] == 
+          ((6*I)*CW*CW2*ht*SB2*SW2*dZbarfL1[3, j1, j1]*Mass[F[3, {j1, o1}]]*
+            USfC[s2, 2, 3, j1]*gl[ZNeu][n1, 4])/MT))/(12*CW*CW2*SB2*SW2)}}, 
+    C[F[11, {n1}], -F[4, {j1, o1}], S[14, {s2, j2, o2}]] == 
      {{0, ((-I/2)*ht*S2B*dMf1[4, j1]*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          USfC[s2, 1, 4, j1]*gl[ZNeuC][n1, 3])/(CB2*MT)}, 
       {0, ((-I/2)*ht*S2B*dMf1[4, j1]*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
@@ -1222,83 +1190,80 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
     C[F[2, {j1}], F[11, {n1}], -S[12, {s2, j2}]] == 
      {{((-I)*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
          gl[ZNeuC][n1, 3])/(CB*MT), ((I/8)*IndexDelta[j1, j2]*
-         (-((Sqrt[2]*CW*CW2*ht*MW2*rMUEC*S2B*SW2*dZfL1[11, 3, n1]*
+         (-((Sqrt[2]*CW*CW2*ht*rMUEC*S2B*SW2*dZfL1[11, 3, n1]*
              Mass[F[2, {j1}]]*USf[s2, 2, 2, j1])/MT) + 
-          (I*Sqrt[2]*CW*CW2*ht*MW2*rMUEC*S2B*SW2*dZfL1[11, 4, n1]*
+          (I*Sqrt[2]*CW*CW2*ht*rMUEC*S2B*SW2*dZfL1[11, 4, n1]*
             Mass[F[2, {j1}]]*USf[s2, 2, 2, j1])/MT - 
-          (2*CW*CW2*ht*MW2*S2B*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*
+          (2*CW*CW2*ht*S2B*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*
             USf[1, 2, 2, j1]*gl[ZNeuC][n1, 3])/MT - 
-          (2*CW*CW2*ht*MW2*S2B*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
+          (2*CW*CW2*ht*S2B*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
             USf[2, 2, 2, j1]*gl[ZNeuC][n1, 3])/MT - 
-          (4*CW*CW2*ht*MW2*S2B*SW2*dMf1[2, j1]*USf[s2, 2, 2, j1]*
-            gl[ZNeuC][n1, 3])/MT + (4*CW*CW2*dSW1*ht*MW2*S2B*SW*
-            Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*gl[ZNeuC][n1, 3])/MT + 
-          (2*CW*CW2*dMWsq1*ht*S2B*SW2*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            gl[ZNeuC][n1, 3])/MT + (8*CW*CW2*dCosB1*ht*MW2*SB*SW2*
+          (4*CW*CW2*ht*S2B*SW2*dMf1[2, j1]*USf[s2, 2, 2, j1]*
+            gl[ZNeuC][n1, 3])/MT + (4*CW*CW2*dSW1*ht*S2B*SW*Mass[F[2, {j1}]]*
+            USf[s2, 2, 2, j1]*gl[ZNeuC][n1, 3])/MT + 
+          (2*CW*CW2*dMWsq1MW2*ht*S2B*SW2*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+            gl[ZNeuC][n1, 3])/MT + (8*CW*CW2*dCosB1*ht*SB*SW2*
             Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*gl[ZNeuC][n1, 3])/MT - 
-          (2*CW*CW2*ht*MW2*S2B*SW2*dZfL1[2, j1, j1]*Mass[F[2, {j1}]]*
-            USf[s2, 2, 2, j1]*gl[ZNeuC][n1, 3])/MT))/(CB2*CW*CW2*MW2*SW2)}, 
+          (2*CW*CW2*ht*S2B*SW2*dZfL1[2, j1, j1]*Mass[F[2, {j1}]]*
+            USf[s2, 2, 2, j1]*gl[ZNeuC][n1, 3])/MT))/(CB2*CW*CW2*SW2)}, 
       {((-I)*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
          gl[ZNeu][n1, 3])/(CB*MT), (IndexDelta[j1, j2]*
-         (((-I)*Sqrt[2]*CW*CW2*ht*MW2*rMUE*S2B*SW2*dZfR1[11, 3, n1]*
+         (((-I)*Sqrt[2]*CW*CW2*ht*rMUE*S2B*SW2*dZfR1[11, 3, n1]*
             Mass[F[2, {j1}]]*USf[s2, 1, 2, j1])/MT + 
-          (Sqrt[2]*CW*CW2*ht*MW2*rMUE*S2B*SW2*dZfR1[11, 4, n1]*
-            Mass[F[2, {j1}]]*USf[s2, 1, 2, j1])/MT - 
-          (2*I)*((CW*CW2*ht*MW2*S2B*SW2*dZbarSl1[2, j2, 1, s2]*
-              Mass[F[2, {j1}]]*USf[1, 1, 2, j1]*gl[ZNeu][n1, 3])/MT + 
-            (CW*CW2*ht*MW2*S2B*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
+          (Sqrt[2]*CW*CW2*ht*rMUE*S2B*SW2*dZfR1[11, 4, n1]*Mass[F[2, {j1}]]*
+            USf[s2, 1, 2, j1])/MT - (2*I)*
+           ((CW*CW2*ht*S2B*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]*
+              USf[1, 1, 2, j1]*gl[ZNeu][n1, 3])/MT + 
+            (CW*CW2*ht*S2B*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
               USf[2, 1, 2, j1]*gl[ZNeu][n1, 3])/MT + 
-            (2*CW*CW2*ht*MW2*S2B*SW2*dMf1[2, j1]*USf[s2, 1, 2, j1]*
-              gl[ZNeu][n1, 3])/MT - (2*CW*CW2*dSW1*ht*MW2*S2B*SW*
-              Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*gl[ZNeu][n1, 3])/MT - 
-            (CW*CW2*dMWsq1*ht*S2B*SW2*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
-              gl[ZNeu][n1, 3])/MT - (4*CW*CW2*dCosB1*ht*MW2*SB*SW2*
+            (2*CW*CW2*ht*S2B*SW2*dMf1[2, j1]*USf[s2, 1, 2, j1]*
+              gl[ZNeu][n1, 3])/MT - (2*CW*CW2*dSW1*ht*S2B*SW*Mass[F[2, {j1}]]*
+              USf[s2, 1, 2, j1]*gl[ZNeu][n1, 3])/MT - 
+            (CW*CW2*dMWsq1MW2*ht*S2B*SW2*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
+              gl[ZNeu][n1, 3])/MT - (4*CW*CW2*dCosB1*ht*SB*SW2*
               Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*gl[ZNeu][n1, 3])/MT + 
-            (CW*CW2*ht*MW2*S2B*SW2*dZfR1[2, j1, j1]*Mass[F[2, {j1}]]*
-              USf[s2, 1, 2, j1]*gl[ZNeu][n1, 3])/MT)))/
-        (8*CB2*CW*CW2*MW2*SW2)}}, C[F[3, {j1, o1}], F[11, {n1}], 
-      -S[13, {s2, j2, o2}]] == 
+            (CW*CW2*ht*S2B*SW2*dZfR1[2, j1, j1]*Mass[F[2, {j1}]]*
+              USf[s2, 1, 2, j1]*gl[ZNeu][n1, 3])/MT)))/(8*CB2*CW*CW2*SW2)}}, 
+    C[F[3, {j1, o1}], F[11, {n1}], -S[13, {s2, j2, o2}]] == 
      {{((-I)*ht*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]]*
          USf[s2, 2, 3, j1]*gl[ZNeuC][n1, 4])/MT, 
        ((-I/12)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         ((-3*Sqrt[2]*CW*CW2*ht*MW2*rMUEC*SB2*SW2*dZfL1[11, 3, n1]*
+         ((-3*Sqrt[2]*CW*CW2*ht*rMUEC*SB2*SW2*dZfL1[11, 3, n1]*
             Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j1])/MT - 
-          ((3*I)*Sqrt[2]*CW*CW2*ht*MW2*rMUEC*SB2*SW2*dZfL1[11, 4, n1]*
+          ((3*I)*Sqrt[2]*CW*CW2*ht*rMUEC*SB2*SW2*dZfL1[11, 4, n1]*
             Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j1])/MT + 
-          (6*CW*CW2*ht*MW2*SB2*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+          (6*CW*CW2*ht*SB2*SW2*dZbarSq1[13, 1, s2, j2, j2]*
             Mass[F[3, {j1, o1}]]*USf[1, 2, 3, j1]*gl[ZNeuC][n1, 4])/MT + 
-          (6*CW*CW2*ht*MW2*SB2*SW2*dZbarSq1[13, 2, s2, j2, j2]*
+          (6*CW*CW2*ht*SB2*SW2*dZbarSq1[13, 2, s2, j2, j2]*
             Mass[F[3, {j1, o1}]]*USf[2, 2, 3, j1]*gl[ZNeuC][n1, 4])/MT + 
-          (12*CW*CW2*ht*MW2*SB2*SW2*dMf1[3, j1]*USf[s2, 2, 3, j1]*
-            gl[ZNeuC][n1, 4])/MT - (12*CW*CW2*dSW1*ht*MW2*SB2*SW*
+          (12*CW*CW2*ht*SB2*SW2*dMf1[3, j1]*USf[s2, 2, 3, j1]*
+            gl[ZNeuC][n1, 4])/MT - (12*CW*CW2*dSW1*ht*SB2*SW*
             Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j1]*gl[ZNeuC][n1, 4])/MT - 
-          (12*CW*CW2*dSinB1*ht*MW2*SB*SW2*Mass[F[3, {j1, o1}]]*
-            USf[s2, 2, 3, j1]*gl[ZNeuC][n1, 4])/MT - 
-          (6*CW*CW2*dMWsq1*ht*SB2*SW2*Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j1]*
-            gl[ZNeuC][n1, 4])/MT + (6*CW*CW2*ht*MW2*SB2*SW2*dZfL1[3, j1, j1]*
-            Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j1]*gl[ZNeuC][n1, 4])/MT))/
-        (CW*CW2*MW2*SB2*SW2)}, {((-I)*ht*IndexDelta[j1, j2]*
-         IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]]*USf[s2, 1, 3, j1]*
-         gl[ZNeu][n1, 4])/MT, (IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (((3*I)*Sqrt[2]*CW*CW2*ht*MW2*rMUE*SB2*SW2*dZfR1[11, 3, n1]*
+          (12*CW*CW2*dSinB1*ht*SB*SW2*Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j1]*
+            gl[ZNeuC][n1, 4])/MT - (6*CW*CW2*dMWsq1MW2*ht*SB2*SW2*
+            Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j1]*gl[ZNeuC][n1, 4])/MT + 
+          (6*CW*CW2*ht*SB2*SW2*dZfL1[3, j1, j1]*Mass[F[3, {j1, o1}]]*
+            USf[s2, 2, 3, j1]*gl[ZNeuC][n1, 4])/MT))/(CW*CW2*SB2*SW2)}, 
+      {((-I)*ht*IndexDelta[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1, o1}]]*
+         USf[s2, 1, 3, j1]*gl[ZNeu][n1, 4])/MT, 
+       (IndexDelta[j1, j2]*IndexDelta[o1, o2]*
+         (((3*I)*Sqrt[2]*CW*CW2*ht*rMUE*SB2*SW2*dZfR1[11, 3, n1]*
             Mass[F[3, {j1, o1}]]*USf[s2, 1, 3, j1])/MT + 
-          (3*Sqrt[2]*CW*CW2*ht*MW2*rMUE*SB2*SW2*dZfR1[11, 4, n1]*
+          (3*Sqrt[2]*CW*CW2*ht*rMUE*SB2*SW2*dZfR1[11, 4, n1]*
             Mass[F[3, {j1, o1}]]*USf[s2, 1, 3, j1])/MT + 
-          (2*I)*((-3*CW*CW2*ht*MW2*SB2*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+          (2*I)*((-3*CW*CW2*ht*SB2*SW2*dZbarSq1[13, 1, s2, j2, j2]*
               Mass[F[3, {j1, o1}]]*USf[1, 1, 3, j1]*gl[ZNeu][n1, 4])/MT - 
-            (3*CW*CW2*ht*MW2*SB2*SW2*dZbarSq1[13, 2, s2, j2, j2]*
+            (3*CW*CW2*ht*SB2*SW2*dZbarSq1[13, 2, s2, j2, j2]*
               Mass[F[3, {j1, o1}]]*USf[2, 1, 3, j1]*gl[ZNeu][n1, 4])/MT - 
-            (6*CW*CW2*ht*MW2*SB2*SW2*dMf1[3, j1]*USf[s2, 1, 3, j1]*
-              gl[ZNeu][n1, 4])/MT + (6*CW*CW2*dSW1*ht*MW2*SB2*SW*
+            (6*CW*CW2*ht*SB2*SW2*dMf1[3, j1]*USf[s2, 1, 3, j1]*
+              gl[ZNeu][n1, 4])/MT + (6*CW*CW2*dSW1*ht*SB2*SW*
               Mass[F[3, {j1, o1}]]*USf[s2, 1, 3, j1]*gl[ZNeu][n1, 4])/MT + 
-            (6*CW*CW2*dSinB1*ht*MW2*SB*SW2*Mass[F[3, {j1, o1}]]*
-              USf[s2, 1, 3, j1]*gl[ZNeu][n1, 4])/MT + 
-            (3*CW*CW2*dMWsq1*ht*SB2*SW2*Mass[F[3, {j1, o1}]]*
-              USf[s2, 1, 3, j1]*gl[ZNeu][n1, 4])/MT - 
-            (3*CW*CW2*ht*MW2*SB2*SW2*dZfR1[3, j1, j1]*Mass[F[3, {j1, o1}]]*
-              USf[s2, 1, 3, j1]*gl[ZNeu][n1, 4])/MT)))/
-        (12*CW*CW2*MW2*SB2*SW2)}}, C[F[4, {j1, o1}], F[11, {n1}], 
-      -S[14, {s2, j2, o2}]] == 
+            (6*CW*CW2*dSinB1*ht*SB*SW2*Mass[F[3, {j1, o1}]]*USf[s2, 1, 3, j1]*
+              gl[ZNeu][n1, 4])/MT + (3*CW*CW2*dMWsq1MW2*ht*SB2*SW2*
+              Mass[F[3, {j1, o1}]]*USf[s2, 1, 3, j1]*gl[ZNeu][n1, 4])/MT - 
+            (3*CW*CW2*ht*SB2*SW2*dZfR1[3, j1, j1]*Mass[F[3, {j1, o1}]]*
+              USf[s2, 1, 3, j1]*gl[ZNeu][n1, 4])/MT)))/(12*CW*CW2*SB2*SW2)}}, 
+    C[F[4, {j1, o1}], F[11, {n1}], -S[14, {s2, j2, o2}]] == 
      {{0, ((-I/2)*ht*S2B*dMf1[4, j1]*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          USf[s2, 2, 4, j1]*gl[ZNeuC][n1, 3])/(CB2*MT)}, 
       {0, ((-I/2)*ht*S2B*dMf1[4, j1]*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
@@ -1309,19 +1274,19 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
       {(I*ht*CKMC[j1, j2]*IndexDelta[2, c1]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]*USfC[s1, 2, 3, j1])/MT, 
        ((-I/2)*CKMC[j1, j2]*IndexDelta[o1, o2]*
-         (-((ht*MW2*SB2*SW2*dZSq1[13, 1, s1, j1, j1]*IndexDelta[2, c1]*
+         (-((ht*SB2*SW2*dZSq1[13, 1, s1, j1, j1]*IndexDelta[2, c1]*
              Mass[F[3, {j1}]]*USfC[1, 2, 3, j1])/MT) - 
-          (ht*MW2*SB2*SW2*dZSq1[13, 2, s1, j1, j1]*IndexDelta[2, c1]*
+          (ht*SB2*SW2*dZSq1[13, 2, s1, j1, j1]*IndexDelta[2, c1]*
             Mass[F[3, {j1}]]*USfC[2, 2, 3, j1])/MT - 
-          (2*ht*MW2*SB2*SW2*dMf1[3, j1]*IndexDelta[2, c1]*USfC[s1, 2, 3, j1])/
-           MT - (ht*MW2*SB2*SW2*dZfR1[12, 2, c1]*Mass[F[3, {j1}]]*
-            USfC[s1, 2, 3, j1])/MT + (2*dSW1*ht*MW2*SB2*SW*IndexDelta[2, c1]*
+          (2*ht*SB2*SW2*dMf1[3, j1]*IndexDelta[2, c1]*USfC[s1, 2, 3, j1])/
+           MT - (ht*SB2*SW2*dZfR1[12, 2, c1]*Mass[F[3, {j1}]]*
+            USfC[s1, 2, 3, j1])/MT + (2*dSW1*ht*SB2*SW*IndexDelta[2, c1]*
             Mass[F[3, {j1}]]*USfC[s1, 2, 3, j1])/MT + 
-          (2*dSinB1*ht*MW2*SB*SW2*IndexDelta[2, c1]*Mass[F[3, {j1}]]*
-            USfC[s1, 2, 3, j1])/MT + (dMWsq1*ht*SB2*SW2*IndexDelta[2, c1]*
+          (2*dSinB1*ht*SB*SW2*IndexDelta[2, c1]*Mass[F[3, {j1}]]*
+            USfC[s1, 2, 3, j1])/MT + (dMWsq1MW2*ht*SB2*SW2*IndexDelta[2, c1]*
             Mass[F[3, {j1}]]*USfC[s1, 2, 3, j1])/MT - 
-          (ht*MW2*SB2*SW2*dZbarfL1[4, j2, j2]*IndexDelta[2, c1]*
-            Mass[F[3, {j1}]]*USfC[s1, 2, 3, j1])/MT))/(MW2*SB2*SW2)}}, 
+          (ht*SB2*SW2*dZbarfL1[4, j2, j2]*IndexDelta[2, c1]*Mass[F[3, {j1}]]*
+            USfC[s1, 2, 3, j1])/MT))/(SB2*SW2)}}, 
     C[-F[12, {c1}], -F[3, {j1, o1}], S[14, {s2, j2, o2}]] == 
      {{(I*ht*CKM[j1, j2]*IndexDelta[2, c1]*IndexDelta[o1, o2]*
          Mass[F[3, {j1, o1}]]*USfC[s2, 1, 4, j2])/MT, 
@@ -1332,7 +1297,7 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
            Mass[F[3, {j1, o1}]]*USfC[2, 1, 4, j2] + 
           (2*SB*SW*dMf1[3, j1]*IndexDelta[2, c1] + 
             (SB*SW*dZbarfR1[12, c1, 2] - (2*dSW1*SB + 2*dSinB1*SW + 
-                (dMWsq1*SB*SW)/MW2 - SB*SW*dZbarfR1[3, j1, j1])*IndexDelta[2, 
+                dMWsq1MW2*SB*SW - SB*SW*dZbarfR1[3, j1, j1])*IndexDelta[2, 
                 c1])*Mass[F[3, {j1, o1}]])*USfC[s2, 1, 4, j2]))/
         (MT*SB2*SW2)}, {0, ((I/2)*ht*S2B*CKM[j1, j2]*dMf1[4, j2]*
          IndexDelta[o1, o2]*USfC[s2, 2, 4, j2]*gl[UCha][c1, 2])/(CB2*MT)}}, 
@@ -1341,44 +1306,42 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
         (CB*MT), ((I/2)*ht*SB*SW*IndexDelta[j1, j2]*
          (CB*EMUEC*SW*dZfL1[12, 2, c1]*Mass[F[2, {j1}]] + 
           (2*CB*SW*dMf1[2, j1] + (-2*CB*dSW1 - 2*dCosB1*SW - 
-              (CB*dMWsq1*SW)/MW2 + CB*SW*dZbarfR1[2, j2, j2] + 
-              CB*SW*dZSl1[1, j1, 1, 1])*Mass[F[2, {j1}]])*gl[UChaC][c1, 2]))/
+              CB*dMWsq1MW2*SW + CB*SW*dZbarfR1[2, j2, j2] + CB*SW*dZSl1[1, 
+                j1, 1, 1])*Mass[F[2, {j1}]])*gl[UChaC][c1, 2]))/
         (CB2*MT*SW2)}, {0, 0}}, C[-F[12, {c1}], -F[1, {j1}], 
       S[12, {s2, j2}]] == {{0, 0}, 
       {(I*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
          gl[UCha][c1, 2])/(CB*MT), ((-I/4)*IndexDelta[j1, j2]*
-         (-((EMUE*ht*MW2*S2B*SW2*dZbarfL1[12, c1, 2]*Mass[F[2, {j1}]]*
-             USfC[s2, 2, 2, j1])/MT) - (ht*MW2*S2B*SW2*dZSl1[2, j2, 1, s2]*
+         (-((EMUE*ht*S2B*SW2*dZbarfL1[12, c1, 2]*Mass[F[2, {j1}]]*
+             USfC[s2, 2, 2, j1])/MT) - (ht*S2B*SW2*dZSl1[2, j2, 1, s2]*
             Mass[F[2, {j1}]]*USfC[1, 2, 2, j1]*gl[UCha][c1, 2])/MT - 
-          (ht*MW2*S2B*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
-            USfC[2, 2, 2, j1]*gl[UCha][c1, 2])/MT - 
-          (2*ht*MW2*S2B*SW2*dMf1[2, j1]*USfC[s2, 2, 2, j1]*gl[UCha][c1, 2])/
-           MT + (2*dSW1*ht*MW2*S2B*SW*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
-            gl[UCha][c1, 2])/MT + (dMWsq1*ht*S2B*SW2*Mass[F[2, {j1}]]*
+          (ht*S2B*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*USfC[2, 2, 2, j1]*
+            gl[UCha][c1, 2])/MT - (2*ht*S2B*SW2*dMf1[2, j1]*
             USfC[s2, 2, 2, j1]*gl[UCha][c1, 2])/MT + 
-          (4*dCosB1*ht*MW2*SB*SW2*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
-            gl[UCha][c1, 2])/MT - (ht*MW2*S2B*SW2*dZbarfL1[1, j1, j1]*
+          (2*dSW1*ht*S2B*SW*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
+            gl[UCha][c1, 2])/MT + (dMWsq1MW2*ht*S2B*SW2*Mass[F[2, {j1}]]*
+            USfC[s2, 2, 2, j1]*gl[UCha][c1, 2])/MT + 
+          (4*dCosB1*ht*SB*SW2*Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*
+            gl[UCha][c1, 2])/MT - (ht*S2B*SW2*dZbarfL1[1, j1, j1]*
             Mass[F[2, {j1}]]*USfC[s2, 2, 2, j1]*gl[UCha][c1, 2])/MT))/
-        (CB2*MW2*SW2)}}, C[F[4, {j2, o1}], -F[12, {c1}], 
-      -S[13, {s1, j1, o2}]] == 
+        (CB2*SW2)}}, C[F[4, {j2, o1}], -F[12, {c1}], -S[13, {s1, j1, o2}]] == 
      {{(I*ht*CKM[j1, j2]*IndexDelta[2, c1]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]*USf[s1, 2, 3, j1])/MT, 
        ((-I/2)*CKM[j1, j2]*IndexDelta[o1, o2]*
-         (-((ht*MW2*SB2*SW2*dZbarSq1[13, 1, s1, j1, j1]*IndexDelta[2, c1]*
+         (-((ht*SB2*SW2*dZbarSq1[13, 1, s1, j1, j1]*IndexDelta[2, c1]*
              Mass[F[3, {j1}]]*USf[1, 2, 3, j1])/MT) - 
-          (ht*MW2*SB2*SW2*dZbarSq1[13, 2, s1, j1, j1]*IndexDelta[2, c1]*
+          (ht*SB2*SW2*dZbarSq1[13, 2, s1, j1, j1]*IndexDelta[2, c1]*
             Mass[F[3, {j1}]]*USf[2, 2, 3, j1])/MT - 
-          (2*ht*MW2*SB2*SW2*dMf1[3, j1]*IndexDelta[2, c1]*USf[s1, 2, 3, j1])/
-           MT - (ht*MW2*SB2*SW2*dZbarfR1[12, c1, 2]*Mass[F[3, {j1}]]*
-            USf[s1, 2, 3, j1])/MT + (2*dSW1*ht*MW2*SB2*SW*IndexDelta[2, c1]*
+          (2*ht*SB2*SW2*dMf1[3, j1]*IndexDelta[2, c1]*USf[s1, 2, 3, j1])/MT - 
+          (ht*SB2*SW2*dZbarfR1[12, c1, 2]*Mass[F[3, {j1}]]*USf[s1, 2, 3, j1])/
+           MT + (2*dSW1*ht*SB2*SW*IndexDelta[2, c1]*Mass[F[3, {j1}]]*
+            USf[s1, 2, 3, j1])/MT + (2*dSinB1*ht*SB*SW2*IndexDelta[2, c1]*
             Mass[F[3, {j1}]]*USf[s1, 2, 3, j1])/MT + 
-          (2*dSinB1*ht*MW2*SB*SW2*IndexDelta[2, c1]*Mass[F[3, {j1}]]*
-            USf[s1, 2, 3, j1])/MT + (dMWsq1*ht*SB2*SW2*IndexDelta[2, c1]*
-            Mass[F[3, {j1}]]*USf[s1, 2, 3, j1])/MT - 
-          (ht*MW2*SB2*SW2*dZfL1[4, j2, j2]*IndexDelta[2, c1]*Mass[F[3, {j1}]]*
-            USf[s1, 2, 3, j1])/MT))/(MW2*SB2*SW2)}, 
-      {0, ((I/2)*ht*S2B*CKM[j1, j2]*dMf1[4, j2]*IndexDelta[o1, o2]*
-         USf[s1, 1, 3, j1]*gl[UCha][c1, 2])/(CB2*MT)}}, 
+          (dMWsq1MW2*ht*SB2*SW2*IndexDelta[2, c1]*Mass[F[3, {j1}]]*
+            USf[s1, 2, 3, j1])/MT - (ht*SB2*SW2*dZfL1[4, j2, j2]*
+            IndexDelta[2, c1]*Mass[F[3, {j1}]]*USf[s1, 2, 3, j1])/MT))/
+        (SB2*SW2)}, {0, ((I/2)*ht*S2B*CKM[j1, j2]*dMf1[4, j2]*
+         IndexDelta[o1, o2]*USf[s1, 1, 3, j1]*gl[UCha][c1, 2])/(CB2*MT)}}, 
     C[F[3, {j1, o1}], F[12, {c1}], -S[14, {s2, j2, o2}]] == 
      {{0, ((I/2)*ht*S2B*CKMC[j1, j2]*dMf1[4, j2]*IndexDelta[o1, o2]*
          USf[s2, 2, 4, j2]*gl[UChaC][c1, 2])/(CB2*MT)}, 
@@ -1390,1931 +1353,1876 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
           SB*SW*dZbarSq1[14, 2, s2, j2, j2]*IndexDelta[2, c1]*
            Mass[F[3, {j1, o1}]]*USf[2, 1, 4, j2] + 
           (2*SB*SW*dMf1[3, j1]*IndexDelta[2, c1] + (SB*SW*dZfR1[12, 2, c1] - 
-              (2*dSW1*SB + 2*dSinB1*SW + (dMWsq1*SB*SW)/MW2 - 
-                SB*SW*dZfR1[3, j1, j1])*IndexDelta[2, c1])*
-             Mass[F[3, {j1, o1}]])*USf[s2, 1, 4, j2]))/(MT*SB2*SW2)}}, 
+              (2*dSW1*SB + 2*dSinB1*SW + dMWsq1MW2*SB*SW - SB*SW*dZfR1[3, j1, 
+                  j1])*IndexDelta[2, c1])*Mass[F[3, {j1, o1}]])*
+           USf[s2, 1, 4, j2]))/(MT*SB2*SW2)}}, 
     C[F[2, {j2}], -F[12, {c1}], -S[11, {j1}]] == 
      {{0, 0}, {(I*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*gl[UCha][c1, 2])/
         (CB*MT), ((I/2)*ht*SB*SW*IndexDelta[j1, j2]*
          (CB*EMUE*SW*dZbarfL1[12, c1, 2]*Mass[F[2, {j1}]] + 
           (2*CB*SW*dMf1[2, j1] + (-2*CB*dSW1 - 2*dCosB1*SW - 
-              (CB*dMWsq1*SW)/MW2 + CB*SW*dZbarSl1[1, j1, 1, 1] + 
+              CB*dMWsq1MW2*SW + CB*SW*dZbarSl1[1, j1, 1, 1] + 
               CB*SW*dZfR1[2, j2, j2])*Mass[F[2, {j1}]])*gl[UCha][c1, 2]))/
         (CB2*MT*SW2)}}, C[F[1, {j1}], F[12, {c1}], -S[12, {s2, j2}]] == 
      {{(I*ht*SB*IndexDelta[j1, j2]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
          gl[UChaC][c1, 2])/(CB*MT), ((-I/4)*IndexDelta[j1, j2]*
-         (-((EMUEC*ht*MW2*S2B*SW2*dZfL1[12, 2, c1]*Mass[F[2, {j1}]]*
-             USf[s2, 2, 2, j1])/MT) - (ht*MW2*S2B*SW2*dZbarSl1[2, j2, 1, s2]*
+         (-((EMUEC*ht*S2B*SW2*dZfL1[12, 2, c1]*Mass[F[2, {j1}]]*
+             USf[s2, 2, 2, j1])/MT) - (ht*S2B*SW2*dZbarSl1[2, j2, 1, s2]*
             Mass[F[2, {j1}]]*USf[1, 2, 2, j1]*gl[UChaC][c1, 2])/MT - 
-          (ht*MW2*S2B*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
+          (ht*S2B*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]*
             USf[2, 2, 2, j1]*gl[UChaC][c1, 2])/MT - 
-          (2*ht*MW2*S2B*SW2*dMf1[2, j1]*USf[s2, 2, 2, j1]*gl[UChaC][c1, 2])/
-           MT + (2*dSW1*ht*MW2*S2B*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            gl[UChaC][c1, 2])/MT + (dMWsq1*ht*S2B*SW2*Mass[F[2, {j1}]]*
+          (2*ht*S2B*SW2*dMf1[2, j1]*USf[s2, 2, 2, j1]*gl[UChaC][c1, 2])/MT + 
+          (2*dSW1*ht*S2B*SW*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+            gl[UChaC][c1, 2])/MT + (dMWsq1MW2*ht*S2B*SW2*Mass[F[2, {j1}]]*
             USf[s2, 2, 2, j1]*gl[UChaC][c1, 2])/MT + 
-          (4*dCosB1*ht*MW2*SB*SW2*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            gl[UChaC][c1, 2])/MT - (ht*MW2*S2B*SW2*dZfL1[1, j1, j1]*
+          (4*dCosB1*ht*SB*SW2*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+            gl[UChaC][c1, 2])/MT - (ht*S2B*SW2*dZfL1[1, j1, j1]*
             Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*gl[UChaC][c1, 2])/MT))/
-        (CB2*MW2*SW2)}, {0, 0}}, C[S[1], S[1], S[12, {s2, j2}], 
+        (CB2*SW2)}, {0, 0}}, C[S[1], S[1], S[12, {s2, j2}], 
       -S[12, {s1, j1}]] == 
      {{((-I)*IndexDelta[j1, j2]*((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
           (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
             USfC[s2, 2, 2, j1])/MT2))/(CW2*SW2), 
-       ((I/8)*IndexDelta[j1, j2]*(CB*CW2*MW2*SW*dZSl1[2, j2, 1, s2]*
+       ((I/8)*IndexDelta[j1, j2]*(CB*CW2*SW*dZSl1[2, j2, 1, s2]*
            (-((CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[
                 1, 1, 2, j1])/MT2) - (CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[1, 2, 2, j1])/MT2) + 
-          CB*CW2*MW2*SW*dZSl1[2, j2, 2, s2]*
+          CB*CW2*SW*dZSl1[2, j2, 2, s2]*
            (-((CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[
                 2, 1, 2, j1])/MT2) - (CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[2, 2, 2, j1])/MT2) - 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
             Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
             Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (4*CB*CW2^2*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
+          (4*CB*CW2^2*dSW1*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (2*CB*CW2^2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*dCosB1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (4*CW2^2*dCosB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (2*CB*CW2^2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[1, 1]*
-            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*
-            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
+          (2*CB*CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
+          (4*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
             Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
             Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (4*CB*CW2^2*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
+          (4*CB*CW2^2*dSW1*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (2*CB*CW2^2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*dCosB1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (4*CW2^2*dCosB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (2*CB*CW2^2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[1, 1]*
-            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*
-            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
-        (CB*CB2*CW2^2*MW2*SW*SW2)}}, C[S[1], S[1], S[13, {s2, j2, o1}], 
+          (2*CB*CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
+          (4*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
+        (CB*CB2*CW2^2*SW*SW2)}}, C[S[1], S[1], S[13, {s2, j2, o1}], 
       -S[13, {s1, j1, o2}]] == 
      {{((-I/3)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          ((3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
             USfC[s2, 1, 3, j1])/MT2 + (3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/(CW2*SW2), 
        ((-I/6)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (CW2*MW2*SB*SW*dZSq1[13, 1, s2, j2, j2]*
+         (CW2*SB*SW*dZSq1[13, 1, s2, j2, j2]*
            ((3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[1, 1, 3, j1])/MT2 + (3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*
               USf[s1, 2, 3, j1]*USfC[1, 2, 3, j1])/MT2) + 
-          CW2*MW2*SB*SW*dZSq1[13, 2, s2, j2, j2]*
+          CW2*SB*SW*dZSq1[13, 2, s2, j2, j2]*
            ((3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[2, 1, 3, j1])/MT2 + (3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*
               USf[s1, 2, 3, j1]*USfC[2, 2, 3, j1])/MT2) + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
+            USfC[s2, 1, 3, j1])/MT2 - (12*CW2^2*dSinB1*ht^2*SB2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
+          (6*CW2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*ht^2*SB*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*S2B*SB*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
+          (3*CW2^2*ht^2*S2B*SB*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*
+            USfC[s2, 2, 3, j1])/MT2 - (12*CW2^2*dSinB1*ht^2*SB2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
+          (6*CW2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*ht^2*SB*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*S2B*SB*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
-            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*SB*SW*SW2)}}, C[S[2], S[2], S[12, {s2, j2}], 
-      -S[12, {s1, j1}]] == 
+          (3*CW2^2*ht^2*S2B*SB*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/(CW2^2*SB*SW*SW2)}}, 
+    C[S[2], S[2], S[12, {s2, j2}], -S[12, {s1, j1}]] == 
      {{((-I)*IndexDelta[j1, j2]*((CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
           (CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
             USfC[s2, 2, 2, j1])/MT2))/(CB2*CW2*SW2), 
-       ((-I/2)*IndexDelta[j1, j2]*(CB*CW2*MW2*SW*dZSl1[2, j2, 1, s2]*
+       ((-I/2)*IndexDelta[j1, j2]*(CB*CW2*SW*dZSl1[2, j2, 1, s2]*
            ((CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*
               USfC[1, 1, 2, j1])/MT2 + (CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[1, 2, 2, j1])/MT2) + 
-          CB*CW2*MW2*SW*dZSl1[2, j2, 2, s2]*
-           ((CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*
-              USfC[2, 1, 2, j1])/MT2 + (CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
-              USf[s1, 2, 2, j1]*USfC[2, 2, 2, j1])/MT2) + 
-          (CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
-            Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
-            Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (4*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          CB*CW2*SW*dZSl1[2, j2, 2, s2]*((CW2*ht^2*SB2^2*SW2*
+              Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[2, 1, 2, j1])/MT2 + 
+            (CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
+              USfC[2, 2, 2, j1])/MT2) + (CB*CW2^2*ht^2*SB2^2*SW*SW2*
+            dZbarSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 + (CB*CW2^2*ht^2*SB2^2*SW*SW2*
+            dZbarSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 + (4*CB*CW2^2*ht^2*SB2^2*SW*SW2*
+            dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s1, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 - (4*CB*CW2^2*dSW1*ht^2*SB2^2*SW2*
+            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
+          (4*CW2^2*dCosB1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CB*CW2^2*dMWsq1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (4*CW2^2*dCosB1*ht^2*MW2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (2*CB*CW2^2*dMWsq1MW2*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[1, 2]*
-            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
+          (CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
+          (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
+          (CB*CW2^2*ht^2*SB2^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
             Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
+          (CB*CW2^2*ht^2*SB2^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
             Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (4*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (4*CB*CW2^2*ht^2*SB2^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
+          (4*CB*CW2^2*dSW1*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*dMWsq1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*dCosB1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (4*CW2^2*dCosB1*ht^2*MW2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (2*CB*CW2^2*dMWsq1MW2*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[1, 2]*
-            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
-        (CB*CB2*CW2^2*MW2*SW*SW2)}}, C[S[2], S[2], S[13, {s2, j2, o1}], 
+          (CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
+          (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
+        (CB*CB2*CW2^2*SW*SW2)}}, C[S[2], S[2], S[13, {s2, j2, o1}], 
       -S[13, {s1, j1, o2}]] == 
      {{((I/12)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          ((-3*CW2*ht^2*S2B^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
             USfC[s2, 1, 3, j1])/MT2 - (3*CW2*ht^2*S2B^2*SW2*
             Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
         (CW2*SB2*SW2), ((I/24)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (CW2*MW2*SB*SW*dZSq1[13, 1, s2, j2, j2]*
+         (CW2*SB*SW*dZSq1[13, 1, s2, j2, j2]*
            ((-3*CW2*ht^2*S2B^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[1, 1, 3, j1])/MT2 - (3*CW2*ht^2*S2B^2*SW2*
               Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[1, 2, 3, j1])/MT2) + 
-          CW2*MW2*SB*SW*dZSq1[13, 2, s2, j2, j2]*
+          CW2*SB*SW*dZSq1[13, 2, s2, j2, j2]*
            ((-3*CW2*ht^2*S2B^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[2, 1, 3, j1])/MT2 - (3*CW2*ht^2*S2B^2*SW2*
               Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[2, 2, 3, j1])/MT2) - 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (12*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*S2B^2*SB*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^2*SB*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*S2B^2*SB*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CW2^2*dMWsq1*ht^2*S2B^2*SB*SW*SW2*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^2*SB*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[1, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (12*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
+          (6*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (12*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*S2B^2*SB*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^2*SB*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*S2B^2*SB*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (6*CW2^2*dMWsq1*ht^2*S2B^2*SB*SW*SW2*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^2*SB*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[1, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*SB*SB2*SW*SW2)}}, C[S[3], S[3], S[12, {s2, j2}], 
+          (12*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
+          (6*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
+        (CW2^2*SB*SB2*SW*SW2)}}, C[S[3], S[3], S[12, {s2, j2}], 
       -S[12, {s1, j1}]] == 
      {{((-I)*IndexDelta[j1, j2]*((CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
           (CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
             USfC[s2, 2, 2, j1])/MT2))/(CB2*CW2*SW2), 
-       ((-I/4)*IndexDelta[j1, j2]*(2*CB*CW2*MW2*SW*dZSl1[2, j2, 1, s2]*
+       ((-I/4)*IndexDelta[j1, j2]*(2*CB*CW2*SW*dZSl1[2, j2, 1, s2]*
            ((CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*
               USfC[1, 1, 2, j1])/MT2 + (CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[1, 2, 2, j1])/MT2) + 
-          2*CB*CW2*MW2*SW*dZSl1[2, j2, 2, s2]*
-           ((CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*
-              USfC[2, 1, 2, j1])/MT2 + (CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*
-              USf[s1, 2, 2, j1]*USfC[2, 2, 2, j1])/MT2) + 
-          (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
-            Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
-            Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (8*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (4*CW2^2*dSW1*ht^2*MW2*S2B*SB*SB2*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CW2^2*dMWsq1*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (8*CW2^2*dCosB1*ht^2*MW2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (2*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[3, 3]*
+          2*CB*CW2*SW*dZSl1[2, j2, 2, s2]*((CW2*ht^2*SB2^2*SW2*
+              Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[2, 1, 2, j1])/MT2 + 
+            (CW2*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
+              USfC[2, 2, 2, j1])/MT2) + (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*
+            dZbarSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 + (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*
+            dZbarSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 + (8*CB*CW2^2*ht^2*SB2^2*SW*SW2*
+            dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s1, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 - (4*CW2^2*dSW1*ht^2*S2B*SB*SB2*SW2*
             Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2*
+          (2*CW2^2*dMWsq1MW2*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
+          (8*CW2^2*dCosB1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
+          (2*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
+          (CW2^2*ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
+          (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
             Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
+          (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
             Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (8*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (8*CB*CW2^2*ht^2*SB2^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (4*CW2^2*dSW1*ht^2*MW2*S2B*SB*SB2*SW2*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*dSW1*ht^2*S2B*SB*SB2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CW2^2*dMWsq1*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (2*CW2^2*dMWsq1MW2*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (8*CW2^2*dCosB1*ht^2*MW2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (8*CW2^2*dCosB1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (2*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[3, 3]*
-            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2*
+          (2*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
+          (CW2^2*ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
-        (CB*CB2*CW2^2*MW2*SW*SW2)}}, C[S[4], S[4], S[12, {s2, j2}], 
+        (CB*CB2*CW2^2*SW*SW2)}}, C[S[4], S[4], S[12, {s2, j2}], 
       -S[12, {s1, j1}]] == 
      {{((-I)*IndexDelta[j1, j2]*((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
           (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
             USfC[s2, 2, 2, j1])/MT2))/(CW2*SW2), 
-       ((I/8)*IndexDelta[j1, j2]*(CW2*MW2*SW*dZSl1[2, j2, 1, s2]*
+       ((I/8)*IndexDelta[j1, j2]*(CW2*SW*dZSl1[2, j2, 1, s2]*
            (-((CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[
                 1, 1, 2, j1])/MT2) - (CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[1, 2, 2, j1])/MT2) + 
-          CW2*MW2*SW*dZSl1[2, j2, 2, s2]*
-           (-((CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[
-                2, 1, 2, j1])/MT2) - (CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
-              USf[s1, 2, 2, j1]*USfC[2, 2, 2, j1])/MT2) - 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
-            Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
-            Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (4*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          CW2*SW*dZSl1[2, j2, 2, s2]*(-((CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^
+                2*USf[s1, 1, 2, j1]*USfC[2, 1, 2, j1])/MT2) - 
+            (CW2*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
+              USfC[2, 2, 2, j1])/MT2) - (CW2^2*ht^2*S2B^2*SW*SW2*
+            dZbarSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 - (CW2^2*ht^2*S2B^2*SW*SW2*
+            dZbarSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 - (4*CW2^2*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*
+            Mass[F[2, {j1}]]*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
+          (4*CW2^2*dSW1*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 + (2*CW2^2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*
+            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
+          (16*CB*CW2^2*dCosB1*ht^2*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (4*CW2^2*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (2*CW2^2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (16*CB*CW2^2*dCosB1*ht^2*MW2*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (4*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2*
+          (2*CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
-            Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
-            Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (4*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (CW2^2*ht^2*S2B^2*SW*SW2*dZbarSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*
+            USf[1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
+          (CW2^2*ht^2*S2B^2*SW*SW2*dZbarSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*
+            USf[2, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
+          (4*CW2^2*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (4*CW2^2*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*dSW1*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
+            USfC[s2, 2, 2, j1])/MT2 + (2*CW2^2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*
+            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
+          (16*CB*CW2^2*dCosB1*ht^2*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (2*CW2^2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (16*CB*CW2^2*dCosB1*ht^2*MW2*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (4*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2*
-            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
-        (CB2*CW2^2*MW2*SW*SW2)}}, C[S[3], S[4], S[12, {s2, j2}], 
-      -S[12, {s1, j1}]] == 
+          (2*CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/(CB2*CW2^2*SW*SW2)}}, 
+    C[S[3], S[4], S[12, {s2, j2}], -S[12, {s1, j1}]] == 
      {{((-I/2)*S2B*IndexDelta[j1, j2]*
          (-((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*
              USfC[s2, 1, 2, j1])/MT2) - (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/(CB2*CW2*SW2), 
-       ((-I/8)*IndexDelta[j1, j2]*(2*CW2*MW2*S2B*SW*dZSl1[2, j2, 1, s2]*
+       ((-I/8)*IndexDelta[j1, j2]*(2*CW2*S2B*SW*dZSl1[2, j2, 1, s2]*
            (-((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[1, 
                 1, 2, j1])/MT2) - (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[1, 2, 2, j1])/MT2) + 
-          2*CW2*MW2*S2B*SW*dZSl1[2, j2, 2, s2]*
+          2*CW2*S2B*SW*dZSl1[2, j2, 2, s2]*
            (-((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[2, 
                 1, 2, j1])/MT2) - (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[2, 2, 2, j1])/MT2) - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
             Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
             Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (8*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (8*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (8*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (4*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (16*CW2^2*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (8*CW2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*
+            USfC[s2, 1, 2, j1])/MT2 + (4*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
+          (16*CW2^2*dCosB1*ht^2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2*
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (4*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2*
+          (CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2*
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
             Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
             Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (8*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (8*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (8*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (4*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (16*CW2^2*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (8*CW2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
+            USfC[s2, 2, 2, j1])/MT2 + (4*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
+          (16*CW2^2*dCosB1*ht^2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2*
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (4*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2*
+          (CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2*
-            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
-        (CB2*CW2^2*MW2*SW*SW2)}}, C[S[3], S[3], S[13, {s2, j2, o1}], 
-      -S[13, {s1, j1, o2}]] == 
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/(CB2*CW2^2*SW*SW2)}}, 
+    C[S[3], S[3], S[13, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
      {{((I/12)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          ((-3*CW2*ht^2*S2B^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
             USfC[s2, 1, 3, j1])/MT2 - (3*CW2*ht^2*S2B^2*SW2*
             Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
         (CW2*SB2*SW2), ((-I/24)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (CW2*MW2*SB*SW*dZSq1[13, 1, s2, j2, j2]*
+         (CW2*SB*SW*dZSq1[13, 1, s2, j2, j2]*
            ((3*CW2*ht^2*S2B^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[1, 1, 3, j1])/MT2 + (3*CW2*ht^2*S2B^2*SW2*
               Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[1, 2, 3, j1])/MT2) + 
-          CW2*MW2*SB*SW*dZSq1[13, 2, s2, j2, j2]*
+          CW2*SB*SW*dZSq1[13, 2, s2, j2, j2]*
            ((3*CW2*ht^2*S2B^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[2, 1, 3, j1])/MT2 + (3*CW2*ht^2*S2B^2*SW2*
               Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[2, 2, 3, j1])/MT2) + 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*S2B^2*SB*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^2*SB*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*S2B^2*SB*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^2*SB*SW*SW2*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^2*SB*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[3, 3]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (24*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[4, 3]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
+          (24*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*S2B^2*SB*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^2*SB*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*S2B^2*SB*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^2*SB*SW*SW2*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^2*SB*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[3, 3]*
-            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (24*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[4, 3]*
-            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*SB*SB2*SW*SW2)}}, C[S[4], S[4], S[13, {s2, j2, o1}], 
+          (6*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
+          (24*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
+        (CW2^2*SB*SB2*SW*SW2)}}, C[S[4], S[4], S[13, {s2, j2, o1}], 
       -S[13, {s1, j1, o2}]] == 
      {{((-I/3)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          ((3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
             USfC[s2, 1, 3, j1])/MT2 + (3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/(CW2*SW2), 
        ((-I/6)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (CW2*MW2*SB*SW*dZSq1[13, 1, s2, j2, j2]*
+         (CW2*SB*SW*dZSq1[13, 1, s2, j2, j2]*
            ((3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[1, 1, 3, j1])/MT2 + (3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*
               USf[s1, 2, 3, j1]*USfC[1, 2, 3, j1])/MT2) + 
-          CW2*MW2*SB*SW*dZSq1[13, 2, s2, j2, j2]*
+          CW2*SB*SW*dZSq1[13, 2, s2, j2, j2]*
            ((3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[2, 1, 3, j1])/MT2 + (3*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*
               USf[s1, 2, 3, j1]*USfC[2, 2, 3, j1])/MT2) + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
+            USfC[s2, 1, 3, j1])/MT2 - (12*CW2^2*dSinB1*ht^2*SB2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
+          (6*CW2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
+          (6*CB*CW2^2*ht^2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*ht^2*SB*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*
+            USfC[s2, 2, 3, j1])/MT2 - (12*CW2^2*dSinB1*ht^2*SB2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
+          (6*CW2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (6*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
+          (6*CB*CW2^2*ht^2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
-            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*SB*SW*SW2)}}, C[S[3], S[4], S[13, {s2, j2, o1}], 
-      -S[13, {s1, j1, o2}]] == 
+          (6*CW2^2*ht^2*SB*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/(CW2^2*SB*SW*SW2)}}, 
+    C[S[3], S[4], S[13, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
      {{((I/3)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          ((-3*CB*CW2*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
             USfC[s2, 1, 3, j1])/MT2 - (3*CB*CW2*ht^2*SB2*SW2*
             Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
         (CW2*SB*SW2), ((-I/24)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (2*CW2*MW2*S2B*SB2*SW*dZSq1[13, 1, s2, j2, j2]*
+         (2*CW2*S2B*SB2*SW*dZSq1[13, 1, s2, j2, j2]*
            ((3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[1, 1, 3, j1])/MT2 + (3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*
               USf[s1, 2, 3, j1]*USfC[1, 2, 3, j1])/MT2) + 
-          2*CW2*MW2*S2B*SB2*SW*dZSq1[13, 2, s2, j2, j2]*
+          2*CW2*S2B*SB2*SW*dZSq1[13, 2, s2, j2, j2]*
            ((3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[2, 1, 3, j1])/MT2 + (3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*
               USf[s1, 2, 3, j1]*USfC[2, 2, 3, j1])/MT2) + 
-          (6*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (24*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (24*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (24*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2*
+          (24*CW2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (48*CB*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (48*CB*CW2^2*dSinB1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (12*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
+          (3*CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (24*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (24*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (24*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2*
+          (24*CW2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (48*CB*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (48*CB*CW2^2*dSinB1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
+          (6*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
+          (3*CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
-            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*SB2*SW*SW2)}}, C[S[1], S[2], S[12, {s2, j2}], 
-      -S[12, {s1, j1}]] == 
+          (6*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/(CW2^2*SB2*SW*SW2)}}, 
+    C[S[1], S[2], S[12, {s2, j2}], -S[12, {s1, j1}]] == 
      {{((I/2)*S2B*IndexDelta[j1, j2]*(-((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*
              USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2) - 
           (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*
             USfC[s2, 2, 2, j1])/MT2))/(CB2*CW2*SW2), 
-       ((I/8)*IndexDelta[j1, j2]*(2*CB*CW2*MW2*S2B*SW*dZSl1[2, j2, 1, s2]*
+       ((I/8)*IndexDelta[j1, j2]*(2*CB*CW2*S2B*SW*dZSl1[2, j2, 1, s2]*
            (-((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[1, 
                 1, 2, j1])/MT2) - (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[1, 2, 2, j1])/MT2) + 
-          2*CB*CW2*MW2*S2B*SW*dZSl1[2, j2, 2, s2]*
+          2*CB*CW2*S2B*SW*dZSl1[2, j2, 2, s2]*
            (-((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[2, 
                 1, 2, j1])/MT2) - (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]^2*
               USf[s1, 2, 2, j1]*USfC[2, 2, 2, j1])/MT2) - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
             Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
             Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (8*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (8*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (8*CB*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2*
+          (8*CB*CW2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (4*CB*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (8*CW2^2*dCosB1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 + 
-          (8*CW2^2*dCosB1*ht^2*MW2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (4*CB*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[1, 1]*
-            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2*
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2*
             USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[2, 1]*
-            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[2, {j1}]]^2*USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
+          (4*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2*
+            USf[s1, 1, 2, j1]*USfC[s2, 1, 2, j1])/MT2 - 
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 1, s1]*
             Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j1, 2, s1]*
             Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (8*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (8*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (8*CB*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2*
+          (8*CB*CW2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (4*CB*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (8*CW2^2*dCosB1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 + 
-          (8*CW2^2*dCosB1*ht^2*MW2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (4*CB*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[1, 1]*
-            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2*
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2*
             USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[2, 1]*
-            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[2, {j1}]]^2*USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
-        (CB*CB2*CW2^2*MW2*SW*SW2)}}, C[S[1], S[2], S[13, {s2, j2, o1}], 
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
+          (4*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2 - 
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2*
+            USf[s1, 2, 2, j1]*USfC[s2, 2, 2, j1])/MT2))/
+        (CB*CB2*CW2^2*SW*SW2)}}, C[S[1], S[2], S[13, {s2, j2, o1}], 
       -S[13, {s1, j1, o2}]] == 
      {{((I/6)*S2B*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          ((3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
             USfC[s2, 1, 3, j1])/MT2 + (3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/(CW2*SW2), 
        ((-I/24)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         (2*CW2*MW2*S2B*SB*SB2*SW*dZSq1[13, 1, s2, j2, j2]*
+         (2*CW2*S2B*SB*SB2*SW*dZSq1[13, 1, s2, j2, j2]*
            ((-3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[1, 1, 3, j1])/MT2 - (3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*
               USf[s1, 2, 3, j1]*USfC[1, 2, 3, j1])/MT2) + 
-          2*CW2*MW2*S2B*SB*SB2*SW*dZSq1[13, 2, s2, j2, j2]*
+          2*CW2*S2B*SB*SB2*SW*dZSq1[13, 2, s2, j2, j2]*
            ((-3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
               USfC[2, 1, 3, j1])/MT2 - (3*CW2*ht^2*SW2*Mass[F[3, {j1}]]^2*
               USf[s1, 2, 3, j1]*USfC[2, 2, 3, j1])/MT2) - 
-          (6*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (24*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (24*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (24*CW2^2*dSW1*ht^2*MW2*S2B*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
+          (24*CW2^2*dSW1*ht^2*S2B*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (24*CW2^2*dSinB1*ht^2*MW2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (24*CW2^2*dSinB1*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*dMWsq1*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dMWsq1MW2*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[1, 1]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2^2*SW*SW2*dZNHiggs1[1, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[2, 1]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
+          (12*CW2^2*ht^2*SB*SB2^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
+          (6*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 3, j1])/MT2 - 
+          (6*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+          (6*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (24*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (24*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (24*CW2^2*dSW1*ht^2*MW2*S2B*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
+          (24*CW2^2*dSW1*ht^2*S2B*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (24*CW2^2*dSinB1*ht^2*MW2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (24*CW2^2*dSinB1*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*dMWsq1*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dMWsq1MW2*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[1, 1]*
-            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2^2*SW*SW2*dZNHiggs1[1, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[2, 1]*
-            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
-          (6*CW2^2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*SB*SB2*SW*SW2)}}, C[S[1], S[5], S[13, {s1, j1, o1}], 
+          (6*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
+          (12*CW2^2*ht^2*SB*SB2^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2 - 
+          (6*CW2^2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 2, 3, j1]*USfC[s2, 2, 3, j1])/MT2))/
+        (CW2^2*SB*SB2*SW*SW2)}}, C[S[1], S[5], S[13, {s1, j1, o1}], 
       -S[14, {s2, j2, o2}]] == 
      {{((I/2)*ht^2*S2B*CKMC[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/(Sqrt[2]*MT2), 
        ((I/4)*CKMC[j1, j2]*IndexDelta[o1, o2]*
-         ((ht^2*MW2*S2B^4*SW*SW2*dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+         ((ht^2*S2B^4*SW*SW2*dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[1, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+          (ht^2*S2B^4*SW*SW2*dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[2, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*
-            Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
-            Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (4*ht^2*MW2*S2B^4*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (4*dSW1*ht^2*MW2*S2B^4*SW2*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 3, j1])/MT2 - (2*dMWsq1*ht^2*S2B^4*SW*SW2*
+          (ht^2*S2B^4*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+            USf[1, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
+          (ht^2*S2B^4*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+            USf[2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
+          (4*ht^2*S2B^4*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 3, j1])/MT2 - (4*dSW1*ht^2*S2B^4*SW2*
             Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (64*CB2^2*dSinB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (2*dMWsq1MW2*ht^2*S2B^4*SW*SW2*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 3, j1])/MT2 - (64*CB2^2*dSinB1*ht^2*SB*SB2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
+          (ht^2*S2B^4*SW*SW2*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
+          (2*ht^2*S2B^3*SB2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (2*ht^2*MW2*S2B^3*SB2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[3, {j1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
+          (ht^2*S2B^4*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
+          (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (8*ht^2*MW2*S2B^2*SB2*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
+          (8*ht^2*S2B^2*SB2*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
             USf[s2, 2, 4, j2]*USfC[s1, 2, 3, j1])/MT2))/
-        (Sqrt[2]*MW2*S2B^3*SW*SW2)}}, C[S[1], S[6], S[13, {s1, j1, o1}], 
+        (Sqrt[2]*S2B^3*SW*SW2)}}, C[S[1], S[6], S[13, {s1, j1, o1}], 
       -S[14, {s2, j2, o2}]] == 
      {{(I*ht^2*SB2*CKMC[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/(Sqrt[2]*MT2), 
        ((I/4)*CKMC[j1, j2]*IndexDelta[o1, o2]*
-         ((2*ht^2*MW2*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+         ((2*ht^2*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[1, 1, 3, j1])/MT2 + 
-          (2*ht^2*MW2*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+          (2*ht^2*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[2, 1, 3, j1])/MT2 + 
-          ((2*ht^2*MW2*SB2*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*
-              Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2])/MT2 + 
-            (2*ht^2*MW2*SB2*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
-              Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2])/MT2 + 
-            ((8*ht^2*MW2*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 + 
-              (ht^2*SW2*(-8*dSW1*MW2*SB2 + SW*(-8*dSinB1*MW2*SB - 4*dMWsq1*
-                    SB2 + MW2*(2*SB2*(dZCHiggs1[6, 6] + dZNHiggs1[1, 1]) + 
-                     S2B*(dZCHiggs1[5, 6] - dZNHiggs1[2, 1]))))*
+          ((2*ht^2*SB2*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+              USf[1, 1, 4, j2])/MT2 + (2*ht^2*SB2*SW*SW2*dZbarSq1[14, 2, s2, 
+               j2, j2]*Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2])/MT2 + 
+            ((8*ht^2*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 + 
+              (ht^2*SW2*(-8*dSW1*SB2 + SW*(-8*dSinB1*SB - 4*dMWsq1MW2*SB2 + 
+                   S2B*dZCHiggs1[5, 6] + 2*SB2*dZCHiggs1[6, 6] + 
+                   2*SB2*dZNHiggs1[1, 1] - S2B*dZNHiggs1[2, 1]))*
                 Mass[F[3, {j1}]]^2)/MT2)*USf[s2, 1, 4, j2])*
-           USfC[s1, 1, 3, j1]))/(Sqrt[2]*MW2*SW*SW2)}}, 
+           USfC[s1, 1, 3, j1]))/(Sqrt[2]*SW*SW2)}}, 
     C[S[1], -S[5], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
      {{((I/2)*ht^2*S2B*CKM[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/(Sqrt[2]*MT2), 
        ((I/4)*CKM[j1, j2]*IndexDelta[o1, o2]*
-         ((ht^2*MW2*S2B^4*SW*SW2*dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+         ((ht^2*S2B^4*SW*SW2*dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[1, 1, 4, j2])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+          (ht^2*S2B^4*SW*SW2*dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[2, 1, 4, j2])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
-            Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
-            Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (4*ht^2*MW2*S2B^4*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
-            USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (4*dSW1*ht^2*MW2*S2B^4*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 - (2*dMWsq1*ht^2*S2B^4*SW*SW2*
+          (ht^2*S2B^4*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+            USf[1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (ht^2*S2B^4*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+            USf[2, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (4*ht^2*S2B^4*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*USf[s1, 1, 3, j1]*
+            USfC[s2, 1, 4, j2])/MT2 - (4*dSW1*ht^2*S2B^4*SW2*
             Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (64*CB2^2*dSinB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (2*ht^2*MW2*S2B^3*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
+          (2*dMWsq1MW2*ht^2*S2B^4*SW*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
+            USfC[s2, 1, 4, j2])/MT2 - (64*CB2^2*dSinB1*ht^2*SB*SB2*SW*SW2*
             Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
+          (2*ht^2*S2B^3*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
+            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (ht^2*S2B^4*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (ht^2*MW2*S2B^4*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
+          (ht^2*S2B^4*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
+          (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (8*ht^2*MW2*S2B^2*SB2*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
+          (8*ht^2*S2B^2*SB2*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 4, j2])/MT2))/
-        (Sqrt[2]*MW2*S2B^3*SW*SW2)}}, C[S[1], -S[6], S[14, {s2, j2, o1}], 
+        (Sqrt[2]*S2B^3*SW*SW2)}}, C[S[1], -S[6], S[14, {s2, j2, o1}], 
       -S[13, {s1, j1, o2}]] == 
      {{(I*ht^2*SB2*CKM[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/(Sqrt[2]*MT2), 
        ((I/4)*CKM[j1, j2]*IndexDelta[o1, o2]*
-         ((2*ht^2*MW2*SB2*SW*SW2*dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+         ((2*ht^2*SB2*SW*SW2*dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[1, 1, 4, j2])/MT2 + 
-          (2*ht^2*MW2*SB2*SW*SW2*dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+          (2*ht^2*SB2*SW*SW2*dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[2, 1, 4, j2])/MT2 + 
-          ((2*ht^2*MW2*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
-              Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1])/MT2 + 
-            (2*ht^2*MW2*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
-              Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1])/MT2 + 
-            ((8*ht^2*MW2*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 - 
-              (8*dSW1*ht^2*MW2*SB2*SW2*Mass[F[3, {j1}]]^2)/MT2 - 
-              (8*dSinB1*ht^2*MW2*SB*SW*SW2*Mass[F[3, {j1}]]^2)/MT2 - 
-              (4*dMWsq1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2)/MT2 + 
-              (ht^2*MW2*S2B*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
-                Mass[F[3, {j1}]]^2)/MT2 + (2*ht^2*MW2*SB2*SW*SW2*
-                Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]^2)/MT2 + 
-              (2*ht^2*MW2*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2)/
-               MT2 - (ht^2*MW2*S2B*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2)/
-               MT2)*USf[s1, 1, 3, j1])*USfC[s2, 1, 4, j2]))/
-        (Sqrt[2]*MW2*SW*SW2)}}, C[S[3], S[5], S[13, {s1, j1, o1}], 
-      -S[14, {s2, j2, o2}]] == 
+          ((2*ht^2*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+              USf[1, 1, 3, j1])/MT2 + (2*ht^2*SB2*SW*SW2*dZbarSq1[13, 2, s1, 
+               j1, j1]*Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1])/MT2 + 
+            ((8*ht^2*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 - 
+              (8*dSW1*ht^2*SB2*SW2*Mass[F[3, {j1}]]^2)/MT2 - (8*dSinB1*ht^2*
+                SB*SW*SW2*Mass[F[3, {j1}]]^2)/MT2 - (4*dMWsq1MW2*ht^2*SB2*SW*
+                SW2*Mass[F[3, {j1}]]^2)/MT2 + (ht^2*S2B*SW*SW2*Conjugate[
+                 dZCHiggs1[5, 6]]*Mass[F[3, {j1}]]^2)/MT2 + (2*ht^2*SB2*SW*
+                SW2*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]^2)/MT2 + 
+              (2*ht^2*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[3, {j1}]]^2)/MT2 - 
+              (ht^2*S2B*SW*SW2*dZNHiggs1[2, 1]*Mass[F[3, {j1}]]^2)/MT2)*
+             USf[s1, 1, 3, j1])*USfC[s2, 1, 4, j2]))/(Sqrt[2]*SW*SW2)}}, 
+    C[S[3], S[5], S[13, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
      {{(-2*Sqrt[2]*CB2^2*ht^2*SB2*CKMC[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/
         (MT2*S2B^2), (CKMC[j1, j2]*IndexDelta[o1, o2]*
-         ((-2*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
+         ((-2*CB2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[1, 1, 3, j1])/MT2 - 
-          (2*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
+          (2*CB2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[2, 1, 3, j1])/MT2 + 
-          (((-8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*
+          (((-8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*
                Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2])/MT2 - 
-             (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
+             (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
                Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2])/MT2 - 
-             ((32*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/
-                MT2 + (ht^2*SW2*(-8*CB2^2*SB2*(4*dSW1*MW2*S2B + 
-                    SW*(8*CB*dSinB1*MW2 + S2B*(2*dMWsq1 - MW2*(dZCHiggs1[5, 
-                          5] + dZNHiggs1[3, 3])))) + MW2*S2B^4*SW*
-                   (dZCHiggs1[6, 5] + dZNHiggs1[4, 3]))*Mass[F[3, {j1}]]^2)/
-                MT2)*USf[s2, 1, 4, j2])*USfC[s1, 1, 3, j1])/4))/
-        (Sqrt[2]*MW2*S2B^3*SW*SW2)}}, C[S[4], S[6], S[13, {s1, j1, o1}], 
-      -S[14, {s2, j2, o2}]] == 
+             ((32*CB2^2*ht^2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/
+                MT2 + (ht^2*SW2*(-8*CB2^2*SB2*(4*dSW1*S2B + SW*(8*CB*dSinB1 + 
+                      2*dMWsq1MW2*S2B - S2B*dZCHiggs1[5, 5] - S2B*dZNHiggs1[
+                        3, 3])) + S2B^4*SW*(dZCHiggs1[6, 5] + dZNHiggs1[4, 
+                     3]))*Mass[F[3, {j1}]]^2)/MT2)*USf[s2, 1, 4, j2])*
+            USfC[s1, 1, 3, j1])/4))/(Sqrt[2]*S2B^3*SW*SW2)}}, 
+    C[S[4], S[6], S[13, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
      {{-((ht^2*SB2*CKMC[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
           USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/(Sqrt[2]*MT2)), 
-       -(CKMC[j1, j2]*IndexDelta[o1, o2]*((2*ht^2*MW2*S2B*SB2*SW*SW2*
+       -(CKMC[j1, j2]*IndexDelta[o1, o2]*((2*ht^2*S2B*SB2*SW*SW2*
              dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-             USfC[1, 1, 3, j1])/MT2 + (2*ht^2*MW2*S2B*SB2*SW*SW2*
+             USfC[1, 1, 3, j1])/MT2 + (2*ht^2*S2B*SB2*SW*SW2*
              dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-             USfC[2, 1, 3, j1])/MT2 + ((2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[
-                14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2])/MT2 + 
-             (2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
+             USfC[2, 1, 3, j1])/MT2 + ((2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[14, 1, 
+                s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2])/MT2 + 
+             (2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
                Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2])/MT2 + 
-             ((8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 + 
-               (ht^2*SW2*(-8*dSW1*MW2*S2B*SB2 + SW*(-16*CB*dSinB1*MW2*SB2 + 
-                    S2B*(-4*dMWsq1*SB2 + MW2*(S2B*(dZCHiggs1[5, 6] + 
-                          dZNHiggs1[3, 4]) + 2*SB2*(dZCHiggs1[6, 6] + 
-                          dZNHiggs1[4, 4])))))*Mass[F[3, {j1}]]^2)/MT2)*
-              USf[s2, 1, 4, j2])*USfC[s1, 1, 3, j1]))/(4*Sqrt[2]*MW2*S2B*SW*
-         SW2)}}, C[S[3], S[6], S[13, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
+             ((8*ht^2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 + 
+               (ht^2*SW2*(-8*dSW1*S2B*SB2 + SW*(-16*CB*dSinB1*SB2 + 
+                    S2B*(-4*dMWsq1MW2*SB2 + S2B*(dZCHiggs1[5, 6] + dZNHiggs1[
+                         3, 4]) + 2*SB2*(dZCHiggs1[6, 6] + dZNHiggs1[4, 
+                         4]))))*Mass[F[3, {j1}]]^2)/MT2)*USf[s2, 1, 4, j2])*
+            USfC[s1, 1, 3, j1]))/(4*Sqrt[2]*S2B*SW*SW2)}}, 
+    C[S[3], S[6], S[13, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
      {{-(CB*ht^2*S2B^2*CKMC[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
           USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/(4*Sqrt[2]*CB2*MT2*SB), 
-       -(CKMC[j1, j2]*IndexDelta[o1, o2]*((8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*
+       -(CKMC[j1, j2]*IndexDelta[o1, o2]*((8*CB2^2*ht^2*SB*SB2*SW*SW2*
              dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-             USfC[1, 1, 3, j1])/MT2 + (8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*
+             USfC[1, 1, 3, j1])/MT2 + (8*CB2^2*ht^2*SB*SB2*SW*SW2*
              dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-             USfC[2, 1, 3, j1])/MT2 + (CB*ht^2*MW2*S2B^3*SW*SW2*
+             USfC[2, 1, 3, j1])/MT2 + (CB*ht^2*S2B^3*SW*SW2*
              dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2]*
-             USfC[s1, 1, 3, j1])/MT2 + (CB*ht^2*MW2*S2B^3*SW*SW2*
+             USfC[s1, 1, 3, j1])/MT2 + (CB*ht^2*S2B^3*SW*SW2*
              dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2]*
-             USfC[s1, 1, 3, j1])/MT2 + (4*CB*ht^2*MW2*S2B^3*SW*SW2*
-             dMf1[3, j1]*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
-             USfC[s1, 1, 3, j1])/MT2 - (32*CB2^2*dSW1*ht^2*MW2*SB*SB2*SW2*
-             Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-           (32*CB2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+             USfC[s1, 1, 3, j1])/MT2 + (4*CB*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*
+             Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
+           (32*CB2^2*dSW1*ht^2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
              USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-           (16*CB2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+           (32*CB2^2*dSinB1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+             USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
+           (16*CB2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
              USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-           (8*CB*CB2^2*ht^2*MW2*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[3, {j1}]]^2*
+           (8*CB*CB2^2*ht^2*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[3, {j1}]]^2*
              USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-           (8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]^2*
+           (8*CB2^2*ht^2*SB*SB2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]^2*
              USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-           (8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
+           (8*CB2^2*ht^2*SB*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
              USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-           (2*CB*ht^2*MW2*S2B^2*SB2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
+           (2*CB*ht^2*S2B^2*SB2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
              USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-           (4*ht^2*MW2*S2B^2*SB*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
+           (4*ht^2*S2B^2*SB*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
              USf[s2, 2, 4, j2]*USfC[s1, 2, 3, j1])/MT2))/
-        (4*Sqrt[2]*CB*MW2*S2B^2*SW*SW2)}}, 
-    C[S[4], S[5], S[13, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
+        (4*Sqrt[2]*CB*S2B^2*SW*SW2)}}, C[S[4], S[5], S[13, {s1, j1, o1}], 
+      -S[14, {s2, j2, o2}]] == 
      {{-(CB*ht^2*S2B^2*CKMC[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
           USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/(4*Sqrt[2]*CB2*MT2*SB), 
-       (CKMC[j1, j2]*IndexDelta[o1, o2]*((-8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*
+       (CKMC[j1, j2]*IndexDelta[o1, o2]*((-8*CB2^2*ht^2*SB*SB2*SW*SW2*
             dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[1, 1, 3, j1])/MT2 - (8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*
+            USfC[1, 1, 3, j1])/MT2 - (8*CB2^2*ht^2*SB*SB2*SW*SW2*
             dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[2, 1, 3, j1])/MT2 - (CB*ht^2*MW2*S2B^3*SW*SW2*
+            USfC[2, 1, 3, j1])/MT2 - (CB*ht^2*S2B^3*SW*SW2*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 3, j1])/MT2 - (CB*ht^2*MW2*S2B^3*SW*SW2*
+            USfC[s1, 1, 3, j1])/MT2 - (CB*ht^2*S2B^3*SW*SW2*
             dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2]*
-            USfC[s1, 1, 3, j1])/MT2 - (4*CB*ht^2*MW2*S2B^3*SW*SW2*dMf1[3, j1]*
+            USfC[s1, 1, 3, j1])/MT2 - (4*CB*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*
             Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (32*CB2^2*dSW1*ht^2*MW2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
+          (32*CB2^2*dSW1*ht^2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 3, j1])/MT2 + (32*CB2^2*dSinB1*ht^2*SB2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
+          (16*CB2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
+          (8*CB2^2*ht^2*SB*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
+          (2*CB*ht^2*S2B^2*SB2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[3, {j1}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
+          (8*CB*CB2^2*ht^2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
+          (8*CB2^2*ht^2*SB*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (32*CB2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (16*CB2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (2*CB*ht^2*MW2*S2B^2*SB2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[3, {j1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (8*CB*CB2^2*ht^2*MW2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (4*ht^2*MW2*S2B^2*SB*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
+          (4*ht^2*S2B^2*SB*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
             USf[s2, 2, 4, j2]*USfC[s1, 2, 3, j1])/MT2))/
-        (4*Sqrt[2]*CB*MW2*S2B^2*SW*SW2)}}, 
-    C[S[3], -S[5], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
+        (4*Sqrt[2]*CB*S2B^2*SW*SW2)}}, C[S[3], -S[5], S[14, {s2, j2, o1}], 
+      -S[13, {s1, j1, o2}]] == 
      {{(2*Sqrt[2]*CB2^2*ht^2*SB2*CKM[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/
         (MT2*S2B^2), -(CKM[j1, j2]*IndexDelta[o1, o2]*
-          ((-8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[14, 1, s2, j2, j2]*
+          ((-8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[14, 1, s2, j2, j2]*
              Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[1, 1, 4, j2])/MT2 - 
-           (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[14, 2, s2, j2, j2]*
+           (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[14, 2, s2, j2, j2]*
              Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[2, 1, 4, j2])/MT2 + 
-           ((-8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+           ((-8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
                Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1])/MT2 - 
-             (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+             (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
                Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1])/MT2 - 
-             ((32*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/
-                MT2 - (32*CB2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2)/
-                MT2 - (64*CB*CB2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*
-                 Mass[F[3, {j1}]]^2)/MT2 - (16*CB2^2*dMWsq1*ht^2*S2B*SB2*SW*
-                 SW2*Mass[F[3, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^4*SW*SW2*
-                 Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {j1}]]^2)/MT2 + 
-               (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*
-                 Mass[F[3, {j1}]]^2)/MT2 + (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-                 dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^4*SW*
-                 SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2)/MT2)*
-              USf[s1, 1, 3, j1])*USfC[s2, 1, 4, j2]))/(4*Sqrt[2]*MW2*S2B^3*SW*
-         SW2)}}, C[S[4], -S[6], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
+             ((32*CB2^2*ht^2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/
+                MT2 - (32*CB2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2)/
+                MT2 - (64*CB*CB2^2*dSinB1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2)/
+                MT2 - (16*CB2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+                 Mass[F[3, {j1}]]^2)/MT2 + (ht^2*S2B^4*SW*SW2*Conjugate[
+                  dZCHiggs1[6, 5]]*Mass[F[3, {j1}]]^2)/MT2 + (8*CB2^2*ht^2*
+                 S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[3, {j1}]]^2)/MT2 + 
+               (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^
+                  2)/MT2 + (ht^2*S2B^4*SW*SW2*dZNHiggs1[4, 3]*
+                 Mass[F[3, {j1}]]^2)/MT2)*USf[s1, 1, 3, j1])*
+            USfC[s2, 1, 4, j2]))/(4*Sqrt[2]*S2B^3*SW*SW2)}}, 
+    C[S[4], -S[6], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
      {{(ht^2*SB2*CKM[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/(Sqrt[2]*MT2), 
-       (CKM[j1, j2]*IndexDelta[o1, o2]*((ht^2*MW2*S2B^3*SW*SW2*
-            dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[1, 1, 4, j2])/MT2 + (ht^2*MW2*S2B^3*SW*SW2*
-            dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[2, 1, 4, j2])/MT2 + 
-          ((ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
-              Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1])/MT2 + 
-            (ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
-              Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1])/MT2 + 
-            ((4*ht^2*MW2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 - 
-              (4*dSW1*ht^2*MW2*S2B^3*SW2*Mass[F[3, {j1}]]^2)/MT2 - 
-              (8*CB*dSinB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2)/MT2 - 
-              (2*dMWsq1*ht^2*S2B^3*SW*SW2*Mass[F[3, {j1}]]^2)/MT2 + 
-              (2*CB2*ht^2*MW2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
-                Mass[F[3, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^3*SW*SW2*
-                Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]^2)/MT2 + 
-              (8*CB2^2*ht^2*MW2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^
-                 2)/MT2 + (ht^2*MW2*S2B^3*SW*SW2*dZNHiggs1[4, 4]*
-                Mass[F[3, {j1}]]^2)/MT2)*USf[s1, 1, 3, j1])*
-           USfC[s2, 1, 4, j2]))/(8*Sqrt[2]*CB2*MW2*S2B*SW*SW2)}}, 
-    C[S[3], -S[6], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
+       (CKM[j1, j2]*IndexDelta[o1, o2]*
+         ((ht^2*S2B^3*SW*SW2*dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[1, 1, 4, j2])/MT2 + 
+          (ht^2*S2B^3*SW*SW2*dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[2, 1, 4, j2])/MT2 + 
+          ((ht^2*S2B^3*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+              USf[1, 1, 3, j1])/MT2 + (ht^2*S2B^3*SW*SW2*dZbarSq1[13, 2, s1, 
+               j1, j1]*Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1])/MT2 + 
+            ((4*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 - 
+              (4*dSW1*ht^2*S2B^3*SW2*Mass[F[3, {j1}]]^2)/MT2 - 
+              (8*CB*dSinB1*ht^2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2)/MT2 - 
+              (2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*Mass[F[3, {j1}]]^2)/MT2 + 
+              (2*CB2*ht^2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+                Mass[F[3, {j1}]]^2)/MT2 + (ht^2*S2B^3*SW*SW2*Conjugate[
+                 dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]^2)/MT2 + (8*CB2^2*ht^2*SB2*
+                SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2)/MT2 + 
+              (ht^2*S2B^3*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2)/MT2)*
+             USf[s1, 1, 3, j1])*USfC[s2, 1, 4, j2]))/(8*Sqrt[2]*CB2*S2B*SW*
+         SW2)}}, C[S[3], -S[6], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
      {{(CB*ht^2*S2B^2*CKM[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/(4*Sqrt[2]*CB2*MT2*SB), 
-       (CKM[j1, j2]*IndexDelta[o1, o2]*((8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*
+       (CKM[j1, j2]*IndexDelta[o1, o2]*((8*CB2^2*ht^2*SB*SB2*SW*SW2*
             dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[1, 1, 4, j2])/MT2 + (8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*
+            USfC[1, 1, 4, j2])/MT2 + (8*CB2^2*ht^2*SB*SB2*SW*SW2*
             dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[2, 1, 4, j2])/MT2 + (CB*ht^2*MW2*S2B^3*SW*SW2*
+            USfC[2, 1, 4, j2])/MT2 + (CB*ht^2*S2B^3*SW*SW2*
             dZbarSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 + (CB*ht^2*MW2*S2B^3*SW*SW2*
+            USfC[s2, 1, 4, j2])/MT2 + (CB*ht^2*S2B^3*SW*SW2*
             dZbarSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 + (4*CB*ht^2*MW2*S2B^3*SW*SW2*dMf1[3, j1]*
+            USfC[s2, 1, 4, j2])/MT2 + (4*CB*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*
             Mass[F[3, {j1}]]*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (4*CB*dSW1*ht^2*MW2*S2B^3*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 - (2*CB*dMWsq1*ht^2*S2B^3*SW*SW2*
+          (4*CB*dSW1*ht^2*S2B^3*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
+            USfC[s2, 1, 4, j2])/MT2 - (2*CB*dMWsq1MW2*ht^2*S2B^3*SW*SW2*
             Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (32*CB2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (32*CB2^2*dSinB1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (8*CB*CB2^2*ht^2*MW2*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+          (8*CB*CB2^2*ht^2*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
             Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (CB*ht^2*MW2*S2B^3*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (CB*ht^2*MW2*S2B^3*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
+          (CB*ht^2*S2B^3*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (2*CB*ht^2*MW2*S2B^2*SB2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
+          (CB*ht^2*S2B^3*SW*SW2*dZNHiggs1[3, 3]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (4*ht^2*MW2*S2B^2*SB*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
+          (2*CB*ht^2*S2B^2*SB2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (4*ht^2*S2B^2*SB*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 4, j2])/MT2))/
-        (4*Sqrt[2]*CB*MW2*S2B^2*SW*SW2)}}, 
-    C[S[4], -S[5], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
+        (4*Sqrt[2]*CB*S2B^2*SW*SW2)}}, C[S[4], -S[5], S[14, {s2, j2, o1}], 
+      -S[13, {s1, j1, o2}]] == 
      {{(CB*ht^2*S2B^2*CKM[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/(4*Sqrt[2]*CB2*MT2*SB), 
-       (CKM[j1, j2]*IndexDelta[o1, o2]*((8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*
+       (CKM[j1, j2]*IndexDelta[o1, o2]*((8*CB2^2*ht^2*SB*SB2*SW*SW2*
             dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[1, 1, 4, j2])/MT2 + (8*CB2^2*ht^2*MW2*SB*SB2*SW*SW2*
+            USfC[1, 1, 4, j2])/MT2 + (8*CB2^2*ht^2*SB*SB2*SW*SW2*
             dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[2, 1, 4, j2])/MT2 + (CB*ht^2*MW2*S2B^3*SW*SW2*
+            USfC[2, 1, 4, j2])/MT2 + (CB*ht^2*S2B^3*SW*SW2*
             dZbarSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 + (CB*ht^2*MW2*S2B^3*SW*SW2*
+            USfC[s2, 1, 4, j2])/MT2 + (CB*ht^2*S2B^3*SW*SW2*
             dZbarSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 + (4*CB*ht^2*MW2*S2B^3*SW*SW2*dMf1[3, j1]*
+            USfC[s2, 1, 4, j2])/MT2 + (4*CB*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*
             Mass[F[3, {j1}]]*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (4*CB*dSW1*ht^2*MW2*S2B^3*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 - (2*CB*dMWsq1*ht^2*S2B^3*SW*SW2*
+          (4*CB*dSW1*ht^2*S2B^3*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
+            USfC[s2, 1, 4, j2])/MT2 - (2*CB*dMWsq1MW2*ht^2*S2B^3*SW*SW2*
             Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (32*CB2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (32*CB2^2*dSinB1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (2*CB*ht^2*MW2*S2B^2*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
+          (2*CB*ht^2*S2B^2*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
             Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (CB*ht^2*MW2*S2B^3*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
+          (CB*ht^2*S2B^3*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (8*CB*CB2^2*ht^2*MW2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
+          (8*CB*CB2^2*ht^2*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (CB*ht^2*MW2*S2B^3*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
+          (CB*ht^2*S2B^3*SW*SW2*dZNHiggs1[4, 4]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (4*ht^2*MW2*S2B^2*SB*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
+          (4*ht^2*S2B^2*SB*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 4, j2])/MT2))/
-        (4*Sqrt[2]*CB*MW2*S2B^2*SW*SW2)}}, 
+        (4*Sqrt[2]*CB*S2B^2*SW*SW2)}}, 
     C[S[1], S[5], S[11, {j1}], -S[12, {s2, j2}]] == 
      {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
          USf[s2, 1, 2, j1])/(Sqrt[2]*CB2*MT2), 
-       ((I/8)*IndexDelta[j1, j2]*((2*CB*ht^2*MW2*S2B*SB2*SW*SW2*
+       ((I/8)*IndexDelta[j1, j2]*((2*CB*ht^2*S2B*SB2*SW*SW2*
             dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 + 
-          (2*CB*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 + 
-          ((8*CB*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
-            (8*CB*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (4*CB*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (8*dCosB1*ht^2*MW2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (2*CB*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
-             MT2 - (CB*ht^2*MW2*S2B^2*SW*SW2*dZCHiggs1[6, 5]*
-              Mass[F[2, {j1}]]^2)/MT2 + (2*CB*ht^2*MW2*S2B*SB2*SW*SW2*
-              dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^2)/
-             MT2 + (2*CB*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*
-              Mass[F[2, {j1}]]^2)/MT2)*USf[s2, 1, 2, j1]))/
-        (Sqrt[2]*CB*CB2*MW2*SW*SW2)}}, 
-    C[S[1], S[6], S[11, {j1}], -S[12, {s2, j2}]] == 
+          (2*CB*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+            USf[2, 1, 2, j1])/MT2 + ((8*CB*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*
+              Mass[F[2, {j1}]])/MT2 - (8*CB*dSW1*ht^2*S2B*SB2*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (8*dCosB1*ht^2*S2B*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (4*CB*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (2*CB*ht^2*S2B*SB2*SW*SW2*
+              dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (CB*ht^2*S2B^2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (2*CB*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2)/
+             MT2 + (2*ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 1]*
+              Mass[F[2, {j1}]]^2)/MT2 + (2*CB*ht^2*S2B*SB2*SW*SW2*
+              dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2)*USf[s2, 1, 2, j1]))/
+        (Sqrt[2]*CB*CB2*SW*SW2)}}, C[S[1], S[6], S[11, {j1}], 
+      -S[12, {s2, j2}]] == 
      {{((-I)*ht^2*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
          USf[s2, 1, 2, j1])/(Sqrt[2]*MT2), ((I/8)*IndexDelta[j1, j2]*
-         (-((ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
-             USf[1, 1, 2, j1])/MT2) - (ht^2*MW2*S2B^2*SW*SW2*
-            dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 - 
-          ((4*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
-            (4*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (16*CB*dCosB1*ht^2*MW2*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2)/
-             MT2 + (ht^2*MW2*S2B^2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2)/
-             MT2 + (ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2)/
-             MT2 + (2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*
-              Mass[F[2, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^2*SW*SW2*
-              dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2)*USf[s2, 1, 2, j1]))/
-        (Sqrt[2]*CB2*MW2*SW*SW2)}}, C[S[1], -S[5], S[12, {s2, j2}], 
-      -S[11, {j1}]] == {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*
-         Mass[F[2, {j1}]]^2*USfC[s2, 1, 2, j1])/(Sqrt[2]*CB2*MT2), 
-       ((I/8)*IndexDelta[j1, j2]*((2*CB*ht^2*MW2*S2B*SB2*SW*SW2*
+         (-((ht^2*S2B^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
+             USf[1, 1, 2, j1])/MT2) - (ht^2*S2B^2*SW*SW2*dZbarSl1[2, j2, 2, 
+             s2]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 - 
+          ((4*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
+            (4*dSW1*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (16*CB*dCosB1*ht^2*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (ht^2*S2B^2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (ht^2*S2B^2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (ht^2*S2B^2*SW*SW2*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2)*
+           USf[s2, 1, 2, j1]))/(Sqrt[2]*CB2*SW*SW2)}}, 
+    C[S[1], -S[5], S[12, {s2, j2}], -S[11, {j1}]] == 
+     {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
+         USfC[s2, 1, 2, j1])/(Sqrt[2]*CB2*MT2), 
+       ((I/8)*IndexDelta[j1, j2]*((2*CB*ht^2*S2B*SB2*SW*SW2*
             dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2 + 
-          (2*CB*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[2, j2, 2, s2]*
-            Mass[F[2, {j1}]]^2*USfC[2, 1, 2, j1])/MT2 + 
-          (-((CB*ht^2*MW2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
-               Mass[F[2, {j1}]]^2)/MT2) + 2*((4*CB*ht^2*MW2*S2B*SB2*SW*SW2*
-                dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - (4*CB*dSW1*ht^2*MW2*S2B*
-                SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 - (2*CB*dMWsq1*ht^2*S2B*SB2*
-                SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - (4*dCosB1*ht^2*MW2*S2B*SB2*
-                SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + (CB*ht^2*MW2*S2B*SB2*SW*SW2*
-                dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/MT2 + (CB*ht^2*MW2*S2B*
-                SB2*SW*SW2*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2 + 
-              (CB*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2)/
-               MT2 + (ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 1]*
-                Mass[F[2, {j1}]]^2)/MT2))*USfC[s2, 1, 2, j1]))/
-        (Sqrt[2]*CB*CB2*MW2*SW*SW2)}}, C[S[1], -S[6], S[12, {s2, j2}], 
-      -S[11, {j1}]] == {{((-I)*ht^2*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
+          (2*CB*ht^2*S2B*SB2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+            USfC[2, 1, 2, j1])/MT2 + 
+          (-((CB*ht^2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
+               Mass[F[2, {j1}]]^2)/MT2) + 2*((4*CB*ht^2*S2B*SB2*SW*SW2*
+                dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - (4*CB*dSW1*ht^2*S2B*SB2*
+                SW2*Mass[F[2, {j1}]]^2)/MT2 - (4*dCosB1*ht^2*S2B*SB2*SW*SW2*
+                Mass[F[2, {j1}]]^2)/MT2 - (2*CB*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+                Mass[F[2, {j1}]]^2)/MT2 + (CB*ht^2*S2B*SB2*SW*SW2*
+                dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/MT2 + (CB*ht^2*S2B*SB2*
+                SW*SW2*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2 + 
+              (CB*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2)/
+               MT2 + (ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^
+                 2)/MT2))*USfC[s2, 1, 2, j1]))/(Sqrt[2]*CB*CB2*SW*SW2)}}, 
+    C[S[1], -S[6], S[12, {s2, j2}], -S[11, {j1}]] == 
+     {{((-I)*ht^2*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
          USfC[s2, 1, 2, j1])/(Sqrt[2]*MT2), ((I/8)*IndexDelta[j1, j2]*
-         (-((ht^2*MW2*S2B^2*SW*SW2*dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
-             USfC[1, 1, 2, j1])/MT2) - (ht^2*MW2*S2B^2*SW*SW2*
-            dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USfC[2, 1, 2, j1])/MT2 - 
-          ((4*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
-            (4*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (16*CB*dCosB1*ht^2*MW2*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
-              Mass[F[2, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^2*SW*SW2*
+         (-((ht^2*S2B^2*SW*SW2*dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
+             USfC[1, 1, 2, j1])/MT2) - (ht^2*S2B^2*SW*SW2*dZSl1[2, j2, 2, s2]*
+            Mass[F[2, {j1}]]^2*USfC[2, 1, 2, j1])/MT2 - 
+          ((4*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
+            (4*dSW1*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (16*CB*dCosB1*ht^2*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*ht^2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+              Mass[F[2, {j1}]]^2)/MT2 + (ht^2*S2B^2*SW*SW2*
               Conjugate[dZCHiggs1[6, 6]]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
-             MT2 + (ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2)/
-             MT2 + (2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*
-              Mass[F[2, {j1}]]^2)/MT2)*USfC[s2, 1, 2, j1]))/
-        (Sqrt[2]*CB2*MW2*SW*SW2)}}, C[S[3], S[5], S[11, {j1}], 
-      -S[12, {s2, j2}]] == 
+            (ht^2*S2B^2*SW*SW2*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
+             MT2 + (ht^2*S2B^2*SW*SW2*dZNHiggs1[1, 1]*Mass[F[2, {j1}]]^2)/
+             MT2 + (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 1]*Mass[F[2, {j1}]]^2)/
+             MT2)*USfC[s2, 1, 2, j1]))/(Sqrt[2]*CB2*SW*SW2)}}, 
+    C[S[3], S[5], S[11, {j1}], -S[12, {s2, j2}]] == 
      {{(ht^2*SB2^2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1])/
         (Sqrt[2]*CB2*MT2), (IndexDelta[j1, j2]*
-         ((4*CB*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
-            Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 + 
-          (4*CB*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 + 
-          ((16*CB*ht^2*MW2*SB2^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
-            (16*CB*dSW1*ht^2*MW2*SB2^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (8*CB*dMWsq1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (16*dCosB1*ht^2*MW2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (4*CB*ht^2*MW2*SB2^2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
-             MT2 - (ht^2*MW2*S2B^2*SB*SW*SW2*dZCHiggs1[6, 5]*
-              Mass[F[2, {j1}]]^2)/MT2 + (4*CB*ht^2*MW2*SB2^2*SW*SW2*
-              dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2)/MT2 - 
-            (ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2)/
-             MT2 + (4*CB*ht^2*MW2*SB2^2*SW*SW2*dZSl1[1, j1, 1, 1]*
-              Mass[F[2, {j1}]]^2)/MT2)*USf[s2, 1, 2, j1]))/
-        (8*Sqrt[2]*CB*CB2*MW2*SW*SW2)}}, 
+         ((4*CB*ht^2*SB2^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
+            USf[1, 1, 2, j1])/MT2 + (4*CB*ht^2*SB2^2*SW*SW2*
+            dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 + 
+          ((16*CB*ht^2*SB2^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
+            (16*CB*dSW1*ht^2*SB2^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (16*dCosB1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (8*CB*dMWsq1MW2*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
+            (4*CB*ht^2*SB2^2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (ht^2*S2B^2*SB*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (4*CB*ht^2*SB2^2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (4*CB*ht^2*SB2^2*SW*SW2*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
+             MT2)*USf[s2, 1, 2, j1]))/(8*Sqrt[2]*CB*CB2*SW*SW2)}}, 
     C[S[4], S[6], S[11, {j1}], -S[12, {s2, j2}]] == 
      {{(ht^2*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1])/
         (Sqrt[2]*MT2), -(IndexDelta[j1, j2]*
-          (-((ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
-              USf[1, 1, 2, j1])/MT2) - (ht^2*MW2*S2B^2*SW*SW2*
-             dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/
-            MT2 - ((4*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/
-              MT2 - (4*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-             (2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-             (16*CB*dCosB1*ht^2*MW2*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-             (2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2)/
-              MT2 + (ht^2*MW2*S2B^2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^
-                2)/MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 4]*
-               Mass[F[2, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[4, 
-                4]*Mass[F[2, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^2*SW*SW2*dZSl1[1, 
-                j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2)*USf[s2, 1, 2, j1]))/
-        (8*Sqrt[2]*CB2*MW2*SW*SW2)}}, 
+          (-((ht^2*S2B^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
+              USf[1, 1, 2, j1])/MT2) - (ht^2*S2B^2*SW*SW2*dZbarSl1[2, j2, 2, 
+              s2]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 - 
+           ((4*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
+             (4*dSW1*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+             (2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+             (16*CB*dCosB1*ht^2*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+             (2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2)/MT2 + 
+             (ht^2*S2B^2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2)/MT2 - 
+             (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2)/MT2 + 
+             (ht^2*S2B^2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2)/MT2 + 
+             (ht^2*S2B^2*SW*SW2*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2)*
+            USf[s2, 1, 2, j1]))/(8*Sqrt[2]*CB2*SW*SW2)}}, 
     C[S[3], S[6], S[11, {j1}], -S[12, {s2, j2}]] == 
      {{-(ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
           USf[s2, 1, 2, j1])/(2*Sqrt[2]*CB2*MT2), 
-       (IndexDelta[j1, j2]*((-2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 1, 
-             s2]*Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 - 
-          (2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 + 
-          ((-8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 + 
-            (8*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (4*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (16*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (4*ht^2*MW2*SB2^2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2)/
-             MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[6, 6]*
-              Mass[F[2, {j1}]]^2)/MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*
-              dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
-             MT2)*USf[s2, 1, 2, j1]))/(8*Sqrt[2]*CB2*MW2*SW*SW2)}}, 
+       (IndexDelta[j1, j2]*((-2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
+            Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 - 
+          (2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+            USf[2, 1, 2, j1])/MT2 + ((-8*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*
+              Mass[F[2, {j1}]])/MT2 + (8*dSW1*ht^2*S2B*SB2*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (4*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (16*dCosB1*ht^2*SB*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (4*ht^2*SB2^2*SW*SW2*dZCHiggs1[5, 6]*
+              Mass[F[2, {j1}]]^2)/MT2 - (2*ht^2*S2B*SB2*SW*SW2*
+              dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (ht^2*S2B^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*ht^2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
+             MT2)*USf[s2, 1, 2, j1]))/(8*Sqrt[2]*CB2*SW*SW2)}}, 
     C[S[4], S[5], S[11, {j1}], -S[12, {s2, j2}]] == 
      {{-(ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
           USf[s2, 1, 2, j1])/(2*Sqrt[2]*CB2*MT2), 
-       -(IndexDelta[j1, j2]*((2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 1, 
-              s2]*Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 + 
-           (2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-             Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 + 
-           ((8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
-             (8*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-             (4*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-             (16*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-             (2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
-              MT2 - (ht^2*MW2*S2B^2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^
-                2)/MT2 - (4*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[3, 4]*
-               Mass[F[2, {j1}]]^2)/MT2 + (2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[
-                4, 4]*Mass[F[2, {j1}]]^2)/MT2 + (2*ht^2*MW2*S2B*SB2*SW*SW2*
-               dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2)*
-            USf[s2, 1, 2, j1]))/(8*Sqrt[2]*CB2*MW2*SW*SW2)}}, 
+       -(IndexDelta[j1, j2]*((2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
+             Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 + 
+           (2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+             USf[2, 1, 2, j1])/MT2 + ((8*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[
+                F[2, {j1}]])/MT2 - (8*dSW1*ht^2*S2B*SB2*SW2*Mass[F[2, {j1}]]^
+                2)/MT2 - (4*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/
+              MT2 - (16*dCosB1*ht^2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
+             (2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/MT2 - 
+             (ht^2*S2B^2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2)/MT2 - 
+             (4*ht^2*SB2^2*SW*SW2*dZNHiggs1[3, 4]*Mass[F[2, {j1}]]^2)/MT2 + 
+             (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2)/MT2 + 
+             (2*ht^2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
+              MT2)*USf[s2, 1, 2, j1]))/(8*Sqrt[2]*CB2*SW*SW2)}}, 
     C[S[3], -S[5], S[12, {s2, j2}], -S[11, {j1}]] == 
      {{-((ht^2*SB2^2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
           USfC[s2, 1, 2, j1])/(Sqrt[2]*CB2*MT2)), 
-       -(IndexDelta[j1, j2]*((4*CB*ht^2*MW2*SB2^2*SW*SW2*dZSl1[2, j2, 1, s2]*
+       -(IndexDelta[j1, j2]*((4*CB*ht^2*SB2^2*SW*SW2*dZSl1[2, j2, 1, s2]*
              Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2 + 
-           (4*CB*ht^2*MW2*SB2^2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
-             USfC[2, 1, 2, j1])/MT2 + ((16*CB*ht^2*MW2*SB2^2*SW*SW2*dMf1[2, 
-                j1]*Mass[F[2, {j1}]])/MT2 - (16*CB*dSW1*ht^2*MW2*SB2^2*SW2*
-               Mass[F[2, {j1}]]^2)/MT2 - (8*CB*dMWsq1*ht^2*SB2^2*SW*SW2*
-               Mass[F[2, {j1}]]^2)/MT2 - (16*dCosB1*ht^2*MW2*SB2^2*SW*SW2*
-               Mass[F[2, {j1}]]^2)/MT2 - (ht^2*MW2*S2B^2*SB*SW*SW2*Conjugate[
+           (4*CB*ht^2*SB2^2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+             USfC[2, 1, 2, j1])/MT2 + ((16*CB*ht^2*SB2^2*SW*SW2*dMf1[2, j1]*
+               Mass[F[2, {j1}]])/MT2 - (16*CB*dSW1*ht^2*SB2^2*SW2*
+               Mass[F[2, {j1}]]^2)/MT2 - (16*dCosB1*ht^2*SB2^2*SW*SW2*
+               Mass[F[2, {j1}]]^2)/MT2 - (8*CB*dMWsq1MW2*ht^2*SB2^2*SW*SW2*
+               Mass[F[2, {j1}]]^2)/MT2 - (ht^2*S2B^2*SB*SW*SW2*Conjugate[
                 dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]^2)/MT2 + 
-             (4*CB*ht^2*MW2*SB2^2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^
-                2)/MT2 + (4*CB*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[1, j1, 1, 1]*
-               Mass[F[2, {j1}]]^2)/MT2 + (4*CB*ht^2*MW2*SB2^2*SW*SW2*
-               dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2)/MT2 - 
-             (ht^2*MW2*S2B^2*SB*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2)/
-              MT2)*USfC[s2, 1, 2, j1]))/(8*Sqrt[2]*CB*CB2*MW2*SW*SW2)}}, 
-    C[S[4], -S[6], S[12, {s2, j2}], -S[11, {j1}]] == 
-     {{-((ht^2*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*USfC[s2, 1, 2, j1])/
-         (Sqrt[2]*MT2)), (IndexDelta[j1, j2]*
-         (-((ht^2*MW2*S2B^2*SW*SW2*dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
-             USfC[1, 1, 2, j1])/MT2) - (ht^2*MW2*S2B^2*SW*SW2*
-            dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USfC[2, 1, 2, j1])/MT2 - 
-          ((4*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
-            (4*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (16*CB*dCosB1*ht^2*MW2*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
-              Mass[F[2, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^2*SW*SW2*
-              Conjugate[dZCHiggs1[6, 6]]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
-             MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 4]*
-              Mass[F[2, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^2*SW*SW2*
-              dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2)/MT2)*USfC[s2, 1, 2, j1]))/
-        (8*Sqrt[2]*CB2*MW2*SW*SW2)}}, C[S[3], -S[6], S[12, {s2, j2}], 
+             (4*CB*ht^2*SB2^2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
+              MT2 + (4*CB*ht^2*SB2^2*SW*SW2*dZbarSl1[1, j1, 1, 1]*
+               Mass[F[2, {j1}]]^2)/MT2 + (4*CB*ht^2*SB2^2*SW*SW2*dZNHiggs1[3, 
+                3]*Mass[F[2, {j1}]]^2)/MT2 - (ht^2*S2B^2*SB*SW*SW2*dZNHiggs1[
+                4, 3]*Mass[F[2, {j1}]]^2)/MT2)*USfC[s2, 1, 2, j1]))/
+        (8*Sqrt[2]*CB*CB2*SW*SW2)}}, C[S[4], -S[6], S[12, {s2, j2}], 
+      -S[11, {j1}]] == {{-((ht^2*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
+          USfC[s2, 1, 2, j1])/(Sqrt[2]*MT2)), 
+       (IndexDelta[j1, j2]*(-((ht^2*S2B^2*SW*SW2*dZSl1[2, j2, 1, s2]*
+             Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2) - 
+          (ht^2*S2B^2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+            USfC[2, 1, 2, j1])/MT2 - ((4*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*
+              Mass[F[2, {j1}]])/MT2 - (4*dSW1*ht^2*S2B^2*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (16*CB*dCosB1*ht^2*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (2*ht^2*S2B*SB2*SW*SW2*
+              Conjugate[dZCHiggs1[5, 6]]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (ht^2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*Mass[F[2, {j1}]]^2)/
+             MT2 + (ht^2*S2B^2*SW*SW2*dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^
+               2)/MT2 - (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 4]*
+              Mass[F[2, {j1}]]^2)/MT2 + (ht^2*S2B^2*SW*SW2*dZNHiggs1[4, 4]*
+              Mass[F[2, {j1}]]^2)/MT2)*USfC[s2, 1, 2, j1]))/
+        (8*Sqrt[2]*CB2*SW*SW2)}}, C[S[3], -S[6], S[12, {s2, j2}], 
       -S[11, {j1}]] == {{(ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
          USfC[s2, 1, 2, j1])/(2*Sqrt[2]*CB2*MT2), 
-       (IndexDelta[j1, j2]*((2*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[2, j2, 1, s2]*
+       (IndexDelta[j1, j2]*((2*ht^2*S2B*SB2*SW*SW2*dZSl1[2, j2, 1, s2]*
             Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2 + 
-          (2*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
-            USfC[2, 1, 2, j1])/MT2 + ((8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*
-              Mass[F[2, {j1}]])/MT2 - (8*dSW1*ht^2*MW2*S2B*SB2*SW2*
-              Mass[F[2, {j1}]]^2)/MT2 - (4*dMWsq1*ht^2*S2B*SB2*SW*SW2*
-              Mass[F[2, {j1}]]^2)/MT2 - (16*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*
-              Mass[F[2, {j1}]]^2)/MT2 - (4*ht^2*MW2*SB2^2*SW*SW2*
+          (2*ht^2*S2B*SB2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+            USfC[2, 1, 2, j1])/MT2 + ((8*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*
+              Mass[F[2, {j1}]])/MT2 - (8*dSW1*ht^2*S2B*SB2*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (4*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (16*dCosB1*ht^2*SB*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (4*ht^2*SB2^2*SW*SW2*
               Conjugate[dZCHiggs1[5, 6]]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
-              Mass[F[2, {j1}]]^2)/MT2 + (2*ht^2*MW2*S2B*SB2*SW*SW2*
+            (2*ht^2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
+              Mass[F[2, {j1}]]^2)/MT2 + (2*ht^2*S2B*SB2*SW*SW2*
               dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2)/
-             MT2 - (ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2)/
-             MT2)*USfC[s2, 1, 2, j1]))/(8*Sqrt[2]*CB2*MW2*SW*SW2)}}, 
+            (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[3, 3]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (ht^2*S2B^2*SW*SW2*dZNHiggs1[4, 3]*Mass[F[2, {j1}]]^2)/MT2)*
+           USfC[s2, 1, 2, j1]))/(8*Sqrt[2]*CB2*SW*SW2)}}, 
     C[S[4], -S[5], S[12, {s2, j2}], -S[11, {j1}]] == 
      {{(ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
          USfC[s2, 1, 2, j1])/(2*Sqrt[2]*CB2*MT2), 
-       -(IndexDelta[j1, j2]*((-2*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[2, j2, 1, s2]*
+       -(IndexDelta[j1, j2]*((-2*ht^2*S2B*SB2*SW*SW2*dZSl1[2, j2, 1, s2]*
              Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2 - 
-           (2*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
-             USfC[2, 1, 2, j1])/MT2 + ((-8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, 
-                j1]*Mass[F[2, {j1}]])/MT2 + (8*dSW1*ht^2*MW2*S2B*SB2*SW2*
-               Mass[F[2, {j1}]]^2)/MT2 + (4*dMWsq1*ht^2*S2B*SB2*SW*SW2*
-               Mass[F[2, {j1}]]^2)/MT2 + (16*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*
-               Mass[F[2, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^2*SW*SW2*Conjugate[
+           (2*ht^2*S2B*SB2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+             USfC[2, 1, 2, j1])/MT2 + ((-8*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*
+               Mass[F[2, {j1}]])/MT2 + (8*dSW1*ht^2*S2B*SB2*SW2*
+               Mass[F[2, {j1}]]^2)/MT2 + (4*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+               Mass[F[2, {j1}]]^2)/MT2 + (16*dCosB1*ht^2*SB*SB2*SW*SW2*
+               Mass[F[2, {j1}]]^2)/MT2 + (ht^2*S2B^2*SW*SW2*Conjugate[
                 dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]^2)/MT2 - 
-             (2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^
-                2)/MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[1, j1, 1, 1]*
-               Mass[F[2, {j1}]]^2)/MT2 + (4*ht^2*MW2*SB2^2*SW*SW2*dZNHiggs1[
-                3, 4]*Mass[F[2, {j1}]]^2)/MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*
-               dZNHiggs1[4, 4]*Mass[F[2, {j1}]]^2)/MT2)*USfC[s2, 1, 2, j1]))/
-        (8*Sqrt[2]*CB2*MW2*SW*SW2)}}, C[S[2], S[5], S[13, {s1, j1, o1}], 
+             (2*ht^2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
+              MT2 - (2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[1, j1, 1, 1]*
+               Mass[F[2, {j1}]]^2)/MT2 + (4*ht^2*SB2^2*SW*SW2*dZNHiggs1[3, 
+                4]*Mass[F[2, {j1}]]^2)/MT2 - (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[
+                4, 4]*Mass[F[2, {j1}]]^2)/MT2)*USfC[s2, 1, 2, j1]))/
+        (8*Sqrt[2]*CB2*SW*SW2)}}, C[S[2], S[5], S[13, {s1, j1, o1}], 
       -S[14, {s2, j2, o2}]] == 
      {{((-2*I)*Sqrt[2]*CB2^2*ht^2*SB2*CKMC[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/
         (MT2*S2B^2), ((I/4)*CKMC[j1, j2]*IndexDelta[o1, o2]*
-         ((-8*CB2^2*ht^2*MW2*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
+         ((-8*CB2^2*ht^2*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[1, 1, 3, j1])/MT2 - 
-          (8*CB2^2*ht^2*MW2*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
+          (8*CB2^2*ht^2*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[2, 1, 3, j1])/MT2 + 
-          ((-8*CB2^2*ht^2*MW2*SB2*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*
+          ((-8*CB2^2*ht^2*SB2*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*
               Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2])/MT2 - 
-            (8*CB2^2*ht^2*MW2*SB2*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
+            (8*CB2^2*ht^2*SB2*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
               Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2])/MT2 + 
-            ((-32*CB2^2*ht^2*MW2*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/
-               MT2 + (ht^2*S2B*SW2*(MW2*S2B^2*SW*(-dZCHiggs1[6, 5] + 
-                   dZNHiggs1[1, 2]) + 2*CB2*(4*dSW1*MW2*S2B + 
-                   SW*(8*CB*dSinB1*MW2 + S2B*(2*dMWsq1 - MW2*(dZCHiggs1[5, 
-                          5] + dZNHiggs1[2, 2])))))*Mass[F[3, {j1}]]^2)/MT2)*
-             USf[s2, 1, 4, j2])*USfC[s1, 1, 3, j1]))/(Sqrt[2]*MW2*S2B^2*SW*
-         SW2)}}, C[S[2], S[6], S[13, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
+            ((-32*CB2^2*ht^2*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/MT2 + 
+              (ht^2*S2B*SW2*(S2B^2*SW*(-dZCHiggs1[6, 5] + dZNHiggs1[1, 2]) + 
+                 2*CB2*(4*dSW1*S2B + SW*(8*CB*dSinB1 + 2*dMWsq1MW2*S2B - 
+                     S2B*dZCHiggs1[5, 5] - S2B*dZNHiggs1[2, 2])))*
+                Mass[F[3, {j1}]]^2)/MT2)*USf[s2, 1, 4, j2])*
+           USfC[s1, 1, 3, j1]))/(Sqrt[2]*S2B^2*SW*SW2)}}, 
+    C[S[2], S[6], S[13, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
      {{((-I/2)*ht^2*S2B*CKMC[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/(Sqrt[2]*MT2), 
        ((-I/4)*CKMC[j1, j2]*IndexDelta[o1, o2]*
-         ((ht^2*MW2*S2B^3*SW*SW2*dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+         ((ht^2*S2B^3*SW*SW2*dZSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[1, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^3*SW*SW2*dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+          (ht^2*S2B^3*SW*SW2*dZSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[2, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*
-            Mass[F[3, {j1}]]^2*USf[1, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*
-            Mass[F[3, {j1}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (4*ht^2*MW2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (4*dSW1*ht^2*MW2*S2B^3*SW2*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 3, j1])/MT2 - (8*CB*dSinB1*ht^2*MW2*S2B^2*SW*SW2*
+          (ht^2*S2B^3*SW*SW2*dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+            USf[1, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
+          (ht^2*S2B^3*SW*SW2*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+            USf[2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
+          (4*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 3, j1])/MT2 - (4*dSW1*ht^2*S2B^3*SW2*
             Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (2*dMWsq1*ht^2*S2B^3*SW*SW2*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 3, j1])/MT2 + (8*CB2^2*ht^2*MW2*SB2*SW*SW2*
-            dZCHiggs1[5, 6]*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 3, j1])/MT2 + (ht^2*MW2*S2B^3*SW*SW2*dZCHiggs1[6, 6]*
-            Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (2*ht^2*MW2*S2B^2*SB2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*
+          (8*CB*dSinB1*ht^2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 3, j1])/MT2 - (2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
+          (8*CB2^2*ht^2*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
-          (ht^2*MW2*S2B^3*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*
+          (ht^2*S2B^3*SW*SW2*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
-          (8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
+          (2*ht^2*S2B^2*SB2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 + 
+          (ht^2*S2B^3*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 3, j1])/MT2 - 
+          (8*ht^2*S2B*SB2*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
             USf[s2, 2, 4, j2]*USfC[s1, 2, 3, j1])/MT2))/
-        (Sqrt[2]*MW2*S2B^2*SW*SW2)}}, C[S[2], -S[5], S[14, {s2, j2, o1}], 
+        (Sqrt[2]*S2B^2*SW*SW2)}}, C[S[2], -S[5], S[14, {s2, j2, o1}], 
       -S[13, {s1, j1, o2}]] == 
      {{((-2*I)*Sqrt[2]*CB2^2*ht^2*SB2*CKM[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/
         (MT2*S2B^2), ((I/4)*CKM[j1, j2]*IndexDelta[o1, o2]*
-         ((-8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[14, 1, s2, j2, j2]*
+         ((-8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[14, 1, s2, j2, j2]*
             Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[1, 1, 4, j2])/MT2 - 
-          (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[14, 2, s2, j2, j2]*
+          (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[14, 2, s2, j2, j2]*
             Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[2, 1, 4, j2])/MT2 + 
-          ((-8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
+          ((-8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
               Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1])/MT2 - 
-            (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
+            (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
               Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1])/MT2 + 
-            ((-32*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/
-               MT2 + (32*CB2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2)/
-               MT2 + (64*CB*CB2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^
-                 2)/MT2 + (16*CB2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*
-                Mass[F[3, {j1}]]^2)/MT2 - (ht^2*MW2*S2B^4*SW*SW2*
-                Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {j1}]]^2)/MT2 - 
-              (8*CB2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*
-                Mass[F[3, {j1}]]^2)/MT2 + (ht^2*MW2*S2B^4*SW*SW2*
-                dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2)/MT2 - (8*CB2^2*ht^2*MW2*
-                S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2)/MT2)*
-             USf[s1, 1, 3, j1])*USfC[s2, 1, 4, j2]))/(Sqrt[2]*MW2*S2B^3*SW*
-         SW2)}}, C[S[2], -S[6], S[14, {s2, j2, o1}], -S[13, {s1, j1, o2}]] == 
+            ((-32*CB2^2*ht^2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]])/
+               MT2 + (32*CB2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2)/
+               MT2 + (64*CB*CB2^2*dSinB1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2)/
+               MT2 + (16*CB2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^
+                 2)/MT2 - (ht^2*S2B^4*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
+                Mass[F[3, {j1}]]^2)/MT2 - (8*CB2^2*ht^2*S2B*SB2*SW*SW2*
+                dZbarCHiggs1[5, 5]*Mass[F[3, {j1}]]^2)/MT2 + (ht^2*S2B^4*SW*
+                SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2)/MT2 - 
+              (8*CB2^2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^
+                 2)/MT2)*USf[s1, 1, 3, j1])*USfC[s2, 1, 4, j2]))/
+        (Sqrt[2]*S2B^3*SW*SW2)}}, C[S[2], -S[6], S[14, {s2, j2, o1}], 
+      -S[13, {s1, j1, o2}]] == 
      {{((-I/2)*ht^2*S2B*CKM[j1, j2]*IndexDelta[o1, o2]*Mass[F[3, {j1}]]^2*
          USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/(Sqrt[2]*MT2), 
        ((-I/4)*CKM[j1, j2]*IndexDelta[o1, o2]*
-         ((ht^2*MW2*S2B^3*SW*SW2*dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+         ((ht^2*S2B^3*SW*SW2*dZSq1[14, 1, s2, j2, j2]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[1, 1, 4, j2])/MT2 + 
-          (ht^2*MW2*S2B^3*SW*SW2*dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
+          (ht^2*S2B^3*SW*SW2*dZSq1[14, 2, s2, j2, j2]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[2, 1, 4, j2])/MT2 + 
-          (ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*
-            Mass[F[3, {j1}]]^2*USf[1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*
-            Mass[F[3, {j1}]]^2*USf[2, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
-          (4*ht^2*MW2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (ht^2*S2B^3*SW*SW2*dZbarSq1[13, 1, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+            USf[1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (ht^2*S2B^3*SW*SW2*dZbarSq1[13, 2, s1, j1, j1]*Mass[F[3, {j1}]]^2*
+            USf[2, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (4*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*USf[s1, 1, 3, j1]*
+            USfC[s2, 1, 4, j2])/MT2 - (4*dSW1*ht^2*S2B^3*SW2*
+            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
+          (8*CB*dSinB1*ht^2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
+            USfC[s2, 1, 4, j2])/MT2 - (2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (8*CB2^2*ht^2*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (ht^2*S2B^3*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]^2*
             USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (4*dSW1*ht^2*MW2*S2B^3*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 - (8*CB*dSinB1*ht^2*MW2*S2B^2*SW*SW2*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (2*dMWsq1*ht^2*S2B^3*SW*SW2*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 + (8*CB2^2*ht^2*MW2*SB2*SW*SW2*
-            Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 + (ht^2*MW2*S2B^3*SW*SW2*
-            Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 - (2*ht^2*MW2*S2B^2*SB2*SW*SW2*
-            dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*
-            USfC[s2, 1, 4, j2])/MT2 + (ht^2*MW2*S2B^3*SW*SW2*dZNHiggs1[2, 2]*
-            Mass[F[3, {j1}]]^2*USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
-          (8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
+          (2*ht^2*S2B^2*SB2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 + 
+          (ht^2*S2B^3*SW*SW2*dZNHiggs1[2, 2]*Mass[F[3, {j1}]]^2*
+            USf[s1, 1, 3, j1]*USfC[s2, 1, 4, j2])/MT2 - 
+          (8*ht^2*S2B*SB2*SW*SW2*dMf1[4, j2]*Mass[F[3, {j1}]]*
             USf[s1, 2, 3, j1]*USfC[s2, 2, 4, j2])/MT2))/
-        (Sqrt[2]*MW2*S2B^2*SW*SW2)}}, 
-    C[S[2], S[5], S[11, {j1}], -S[12, {s2, j2}]] == 
+        (Sqrt[2]*S2B^2*SW*SW2)}}, C[S[2], S[5], S[11, {j1}], 
+      -S[12, {s2, j2}]] == 
      {{(I*ht^2*SB2^2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*USf[s2, 1, 2, j1])/
         (Sqrt[2]*CB2*MT2), ((I/8)*IndexDelta[j1, j2]*
-         ((4*CB*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
-            Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 + 
-          (4*CB*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 + 
-          ((8*ht^2*MW2*S2B*SB*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
-            (8*dSW1*ht^2*MW2*S2B*SB*SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (4*dMWsq1*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-            (16*dCosB1*ht^2*MW2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
-             MT2 - (ht^2*MW2*S2B^2*SB*SW*SW2*dZCHiggs1[6, 5]*
-              Mass[F[2, {j1}]]^2)/MT2 + (2*CB*ht^2*MW2*S2B*SB2*SW*SW2*
-              dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (2*ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2)/
-             MT2 + (4*CB*ht^2*MW2*SB2^2*SW*SW2*dZSl1[1, j1, 1, 1]*
-              Mass[F[2, {j1}]]^2)/MT2)*USf[s2, 1, 2, j1]))/
-        (Sqrt[2]*CB*CB2*MW2*SW*SW2)}}, 
+         ((4*CB*ht^2*SB2^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*
+            USf[1, 1, 2, j1])/MT2 + (4*CB*ht^2*SB2^2*SW*SW2*
+            dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 + 
+          ((8*ht^2*S2B*SB*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
+            (8*dSW1*ht^2*S2B*SB*SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (4*dMWsq1MW2*ht^2*S2B*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (16*dCosB1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
+            (2*ht^2*S2B*SB*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
+             MT2 - (ht^2*S2B^2*SB*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2)/
+             MT2 + (2*CB*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[1, 2]*
+              Mass[F[2, {j1}]]^2)/MT2 + (2*ht^2*S2B*SB*SB2*SW*SW2*
+              dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (4*CB*ht^2*SB2^2*SW*SW2*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
+             MT2)*USf[s2, 1, 2, j1]))/(Sqrt[2]*CB*CB2*SW*SW2)}}, 
     C[S[2], S[6], S[11, {j1}], -S[12, {s2, j2}]] == 
      {{((-I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
          USf[s2, 1, 2, j1])/(Sqrt[2]*CB2*MT2), 
-       ((I/8)*IndexDelta[j1, j2]*((-2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 - 
-          (2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            Mass[F[2, {j1}]]^2*USf[2, 1, 2, j1])/MT2 + 
-          ((-8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 + 
-            (8*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (4*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (16*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
-            (4*ht^2*MW2*SB2^2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2)/
-             MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[6, 6]*
-              Mass[F[2, {j1}]]^2)/MT2 - (ht^2*MW2*S2B^2*SW*SW2*
-              dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2)/
-             MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*
-              Mass[F[2, {j1}]]^2)/MT2)*USf[s2, 1, 2, j1]))/
-        (Sqrt[2]*CB2*MW2*SW*SW2)}}, C[S[2], -S[5], S[12, {s2, j2}], 
-      -S[11, {j1}]] == {{(I*ht^2*SB2^2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
+       ((I/8)*IndexDelta[j1, j2]*((-2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 1, 
+             s2]*Mass[F[2, {j1}]]^2*USf[1, 1, 2, j1])/MT2 - 
+          (2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+            USf[2, 1, 2, j1])/MT2 + ((-8*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*
+              Mass[F[2, {j1}]])/MT2 + (8*dSW1*ht^2*S2B*SB2*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (4*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (16*dCosB1*ht^2*SB*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (4*ht^2*SB2^2*SW*SW2*dZCHiggs1[5, 6]*
+              Mass[F[2, {j1}]]^2)/MT2 - (2*ht^2*S2B*SB2*SW*SW2*
+              dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (ht^2*S2B^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*ht^2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/
+             MT2)*USf[s2, 1, 2, j1]))/(Sqrt[2]*CB2*SW*SW2)}}, 
+    C[S[2], -S[5], S[12, {s2, j2}], -S[11, {j1}]] == 
+     {{(I*ht^2*SB2^2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
          USfC[s2, 1, 2, j1])/(Sqrt[2]*CB2*MT2), 
-       ((I/4)*IndexDelta[j1, j2]*((2*CB*ht^2*MW2*SB2^2*SW*SW2*
-            dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2 + 
-          (2*CB*ht^2*MW2*SB2^2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
-            USfC[2, 1, 2, j1])/MT2 + ((4*ht^2*MW2*S2B*SB*SB2*SW*SW2*
-              dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - (4*dSW1*ht^2*MW2*S2B*SB*SB2*
-              SW2*Mass[F[2, {j1}]]^2)/MT2 - (2*dMWsq1*ht^2*S2B*SB*SB2*SW*SW2*
-              Mass[F[2, {j1}]]^2)/MT2 - (8*dCosB1*ht^2*MW2*SB2^2*SW*SW2*
-              Mass[F[2, {j1}]]^2)/MT2 - (CB*ht^2*MW2*S2B*SB2*SW*SW2*
+       ((I/4)*IndexDelta[j1, j2]*((2*CB*ht^2*SB2^2*SW*SW2*dZSl1[2, j2, 1, s2]*
+            Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2 + 
+          (2*CB*ht^2*SB2^2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+            USfC[2, 1, 2, j1])/MT2 + ((4*ht^2*S2B*SB*SB2*SW*SW2*dMf1[2, j1]*
+              Mass[F[2, {j1}]])/MT2 - (4*dSW1*ht^2*S2B*SB*SB2*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (2*dMWsq1MW2*ht^2*S2B*SB*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (8*dCosB1*ht^2*SB2^2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 - (CB*ht^2*S2B*SB2*SW*SW2*
               Conjugate[dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (ht^2*MW2*S2B*SB*SB2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^
-               2)/MT2 + (2*CB*ht^2*MW2*SB2^2*SW*SW2*dZbarSl1[1, j1, 1, 1]*
-              Mass[F[2, {j1}]]^2)/MT2 + (CB*ht^2*MW2*S2B*SB2*SW*SW2*
+            (ht^2*S2B*SB*SB2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
+             MT2 + (2*CB*ht^2*SB2^2*SW*SW2*dZbarSl1[1, j1, 1, 1]*
+              Mass[F[2, {j1}]]^2)/MT2 + (CB*ht^2*S2B*SB2*SW*SW2*
               dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2)/MT2 + 
-            (ht^2*MW2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2)/
-             MT2)*USfC[s2, 1, 2, j1]))/(Sqrt[2]*CB*CB2*MW2*SW*SW2)}}, 
+            (ht^2*S2B*SB*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2)/MT2)*
+           USfC[s2, 1, 2, j1]))/(Sqrt[2]*CB*CB2*SW*SW2)}}, 
     C[S[2], -S[6], S[12, {s2, j2}], -S[11, {j1}]] == 
      {{((-I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
          USfC[s2, 1, 2, j1])/(Sqrt[2]*CB2*MT2), 
-       ((I/8)*IndexDelta[j1, j2]*((-2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2 - 
-          (2*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
-            USfC[2, 1, 2, j1])/MT2 + ((-8*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*
-              Mass[F[2, {j1}]])/MT2 + (8*dSW1*ht^2*MW2*S2B*SB2*SW2*
-              Mass[F[2, {j1}]]^2)/MT2 + (4*dMWsq1*ht^2*S2B*SB2*SW*SW2*
-              Mass[F[2, {j1}]]^2)/MT2 + (16*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*
-              Mass[F[2, {j1}]]^2)/MT2 + (4*ht^2*MW2*SB2^2*SW*SW2*
+       ((I/8)*IndexDelta[j1, j2]*((-2*ht^2*S2B*SB2*SW*SW2*dZSl1[2, j2, 1, s2]*
+            Mass[F[2, {j1}]]^2*USfC[1, 1, 2, j1])/MT2 - 
+          (2*ht^2*S2B*SB2*SW*SW2*dZSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*
+            USfC[2, 1, 2, j1])/MT2 + ((-8*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*
+              Mass[F[2, {j1}]])/MT2 + (8*dSW1*ht^2*S2B*SB2*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (4*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (16*dCosB1*ht^2*SB*SB2*SW*SW2*
+              Mass[F[2, {j1}]]^2)/MT2 + (4*ht^2*SB2^2*SW*SW2*
               Conjugate[dZCHiggs1[5, 6]]*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
-              Mass[F[2, {j1}]]^2)/MT2 - (2*ht^2*MW2*S2B*SB2*SW*SW2*
+            (2*ht^2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
+              Mass[F[2, {j1}]]^2)/MT2 - (2*ht^2*S2B*SB2*SW*SW2*
               dZbarSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2 - 
-            (ht^2*MW2*S2B^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*ht^2*MW2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2)/
-             MT2)*USfC[s2, 1, 2, j1]))/(Sqrt[2]*CB2*MW2*SW*SW2)}}, 
+            (ht^2*S2B^2*SW*SW2*dZNHiggs1[1, 2]*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*ht^2*S2B*SB2*SW*SW2*dZNHiggs1[2, 2]*Mass[F[2, {j1}]]^2)/MT2)*
+           USfC[s2, 1, 2, j1]))/(Sqrt[2]*CB2*SW*SW2)}}, 
     C[S[5], -S[5], S[11, {j1}], -S[11, {j2}]] == 
      {{((-I)*ht^2*SB2^2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2)/(CB2*MT2), 
-       ((I/8)*IndexDelta[j1, j2]*((-16*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*
-            dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 + (16*CB*CW2^2*dSW1*ht^2*MW2*
-            SB2^2*SW2*Mass[F[2, {j1}]]^2)/MT2 + (8*CB*CW2^2*dMWsq1*ht^2*SB2^2*
-            SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + (16*CW2^2*dCosB1*ht^2*MW2*SB2^2*
-            SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + (CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*
+       ((I/8)*IndexDelta[j1, j2]*((-16*CB*CW2^2*ht^2*SB2^2*SW*SW2*dMf1[2, j1]*
+            Mass[F[2, {j1}]])/MT2 + (16*CB*CW2^2*dSW1*ht^2*SB2^2*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 + (16*CW2^2*dCosB1*ht^2*SB2^2*SW*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 + (8*CB*CW2^2*dMWsq1MW2*ht^2*SB2^2*SW*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 + (CW2^2*ht^2*S2B^2*SB*SW*SW2*
             Conjugate[dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]^2)/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarCHiggs1[5, 5]*
-            Mass[F[2, {j1}]]^2)/MT2 - (4*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*
-            dZbarSl1[1, j2, 1, 1]*Mass[F[2, {j1}]]^2)/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZCHiggs1[5, 5]*
-            Mass[F[2, {j1}]]^2)/MT2 + (CW2^2*ht^2*MW2*S2B^2*SB*SW*SW2*
-            dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2)/MT2 - 
-          (4*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZSl1[1, j1, 1, 1]*
-            Mass[F[2, {j1}]]^2)/MT2))/(CB*CB2*CW2^2*MW2*SW*SW2)}}, 
+          (4*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^
+             2)/MT2 - (4*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZbarSl1[1, j2, 1, 1]*
+            Mass[F[2, {j1}]]^2)/MT2 - (4*CB*CW2^2*ht^2*SB2^2*SW*SW2*
+            dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/MT2 + 
+          (CW2^2*ht^2*S2B^2*SB*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2)/
+           MT2 - (4*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZSl1[1, j1, 1, 1]*
+            Mass[F[2, {j1}]]^2)/MT2))/(CB*CB2*CW2^2*SW*SW2)}}, 
     C[S[6], -S[6], S[11, {j1}], -S[11, {j2}]] == 
      {{((-I)*ht^2*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2)/MT2, 
-       ((-I/8)*IndexDelta[j1, j2]*((4*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*
-            Mass[F[2, {j1}]])/MT2 - (4*CW2^2*dSW1*ht^2*MW2*S2B^2*SW2*
-            Mass[F[2, {j1}]]^2)/MT2 - (2*CW2^2*dMWsq1*ht^2*S2B^2*SW*SW2*
-            Mass[F[2, {j1}]]^2)/MT2 - (16*CB*CW2^2*dCosB1*ht^2*MW2*SB2*SW*SW2*
-            Mass[F[2, {j1}]]^2)/MT2 - (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
+       ((-I/8)*IndexDelta[j1, j2]*((4*CW2^2*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*
+            Mass[F[2, {j1}]])/MT2 - (4*CW2^2*dSW1*ht^2*S2B^2*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 - (2*CW2^2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 - (16*CB*CW2^2*dCosB1*ht^2*SB2*SW*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 - (2*CW2^2*ht^2*S2B*SB2*SW*SW2*
             Conjugate[dZCHiggs1[5, 6]]*Mass[F[2, {j1}]]^2)/MT2 + 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
-            Mass[F[2, {j1}]]^2)/MT2 + (CW2^2*ht^2*MW2*S2B^2*SW*SW2*
+          (CW2^2*ht^2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
+            Mass[F[2, {j1}]]^2)/MT2 + (CW2^2*ht^2*S2B^2*SW*SW2*
             dZbarSl1[1, j2, 1, 1]*Mass[F[2, {j1}]]^2)/MT2 - 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^
-             2)/MT2 + (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZCHiggs1[6, 6]*
-            Mass[F[2, {j1}]]^2)/MT2 + (CW2^2*ht^2*MW2*S2B^2*SW*SW2*
-            dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2))/
-        (CB2*CW2^2*MW2*SW*SW2)}}, C[S[5], -S[6], S[11, {j1}], 
-      -S[11, {j2}]] == {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*
-         Mass[F[2, {j1}]]^2)/(CB2*MT2), ((I/8)*IndexDelta[j1, j2]*
-         ((8*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/
-           MT2 - (8*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-          (4*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-          (16*CW2^2*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
-          (4*CW2^2*ht^2*MW2*SB2^2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
-            Mass[F[2, {j1}]]^2)/MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            Conjugate[dZCHiggs1[6, 6]]*Mass[F[2, {j1}]]^2)/MT2 + 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSl1[1, j2, 1, 1]*
-            Mass[F[2, {j1}]]^2)/MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/MT2 - 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2)/
-           MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*
-            Mass[F[2, {j1}]]^2)/MT2))/(CB2*CW2^2*MW2*SW*SW2)}}, 
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2)/
+           MT2 + (CW2^2*ht^2*S2B^2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2)/
+           MT2 + (CW2^2*ht^2*S2B^2*SW*SW2*dZSl1[1, j1, 1, 1]*
+            Mass[F[2, {j1}]]^2)/MT2))/(CB2*CW2^2*SW*SW2)}}, 
+    C[S[5], -S[6], S[11, {j1}], -S[11, {j2}]] == 
+     {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2)/(CB2*MT2), 
+       ((I/8)*IndexDelta[j1, j2]*((8*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*
+            Mass[F[2, {j1}]])/MT2 - (8*CW2^2*dSW1*ht^2*S2B*SB2*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 - (4*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 - (16*CW2^2*dCosB1*ht^2*SB*SB2*SW*SW2*
+            Mass[F[2, {j1}]]^2)/MT2 - (4*CW2^2*ht^2*SB2^2*SW*SW2*
+            Conjugate[dZCHiggs1[5, 6]]*Mass[F[2, {j1}]]^2)/MT2 + 
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
+            Mass[F[2, {j1}]]^2)/MT2 + (2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZbarSl1[1, j2, 1, 1]*Mass[F[2, {j1}]]^2)/MT2 + 
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
+           MT2 - (CW2^2*ht^2*S2B^2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2)/
+           MT2 + (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*
+            Mass[F[2, {j1}]]^2)/MT2))/(CB2*CW2^2*SW*SW2)}}, 
     C[S[6], -S[5], S[11, {j1}], -S[11, {j2}]] == 
      {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2)/(CB2*MT2), 
-       ((I/8)*IndexDelta[j1, j2]*(-((CW2^2*ht^2*MW2*S2B^2*SW*SW2*
+       ((I/8)*IndexDelta[j1, j2]*(-((CW2^2*ht^2*S2B^2*SW*SW2*
              Conjugate[dZCHiggs1[6, 5]]*Mass[F[2, {j1}]]^2)/MT2) + 
-          2*((4*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/
-             MT2 - (4*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2)/
-             MT2 - (2*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/
-             MT2 - (8*CW2^2*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/
-             MT2 + (CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*
-              Mass[F[2, {j1}]]^2)/MT2 + (CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-              dZbarSl1[1, j2, 1, 1]*Mass[F[2, {j1}]]^2)/MT2 - 
-            (2*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^
-               2)/MT2 + (CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[6, 6]*
-              Mass[F[2, {j1}]]^2)/MT2 + (CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-              dZSl1[1, j1, 1, 1]*Mass[F[2, {j1}]]^2)/MT2)))/
-        (CB2*CW2^2*MW2*SW*SW2)}}, C[S[5], -S[5], S[12, {s1, j1}], 
-      -S[12, {s2, j2}]] == {{((-I)*ht^2*SB2^2*IndexDelta[j1, j2]*
-         Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/(CB2*MT2), 
-       ((I/4)*IndexDelta[j1, j2]*((-2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*
+          2*((4*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]])/MT2 - 
+            (4*CW2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (2*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 - 
+            (8*CW2^2*dCosB1*ht^2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2)/MT2 + 
+            (CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^2)/
+             MT2 + (CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSl1[1, j2, 1, 1]*
+              Mass[F[2, {j1}]]^2)/MT2 - (2*CW2^2*ht^2*SB2^2*SW*SW2*
+              dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2)/MT2 + 
+            (CW2^2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2)/
+             MT2 + (CW2^2*ht^2*S2B*SB2*SW*SW2*dZSl1[1, j1, 1, 1]*
+              Mass[F[2, {j1}]]^2)/MT2)))/(CB2*CW2^2*SW*SW2)}}, 
+    C[S[5], -S[5], S[12, {s1, j1}], -S[12, {s2, j2}]] == 
+     {{((-I)*ht^2*SB2^2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
+         USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/(CB2*MT2), 
+       ((I/4)*IndexDelta[j1, j2]*((-2*CB*CW2^2*ht^2*SB2^2*SW*SW2*
             dZSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
-            USfC[1, 2, 2, j1])/MT2 - (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*
+            USfC[1, 2, 2, j1])/MT2 - (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*
             dZSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
-            USfC[2, 2, 2, j1])/MT2 - (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*
+            USfC[2, 2, 2, j1])/MT2 - (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*
             dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 - (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*
+            USfC[s1, 2, 2, j1])/MT2 - (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*
             dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 - (8*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*
+            USfC[s1, 2, 2, j1])/MT2 - (8*CB*CW2^2*ht^2*SB2^2*SW*SW2*
             dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 + (8*CB*CW2^2*dSW1*ht^2*MW2*SB2^2*SW2*
+            USfC[s1, 2, 2, j1])/MT2 + (8*CB*CW2^2*dSW1*ht^2*SB2^2*SW2*
             Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (4*CB*CW2^2*dMWsq1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (8*CW2^2*dCosB1*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (8*CW2^2*dCosB1*ht^2*MW2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (4*CB*CW2^2*dMWsq1MW2*ht^2*SB2^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
+          (CB*CW2^2*ht^2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
             Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZbarCHiggs1[5, 5]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZCHiggs1[5, 5]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[6, 5]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2))/
-        (CB*CB2*CW2^2*MW2*SW*SW2)}}, C[S[6], -S[6], S[12, {s1, j1}], 
+          (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (2*CB*CW2^2*ht^2*SB2^2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
+          (CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2))/
+        (CB*CB2*CW2^2*SW*SW2)}}, C[S[6], -S[6], S[12, {s1, j1}], 
       -S[12, {s2, j2}]] == 
      {{((-I)*ht^2*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
          USfC[s1, 2, 2, j1])/MT2, ((-I/8)*IndexDelta[j1, j2]*
-         ((CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZSl1[2, j1, 1, s1]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[1, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZSl1[2, j1, 2, s1]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[2, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
+         ((CB*CW2^2*ht^2*S2B^2*SW*SW2*dZSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[1, 2, 2, j1])/MT2 + 
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[2, 2, 2, j1])/MT2 + 
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
             Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
             Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (4*CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
+          (4*CB*CW2^2*ht^2*S2B^2*SW*SW2*dMf1[2, j1]*Mass[F[2, {j1}]]*
             USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
+          (4*CB*CW2^2*dSW1*ht^2*S2B^2*SW2*Mass[F[2, {j1}]]^2*
             USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*dMWsq1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (4*CW2^2*dCosB1*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (4*CW2^2*dCosB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
+          (2*CB*CW2^2*dMWsq1MW2*ht^2*S2B^2*SW*SW2*Mass[F[2, {j1}]]^2*
             USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
             Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
             Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[5, 6]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2*
-            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2))/
-        (CB*CB2*CW2^2*MW2*SW*SW2)}}, C[S[5], -S[6], S[12, {s1, j1}], 
-      -S[12, {s2, j2}]] == {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*
-         Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/(CB2*MT2), 
-       ((I/8)*IndexDelta[j1, j2]*((2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
-            USfC[1, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
-            USfC[2, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 + (8*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 - (8*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (4*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (16*CW2^2*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (4*CW2^2*ht^2*MW2*SB2^2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2*
-            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2*
-            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2))/
-        (CB2*CW2^2*MW2*SW*SW2)}}, C[S[6], -S[5], S[12, {s1, j1}], 
-      -S[12, {s2, j2}]] == {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*
-         Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/(CB2*MT2), 
-       ((I/8)*IndexDelta[j1, j2]*((2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
-            USfC[1, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
-            USfC[2, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 + (8*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
-            USfC[s1, 2, 2, j1])/MT2 - (8*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (4*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (16*CW2^2*dCosB1*ht^2*MW2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
-            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (CW2^2*ht^2*MW2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*
-            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
-          (4*CW2^2*ht^2*MW2*SB2^2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2*
+          (2*CB*CW2^2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2*
             USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
-          (2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2*
+          (CB*CW2^2*ht^2*S2B^2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2*
             USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2))/
-        (CB2*CW2^2*MW2*SW*SW2)}}, C[S[5], -S[5], S[13, {s1, j1, o1}], 
-      -S[13, {s2, j2, o2}]] == 
+        (CB*CB2*CW2^2*SW*SW2)}}, C[S[5], -S[6], S[12, {s1, j1}], 
+      -S[12, {s2, j2}]] == {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*
+         Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/(CB2*MT2), 
+       ((I/8)*IndexDelta[j1, j2]*((2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
+            USfC[1, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
+            USfC[2, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*
+            USfC[s1, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*
+            USfC[s1, 2, 2, j1])/MT2 + (8*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+            USfC[s1, 2, 2, j1])/MT2 - (8*CW2^2*dSW1*ht^2*S2B*SB2*SW2*
+            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (4*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (16*CW2^2*dCosB1*ht^2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (4*CW2^2*ht^2*SB2^2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
+            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[5, 5]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (CW2^2*ht^2*S2B^2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2))/(CB2*CW2^2*SW*SW2)}}, 
+    C[S[6], -S[5], S[12, {s1, j1}], -S[12, {s2, j2}]] == 
+     {{((I/2)*ht^2*S2B*SB2*IndexDelta[j1, j2]*Mass[F[2, {j1}]]^2*
+         USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/(CB2*MT2), 
+       ((I/8)*IndexDelta[j1, j2]*((2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZSl1[2, j1, 1, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
+            USfC[1, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZSl1[2, j1, 2, s1]*Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*
+            USfC[2, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZbarSl1[2, j2, 1, s2]*Mass[F[2, {j1}]]^2*USf[1, 2, 2, j1]*
+            USfC[s1, 2, 2, j1])/MT2 + (2*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dZbarSl1[2, j2, 2, s2]*Mass[F[2, {j1}]]^2*USf[2, 2, 2, j1]*
+            USfC[s1, 2, 2, j1])/MT2 + (8*CW2^2*ht^2*S2B*SB2*SW*SW2*
+            dMf1[2, j1]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
+            USfC[s1, 2, 2, j1])/MT2 - (8*CW2^2*dSW1*ht^2*S2B*SB2*SW2*
+            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (4*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (16*CW2^2*dCosB1*ht^2*SB*SB2*SW*SW2*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (CW2^2*ht^2*S2B^2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
+            Mass[F[2, {j1}]]^2*USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 - 
+          (4*CW2^2*ht^2*SB2^2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2 + 
+          (2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[2, {j1}]]^2*
+            USf[s2, 2, 2, j1]*USfC[s1, 2, 2, j1])/MT2))/(CB2*CW2^2*SW*SW2)}}, 
+    C[S[5], -S[5], S[13, {s1, j1, o1}], -S[13, {s2, j2, o2}]] == 
      {{((-I/4)*ht^2*S2B^2*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/(MT2*SB2), 
        ((-I/12)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         ((24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
+         ((24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[1, 2, 3, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[2, 2, 3, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (96*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dMf1[3, j1]*
-            Mass[F[3, {j1}]]*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (96*CB2^2*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2*
+          (96*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (192*CB*CB2^2*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (96*CB2^2*CW2^2*dSW1*ht^2*S2B*SB2*SW2*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (48*CB2^2*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (192*CB*CB2^2*CW2^2*dSinB1*ht^2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
+          (48*CB2^2*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^4*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
+          (3*CW2^2*ht^2*S2B^4*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZbarCHiggs1[5, 5]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZCHiggs1[5, 5]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZCHiggs1[5, 5]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^4*SW*SW2*dZCHiggs1[6, 5]*Mass[F[3, {j1}]]^2*
+          (3*CW2^2*ht^2*S2B^4*SW*SW2*dZCHiggs1[6, 5]*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*S2B^3*SW*SW2)}}, C[S[6], -S[6], S[13, {s1, j1, o1}], 
+        (CW2^2*S2B^3*SW*SW2)}}, C[S[6], -S[6], S[13, {s1, j1, o1}], 
       -S[13, {s2, j2, o2}]] == 
      {{((-I)*ht^2*SB2*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2, 
        ((I/6)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         ((-3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
+         ((-3*CW2^2*ht^2*SB*SB2*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[1, 2, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[2, 2, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (12*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*SB*SB2*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (12*CW2^2*dSW1*ht^2*MW2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*
-            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (12*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (6*CW2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*SB*SB2*SW2*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*
+            USfC[s1, 2, 3, j1])/MT2 + (12*CW2^2*dSinB1*ht^2*SB2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
+          (6*CW2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (3*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+          (3*CB*CW2^2*ht^2*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (3*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[3, {j1}]]^2*
+          (3*CB*CW2^2*ht^2*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]^2*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]^2*
+            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2))/(CW2^2*SB*SW*SW2)}}, 
+    C[S[5], -S[6], S[13, {s1, j1, o1}], -S[13, {s2, j2, o2}]] == 
+     {{((-I/2)*ht^2*S2B*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
+         Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2, 
+       ((-I/12)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
+         ((3*CW2^2*ht^2*S2B^3*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
+            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[1, 2, 3, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
+            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[2, 2, 3, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+            Mass[F[3, {j1}]]^2*USf[1, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
+            Mass[F[3, {j1}]]^2*USf[2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
+          (12*CW2^2*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
+          (12*CW2^2*dSW1*ht^2*S2B^3*SW2*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*
+            USfC[s1, 2, 3, j1])/MT2 - (24*CB*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*Mass[F[3, {j1}]]^2*
+            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
+          (24*CB2^2*CW2^2*ht^2*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
+            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
+            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
+          (6*CW2^2*ht^2*S2B^2*SB2*SW*SW2*dZCHiggs1[6, 5]*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*SB*SW*SW2)}}, C[S[5], -S[6], S[13, {s1, j1, o1}], 
+        (CW2^2*S2B^2*SW*SW2)}}, C[S[6], -S[5], S[13, {s1, j1, o1}], 
       -S[13, {s2, j2, o2}]] == 
      {{((-I/2)*ht^2*S2B*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
          Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2, 
        ((-I/12)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         ((3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
+         ((3*CW2^2*ht^2*S2B^3*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[2, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
             Mass[F[3, {j1}]]^2*USf[1, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
             Mass[F[3, {j1}]]^2*USf[2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
+          (12*CW2^2*ht^2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^3*SW2*Mass[F[3, {j1}]]^2*
-            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (24*CB*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^3*SW*SW2*Mass[F[3, {j1}]]^2*
+          (12*CW2^2*dSW1*ht^2*S2B^3*SW2*Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*
+            USfC[s1, 2, 3, j1])/MT2 - (24*CB*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*
+            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*SB2*SW*SW2*Conjugate[dZCHiggs1[5, 6]]*
+          (6*CW2^2*ht^2*S2B^2*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
             Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*Conjugate[dZCHiggs1[6, 6]]*
-            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZbarCHiggs1[5, 5]*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB2*SW*SW2*dZCHiggs1[6, 5]*
-            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*S2B^2*SW*SW2)}}, C[S[6], -S[5], S[13, {s1, j1, o1}], 
-      -S[13, {s2, j2, o2}]] == 
-     {{((-I/2)*ht^2*S2B*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2, 
-       ((-I/12)*IndexDelta[j1, j2]*IndexDelta[o1, o2]*
-         ((3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZSq1[13, 1, s1, j1, j1]*
-            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
-            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[2, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
-            Mass[F[3, {j1}]]^2*USf[1, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
-            Mass[F[3, {j1}]]^2*USf[2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dMf1[3, j1]*Mass[F[3, {j1}]]*
-            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^3*SW2*Mass[F[3, {j1}]]^2*
-            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (24*CB*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*Mass[F[3, {j1}]]^2*
-            USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^3*SW*SW2*Mass[F[3, {j1}]]^2*
+          (24*CB2^2*CW2^2*ht^2*SB2*SW*SW2*dZCHiggs1[5, 6]*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB2*SW*SW2*Conjugate[dZCHiggs1[6, 5]]*
-            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZbarCHiggs1[5, 5]*
-            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*SB2*SW*SW2*dZCHiggs1[5, 6]*
-            Mass[F[3, {j1}]]^2*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]^2*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZCHiggs1[6, 6]*Mass[F[3, {j1}]]^2*
             USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1])/MT2))/
-        (CW2^2*MW2*S2B^2*SW*SW2)}}, C[S[5], -S[5], S[14, {s1, j1, o1}], 
+        (CW2^2*S2B^2*SW*SW2)}}, C[S[5], -S[5], S[14, {s1, j1, o1}], 
       -S[14, {s2, j2, o2}]] == 
      {{((-I/4)*ht^2*S2B^2*IndexDelta[o1, o2]*(CKM[1, j1]*CKMC[1, j2]*
            Mass[F[3, {1}]]^2 + CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2 + 
           CKM[3, j1]*CKMC[3, j2]*Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*
          USfC[s1, 1, 4, j1])/(MT2*SB2), ((-I/12)*IndexDelta[o1, o2]*
-         ((24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[14, 1, s1, j1, j1]*
+         ((24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[14, 1, s1, j1, j1]*
             (CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2 + CKM[2, j1]*
               CKMC[2, j2]*Mass[F[3, {2}]]^2 + CKM[3, j1]*CKMC[3, j2]*
               Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*USfC[1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*dZSq1[14, 2, s1, j1, j1]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*dZSq1[14, 2, s1, j1, j1]*
             (CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2 + CKM[2, j1]*
               CKMC[2, j2]*Mass[F[3, {2}]]^2 + CKM[3, j1]*CKMC[3, j2]*
               Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*USfC[2, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {1}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
+            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*
             CKM[2, j1]*CKMC[2, j2]*dZbarSq1[14, 1, s2, j2, j2]*
             Mass[F[3, {2}]]^2*USf[1, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {3}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
+            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*
             CKM[1, j1]*CKMC[1, j2]*dZbarSq1[14, 2, s2, j2, j2]*
             Mass[F[3, {1}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
             dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {2}]]^2*USf[2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
+            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*
             CKM[3, j1]*CKMC[3, j2]*dZbarSq1[14, 2, s2, j2, j2]*
             Mass[F[3, {3}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (96*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (96*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             dMf1[3, 1]*Mass[F[3, {1}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/
-           MT2 - (96*CB2^2*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*CKM[1, j1]*
+           MT2 - (96*CB2^2*CW2^2*dSW1*ht^2*S2B*SB2*SW2*CKM[1, j1]*CKMC[1, j2]*
+            Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
+          (192*CB*CB2^2*CW2^2*dSinB1*ht^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+            Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
+          (48*CB2^2*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*CKM[1, j1]*
             CKMC[1, j2]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 - (192*CB*CB2^2*CW2^2*dSinB1*ht^2*MW2*SB2*
-            SW*SW2*CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 - (48*CB2^2*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*
-            SW2*CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^4*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*Conjugate[dZCHiggs1[6, 5]]*
-            Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^4*SW*SW2*CKM[1, j1]*
+            CKMC[1, j2]*Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {1}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             dZbarCHiggs1[5, 5]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
+            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*
             CKM[1, j1]*CKMC[1, j2]*dZCHiggs1[5, 5]*Mass[F[3, {1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^4*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
-            dZCHiggs1[6, 5]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (96*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*dMf1[3, 2]*Mass[F[3, {2}]]*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (96*CB2^2*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*CKM[2, j1]*CKMC[2, j2]*
+          (3*CW2^2*ht^2*S2B^4*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dZCHiggs1[6, 5]*
+            Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (96*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            dMf1[3, 2]*Mass[F[3, {2}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/
+           MT2 - (96*CB2^2*CW2^2*dSW1*ht^2*S2B*SB2*SW2*CKM[2, j1]*CKMC[2, j2]*
             Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (192*CB*CB2^2*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*CKM[2, j1]*
+          (192*CB*CB2^2*CW2^2*dSinB1*ht^2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
+          (48*CB2^2*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*CKM[2, j1]*
             CKMC[2, j2]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 - (48*CB2^2*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*
-            SW2*CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^4*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*Conjugate[dZCHiggs1[6, 5]]*
-            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^4*SW*SW2*CKM[2, j1]*
+            CKMC[2, j2]*Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {2}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
             dZbarCHiggs1[5, 5]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
+            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*
             CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[5, 5]*Mass[F[3, {2}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^4*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
-            dZCHiggs1[6, 5]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (96*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*dMf1[3, 3]*Mass[F[3, {3}]]*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (96*CB2^2*CW2^2*dSW1*ht^2*MW2*S2B*SB2*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (3*CW2^2*ht^2*S2B^4*SW*SW2*CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[6, 5]*
+            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (96*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+            dMf1[3, 3]*Mass[F[3, {3}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/
+           MT2 - (96*CB2^2*CW2^2*dSW1*ht^2*S2B*SB2*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (192*CB*CB2^2*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*CKM[3, j1]*
+          (192*CB*CB2^2*CW2^2*dSinB1*ht^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+            Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
+          (48*CB2^2*CW2^2*dMWsq1MW2*ht^2*S2B*SB2*SW*SW2*CKM[3, j1]*
             CKMC[3, j2]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 - (48*CB2^2*CW2^2*dMWsq1*ht^2*S2B*SB2*SW*
-            SW2*CKM[3, j1]*CKMC[3, j2]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^4*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*Conjugate[dZCHiggs1[6, 5]]*
-            Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^4*SW*SW2*CKM[3, j1]*
+            CKMC[3, j2]*Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {3}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             dZbarCHiggs1[5, 5]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*MW2*S2B*SB2*SW*SW2*
+            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*S2B*SB2*SW*SW2*
             CKM[3, j1]*CKMC[3, j2]*dZCHiggs1[5, 5]*Mass[F[3, {3}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^4*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
-            dZCHiggs1[6, 5]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2))/(CW2^2*MW2*S2B^3*SW*SW2)}}, 
-    C[S[6], -S[6], S[14, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
+          (3*CW2^2*ht^2*S2B^4*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dZCHiggs1[6, 5]*
+            Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2))/
+        (CW2^2*S2B^3*SW*SW2)}}, C[S[6], -S[6], S[14, {s1, j1, o1}], 
+      -S[14, {s2, j2, o2}]] == 
      {{((-I)*ht^2*SB2*IndexDelta[o1, o2]*(CKM[1, j1]*CKMC[1, j2]*
            Mass[F[3, {1}]]^2 + CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2 + 
           CKM[3, j1]*CKMC[3, j2]*Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*
          USfC[s1, 1, 4, j1])/MT2, ((-I/6)*IndexDelta[o1, o2]*
-         ((3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZSq1[14, 1, s1, j1, j1]*
+         ((3*CW2^2*ht^2*SB*SB2*SW*SW2*dZSq1[14, 1, s1, j1, j1]*
             (CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2 + CKM[2, j1]*
               CKMC[2, j2]*Mass[F[3, {2}]]^2 + CKM[3, j1]*CKMC[3, j2]*
               Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*USfC[1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*dZSq1[14, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*dZSq1[14, 2, s1, j1, j1]*
             (CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2 + CKM[2, j1]*
               CKMC[2, j2]*Mass[F[3, {2}]]^2 + CKM[3, j1]*CKMC[3, j2]*
               Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*USfC[2, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {1}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*dZbarSq1[14, 1, s2, j2, j2]*
-            Mass[F[3, {2}]]^2*USf[1, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[2, j1]*
+            CKMC[2, j2]*dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {2}]]^2*
+            USf[1, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {3}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*dZbarSq1[14, 2, s2, j2, j2]*
-            Mass[F[3, {1}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[1, j1]*
+            CKMC[1, j2]*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {1}]]^2*
+            USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
             dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {2}]]^2*USf[2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*dZbarSq1[14, 2, s2, j2, j2]*
-            Mass[F[3, {3}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dMf1[3, 1]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[3, j1]*
+            CKMC[3, j2]*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {3}]]^2*
+            USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (12*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dMf1[3, 1]*
             Mass[F[3, {1}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*SB*SB2*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (12*CW2^2*dSW1*ht^2*SB*SB2*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (12*CW2^2*dSinB1*ht^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (6*CW2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (3*CB*CW2^2*ht^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*Conjugate[dZCHiggs1[6, 6]]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[1, j1]*
+            CKMC[1, j2]*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {1}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CB*CW2^2*ht^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dZCHiggs1[5, 6]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
-            dZCHiggs1[5, 6]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*dZCHiggs1[6, 6]*Mass[F[3, {1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*dMf1[3, 2]*
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dZCHiggs1[6, 6]*
+            Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (12*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*dMf1[3, 2]*
             Mass[F[3, {2}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*SB*SB2*SW2*CKM[2, j1]*CKMC[2, j2]*
+          (12*CW2^2*dSW1*ht^2*SB*SB2*SW2*CKM[2, j1]*CKMC[2, j2]*
             Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+          (12*CW2^2*dSinB1*ht^2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
             Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+          (6*CW2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
             Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+          (3*CB*CW2^2*ht^2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
             Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*Conjugate[dZCHiggs1[6, 6]]*
-            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
-            dZCHiggs1[5, 6]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[6, 6]*Mass[F[3, {2}]]^2*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[2, j1]*
+            CKMC[2, j2]*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {2}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dMf1[3, 3]*
+          (3*CB*CW2^2*ht^2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[5, 6]*
+            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[6, 6]*
+            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (12*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dMf1[3, 3]*
             Mass[F[3, {3}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*SB*SB2*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (12*CW2^2*dSW1*ht^2*SB*SB2*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSinB1*ht^2*MW2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (12*CW2^2*dSinB1*ht^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*SB*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (6*CW2^2*dMWsq1MW2*ht^2*SB*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (3*CB*CW2^2*ht^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*Conjugate[dZCHiggs1[6, 6]]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[3, j1]*
+            CKMC[3, j2]*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {3}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CB*CW2^2*ht^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dZCHiggs1[5, 6]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
-            dZCHiggs1[5, 6]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*SB*SB2*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*dZCHiggs1[6, 6]*Mass[F[3, {3}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2))/
-        (CW2^2*MW2*SB*SW*SW2)}}, C[S[5], -S[6], S[14, {s1, j1, o1}], 
+          (3*CW2^2*ht^2*SB*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dZCHiggs1[6, 6]*
+            Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2))/
+        (CW2^2*SB*SW*SW2)}}, C[S[5], -S[6], S[14, {s1, j1, o1}], 
       -S[14, {s2, j2, o2}]] == 
      {{((-I/2)*ht^2*S2B*IndexDelta[o1, o2]*(CKM[1, j1]*CKMC[1, j2]*
            Mass[F[3, {1}]]^2 + CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2 + 
           CKM[3, j1]*CKMC[3, j2]*Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*
          USfC[s1, 1, 4, j1])/MT2, ((-I/12)*IndexDelta[o1, o2]*
-         ((3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZSq1[14, 1, s1, j1, j1]*
+         ((3*CW2^2*ht^2*S2B^3*SW*SW2*dZSq1[14, 1, s1, j1, j1]*
             (CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2 + CKM[2, j1]*
               CKMC[2, j2]*Mass[F[3, {2}]]^2 + CKM[3, j1]*CKMC[3, j2]*
               Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*USfC[1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZSq1[14, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZSq1[14, 2, s1, j1, j1]*
             (CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2 + CKM[2, j1]*
               CKMC[2, j2]*Mass[F[3, {2}]]^2 + CKM[3, j1]*CKMC[3, j2]*
               Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*USfC[2, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {1}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*dZbarSq1[14, 1, s2, j2, j2]*
-            Mass[F[3, {2}]]^2*USf[1, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*
+            CKMC[2, j2]*dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {2}]]^2*
+            USf[1, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {3}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*dZbarSq1[14, 2, s2, j2, j2]*
-            Mass[F[3, {1}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*
+            CKMC[1, j2]*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {1}]]^2*
+            USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
             dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {2}]]^2*USf[2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*dZbarSq1[14, 2, s2, j2, j2]*
-            Mass[F[3, {3}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dMf1[3, 1]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*
+            CKMC[3, j2]*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {3}]]^2*
+            USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (12*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dMf1[3, 1]*
             Mass[F[3, {1}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^3*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (12*CW2^2*dSW1*ht^2*S2B^3*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (24*CB*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (24*CB*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (24*CB2^2*CW2^2*ht^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*Conjugate[dZCHiggs1[6, 6]]*
-            Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
-            dZCHiggs1[5, 5]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (6*CW2^2*ht^2*MW2*S2B^2*SB2*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*dZCHiggs1[6, 5]*Mass[F[3, {1}]]^2*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*
+            CKMC[1, j2]*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*dMf1[3, 2]*
-            Mass[F[3, {2}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^3*SW2*CKM[2, j1]*CKMC[2, j2]*
-            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (24*CB*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
-            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dZCHiggs1[5, 5]*
+            Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (6*CW2^2*ht^2*S2B^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+            dZCHiggs1[6, 5]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (12*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*
+            CKMC[2, j2]*dMf1[3, 2]*Mass[F[3, {2}]]*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 - (12*CW2^2*dSW1*ht^2*S2B^3*SW2*
+            CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 - (24*CB*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*
+            CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 - (6*CW2^2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*
+            CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*SB2*SW*SW2*
+            CKM[2, j1]*CKMC[2, j2]*Conjugate[dZCHiggs1[5, 6]]*
             Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
-            Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*Conjugate[dZCHiggs1[6, 6]]*
-            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
-            dZCHiggs1[5, 5]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (6*CW2^2*ht^2*MW2*S2B^2*SB2*SW*SW2*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*
+            CKMC[2, j2]*dZCHiggs1[5, 5]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (6*CW2^2*ht^2*S2B^2*SB2*SW*SW2*
             CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[6, 5]*Mass[F[3, {2}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dMf1[3, 3]*
+          (12*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dMf1[3, 3]*
             Mass[F[3, {3}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^3*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (12*CW2^2*dSW1*ht^2*S2B^3*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (24*CB*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (24*CB*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (24*CB2^2*CW2^2*ht^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Conjugate[dZCHiggs1[5, 6]]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*Conjugate[dZCHiggs1[6, 6]]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*
+            CKMC[3, j2]*Conjugate[dZCHiggs1[6, 6]]*Mass[F[3, {3}]]^2*
+            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dZCHiggs1[5, 5]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
-            dZCHiggs1[5, 5]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (6*CW2^2*ht^2*MW2*S2B^2*SB2*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*dZCHiggs1[6, 5]*Mass[F[3, {3}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2))/
-        (CW2^2*MW2*S2B^2*SW*SW2)}}, C[S[6], -S[5], S[14, {s1, j1, o1}], 
-      -S[14, {s2, j2, o2}]] == 
+          (6*CW2^2*ht^2*S2B^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+            dZCHiggs1[6, 5]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2))/(CW2^2*S2B^2*SW*SW2)}}, 
+    C[S[6], -S[5], S[14, {s1, j1, o1}], -S[14, {s2, j2, o2}]] == 
      {{((-I/2)*ht^2*S2B*IndexDelta[o1, o2]*(CKM[1, j1]*CKMC[1, j2]*
            Mass[F[3, {1}]]^2 + CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2 + 
           CKM[3, j1]*CKMC[3, j2]*Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*
          USfC[s1, 1, 4, j1])/MT2, ((-I/12)*IndexDelta[o1, o2]*
-         ((3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZSq1[14, 1, s1, j1, j1]*
+         ((3*CW2^2*ht^2*S2B^3*SW*SW2*dZSq1[14, 1, s1, j1, j1]*
             (CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2 + CKM[2, j1]*
               CKMC[2, j2]*Mass[F[3, {2}]]^2 + CKM[3, j1]*CKMC[3, j2]*
               Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*USfC[1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*dZSq1[14, 2, s1, j1, j1]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*dZSq1[14, 2, s1, j1, j1]*
             (CKM[1, j1]*CKMC[1, j2]*Mass[F[3, {1}]]^2 + CKM[2, j1]*
               CKMC[2, j2]*Mass[F[3, {2}]]^2 + CKM[3, j1]*CKMC[3, j2]*
               Mass[F[3, {3}]]^2)*USf[s2, 1, 4, j2]*USfC[2, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {1}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*dZbarSq1[14, 1, s2, j2, j2]*
-            Mass[F[3, {2}]]^2*USf[1, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*
+            CKMC[2, j2]*dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {2}]]^2*
+            USf[1, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*Mass[F[3, {3}]]^2*USf[1, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*dZbarSq1[14, 2, s2, j2, j2]*
-            Mass[F[3, {1}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*
+            CKMC[1, j2]*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {1}]]^2*
+            USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
             dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {2}]]^2*USf[2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*dZbarSq1[14, 2, s2, j2, j2]*
-            Mass[F[3, {3}]]^2*USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dMf1[3, 1]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*
+            CKMC[3, j2]*dZbarSq1[14, 2, s2, j2, j2]*Mass[F[3, {3}]]^2*
+            USf[2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (12*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*dMf1[3, 1]*
             Mass[F[3, {1}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^3*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (12*CW2^2*dSW1*ht^2*S2B^3*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (24*CB*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (24*CB*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (6*CW2^2*ht^2*S2B^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*dZbarCHiggs1[5, 5]*Mass[F[3, {1}]]^2*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*
+            CKMC[1, j2]*dZbarCHiggs1[5, 5]*Mass[F[3, {1}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
+          (24*CB2^2*CW2^2*ht^2*SB2*SW*SW2*CKM[1, j1]*CKMC[1, j2]*
             dZCHiggs1[5, 6]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[1, j1]*CKMC[1, j2]*dZCHiggs1[6, 6]*Mass[F[3, {1}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*dMf1[3, 2]*
-            Mass[F[3, {2}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^3*SW2*CKM[2, j1]*CKMC[2, j2]*
-            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (24*CB*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
-            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[1, j1]*
+            CKMC[1, j2]*dZCHiggs1[6, 6]*Mass[F[3, {1}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (12*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*
+            CKMC[2, j2]*dMf1[3, 2]*Mass[F[3, {2}]]*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 - (12*CW2^2*dSW1*ht^2*S2B^3*SW2*
+            CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 - (24*CB*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*
+            CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 - (6*CW2^2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*
+            CKM[2, j1]*CKMC[2, j2]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (6*CW2^2*ht^2*S2B^2*SB2*SW*SW2*
+            CKM[2, j1]*CKMC[2, j2]*Conjugate[dZCHiggs1[6, 5]]*
             Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
-            Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*dZbarCHiggs1[5, 5]*Mass[F[3, {2}]]^2*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
+            dZbarCHiggs1[5, 5]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2 + (24*CB2^2*CW2^2*ht^2*SB2*SW*SW2*
+            CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[5, 6]*Mass[F[3, {2}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[2, j1]*CKMC[2, j2]*
-            dZCHiggs1[5, 6]*Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[6, 6]*Mass[F[3, {2}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (12*CW2^2*ht^2*MW2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dMf1[3, 3]*
+          (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[2, j1]*CKMC[2, j2]*dZCHiggs1[6, 6]*
+            Mass[F[3, {2}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
+          (12*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*dMf1[3, 3]*
             Mass[F[3, {3}]]*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (12*CW2^2*dSW1*ht^2*MW2*S2B^3*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (12*CW2^2*dSW1*ht^2*S2B^3*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (24*CB*CW2^2*dSinB1*ht^2*MW2*S2B^2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (24*CB*CW2^2*dSinB1*ht^2*S2B^2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 - 
-          (6*CW2^2*dMWsq1*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (6*CW2^2*dMWsq1MW2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (6*CW2^2*ht^2*MW2*S2B^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (6*CW2^2*ht^2*S2B^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             Conjugate[dZCHiggs1[6, 5]]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*dZbarCHiggs1[5, 5]*Mass[F[3, {3}]]^2*
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*
+            CKMC[3, j2]*dZbarCHiggs1[5, 5]*Mass[F[3, {3}]]^2*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2 + 
-          (24*CB2^2*CW2^2*ht^2*MW2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
+          (24*CB2^2*CW2^2*ht^2*SB2*SW*SW2*CKM[3, j1]*CKMC[3, j2]*
             dZCHiggs1[5, 6]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
-            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*MW2*S2B^3*SW*SW2*
-            CKM[3, j1]*CKMC[3, j2]*dZCHiggs1[6, 6]*Mass[F[3, {3}]]^2*
-            USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1])/MT2))/
-        (CW2^2*MW2*S2B^2*SW*SW2)}}, 
+            USfC[s1, 1, 4, j1])/MT2 + (3*CW2^2*ht^2*S2B^3*SW*SW2*CKM[3, j1]*
+            CKMC[3, j2]*dZCHiggs1[6, 6]*Mass[F[3, {3}]]^2*USf[s2, 1, 4, j2]*
+            USfC[s1, 1, 4, j1])/MT2))/(CW2^2*S2B^2*SW*SW2)}}, 
     C[S[14, {s1, j1, o1}], -S[14, {s2, j2, o2}], S[12, {s3, j3}], 
       -S[12, {s4, j4}]] == 
      {{0, ((-I/6)*Pi*IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
@@ -3329,59 +3237,59 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
          IndexDelta[o2, o3]*Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*
          USf[s2, 1, 4, j2]*USf[s4, 2, 3, j4]*USfC[s1, 1, 4, j1]*
          USfC[s3, 2, 3, j3])/MT2, 
-       ((-I/18)*((9*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
+       ((-I/18)*((9*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
             dZSq1[13, 1, s3, j3, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
             Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*
             USf[s4, 2, 3, j4]*USfC[1, 2, 3, j3]*USfC[s1, 1, 4, j1])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
-            dZSq1[13, 2, s3, j3, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+          (9*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*dZSq1[13, 2, s3, 
+             j3, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
             Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*
             USf[s4, 2, 3, j4]*USfC[2, 2, 3, j3]*USfC[s1, 1, 4, j1])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
-            dZSq1[14, 1, s1, j1, j1]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+          (9*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*dZSq1[14, 1, s1, 
+             j1, j1]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
             Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*
             USf[s4, 2, 3, j4]*USfC[1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
-            dZSq1[14, 2, s1, j1, j1]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+          (9*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*dZSq1[14, 2, s1, 
+             j1, j1]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
             Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*
             USf[s4, 2, 3, j4]*USfC[2, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
+          (9*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
             dZbarSq1[13, 1, s4, j4, j4]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
             Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*USf[1, 2, 3, j4]*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
+          (9*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
             dZbarSq1[13, 2, s4, j4, j4]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
             Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*USf[2, 2, 3, j4]*
             USf[s2, 1, 4, j2]*USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
+          (9*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
             dZbarSq1[14, 1, s2, j2, j2]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
             Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*USf[1, 1, 4, j2]*
             USf[s4, 2, 3, j4]*USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
+          (9*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
             dZbarSq1[14, 2, s2, j2, j2]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
             Mass[F[3, {j3, o3}]]*Mass[F[3, {j4, o4}]]*USf[2, 1, 4, j2]*
             USf[s4, 2, 3, j4]*USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (18*CW2^2*ht^2*MW2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*dMf1[3, j4]*
+          (18*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*dMf1[3, j4]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j3, o3}]]*
             USf[s2, 1, 4, j2]*USf[s4, 2, 3, j4]*USfC[s1, 1, 4, j1]*
-            USfC[s3, 2, 3, j3])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            CKM[j4, j1]*CKMC[j3, j2]*dMf1[3, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*
-            USf[s4, 2, 3, j4]*USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 - 
-          (36*CW2^2*dSW1*ht^2*MW2*SB*SW2*CKM[j4, j1]*CKMC[j3, j2]*
+            USfC[s3, 2, 3, j3])/MT2 + (18*CW2^2*ht^2*SB*SW*SW2*CKM[j4, j1]*
+            CKMC[j3, j2]*dMf1[3, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*USf[s4, 2, 3, j4]*
+            USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 - 
+          (36*CW2^2*dSW1*ht^2*SB*SW2*CKM[j4, j1]*CKMC[j3, j2]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j3, o3}]]*
             Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*USf[s4, 2, 3, j4]*
             USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 - 
-          (36*CW2^2*dSinB1*ht^2*MW2*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
+          (36*CW2^2*dSinB1*ht^2*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j3, o3}]]*
             Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*USf[s4, 2, 3, j4]*
             USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2 - 
-          (18*CW2^2*dMWsq1*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
+          (18*CW2^2*dMWsq1MW2*ht^2*SB*SW*SW2*CKM[j4, j1]*CKMC[j3, j2]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j3, o3}]]*
             Mass[F[3, {j4, o4}]]*USf[s2, 1, 4, j2]*USf[s4, 2, 3, j4]*
-            USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2))/
-        (CW2^2*MW2*SB*SW*SW2)}}, C[S[14, {s1, j1, o1}], -S[12, {s2, j2}], 
-      S[11, {j3}], -S[13, {s4, j4, o4}]] == 
+            USfC[s1, 1, 4, j1]*USfC[s3, 2, 3, j3])/MT2))/(CW2^2*SB*SW*SW2)}}, 
+    C[S[14, {s1, j1, o1}], -S[12, {s2, j2}], S[11, {j3}], 
+      -S[13, {s4, j4, o4}]] == 
      {{0, ((-I)*ht^2*SB2*CKM[j4, j1]*dMf1[4, j1]*IndexDelta[j2, j3]*
          IndexDelta[o1, o4]*Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*
          USf[s4, 1, 3, j4]*USfC[s1, 2, 4, j1])/(CB2*MT2)}}, 
@@ -3403,229 +3311,215 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
               USfC[s3, 1, 2, j3])/MT2 + (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*
               Mass[F[2, {j3}]]*USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*
               USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2)))/(CB2*CW2*SW2), 
-       ((-I/2)*(CB*CW2*MW2*SW*dZSl1[2, j3, 1, s3]*
-           (IndexDelta[j1, j4]*IndexDelta[j2, j3]*((CW2*ht^2*SB2*SW2*
-                Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*
-                USf[s4, 2, 2, j1]*USfC[1, 2, 2, j2]*USfC[s1, 1, 2, j1])/MT2 + 
-              (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
-                USf[s2, 2, 2, j2]*USf[s4, 1, 2, j1]*USfC[1, 1, 2, j2]*
-                USfC[s1, 2, 2, j1])/MT2) + IndexDelta[j1, j2]*
-             IndexDelta[j3, j4]*((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*
-                Mass[F[2, {j3}]]*USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*
-                USfC[1, 2, 2, j3]*USfC[s1, 1, 2, j1])/MT2 + (CW2*ht^2*SB2*SW2*
-                Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*
-                USf[s4, 2, 2, j3]*USfC[1, 1, 2, j3]*USfC[s1, 2, 2, j1])/
-               MT2)) + CB*CW2*MW2*SW*dZSl1[2, j3, 2, s3]*
-           (IndexDelta[j1, j4]*IndexDelta[j2, j3]*((CW2*ht^2*SB2*SW2*
-                Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*
-                USf[s4, 2, 2, j1]*USfC[2, 2, 2, j2]*USfC[s1, 1, 2, j1])/MT2 + 
-              (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
-                USf[s2, 2, 2, j2]*USf[s4, 1, 2, j1]*USfC[2, 1, 2, j2]*
-                USfC[s1, 2, 2, j1])/MT2) + IndexDelta[j1, j2]*
-             IndexDelta[j3, j4]*((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*
-                Mass[F[2, {j3}]]*USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*
-                USfC[2, 2, 2, j3]*USfC[s1, 1, 2, j1])/MT2 + (CW2*ht^2*SB2*SW2*
-                Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*
-                USf[s4, 2, 2, j3]*USfC[2, 1, 2, j3]*USfC[s1, 2, 2, j1])/
-               MT2)) + (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZSl1[2, j1, 1, s1]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*USf[s4, 1, 2, j1]*
-            USfC[1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZSl1[2, j1, 2, s1]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*USf[s4, 1, 2, j1]*
-            USfC[2, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j4, 1, s4]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[1, 1, 2, j1]*USf[s2, 2, 2, j2]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j4, 2, s4]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[2, 1, 2, j1]*USf[s2, 2, 2, j2]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[1, 2, 2, j2]*USf[s4, 1, 2, j1]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[2, 2, 2, j2]*USf[s4, 1, 2, j1]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j2]*IndexDelta[j1, j4]*
+       ((-I/2)*(CB*CW2*SW*dZSl1[2, j3, 1, s3]*(IndexDelta[j1, j4]*
+             IndexDelta[j2, j3]*((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*
+                Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*USf[s4, 2, 2, j1]*
+                USfC[1, 2, 2, j2]*USfC[s1, 1, 2, j1])/MT2 + (CW2*ht^2*SB2*SW2*
+                Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*
+                USf[s4, 1, 2, j1]*USfC[1, 1, 2, j2]*USfC[s1, 2, 2, j1])/
+               MT2) + IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+             ((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
+                USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*USfC[1, 2, 2, j3]*
+                USfC[s1, 1, 2, j1])/MT2 + (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*
+                Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*USf[s4, 2, 2, j3]*
+                USfC[1, 1, 2, j3]*USfC[s1, 2, 2, j1])/MT2)) + 
+          CB*CW2*SW*dZSl1[2, j3, 2, s3]*(IndexDelta[j1, j4]*
+             IndexDelta[j2, j3]*((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*
+                Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*USf[s4, 2, 2, j1]*
+                USfC[2, 2, 2, j2]*USfC[s1, 1, 2, j1])/MT2 + (CW2*ht^2*SB2*SW2*
+                Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*
+                USf[s4, 1, 2, j1]*USfC[2, 1, 2, j2]*USfC[s1, 2, 2, j1])/
+               MT2) + IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+             ((CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
+                USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*USfC[2, 2, 2, j3]*
+                USfC[s1, 1, 2, j1])/MT2 + (CW2*ht^2*SB2*SW2*Mass[F[2, {j1}]]*
+                Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*USf[s4, 2, 2, j3]*
+                USfC[2, 1, 2, j3]*USfC[s1, 2, 2, j1])/MT2)) + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZSl1[2, j1, 1, s1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[s2, 2, 2, j2]*USf[s4, 1, 2, j1]*USfC[1, 2, 2, j1]*
+            USfC[s3, 1, 2, j2])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZSl1[2, j1, 2, s1]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*
+            USf[s4, 1, 2, j1]*USfC[2, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j4, 1, s4]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[1, 1, 2, j1]*USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1]*
+            USfC[s3, 1, 2, j2])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZbarSl1[2, j4, 2, s4]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[2, 1, 2, j1]*
+            USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[1, 2, 2, j2]*USf[s4, 1, 2, j1]*USfC[s1, 2, 2, j1]*
+            USfC[s3, 1, 2, j2])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZbarSl1[2, j2, 2, s2]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[2, 2, 2, j2]*
+            USf[s4, 1, 2, j1]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j2]*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j2]*
             USf[s4, 1, 2, j1]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j1]*IndexDelta[j1, j4]*
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j1]*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*
             USf[s4, 1, 2, j1]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 - 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*SB2*SW2*IndexDelta[j1, j4]*
+          (4*CB*CW2^2*dSW1*ht^2*SB2*SW2*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*
+            USf[s4, 1, 2, j1]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 - 
+          (4*CW2^2*dCosB1*ht^2*SB2*SW*SW2*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
             USf[s2, 2, 2, j2]*USf[s4, 1, 2, j1]*USfC[s1, 2, 2, j1]*
-            USfC[s3, 1, 2, j2])/MT2 - (2*CB*CW2^2*dMWsq1*ht^2*SB2*SW*SW2*
+            USfC[s3, 1, 2, j2])/MT2 - (2*CB*CW2^2*dMWsq1MW2*ht^2*SB2*SW*SW2*
             IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
             Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*USf[s4, 1, 2, j1]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 - 
-          (4*CW2^2*dCosB1*ht^2*MW2*SB2*SW*SW2*IndexDelta[j1, j4]*
-            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
-            USf[s2, 2, 2, j2]*USf[s4, 1, 2, j1]*USfC[s1, 2, 2, j1]*
-            USfC[s3, 1, 2, j2])/MT2 + (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*
-            dZSl1[2, j1, 1, s1]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j2])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZSl1[2, j1, 1, s1]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
+            USf[s2, 1, 2, j1]*USf[s4, 2, 2, j3]*USfC[1, 2, 2, j1]*
+            USfC[s3, 1, 2, j3])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZSl1[2, j1, 2, s1]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
             Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*
-            USf[s4, 2, 2, j3]*USfC[1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZSl1[2, j1, 2, s1]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*USf[s4, 2, 2, j3]*
-            USfC[2, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j4, 1, s4]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[1, 2, 2, j3]*USf[s2, 1, 2, j1]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j4, 2, s4]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[2, 2, 2, j3]*USf[s2, 1, 2, j1]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[1, 1, 2, j1]*USf[s4, 2, 2, j3]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[2, 1, 2, j1]*USf[s4, 2, 2, j3]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j3]*IndexDelta[j1, j2]*
+            USf[s4, 2, 2, j3]*USfC[2, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j4, 1, s4]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
+            USf[1, 2, 2, j3]*USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1]*
+            USfC[s3, 1, 2, j3])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZbarSl1[2, j4, 2, s4]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[2, 2, 2, j3]*
+            USf[s2, 1, 2, j1]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
+            USf[1, 1, 2, j1]*USf[s4, 2, 2, j3]*USfC[s1, 2, 2, j1]*
+            USfC[s3, 1, 2, j3])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZbarSl1[2, j2, 2, s2]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[2, 1, 2, j1]*
+            USf[s4, 2, 2, j3]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j3]*IndexDelta[j1, j2]*
             IndexDelta[j3, j4]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j1]*
             USf[s4, 2, 2, j3]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j1]*IndexDelta[j1, j2]*
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j1]*IndexDelta[j1, j2]*
             IndexDelta[j3, j4]*Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*
             USf[s4, 2, 2, j3]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 - 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*SB2*SW2*IndexDelta[j1, j2]*
+          (4*CB*CW2^2*dSW1*ht^2*SB2*SW2*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*
+            USf[s4, 2, 2, j3]*USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 - 
+          (4*CW2^2*dCosB1*ht^2*SB2*SW*SW2*IndexDelta[j1, j2]*
             IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
             USf[s2, 1, 2, j1]*USf[s4, 2, 2, j3]*USfC[s1, 2, 2, j1]*
-            USfC[s3, 1, 2, j3])/MT2 - (2*CB*CW2^2*dMWsq1*ht^2*SB2*SW*SW2*
+            USfC[s3, 1, 2, j3])/MT2 - (2*CB*CW2^2*dMWsq1MW2*ht^2*SB2*SW*SW2*
             IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
             Mass[F[2, {j3}]]*USf[s2, 1, 2, j1]*USf[s4, 2, 2, j3]*
-            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 - 
-          (4*CW2^2*dCosB1*ht^2*MW2*SB2*SW*SW2*IndexDelta[j1, j2]*
-            IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
-            USf[s2, 1, 2, j1]*USf[s4, 2, 2, j3]*USfC[s1, 2, 2, j1]*
-            USfC[s3, 1, 2, j3])/MT2 + (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*
-            dZSl1[2, j1, 1, s1]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            USfC[s1, 2, 2, j1]*USfC[s3, 1, 2, j3])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZSl1[2, j1, 1, s1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[s2, 1, 2, j2]*USf[s4, 2, 2, j1]*USfC[1, 1, 2, j1]*
+            USfC[s3, 2, 2, j2])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZSl1[2, j1, 2, s1]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
             Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*
-            USf[s4, 2, 2, j1]*USfC[1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZSl1[2, j1, 2, s1]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*USf[s4, 2, 2, j1]*
-            USfC[2, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j4, 1, s4]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[1, 2, 2, j1]*USf[s2, 1, 2, j2]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j4, 2, s4]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[2, 2, 2, j1]*USf[s2, 1, 2, j2]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[1, 1, 2, j2]*USf[s4, 2, 2, j1]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[2, 1, 2, j2]*USf[s4, 2, 2, j1]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j2]*IndexDelta[j1, j4]*
+            USf[s4, 2, 2, j1]*USfC[2, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j4, 1, s4]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[1, 2, 2, j1]*USf[s2, 1, 2, j2]*USfC[s1, 1, 2, j1]*
+            USfC[s3, 2, 2, j2])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZbarSl1[2, j4, 2, s4]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[2, 2, 2, j1]*
+            USf[s2, 1, 2, j2]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[1, 1, 2, j2]*USf[s4, 2, 2, j1]*USfC[s1, 1, 2, j1]*
+            USfC[s3, 2, 2, j2])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZbarSl1[2, j2, 2, s2]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[2, 1, 2, j2]*
+            USf[s4, 2, 2, j1]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j2]*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j1}]]*USf[s2, 1, 2, j2]*
             USf[s4, 2, 2, j1]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j1]*IndexDelta[j1, j4]*
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j1]*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*
             USf[s4, 2, 2, j1]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 - 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*SB2*SW2*IndexDelta[j1, j4]*
+          (4*CB*CW2^2*dSW1*ht^2*SB2*SW2*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*
+            USf[s4, 2, 2, j1]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 - 
+          (4*CW2^2*dCosB1*ht^2*SB2*SW*SW2*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
             USf[s2, 1, 2, j2]*USf[s4, 2, 2, j1]*USfC[s1, 1, 2, j1]*
-            USfC[s3, 2, 2, j2])/MT2 - (2*CB*CW2^2*dMWsq1*ht^2*SB2*SW*SW2*
+            USfC[s3, 2, 2, j2])/MT2 - (2*CB*CW2^2*dMWsq1MW2*ht^2*SB2*SW*SW2*
             IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
             Mass[F[2, {j2}]]*USf[s2, 1, 2, j2]*USf[s4, 2, 2, j1]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 - 
-          (4*CW2^2*dCosB1*ht^2*MW2*SB2*SW*SW2*IndexDelta[j1, j4]*
-            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
-            USf[s2, 1, 2, j2]*USf[s4, 2, 2, j1]*USfC[s1, 1, 2, j1]*
-            USfC[s3, 2, 2, j2])/MT2 + (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*
-            dZSl1[2, j1, 1, s1]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j2])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZSl1[2, j1, 1, s1]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
+            USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*USfC[1, 1, 2, j1]*
+            USfC[s3, 2, 2, j3])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZSl1[2, j1, 2, s1]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
             Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[s2, 2, 2, j1]*
-            USf[s4, 1, 2, j3]*USfC[1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZSl1[2, j1, 2, s1]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*
-            USfC[2, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j4, 1, s4]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[1, 1, 2, j3]*USf[s2, 2, 2, j1]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j4, 2, s4]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[2, 1, 2, j3]*USf[s2, 2, 2, j1]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[1, 2, 2, j1]*USf[s4, 1, 2, j3]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j3}]]*USf[2, 2, 2, j1]*USf[s4, 1, 2, j3]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j3]*IndexDelta[j1, j2]*
+            USf[s4, 1, 2, j3]*USfC[2, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j4, 1, s4]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
+            USf[1, 1, 2, j3]*USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1]*
+            USfC[s3, 2, 2, j3])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZbarSl1[2, j4, 2, s4]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[2, 1, 2, j3]*
+            USf[s2, 2, 2, j1]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
+            USf[1, 2, 2, j1]*USf[s4, 1, 2, j3]*USfC[s1, 1, 2, j1]*
+            USfC[s3, 2, 2, j3])/MT2 + (CB*CW2^2*ht^2*SB2*SW*SW2*
+            dZbarSl1[2, j2, 2, s2]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[2, 2, 2, j1]*
+            USf[s4, 1, 2, j3]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j3]*IndexDelta[j1, j2]*
             IndexDelta[j3, j4]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j1]*
             USf[s4, 1, 2, j3]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 + 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j1]*IndexDelta[j1, j2]*
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j1]*IndexDelta[j1, j2]*
             IndexDelta[j3, j4]*Mass[F[2, {j3}]]*USf[s2, 2, 2, j1]*
             USf[s4, 1, 2, j3]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 - 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*SB2*SW2*IndexDelta[j1, j2]*
+          (4*CB*CW2^2*dSW1*ht^2*SB2*SW2*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*USf[s2, 2, 2, j1]*
+            USf[s4, 1, 2, j3]*USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 - 
+          (4*CW2^2*dCosB1*ht^2*SB2*SW*SW2*IndexDelta[j1, j2]*
             IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
             USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*USfC[s1, 1, 2, j1]*
-            USfC[s3, 2, 2, j3])/MT2 - (2*CB*CW2^2*dMWsq1*ht^2*SB2*SW*SW2*
+            USfC[s3, 2, 2, j3])/MT2 - (2*CB*CW2^2*dMWsq1MW2*ht^2*SB2*SW*SW2*
             IndexDelta[j1, j2]*IndexDelta[j3, j4]*Mass[F[2, {j1}]]*
             Mass[F[2, {j3}]]*USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*
-            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2 - 
-          (4*CW2^2*dCosB1*ht^2*MW2*SB2*SW*SW2*IndexDelta[j1, j2]*
-            IndexDelta[j3, j4]*Mass[F[2, {j1}]]*Mass[F[2, {j3}]]*
-            USf[s2, 2, 2, j1]*USf[s4, 1, 2, j3]*USfC[s1, 1, 2, j1]*
-            USfC[s3, 2, 2, j3])/MT2))/(CB*CB2*CW2^2*MW2*SW*SW2)}}, 
-    C[S[12, {s1, j1}], -S[12, {s2, j2}], S[11, {j3}], -S[11, {j4}]] == 
+            USfC[s1, 1, 2, j1]*USfC[s3, 2, 2, j3])/MT2))/
+        (CB*CB2*CW2^2*SW*SW2)}}, C[S[12, {s1, j1}], -S[12, {s2, j2}], 
+      S[11, {j3}], -S[11, {j4}]] == 
      {{((-I)*ht^2*SB2*IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
          Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/(CB2*MT2), 
-       ((I/2)*(-((CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZSl1[2, j1, 1, s1]*
+       ((I/2)*(-((CB*CW2^2*ht^2*SB2*SW*SW2*dZSl1[2, j1, 1, s1]*
              IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
              Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*USfC[1, 2, 2, j1])/MT2) - 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZSl1[2, j1, 2, s1]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*USfC[2, 2, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[1, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 - 
-          (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dMf1[2, j2]*IndexDelta[j1, j4]*
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZSl1[2, j1, 2, s1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[s2, 2, 2, j2]*USfC[2, 2, 2, j1])/MT2 - 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j2, 1, s2]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[1, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 - 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[2, j2, 2, s2]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 - 
+          (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j2]*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j1}]]*USf[s2, 2, 2, j2]*
-            USfC[s1, 2, 2, j1])/MT2 - (2*CB*CW2^2*ht^2*MW2*SB2*SW*SW2*
-            dMf1[2, j1]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            USfC[s1, 2, 2, j1])/MT2 - (2*CB*CW2^2*ht^2*SB2*SW*SW2*dMf1[2, j1]*
+            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j2}]]*
+            USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 + 
+          (4*CB*CW2^2*dSW1*ht^2*SB2*SW2*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*
+            USfC[s1, 2, 2, j1])/MT2 + (4*CW2^2*dCosB1*ht^2*SB2*SW*SW2*
+            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
             Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 + 
-          (4*CB*CW2^2*dSW1*ht^2*MW2*SB2*SW2*IndexDelta[j1, j4]*
-            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
-            USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 + 
-          (2*CB*CW2^2*dMWsq1*ht^2*SB2*SW*SW2*IndexDelta[j1, j4]*
-            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
-            USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 + 
-          (4*CW2^2*dCosB1*ht^2*MW2*SB2*SW*SW2*IndexDelta[j1, j4]*
+          (2*CB*CW2^2*dMWsq1MW2*ht^2*SB2*SW*SW2*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
             USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZbarSl1[1, j4, 1, 1]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*Mass[F[2, {j1}]]*
-            Mass[F[2, {j2}]]*USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 - 
-          (CB*CW2^2*ht^2*MW2*SB2*SW*SW2*dZSl1[1, j3, 1, 1]*IndexDelta[j1, j4]*
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZbarSl1[1, j4, 1, 1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
+            USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2 - 
+          (CB*CW2^2*ht^2*SB2*SW*SW2*dZSl1[1, j3, 1, 1]*IndexDelta[j1, j4]*
             IndexDelta[j2, j3]*Mass[F[2, {j1}]]*Mass[F[2, {j2}]]*
             USf[s2, 2, 2, j2]*USfC[s1, 2, 2, j1])/MT2))/
-        (CB*CB2*CW2^2*MW2*SW*SW2)}}, 
-    C[S[13, {s1, j1, o1}], -S[13, {s2, j2, o2}], S[13, {s3, j3, o3}], 
-      -S[13, {s4, j4, o4}]] == 
+        (CB*CB2*CW2^2*SW*SW2)}}, C[S[13, {s1, j1, o1}], -S[13, {s2, j2, o2}], 
+      S[13, {s3, j3, o3}], -S[13, {s4, j4, o4}]] == 
      {{((-I/9)*(IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
            IndexDelta[o2, o3]*((9*CW2*ht^2*SW2*Mass[F[3, {j1, o1}]]*
               Mass[F[3, {j2, o2}]]*USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*
@@ -3639,7 +3533,7 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
               USfC[s3, 1, 3, j3])/MT2 + (9*CW2*ht^2*SW2*Mass[F[3, {j1, o1}]]*
               Mass[F[3, {j3, o3}]]*USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*
               USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2)))/(CW2*SW2), 
-       ((-I/18)*(CW2*MW2*SB*SW*dZSq1[13, 1, s3, j3, j3]*
+       ((-I/18)*(CW2*SB*SW*dZSq1[13, 1, s3, j3, j3]*
            (IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
              IndexDelta[o2, o3]*((9*CW2*ht^2*SW2*Mass[F[3, {j1, o1}]]*
                 Mass[F[3, {j2, o2}]]*USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*
@@ -3652,8 +3546,8 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
                 USf[s4, 1, 3, j3]*USfC[1, 2, 3, j3]*USfC[s1, 1, 3, j1])/MT2 + 
               (9*CW2*ht^2*SW2*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
                 USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[1, 1, 3, j3]*
-                USfC[s1, 2, 3, j1])/MT2)) + CW2*MW2*SB*SW*dZSq1[13, 2, s3, 
-            j3, j3]*(IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
+                USfC[s1, 2, 3, j1])/MT2)) + CW2*SB*SW*dZSq1[13, 2, s3, j3, 
+            j3]*(IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
              IndexDelta[o2, o3]*((9*CW2*ht^2*SW2*Mass[F[3, {j1, o1}]]*
                 Mass[F[3, {j2, o2}]]*USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*
                 USfC[2, 2, 3, j2]*USfC[s1, 1, 3, j1])/MT2 + (9*CW2*ht^2*SW2*
@@ -3665,213 +3559,210 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
                 USf[s4, 1, 3, j3]*USfC[2, 2, 3, j3]*USfC[s1, 1, 3, j1])/MT2 + 
               (9*CW2*ht^2*SW2*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
                 USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[2, 1, 3, j3]*
-                USfC[s1, 2, 3, j1])/MT2)) + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
+                USfC[s1, 2, 3, j1])/MT2)) + (9*CW2^2*ht^2*SB*SW*SW2*
             dZSq1[13, 1, s1, j1, j1]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
             Mass[F[3, {j2, o2}]]*USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*
             USfC[1, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
+          (9*CW2^2*ht^2*SB*SW*SW2*dZSq1[13, 2, s1, j1, j1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*USf[s2, 2, 3, j2]*
+            USf[s4, 1, 3, j1]*USfC[2, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZbarSq1[13, 1, s4, j4, j4]*
             IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
             IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*USfC[2, 2, 3, j1]*
-            USfC[s3, 1, 3, j2])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZbarSq1[13, 1, s4, j4, j4]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            USf[1, 1, 3, j1]*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1]*
+            USfC[s3, 1, 3, j2])/MT2 + (9*CW2^2*ht^2*SB*SW*SW2*
+            dZbarSq1[13, 2, s4, j4, j4]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
-            Mass[F[3, {j2, o2}]]*USf[1, 1, 3, j1]*USf[s2, 2, 3, j2]*
+            Mass[F[3, {j2, o2}]]*USf[2, 1, 3, j1]*USf[s2, 2, 3, j2]*
             USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZbarSq1[13, 2, s4, j4, j4]*
+          (9*CW2^2*ht^2*SB*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
             IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
             IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[2, 1, 3, j1]*USf[s2, 2, 3, j2]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j2])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZbarSq1[13, 1, s2, j2, j2]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            USf[1, 2, 3, j2]*USf[s4, 1, 3, j1]*USfC[s1, 2, 3, j1]*
+            USfC[s3, 1, 3, j2])/MT2 + (9*CW2^2*ht^2*SB*SW*SW2*
+            dZbarSq1[13, 2, s2, j2, j2]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
-            Mass[F[3, {j2, o2}]]*USf[1, 2, 3, j2]*USf[s4, 1, 3, j1]*
+            Mass[F[3, {j2, o2}]]*USf[2, 2, 3, j2]*USf[s4, 1, 3, j1]*
             USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[2, 2, 3, j2]*USf[s4, 1, 3, j1]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j2])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dMf1[3, j2]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+          (18*CW2^2*ht^2*SB*SW*SW2*dMf1[3, j2]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 + 
+          (18*CW2^2*ht^2*SB*SW*SW2*dMf1[3, j1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j2, o2}]]*USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 - 
+          (36*CW2^2*dSW1*ht^2*SB*SW2*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
-            USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j2])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dMf1[3, j1]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
-            IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j2])/MT2 - (36*CW2^2*dSW1*ht^2*MW2*SB*SW2*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j2])/MT2 - (36*CW2^2*dSinB1*ht^2*MW2*SW*SW2*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j2])/MT2 - (18*CW2^2*dMWsq1*ht^2*SB*SW*SW2*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j2])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZSq1[13, 1, s1, j1, j1]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            Mass[F[3, {j2, o2}]]*USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 - 
+          (36*CW2^2*dSinB1*ht^2*SW*SW2*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
+            Mass[F[3, {j2, o2}]]*USf[s2, 2, 3, j2]*USf[s4, 1, 3, j1]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 - 
+          (18*CW2^2*dMWsq1MW2*ht^2*SB*SW*SW2*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*USf[s2, 2, 3, j2]*
+            USf[s4, 1, 3, j1]*USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j2])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZSq1[13, 1, s1, j1, j1]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*USf[s2, 1, 3, j1]*
+            USf[s4, 2, 3, j3]*USfC[1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZSq1[13, 2, s1, j1, j1]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*USf[s2, 1, 3, j1]*
+            USf[s4, 2, 3, j3]*USfC[2, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZbarSq1[13, 1, s4, j4, j4]*
+            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
+            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
+            USf[1, 2, 3, j3]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1]*
+            USfC[s3, 1, 3, j3])/MT2 + (9*CW2^2*ht^2*SB*SW*SW2*
+            dZbarSq1[13, 2, s4, j4, j4]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
+            Mass[F[3, {j3, o3}]]*USf[2, 2, 3, j3]*USf[s2, 1, 3, j1]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
+            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
+            USf[1, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[s1, 2, 3, j1]*
+            USfC[s3, 1, 3, j3])/MT2 + (9*CW2^2*ht^2*SB*SW*SW2*
+            dZbarSq1[13, 2, s2, j2, j2]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
+            Mass[F[3, {j3, o3}]]*USf[2, 1, 3, j1]*USf[s4, 2, 3, j3]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
+          (18*CW2^2*ht^2*SB*SW*SW2*dMf1[3, j3]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j1, o1}]]*USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
+          (18*CW2^2*ht^2*SB*SW*SW2*dMf1[3, j1]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j3, o3}]]*USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 - 
+          (36*CW2^2*dSW1*ht^2*SB*SW2*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
             IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
             Mass[F[3, {j3, o3}]]*USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*
-            USfC[1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[2, 2, 3, j1]*
-            USfC[s3, 1, 3, j3])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZbarSq1[13, 1, s4, j4, j4]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 - 
+          (36*CW2^2*dSinB1*ht^2*SW*SW2*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
             IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
-            Mass[F[3, {j3, o3}]]*USf[1, 2, 3, j3]*USf[s2, 1, 3, j1]*
-            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZbarSq1[13, 2, s4, j4, j4]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[2, 2, 3, j3]*USf[s2, 1, 3, j1]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j3])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZbarSq1[13, 1, s2, j2, j2]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
-            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
-            Mass[F[3, {j3, o3}]]*USf[1, 1, 3, j1]*USf[s4, 2, 3, j3]*
-            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j3])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dMf1[3, j3]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
-            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
-            USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j3])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dMf1[3, j1]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
-            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j3])/MT2 - (36*CW2^2*dSW1*ht^2*MW2*SB*SW2*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j3])/MT2 - (36*CW2^2*dSinB1*ht^2*MW2*SW*SW2*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j3])/MT2 - (18*CW2^2*dMWsq1*ht^2*SB*SW*SW2*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*USfC[s1, 2, 3, j1]*
-            USfC[s3, 1, 3, j3])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZSq1[13, 1, s1, j1, j1]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            Mass[F[3, {j3, o3}]]*USf[s2, 1, 3, j1]*USf[s4, 2, 3, j3]*
+            USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 - 
+          (18*CW2^2*dMWsq1MW2*ht^2*SB*SW*SW2*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*USf[s2, 1, 3, j1]*
+            USf[s4, 2, 3, j3]*USfC[s1, 2, 3, j1]*USfC[s3, 1, 3, j3])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZSq1[13, 1, s1, j1, j1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*USf[s2, 1, 3, j2]*
+            USf[s4, 2, 3, j1]*USfC[1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZSq1[13, 2, s1, j1, j1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*USf[s2, 1, 3, j2]*
+            USf[s4, 2, 3, j1]*USfC[2, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZbarSq1[13, 1, s4, j4, j4]*
+            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
+            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
+            USf[1, 2, 3, j1]*USf[s2, 1, 3, j2]*USfC[s1, 1, 3, j1]*
+            USfC[s3, 2, 3, j2])/MT2 + (9*CW2^2*ht^2*SB*SW*SW2*
+            dZbarSq1[13, 2, s4, j4, j4]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
+            Mass[F[3, {j2, o2}]]*USf[2, 2, 3, j1]*USf[s2, 1, 3, j2]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
+            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
+            USf[1, 1, 3, j2]*USf[s4, 2, 3, j1]*USfC[s1, 1, 3, j1]*
+            USfC[s3, 2, 3, j2])/MT2 + (9*CW2^2*ht^2*SB*SW*SW2*
+            dZbarSq1[13, 2, s2, j2, j2]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
+            Mass[F[3, {j2, o2}]]*USf[2, 1, 3, j2]*USf[s4, 2, 3, j1]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
+          (18*CW2^2*ht^2*SB*SW*SW2*dMf1[3, j2]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j1, o1}]]*USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
+          (18*CW2^2*ht^2*SB*SW*SW2*dMf1[3, j1]*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j2, o2}]]*USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 - 
+          (36*CW2^2*dSW1*ht^2*SB*SW2*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
             Mass[F[3, {j2, o2}]]*USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*
-            USfC[1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*USfC[2, 1, 3, j1]*
-            USfC[s3, 2, 3, j2])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZbarSq1[13, 1, s4, j4, j4]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 - 
+          (36*CW2^2*dSinB1*ht^2*SW*SW2*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
             IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
-            Mass[F[3, {j2, o2}]]*USf[1, 2, 3, j1]*USf[s2, 1, 3, j2]*
-            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZbarSq1[13, 2, s4, j4, j4]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[2, 2, 3, j1]*USf[s2, 1, 3, j2]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j2])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZbarSq1[13, 1, s2, j2, j2]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
-            IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
-            Mass[F[3, {j2, o2}]]*USf[1, 1, 3, j2]*USf[s4, 2, 3, j1]*
-            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[2, 1, 3, j2]*USf[s4, 2, 3, j1]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j2])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dMf1[3, j2]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
-            IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*
-            USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j2])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dMf1[3, j1]*IndexDelta[j1, j4]*IndexDelta[j2, j3]*
-            IndexDelta[o1, o4]*IndexDelta[o2, o3]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j2])/MT2 - (36*CW2^2*dSW1*ht^2*MW2*SB*SW2*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j2])/MT2 - (36*CW2^2*dSinB1*ht^2*MW2*SW*SW2*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j2])/MT2 - (18*CW2^2*dMWsq1*ht^2*SB*SW*SW2*
-            IndexDelta[j1, j4]*IndexDelta[j2, j3]*IndexDelta[o1, o4]*
-            IndexDelta[o2, o3]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*
-            USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j2])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZSq1[13, 1, s1, j1, j1]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            Mass[F[3, {j2, o2}]]*USf[s2, 1, 3, j2]*USf[s4, 2, 3, j1]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 - 
+          (18*CW2^2*dMWsq1MW2*ht^2*SB*SW*SW2*IndexDelta[j1, j4]*
+            IndexDelta[j2, j3]*IndexDelta[o1, o4]*IndexDelta[o2, o3]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j2, o2}]]*USf[s2, 1, 3, j2]*
+            USf[s4, 2, 3, j1]*USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j2])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZSq1[13, 1, s1, j1, j1]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*USf[s2, 2, 3, j1]*
+            USf[s4, 1, 3, j3]*USfC[1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZSq1[13, 2, s1, j1, j1]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*USf[s2, 2, 3, j1]*
+            USf[s4, 1, 3, j3]*USfC[2, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZbarSq1[13, 1, s4, j4, j4]*
+            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
+            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
+            USf[1, 1, 3, j3]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1]*
+            USfC[s3, 2, 3, j3])/MT2 + (9*CW2^2*ht^2*SB*SW*SW2*
+            dZbarSq1[13, 2, s4, j4, j4]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
+            Mass[F[3, {j3, o3}]]*USf[2, 1, 3, j3]*USf[s2, 2, 3, j1]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 + 
+          (9*CW2^2*ht^2*SB*SW*SW2*dZbarSq1[13, 1, s2, j2, j2]*
+            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
+            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
+            USf[1, 2, 3, j1]*USf[s4, 1, 3, j3]*USfC[s1, 1, 3, j1]*
+            USfC[s3, 2, 3, j3])/MT2 + (9*CW2^2*ht^2*SB*SW*SW2*
+            dZbarSq1[13, 2, s2, j2, j2]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
+            Mass[F[3, {j3, o3}]]*USf[2, 2, 3, j1]*USf[s4, 1, 3, j3]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 + 
+          (18*CW2^2*ht^2*SB*SW*SW2*dMf1[3, j3]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j1, o1}]]*USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 + 
+          (18*CW2^2*ht^2*SB*SW*SW2*dMf1[3, j1]*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j3, o3}]]*USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 - 
+          (36*CW2^2*dSW1*ht^2*SB*SW2*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
             IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
             Mass[F[3, {j3, o3}]]*USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*
-            USfC[1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZSq1[13, 2, s1, j1, j1]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*USfC[2, 1, 3, j1]*
-            USfC[s3, 2, 3, j3])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZbarSq1[13, 1, s4, j4, j4]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 - 
+          (36*CW2^2*dSinB1*ht^2*SW*SW2*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
             IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
-            Mass[F[3, {j3, o3}]]*USf[1, 1, 3, j3]*USf[s2, 2, 3, j1]*
-            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZbarSq1[13, 2, s4, j4, j4]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[2, 1, 3, j3]*USf[s2, 2, 3, j1]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j3])/MT2 + (9*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dZbarSq1[13, 1, s2, j2, j2]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
-            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
-            Mass[F[3, {j3, o3}]]*USf[1, 2, 3, j1]*USf[s4, 1, 3, j3]*
-            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 + 
-          (9*CW2^2*ht^2*MW2*SB*SW*SW2*dZbarSq1[13, 2, s2, j2, j2]*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[2, 2, 3, j1]*USf[s4, 1, 3, j3]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j3])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dMf1[3, j3]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
-            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*
-            USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j3])/MT2 + (18*CW2^2*ht^2*MW2*SB*SW*SW2*
-            dMf1[3, j1]*IndexDelta[j1, j2]*IndexDelta[j3, j4]*
-            IndexDelta[o1, o2]*IndexDelta[o3, o4]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j3])/MT2 - (36*CW2^2*dSW1*ht^2*MW2*SB*SW2*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j3])/MT2 - (36*CW2^2*dSinB1*ht^2*MW2*SW*SW2*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j3])/MT2 - (18*CW2^2*dMWsq1*ht^2*SB*SW*SW2*
-            IndexDelta[j1, j2]*IndexDelta[j3, j4]*IndexDelta[o1, o2]*
-            IndexDelta[o3, o4]*Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*
-            USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*USfC[s1, 1, 3, j1]*
-            USfC[s3, 2, 3, j3])/MT2))/(CW2^2*MW2*SB*SW*SW2)}}, 
-    C[-V[3], V[3]] == {{0, I*dZW1, I*dZW2}, {0, I*(dMWsq1 + dZW1*MW2), 
-       I*(dMWsq2 + dMWsq1*dZW1 + dZW2*MW2)}, {0, (-I)*dZW1, (-I)*dZW2}}, 
+            Mass[F[3, {j3, o3}]]*USf[s2, 2, 3, j1]*USf[s4, 1, 3, j3]*
+            USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2 - 
+          (18*CW2^2*dMWsq1MW2*ht^2*SB*SW*SW2*IndexDelta[j1, j2]*
+            IndexDelta[j3, j4]*IndexDelta[o1, o2]*IndexDelta[o3, o4]*
+            Mass[F[3, {j1, o1}]]*Mass[F[3, {j3, o3}]]*USf[s2, 2, 3, j1]*
+            USf[s4, 1, 3, j3]*USfC[s1, 1, 3, j1]*USfC[s3, 2, 3, j3])/MT2))/
+        (CW2^2*SB*SW*SW2)}}, C[-V[3], V[3]] == {{0, I*dZW1, I*dZW2}, 
+      {0, I*(dMWsq1MW2*MW2 + dZW1*MW2), I*(dMWsq2 + dMWsq1MW2*dZW1*MW2 + 
+         dZW2*MW2)}, {0, (-I)*dZW1, (-I)*dZW2}}, 
     C[V[2], V[2]] == {{0, I*dZZZ1, (I/4)*(dZAZ1^2 + 4*dZZZ2)}, 
-      {0, I*(dMZsq1 + dZZZ1*MZ2), I*(dMZsq2 + dMZsq1*dZZZ1 + dZZZ2*MZ2)}, 
-      {0, (-I)*dZZZ1, (-I/4)*(dZAZ1^2 + 4*dZZZ2)}}, 
+      {0, I*(dMZsq1MZ2*MZ2 + dZZZ1*MZ2), I*(dMZsq2 + dMZsq1MZ2*dZZZ1*MZ2 + 
+         dZZZ2*MZ2)}, {0, (-I)*dZZZ1, (-I/4)*(dZAZ1^2 + 4*dZZZ2)}}, 
     C[V[1], V[1]] == {{0, 0, I*dZAA2}, {0, 0, 0}, {0, 0, (-I)*dZAA2}}, 
     C[V[1], V[2]] == {{0, (I/2)*dZAZ1, (I/4)*(2*dZAZ2 + 2*dZZA2)}, 
       {0, 0, (I/2)*dZZA2*MZ2}, {0, (-I/2)*dZAZ1, 
        (-I/4)*(2*dZAZ2 + 2*dZZA2)}}, C[U[1], -U[1]] == 
      {{0, (-I)*dUAA1}, {0, 0}}, C[U[2], -U[2]] == 
-     {{0, (-I)*(dUZZ1 - dZZZ1/2)}, {0, (-I/2)*(dMZsq1 + 2*dUZZ1*MZ2 - 
+     {{0, (-I)*(dUZZ1 - dZZZ1/2)}, {0, (-I/2)*(dMZsq1MZ2*MZ2 + 2*dUZZ1*MZ2 - 
          dZG01*MZ2)*GaugeXi[Z]}}, C[U[2], -U[1]] == 
      {{0, (-I)*(dUAZ1 - dZAZ1/2)}, {0, 0}}, C[U[1], -U[2]] == 
      {{0, (-I)*dUZA1}, {0, (-I)*dUZA1*MZ2*GaugeXi[Z]}}, 
     C[U[3], -U[3]] == {{0, (-I)*(dUW1 - dZW1/2)}, 
-      {0, (-I/2)*(dMWsq1 + 2*dUW1*MW2 - dZGp1*MW2)*GaugeXi[W]}}, 
+      {0, (-I/2)*(dMWsq1MW2*MW2 + 2*dUW1*MW2 - dZGp1*MW2)*GaugeXi[W]}}, 
     C[U[4], -U[4]] == {{0, (-I)*(dUW1 - dZW1/2)}, 
-      {0, (-I/2)*(dMWsq1 + 2*dUW1*MW2 - dZGp1*MW2)*GaugeXi[W]}}, 
+      {0, (-I/2)*(dMWsq1MW2*MW2 + 2*dUW1*MW2 - dZGp1*MW2)*GaugeXi[W]}}, 
     C[-F[1, {j1}], F[1, {j2}]] == 
      {{0, (-I/2)*(dZbarfL1[1, j1, j1] + dZfL1[1, j1, j1])*
         IndexDelta[j1, j2]}, {0, (I/2)*(dZbarfR1[1, j1, j1] + 
@@ -3986,15 +3877,15 @@ M$CouplingMatrices := {C[F[2, {j1}], -F[2, {j2}], S[1]] ==
     C[S[2], V[2]] == {{0, -(MZ*dZNHiggs1[4, 2])/2}, 
       {0, (MZ*dZNHiggs1[4, 2])/2}}, C[S[3], V[2]] == 
      {{0, -(MZ*dZNHiggs1[4, 3])/2}, {0, (MZ*dZNHiggs1[4, 3])/2}}, 
-    C[S[4], V[2]] == {{0, -(MZ*(dZZZ1 + dMZsq1/MZ2 + dZNHiggs1[4, 4]))/4}, 
-      {0, (MZ*(dZZZ1 + dMZsq1/MZ2 + dZNHiggs1[4, 4]))/4}}, 
+    C[S[4], V[2]] == {{0, -(MZ*(dMZsq1MZ2 + dZZZ1 + dZNHiggs1[4, 4]))/4}, 
+      {0, (MZ*(dMZsq1MZ2 + dZZZ1 + dZNHiggs1[4, 4]))/4}}, 
     C[S[5], -V[3]] == {{0, (I/2)*MW*dZCHiggs1[5, 6]}, 
       {0, (-I/2)*MW*dZCHiggs1[5, 6]}}, C[-S[5], V[3]] == 
      {{0, (-I/2)*MW*dZCHiggs1[6, 5]}, {0, (I/2)*MW*dZCHiggs1[6, 5]}}, 
-    C[S[6], -V[3]] == {{0, (I/4)*MW*(dZW1 + dMWsq1/MW2 + dZCHiggs1[6, 6])}, 
-      {0, (-I/4)*MW*(dZW1 + dMWsq1/MW2 + dZCHiggs1[6, 6])}}, 
-    C[-S[6], V[3]] == {{0, (-I/4)*MW*(dZW1 + dMWsq1/MW2 + dZCHiggs1[6, 6])}, 
-      {0, (I/4)*MW*(dZW1 + dMWsq1/MW2 + dZCHiggs1[6, 6])}}, 
+    C[S[6], -V[3]] == {{0, (I/4)*MW*(dMWsq1MW2 + dZW1 + dZCHiggs1[6, 6])}, 
+      {0, (-I/4)*MW*(dMWsq1MW2 + dZW1 + dZCHiggs1[6, 6])}}, 
+    C[-S[6], V[3]] == {{0, (-I/4)*MW*(dMWsq1MW2 + dZW1 + dZCHiggs1[6, 6])}, 
+      {0, (I/4)*MW*(dMWsq1MW2 + dZW1 + dZCHiggs1[6, 6])}}, 
     C[V[5, {g1}], V[5, {g2}]] == {{0, I*dZGG1*IndexDelta[g1, g2]}, {0, 0}, 
       {0, (-I)*dZGG1*IndexDelta[g1, g2]}}, C[F[15, {g1}], F[15, {g2}]] == 
      {{0, (-I/2)*(dZbarGlL1 + dZGlL1)*IndexDelta[g1, g2]}, 

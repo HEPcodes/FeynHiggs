@@ -29,7 +29,7 @@ model = "MSSMCT";
 << packages`RenConst`;
 glamp = Identity;
 
-rcs = {dZH1, dZH2, dMWsq1gl, dMZsq1gl};
+rcs = {dZH1, dZH2, dMWsq1MW2, dMZsq1MZ2};
 CalcRenConst[rcs];
 
 Uninstall[$ReadFormHandle];

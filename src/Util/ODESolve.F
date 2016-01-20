@@ -1,7 +1,7 @@
 * ODESolve.F
 * ODE solver a la Numerical Recipes
 * this file is part of FeynHiggs
-* last modified 25 Jul 13 th
+* last modified 7 Sep 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -42,7 +42,7 @@ c#define WARNINGS
 	parameter (C6 = 512/1771D0, DC6 = C6 - .25D0)
 
 	integer nvarmax, maxstep
-	parameter (nvarmax = 4, maxstep = 10000)
+	parameter (nvarmax = 16, maxstep = 10000)
 
 	RealType x0, y0(nvarmax), y(nvarmax), dydx(nvarmax,6)
 	RealType h, h0, yerr, yscal, errmax

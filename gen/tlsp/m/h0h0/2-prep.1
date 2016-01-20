@@ -231,35 +231,36 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
     U2c1[Xt]*(MT - U2s1[Xt]))/Pi^4], 
  FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 3, Particles == 1, 
    Number == 19], Integral[FourMomentum[Internal, 1]], 
-  (((3*I)/32)*ht^2*MT*DiagMark[MSf[1, 3, 3]]*(4*dSW1*MT*MW2*SB*SB2 + 
-     SW*(4*dSinB1*MT*MW2*SB2 + SB*(2*dMWsq1*MT*SB2 - 
-         MW2*(-(MT*S2B*dZNHiggs1[2, 1]) + SB2*(4*dMf1[3, 3] + 
-             MT*(dZbarSq1[13, 1, 1, 3, 3] + 2*dZNHiggs1[1, 1] + dZSq1[13, 1, 
-                1, 3, 3]))))))*FeynAmpDenominator[PropagatorDenominator[
-      FourMomentum[Internal, 1], MSf[1, 3, 3]]])/(MT2*MW2*Pi^4*SB*SW)], 
+  (((3*I)/32)*ht^2*MT*DiagMark[MSf[1, 3, 3]]*(4*dSW1*MT*SB*SB2 + 
+     SW*(4*dSinB1*MT*SB2 + SB*(2*dMWsq1MW2*MT*SB2 + MT*S2B*dZNHiggs1[2, 1] - 
+         SB2*(4*dMf1[3, 3] + MT*(dZbarSq1[13, 1, 1, 3, 3] + 
+             2*dZNHiggs1[1, 1] + dZSq1[13, 1, 1, 3, 3])))))*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[1, 3, 3]]])/(MT2*Pi^4*SB*SW)], 
  FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 3, Particles == 2, 
    Number == 20], Integral[FourMomentum[Internal, 1]], 
-  (((-3*I)/32)*ht^2*MT*DiagMark[MSf[2, 3, 3]]*(-4*dSW1*MT*MW2*SB*SB2 + 
-     SW*(-4*dSinB1*MT*MW2*SB2 + SB*(-2*dMWsq1*MT*SB2 + 
-         MW2*(-(MT*S2B*dZNHiggs1[2, 1]) + SB2*(4*dMf1[3, 3] + 
-             MT*(dZbarSq1[13, 2, 2, 3, 3] + 2*dZNHiggs1[1, 1] + dZSq1[13, 2, 
-                2, 3, 3]))))))*FeynAmpDenominator[PropagatorDenominator[
-      FourMomentum[Internal, 1], MSf[2, 3, 3]]])/(MT2*MW2*Pi^4*SB*SW)], 
+  (((3*I)/32)*ht^2*MT*DiagMark[MSf[2, 3, 3]]*(4*dSW1*MT*SB*SB2 + 
+     SW*(4*dSinB1*MT*SB2 + SB*(2*dMWsq1MW2*MT*SB2 + MT*S2B*dZNHiggs1[2, 1] - 
+         SB2*(4*dMf1[3, 3] + MT*(dZbarSq1[13, 2, 2, 3, 3] + 
+             2*dZNHiggs1[1, 1] + dZSq1[13, 2, 2, 3, 3])))))*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MSf[2, 3, 3]]])/(MT2*Pi^4*SB*SW)], 
  FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 4, Particles == 1, 
    Number == 21], Integral[FourMomentum[Internal, 1]], 
   (((-3*I)/16)*DiagMark[MT]*FeynAmpDenominator[PropagatorDenominator[
       FourMomentum[Internal, 1], MT], PropagatorDenominator[
       FourMomentum[Internal, 1], MT]]*MatrixTrace[
      NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 1]]], 
-     ((I/4)*ht*SB*SW*((4*dSW1*MT*MW2*SB2 + SW*(4*dSinB1*MT*MW2*SB + 
-            2*dMWsq1*MT*SB2 - MW2*(2*SB2*(2*dMf1[3, 3] + 
-                MT*(dZbarfR1[3, 3, 3] + dZfL1[3, 3, 3] + dZNHiggs1[1, 1])) - 
-              MT*S2B*dZNHiggs1[2, 1])))*NonCommutative[ChiralityProjector[
-           -1]] + (4*dSW1*MT*MW2*SB2 + SW*(4*dSinB1*MT*MW2*SB + 
-            2*dMWsq1*MT*SB2 - MW2*(2*SB2*(2*dMf1[3, 3] + 
-                MT*(dZbarfL1[3, 3, 3] + dZfR1[3, 3, 3] + dZNHiggs1[1, 1])) - 
-              MT*S2B*dZNHiggs1[2, 1])))*NonCommutative[ChiralityProjector[
-           1]]))/(Sqrt[2]*MT*MW2*SB2*SW2), NonCommutative[
+     ((I/4)*ht*SB*SW*((4*dSW1*MT*SB2 + SW*(4*dSinB1*MT*SB + 
+            2*dMWsq1MW2*MT*SB2 - 4*SB2*dMf1[3, 3] - 2*MT*SB2*
+             dZbarfR1[3, 3, 3] - 2*MT*SB2*dZfL1[3, 3, 3] - 
+            2*MT*SB2*dZNHiggs1[1, 1] + MT*S2B*dZNHiggs1[2, 1]))*
+         NonCommutative[ChiralityProjector[-1]] + 
+        (4*dSW1*MT*SB2 + SW*(4*dSinB1*MT*SB + 2*dMWsq1MW2*MT*SB2 - 
+            4*SB2*dMf1[3, 3] - 2*MT*SB2*dZbarfL1[3, 3, 3] - 
+            2*MT*SB2*dZfR1[3, 3, 3] - 2*MT*SB2*dZNHiggs1[1, 1] + 
+            MT*S2B*dZNHiggs1[2, 1]))*NonCommutative[ChiralityProjector[1]]))/
+      (Sqrt[2]*MT*SB2*SW2), NonCommutative[
       MT + DiracSlash[-FourMomentum[Internal, 1]]], 
      ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
         NonCommutative[ChiralityProjector[1]]))/Sqrt[2]])/Pi^4], 
@@ -277,14 +278,13 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
            dSinB1*Xt*UCSfC[1, 3, 3, 3]) + MT*(dSinB1*XtC*UCSf[1, 3, 3, 3] + 
            CB*Conjugate[dMu1]*UCSfC[1, 3, 3, 3])) + 
        SB*(4*dMf1[3, 3]*U2s1[Xt] + 2*(4*MT*dMf1[3, 3] + 
-           MT2*(-(dMWsq1/MW2) + dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1]))*
+           MT2*(-dMWsq1MW2 + dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1]))*
           (UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3]) + 
          MT*(2*dZSq1[13, 2, 1, 3, 3]*U2c1[Xt] + 2*dZbarSq1[13, 2, 1, 3, 3]*
-            U2c1C[Xt] - (2*dMWsq1*U2s1[Xt])/MW2 + 
-           2*(dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1])*U2s1[Xt] + 
-           2*dZSq1[13, 1, 1, 3, 3]*(MT + U2s1[Xt]) + 
-           2*(Conjugate[dAf1[3, 3, 3]]*UCSf[1, 3, 3, 3] + dAf1[3, 3, 3]*
-              UCSfC[1, 3, 3, 3]))))))/(MT*Pi^4*SW2)], 
+            U2c1C[Xt] - 2*dMWsq1MW2*U2s1[Xt] + 2*(dZbarSq1[13, 1, 1, 3, 3] + 
+             dZNHiggs1[1, 1])*U2s1[Xt] + 2*dZSq1[13, 1, 1, 3, 3]*
+            (MT + U2s1[Xt]) + 2*(Conjugate[dAf1[3, 3, 3]]*UCSf[1, 3, 3, 3] + 
+             dAf1[3, 3, 3]*UCSfC[1, 3, 3, 3]))))))/(MT*Pi^4*SW2)], 
  FeynAmp[GraphID[Topology == 3, Generic == 2, Classes == 5, Particles == 2, 
    Number == 23], Integral[FourMomentum[Internal, 1]], 
   (((-3*I)/32)*ht^2*SB*DiagMark[MSf[2, 3, 3]]*FeynAmpDenominator[
@@ -298,11 +298,11 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
          MT*(CB*dMu1*UCSf[1, 3, 3, 3] + dSinB1*Xt*UCSfC[1, 3, 3, 3]) + 
          MT*(dSinB1*XtC*UCSf[1, 3, 3, 3] + CB*Conjugate[dMu1]*
             UCSfC[1, 3, 3, 3])) + SB*(-4*dMf1[3, 3]*U2s1[Xt] + 
-         2*(4*MT*dMf1[3, 3] + MT2*(-(dMWsq1/MW2) + dZbarSq1[13, 2, 2, 3, 3] + 
+         2*(4*MT*dMf1[3, 3] + MT2*(-dMWsq1MW2 + dZbarSq1[13, 2, 2, 3, 3] + 
              dZNHiggs1[1, 1]))*(UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3]) + 
          MT*(2*dZbarSq1[13, 1, 2, 3, 3]*U2c1[Xt] + 2*dZSq1[13, 1, 2, 3, 3]*
             U2c1C[Xt] + 2*dZSq1[13, 2, 2, 3, 3]*(MT - U2s1[Xt]) + 
-           (2*dMWsq1*U2s1[Xt])/MW2 - 2*(dZbarSq1[13, 2, 2, 3, 3] + 
+           2*dMWsq1MW2*U2s1[Xt] - 2*(dZbarSq1[13, 2, 2, 3, 3] + 
              dZNHiggs1[1, 1])*U2s1[Xt] - 2*(Conjugate[dAf1[3, 3, 3]]*
               UCSf[1, 3, 3, 3] + dAf1[3, 3, 3]*UCSfC[1, 3, 3, 3]))))))/
    (MT*Pi^4*SW2)], FeynAmp[GraphID[Topology == 3, Generic == 2, Classes == 5, 
@@ -319,11 +319,10 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
          SB*(2*(-dZbarSq1[13, 2, 1, 3, 3] + dZSq1[13, 1, 2, 3, 3])*U2s1[Xt] + 
            2*MT*(dZSq1[13, 1, 2, 3, 3] + dZbarSq1[13, 2, 1, 3, 3]*
               (UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3])) + 
-           (-((dMWsq1*XtC)/MW2) + 2*Conjugate[dAf1[3, 3, 3]])*
-            UCSf[3, 3, 3, 3] + (-((dMWsq1*Xt)/MW2) + 2*dAf1[3, 3, 3])*
-            UCSf[3, 4, 3, 3])))))/(MT*Pi^4*SW2)], 
- FeynAmp[GraphID[Topology == 3, Generic == 2, Classes == 5, Particles == 4, 
-   Number == 25], Integral[FourMomentum[Internal, 1]], 
+           (-(dMWsq1MW2*XtC) + 2*Conjugate[dAf1[3, 3, 3]])*UCSf[3, 3, 3, 3] + 
+           (-(dMWsq1MW2*Xt) + 2*dAf1[3, 3, 3])*UCSf[3, 4, 3, 3])))))/
+   (MT*Pi^4*SW2)], FeynAmp[GraphID[Topology == 3, Generic == 2, Classes == 5, 
+   Particles == 4, Number == 25], Integral[FourMomentum[Internal, 1]], 
   (((-3*I)/32)*ht^2*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
       MSf[2, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
@@ -336,8 +335,8 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
          SB*(2*(dZbarSq1[13, 1, 2, 3, 3] - dZSq1[13, 2, 1, 3, 3])*U2s1[Xt] + 
            2*MT*(dZSq1[13, 2, 1, 3, 3] + dZbarSq1[13, 1, 2, 3, 3]*
               (UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3])) + 
-           (-((dMWsq1*Xt)/MW2) + 2*dAf1[3, 3, 3])*UCSfC[3, 3, 3, 3] + 
-           (-((dMWsq1*XtC)/MW2) + 2*Conjugate[dAf1[3, 3, 3]])*
+           (-(dMWsq1MW2*Xt) + 2*dAf1[3, 3, 3])*UCSfC[3, 3, 3, 3] + 
+           (-(dMWsq1MW2*XtC) + 2*Conjugate[dAf1[3, 3, 3]])*
             UCSfC[3, 4, 3, 3])))))/(MT*Pi^4*SW2)], 
  FeynAmp[GraphID[Topology == 4, Generic == 1, Classes == 6, Particles == 1, 
    Number == 26], Integral[FourMomentum[Internal, 1]], 
@@ -368,15 +367,16 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
      ((-I)*ht*SB*(NonCommutative[ChiralityProjector[-1]] + 
         NonCommutative[ChiralityProjector[1]]))/Sqrt[2], 
      NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 1]]], 
-     ((I/4)*ht*SB*SW*((4*dSW1*MT*MW2*SB2 + SW*(4*dSinB1*MT*MW2*SB + 
-            2*dMWsq1*MT*SB2 - MW2*(2*SB2*(2*dMf1[3, 3] + 
-                MT*(dZbarfR1[3, 3, 3] + dZfL1[3, 3, 3] + dZNHiggs1[1, 1])) - 
-              MT*S2B*dZNHiggs1[2, 1])))*NonCommutative[ChiralityProjector[
-           -1]] + (4*dSW1*MT*MW2*SB2 + SW*(4*dSinB1*MT*MW2*SB + 
-            2*dMWsq1*MT*SB2 - MW2*(2*SB2*(2*dMf1[3, 3] + 
-                MT*(dZbarfL1[3, 3, 3] + dZfR1[3, 3, 3] + dZNHiggs1[1, 1])) - 
-              MT*S2B*dZNHiggs1[2, 1])))*NonCommutative[ChiralityProjector[
-           1]]))/(Sqrt[2]*MT*MW2*SB2*SW2)])/Pi^4], 
+     ((I/4)*ht*SB*SW*((4*dSW1*MT*SB2 + SW*(4*dSinB1*MT*SB + 
+            2*dMWsq1MW2*MT*SB2 - 4*SB2*dMf1[3, 3] - 2*MT*SB2*
+             dZbarfR1[3, 3, 3] - 2*MT*SB2*dZfL1[3, 3, 3] - 
+            2*MT*SB2*dZNHiggs1[1, 1] + MT*S2B*dZNHiggs1[2, 1]))*
+         NonCommutative[ChiralityProjector[-1]] + 
+        (4*dSW1*MT*SB2 + SW*(4*dSinB1*MT*SB + 2*dMWsq1MW2*MT*SB2 - 
+            4*SB2*dMf1[3, 3] - 2*MT*SB2*dZbarfL1[3, 3, 3] - 
+            2*MT*SB2*dZfR1[3, 3, 3] - 2*MT*SB2*dZNHiggs1[1, 1] + 
+            MT*S2B*dZNHiggs1[2, 1]))*NonCommutative[ChiralityProjector[1]]))/
+      (Sqrt[2]*MT*SB2*SW2)])/Pi^4], 
  FeynAmp[GraphID[Topology == 5, Generic == 2, Classes == 8, Particles == 1, 
    Number == 31], Integral[FourMomentum[Internal, 1]], 
   (((-3*I)/32)*ht^2*SB*DiagMark[MSf[1, 3, 3]]*FeynAmpDenominator[
@@ -391,14 +391,13 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
            dSinB1*Xt*UCSfC[1, 3, 3, 3]) + MT*(dSinB1*XtC*UCSf[1, 3, 3, 3] + 
            CB*Conjugate[dMu1]*UCSfC[1, 3, 3, 3])) + 
        SB*(4*dMf1[3, 3]*U2s1[Xt] + 2*(4*MT*dMf1[3, 3] + 
-           MT2*(-(dMWsq1/MW2) + dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1]))*
+           MT2*(-dMWsq1MW2 + dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1]))*
           (UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3]) + 
          MT*(2*dZSq1[13, 2, 1, 3, 3]*U2c1[Xt] + 2*dZbarSq1[13, 2, 1, 3, 3]*
-            U2c1C[Xt] - (2*dMWsq1*U2s1[Xt])/MW2 + 
-           2*(dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1])*U2s1[Xt] + 
-           2*dZSq1[13, 1, 1, 3, 3]*(MT + U2s1[Xt]) + 
-           2*(Conjugate[dAf1[3, 3, 3]]*UCSf[1, 3, 3, 3] + dAf1[3, 3, 3]*
-              UCSfC[1, 3, 3, 3]))))))/(MT*Pi^4*SW2)], 
+            U2c1C[Xt] - 2*dMWsq1MW2*U2s1[Xt] + 2*(dZbarSq1[13, 1, 1, 3, 3] + 
+             dZNHiggs1[1, 1])*U2s1[Xt] + 2*dZSq1[13, 1, 1, 3, 3]*
+            (MT + U2s1[Xt]) + 2*(Conjugate[dAf1[3, 3, 3]]*UCSf[1, 3, 3, 3] + 
+             dAf1[3, 3, 3]*UCSfC[1, 3, 3, 3]))))))/(MT*Pi^4*SW2)], 
  FeynAmp[GraphID[Topology == 5, Generic == 2, Classes == 8, Particles == 2, 
    Number == 32], Integral[FourMomentum[Internal, 1]], 
   (((-3*I)/32)*ht^2*SB*DiagMark[MSf[2, 3, 3]]*FeynAmpDenominator[
@@ -412,11 +411,11 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
          MT*(CB*dMu1*UCSf[1, 3, 3, 3] + dSinB1*Xt*UCSfC[1, 3, 3, 3]) + 
          MT*(dSinB1*XtC*UCSf[1, 3, 3, 3] + CB*Conjugate[dMu1]*
             UCSfC[1, 3, 3, 3])) + SB*(-4*dMf1[3, 3]*U2s1[Xt] + 
-         2*(4*MT*dMf1[3, 3] + MT2*(-(dMWsq1/MW2) + dZbarSq1[13, 2, 2, 3, 3] + 
+         2*(4*MT*dMf1[3, 3] + MT2*(-dMWsq1MW2 + dZbarSq1[13, 2, 2, 3, 3] + 
              dZNHiggs1[1, 1]))*(UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3]) + 
          MT*(2*dZbarSq1[13, 1, 2, 3, 3]*U2c1[Xt] + 2*dZSq1[13, 1, 2, 3, 3]*
             U2c1C[Xt] + 2*dZSq1[13, 2, 2, 3, 3]*(MT - U2s1[Xt]) + 
-           (2*dMWsq1*U2s1[Xt])/MW2 - 2*(dZbarSq1[13, 2, 2, 3, 3] + 
+           2*dMWsq1MW2*U2s1[Xt] - 2*(dZbarSq1[13, 2, 2, 3, 3] + 
              dZNHiggs1[1, 1])*U2s1[Xt] - 2*(Conjugate[dAf1[3, 3, 3]]*
               UCSf[1, 3, 3, 3] + dAf1[3, 3, 3]*UCSfC[1, 3, 3, 3]))))))/
    (MT*Pi^4*SW2)], FeynAmp[GraphID[Topology == 5, Generic == 2, Classes == 8, 
@@ -433,11 +432,10 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
          SB*(2*(-dZbarSq1[13, 2, 1, 3, 3] + dZSq1[13, 1, 2, 3, 3])*U2s1[Xt] + 
            2*MT*(dZSq1[13, 1, 2, 3, 3] + dZbarSq1[13, 2, 1, 3, 3]*
               (UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3])) + 
-           (-((dMWsq1*XtC)/MW2) + 2*Conjugate[dAf1[3, 3, 3]])*
-            UCSf[3, 3, 3, 3] + (-((dMWsq1*Xt)/MW2) + 2*dAf1[3, 3, 3])*
-            UCSf[3, 4, 3, 3])))))/(MT*Pi^4*SW2)], 
- FeynAmp[GraphID[Topology == 5, Generic == 2, Classes == 8, Particles == 4, 
-   Number == 34], Integral[FourMomentum[Internal, 1]], 
+           (-(dMWsq1MW2*XtC) + 2*Conjugate[dAf1[3, 3, 3]])*UCSf[3, 3, 3, 3] + 
+           (-(dMWsq1MW2*Xt) + 2*dAf1[3, 3, 3])*UCSf[3, 4, 3, 3])))))/
+   (MT*Pi^4*SW2)], FeynAmp[GraphID[Topology == 5, Generic == 2, Classes == 8, 
+   Particles == 4, Number == 34], Integral[FourMomentum[Internal, 1]], 
   (((-3*I)/32)*ht^2*SB*DiagMark[MSf[1, 3, 3], MSf[2, 3, 3]]*
     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
       MSf[1, 3, 3]], PropagatorDenominator[FourMomentum[Internal, 1], 
@@ -450,6 +448,6 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {{S[1], 0, Mh0, {}}},
          SB*(2*(dZbarSq1[13, 1, 2, 3, 3] - dZSq1[13, 2, 1, 3, 3])*U2s1[Xt] + 
            2*MT*(dZSq1[13, 2, 1, 3, 3] + dZbarSq1[13, 1, 2, 3, 3]*
               (UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3])) + 
-           (-((dMWsq1*Xt)/MW2) + 2*dAf1[3, 3, 3])*UCSfC[3, 3, 3, 3] + 
-           (-((dMWsq1*XtC)/MW2) + 2*Conjugate[dAf1[3, 3, 3]])*
+           (-(dMWsq1MW2*Xt) + 2*dAf1[3, 3, 3])*UCSfC[3, 3, 3, 3] + 
+           (-(dMWsq1MW2*XtC) + 2*Conjugate[dAf1[3, 3, 3]])*
             UCSfC[3, 4, 3, 3])))))/(MT*Pi^4*SW2)]]

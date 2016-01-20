@@ -75,7 +75,7 @@ amp = Plus@@ CalcFeynAmp[Get[in]];
 amp = amp //. Join[Subexpr[], Abbr[]] /.
   Pair[_k, _k] -> ExtMomSq /.
   ToOldBRules /.
-  {dMWsq1 -> dMWsq1gl, dMZsq1 -> dMZsq1gl};
+  {dMWsq1/MW2 -> dMWsq1MW2, dMZsq1/MZ2 -> dMZsq1MZ2};
 
 Put[amp, out];
 

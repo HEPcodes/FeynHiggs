@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 20 May 15 th
+* last modified 15 Jan 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -120,15 +120,15 @@ c	  call setfpu
 	Check(p2approx, 0, 4, "p2approx")
 
 	looplevel = looplevel_
-	Check(looplevel, 0, 3, "looplevel")
+	Check(looplevel, 0, 4, "looplevel")
 
 	runningMT = runningMT_
-	Check(runningMT, 0, 2, "runningMT")
+	Check(runningMT, 0, 3, "runningMT")
 
 * for safety:
 	if( tT - 3 .ne. tD - tT ) stop "bad tT, tD in FH.h"
 
-	tM1 = 3 + (tT - 3)*runningMT
+	tM1 = MTindex(runningMT)
 	tM2 = tM1
 
 	botResum = botResum_
@@ -149,8 +149,8 @@ c	  call setfpu
 	if( fieldren .eq. 4 .and. tanbren .eq. 1 )
      &    Error(error, "fieldren = 4 not compatible with tanbren = 1")
 
-	if( looplevel .eq. 3 .and. runningMT .ne. 1 )
-     &    Error(error, "looplevel = 3 only with runningMT = 1")
+	if( looplevel .ge. 3 .and. iand(runningMT - 1, -2) .ne. 0 )
+     &    Error(error, "looplevel = 3,4 only with runningMT = 1,2")
 
 	if( error .eq. 0 ) flags_valid = valid
 

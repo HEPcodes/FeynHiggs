@@ -33,11 +33,11 @@ glcoup[expr_] := Collect[
     m_MSf :> MTMW MW/MT m },
   ht, MagicSimplify[#, Feedback -> False]& ]
 
-RenConst[dMWsq1] := ReTilde[SelfEnergy[V[3], 0]];
-RenConst[dMWsq1gl] := glcoup @ ReTilde[expB00 @ SelfEnergy[V[3], 0]];
+RenConst[dMWsq1MW2] :=
+  glcoup[ReTilde[expB00 @ SelfEnergy[V[3], 0]]]/MW2
 
-RenConst[dMZsq1] := ReTilde[SelfEnergy[V[2], 0]];
-RenConst[dMZsq1gl] := glcoup @ ReTilde[expB00 @ SelfEnergy[V[2], 0]];
+RenConst[dMZsq1MZ2] :=
+  glcoup[ReTilde[expB00 @ SelfEnergy[V[2], 0]]]/MZ2
 
 
 sel[hpatt -> hpatt] := tb[3|4];
@@ -80,12 +80,12 @@ Block[ {file = ToFileName[rcdir, name[rc]], pre},
 
 rcsimp[x_] :=
 Block[ {pre = x},
+  pre = Gaugeless[pre];
   If[ FreeQ[pre, ht],
     pre = pre /. {
       1/MW -> MTMW/MT, 1/MW2 -> MTMW^2/MT2,
       1/MZ -> CW MTMW/MT, 1/MZ2 -> CW2 MTMW^2/MT2,
       MW -> 0, MW2 -> 0, MZ -> 0, MZ2 -> 0 } ];
-  pre = Gaugeless[pre];
 (*
   pre = pre /.
     Alfa p_Plus :> Distribute[Alfa p] /; !FreeQ[p, Alfa^_?Negative] /.

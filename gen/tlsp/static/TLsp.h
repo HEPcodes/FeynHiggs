@@ -1,11 +1,9 @@
 * TLsp.h
 * declarations for Sebastian Passehr's 2L corrections
 * this file is part of FeynHiggs
-* last modified 10 May 15 th
+* last modified 11 May 15 th
 
-#include "FH.h"
-#include "looptools.h"
-#include "debug.h"
+#include "TL.h"
 #include "TLSfgl.h"
 #include "TLspvars.h"
 
@@ -30,8 +28,7 @@
 	RealType U2s1Xt, U2s2Xt, U2s1Yt, U2s2Yt
 	RealType U2s1XtmMT, U2s1XtpMT
 	RealType U2s1YtmMT, U2s1YtpMT
-	RealType MTy, MTy2, MHin2, MMUE2, Q, ht
-	integer dMT1OS
+	RealType MTy, MTy2, MHin2, MUE2, Q, ht
 
 	common /spvar2/ Xt, Yt
 	common /spvar2/ U2c1Xt, U2c2Xt, U2c1Yt, U2c2Yt
@@ -39,13 +36,8 @@
 	common /spvar2/ U2s1Xt, U2s2Xt, U2s1Yt, U2s2Yt
 	common /spvar2/ U2s1XtmMT, U2s1XtpMT
 	common /spvar2/ U2s1YtmMT, U2s1YtpMT
-	common /spvar2/ MTy, MTy2, MHin2, MMUE2, Q, ht
-	common /spvar2/ dMT1OS
+	common /spvar2/ MTy, MTy2, MHin2, MUE2, Q, ht
 
 	RealType T134sub
 	external T134sub
-
-	integer dMu1OS, dMSt1OS
-	parameter (dMu1OS = 1)
-	parameter (dMSt1OS = 1)
 

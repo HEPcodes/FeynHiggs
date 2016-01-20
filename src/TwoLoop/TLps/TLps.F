@@ -152,6 +152,12 @@
 	parameter (TBlarge = 1000)
 
 	RealType DSS2large(2)
+	logical zden
+	RealType MbSL2, den, eps, m1, m2, m3
+
+	den(m1, m2, m3) = m1**2 + (m2 - m3)**2 - 2*m1*(m2 + m3)
+	eps(m1, m2, m3) = 1D-10*(m1**2 + m2**2 + m3**2)
+	zden(m1, m2, m3) = abs(den(m1, m2, m3)) .lt. eps(m1, m2, m3)
 
 	pCB2 = 1/(1 + TBlarge**2)
 	pSB2 = 1
@@ -170,9 +176,18 @@ c	DSS2large(2) = DSS2(2,3,3) - MZ2*C2B*Qu*SW2
 	DSS2large(2) = Re(MSS2(3,3,tU(3)))
 	DSS2large(1) = Re(MSS2(3,3,tQ(3))) - DSS2large(2)
 
-	call TLps_Sf(error, StopPara(1),
+	MbSL2 = BSS2(2) + BSS2(1) - DSf(1,4)
+1	call TLps_Sf(error, StopPara(1),
      &    DSS2large, Mf(tS1,3), Atc,
      &    "large TB: Mstop^2 negative")
+	if( zden(MSt12,pMT2,MUEr2) .or.
+     &      zden(MSt22,pMT2,MUEr2) .or.
+     &      zden(MSt12,MbSL2,MA02) .or.
+     &      zden(MSt22,MbSL2,MA02) .or.
+     &      zden(MSt12,MSt22,MA02) ) then
+	  DSS2large(1) = DSS2large(1) + .1D0
+	  goto 1
+	endif
 
 	DSS2large(1) = BSS2(1) - MZ2*C2B*(-.5D0 - 2*Qd*SW2)
 	DSS2large(2) = BSS2(2) - MZ2*C2B*Qd*SW2 - pMB2

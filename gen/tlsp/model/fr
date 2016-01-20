@@ -25,6 +25,8 @@ CW2 = CW^2;
 SW2 = SW^2;
 CB2 = CB^2;
 SB2 = SB^2;
+dMWsq1MW2 = dMWsq1/MW^2;
+dMZsq1MZ2 = dMZsq1/MZ^2;
 
 gl = Identity;
 

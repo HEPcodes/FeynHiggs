@@ -4,7 +4,7 @@
 * Based on G. Degrassi, P. Slavich, and F. Zwirner,
 * Nucl. Phys. B611 (2001) 403 [hep-ph/0105096].
 * this file is part of FeynHiggs
-* last modified 20 May 15 th
+* last modified 17 Aug 15 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -35,9 +35,9 @@
 	RealType x11, x12
 	RealType tmp1, tmp2, tmp3, tmp4, tmp5
 
-	x1 = InvTri(pMGl2,pMT2,MSt12)
+	x1 = InvTri(MSt12,pMGl2,pMT2)
 
-	x6 = InvTri(pMGl2,pMT2,MSt22)
+	x6 = InvTri(MSt22,pMGl2,pMT2)
 
 	x3 = Log(pMGl2)
 

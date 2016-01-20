@@ -82,7 +82,7 @@ for fin in `find . -name \*.in` ; do
   f=${fin%.in}
   perl -pe "s|PERL_EXEC|$PERL_EXEC|;
             s|MATH_EXEC|$MATH_EXEC|;
-            s|clusterflag=[^=;]*;|clusterflag=0;|" $fin > $f
+            s|clusterflag=[^=;];|clusterflag=0;|" $fin > $f
   chmod 755 $f
 done
 

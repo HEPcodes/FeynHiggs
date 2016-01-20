@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 28 May 15 th
+* last modified 11 Dec 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -107,7 +107,7 @@
 * the tS2 definition in FH.h takes care that MT(os) is also used
 * in subsequent sf-mass computations in the two-loop sector
 
-	if( runningMT .eq. 2 ) then
+	if( runningMT .eq. 3 ) then
 	  do i = 1, NSf
 	    Sf(i,tD) = Sf(i,3)
 	  enddo

@@ -23,15 +23,16 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {}, Model -> {"MSSMCTgl"},
   (-3*DiagMark[MT]*FeynAmpDenominator[PropagatorDenominator[
       FourMomentum[Internal, 1], MT]]*MatrixTrace[
      NonCommutative[MT + DiracSlash[-FourMomentum[Internal, 1]]], 
-     ((I/4)*ht*SB*SW*((4*dSW1*MT*MW2*SB2 + SW*(4*dSinB1*MT*MW2*SB + 
-            2*dMWsq1*MT*SB2 - MW2*(2*SB2*(2*dMf1[3, 3] + 
-                MT*(dZbarfR1[3, 3, 3] + dZfL1[3, 3, 3] + dZNHiggs1[1, 1])) - 
-              MT*S2B*dZNHiggs1[2, 1])))*NonCommutative[ChiralityProjector[
-           -1]] + (4*dSW1*MT*MW2*SB2 + SW*(4*dSinB1*MT*MW2*SB + 
-            2*dMWsq1*MT*SB2 - MW2*(2*SB2*(2*dMf1[3, 3] + 
-                MT*(dZbarfL1[3, 3, 3] + dZfR1[3, 3, 3] + dZNHiggs1[1, 1])) - 
-              MT*S2B*dZNHiggs1[2, 1])))*NonCommutative[ChiralityProjector[
-           1]]))/(Sqrt[2]*MT*MW2*SB2*SW2)])/(16*Pi^4)], 
+     ((I/4)*ht*SB*SW*((4*dSW1*MT*SB2 + SW*(4*dSinB1*MT*SB + 
+            2*dMWsq1MW2*MT*SB2 - 4*SB2*dMf1[3, 3] - 2*MT*SB2*
+             dZbarfR1[3, 3, 3] - 2*MT*SB2*dZfL1[3, 3, 3] - 
+            2*MT*SB2*dZNHiggs1[1, 1] + MT*S2B*dZNHiggs1[2, 1]))*
+         NonCommutative[ChiralityProjector[-1]] + 
+        (4*dSW1*MT*SB2 + SW*(4*dSinB1*MT*SB + 2*dMWsq1MW2*MT*SB2 - 
+            4*SB2*dMf1[3, 3] - 2*MT*SB2*dZbarfL1[3, 3, 3] - 
+            2*MT*SB2*dZfR1[3, 3, 3] - 2*MT*SB2*dZNHiggs1[1, 1] + 
+            MT*S2B*dZNHiggs1[2, 1]))*NonCommutative[ChiralityProjector[1]]))/
+      (Sqrt[2]*MT*SB2*SW2)])/(16*Pi^4)], 
  FeynAmp[GraphID[Topology == 1, Generic == 2, Classes == 2, Particles == 1, 
    Number == 2], Integral[FourMomentum[Internal, 1]], 
   (((-3*I)/32)*ht*DiagMark[MSf[1, 3, 3]]*FeynAmpDenominator[
@@ -45,14 +46,13 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {}, Model -> {"MSSMCTgl"},
            dSinB1*Xt*UCSfC[1, 3, 3, 3]) + MT*(dSinB1*XtC*UCSf[1, 3, 3, 3] + 
            CB*Conjugate[dMu1]*UCSfC[1, 3, 3, 3])) + 
        SB*(4*dMf1[3, 3]*U2s1[Xt] + 2*(4*MT*dMf1[3, 3] + 
-           MT2*(-(dMWsq1/MW2) + dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1]))*
+           MT2*(-dMWsq1MW2 + dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1]))*
           (UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3]) + 
          MT*(2*dZSq1[13, 2, 1, 3, 3]*U2c1[Xt] + 2*dZbarSq1[13, 2, 1, 3, 3]*
-            U2c1C[Xt] - (2*dMWsq1*U2s1[Xt])/MW2 + 
-           2*(dZbarSq1[13, 1, 1, 3, 3] + dZNHiggs1[1, 1])*U2s1[Xt] + 
-           2*dZSq1[13, 1, 1, 3, 3]*(MT + U2s1[Xt]) + 
-           2*(Conjugate[dAf1[3, 3, 3]]*UCSf[1, 3, 3, 3] + dAf1[3, 3, 3]*
-              UCSfC[1, 3, 3, 3]))))))/(Sqrt[2]*MT*Pi^4*SW2)], 
+            U2c1C[Xt] - 2*dMWsq1MW2*U2s1[Xt] + 2*(dZbarSq1[13, 1, 1, 3, 3] + 
+             dZNHiggs1[1, 1])*U2s1[Xt] + 2*dZSq1[13, 1, 1, 3, 3]*
+            (MT + U2s1[Xt]) + 2*(Conjugate[dAf1[3, 3, 3]]*UCSf[1, 3, 3, 3] + 
+             dAf1[3, 3, 3]*UCSfC[1, 3, 3, 3]))))))/(Sqrt[2]*MT*Pi^4*SW2)], 
  FeynAmp[GraphID[Topology == 1, Generic == 2, Classes == 2, Particles == 2, 
    Number == 3], Integral[FourMomentum[Internal, 1]], 
   (((-3*I)/32)*ht*DiagMark[MSf[2, 3, 3]]*FeynAmpDenominator[
@@ -65,11 +65,11 @@ FeynAmpList[Process -> {{S[1], 0, Mh0, {}}} -> {}, Model -> {"MSSMCTgl"},
          MT*(CB*dMu1*UCSf[1, 3, 3, 3] + dSinB1*Xt*UCSfC[1, 3, 3, 3]) + 
          MT*(dSinB1*XtC*UCSf[1, 3, 3, 3] + CB*Conjugate[dMu1]*
             UCSfC[1, 3, 3, 3])) + SB*(-4*dMf1[3, 3]*U2s1[Xt] + 
-         2*(4*MT*dMf1[3, 3] + MT2*(-(dMWsq1/MW2) + dZbarSq1[13, 2, 2, 3, 3] + 
+         2*(4*MT*dMf1[3, 3] + MT2*(-dMWsq1MW2 + dZbarSq1[13, 2, 2, 3, 3] + 
              dZNHiggs1[1, 1]))*(UCSf[1, 1, 3, 3] + UCSf[1, 2, 3, 3]) + 
          MT*(2*dZbarSq1[13, 1, 2, 3, 3]*U2c1[Xt] + 2*dZSq1[13, 1, 2, 3, 3]*
             U2c1C[Xt] + 2*dZSq1[13, 2, 2, 3, 3]*(MT - U2s1[Xt]) + 
-           (2*dMWsq1*U2s1[Xt])/MW2 - 2*(dZbarSq1[13, 2, 2, 3, 3] + 
+           2*dMWsq1MW2*U2s1[Xt] - 2*(dZbarSq1[13, 2, 2, 3, 3] + 
              dZNHiggs1[1, 1])*U2s1[Xt] - 2*(Conjugate[dAf1[3, 3, 3]]*
               UCSf[1, 3, 3, 3] + dAf1[3, 3, 3]*UCSfC[1, 3, 3, 3]))))))/
    (Sqrt[2]*MT*Pi^4*SW2)], FeynAmp[GraphID[Topology == 2, Generic == 1, 

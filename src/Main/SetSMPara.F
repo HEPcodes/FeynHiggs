@@ -1,7 +1,7 @@
 * SetSMPara.F
 * set the SM inputs for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 2 May 12 th
+* last modified 21 Jul 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -145,6 +145,7 @@ c FIXME: should really compute MW from MZ & Alfa here
 	DPARA "-----------------------------"	ENDL
 	DPARA "1/AlfaMZ =", 1/AlfaMZ		ENDL
 	DPARA "AlfasMZ =", AlfasMZ		ENDL
+	DPARA "vev =", vev			ENDL
 	DPARA "GF =", GF			ENDL
 	DPARA "ME =", ME			ENDL
 	DPARA "MU =", MU			ENDL

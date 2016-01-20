@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 12 Jun 15 th
+* last modified 11 Dec 15 th
 
 
 #ifndef SignSq
@@ -25,6 +25,9 @@
 #define tQ(t) Ncolor(t)
 #define tU(t) (t + isQ(t))
 
+* MTindex maps {0,1,2,3} -> {3,tT,tT,tD}
+#define MTindex(rMT) int(ibits(MTindices,4*rMT,4))
+* tS1 maps {3,6=tT,9=tD} -> {3,tT,3}
 #define tS1 (iand(tM1,7)+2*ibits(tM1,3,1))
 
 * for encoding sfermion type in SfUpdate and Couplings.F:
@@ -247,6 +250,8 @@
 	parameter (bBR = 5, tT = 6, bTR = 7, bTR0 = 8, tD = 9)
 	parameter (tH = 10, bH = 11, bHR = 12)
 
+	integer MTindices
+	parameter (MTindices = 3 + 16*tT + 16**2*tT + 16**3*tD)
 
 * Higgs results
 

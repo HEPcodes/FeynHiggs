@@ -2,8 +2,8 @@
 
 debug = True
 
-plotmin = 200;
-plotmax = 600;
+plotmin = 50;
+plotmax = 600 (*1000*);
 (*
 plotmin = 30;
 plotmax = 2000;
@@ -18,6 +18,7 @@ getf[tag_, file_] := getf[tag, file] = log[file, tag]/@
 
 foo = Log
 
+noim[x_] := x /. Complex[a_, _] :> a
 
 log["ststh-lhc14.dat", _][{mh_, mst_, xs_?NumberQ}] :=
   {Sqrt[mh], mst, foo[10^-5 xs]} //N
@@ -25,14 +26,17 @@ log["ststh-lhc14.dat", _][{mh_, mst_, xs_?NumberQ}] :=
 log["tHm-lhc14.dat", _][{mh_, mt_, tb_, xsLO_, xsNLO_, ratio_}] :=
   {Sqrt[mh], tb, foo[1000 xsNLO]} //N
 
-log["tHm2-lhc8.dat", _][{mh_, tb_, xsNLO_, unclo_, unchi_}] :=
-  {Sqrt[mh], tb, foo[1000 xsNLO]} //N
+log["tHm2-lhc8.dat" | "tHm2-lhc13.dat" | "tHm2-lhc14.dat", _][
+    {mh_, tb_, xsNLO_, unclo_, unchi_}] :=
+  {Sqrt[mh], tb, foo[1000 xsNLO]} //N //noim
 
-log["tHm2-lhc8lo.dat", _][{mh_, tb_, xsNLO_, unclo_, unchi_}] :=
-  {Sqrt[mh], tb, foo[1000 (xsNLO - unclo)]} //N
+log["tHm2-lhc8lo.dat" | "tHm2-lhc13lo.dat" | "tHm2-lhc14lo.dat", _][
+    {mh_, tb_, xsNLO_, unclo_, unchi_}] :=
+  {Sqrt[mh], tb, foo[1000 (xsNLO - unclo)]} //N //noim
 
-log["tHm2-lhc8hi.dat", _][{mh_, tb_, xsNLO_, unclo_, unchi_}] :=
-  {Sqrt[mh], tb, foo[1000 (xsNLO + unchi)]} //N
+log["tHm2-lhc8hi.dat" | "tHm2-lhc13hi.dat" | "tHm2-lhc14hi.dat", _][
+    {mh_, tb_, xsNLO_, unclo_, unchi_}] :=
+  {Sqrt[mh], tb, foo[1000 (xsNLO + unchi)]} //N //noim
 
 log["bbh-tev.dat" | "bbh-lhc14.dat", _][{mh_, xs_?NumberQ}] :=
   {Sqrt[mh], foo[1000 xs]} //N
@@ -92,10 +96,17 @@ fitfunc[tHm, _LHC] = If@@ {
 
 (*fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = poly[sqrtm, tb, (*2*) 5]*)
 
+fitfunc[tHm2|tHm2lo|tHm2hi, LHC[14]] = Which@@ {
+  tb < 6.,  poly[sqrtm, tb, 4] + poly[tb, 6, "b"],
+  tb < 20., poly[sqrtm, tb, 4, "c"],
+  tb < 30., poly[sqrtm, tb, 2, "d"],
+  True,     poly[sqrtm, tb, 2, "e"] }
+
 fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = Which@@ {
-  tb < 20., poly[sqrtm, tb, 8],
-  tb < 30., poly[sqrtm, tb, 5],
-  True,     poly[sqrtm, tb, (*2*) 4, "b"] }
+  tb < 6.,  poly[sqrtm, tb, 8] + poly[tb, 6, "b"],
+  tb < 20., poly[sqrtm, tb, 8, "c"],
+  tb < 30., poly[sqrtm, tb, 5, "d"],
+  True,     poly[sqrtm, tb, (*2*) 4, "e"] }
 
 fitfunc[_StSth, _LHC] = poly[sqrtm, mst1, 2]/poly[sqrtm, mst1, 2, "b"]
 
@@ -170,14 +181,23 @@ ran[i_, overlap_][a_, b_] =
   #[[i]]^2 >= a^2 - overlap &&
   #[[i]]^2 <= b^2 + overlap &;
 
-dofit[d_, If[x_ < y_, a_, b_] + r_.] := IndexIf@@ {
-  x < y, dofit[Select[d, ran[x][-Infinity, y]], a + r],
-         dofit[Select[d, ran[x][y, +Infinity]], b + r]}
+dofit[d_, If[x_ < y_, A_, B_] + r_.] :=
+IndexIf@@ {
+  x < y, dofit[Select[d, ran[x][-Infinity, y]], A + r],
+         dofit[Select[d, ran[x][y, +Infinity]], B + r]}
 
-dofit[d_, Which[x_ < y_, a_, x_ < z_, b_, True, c_] + r_.] := IndexIf@@ {
-  x < y, dofit[Select[d, ran[x][-Infinity, y]], a + r],
-  x < z, dofit[Select[d, ran[x][y, z]], b + r],
-         dofit[Select[d, ran[x][z, Infinity]], c + r]}
+dofit[d_, Which[x_ < y_, A_, x_ < z_, B_, True, C_] + r_.] :=
+IndexIf@@ {
+  x < y, dofit[Select[d, ran[x][-Infinity, y]], A + r],
+  x < z, dofit[Select[d, ran[x][y, z]], B + r],
+         dofit[Select[d, ran[x][z, Infinity]], C + r]}
+
+dofit[d_, Which[x_ < y_, A_, x_ < z_, B_, x_ < w_, C_, True, D_] + r_.] :=
+IndexIf@@ {
+  x < y, dofit[Select[d, ran[x][-Infinity, y]], A + r],
+  x < z, dofit[Select[d, ran[x][y, z]], B + r],
+  x < w, dofit[Select[d, ran[x][z, w]], C + r],
+         dofit[Select[d, ran[x][w, Infinity]], D + r]}
 
 dofit[d_, fitfun_] := fitfun /. FindFit[d, fitfun,
   Complement[
@@ -274,9 +294,9 @@ writefit[out_][other_String] := WriteString[out, other]
 
 rangecheck[lhs_][var_Symbol, lo_, hi_] :=
   {"\n\tif( ", ToFortran[var], " .lt. ", ToFortran[lo],
-(*
+(**)
    " .or.\n     &      ", ToFortran[var], " .gt. ", ToFortran[hi],
-*)
+(**)
    " )\n     &    Warning('Extrapolating ",
      tof[lhs], " in ", tof[warn[var]], "')"}
 
@@ -329,7 +349,14 @@ nfitsLHC14 := write["NHiggsProdFits-LHC14", fit[LHC[14]]/@ {
   StSth[h] -> "ststh-lhc14.dat" }]
 
 cfitsLHC14 := write["CHiggsProdFits-LHC14", fit[LHC[14]]/@ {
-  tHm -> "tHm-lhc14.dat" } /. tb -> TBeff]
+  tHm2 -> "tHm2-lhc14.dat",
+  tHm2lo -> "tHm2-lhc14lo.dat",
+  tHm2hi -> "tHm2-lhc14hi.dat" } /. tb -> TBeff]
+
+cfitsLHC13 := write["CHiggsProdFits-LHC13", fit[LHC[13]]/@ {
+  tHm2 -> "tHm2-lhc13.dat",
+  tHm2lo -> "tHm2-lhc13lo.dat",
+  tHm2hi -> "tHm2-lhc13hi.dat" } /. tb -> TBeff]
 
 cfitsLHC8 := write["CHiggsProdFits-LHC8", fit[LHC[8]]/@ {
   tHm2 -> "tHm2-lhc8.dat",

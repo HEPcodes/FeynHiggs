@@ -21,11 +21,7 @@ Block[ {MW},
     ht -> EL/(Sqrt[2] SB SW) MT/MW,
     MW2 -> MW^2,
     MZ -> MW/CW,
-    MZ2 -> MW^2/CW^2,
-    dMWsq1 -> dZMWsq1 MW^2,
-    dMZsq1 -> dZMZsq1 MW^2/CW^2 }] /.
-  { dZMWsq1 -> dMWsq1/MW^2,
-    dZMZsq1 -> dMZsq1 CW^2/MW^2 }
+    MZ2 -> MW^2/CW^2 }]
 ]
 
 htInsert[MW] = MW
@@ -68,6 +64,8 @@ Gaugeless[expr_, xtra___] := expr /.
     (USf|USfC|UCSf|UCSfC)[i__, 4,3] :> IndexDelta[i],
     VCha|VChaC -> IndexDelta,
     m:UCha|UChaC | ZNeu|ZNeuC :> gl[m],
+    dMWsq1 -> dMWsq1MW2 MW2,
+    dMZsq1 -> dMZsq1MZ2 MZ2,
     dMf1[4, 3] -> 0,
     dZe1 -> 0,
     dZAA1 -> 0,

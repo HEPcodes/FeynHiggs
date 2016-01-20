@@ -1,4 +1,4 @@
-.TH FHRETRIEVEFLAGS 1 "11-May-2015"
+.TH FHRETRIEVEFLAGS 1 "17-Dec-2015"
 .SH NAME
 .PP
 FHRetrieveFlags \- retrieve the FeynHiggs flags
@@ -99,14 +99,16 @@ determines the inclusion of higher-order corrections:
 .br
 2: include various two-loop contributions
 .TP
-.B runningMT = 0..2 (input)
+.B runningMT = 0..3 (input)
 determines which top mass shall be used in the 1-/2-loop corrections:
 .br
 0: pole MT
 .br
-1: running MT (SM MSbar)
+1: running MT (SM MSbar 2L)
 .br
-2: running MT (MSSM DRbar)
+2: running MT (SM MSbar 1L)
+.br
+3: running MT (MSSM DRbar)
 .br
 .B recommended: 1
 .TP

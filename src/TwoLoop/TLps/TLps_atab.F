@@ -4,7 +4,7 @@
 * Written by P. Slavich (e-mail: slavich@lpthe.jussieu.fr).
 * Based on A. Dedes, G. Degrassi, and P. Slavich, hep-ph/0305127.
 * this file is part of FeynHiggs
-* last modified 11 May 15 th
+* last modified 17 Aug 15 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -99,25 +99,25 @@ c#define COMPLETE_REN
      &          Abr**2*myB0(p,MSb12,MSb22,Q)) + 
      &       ht2*MUEr2*myB0(p,MSt12,MSt22,Q)))
 
-	x44 = InvTri(MA02,MSb12,MSb12)
+	x44 = InvTri(MSb12,MSb12,MA02)
 
-	x48 = InvTri(MA02,MSb12,MSb22)
+	x48 = InvTri(MSb12,MSb22,MA02)
 
-	x11 = InvTri(MA02,MSb12,MSt12)
+	x11 = InvTri(MSb12,MSt12,MA02)
 
-	x12 = InvTri(MA02,MSb12,MSt22)
+	x12 = InvTri(MSb12,MSt22,MA02)
 
-	x46 = InvTri(MA02,MSb22,MSb22)
+	x46 = InvTri(MSb22,MSb22,MA02)
 
-	x13 = InvTri(MA02,MSb22,MSt12)
+	x13 = InvTri(MSb22,MSt12,MA02)
 
-	x14 = InvTri(MA02,MSb22,MSt22)
+	x14 = InvTri(MSb22,MSt22,MA02)
 
-	x16 = InvTri(MA02,MSt12,MSt12)
+	x16 = InvTri(MSt12,MSt12,MA02)
 
-	x15 = InvTri(MA02,MSt12,MSt22)
+	x15 = InvTri(MSt12,MSt22,MA02)
 
-	x17 = InvTri(MA02,MSt22,MSt22)
+	x17 = InvTri(MSt22,MSt22,MA02)
 
 	x23 = InvTri(MSb12,pMT2,MUEr2)
 

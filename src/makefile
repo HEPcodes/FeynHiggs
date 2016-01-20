@@ -36,7 +36,7 @@ LT = cache.o ini.o auxB.o auxCD.o A0.o \
 
 UTIL = Gauss.o ODESolve.o EigenSf.o SfEigensystem.o \
   HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o LU.o \
-  extself.o
+  FindMinimum.o extself.o
 
 SLHA = SLHAClear.o SLHARead.o SLHAWrite.o \
   SLHAGetInfo.o SLHAPutInfo.o SLHACopyString.o \
@@ -71,7 +71,10 @@ TLSP = TLsp.o TLsp_atat_c1.o TLsp_atat_c2.o \
   TLsp_atat_o1.o TLsp_atat_o2.o
 
 TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
-  CalcRenSETL.o MTrepara.o Resum4H.o InvTri.o Phi.o TLSfgl.o
+  Resum4H.o beta4H.o \
+  CalcRenSETL.o MTrepara.o InvTri.o Phi.o TLSfgl.o
+
+Resum4H.o: Resum4H.F Resum4H.h FOSubtract.h
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 
@@ -260,7 +263,8 @@ Couplings.o: Dilog.o NHiggsDecayFitsLO.f NHiggsDecayFitsNLO.f
 
 HiggsProd.o: gghcTev.f gghkTev.f NHiggsProdFits-Tev.f NHiggsProdFits-LHC.f \
   gghcLHC.f gghkLHC.f NHiggsProdFits-LHC7.f NHiggsProdFits-LHC8.f \
-  NHiggsProdFits-LHC14.f CHiggsProdFits-LHC8.f CHiggsProdFits-LHC14.f
+  NHiggsProdFits-LHC14.f CHiggsProdFits-LHC8.f CHiggsProdFits-LHC13.f \
+  CHiggsProdFits-LHC14.f
 
 Para.o DRbartoOS.o: looptools.h ltcache.h
 

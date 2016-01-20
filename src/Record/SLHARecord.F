@@ -1,7 +1,7 @@
 * SLHARecord.F
 * initialize FeynHiggs record from an SLHA data structure
 * this file is part of FeynHiggs
-* last modified 3 Feb 14 th
+* last modified 6 Jan 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -89,13 +89,13 @@ c	if( extpar_Q .eq. invalid ) extpar_Q = 2D16
 	  R(iscalefactor) = Re(DMass_Q)/Re(SMInputs_Mt)
 	endif
 
-	if( MinPar_TB .ne. invalid ) then
+	if( Re(MinPar_TB) .gt. 0 ) then
 	  Origin("TB from MinPar_TB")
 	  R(iTB) = Re(MinPar_TB)
-	else if( HMix_TB .ne. invalid ) then
+	else if( Re(HMix_TB) .gt. 0 ) then
 	  Origin("TB from HMix_TB")
 	  R(iTB) = Re(HMix_TB)
-	else if( ExtPar_TB .ne. invalid ) then
+	else if( Re(ExtPar_TB) .gt. 0 ) then
 	  Origin("TB from ExtPar_TB")
 	  R(iTB) = Re(ExtPar_TB)
 	endif

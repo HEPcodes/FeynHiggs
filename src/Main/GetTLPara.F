@@ -1,7 +1,7 @@
 * GetTLPara.F
 * get parameters used in the two-loop neutral Higgs-mass calculation
 * this file is part of FeynHiggs
-* last modified 10 May 12 th
+* last modified 16 Jun 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -9,11 +9,12 @@
 
 
 	subroutine FHGetTLPara(error,
+     &    MSt_, USt_, MTrun_,
      &    MSb_, USb_, MbSL2_, Deltab_)
 	implicit none
 	integer error
-	RealType MSb_(2), MbSL2_
-	ComplexType USb_(2,2), Deltab_
+	RealType MSt_(2), MTrun_, MSb_(2), MbSL2_
+	ComplexType USt_(2,2), USb_(2,2), Deltab_
 
 #include "FH.h"
 #define __SUBROUTINE__ "FHGetTLPara"
@@ -22,6 +23,16 @@
 	CheckSf(error)
 	CheckTL(error)
 	if( error .gt. 0 ) return
+
+	MSt_(1) = MSf(1,tT,3)
+	MSt_(2) = MSf(2,tT,3)
+
+	USt_(1,1) = USf(1,1,tT,3)
+	USt_(2,1) = USf(2,1,tT,3)
+	USt_(1,2) = USf(1,2,tT,3)
+	USt_(2,2) = USf(2,2,tT,3)
+
+	MTrun_ = Mf(tT,3)
 
 	MSb_(1) = MSf(1,bM0,3)
 	MSb_(2) = MSf(2,bM0,3)

@@ -1,7 +1,7 @@
 #! /bin/sh
 # the mother of all FHUCC CGI scripts, the motherFHUCCer
 # this file is part of FeynHiggs
-# last modified 12 Sep 14 th
+# last modified 18 Sep 15 th
 
 debug=1
 
@@ -10,8 +10,8 @@ if test $debug = 1 ; then
   FHEXT=/home/pcl301/hahn/fh-2a/extse/OasatPdep
   FHURL=http://wwwth.mpp.mpg.de/members/hahn/cgi-bin/fhucc.cgi
 else
-  FHEXE=/home/pcl305/members/heinemey/feynhiggs/bin/FeynHiggs2.10.2_Linux
-  FHEXT=/home/pcl305/members/heinemey/feynhiggs/bin/extse2.10.2/OasatPdep
+  FHEXE=/home/pcl305/members/heinemey/feynhiggs/bin/FeynHiggs2.11.3_Linux
+  FHEXT=/home/pcl305/members/heinemey/feynhiggs/bin/extse2.11.3/OasatPdep
   FHURL=http://wwwth.mpp.mpg.de/members/heinemey/feynhiggs/cgi-bin/fhucc.cgi
 fi
 export FHEXTSE_TMPDIR=/.th/pcl305/scratch
@@ -45,21 +45,19 @@ defaults() {
   MT=173.2
 
   TB=6.2839
-  inputM=MA0
-  MA0orMHp=250
-  AbsMUE=200
-  ArgMUE=0
 
   sfpara=brief
   MSusy=1000
-  inputA=At
-  AbsAtorXt=2000
-  ArgAtorXt=0
 
-  AbsM_2=200
-  ArgM_2=0
-  AbsM_3=800
-  ArgM_3=0
+  inputA=At
+  AbsAtXt=2000	ArgAtXt=
+
+  inputM=MA0
+  MA0Hp=250
+
+  AbsMUE=200	ArgMUE=
+  AbsM_2=200	ArgM_2=
+  AbsM_3=800	ArgM_3=
 
   prodSqrts=14
 
@@ -74,20 +72,18 @@ mhmaxScenario() {
   scenario="m<sub>h</sub><sup>max</sup>"
 
   TB=20
-  inputM=MA0
-  MA0orMHp=200
-  AbsMUE=200
-  ArgMUE=0
 
   MSusy=1000
-  inputA=Xt
-  AbsAtorXt=`calc 2*$MSusy`
-  ArgAtorXt=0
 
-  AbsM_2=200
-  ArgM_2=0
-  AbsM_3=`calc .8*$MSusy`
-  ArgM_3=0
+  inputA=Xt
+  AbsAtXt=`calc 2*$MSusy` ArgAtXt=
+
+  inputM=MA0
+  MA0Hp=200
+
+  AbsMUE=200	ArgMUE=
+  AbsM_2=200	ArgM_2=
+  AbsM_3=`calc .8*$MSusy` ArgM_3=
 }
 
 #######################################################################
@@ -96,20 +92,18 @@ nomixScenario() {
   scenario="no-mixing"
 
   TB=20
-  inputM=MA0
-  MA0orMHp=200
-  AbsMUE=200
-  ArgMUE=0
 
   MSusy=2000
-  inputA=Xt
-  AbsAtorXt=0
-  ArgAtorXt=0
 
-  AbsM_2=200
-  ArgM_2=0
-  AbsM_3=`calc .8*$MSusy`
-  ArgM_3=0
+  inputA=Xt
+  AbsAtXt=0	ArgAtXt=
+
+  inputM=MA0
+  MA0Hp=200
+
+  AbsMUE=200	ArgMUE=
+  AbsM_2=200	ArgM_2=
+  AbsM_3=`calc .8*$MSusy` ArgM_3=
 }
 
 #######################################################################
@@ -118,21 +112,18 @@ smaeffScenario() {
   scenario="small alpha<sub>eff</sub>"
 
   TB=20
-  inputM=MA0
-  MA0orMHp=200
 
   MSusy=800
-  AbsMUE=`calc 2.5*$MSusy`
-  ArgMUE=0
 
   inputA=Xt
-  AbsAtorXt=-1100
-  ArgAtorXt=0
+  AbsAtXt=-1100	ArgAtXt=
 
-  AbsM_2=500
-  ArgM_2=0
-  AbsM_3=500
-  ArgM_3=0
+  inputM=MA0
+  MA0Hp=200
+
+  AbsMUE=`calc 2.5*$MSusy` ArgMUE=
+  AbsM_2=500	ArgM_2=
+  AbsM_3=500	ArgM_3=
 }
 
 #######################################################################
@@ -141,20 +132,18 @@ gluphoScenario() {
   scenario="gluophobic Higgs"
 
   TB=20
-  inputM=MA0
-  MA0orMHp=200
-  AbsMUE=300
-  ArgMUE=0
 
   MSusy=350
-  inputA=Xt
-  AbsAtorXt=-750
-  ArgAtorXt=0
 
-  AbsM_2=300
-  ArgM_2=0
-  AbsM_3=500
-  ArgM_3=0
+  inputA=Xt
+  AbsAtXt=-750	ArgAtXt=
+
+  inputM=MA0
+  MA0Hp=200
+
+  AbsMUE=300	ArgMUE=
+  AbsM_2=300	ArgM_2=
+  AbsM_3=500	ArgM_3=
 }
 
 #######################################################################
@@ -164,68 +153,130 @@ cpxScenario() {
   higgsmix=3
 
   TB=10
-  inputM=MHp
-  MA0orMHp=200
-  AbsMUE=2000
-  ArgMUE=0
 
   MSusy=500
-  inputA=At
-  AbsAtorXt=900
-  ArgAtorXt=1.57
 
-  AbsM_2=500
-  ArgM_2=0
-  AbsM_3=1000
-  ArgM_3=1.57
+  inputA=At
+  AbsAtXt=900	ArgAtXt=1.57
+
+  inputM=MHp
+  MA0Hp=200
+
+  AbsMUE=2000	ArgMUE=
+  AbsM_2=500	ArgM_2=
+  AbsM_3=1000	ArgM_3=1.57
+}
+
+#######################################################################
+
+mhmaxupScenario() {
+  scenario="m<sub>h</sub><sup>max</sup> up"
+
+  TB=20
+
+  M3SQ=1000	M3SU=$M3SQ	M3SD=$M3SQ
+  M3SL=$M3SQ	M3SE=$M3SL
+  M2SQ=1500	M2SU=$M2SQ	M2SD=$M2SQ
+  M2SL=500	M2SE=$M2SL
+  M1SQ=$M2SQ	M1SU=$M1SQ	M1SD=$M1SQ
+  M1SL=$M2SL	M1SE=$M1SL
+
+  inputA=Xt
+  AbsAtXt=2000	ArgAtXt=
+  AbsAc=0	ArgAc=
+  AbsAs=0	ArgAs=
+  AbsAmu=0	ArgAmu=
+
+  inputM=MA0
+  MA0Hp=600
+
+  AbsMUE=200	ArgMUE=
+  AbsM_2=200	ArgM_2=
+  AbsM_3=1500	ArgM_3=
+}
+
+#######################################################################
+
+mhmodpScenario() {
+  mhmaxupScenario
+  scenario="m<sub>h</sub> modp"
+
+  inputA=Xt
+  AbsAtXt=1500	ArgAtXt=
+}
+
+#######################################################################
+
+mhmodmScenario() {
+  mhmaxupScenario
+  scenario="m<sub>h</sub> modm"
+
+  inputA=Xt
+  AbsAtXt=-1900	ArgAtXt=
 }
 
 #######################################################################
 
 lightstauScenario() {
+  mhmaxupScenario
   scenario="Light Stau"
-  higgsmix=2
 
-  TB=20
+  M3SL=245	M3SE=$M3SL
+
+  inputA=Xt
+  AbsAtXt=1600	ArgAtXt=
+  AbsAtau=0	ArgAtau=
+
+  AbsMUE=500	ArgMUE=
+}
+
+#######################################################################
+
+lightstopScenario() {
+  mhmaxupScenario
+  scenario="Light Stop"
+
+  M3SQ=500	M3SU=$M3SQ	M3SD=$M3SQ
+
+  inputA=Xt
+  AbsAtXt=1000	ArgAtXt=
+
+  AbsMUE=350	ArgMUE=
+  AbsM_2=350	ArgM_2=
+}
+
+#######################################################################
+
+lowmhScenario() {
+  mhmaxupScenario
+  scenario="low m<sub>h</sub>"
+
+  TB=6
+
+  M3SQ=1500	M3SU=$M3SQ	M3SD=$M3SQ
+
+  inputA=Xt
+  AbsAtXt=3675	ArgAtXt=
 
   inputM=MA0
-  MA0orMHp=600
-  AbsMUE=500
-  ArgMUE=
+  MA0Hp=110
 
-  M3SQ=1000
-  M3SU=$M3SQ
-  M3SD=$M3SQ
-  M3SL=$M3SQ
-  M3SE=$M3SQ
+  AbsMUE=1700	ArgMUE=
+}
 
-  M2SQ=1500
-  M2SU=$M2SQ
-  M2SD=$M2SQ
-  M2SL=$M2SQ
-  M2SE=$M2SQ
+#######################################################################
 
-  M1SQ=$M2SQ
-  M1SU=$M1SQ
-  M1SD=$M1SQ
-  M1SL=$M1SQ
-  M1SE=$M1SQ
+tauphoScenario() {
+  mhmaxupScenario
+  scenario="tauphobic"
 
-  MSusy=500
+  M3SQ=1500	M3SU=$M3SQ	M3SD=$M3SQ
+  M3SL=500	M3SE=$M3SL
+
   inputA=Xt
-  AbsAtorXt=1600
-  ArgAtorXt=
-  AbsAc=0
-  ArgAc=
-  AbsAs=0
-  ArgAs=
-  AbsAmu=0
-  ArgAmu=
+  AbsAtXt=3675	ArgAtXt=
 
-  AbsM_2=200
-  ArgM_2=
-  AbsM_3=1500
-  ArgM_3=
+  AbsMUE=500	ArgMUE=
 }
 
 #######################################################################
@@ -402,7 +453,9 @@ flags() {
 	<p>m<sub>t</sub> in the 1-/2-loop corrections:
 	<select name="runningMT">
 	  `option 0 $runningMT`pole top mass
-	  `option 1 $runningMT`running top mass
+	  `option 1 $runningMT`running top mass (SM MSbar 2L)
+	  `option 2 $runningMT`running top mass (SM MSbar 1L)
+	  `option 3 $runningMT`running top mass (MSSM DRbar)
 	</select>
 	</p>
 
@@ -442,12 +495,19 @@ selectScenario() {
 	<input type="submit" name="results"
 	  value="Go straight to the results"></p>
 
-	<p>Or, choose a predefined scenario:
+	<p>Or, choose a predefined scenario:<br>
 	<input type="submit" name="mhmax" value="mh_max">
 	<input type="submit" name="nomix" value="no-mixing">
 	<input type="submit" name="smaeff" value="small alpha_eff">
 	<input type="submit" name="glupho" value="gluophobic Higgs">
-	<input type="submit" name="cpx" value="CPX">
+	<input type="submit" name="cpx" value="CPX"><br>
+	<input type="submit" name="mhmaxup" value="mh_max up">
+	<input type="submit" name="mhmodp" value="mh modp">
+	<input type="submit" name="mhmodm" value="mh modm">
+	<input type="submit" name="lstau" value="light stau">
+	<input type="submit" name="lstop" value="light stop">
+	<input type="submit" name="lowmh" value="low mh">
+	<input type="submit" name="taupho" value="tauphobic Higgs">
 	</p>
 
 	<p>Or, make a detailed selection
@@ -576,7 +636,7 @@ higgsPara() {
 	<br>
 	<input type="radio" name="inputM" value="MHp" $MHpchecked>M<sub>H+</sub>
 	</td>
-	<td>= `real MA0orMHp` GeV</p></td>
+	<td>= `real MA0Hp` GeV</p></td>
 	</tr>
 
 	<tr>
@@ -616,7 +676,7 @@ briefSfermionPara() {
 	<br>
 	<input type="radio" name="inputA" value="Xt" $Xtchecked>X<sub>t</sub>
 	</td>
-	<td>= `complex AtorXt` GeV</p></td>
+	<td>= `complex AtXt` GeV</p></td>
 	</tr>
 	</table></p>
 
@@ -740,7 +800,7 @@ _EOF_
 
 #######################################################################
 
-briefNmfvPara() {
+briefFVPara() {
   fvshowhide="fvHide"
   test "$fvpara" = brief && fvshowhide="fvShow"
 
@@ -755,8 +815,8 @@ _EOF_
 
 #######################################################################
 
-detailedNmfvPara() {
-  briefNmfvPara
+detailedFVPara() {
+  briefFVPara
 
   cat <<- _EOF_
 	<p><table>
@@ -773,6 +833,16 @@ detailedNmfvPara() {
 	`delta D LR`
 	`delta D RL`
 	`delta D RR`
+	</table></p>
+
+	<p><table>
+	`delta L LL`
+	</table></p>
+
+	<p><table>
+	`delta E LR`
+	`delta E RL`
+	`delta E RR`
 	</table></p>
 _EOF_
 }
@@ -848,7 +918,7 @@ runFeynHiggs() {
 
 	MT $MT
 	TB $TB
-	$inputM $MA0orMHp
+	$inputM $MA0Hp
 	${AbsMUE:+Abs(MUE)} $AbsMUE
 	${ArgMUE:+Arg(MUE)} $ArgMUE
 
@@ -869,8 +939,8 @@ runFeynHiggs() {
 	${M2SD:+M2SD} $M2SD
 	${M3SD:+M3SD} $M3SD
 
-	Abs($inputA) $AbsAtorXt
-	Arg($inputA) $ArgAtorXt
+	Abs($inputA) $AbsAtXt
+	Arg($inputA) $ArgAtXt
 	${AbsAe:+Abs(Ae)} $AbsAe
 	${ArgAe:+Arg(Ae)} $ArgAe
 	${AbsAu:+Abs(Au)} $AbsAu
@@ -1024,6 +1094,13 @@ test -n "$nomix" && nomixScenario
 test -n "$smaeff" && smaeffScenario
 test -n "$glupho" && gluphoScenario
 test -n "$cpx" && cpxScenario
+test -n "$mhmaxup" && mhmaxupScenario
+test -n "$lstau" && lightstauScenario
+test -n "$lstop" && lightstopScenario
+test -n "$mhmodp" && mhmodpScenario
+test -n "$mhmodm" && mhmodmScenario
+test -n "$lowmh" && lowmhScenario
+test -n "$taupho" && tauphoScenario
 
 test -n "$smHide" && smpara=brief
 test -n "$smShow" && smpara=detailed
@@ -1051,7 +1128,7 @@ eval ${sfpara}SfermionPara
 	separator
 gauginoPara
 	separator
-eval ${fvpara}NmfvPara
+eval ${fvpara}FVPara
 	separator
 scale
 	separator

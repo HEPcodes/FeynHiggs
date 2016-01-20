@@ -1,9 +1,7 @@
-#define HTNNLO
-
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 11 May 15 th
+* last modified 18 Sep 15 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -37,12 +35,6 @@
 
 	RealType Run
 	external Run
-
-#ifdef HTNNLO
-	character*128 env
-	integer htnnlo
-	data htnnlo /-1/
-#endif
 
 	para_valid = 0
 	sf_valid = 0
@@ -121,27 +113,9 @@ c	call AlphaS(AlfasMT, nf, MT)
 	  Mf(tT,3) = MT/(1 - AlfatSMMT/(2*pi) + 4/(3*pi)*AlfasMT)
 	enddo
 
-#ifdef HTNNLO
-	if( htnnlo .eq. -1 ) then
-	  call getenv("FHHTNNLO", env)
-	  htnnlo = 0
-	  read(env, *, end=1, err=1) htnnlo
-1	  continue
-	endif
-	if( htnnlo .ne. 0 ) then
-* the following NNLO contribution from 1312.5743 Eq (40)
-	  HTSMMT = .93697D0 + .00550D0*(Mf(3,3) - 173.35D0) -
-     &      .6D0*(AlfasMZ - .1184D0)
-	PRINT *, "ht new =", HTSMMT
-c	PRINT *, "ht old =", sqrt(4*pi*AlfatSMMT)
-	PRINT *, "ht old =", Mf(tT,3)/(vev/sqrt2)
-	  AlfatSMMT = HTSMMT**2/(4*pi)
-	PRINT *, "MT(MT) old =", Mf(tT,3)
-c	  Mf(tT,3) = MT/(1 - AlfatSMMT/(2*pi) + 4/(3*pi)*AlfasMT)
-	  Mf(tT,3) = vev/sqrt2*HTSMMT
-	PRINT *, "MT(MT) new =", Mf(tT,3)
-	endif
-#endif
+* 2L QCD corrections according to L. Mihaila:
+	if( runningMT .ne. 2 )
+     &    Mf(tT,3) = Mf(tT,3) - 1.86638D0/172.9D0*MT
 
 	Mf2(tT,3) = Mf(tT,3)**2
 

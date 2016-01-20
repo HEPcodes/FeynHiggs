@@ -5,7 +5,7 @@
 * charged-Higgs cross-section data are from Tilman Plehn
 *   http://www.ph.ed.ac.uk/~tplehn/charged_higgs
 * this file is part of FeynHiggs
-* last modified 25 Sep 14 th
+* last modified 4 Jul 15 th
 
 #include "externals.h"
 #include "types.h"
@@ -237,9 +237,19 @@
 	  enh = 1/abs(1 + Deltaf(bTR,3))
 	  TBeff = TB*sqrt(enh)
 
+	  if( debuglevel .gt. 3 )
+     &      DPROD "TBeff =", TBeff ENDL
+
 	  if( abs(sqrts - 14) .lt. 1D-5 ) then
 
 #include "CHiggsProdFits-LHC14.f"
+
+	    tHm = tHm*enh
+	  endif
+
+	  if( abs(sqrts - 13) .lt. 1D-5 ) then
+
+#include "CHiggsProdFits-LHC13.f"
 
 	    tHm = tHm*enh
 	  endif

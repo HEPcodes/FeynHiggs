@@ -1,17 +1,17 @@
 \documentclass[12pt,a4paper]{report}
-\usepackage{amsmath,amssymb,multicol}
+\usepackage{amsmath,amssymb,multicol,mathpple}
 \usepackage[colorlinks]{hyperref}
 
-\renewcommand{\rmdefault}{ppl}
-\DeclareSymbolFont{operators}{OT1}{pplcm}{m}{n}
-\DeclareSymbolFont{letters}{OML}{pplcm}{m}{it}
-%\DeclareSymbolFont{symbols}{OMS}{pzccm}{m}{n}
-\DeclareSymbolFont{largesymbols}{OMX}{psycm}{m}{n}
-\DeclareSymbolFont{bold}{OT1}{ppl}{bx}{n}
-\DeclareSymbolFont{italic}{OT1}{ppl}{m}{it}
-\DeclareMathAlphabet{\mathrm}{OT1}{ppl}{m}{n}
-\DeclareMathAlphabet{\mathbf}{OT1}{ppl}{bx}{n}
-\DeclareMathAlphabet{\mathit}{OT1}{ppl}{m}{it}
+%\renewcommand{\rmdefault}{ppl}
+%\DeclareSymbolFont{operators}{OT1}{pplcm}{m}{n}
+%\DeclareSymbolFont{letters}{OML}{pplcm}{m}{it}
+%%\DeclareSymbolFont{symbols}{OMS}{pzccm}{m}{n}
+%\DeclareSymbolFont{largesymbols}{OMX}{psycm}{m}{n}
+%\DeclareSymbolFont{bold}{OT1}{ppl}{bx}{n}
+%\DeclareSymbolFont{italic}{OT1}{ppl}{m}{it}
+%\DeclareMathAlphabet{\mathrm}{OT1}{ppl}{m}{n}
+%\DeclareMathAlphabet{\mathbf}{OT1}{ppl}{bx}{n}
+%\DeclareMathAlphabet{\mathit}{OT1}{ppl}{m}{it}
 
 \newenvironment{LList}%
   {\left.\begin{array}{r}}%
@@ -80,7 +80,7 @@
 
 \begin{document}
 
-\chapter*{FeynHiggs 2.11.0\\[2ex] Application Programming Interface}
+\chapter*{FeynHiggs 2.11.3\\[2ex] Application Programming Interface}
 
 \makeatletter
 \begin{multicols}{2}
@@ -184,11 +184,14 @@ determines the inclusion of higher-order corrections:
 \item[3:] also include resummation of large logs.
 \end{itemize}
 
-\FLAGIN{integer runningMT}{0}{1}
+\FLAGIN{integer runningMT}{0}{3}
 determines which top mass shall be used in the 1-/2-loop corrections 
 \begin{itemize}
 \item[0:] use $m_t^{\text{pole}}$,
-\item[1:] use $m_t^{\text{run}}$ \textit{(recommended)}.
+\item[1:] use two-loop SM-$\overline{\text{MS}}$ $m_t^{\text{run}}$
+  \textit{(recommended)},
+\item[2:] use one-loop SM-$\overline{\text{MS}}$ $m_t^{\text{run}}$,
+\item[3:] use MSSM-$\overline{\text{DR}}$ $m_t^{\text{run}}$.
 \end{itemize}
 
 \FLAGIN{integer botResum}{0}{1}
@@ -352,7 +355,10 @@ determines the inclusion of higher-order corrections:
 determines which top mass shall be used in the 1-/2-loop corrections
 \begin{itemize}
 \item[0:] use $m_t^{\text{pole}}$,
-\item[1:] use $m_t^{\text{run}}$.
+\item[1:] use two-loop SM-$\overline{\text{MS}}$ $m_t^{\text{run}}$
+  \textit{(recommended)},
+\item[2:] use one-loop SM-$\overline{\text{MS}}$ $m_t^{\text{run}}$,
+\item[3:] use MSSM-$\overline{\text{DR}}$ $m_t^{\text{run}}$.
 \end{itemize}
 
 \FLAGOUT{integer botResum}{0}{1}

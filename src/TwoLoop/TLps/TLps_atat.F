@@ -4,7 +4,7 @@
 * Based on A. Brignole, G. Degrassi, P. Slavich and F. Zwirner,
 * hep-ph/0112177.
 * this file is part of FeynHiggs
-* last modified 11 May 15 th
+* last modified 11 Dec 15 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -44,13 +44,13 @@
 
 	MbSL2 = BSS2(2) + BSS2(1) - DSf(1,4)
 
-	x20 = InvTri(MA02,MbSL2,MSt12)
+	x20 = InvTri(MSt12,MbSL2,MA02)
 
-	x19 = InvTri(MA02,MbSL2,MSt22)
+	x19 = InvTri(MSt22,MbSL2,MA02)
 
-	x21 = InvTri(MA02,MSt12,MSt22)
+	x21 = InvTri(MSt12,MSt22,MA02)
 
-	x22 = InvTri(MA02,MSt22,MSt12)
+	x22 = InvTri(MSt22,MSt12,MA02)
 
 	x6 = InvTri(MbSL2,pMT2,MUEr2)
 

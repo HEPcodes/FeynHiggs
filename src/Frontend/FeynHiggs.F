@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 11 May 15 th
+* last modified 11 Dec 15 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -32,7 +32,7 @@
 
 	character*54 dmssmpart(-1:5), dfieldren(-1:5),
      &    dtanbren(-1:3), dhiggsmix(0:5), dp2approx(-1:5),
-     &    dlooplevel(-1:4), drunningMT(-1:3),
+     &    dlooplevel(-1:4), drunningMT(-1:4),
      &    dbotResum(-1:3), dtlCplxApprox(-1:7)
 
 	data flags /"400242110"/
@@ -90,7 +90,8 @@
 	data drunningMT /
      &    "???",
      &    "use pole top mass",
-     &    "use running top mass (SM MSbar)",
+     &    "use running top mass (SM MSbar 2L)",
+     &    "use running top mass (SM MSbar 1L)",
      &    "use running top mass (MSSM DRbar)",
      &    "???" /
 
@@ -134,7 +135,7 @@
      &    ShowFlag("higgsmix",     higgsmix,     1, 4),
      &    ShowFlag("p2approx",     p2approx,     0, 4),
      &    ShowFlag("looplevel",    looplevel,    0, 3),
-     &    ShowFlag("runningMT",    runningMT,    0, 1),
+     &    ShowFlag("runningMT",    runningMT,    0, 3),
      &    ShowFlag("botResum",     botResum,     0, 2),
      &    ShowFlag("tlCplxApprox", tlCplxApprox, 0, 6)
 
@@ -220,7 +221,7 @@ c	if( error .eq. -2 ) goto 2
      &    /"  #6 = looplevel, inclusion of higher-order corrections",
      &    4 DESC_FMT
      &    /"  #7 = runningMT, pole vs. running MT",
-     &    2 DESC_FMT
+     &    4 DESC_FMT
      &    /"  #8 = botResum, MB resummation",
      &    3 DESC_FMT
      &    /"  #9 = tlCplxApprox, complex parameters in the 2-loop corrections",
@@ -235,7 +236,7 @@ c	if( error .eq. -2 ) goto 2
      &    (i, dhiggsmix(i),     i = 1, 4),
      &    (i, dp2approx(i),     i = 0, 4),
      &    (i, dlooplevel(i),    i = 0, 3),
-     &    (i, drunningMT(i),    i = 0, 1),
+     &    (i, drunningMT(i),    i = 0, 3),
      &    (i, dbotResum(i),     i = 0, 2),
      &    (i, dtlCplxApprox(i), i = 0, 6)
 
