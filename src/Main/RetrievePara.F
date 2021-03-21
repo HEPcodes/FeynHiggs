@@ -1,7 +1,7 @@
 * RetrievePara.F
 * retrieve the input parameters from FeynHiggs
 * this file is part of FeynHiggs
-* last modified 14 Nov 17 th
+* last modified 9 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -36,7 +36,7 @@
 
 	scalefactor_ = scalefactor
 
-	MT_ = MT
+	MT_ = Mf(3,3)
 	TB_ = TB
 	if( inputmass .eq. A0A0 ) then
 	  MA0_ = MA0

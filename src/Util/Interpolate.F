@@ -1,7 +1,7 @@
 * Interpolate.F
 * interpolation routines for complex parameters
 * this file is part of FeynHiggs
-* last modified 21 Feb 18 th
+* last modified 8 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -40,26 +40,28 @@
 	nvars = 0
 	ipmonomial(1) = 1
 	ipvdmb(1) = 1
-	do i = 1, ipvars
-	  bit(i) = ipvars
-	  if( iand(tlCplxApprox, not(2)) .eq. 0 ) then
-	    var(i) = Re(var(i))
-	  else if( Im(var(i)) .ne. 0 ) then
-	    phase = atan2(abs(Im(var(i))), Re(var(i)))
-	    if( debuglevel .ge. 3 ) DPARA "phase ", name(i), phase ENDL
-	    phase = phase/pi
-	    n = ibset(0, nvars)
-	    do j = 1, n
-	      ipmonomial(j+n) = ipmonomial(j)*phase
-	      ipvdmb(j+n) = ipvdmb(j) + ishft(ipvdmb(j), n)
-	    enddo
-	    bit(i) = nvars
-	    nvars = nvars + 1
-	    var(i) = abs(var(i))
-	  endif
-	enddo
+	bit = ipvars
+	if( iand(tlCplxApprox, not(2)) .ne. 0 ) then
+	  do i = 1, ipvars
+	    if( Im(var(i)) .ne. 0 ) then
+	      phase = atan2(abs(Im(var(i))), Re(var(i)))
+	      if( debuglevel .ge. 3 ) DPARA "phase ", name(i), phase ENDL
+	      phase = phase/pi
+	      n = ibset(0, nvars)
+	      do j = 1, n
+	        ipmonomial(j+n) = ipmonomial(j)*phase
+	        ipvdmb(j+n) = ipvdmb(j) + ishft(ipvdmb(j), n)
+	      enddo
+	      bit(i) = nvars
+	      nvars = nvars + 1
+	      var(i) = abs(var(i))
+	    endif
+	  enddo
+	endif
 
-#define SignedVar(i) (1-2*ibits(ipi-1,bit(i),1))*var(i)
+#define SignedVar(i) (1-2*ibits(ipi-1,bit(i),1))*Re(var(i))
+
+	if( debuglevel .ge. 3 ) DPARA "interpolated vars ", nvars ENDL
 
 	ipn = ibset(0, nvars)
 	do ipi = 1, ipn

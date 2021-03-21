@@ -3,7 +3,7 @@
 * code adapted from the "Handbook" routines for complex A
 * (Wilkinson, Reinsch: Handbook for Automatic Computation, p. 202)
 * this file is part of FeynHiggs
-* last modified 5 Jun 13 th
+* last modified 12 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -23,14 +23,11 @@
 	ComplexType A(ldA,*), U(ldU,*)
 	RealType d(*)
 
-	integer p, q, pp, qq, j, o, r
+	integer sweep, p, q, pp, qq, j, o, r
 	RealType red, off, thresh
 	RealType t, delta, invc, s, App, Aqq
 	ComplexType x, y, Apq
 	RealType evp, evq, ev(2,MAXDIM)
-
-	integer sweep
-	common /nsweeps/ sweep
 
 	if( n .gt. MAXDIM ) then
 	  print *, "Dimension too large"
@@ -38,11 +35,11 @@
 	  return
 	endif
 
-	do p = 1, n
+	forall(p = 1:n)
 	  ev(1,p) = 0
 	  ev(2,p) = Re(A(p,p))
 	  d(p) = ev(2,p)
-	enddo
+	endforall
 
 	do q = 2, n
 	  do p = 1, q - 1
@@ -50,22 +47,13 @@
 	  enddo
 	enddo
 
-	do p = 1, n
-	  do q = 1, n
-	    U(q,p) = 0
-	  enddo
-	  U(p,p) = 1
-	enddo
+	U(1:n,1:n) = 0
+	forall(p = 1:n) U(p,p) = 1
 
 	red = .04D0/n**4
 
 	do sweep = 1, 50
-	  off = 0
-	  do q = 2, n
-	    do p = 1, q - 1
-	      off = off + Sq(A(p,q))
-	    enddo
-	  enddo
+	  off = sum((/(Sq(A(1:q-1,q)), q = 2, n)/))
 	  if( .not. off .gt. SYM_EPS ) goto 1
 
 	  thresh = 0
@@ -141,10 +129,10 @@
 	    if( sweep .lt. 4 ) thresh = off*red
 	  enddo
 
-	  do p = 1, n
+	  forall(p = 1:n)
 	    ev(1,p) = 0
 	    d(p) = ev(2,p)
-	  enddo
+	  endforall
 	enddo
 
 	print *, "Bad convergence in SfEigensystem"

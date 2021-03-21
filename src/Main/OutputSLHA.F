@@ -1,7 +1,7 @@
 * OutputSLHA.F
 * fill SLHA data structure from FeynHiggs inputs and outputs
 * this file is part of FeynHiggs
-* last modified 26 Oct 17 th
+* last modified 9 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -103,19 +103,19 @@
 
 	if( .not. btest(key, 0) ) goto 1
 
-	SMInputs_invAlfaMZ = invAlfaMZ - DeltaAlfaTopAlfa(MT2, MZ2)
+	SMInputs_invAlfaMZ = invAlfaMZ - DeltaAlfaTopAlfa(Mf2(3,3), MZ2)
 	SMInputs_AlfasMZ = AlfasMZ
 	SMInputs_GF = GF
 
-	SMInputs_Me = ME
-	SMInputs_Mu = MU
-	SMInputs_Md = MD
-	SMInputs_Mmu = MM
-	SMInputs_Mc = MC
-	SMInputs_Ms = MS
-	SMInputs_Mtau = ML
-	SMInputs_Mt = MT
-	SMInputs_Mb = MB
+	SMInputs_Me = Mf(2,1)
+	SMInputs_Mu = Mf(3,1)
+	SMInputs_Md = Mf(4,1)
+	SMInputs_Mmu = Mf(2,2)
+	SMInputs_Mc = Mf(3,2)
+	SMInputs_Ms = Mf(4,2)
+	SMInputs_Mtau = Mf(2,3)
+	SMInputs_Mt = Mf(3,3)
+	SMInputs_Mb = Mf(4,3)
 
 	SMInputs_MZ = MZ
 
@@ -124,7 +124,7 @@
 	VCKMIn_rhobar = CKMrhobar
 	VCKMIn_etabar = CKMetabar
 
-	DMass_Q = scalefactor*MT
+	DMass_Q = scalefactor*Mf(3,3)
 
 	MinPar_TB = TB
 R2	ExtPar_TB = TB

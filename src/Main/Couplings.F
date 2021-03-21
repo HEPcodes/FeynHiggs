@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 27 Oct 17 th
+* last modified 24 Apr 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -24,24 +24,14 @@ c#define HFFTEST 1
 #include "FH.h"
 #define __SUBROUTINE__ "FHCouplings"
 
-	integer i
-
 	call CheckCouplings(error, fast)
 
 	if( error .gt. 0 ) return
 
-	do i = 1, ncouplings
-	  couplings_(i) = couplings(i)
-	enddo
-	do i = 1, ncouplingsms
-	  couplingsms_(i) = couplingsms(i)
-	enddo
-	do i = 1, ngammas
-	  gammas_(i) = gammas(i)
-	enddo
-	do i = 1, ngammasms
-	  gammasms_(i) = gammasms(i)
-	enddo
+	couplings_ = couplings
+	couplingsms_ = couplingsms
+	gammas_ = gammas
+	gammasms_ = gammasms
 	end
 
 
@@ -94,21 +84,11 @@ c#define HFFTEST 1
 	call CheckHiggsCorr(error)
 	if( error .gt. 0 ) return
 
-	do i = 1, ncouplings
-	  couplings(i) = 0
-	enddo
-	do i = 1, ncouplingsms
-	  couplingsms(i) = 0
-	enddo
-	do i = 1, ngammas
-	  gammas(i) = 0
-	enddo
-	do i = 1, ngammasms
-	  gammasms(i) = 0
-	enddo
-	do i = 1, H0FF(3,4,3,3)
-	  ratios(i) = 0
-	enddo
+	couplings = 0
+	couplingsms = 0
+	gammas = 0
+	gammasms = 0
+	ratios = 0
 
 	uzext0 = uzext
 	uzext1 = uzext
@@ -129,33 +109,15 @@ c#define HFFTEST 1
 #endif
 
 #if defined(HHHTEST) || defined(HFFTEST)
-	do uz = 1, 2
-	  XHiggs(1,1,uz) = 1
-	  XHiggs(2,2,uz) = 1
-	  XHiggs(3,3,uz) = 1
-	  XHiggs(2,1,uz) = 0
-	  XHiggs(3,1,uz) = 0
-	  XHiggs(1,2,uz) = 0
-	  XHiggs(3,2,uz) = 0
-	  XHiggs(1,3,uz) = 0
-	  XHiggs(2,3,uz) = 0
-	enddo
+	XHiggs(:,:,1:2) = 0
+	forall(i = 1:3) XHiggs(i,i,1:2) = 1
 #endif
 
-	do uz = 0, 2
-	  DD(1,1,uz) = CA*YHiggs(1,1,uz) + SA*YHiggs(1,2,uz)
-	  DD(2,1,uz) = CA*YHiggs(2,1,uz) + SA*YHiggs(2,2,uz)
-	  DD(3,1,uz) = CA*YHiggs(3,1,uz) + SA*YHiggs(3,2,uz)
-
-	  DD(1,2,uz) = CA*YHiggs(1,2,uz) - SA*YHiggs(1,1,uz)
-	  DD(2,2,uz) = CA*YHiggs(2,2,uz) - SA*YHiggs(2,1,uz)
-	  DD(3,2,uz) = CA*YHiggs(3,2,uz) - SA*YHiggs(3,1,uz)
-
-	  DD(1,3,uz) = YHiggs(1,3,uz)
-	  DD(2,3,uz) = YHiggs(2,3,uz)
-	  DD(3,3,uz) = YHiggs(3,3,uz)
-	enddo
-
+	forall(i = 1:3)
+	  DD(i,1,:) = CA*YHiggs(i,1,:) + SA*YHiggs(i,2,:)
+	  DD(i,2,:) = CA*YHiggs(i,2,:) - SA*YHiggs(i,1,:)
+	  DD(i,3,:) = YHiggs(i,3,:)
+	endforall
 
 *** COUPLINGS AND DECAY WIDTHS ***
 
@@ -199,7 +161,7 @@ c	call setdelta(100D0)
 c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 * Hbb resummation factors a la 1103.1335 Eqs. (113)-(116)
 	    HffDb(0,h,4,g) = (1 + rtb(h)*y - cI*(1 - rtb(h))*x)/(1 + y)
-	    HffDb(1,h,4,g) = Deltaf(4,g)*(1 - rtb(h))
+	    HffDb(1,h,4,g) = Deltaf(bTR1,g)*(1 - rtb(h))
 	  enddo
 	enddo
 
@@ -254,12 +216,12 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 #if 1
 	  call Kin1to2(fac, h, 0D0, MZ, 1D0)
 
-	  call hgaZSM_CalcRenConst
+	  call hgaZSM_RenConst
 	  call hgaZSM_SquaredME(sqme)
 	  GammaSM(H0VV(h,2)) = fac*sqme(2)
 	  GammaSMTot(h) = GammaSMTot(h) + GammaSM(H0VV(h,2))
 
-	  call hgaZ_CalcRenConst
+	  call hgaZ_RenConst
 	  call hgaZ_SquaredME(sqme)
 	  Gamma(H0VV(h,2)) = fac*sqme(2)
 	  GammaTot(h) = GammaTot(h) + Gamma(H0VV(h,2))
@@ -341,12 +303,12 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 	    enddo
 	  enddo
 
-	  call hee_CalcRenConst
-	  call heeSM_CalcRenConst
-	  call huu_CalcRenConst
-	  call huuSM_CalcRenConst
-	  call hdd_CalcRenConst
-	  call hddSM_CalcRenConst
+	  call hee_RenConst
+	  call heeSM_RenConst
+	  call huu_RenConst
+	  call huuSM_RenConst
+	  call hdd_RenConst
+	  call hddSM_RenConst
 
 	  do g2 = 1, 3
 	    do g1 = 1 + iand(f, g2 - 1), 3 + iand(f, g2 - 3)
@@ -393,8 +355,8 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 
 	c = cI/sqrt2*EL0/(SW*MW)
 
-	mlo = MT - .5D0
-	mhi = MT + MB + .8D0
+	mlo = Mf(3,3) - .5D0
+	mhi = Mf(3,3) + Mf(4,3) + .8D0
 
 * Hp -> Fermion Fermion
 
@@ -436,20 +398,20 @@ c	  i = -iand(isB(t), isMFV(t))
 	if( m .lt. mhi ) then
 	  GammaTot(4) = GammaTot(4) - Gamma(HpFF(2,3,3))
 	  gam = 0
-	  if( m .gt. MW + 2*MB ) then
+	  if( m .gt. MW + 2*Mf(4,3) ) then
 	    m = min(m, mlo)
 * off-shell decay to top* bottom -> W bb
 * taken from hep-ph/9511342, Eq. (65)
 	    kw = MW2/m**2
-	    kt = MT2/m**2
+	    kt = Mf2(3,3)/m**2
 	    kx = (kt - 1)/(kt - kw)
-	    gam = 3/(64*pi**3)*(GF*MT2/TB)**2*m*
+	    gam = 3/(64*pi**3)*(GF*Mf2(3,3)/TB)**2*m*
      &        ( -2.5D0 + (4 - 1.5D0*kw)*kw +
      &          (1 - kw)/kt**2*(2*kw**2*(2 - kt) + kt*(3*kt**2 - kw)) +
      &          (1 - 4*kt + 3*(kt - kw)*(kt + kw))*log(kx) +
      &          kw**2/kt**3*(3*kt + 4*kw*(kt - 1))*log(kx*kw) )*
-     &        (1 - MB/MT)**3
-*             ^^^^^^^^^^^^^^ fudge factor for non-zero bottom mass
+     &        (1 - Mf(4,3)/Mf(3,3))**3
+*             ^^^^^^^^^^^^^^^^^^^^^ fudge factor for non-zero bottom mass
 * interpolate in the region MT - .5 GeV < MHp < MT + MB + .8 GeV
 	    if( MHiggs(4) .gt. mlo ) gam = gam +
      &        (MHiggs(4) - mlo)/(mhi - mlo)*
@@ -511,7 +473,7 @@ c	  i = -iand(isB(t), isMFV(t))
      &     SA2*(se2R(HHHH) + seEFT(HHHH)) +
      &     S2A*(se2R(h0HH) + seEFT(h0HH)))
 
-	call hhh_CalcRenConst
+	call hhh_RenConst
 
 	do h2 = 1, 3
 	  do h1 = 1, 3
@@ -645,14 +607,14 @@ c	  i = -iand(isB(t), isMFV(t))
 
 * top -> W bottom
 
-	r = MW/MT
+	r = MW/Mf(3,3)
 	rr = (1 - r)*(1 + r)
 	r2 = 1 + 2*r**2
 	logrr = log(rr)
 	logr2 = log(r**2)
 
 * hep-ph/0408158, Eqs 6 + 26:
-	Gamma(tBF(1)) = GF*MT*MT2/(8*pi*sqrt2)*rr**2*r2*(
+	Gamma(tBF(1)) = GF*Mf(3,3)**3/(8*pi*sqrt2)*rr**2*r2*(
      &    1 - C_F/(2*pi)*AlfasMT*(
      &      2/3D0*pi**2 + 1/2D0 + 2*(logr2 + 1)*(logrr - 1) -
      &      4/(3*rr) + (22 - 34*r**2)/(9*rr**2)*logr2 +
@@ -660,8 +622,8 @@ c	  i = -iand(isB(t), isMFV(t))
 
 * top -> H+ bottom
 
-	if( MT .gt. MHiggs(4) + MB ) then
-	  r = 1 - MHiggs2(4)/MT2
+	if( Mf(3,3) .gt. MHiggs(4) + Mf(4,3) ) then
+	  r = 1 - MHiggs2(4)/Mf2(3,3)
 
 * these is the H+ -> t b coupling with MB(MT)/|1 + Db|, MT(MT)
 	  c = cI/sqrt2*EL0/(SW*MW)
@@ -674,11 +636,11 @@ c	  i = -iand(isB(t), isMFV(t))
 * of the Kallen function.  Additional factor 1/2 from mismatch of
 * 'c' in  Couplings.F and \tilde c.
 * Finite O(alpha_s) corrections from hep-ph/9912516, Eq. (29).
-	  Gamma(tBF(2)) = 1/(32*pi*MT) *
-     &      Kallen(MT, MHiggs(4), MB) * (
-     &        ((MT - MHiggs(4))*(MT + MHiggs(4)) + MB2)*
+	  Gamma(tBF(2)) = 1/(32*pi*Mf(3,3)) *
+     &      Kallen(Mf(3,3), MHiggs(4), Mf(4,3)) * (
+     &        ((Mf(3,3) - MHiggs(4))*(Mf(3,3) + MHiggs(4)) + Mf2(4,3))*
      &          (Sq(cL(1)) + Sq(cR(1))) +
-     &        4*MT*MB*abs(cL(1)*cR(1)) ) *
+     &        4*Mf(3,3)*Mf(4,3)*abs(cL(1)*cR(1)) ) *
      &      ( 1 + AlfasMT/pi*(7 - 8/9D0*pi**2 +
      &          (2/3D0*r**2 - 2)*log(r) + r*(2 + 4/9D0*r)) )
 	endif
@@ -929,7 +891,7 @@ c	call CalcSE(0D0, cpeven, 0)
      &    S2A*Re(seR(h0HH))
 
 	hc(1,1,1) = -3*SB + 3/MZ2/SB*(omega_t +
-     &    GF*sqrt2/(pi**2*SB2)*MT2**2)		! hep-ph/0108245, eq26
+     &    GF*sqrt2/(pi**2*SB2)*Mf2(3,3)**2)	! hep-ph/0108245, eq26
 	hc(1,1,2) = CB 
 	hc(1,2,2) = SB 
 	hc(2,2,2) = -3*CB
@@ -1268,10 +1230,11 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	call AlphaS(AlfasMH, nf, mh2)
 
 	call RunQCD(qrun,mh2, 1D0,2D0**2)
-	Mf(tH,1) = MU*qrun
-	call RunQCD(Mf(tH,2),mh2, MC,MC2)
+	Mf(tH,1) = Mf(3,1)*qrun
+	call RunQCD(Mf(tH,2),mh2, Mf(3,2),Mf2(3,2))
 	Mf(tH,3) = mtr
-	if( Mf(tH,3) .lt. 0 ) call RunQCD(Mf(tH,3),mh2, Mf(tT,3),MT2)
+	if( Mf(tH,3) .lt. 0 )
+     &    call RunQCD(Mf(tH,3),mh2, Mf(tT,3),Mf2(3,3))
 	if( debuglevel .ge. 5 ) then
 	  DCOUP "SetDecayScale Q =", mh ENDL
 	  DCOUP "Alfas(Q) =", AlfasMH	ENDL
@@ -1281,9 +1244,9 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	endif
 	call SfUpdate(fail, X4(3,tH,3,3), sort)
 
-	Mf(bH,1) = MD*qrun
-	Mf(bH,2) = MS*qrun
-	call RunQCD(Mf(bH,3),mh2, MB,MB2)
+	Mf(bH,1) = Mf(4,1)*qrun
+	Mf(bH,2) = Mf(4,2)*qrun
+	call RunQCD(Mf(bH,3),mh2, Mf(4,3),Mf2(4,3))
 	if( debuglevel .ge. 5 ) then
 	  DCOUP "Mf(bH,1) =", Mf(bH,1)	ENDL
 	  DCOUP "  (bH,2) =", Mf(bH,2)	ENDL

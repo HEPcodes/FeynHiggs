@@ -3,7 +3,7 @@
 		caching of tensor coefficients in
 		dynamically allocated memory
 		this file is part of FeynHiggs
-		last modified 4 Aug 14 th
+		last modified 20 Apr 18 th
 */
 
 
@@ -22,15 +22,11 @@
 #define cachecopy_ cachecopy
 #endif
 
-#ifndef REALSIZE
-#define REALSIZE 8
-#endif
-
 #ifndef BIGENDIAN
 #define BIGENDIAN 0
 #endif
 
-#if REALSIZE > 8
+#if QUAD
 #define CMPBITS 64
 #define MSB (1-BIGENDIAN)
 #else
@@ -43,7 +39,7 @@ typedef long long dblint;
 
 typedef unsigned long long udblint;
 
-typedef struct { dblint part[REALSIZE/8]; } RealType;
+typedef struct { dblint part[QUAD+1]; } RealType;
 
 typedef const RealType cRealType;
 

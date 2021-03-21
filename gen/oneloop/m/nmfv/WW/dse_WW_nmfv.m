@@ -55,14 +55,15 @@
          (UCha[Cha3, 1]*ZNeuC[Neu3, 2] + (UCha[Cha3, 2]*ZNeuC[Neu3, 3])/
             Sqrt[2])*(VCha[Cha3, 1]*ZNeuC[Neu3, 2] - 
            (VCha[Cha3, 2]*ZNeuC[Neu3, 4])/Sqrt[2])))))/(2*Pi*SW2), 
-  (Alfa1L*(-12*CW2^2*B0i[bb0, k2, MW2, MZ2] + 
-     4*(-(CW2^2*(3*k2 + 2*MZ2)) + MW2*SW2^2)*B0i[dbb0, k2, MW2, MZ2] + 
-     CW2*(4*(-3*SW2*B0i[bb0, k2, 0, MW2] + (-3*k2 + MW2)*SW2*
-          B0i[dbb0, k2, 0, MW2] + MW2*(SBA2*B0i[dbb0, k2, Mh02, MW2] + 
-           CBA2*B0i[dbb0, k2, MHH2, MW2])) - 4*(B0i[dbb00, k2, MA02, MHp2] + 
-         SBA2*(B0i[dbb00, k2, Mh02, MW2] + B0i[dbb00, k2, MHH2, MHp2]) + 
-         CBA2*(B0i[dbb00, k2, Mh02, MHp2] + B0i[dbb00, k2, MHH2, MW2]) + 
-         B0i[dbb00, k2, MZ2, MW2]) + SW2*(8*B0i[bb1, k2, MW2, 0] - 
-         32*B0i[dbb00, k2, MW2, 0] + 8*k2*B0i[dbb1, k2, MW2, 0])) + 
-     CW2^2*(8*B0i[bb1, k2, MW2, MZ2] - 32*B0i[dbb00, k2, MW2, MZ2] + 
-       8*k2*B0i[dbb1, k2, MW2, MZ2])))/(16*CW2*Pi*SW2)}}
+  (Alfa1L*(8*(SW2*B0i[bb1, k2, MW2, 0] + CW2*B0i[bb1, k2, MW2, MZ2]) + 
+     4*(-3*SW2*B0i[bb0, k2, 0, MW2] + (-3*k2 + MW2)*SW2*
+        B0i[dbb0, k2, 0, MW2] + MW2*(SBA2*B0i[dbb0, k2, Mh02, MW2] + 
+         CBA2*B0i[dbb0, k2, MHH2, MW2])) - 
+     32*(SW2*B0i[dbb00, k2, MW2, 0] + CW2*B0i[dbb00, k2, MW2, MZ2]) - 
+     4*(3*CW2*B0i[bb0, k2, MW2, MZ2] + SW2*((CW2*(3*k2 + 2*MZ2))/SW2 - 
+         (MW2*SW2)/CW2)*B0i[dbb0, k2, MW2, MZ2] + B0i[dbb00, k2, MA02, 
+        MHp2] + SBA2*(B0i[dbb00, k2, Mh02, MW2] + B0i[dbb00, k2, MHH2, 
+          MHp2]) + CBA2*(B0i[dbb00, k2, Mh02, MHp2] + B0i[dbb00, k2, MHH2, 
+          MW2]) + B0i[dbb00, k2, MZ2, MW2]) + 
+     8*k2*(SW2*B0i[dbb1, k2, MW2, 0] + CW2*B0i[dbb1, k2, MW2, MZ2])))/
+   (16*Pi*SW2)}}

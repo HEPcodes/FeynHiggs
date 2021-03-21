@@ -133,13 +133,13 @@ HGAGASM = hgagaSM-SquaredME.o \
   hgagaSM-abbr1s.o hgagaSM-abbr1h.o \
   hgagaSM-v1.o hgagaSM-v1_Gen4.o
 
-HGAZ = hgaZ-SquaredME.o hgaZ-CalcRenConst.o \
+HGAZ = hgaZ-SquaredME.o hgaZ-RenConst.o \
   hgaZ-abbr1s.o hgaZ-abbr1h.o \
   hgaZ-v1.o hgaZ-v1_Gen4.o \
   hgaZ-v1_All4_All5_Ind1_Ind2_Ind3.o \
   hgaZ-v1_Cha4_Cha5.o
 
-HGAZSM = hgaZSM-SquaredME.o hgaZSM-CalcRenConst.o \
+HGAZSM = hgaZSM-SquaredME.o hgaZSM-RenConst.o \
   hgaZSM-abbr1s.o hgaZSM-abbr1h.o \
   hgaZSM-v1.o hgaZSM-v1_Gen4.o
 
@@ -151,7 +151,7 @@ HGGSM = hggSM-SquaredME.o \
   hggSM-abbr1s.o hggSM-abbr1h.o \
   hggSM-v1_Gen4.o
 
-HEE = hee-SquaredME.o hee-CalcRenConst.o \
+HEE = hee-SquaredME.o hee-RenConst.o \
   hee-abbr0s.o hee-abbr0h.o \
   hee-abbr1s.o hee-abbr1h.o \
   hee-v0.o hee-v1.o \
@@ -165,12 +165,12 @@ HEE = hee-SquaredME.o hee-CalcRenConst.o \
   hee-v1_Gen4.o \
   hee-v1_Neu4_Neu5.o
 
-HEESM = heeSM-SquaredME.o heeSM-CalcRenConst.o \
+HEESM = heeSM-SquaredME.o heeSM-RenConst.o \
   heeSM-abbr0h.o \
   heeSM-abbr1s.o heeSM-abbr1h.o \
   heeSM-v0.o heeSM-v1.o \
 
-HUU = huu-SquaredME.o huu-CalcRenConst.o \
+HUU = huu-SquaredME.o huu-RenConst.o \
   huu-abbr0s.o huu-abbr0h.o \
   huu-abbr1s.o huu-abbr1h.o \
   huu-v0.o huu-v1.o \
@@ -186,12 +186,12 @@ HUU = huu-SquaredME.o huu-CalcRenConst.o \
   huu-v1_Gen4.o \
   huu-v1_Neu4_Neu5.o
 
-HUUSM = huuSM-SquaredME.o huuSM-CalcRenConst.o \
+HUUSM = huuSM-SquaredME.o huuSM-RenConst.o \
   huuSM-abbr0s.o huuSM-abbr0h.o \
   huuSM-abbr1s.o huuSM-abbr1h.o \
   huuSM-v0.o huuSM-v1.o huuSM-v1_Gen4.o
 
-HDD = hdd-SquaredME.o hdd-CalcRenConst.o \
+HDD = hdd-SquaredME.o hdd-RenConst.o \
   hdd-abbr0s.o hdd-abbr0h.o \
   hdd-abbr1s.o hdd-abbr1h.o \
   hdd-v0.o hdd-v1.o \
@@ -207,12 +207,12 @@ HDD = hdd-SquaredME.o hdd-CalcRenConst.o \
   hdd-v1_Gen4.o \
   hdd-v1_Neu4_Neu5.o
 
-HDDSM = hddSM-SquaredME.o hddSM-CalcRenConst.o \
+HDDSM = hddSM-SquaredME.o hddSM-RenConst.o \
   hddSM-abbr0s.o hddSM-abbr0h.o \
   hddSM-abbr1s.o hddSM-abbr1h.o \
   hddSM-v0.o hddSM-v1.o hddSM-v1_Gen4.o
 
-fvHHH = hhh-CalcRenConst.o hhh-SquaredME.o \
+fvHHH = hhh-RenConst.o hhh-SquaredME.o \
   hhh-abbr0s.o hhh-abbr1s1.o hhh-abbr1s2.o \
   hhh-v0.o \
   hhh-v1_All4_All5_All6_Ind1_Ind2_Ind3_Ind4_Ind5_Ind6.o \
@@ -225,7 +225,7 @@ fvHHH = hhh-CalcRenConst.o hhh-SquaredME.o \
   hhh-v1_Neu4_Neu5.o \
   hhh-v1_Neu4_Neu5_Neu6.o
 
-HHH = hhh-CalcRenConst.o hhh-SquaredME.o \
+HHH = hhh-RenConst.o hhh-SquaredME.o \
   hhh-abbr0s.o hhh-abbr1s1.o hhh-abbr1s2.o \
   hhh-v0.o hhh-v1.o hhh-v1_Cha4_Cha5.o \
   hhh-v1_Cha4_Cha5_Cha6.o hhh-v1_Gen4.o \
@@ -339,27 +339,27 @@ $(HGAGA): hgaga-vars.h
 
 $(HGAGASM): hgagaSM-vars.h
 
-$(HGAZ): hgaZ-vars.h hgaZ-renconst.h
+$(HGAZ): hgaZ-vars.h hgaZ-RenConst.h.F
 
-$(HGAZSM): hgaZSM-vars.h hgaZSM-renconst.h
+$(HGAZSM): hgaZSM-vars.h hgaZSM-RenConst.h.F
 
 $(HGG): hgg-vars.h
 
 $(HGGSM): hggSM-vars.h
 
-$(HEE): hee-vars.h hee-renconst.h
+$(HEE): hee-vars.h hee-RenConst.h.F
 
-$(HEESM): heeSM-vars.h heeSM-renconst.h
+$(HEESM): heeSM-vars.h heeSM-RenConst.h.F
 
-$(HUU): huu-vars.h huu-renconst.h
+$(HUU): huu-vars.h huu-RenConst.h.F
 
-$(HUUSM): huuSM-vars.h huuSM-renconst.h
+$(HUUSM): huuSM-vars.h huuSM-RenConst.h.F
 
-$(HDD): hdd-vars.h hdd-renconst.h
+$(HDD): hdd-vars.h hdd-RenConst.h.F
 
-$(HDDSM): hddSM-vars.h hddSM-renconst.h
+$(HDDSM): hddSM-vars.h hddSM-RenConst.h.F
 
-$(HHH): hhh-vars.h hhh-renconst.h
+$(HHH): hhh-vars.h hhh-RenConst.h.F
 
 $(DECAYS) Couplings.o: Decay.h inline.h looptools.h ltcache.h debug.h
 
@@ -381,18 +381,18 @@ FE = FeynHiggs.o pager.o
 FeynHiggs$(EXE): $(FE) libFH.a
 	$(FC) $(FFLAGS) -o FeynHiggs$(EXE) $(FE) libFH.a
 
-MFeynHiggs$(EXE): MFeynHiggs$(QUAD).tm CFeynHiggs.h CSLHA.h fcc fortranflush.o libFH.a
+MFeynHiggs$(EXE): MFeynHiggs$(QUADSUFFIX).tm CFeynHiggs.h CSLHA.h fcc fortranflush.o libFH.a
 	test -d =. || ln -s . =.
 	NM="$(NM)" DLLTOOL="$(DLLTOOL)" \
 	CC="./fcc" REALCC="$(CC) $(CFLAGS)" \
 	CXX="./f++" REALCXX="$(CXX) $(CXXFLAGS)" \
 	PATH="$$PATH:." \
-	  $(MCC) -o MFeynHiggs$(EXE) $(MCFLAGS) -DQUAD=0$(QUAD) MFeynHiggs$(QUAD).tm \
+	  $(MCC) -o MFeynHiggs$(EXE) $(MCFLAGS) MFeynHiggs$(QUADSUFFIX).tm \
 	    fortranflush.o libFH.a
 	rm -f MFeynHiggs$(QUAD).tm.*
 
-MFeynHiggs1.tm: MFeynHiggs.tm
-	sed '/:Begin:/,/:End:/ s/Real/Real128/g' MFeynHiggs.tm > MFeynHiggs1.tm
+MFeynHiggs-quad.tm: MFeynHiggs.tm
+	sed '/:Begin:/,/:End:/ s/Real/Real128/g' MFeynHiggs.tm > MFeynHiggs-quad.tm
 
 
 FeynHiggs.o: version.h FHRecord.h SLHA.h

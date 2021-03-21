@@ -1618,7 +1618,7 @@
      &      1/120.D0*(Sf7643*Log(MSneu2(1))*MSneu2(1))/MZ2**3)/
      &    (MW2**2*SW2**2)
 
-	gm2_2L = gm2_2L + (-(1/15.D0*(Sf8596*Log(MM2))) - 
+	gm2_2L = gm2_2L + (-(1/15.D0*(Sf8596*Log(MMu2))) - 
      &      1/720.D0*(Sf8575*Log(MW2))/SW2**2)/(MW2*MZ2**3)
 
 	gm2_2L = gm2_2L + (CA*Sf7509*Sf8897*Ss78*

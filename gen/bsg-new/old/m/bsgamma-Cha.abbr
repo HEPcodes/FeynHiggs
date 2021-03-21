@@ -1,0 +1,19 @@
+{F2 -> DiracChain[Spinor[k[2], 0, 1], 6, Spinor[k[1], MB, 1]], 
+ F1 -> ((I/2)*DiracChain[sigmunu[6]] + 2*DiracChain[Spinor[k[2], 0, 1], 6, 
+      Spinor[k[1], MB, 1]]*Pair[ec[3], k[1]])/MB, Pair1 -> Pair[ec[3], k[1]], 
+ SUN1 -> SUNT[Col1, Col2], Sub3[All4_, Cha4_, Ind1_] -> 
+  -2*MW*SB*UASfC[All4, Ind1, 3]*VCha[Cha4, 1] + 
+   Sqrt[2]*Mf[3, Ind1]*UASfC[All4, 3 + Ind1, 3]*VCha[Cha4, 2], 
+ Sub2[All4_, Cha4_, Ind1_] -> -2*MW*SB*UASf[All4, Ind1, 3]*VChaC[Cha4, 1] + 
+   Sqrt[2]*Mf[3, Ind1]*UASf[All4, 3 + Ind1, 3]*VChaC[Cha4, 2], 
+ Sub1[All4_, Cha4_, Ind2_] -> -2*MW*SB*UASfC[All4, Ind2, 3]*VCha[Cha4, 1] + 
+   Sqrt[2]*Mf[3, Ind2]*UASfC[All4, 3 + Ind2, 3]*VCha[Cha4, 2], 
+ Sub5[All4_, Cha4_, Ind1_, Ind2_] -> 
+  (MB*CKM[Ind1, 3]*CKMC[Ind2, 2]*Sub1[All4, Cha4, Ind2]*
+     Sub2[All4, Cha4, Ind1])/SB - (Sqrt[2]*CKM[Ind2, 3]*CKMC[Ind1, 2]*
+     MCha[Cha4]*Mdy[3]*Sub3[All4, Cha4, Ind1]*UASf[All4, Ind2, 3]*
+     UCha[Cha4, 2])/CB, Sub4[All4_, Cha4_, Ind1_, Ind2_] -> 
+  -((CKM[Ind1, 3]*CKMC[Ind2, 2]*(MASf2[All4, 3] - MCha2[Cha4])*
+      Sub1[All4, Cha4, Ind2]*Sub2[All4, Cha4, Ind1])/SB) + 
+   (Sqrt[2]*MB*CKM[Ind2, 3]*CKMC[Ind1, 2]*MCha[Cha4]*Mdy[3]*
+     Sub3[All4, Cha4, Ind1]*UASf[All4, Ind2, 3]*UCha[Cha4, 2])/CB}

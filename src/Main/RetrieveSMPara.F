@@ -1,7 +1,7 @@
 * RetrieveSMPara.F
 * retrieve the SM parameters
 * this file is part of FeynHiggs
-* last modified 25 Jan 17 th
+* last modified 9 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -31,14 +31,14 @@
 	AlfasMZ_ = AlfasMZ
 	GF_ = GF
 
-	ME_ = ME
-	MU_ = MU
-	MD_ = MD
-	MM_ = MM
-	MC_ = MC
-	MS_ = MS
-	ML_ = ML
-	MB_ = MB
+	ME_ = Mf(2,1)
+	MU_ = Mf(3,1)
+	MD_ = Mf(4,1)
+	MM_ = Mf(2,2)
+	MC_ = Mf(3,2)
+	MS_ = Mf(4,2)
+	ML_ = Mf(2,3)
+	MB_ = Mf(4,3)
 
 	MW_ = MW
 	MZ_ = MZ

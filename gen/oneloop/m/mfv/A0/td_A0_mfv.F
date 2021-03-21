@@ -1,5 +1,5 @@
 * td_A0_mfv.F
-* generated 17-Jan-2018 8:10
+* generated 8-May-2018 11:23
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -19,8 +19,8 @@
 
 	se = 0
 
-	LOOP(Gen2, gM,3,1)
 	LOOP(Sfe2, 1,2,1)
+	LOOP(Gen2, gM,3,1)
 
         se = se + (3*cI)/(32.D0*Pi**2)*
      &     (EL1L*A0(MSf2(Sfe2,tM1,Gen2))*
@@ -30,8 +30,8 @@
      &           USf(Sfe2,1,tM1,Gen2)*USfC(Sfe2,2,tM1,Gen2)))/
      &      (MW*SB*SW)
 
-	ENDLOOP(Sfe2)
 	ENDLOOP(Gen2)
+	ENDLOOP(Sfe2)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "td_A0_mfv  t/st =", se ENDL
@@ -39,8 +39,8 @@
 
 	if( mssmpart .le. 1 ) return
 
-	LOOP(Gen2, gM,3,1)
 	LOOP(Sfe2, 1,2,1)
+	LOOP(Gen2, gM,3,1)
 
         se = se + (3*cI)/(32.D0*Pi**2)*
      &     (EL1L*A0(MSf2(Sfe2,bM1,Gen2))*
@@ -50,8 +50,8 @@
      &           USf(Sfe2,1,bM1,Gen2)*USfC(Sfe2,2,bM1,Gen2)))/
      &      (CB*MW*SW)
 
-	ENDLOOP(Sfe2)
 	ENDLOOP(Gen2)
+	ENDLOOP(Sfe2)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "td_A0_mfv +b/sb =", se ENDL
@@ -59,8 +59,8 @@
 
 	if( mssmpart .le. 2 ) return
 
-	LOOP(Sfe2, 1,2,1)
 	LOOP(Gen2, 1,3,1)
+	LOOP(Sfe2, 1,2,1)
 
         se = se + cI/(32.D0*Pi**2)*
      &     (EL1L*A0(MSf2(Sfe2,2,Gen2))*
@@ -70,8 +70,8 @@
      &           USf(Sfe2,1,2,Gen2)*USfC(Sfe2,2,2,Gen2)))/
      &      (CB*MW*SW)
 
-	ENDLOOP(Gen2)
 	ENDLOOP(Sfe2)
+	ENDLOOP(Gen2)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "td_A0_mfv +l/sl =", se ENDL

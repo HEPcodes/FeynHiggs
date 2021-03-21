@@ -94,8 +94,8 @@
        4*B0i[bb1, k2, MW2, MHH2]) - 2*MW2*(C2B*CW2*SAB + CAB*S2B*SW2)*
       ((C2B + 2*CW2)*SA*SB + CA*(CW2*S2B*SB + CB*(1 - 2*CB2*SW2)))*
       B0i[dbb0, k2, MHH2, MHp2] + 
-     2*(MW2*(C2B*CAB*CW2 - S2B*SAB*SW2)*(-(CA*(C2B + 2*CW2)*SB) + 
-         SA*(CW2*S2B*SB + CB*(1 - 2*CB2*SW2)))*B0i[dbb0, k2, Mh02, MHp2] + 
+     2*(MW2*(C2B*CAB*CW2 - S2B*SAB*SW2)*((CA*(-C2B - 2*CW2) + CW2*S2B*SA)*
+          SB + CB*SA*(1 - 2*CB2*SW2))*B0i[dbb0, k2, Mh02, MHp2] + 
        CW2^2*(-3*CBA*SBA*B0i[bb0, k2, Mh02, MW2] + 
          3*CBA*SBA*B0i[bb0, k2, MHH2, MW2] + (-(CBA*(3*k2 + Mh02)*SBA) + 
            (C2B*MW2*SAB*(C2B*CAB*CW2 - S2B*SAB*SW2))/CW2^2)*

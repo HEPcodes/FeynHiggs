@@ -2,7 +2,7 @@
 * 2L asat threshold corrections to lambdaSM
 * expressions provided by Emanuele Bagnaschi and Pietro Slavich
 * this file is part of FeynHiggs
-* last modified 27 Feb 18 th
+* last modified 13 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -16,7 +16,7 @@
 
 #include "Resum4H.h"
 
-	RealType xg, rSQ, xSQ, xSQ1, rSU, xSU, xSU1, xSQU2
+	RealType sg, xg, rSQ, xSQ, xSQ1, rSU, xSU, xSU1, xSQU2
 	RealType LGlq2, LSQ, LSU, Li2SQ, Li2SU, tmp1
 
 	RealType eps
@@ -24,13 +24,15 @@
 
 	LGlq2 = tGlu - tSUSYOS
 
-	xg = Q/MGl
-	rSQ = MSS0(3,3)/MGl
+	sg = 1/Re(m_3OS)
+c	sg = 1/abs(m_3OS)
+	xg = Q*sg
+	rSQ = MStQ*sg
 	xSQ = rSQ**2
 	xSQ1 = (1 - rSQ)*(1 + rSQ)
 	LSQ = log(xSQ)
 	Li2SQ = Li2omx(1/xSQ)
-	rSU = MSS0(4,3)/MGl
+	rSU = MStU*sg
 	xSQU2 = (rSQ - rSU)*(rSQ + rSU)
 
 	if( abs(xSQU2) .lt. eps ) then

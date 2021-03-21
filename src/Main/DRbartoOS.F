@@ -228,19 +228,19 @@
 #if 1
 * MT(Q2)_MSSM
 	  call EigenSf(fail, MStgl2(1), UStgl(1,1),
-     &      DSStgl2, MT, Xf(3,3), 0)
+     &      DSStgl2, Mf(3,3), Xf(3,3), 0)
 	  call DeltaMT_MSSM(dMT, AlfasMH, Q2)
-	  Mf(tH,3) = MT + dMT
+	  Mf(tH,3) = Mf(3,3) + dMT
 #else
 * MT(Q2)_SM
-	  call RunQCD(Mf(tH,3),Q2, Mf(tT,3),MT2)
+	  call RunQCD(Mf(tH,3),Q2, Mf(tT,3),Mf2(3,3))
 #endif
 	  Mf2(tH,3) = Mf(tH,3)**2
 
 	  call EigenSf(fail, MSf2(1,tH,3), USf(1,1,tH,3),
      &      DSS2(1,3,3), Mf(tH,3), Xf(3,3), 0)
 
-	  call RunQCD(Mf(bH,3),Q2, MB,MB2)
+	  call RunQCD(Mf(bH,3),Q2, Mf(4,3),Mf2(4,3))
 	  Mf2(bH,3) = Mf(bH,3)**2
 	  call EigenSf(fail, MSf2(1,bH,3), USf(1,1,bH,3),
      &      DSS2(1,4,3), Mf(bH,3), Xf(4,3), 0)
@@ -250,7 +250,7 @@
 
 	  if( debuglevel .ge. 4 ) then
 	    DPARA "DRbar Q     =", sqrt(Q2)			ENDL
-	    call RunQCD(MTrun,Q2, Mf(tT,3),MT2)
+	    call RunQCD(MTrun,Q2, Mf(tT,3),Mf2(3,3))
 	    DPARA "MT(Q)_SM    =", MTrun			ENDL
 	    DPARA "MT(Q)_MSSM  =", Mf(tH,3)			ENDL
 	    DPARA "MStop_DRbar =", MSf(1,tH,3), MSf(2,tH,3)	ENDL

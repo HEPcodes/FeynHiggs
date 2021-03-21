@@ -1,7 +1,7 @@
 * TLps.h
 * declarations for the two-loop routines
 * this file is part of FeynHiggs
-* last modified 9 Feb 18 th
+* last modified 9 Mar 18 th
 
 #include "TL.h"
 
@@ -32,7 +32,7 @@
 #define s2tb SbotPara(11)
 #define s2tb2 SbotPara(12)
 
-#define TLMBscale MT2
+#define TLMBscale Mf2(3,3)
 #define TLMBrun MB_MT
 #endif
 

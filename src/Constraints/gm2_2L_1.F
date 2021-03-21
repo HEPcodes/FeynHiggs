@@ -16,9 +16,9 @@
 
 	Ss133 = MZ2*(1 + 3*SA2)
 
-	Ss53 = MM*(1 - 4*SW2)
+	Ss53 = MMu*(1 - 4*SW2)
 
-	Ss824 = ML*(1 - 4*SW2)
+	Ss824 = MTau*(1 - 4*SW2)
 
 	Ss51 = CA*(1 - 4*SW2)
 
@@ -183,8 +183,8 @@
      &      MTop2*(MTop2*(76*MTop2 - 889*MW2) + 1101*MW2**2))
 
 	Ss430 = 16*MW2**4 + 
-     &   ML2*(56*MW2**3 + ML2*
-     &       (ML2*(76*ML2 - 535*MW2) + 291*MW2**2))
+     &   MTau2*(56*MW2**3 + MTau2*
+     &       (MTau2*(76*MTau2 - 535*MW2) + 291*MW2**2))
 
 	Ss609 = 255*MTop2**4 + 
      &   MBot2*(-174*MTop2**3 + 
@@ -192,7 +192,7 @@
 
 	Ss129 = -41*MZ2**3 + MW2*(MW2*(192*MW2 - 288*MZ2) + 137*MZ2**2)
 
-	Ss692 = 6*ML2*MZ2**2 + MW2*(MW2*(96*MW2 - 48*MZ2) - 5*MZ2**2)
+	Ss692 = 6*MTau2*MZ2**2 + MW2*(MW2*(96*MW2 - 48*MZ2) - 5*MZ2**2)
 
 	Ss683 = 5*MZ2**3 + MW2*(MW2*(96*MW2 - 144*MZ2) + 43*MZ2**2)
 
@@ -234,9 +234,9 @@
 
 	Ss749 = 2*MW2**3 + MTop2*(MTop2*(19*MTop2 - 35*MW2) + 18*MW2**2)
 
-	Ss308 = 16*MW2**3 + ML2*(ML2*(52*ML2 - 295*MW2) + 131*MW2**2)
+	Ss308 = 16*MW2**3 + MTau2*(MTau2*(52*MTau2 - 295*MW2) + 131*MW2**2)
 
-	Ss728 = -2*MW2**3 + ML2*(ML2*(3*ML2 - 27*MW2) - 7*MW2**2)
+	Ss728 = -2*MW2**3 + MTau2*(MTau2*(3*MTau2 - 27*MW2) - 7*MW2**2)
 
 	Ss385 = 263*MTop2**3 + MBot2*(27*MTop2**2 + MBot2*(161*MBot2 + 61*MTop2))
 
@@ -304,9 +304,9 @@
 
 	Ss147 = -(MBot2**2*TB2) + MTop2*(MTop2 + 2*MBot2*TB2)
 
-	Ss727 = ML2*(76*ML2 - 511*MW2) + 75*MW2**2
+	Ss727 = MTau2*(76*MTau2 - 511*MW2) + 75*MW2**2
 
-	Ss654 = 8*MW2**2 + ML2*(ML2 + 4*MW2)
+	Ss654 = 8*MW2**2 + MTau2*(MTau2 + 4*MW2)
 
 	Ss232 = 12*MTop2**2 + MHiggs2(4)*(-17*MTop2 + 7*MHiggs2(4))
 
@@ -366,17 +366,17 @@
 
 	Ss859 = Log(MTop2) - Log(MZ2)
 
-	Ss846 = Log(ML2) - Log(MZ2)
+	Ss846 = Log(MTau2) - Log(MZ2)
 
-	Ss799 = Log(ML2) - 2*Log(MZ2)
+	Ss799 = Log(MTau2) - 2*Log(MZ2)
 
-	Ss532 = Log(ML2) + Log(MW2)
+	Ss532 = Log(MTau2) + Log(MW2)
 
-	Ss531 = Log(ML2) - Log(MW2)
+	Ss531 = Log(MTau2) - Log(MW2)
 
-	Ss527 = Log(ML2) + Log(MHiggs2(4))
+	Ss527 = Log(MTau2) + Log(MHiggs2(4))
 
-	Ss526 = -Log(ML2) + Log(MHiggs2(4))
+	Ss526 = -Log(MTau2) + Log(MHiggs2(4))
 
 	Ss808 = Log(MBot2) - Log(MZ2)
 
@@ -396,7 +396,7 @@
 
 	Ss967 = 3*CW*MTop2*SA + 2*CAB*MW*MZ*SB*SW2
 
-	Ss938 = CW*ML2*SA - CB*MW*MZ*SAB*SW2
+	Ss938 = CW*MTau2*SA - CB*MW*MZ*SAB*SW2
 
 	Ss895 = 3*CW*MBot2*SA - CB*MW*MZ*SAB*SW2
 
@@ -554,37 +554,37 @@
 
 	Ss32 = MTop - MW
 
-	Ss925 = CA*CW*ML2 - CAB*CB*MW*MZ*SW2
+	Ss925 = CA*CW*MTau2 - CAB*CB*MW*MZ*SW2
 
-	Ss320 = 76*ML2 + 453*MW2
+	Ss320 = 76*MTau2 + 453*MW2
 
-	Ss837 = 23*ML2 - 7*MZ2
+	Ss837 = 23*MTau2 - 7*MZ2
 
-	Ss325 = 19*ML2 - 6*MW2
+	Ss325 = 19*MTau2 - 6*MW2
 
-	Ss8 = 4*ML2 - MZ2
+	Ss8 = 4*MTau2 - MZ2
 
-	Ss730 = 4*ML2 + 21*MW2
+	Ss730 = 4*MTau2 + 21*MW2
 
-	Ss309 = 3*ML2 - MZ2
+	Ss309 = 3*MTau2 - MZ2
 
-	Ss11 = 2*ML2 + MZ2
+	Ss11 = 2*MTau2 + MZ2
 
-	Ss52 = 2*ML2 - MZ2
+	Ss52 = 2*MTau2 - MZ2
 
-	Ss321 = ML2*(3/2.D0 - Log(ML2))
+	Ss321 = MTau2*(3/2.D0 - Log(MTau2))
 
-	Ss651 = ML2 + MZ2
+	Ss651 = MTau2 + MZ2
 
-	Ss655 = ML2 + 2*MW2
+	Ss655 = MTau2 + 2*MW2
 
-	Ss31 = ML2 + MW2
+	Ss31 = MTau2 + MW2
 
-	Ss28 = ML2 - MW2
+	Ss28 = MTau2 - MW2
 
-	Ss638 = ML + MW
+	Ss638 = MTau + MW
 
-	Ss637 = ML - MW
+	Ss637 = MTau - MW
 
 	Ss340 = MW2**2 + MHiggs2(4)**2
 
@@ -610,9 +610,9 @@
 
 	Ss239 = -3*MTop2 + MHiggs2(4)
 
-	Ss70 = ML2 + MHiggs2(4)
+	Ss70 = MTau2 + MHiggs2(4)
 
-	Ss525 = -ML2 + MHiggs2(4)
+	Ss525 = -MTau2 + MHiggs2(4)
 
 	Ss242 = MW + MHiggs(4)
 
@@ -656,15 +656,15 @@
 
 	Ss18 = -4*MTop2 + MHiggs2(2)
 
-	Ss4 = 2*ML2 + MHiggs2(2)
+	Ss4 = 2*MTau2 + MHiggs2(2)
 
-	Ss50 = -2*ML2 + MHiggs2(2)
+	Ss50 = -2*MTau2 + MHiggs2(2)
 
-	Ss3 = -4*ML2 + MHiggs2(2)
+	Ss3 = -4*MTau2 + MHiggs2(2)
 
 	Ss854 = 4*MTop2**2 + MHiggs2(1)**2
 
-	Ss840 = 4*ML2**2 + MHiggs2(1)**2
+	Ss840 = 4*MTau2**2 + MHiggs2(1)**2
 
 	Ss998 = MHiggs2(1) + 2*MStop2(2)
 
@@ -700,15 +700,15 @@
 
 	Ss17 = -4*MTop2 + MHiggs2(1)
 
-	Ss16 = 2*ML2 + MHiggs2(1)
+	Ss16 = 2*MTau2 + MHiggs2(1)
 
-	Ss54 = -2*ML2 + MHiggs2(1)
+	Ss54 = -2*MTau2 + MHiggs2(1)
 
-	Ss15 = -4*ML2 + MHiggs2(1)
+	Ss15 = -4*MTau2 + MHiggs2(1)
 
 	Ss142 = 168*MBot2**2 - 36*MZ2**2
 
-	Ss123 = 3*MBot2**2 + ML2**2
+	Ss123 = 3*MBot2**2 + MTau2**2
 
 	Ss640 = MBot2**2 + MTop2**2
 
@@ -782,9 +782,9 @@
 
 	Ss5 = -4*MTop2 + MHiggs2(3)
 
-	Ss69 = 2*ML2 + MHiggs2(3)
+	Ss69 = 2*MTau2 + MHiggs2(3)
 
-	Ss68 = -4*ML2 + MHiggs2(3)
+	Ss68 = -4*MTau2 + MHiggs2(3)
 
 	Ss67 = 2*MBot2 + MHiggs2(3)
 
@@ -838,7 +838,7 @@
 
 	Ss132 = 8 + 15*SA2
 
-	Ss829 = 7 - 4*Log(ML2)
+	Ss829 = 7 - 4*Log(MTau2)
 
 	Ss860 = 6 - Log(MTop2)
 
@@ -852,7 +852,7 @@
 
 	Ss790 = 4 - Log(MTop2)
 
-	Ss781 = 4 - Log(ML2)
+	Ss781 = 4 - Log(MTau2)
 
 	Ss709 = 4 - Log(MBot2)
 
@@ -894,7 +894,7 @@
 
 	Ss511 = 3 - Log(MTop2)
 
-	Ss326 = 3 - Log(ML2)
+	Ss326 = 3 - Log(MTau2)
 
 	Ss524 = 3 - Log(MHiggs2(4))
 
@@ -930,7 +930,7 @@
 
 	Ss886 = 2 - Log(MSbot2(1))
 
-	Ss833 = 2 - Log(ML2)*Log(MZ2)
+	Ss833 = 2 - Log(MTau2)*Log(MZ2)
 
 	Ss809 = 2 + Log(MZ2)
 
@@ -940,7 +940,7 @@
 
 	Ss374 = 2 - Log(MTop2)
 
-	Ss323 = 2 - Log(ML2)
+	Ss323 = 2 - Log(MTau2)
 
 	Ss294 = 2 - Log(MHiggs2(4))
 
@@ -958,7 +958,7 @@
 
 	Ss419 = 2 - 3*TB2
 
-	Ss723 = 3/2.D0 - Log(ML2)
+	Ss723 = 3/2.D0 - Log(MTau2)
 
 	Ss988 = 1 - Log(MStop2(2))
 
@@ -978,7 +978,7 @@
 
 	Ss335 = 1 - Log(MTop2)
 
-	Ss306 = 1 - Log(ML2)
+	Ss306 = 1 - Log(MTau2)
 
 	Ss275 = 1 - Log(MHiggs2(4))
 
@@ -1018,7 +1018,7 @@
 
 	Ss126 = 1 - (4*MTop2)/MZ2
 
-	Ss501 = 1 - (4*ML2)/MZ2
+	Ss501 = 1 - (4*MTau2)/MZ2
 
 	Ss496 = 1 - (4*MBot2)/MZ2
 
@@ -1048,7 +1048,7 @@
 
 	Ss498 = 5*MZ2**3 + MW2*(8*MW2*MZ2 - 4*MZ2**2) + MBot2*Ss497
 
-	Ss503 = 5*MZ2**3 + MW2*(8*MW2*MZ2 - 12*MZ2**2) + ML2*Ss502
+	Ss503 = 5*MZ2**3 + MW2*(8*MW2*MZ2 - 12*MZ2**2) + MTau2*Ss502
 
 	Ss77 = 27*MTop2*MW2**2 + 14*MW2**3 + 
      &   MHiggs2(4)*(-(MW2*Ss76) + Ss75*MHiggs2(4))
@@ -1061,7 +1061,7 @@
 
 	Ss795 = 1 + (-2 - Log(MTop2))*Log(MTop2) - 2*Ss335*Log(MHiggs2(1))
 
-	Ss786 = 1 + (-2 - Log(ML2))*Log(ML2) - 2*Ss306*Log(MHiggs2(1))
+	Ss786 = 1 + (-2 - Log(MTau2))*Log(MTau2) - 2*Ss306*Log(MHiggs2(1))
 
 	Ss1000 = 3/2.D0*Ss998 - Log(MHiggs2(1))*MHiggs2(1) - 
      &   2*Log(MStop2(2))*MStop2(2)
@@ -1099,17 +1099,17 @@
 	Ss889 = 3/2.D0*Ss888 - Log(MHiggs2(2))*MHiggs2(2) - 
      &   2*Log(MSbot2(1))*MSbot2(1)
 
-	Ss322 = 3/2.D0*Ss70 - ML2*Log(ML2) - Log(MHiggs2(4))*MHiggs2(4)
+	Ss322 = 3/2.D0*Ss70 - MTau2*Log(MTau2) - Log(MHiggs2(4))*MHiggs2(4)
 
-	Ss317 = 3/2.D0*Ss69 - 2*ML2*Log(ML2) - Log(MHiggs2(3))*MHiggs2(3)
+	Ss317 = 3/2.D0*Ss69 - 2*MTau2*Log(MTau2) - Log(MHiggs2(3))*MHiggs2(3)
 
 	Ss212 = 3/2.D0*Ss67 - 2*MBot2*Log(MBot2) - Log(MHiggs2(3))*MHiggs2(3)
 
 	Ss368 = 3/2.D0*Ss6 - 2*MTop2*Log(MTop2) - Log(MHiggs2(3))*MHiggs2(3)
 
-	Ss319 = 3/2.D0*Ss4 - 2*ML2*Log(ML2) - Log(MHiggs2(2))*MHiggs2(2)
+	Ss319 = 3/2.D0*Ss4 - 2*MTau2*Log(MTau2) - Log(MHiggs2(2))*MHiggs2(2)
 
-	Ss431 = 3/2.D0*Ss31 - ML2*Log(ML2) - MW2*Log(MW2)
+	Ss431 = 3/2.D0*Ss31 - MTau2*Log(MTau2) - MW2*Log(MW2)
 
 	Ss381 = 3*Ss255*Ss30**2 + MBot2*MW2*Ss376 + 3*MW2**2*Ss377
 
@@ -1121,13 +1121,13 @@
 
 	Ss369 = 3/2.D0*Ss19 - 2*MTop2*Log(MTop2) - Log(MHiggs2(1))*MHiggs2(1)
 
-	Ss318 = 3/2.D0*Ss16 - 2*ML2*Log(ML2) - Log(MHiggs2(1))*MHiggs2(1)
+	Ss318 = 3/2.D0*Ss16 - 2*MTau2*Log(MTau2) - Log(MHiggs2(1))*MHiggs2(1)
 
 	Ss266 = 3/2.D0*Ss14 - 2*MBot2*Log(MBot2) - Log(MHiggs2(1))*MHiggs2(1)
 
 	Ss482 = 3/2.D0*Ss12 - 2*MTop2*Log(MTop2) - MZ2*Log(MZ2)
 
-	Ss481 = 3/2.D0*Ss11 - 2*ML2*Log(ML2) - MZ2*Log(MZ2)
+	Ss481 = 3/2.D0*Ss11 - 2*MTau2*Log(MTau2) - MZ2*Log(MZ2)
 
 	Ss479 = 3/2.D0*Ss10 - 2*MBot2*Log(MBot2) - MZ2*Log(MZ2)
 
@@ -1143,9 +1143,9 @@
 
 	Ss61 = 4*MBot2 - Ss145
 
-	Ss633 = 3*MBot2 + ML2 + 3*MTop2
+	Ss633 = 3*MBot2 + MTau2 + 3*MTop2
 
-	Ss653 = 2*MBot2 - 9*ML2 + MW2
+	Ss653 = 2*MBot2 - 9*MTau2 + MW2
 
 	Ss34 = MBot2 + Ss36
 
@@ -1171,7 +1171,7 @@
 
 	Ss216 = MBot - Ss27
 
-	Ss327 = 14 + Pi**2 - 4*Ss326*Log(ML2)
+	Ss327 = 14 + Pi**2 - 4*Ss326*Log(MTau2)
 
 	Ss990 = 12 + Pi**2 - 6*Ss989*Log(MStop2(2))
 
@@ -1191,7 +1191,7 @@
 
 	Ss375 = 12 + Pi**2 - 6*Ss374*Log(MTop2)
 
-	Ss324 = 12 + Pi**2 - 6*Ss323*Log(ML2)
+	Ss324 = 12 + Pi**2 - 6*Ss323*Log(MTau2)
 
 	Ss295 = 12 + Pi**2 - 6*Ss294*Log(MHiggs2(4))
 
@@ -1205,7 +1205,7 @@
 
 	Ss801 = 5 - Log(MTop2)**2 - 2*Ss374*Log(MZ2)
 
-	Ss831 = 5 - Ss830*Log(ML2) - 8*Log(MZ2)
+	Ss831 = 5 - Ss830*Log(MTau2) - 8*Log(MZ2)
 
 	Ss716 = 5 - Log(MBot2)**2 - 2*Ss213*Log(MZ2)
 
@@ -1229,25 +1229,25 @@
      &   12*TF(MTop2,MTop2,MZ2)
 
 	Ss424 = 8*MW2**2 + MBot2*(27*MW2 + 18*MBot2*SA2) + 
-     &   ML2*(9*MW2 + 6*ML2*SA2) + MTop2*(27*MW2 + 18*MTop2*SA2)
+     &   MTau2*(9*MW2 + 6*MTau2*SA2) + MTop2*(27*MW2 + 18*MTop2*SA2)
 
-	Ss620 = -(Ss4*Ss509) + 24*ML2*Ss326*Log(ML2) + 
+	Ss620 = -(Ss4*Ss509) + 24*MTau2*Ss326*Log(MTau2) + 
      &   (Ss274 + 12*Ss548*Log(MHiggs2(2)) + 
-     &      6*Log(MHiggs2(2)/ML2)**2)*MHiggs2(2) - 
-     &   12*TF(MHiggs2(2),ML2,ML2)
+     &      6*Log(MHiggs2(2)/MTau2)**2)*MHiggs2(2) - 
+     &   12*TF(MHiggs2(2),MTau2,MTau2)
 
-	Ss616 = -(Ss16*Ss509) + 24*ML2*Ss326*Log(ML2) + 
+	Ss616 = -(Ss16*Ss509) + 24*MTau2*Ss326*Log(MTau2) + 
      &   (Ss268 + 12*Ss546*Log(MHiggs2(1)) + 
-     &      6*Log(MHiggs2(1)/ML2)**2)*MHiggs2(1) - 
-     &   12*TF(MHiggs2(1),ML2,ML2)
+     &      6*Log(MHiggs2(1)/MTau2)**2)*MHiggs2(1) - 
+     &   12*TF(MHiggs2(1),MTau2,MTau2)
 
-	Ss533 = -3*Ss28*Ss531*Ss532 - 12*ML2*Ss326*Log(ML2) + 
-     &   Ss31*(Ss509 - 3*Log(ML2/MW2)**2) - 12*MW2*Ss530*Log(MW2)
+	Ss533 = -3*Ss28*Ss531*Ss532 - 12*MTau2*Ss326*Log(MTau2) + 
+     &   Ss31*(Ss509 - 3*Log(MTau2/MW2)**2) - 12*MW2*Ss530*Log(MW2)
 
 	Ss514 = -3*Ss30*Ss512*Ss513 - 12*MBot2*Ss510*Log(MBot2) + 
      &   Ss29*(Ss509 - 3*Log(MBot2/MTop2)**2) - 12*MTop2*Ss511*Log(MTop2)
 
-	Ss634 = 18*MBot2**2 + 6*ML2**2 + 18*MTop2**2 + MW2*(8*MW2 + 9*Ss633)
+	Ss634 = 18*MBot2**2 + 6*MTau2**2 + 18*MTop2**2 + MW2*(8*MW2 + 9*Ss633)
 
 	Ss432 = 3/2.D0*Ss34 - MBot2*Log(MBot2) - MTop2*Log(MTop2) - MW2*Log(MW2)
 
@@ -1258,16 +1258,16 @@
 
 	Ss490 = -2*MBot*MTop + Ss486
 
-	Ss847 = 5 + (2*Ss809 - Log(ML2))*Log(ML2) - 8*Log(MZ2)
+	Ss847 = 5 + (2*Ss809 - Log(MTau2))*Log(MTau2) - 8*Log(MZ2)
 
 	Ss810 = 5 + (2*Ss809 - Log(MBot2))*Log(MBot2) - 8*Log(MZ2)
 
 	Ss713 = 1 + (-2*Ss263 - Log(MBot2))*Log(MBot2) - 2*Log(MHiggs2(1))
 
 	Ss733 = 1/12.D0*(MW2*Ss455 - Ss31*Ss509) + 
-     &   1/4.D0*(Ss28*Ss531*Ss532 + Ss31*Log(ML2/MW2)**2) + 
-     &   ML2*Ss326*Log(ML2) + MW2*(Ss306*Ss398 + Ss530*Log(MW2)) - 
-     &   TF(0.D0,ML2,MW2)
+     &   1/4.D0*(Ss28*Ss531*Ss532 + Ss31*Log(MTau2/MW2)**2) + 
+     &   MTau2*Ss326*Log(MTau2) + MW2*(Ss306*Ss398 + Ss530*Log(MW2)) - 
+     &   TF(0.D0,MTau2,MW2)
 
 	Ss1001 = 1/12.D0*(Ss509*Ss998) - 
      &   1/2.D0*(Log(MHiggs2(1)/MStop2(2))**2*MHiggs2(1)) - 
@@ -1342,9 +1342,9 @@
      &   TF(MHiggs2(2),MSbot2(1),MSbot2(1))
 
 	Ss540 = 1/12.D0*(Ss509*Ss69) - 
-     &   1/2.D0*(Log(MHiggs2(3)/ML2)**2*MHiggs2(3)) - 
-     &   2*ML2*Ss326*Log(ML2) - Ss535*Log(MHiggs2(3))*MHiggs2(3) + 
-     &   TF(MHiggs2(3),ML2,ML2)
+     &   1/2.D0*(Log(MHiggs2(3)/MTau2)**2*MHiggs2(3)) - 
+     &   2*MTau2*Ss326*Log(MTau2) - Ss535*Log(MHiggs2(3))*MHiggs2(3) + 
+     &   TF(MHiggs2(3),MTau2,MTau2)
 
 	Ss536 = 1/12.D0*(Ss509*Ss67) - 
      &   1/2.D0*(Log(MHiggs2(3)/MBot2)**2*MHiggs2(3)) - 
@@ -1357,13 +1357,13 @@
      &   TF(MHiggs2(3),MTop2,MTop2)
 
 	Ss528 = 3*Ss525*Ss526*Ss527 - Ss509*Ss70 + 
-     &   12*ML2*Ss326*Log(ML2) + 3*Ss70*Log(MHiggs2(4)/ML2)**2 + 
+     &   12*MTau2*Ss326*Log(MTau2) + 3*Ss70*Log(MHiggs2(4)/MTau2)**2 + 
      &   12*Ss524*Log(MHiggs2(4))*MHiggs2(4)
 
 	Ss621 = 1/12.D0*(Ss4*Ss509) - 
-     &   1/2.D0*(Log(MHiggs2(2)/ML2)**2*MHiggs2(2)) - 
-     &   2*ML2*Ss326*Log(ML2) - Ss548*Log(MHiggs2(2))*MHiggs2(2) + 
-     &   TF(MHiggs2(2),ML2,ML2)
+     &   1/2.D0*(Log(MHiggs2(2)/MTau2)**2*MHiggs2(2)) - 
+     &   2*MTau2*Ss326*Log(MTau2) - Ss548*Log(MHiggs2(2))*MHiggs2(2) + 
+     &   TF(MHiggs2(2),MTau2,MTau2)
 
 	Ss623 = 1/12.D0*(Ss20*Ss509) - 
      &   1/2.D0*(Log(MHiggs2(2)/MTop2)**2*MHiggs2(2)) - 
@@ -1381,9 +1381,9 @@
      &   TF(MHiggs2(1),MTop2,MTop2)
 
 	Ss617 = 1/12.D0*(Ss16*Ss509) - 
-     &   1/2.D0*(Log(MHiggs2(1)/ML2)**2*MHiggs2(1)) - 
-     &   2*ML2*Ss326*Log(ML2) - Ss546*Log(MHiggs2(1))*MHiggs2(1) + 
-     &   TF(MHiggs2(1),ML2,ML2)
+     &   1/2.D0*(Log(MHiggs2(1)/MTau2)**2*MHiggs2(1)) - 
+     &   2*MTau2*Ss326*Log(MTau2) - Ss546*Log(MHiggs2(1))*MHiggs2(1) + 
+     &   TF(MHiggs2(1),MTau2,MTau2)
 
 	Ss547 = 1/12.D0*(Ss14*Ss509) - 
      &   1/2.D0*(Log(MBot2/MHiggs2(1))**2*MHiggs2(1)) - 
@@ -1395,23 +1395,23 @@
      &   MZ2*Ss550*Log(MZ2) + TF(MTop2,MTop2,MZ2)
 
 	Ss625 = 1/12.D0*(Ss11*Ss509) - 
-     &   1/2.D0*(MZ2*Log(ML2/MZ2)**2) - 2*ML2*Ss326*Log(ML2) - 
-     &   MZ2*Ss550*Log(MZ2) + TF(ML2,ML2,MZ2)
+     &   1/2.D0*(MZ2*Log(MTau2/MZ2)**2) - 2*MTau2*Ss326*Log(MTau2) - 
+     &   MZ2*Ss550*Log(MZ2) + TF(MTau2,MTau2,MZ2)
 
 	Ss551 = 1/12.D0*(Ss10*Ss509) - 
      &   1/2.D0*(MZ2*Log(MBot2/MZ2)**2) - 2*MBot2*Ss510*Log(MBot2) - 
      &   MZ2*Ss550*Log(MZ2) + TF(MBot2,MBot2,MZ2)
 
-	Ss622 = 2*Ss621 - 1/3.D0*(ML2*Ss324) + 3/2.D0*Ss4 - 
-     &   1/6.D0*(Ss274*MHiggs2(2)) + ML2*(-6*Ss306 - 2*Log(ML2)) + 
+	Ss622 = 2*Ss621 - 1/3.D0*(MTau2*Ss324) + 3/2.D0*Ss4 - 
+     &   1/6.D0*(Ss274*MHiggs2(2)) + MTau2*(-6*Ss306 - 2*Log(MTau2)) + 
      &   (Ss269 - Log(MHiggs2(2)))*MHiggs2(2)
 
 	Ss624 = 2*Ss623 + 3/2.D0*Ss20 - 1/3.D0*(MTop2*Ss375) - 
      &   1/6.D0*(Ss274*MHiggs2(2)) + MTop2*(-6*Ss335 - 2*Log(MTop2)) + 
      &   (Ss269 - Log(MHiggs2(2)))*MHiggs2(2)
 
-	Ss618 = 2*Ss617 + 3/2.D0*Ss16 - 1/3.D0*(ML2*Ss324) - 
-     &   1/6.D0*(Ss268*MHiggs2(1)) + ML2*(-6*Ss306 - 2*Log(ML2)) + 
+	Ss618 = 2*Ss617 + 3/2.D0*Ss16 - 1/3.D0*(MTau2*Ss324) - 
+     &   1/6.D0*(Ss268*MHiggs2(1)) + MTau2*(-6*Ss306 - 2*Log(MTau2)) + 
      &   (Ss263 - Log(MHiggs2(1)))*MHiggs2(1)
 
 	Ss963 = 2*Ss962 + 3/2.D0*Ss959 - 1/6.D0*(Ss268*MHiggs2(1)) - 
@@ -1495,9 +1495,9 @@
      &         MW2*(-2*Ss385 + 
      &            MW2*(2*Ss386 + MW2*(14*MW2 - Ss387)))))
 
-	Ss729 = ML2*(-218*MW2**3 + 
-     &      ML2*(ML2*(1564*ML2 - 8077*MW2) - 7959*MW2**2 - 
-     &         12*Ss727*Log(ML2))) + 
+	Ss729 = MTau2*(-218*MW2**3 + 
+     &      MTau2*(MTau2*(1564*MTau2 - 8077*MW2) - 7959*MW2**2 - 
+     &         12*Ss727*Log(MTau2))) + 
      &   MW2*(-286*MW2**3 - 96*Ss728*Log(MW2))
 
 	Ss334 = Ss32**3*Ss33**3*Ss330 + 
@@ -1557,18 +1557,18 @@
      &   MTop2*(9*MW2**2*MZ2 + 
      &      MTop2*(-(MTop2*Ss433) + 30*MW2*MZ2*SA2*SW2))
 
-	Ss652 = ML2**2*(ML2*Ss635 + 4*MW2*Ss649*Ss650) + 
+	Ss652 = MTau2**2*(MTau2*Ss635 + 4*MW2*Ss649*Ss650) + 
      &   MW2**3*(12*MW2 - 9*Ss651)
 
 	Ss485 = MW2**3*(10*MW2 - 4*MZ2) + 
-     &   ML2*(ML2**2*Ss433 - 9*MW2**2*Ss443)
+     &   MTau2*(MTau2**2*Ss433 - 9*MW2**2*Ss443)
 
 	Ss451 = -3*MW2**3*Ss450 + 
-     &   ML2*(9*MW2**3 + ML2*(-(ML2*Ss433) + 6*MW2*MZ2*SW2))
+     &   MTau2*(9*MW2**3 + MTau2*(-(MTau2*Ss433) + 6*MW2*MZ2*SW2))
 
 	Ss493 = MW2**2*(18*MW2 - 9*MZ2) + MTop2*(-6*MTop2*Ss433 - MW2*Ss433)
 
-	Ss636 = MW2**2*(10*MW2 - 4*MZ2) + ML2*(-3*MW2*Ss443 - ML2*Ss635)
+	Ss636 = MW2**2*(10*MW2 - 4*MZ2) + MTau2*(-3*MW2*Ss443 - MTau2*Ss635)
 
 	Ss492 = MW2**2*(10*MW2 - 4*MZ2) + MTop2*(-(MTop2*Ss433) - MW2*Ss433)
 
@@ -1634,7 +1634,7 @@
 
 	Ss355 = MW2**2*Ss354 + MHiggs2(4)*(MW2*Ss341 - Ss353*MHiggs2(4))
 
-	Ss832 = 4*ML2*Ss324 + MZ2*(-2*Ss484 - 3*Ss831)
+	Ss832 = 4*MTau2*Ss324 + MZ2*(-2*Ss484 - 3*Ss831)
 
 	Ss461 = Ss459 + MW2*(2*MW2*Ss29 - Ss460)
 
@@ -1696,9 +1696,9 @@
 
 	Ss869 = 4*MTop2**2 + MZ2*(MZ2 + 2*Ss45*Log(MZ2))
 
-	Ss310 = ML2*(12*ML2 - 3*MZ2) - Ss309*MHiggs2(2)
+	Ss310 = MTau2*(12*MTau2 - 3*MZ2) - Ss309*MHiggs2(2)
 
-	Ss311 = ML2*(12*ML2 - 3*MZ2) - Ss309*MHiggs2(1)
+	Ss311 = MTau2*(12*MTau2 - 3*MZ2) - Ss309*MHiggs2(1)
 
 	Ss722 = MBot2*(196*MBot2 - Ss720) + MTop2*Ss721
 
@@ -1725,13 +1725,13 @@
 
 	Ss980 = 3*CW*MTop*Ss978*UStop11 + Ss979*UStop12
 
-	Ss957 = CW*ML*Ss937*UStau21 + Ss938*UStau22
+	Ss957 = CW*MTau*Ss937*UStau21 + Ss938*UStau22
 
-	Ss947 = CW*ML*Ss924*UStau21 - Ss925*UStau22
+	Ss947 = CW*MTau*Ss924*UStau21 - Ss925*UStau22
 
-	Ss939 = CW*ML*Ss937*UStau11 + Ss938*UStau12
+	Ss939 = CW*MTau*Ss937*UStau11 + Ss938*UStau12
 
-	Ss926 = CW*ML*Ss924*UStau11 - Ss925*UStau12
+	Ss926 = CW*MTau*Ss924*UStau11 - Ss925*UStau12
 
 	Ss914 = 3*CW*MBot*Ss894*USbot21 + Ss895*USbot22
 
@@ -1761,11 +1761,11 @@
 
 	Ss704 = 2*MBot2*Ss699 - Ss700
 
-	Ss698 = 6*ML2*Ss36*Ss649*Ss650*Ss692 + MZ2*Ss697
+	Ss698 = 6*MTau2*Ss36*Ss649*Ss650*Ss692 + MZ2*Ss697
 
-	Ss690 = ML2*Ss683 + 3*MTop2*MZ2**2*Ss688
+	Ss690 = MTau2*Ss683 + 3*MTop2*MZ2**2*Ss688
 
-	Ss685 = 9*MTop2*MZ2**2*Ss682 - 3*ML2*Ss683
+	Ss685 = 9*MTop2*MZ2**2*Ss682 - 3*MTau2*Ss683
 
 	Ss662 = 5*MTop2*Ss635 + MW2*Ss661
 
@@ -1779,11 +1779,11 @@
 
 	Ss792 = Ss546 + Log(MTop2)
 
-	Ss783 = Ss546 + Log(ML2)
+	Ss783 = Ss546 + Log(MTau2)
 
-	Ss534 = 1/12.D0*Ss533 + TF(0.D0,ML2,MW2)
+	Ss534 = 1/12.D0*Ss533 + TF(0.D0,MTau2,MW2)
 
-	Ss529 = 1/12.D0*Ss528 - TF(0.D0,MHiggs2(4),ML2)
+	Ss529 = 1/12.D0*Ss528 - TF(0.D0,MHiggs2(4),MTau2)
 
 	Ss520 = MTop2*Ss519 - TB2*MHiggs2(4)
 
@@ -1811,7 +1811,7 @@
 
 	Ss471 = Ss467 - MW2*Ss470
 
-	Ss452 = CB*Ss25**2*Ss451 + 18*ML2**2*MW2**2*MZ2*SB*Ss115*SW2*TB
+	Ss452 = CB*Ss25**2*Ss451 + 18*MTau2**2*MW2**2*MZ2*SB*Ss115*SW2*TB
 
 	Ss445 = MTop2*Ss433 + 4*MW2*MZ2*SW2
 
@@ -1843,11 +1843,11 @@
 
 	Ss71 = -(MW2*Ss70) + Ss31*MHiggs2(4)
 
-	Ss838 = -3*ML2*Ss8 + Ss309*MHiggs2(1)
+	Ss838 = -3*MTau2*Ss8 + Ss309*MHiggs2(1)
 
 	Ss825 = 6*Ss306**2 + Ss324
 
-	Ss476 = ML2*Ss306 + MZ2*Ss474
+	Ss476 = MTau2*Ss306 + MZ2*Ss474
 
 	Ss302 = MBot2*Ss301*TB2 + 4*Ss298*Ss299*MHiggs2(4)**2
 
@@ -1859,9 +1859,9 @@
 
 	Ss363 = MTop2*Ss335 + Ss269*MHiggs2(2)
 
-	Ss316 = 2*ML2*Ss306 + Ss269*MHiggs2(2)
+	Ss316 = 2*MTau2*Ss306 + Ss269*MHiggs2(2)
 
-	Ss314 = ML2*Ss306 + Ss269*MHiggs2(2)
+	Ss314 = MTau2*Ss306 + Ss269*MHiggs2(2)
 
 	Ss857 = Ss268 + Ss375
 
@@ -1887,13 +1887,13 @@
 
 	Ss362 = MTop2*Ss335 + Ss263*MHiggs2(1)
 
-	Ss315 = 2*ML2*Ss306 + Ss263*MHiggs2(1)
+	Ss315 = 2*MTau2*Ss306 + Ss263*MHiggs2(1)
 
-	Ss313 = ML2*Ss306 + Ss263*MHiggs2(1)
+	Ss313 = MTau2*Ss306 + Ss263*MHiggs2(1)
 
 	Ss262 = MTop2*Ss241**2*Ss242**2*Ss254 + MBot2*Ss261*TB2
 
-	Ss307 = 3*ML2*Ss245*Ss306 + 4*Ss25**2*MHiggs2(4)
+	Ss307 = 3*MTau2*Ss245*Ss306 + 4*Ss25**2*MHiggs2(4)
 
 	Ss250 = 3*MBot2*Ss245 - 2*Ss249
 
@@ -1939,7 +1939,7 @@
 
 	Ss361 = MTop2*Ss335 + Ss138*MHiggs2(3)
 
-	Ss312 = ML2*Ss306 + Ss138*MHiggs2(3)
+	Ss312 = MTau2*Ss306 + Ss138*MHiggs2(3)
 
 	Ss210 = MBot2*Ss141 + Ss138*MHiggs2(3)
 
@@ -1947,7 +1947,7 @@
 
 	Ss965 = 6*CW*MTop2*SA + CAB*MW*MZ*SB*Ss211
 
-	Ss936 = 2*CW*ML2*SA - CB*MW*MZ*SAB*Ss922
+	Ss936 = 2*CW*MTau2*SA - CB*MW*MZ*SAB*Ss922
 
 	Ss893 = 6*CW*MBot2*SA - CB*MW*MZ*SAB*Ss879
 
@@ -1955,15 +1955,15 @@
 
 	Ss442 = 3*MW2**2*MZ2 - MTop2**2*Ss433
 
-	Ss684 = 12*MTop2**2*MZ2 + ML2**2*Ss649*Ss650
+	Ss684 = 12*MTop2**2*MZ2 + MTau2**2*Ss649*Ss650
 
-	Ss689 = 4*MTop2**2*MZ2 - ML2**2*Ss649*Ss650
+	Ss689 = 4*MTop2**2*MZ2 - MTau2**2*Ss649*Ss650
 
 	Ss572 = 4*MW2**3 - MBot2*Ss571
 
 	Ss412 = MTop2*MW2**2 - Ss411*MHiggs2(4)
 
-	Ss656 = 20*MW2**2 - Ss649*Ss650*Ss655*myB0(MW2,0.D0,ML2,1.D0)
+	Ss656 = 20*MW2**2 - Ss649*Ss650*Ss655*myB0(MW2,0.D0,MTau2,1.D0)
 
 	Ss639 = 2*MW2 + Ss637*Ss638*Log(Abs(Ss637*Ss638))
 
@@ -1975,13 +1975,13 @@
 
 	Ss977 = 6*CA*CW*MTop2 - MW*MZ*SAB*SB*Ss211
 
-	Ss923 = 2*CA*CW*ML2 - CAB*CB*MW*MZ*Ss922
+	Ss923 = 2*CA*CW*MTau2 - CAB*CB*MW*MZ*Ss922
 
 	Ss867 = 2*MZ2*Ss865 + 69*MHiggs2(1)
 
 	Ss855 = -(Ss64*Log(MTop2)) + MHiggs2(1)
 
-	Ss841 = -(Ss54*Log(ML2)) + MHiggs2(1)
+	Ss841 = -(Ss54*Log(MTau2)) + MHiggs2(1)
 
 	Ss880 = 6*CA*CW*MBot2 - CAB*CB*MW*MZ*Ss879
 
@@ -1991,7 +1991,7 @@
 
 	Ss791 = 5 - Ss790*Log(MTop2)
 
-	Ss782 = 5 - Ss781*Log(ML2)
+	Ss782 = 5 - Ss781*Log(MTau2)
 
 	Ss710 = 5 - Ss709*Log(MBot2)
 
@@ -2009,8 +2009,8 @@
      &   MHiggs2(1)*(32*MTop2 - 8*Ss619 - 8*Ss855*Log(MHiggs2(1)) + 
      &      5*MHiggs2(1))
 
-	Ss842 = ML2*(28*ML2 + 16*Ss617) - 4*Ss840*Log(ML2) + 
-     &   MHiggs2(1)*(32*ML2 - 8*Ss617 - 8*Ss841*Log(MHiggs2(1)) + 
+	Ss842 = MTau2*(28*MTau2 + 16*Ss617) - 4*Ss840*Log(MTau2) + 
+     &   MHiggs2(1)*(32*MTau2 - 8*Ss617 - 8*Ss841*Log(MHiggs2(1)) + 
      &      5*MHiggs2(1))
 
 	Ss793 = Ss19*Ss509 + 
@@ -2019,8 +2019,8 @@
      &    MHiggs2(1)
 
 	Ss784 = Ss16*Ss509 + 
-     &   ML2*(-2*Ss324 - 24*Ss326*Log(ML2)) + 
-     &   (48 - Ss268 + 12*Log(ML2)**2 - 6*Log(MHiggs2(1)/ML2)**2)*
+     &   MTau2*(-2*Ss324 - 24*Ss326*Log(MTau2)) + 
+     &   (48 - Ss268 + 12*Log(MTau2)**2 - 6*Log(MHiggs2(1)/MTau2)**2)*
      &    MHiggs2(1)
 
 	Ss251 = 3*MTop2**2*MW2**2 + MBot2*Ss250 + 
@@ -2048,12 +2048,12 @@
 	Ss714 = 2*MBot2*Ss214 - 12*Ss547 + Ss268*MHiggs2(1) + 
      &   6*Ss713*MHiggs2(1)
 
-	Ss657 = 34*MBot2*MW2**2 - 40*MW2**3 + ML2*(2*ML2*MW2 + Ss656)
+	Ss657 = 34*MBot2*MW2**2 - 40*MW2**3 + MTau2*(2*MTau2*MW2 + Ss656)
 
 	Ss229 = 6*MTop2**3 + MBot2*Ss228 + 
      &   MTop2*MHiggs2(4)*(-15*MTop2 + 7*MHiggs2(4))
 
-	Ss839 = ML2*(92*ML2 - 23*MZ2) + 4*Ss838*Log(ML2) - 
+	Ss839 = MTau2*(92*MTau2 - 23*MZ2) + 4*Ss838*Log(MTau2) - 
      &   Ss837*MHiggs2(1)
 
 	Ss968 = 6*CW*MTop*Ss966*UStop21*UStop22 + 
@@ -2063,9 +2063,9 @@
      &   Ss792*Log(MHiggs2(1))*MHiggs2(1) - TF(MHiggs2(1),MTop2,MTop2)
 
 	Ss785 = -(1/12.D0*Ss784) + 
-     &   Ss783*Log(MHiggs2(1))*MHiggs2(1) - TF(MHiggs2(1),ML2,ML2)
+     &   Ss783*Log(MHiggs2(1))*MHiggs2(1) - TF(MHiggs2(1),MTau2,MTau2)
 
-	Ss373 = 5*Ss124*TB + 2*ML2**2*SB2*TB*Log(ML2) - 
+	Ss373 = 5*Ss124*TB + 2*MTau2**2*SB2*TB*Log(MTau2) - 
      &   6*CB*MTop2**2*SB*Log(MTop2)
 
 	Ss715 = MBot2*(4*MBot2*Ss710 + 1/3.D0*Ss712) - 1/6.D0*(Ss714*MHiggs2(1))
@@ -2074,9 +2074,9 @@
 
 	Ss473 = Ss375 + 12*Ss335*Ss398 + Ss455
 
-	Ss849 = -2*Ss625 + 1/3.D0*(ML2*Ss324) + 1/6.D0*(MZ2*Ss848)
+	Ss849 = -2*Ss625 + 1/3.D0*(MTau2*Ss324) + 1/6.D0*(MZ2*Ss848)
 
-	Ss788 = -2*Ss617 + 1/3.D0*(ML2*Ss324) + Ss787*MHiggs2(1)
+	Ss788 = -2*Ss617 + 1/3.D0*(MTau2*Ss324) + Ss787*MHiggs2(1)
 
 	Ss812 = -2*Ss551 + MZ2*Ss811 + 1/3.D0*(MBot2*Ss214)
 
@@ -2084,7 +2084,7 @@
 
 	Ss389 = Ss214 + 12*Ss141*Ss335 + Ss375
 
-	Ss428 = 3*MBot2**2*SB2 + ML2**2*SB2 - Ss124
+	Ss428 = 3*MBot2**2*SB2 + MTau2**2*SB2 - Ss124
 
 	Ss645 = Ss643 + Sqrt(-Ss644)
 
@@ -2097,7 +2097,7 @@
      &      MTop2*(MZ2**3*(-90 - 270*SA2) + 
      &         MW2*MZ2**2*(144 + 270*SA2))) + 
      &   MBot2*(3*Ss131 + 18*MBot2*MZ2**2*Ss134) + 
-     &   ML2*(3*MW2*Ss129 + 6*ML2*MZ2**2*Ss134)
+     &   MTau2*(3*MW2*Ss129 + 6*MTau2*MZ2**2*Ss134)
 
 	Ss440 = MW2**5*(6*MW2 - 6*MZ2) + 
      &   MBot2*(-(MBot2**2*Ss25**2*Ss433) + 3*Ss25**2*Ss434) + 
@@ -2133,8 +2133,8 @@
 
 	Ss488 = Ss486 + Sqrt(-Ss487)
 
-	Ss800 = -2*Ss625 + 2*ML2*Ss782 + 1/3.D0*(ML2*Ss324) + 
-     &   1/6.D0*(MZ2*Ss484) + MZ2*(5 - Ss799*Log(ML2) - 4*Log(MZ2))
+	Ss800 = -2*Ss625 + 2*MTau2*Ss782 + 1/3.D0*(MTau2*Ss324) + 
+     &   1/6.D0*(MZ2*Ss484) + MZ2*(5 - Ss799*Log(MTau2) - 4*Log(MZ2))
 
 	Ss862 = 1/6.D0*(MTop2*Ss375) - 1/12.D0*(Ss12*Ss509) + 
      &   1/2.D0*(MZ2*Log(MTop2/MZ2)**2) + 
@@ -2195,9 +2195,9 @@
 
 	Ss798 = MTop2*(4*MTop2*Ss791 + 4*Ss794) - Ss797*MHiggs2(1)
 
-	Ss789 = ML2*(4*ML2*Ss782 + 4*Ss785) - Ss788*MHiggs2(1)
+	Ss789 = MTau2*(4*MTau2*Ss782 + 4*Ss785) - Ss788*MHiggs2(1)
 
-	Ss850 = -(MZ2**2*Ss846) + ML2*(2*ML2*Ss782 + Ss849)
+	Ss850 = -(MZ2**2*Ss846) + MTau2*(2*MTau2*Ss782 + Ss849)
 
 	Ss813 = -(MZ2**2*Ss808) + MBot2*(2*MBot2*Ss710 + Ss812)
 
@@ -2263,13 +2263,13 @@
 
 	Ss844 = 3*Ss842 + 2*Ss54*Ss843*MHiggs2(1)
 
-	Ss845 = ML2*((4*ML2*Ss839)/(MZ2*Ss8) + 1/3.D0*Ss844/Ss44)
+	Ss845 = MTau2*((4*MTau2*Ss839)/(MZ2*Ss8) + 1/3.D0*Ss844/Ss44)
 
-	Ss835 = Ss832 + 4*ML2*Ss834
+	Ss835 = Ss832 + 4*MTau2*Ss834
 
 	Ss826 = MZ2*Ss825 + Ss15*Ss825
 
-	Ss778 = Ss729 - 288*ML2**2*Ss325*Ss734
+	Ss778 = Ss729 - 288*MTau2**2*Ss325*Ss734
 
 	Ss705 = MBot2**3*Ss704 + 2*Ss649*Ss650*Ss703*myB0(MW2,MBot2,MTop2,1.D0)
 
@@ -2277,7 +2277,7 @@
 
 	Ss659 = 8*MW2**3*Ss653 + MZ2*Ss658
 
-	Ss827 = -(ML2**2*Ss44*Ss826) + 3*Ss15*Ss52*Ss625*MHiggs2(1)
+	Ss827 = -(MTau2**2*Ss44*Ss826) + 3*Ss15*Ss52*Ss625*MHiggs2(1)
 
 	Ss776 = Ss432*Ss605 + 24*Ss578*Ss773
 
@@ -2301,14 +2301,14 @@
 
 	Ss521 = Ss520 + 3*MBot2*TB2
 
-	Ss732 = 864*Ss508*Ss515 + ML2**2*Ss731
+	Ss732 = 864*Ss508*Ss515 + MTau2**2*Ss731
 
 	Ss646 = ((2*MBot2*MTop)/Ss488 - 1/2.D0*Ss645/MTop)/MBot
 
 	Ss489 = ((2*MBot2*MTop)/Ss488 - 1/2.D0*Ss488/MTop)/MBot
 
 	Ss453 = Ss25*Ss452 + 
-     &   36*ML2**2*MW2**3*MZ2*SB*SW2*TB*Log(MW2)*MHiggs2(4)
+     &   36*MTau2**2*MW2**3*MZ2*SB*SW2*TB*Log(MW2)*MHiggs2(4)
 
 	Ss871 = -Ss870 + 2/3.D0*(MZ2*Ss375*Ss45)
 
@@ -2375,7 +2375,7 @@
      &      12*MW2**2*Ss128*atan(Re(1/Sqrt(-Ss126)))*
      &       Sqrt(-Ss126))
 
-	Ss660 = 32*MBot2*MW2**4 - 48*ML2*MW2**4 - MZ2*Ss659
+	Ss660 = 32*MBot2*MW2**4 - 48*MTau2*MW2**4 - MZ2*Ss659
 
 	Ss874 = MTop2*(12*MTop2**2*Ss44*Ss853 + MZ2*Ss858)
 
@@ -2398,7 +2398,7 @@
      &   MBot2**2*MW2**3*MZ2*SB*SW2*TB*
      &    (-72*Log(MW2) + 72*Log(MHiggs2(4)))*MHiggs2(4)
 
-	Ss836 = 12*ML2**2*Ss829 + MZ2*(2*MZ2*Ss324 - Ss835)
+	Ss836 = 12*MTau2**2*Ss829 + MZ2*(2*MZ2*Ss324 - Ss835)
 
 	Ss175 = MW2**2*Ss174 + 
      &   MHiggs2(4)*(-(MW2*Ss169) + Ss165*MHiggs2(4))
@@ -2429,7 +2429,7 @@
 	Ss159 = 18*MW2**2*Ss147 - Ss158*MHiggs2(4)
 
 	Ss779 = 3*Ss29*Ss37**3*Ss722 + 
-     &   Ss37**3*(12*ML2**2*Ss320*Ss723 + 36*Ss371*Ss726 + 
+     &   Ss37**3*(12*MTau2**2*Ss320*Ss723 + 36*Ss371*Ss726 + 
      &      Ss732) - 6*Ss777
 
 	Ss821 = ((-8*Ss813)/Ss7**2 - (MZ2*Ss820)/Ss44)/MZ2 + 
@@ -2439,12 +2439,12 @@
      &    MHiggs2(4)
 
 	Ss708 = (6*Ss660)/MW2**2 + Ss707/(MW2**3*Ss37) - 
-     &   (6*MZ2**2*Ss652*Log(ML2))/MW2**3 - 18*MZ2**3*Log(MZ2) - 
+     &   (6*MZ2**2*Ss652*Log(MTau2))/MW2**3 - 18*MZ2**3*Log(MZ2) - 
      &   6*Ss498*Sqrt(Ss496)*Log(Abs(Ss500/Ss499))
 
 	Ss875 = 8*MTop2*Ss864 - Ss873*Ss9
 
-	Ss852 = 1/3.D0*(ML2*Ss851)/(MZ2*Ss44*Ss8**2) + 
+	Ss852 = 1/3.D0*(MTau2*Ss851)/(MZ2*Ss44*Ss8**2) + 
      &   Ss845/(Ss15*MHiggs2(1))
 
 	Ss780 = Ss37**3*Ss778 - Ss28*Ss779
@@ -2452,8 +2452,8 @@
 	Ss876 = ((MZ2*Ss875)/Ss9**2 + 
      &     1/3.D0*Ss874/(Ss17*Ss44*MHiggs2(1)))/MZ2
 
-	Ss877 = 3*MBot2*MM2*MZ2*Ss56*Ss821 - 9*MZ2*Ss53**2*Ss852 + 
-     &   MM2*(-8*Ss828 - 6*MZ2*Ss63*Ss876)
+	Ss877 = 3*MBot2*MMu2*MZ2*Ss56*Ss821 - 9*MZ2*Ss53**2*Ss852 + 
+     &   MMu2*(-8*Ss828 - 6*MZ2*Ss63*Ss876)
 
 	end
 

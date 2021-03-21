@@ -1,0 +1,9 @@
+<< FormCalc`
+
+OLD/: OLD + NEW = 0
+
+old = << m-old/bsglu-SM.m;
+new = << m/bsglu-SM.m;
+
+test = old OLD + new NEW
+

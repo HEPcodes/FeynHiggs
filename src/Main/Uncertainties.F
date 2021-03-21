@@ -2,7 +2,7 @@
 * Compute (actually, not completely invent) an error estimate
 * for the Higgs masses and mixings
 * this file is part of FeynHiggs
-* last modified 16 Feb 18 th
+* last modified 10 Apr 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -25,12 +25,11 @@
 
 	type(HExtType) dHix, Hix0
 	type(HiggsType) Hisave
-	type(SfType) Sfsave
 	RealType mudimsave
 	integer err, tMsave
 
 	integer nHia
-	parameter (nHia = sizeof(Hi%x)/8)
+	parameter (nHia = len_HExtType)
 	RealType Hia(nHia), Hia0(nHia), dHia(nHia)
 	equivalence (Hi, Hia)
 	equivalence (Hix0, Hia0)
@@ -58,11 +57,11 @@
 * a) variation of mudim from MT/2 to 2 MT
 
 	if( debuglevel .ge. 2 )
-     &    DHIGGS "Uncertainties: mudim = 1/2 MT" ENDL
+     &    DHIGGS "Uncertainties: 1) mudim = 1/2 MT" ENDL
 
 	mudimsave = mudim
 
-	mudim = .25D0*MT2
+	mudim = .25D0*Mf2(3,3)
 	tl_valid = 0
 	eft_valid = 0
 	call CalcHiggsCorr(err)
@@ -76,9 +75,9 @@
 	dHia = abs(Hia - Hia0)
 
 	if( debuglevel .ge. 2 )
-     &    DHIGGS "Uncertainties: mudim = 2 MT" ENDL
+     &    DHIGGS "Uncertainties: 2) mudim = 2 MT" ENDL
 
-	mudim = 4*MT2
+	mudim = 4*Mf2(3,3)
 	tl_valid = 0
 	eft_valid = 0
 	call CalcHiggsCorr(err)
@@ -92,33 +91,24 @@
 
 	dHia = max(dHia, abs(Hia - Hia0))
 
-	Sfsave = Sf(bTR0)
-
 * b) exclude higher-order MB resummation effects
 
 	if( debuglevel .ge. 2 )
-     &    DHIGGS "Uncertainties: no higher-order MB resummation" ENDL
+     &    DHIGGS "Uncertainties: 3) no higher-order MB resummation" ENDL
 
-	if( botResum .eq. 0 ) then
-	  bM = bTR
-	  bM0 = bTR0
-	  tl_valid = 0
-	  eft_valid = 0
-	  call CalcHiggsCorr(err)
-	  bM = 4
-	  bM0 = 4
-	  Hix0 = Hi%x
-	endif
+	bM = bTR + bTR1 - bM
+	bMps = bTRps + bTR1ps - bMps
 
-	botResum = ibset(botResum, 8)
 	tl_valid = 0
 	eft_valid = 0
 	call CalcHiggsCorr(err)
-	botResum = ibclr(botResum, 8)
+
+	bM = bTR + bTR1 - bM
+	bMps = bTRps + bTR1ps - bMps
 
 	if( err .ne. 0 ) then
 	  Warning("Could not evaluate corrections for unresummed MB")
-	  goto 998
+	  goto 999
 	endif
 
 	dHia = dHia + abs(Hia - Hia0)
@@ -126,7 +116,7 @@
 * c) use MTpole instead of MTrun in the two-loop corrections
 
 	if( debuglevel .ge. 2 )
-     &    DHIGGS "Uncertainties: MTpole in 2L corrections" ENDL
+     &    DHIGGS "Uncertainties: 4) MTpole in 2L corrections" ENDL
 
 	tMsave = tM2
 
@@ -155,17 +145,18 @@ c	if( loglevel .eq. 0 ) tM1 = tM2
 
 	if( err .ne. 0 ) then
 	  Warning("Could not evaluate corrections for MTrun <-> MTpole")
-	  goto 998
+	  goto 999
 	endif
 
 	dHia = dHia + abs(Hia - Hia0)
-
-998	Sf(bTR0) = Sfsave
 
 999	Hi = Hisave
 	tl_valid = valid
 	eft_valid = valid
 	higgs_valid = valid
+
+	if( debuglevel .ge. 2 )
+     &    DHIGGS "Uncertainties: dMh =", dHix%mhiggs ENDL
 
 	if( err .eq. 0 ) then
 	  DeltaMHiggs_ = dHix%mhiggs

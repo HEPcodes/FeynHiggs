@@ -1,7 +1,7 @@
 * gm2.h
 * definitions for the g-2 calculation
 * this file is part of FeynHiggs
-* last modified 23 Jan 18 th
+* last modified 9 Mar 18 th
 
 #include "FH.h"
 #include "looptools.h"
@@ -14,6 +14,11 @@
 #define MSneu2(i) MSf2(i,1,3)
 #define MSneu(i) MSf(i,1,3)
 
+#define MMu Mf(2,2)
+#define MMu2 Mf2(2,2)
+
+#define MTau Mf(2,3)
+#define MTau2 Mf2(2,3)
 #define MStau2(i) MSf2(i,2,3)
 #define MStau(i) MSf(i,2,3)
 #define UStau11 USf(1,1,2,3)
@@ -21,8 +26,8 @@
 #define UStau21 USf(2,1,2,3)
 #define UStau22 USf(2,2,2,3)
 
-#define MTop MT
-#define MTop2 MT2
+#define MTop Mf(3,3)
+#define MTop2 Mf2(3,3)
 #define MStop2(i) MSf2(i,3,3)
 #define MStop(i) MSf(i,3,3)
 #define UStop11 USf(1,1,3,3)

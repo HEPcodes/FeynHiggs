@@ -7,9 +7,9 @@
  dMHiggs1gl[1, 3] -> -(dTA01*EL1L)/(2*CW*MZ*SW), 
  dMHiggs1gl[2, 2] -> dMsq1["A0A0"], dMHiggs1gl[2, 3] -> 0, 
  dMHiggs1gl[3, 3] -> Re[seA0A0], dMHiggs1gl[5, 5] -> dMsq1["A0A0"], 
- dZbarHiggs1gl[5, 5] -> dZHiggs1gl[5, 5], dZHiggs1div[1, 1] -> dZh0h0, 
+ dZbarHiggs1gl[5, 5] -> 0, dZHiggs1div[1, 1] -> dZh0h0, 
  dZHiggs1div[1, 2] -> dZh0HH, dZHiggs1div[2, 2] -> dZHHHH, 
  dZHiggs1gl[1, 1] -> dZHiggs1div[1, 1], dZHiggs1gl[1, 2] -> 
   dZHiggs1div[1, 2], dZHiggs1gl[1, 3] -> 0, 
  dZHiggs1gl[2, 2] -> dZHiggs1div[2, 2], dZHiggs1gl[2, 3] -> 0, 
- dZHiggs1gl[3, 3] -> dZ1["HHHH"], dZHiggs1gl[5, 5] -> -dseHmHp}
+ dZHiggs1gl[3, 3] -> dZ1["HHHH"], dZHiggs1gl[5, 5] -> 0}

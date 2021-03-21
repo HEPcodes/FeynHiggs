@@ -1,7 +1,7 @@
 * Bsgamma.F
 * computes the rate for B -> X_s gamma
 * this file is part of FeynHiggs
-* last modified 27 Jan 17 th
+* last modified 9 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -40,7 +40,7 @@ c	parameter (k77 = 75.67D-2 + 3.47D-2)
 	RealType phasespace, z
 	phasespace(z) = 1 + z*(z*((8 - z)*z - 12*log(z)) - 8)
 
-	if( abs(CKM(2,3)) .lt. 1D-15 .or. MC .lt. 1D-15 ) then
+	if( abs(CKM(2,3)) .lt. 1D-15 .or. Mf(3,2) .lt. 1D-15 ) then
 	  bsgMSSM = 0
 	  bsgSM = 0
 	  return
@@ -51,7 +51,7 @@ c	MTr2 = MT2*(asMW/asMT)**(24/23D0)*(1 - 8/(3*pi)*asMT)
 c	MTr = sqrt(MTr2)
 
 	call AlphaS(asMW, nfdummy, MW2)
-	call AlphaS(asMB, nfdummy, MB2)
+	call AlphaS(asMB, nfdummy, Mf2(4,3))
 	eta = asMW/asMB
 
 #include "bsgamma.h"
@@ -114,7 +114,7 @@ c	MTr = sqrt(MTr2)
 	  DCONST "C8R   =", C8R		ENDL
 	endif
 
-	pre = .105D0*6/pi*Alfa0/phasespace(MC2/MB2)*
+	pre = .105D0*6/pi*Alfa0/phasespace(Mf2(3,2)/Mf2(4,3))*
      &    abs(CKMC(3,2)*CKM(3,3)/CKM(2,3))**2
 
 	bsgSM = pre*(

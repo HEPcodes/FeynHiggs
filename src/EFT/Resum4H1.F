@@ -1,7 +1,7 @@
 * Resum4H1.F
 * resum the quartic Higgs coupling
 * this file is part of FeynHiggs
-* last modified 20 Feb 18 th
+* last modified 15 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -38,24 +38,24 @@
 	y(jlam) = 6*k1L*y(jht2)**2*x
 
 	if( debuglevel .gt. 5 ) then
-	  DEFT "running from tSUSY =", tSUSYMS ENDL
+	  DEFT "running from tSUSY =", tSUSYMS	ENDL
 	  DEFT "          to tTop  =", tTop	ENDL
 	  DEFT "inputs:"			ENDL
 	  DEFT "gs2(MT) =", gsMT2		ENDL
 	  DEFT "ht2(MT) =", htMT2		ENDL
-	  DEFT "rough values @ MSUSY:"	ENDL
-	  DEFT "gs2(MSUSY) =", y(jgs2)	ENDL
-	  DEFT "ht2(MSUSY) =", y(jht2)	ENDL
-	  DEFT "lam(MSUSY) =", y(jlam)	ENDL
+	  DEFT "rough values @ MSUSY:"		ENDL
+	  DEFT "gs2(MSUSY) =", y(jgs2)		ENDL
+	  DEFT "ht2(MSUSY) =", y(jht2)		ENDL
+	  DEFT "lam(MSUSY) =", y(jlam)		ENDL
 	endif
 
 	call ODESolve(3, rge, y, tSUSYMS, tTop, 1D-5, -2D0, 0)
 
 	if( debuglevel .gt. 5 ) then
-	  DEFT "rough values @ MT:"	ENDL
+	  DEFT "rough values @ MT:"		ENDL
 	  DEFT "[tmp] gs2(MT) =", y(jgs2)	ENDL
 	  DEFT "[tmp] ht2(MT) =", y(jht2)	ENDL
-	  DEFT "lam(MT) =", y(jlam)	ENDL
+	  DEFT "lam(MT) =", y(jlam)		ENDL
 	endif
 
 	y(jgs2) = gsMT2
@@ -64,8 +64,8 @@
 
 	if( debuglevel .gt. 5 ) then
 	  DEFT "refined values @ MSUSY:"	ENDL
-	  DEFT "gs2(MSUSY) =", y(jgs2)	ENDL
-	  DEFT "ht2(MSUSY) =", y(jht2)	ENDL
+	  DEFT "gs2(MSUSY) =", y(jgs2)		ENDL
+	  DEFT "ht2(MSUSY) =", y(jht2)		ENDL
 	  DEFT "[tmp] lam(MSUSY) =", y(jlam)	ENDL
 	endif
 
@@ -78,8 +78,8 @@
 
 	if( looplevel .eq. 0 ) then
 	  Mh2 = vev**2*y(jlam)
-	  Mh2 = Mh2 -
-     &      k1L*2*3/vev**2*MT2*(Mh2 - 4*MT2)*Re(B0(Mh2,MT2,MT2))
+	  Mh2 = Mh2 - k1L*2*3/vev**2*
+     &      Mf2(3,3)*(Mh2 - 4*Mf2(3,3))*Re(B0(Mh2,Mf2(3,3),Mf2(3,3)))
 	  res = Mh2
 	else
 	  subnonlog = 6*k1L*htMT2**2*(xOS2*(1 - xOS2/12D0))
@@ -103,7 +103,7 @@
 	  DEFT "lam(MT)   =", y(jlam)		ENDL
 	  DEFT "subnonlog =", subnonlog	ENDL
 	  DEFT "sublog    =", sublog		ENDL
-	  DEFT "Mh2       =", Mh2		ENDL
+	  DEFT "Mh2       =", res		ENDL
 	endif
 	end
 

@@ -1,5 +1,5 @@
 * dse_HmHp_gl.F
-* generated 19-Jan-2018 18:29
+* generated 8-May-2018 11:29
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -24,26 +24,26 @@
 	DHIGGS "dse_HmHp_gl k2 =", k2 ENDL
 #endif
 
-	dup1 = Mf2(tM1,3)*UStgl(1,1) + Ytgl*Mf(tM1,3)*UStgl(1,2)
+	dup6 = Mf2(tM1,3)*UStgl(1,1) + Ytgl*Mf(tM1,3)*UStgl(1,2)
 
-	dup2 = Mf2(tM1,3)*UStgl(2,1) + Ytgl*Mf(tM1,3)*UStgl(2,2)
+	dup7 = Mf2(tM1,3)*UStgl(2,1) + Ytgl*Mf(tM1,3)*UStgl(2,2)
 
-	dup3 = Mf2(tM1,3)*UStglC(1,1) + YtglC*Mf(tM1,3)*UStglC(1,2)
+	dup8 = Mf2(tM1,3)*UStglC(1,1) + YtglC*Mf(tM1,3)*UStglC(1,2)
 
-	dup4 = Mf2(tM1,3)*UStglC(2,1) + YtglC*Mf(tM1,3)*UStglC(2,2)
+	dup9 = Mf2(tM1,3)*UStglC(2,1) + YtglC*Mf(tM1,3)*UStglC(2,2)
 
-        dup5 = B0(k2,0.D0,Mf2(tM1,3)) + B1(k2,0.D0,Mf2(tM1,3)) + 
+        dup10 = B0(k2,0.D0,Mf2(tM1,3)) + B1(k2,0.D0,Mf2(tM1,3)) + 
      &    k2*DB1(k2,0.D0,Mf2(tM1,3)) + 
      &    DB0(k2,0.D0,Mf2(tM1,3))*(k2 - Mf2(tM1,3))
 
         se = 3/(4.D0*Pi)*
-     &    (Alfa1L*(dup5*S2B**2*Mf2(tM1,3) + 
+     &    (Alfa1L*(dup10*S2B**2*Mf2(tM1,3) + 
      &         2*CB2**2*TB2*
-     &          ((dup1*dup3*DB0(k2,MSbgl2(1),MStgl2(1)) + 
-     &               dup2*dup4*DB0(k2,MSbgl2(1),MStgl2(2)))*
+     &          ((dup6*dup8*DB0(k2,MSbgl2(1),MStgl2(1)) + 
+     &               dup7*dup9*DB0(k2,MSbgl2(1),MStgl2(2)))*
      &             USbgl(1,1)*USbglC(1,1) + 
-     &            (dup1*dup3*DB0(k2,MSbgl2(2),MStgl2(1)) + 
-     &               dup2*dup4*DB0(k2,MSbgl2(2),MStgl2(2)))*
+     &            (dup6*dup8*DB0(k2,MSbgl2(2),MStgl2(1)) + 
+     &               dup7*dup9*DB0(k2,MSbgl2(2),MStgl2(2)))*
      &             USbgl(2,1)*USbglC(2,1))))/(MW2*S2B**2*SW2*TB2)
 
 #ifdef DETAILED_DEBUG
@@ -52,19 +52,19 @@
 
 	if( mssmpart .le. 1 ) return
 
-	dup6 = SB2*Mf2(bM1,3) + CB2*Mf2(tM1,3)
+	dup1 = SB2*Mf2(bM1,3) + CB2*Mf2(tM1,3)
 
-	dup7 = CB2*YtglC*USbgl(1,1) + Mf(bM1,3)*USbgl(1,2)
+	dup2 = CB2*YtglC*USbgl(1,1) + Mf(bM1,3)*USbgl(1,2)
 
-	dup8 = CB2*YtglC*USbgl(2,1) + Mf(bM1,3)*USbgl(2,2)
+	dup3 = CB2*YtglC*USbgl(2,1) + Mf(bM1,3)*USbgl(2,2)
 
-	dup9 = CB2*Ytgl*USbglC(1,1) + Mf(bM1,3)*USbglC(1,2)
+	dup4 = CB2*Ytgl*USbglC(1,1) + Mf(bM1,3)*USbglC(1,2)
 
-	dup10 = CB2*Ytgl*USbglC(2,1) + Mf(bM1,3)*USbglC(2,2)
+	dup5 = CB2*Ytgl*USbglC(2,1) + Mf(bM1,3)*USbglC(2,2)
 
         se = se + 3/(4.D0*Pi)*
      &     (Alfa1L*(S2B**2*
-     &           (-(dup5*Mf2(tM1,3)) + 
+     &           (-(dup10*Mf2(tM1,3)) + 
      &             (B0(k2,Mf2(bM1,3),Mf2(tM1,3)) + 
      &                B1(k2,Mf2(bM1,3),Mf2(tM1,3)) + 
      &                k2*DB1(k2,Mf2(bM1,3),Mf2(tM1,3)))*
@@ -74,37 +74,37 @@
      &                TB2*Mf2(bM1,3)*
      &                 (k2*TB2 + (-2 - TB2)*Mf2(tM1,3)))) - 
      &          TB2*(DB0(k2,MSbgl2(1),MStgl2(1))*
-     &              (2*CB2**2*dup1*dup3*USbgl(1,1)*USbglC(1,1) - 
-     &                2*((dup6*USbglC(1,1) + 
+     &              (2*CB2**2*dup6*dup8*USbgl(1,1)*USbglC(1,1) - 
+     &                2*((dup1*USbglC(1,1) + 
      &                      SB2*YbglC*Mf(bM1,3)*USbglC(1,2))*
-     &                    UStgl(1,1) + dup9*Mf(tM1,3)*UStgl(1,2))*
-     &                 ((dup6*USbgl(1,1) + 
+     &                    UStgl(1,1) + dup4*Mf(tM1,3)*UStgl(1,2))*
+     &                 ((dup1*USbgl(1,1) + 
      &                      SB2*Ybgl*Mf(bM1,3)*USbgl(1,2))*
-     &                    UStglC(1,1) + dup7*Mf(tM1,3)*UStglC(1,2))
+     &                    UStglC(1,1) + dup2*Mf(tM1,3)*UStglC(1,2))
      &                ) + DB0(k2,MSbgl2(2),MStgl2(1))*
-     &              (2*CB2**2*dup1*dup3*USbgl(2,1)*USbglC(2,1) - 
-     &                2*((dup6*USbglC(2,1) + 
+     &              (2*CB2**2*dup6*dup8*USbgl(2,1)*USbglC(2,1) - 
+     &                2*((dup1*USbglC(2,1) + 
      &                      SB2*YbglC*Mf(bM1,3)*USbglC(2,2))*
-     &                    UStgl(1,1) + dup10*Mf(tM1,3)*UStgl(1,2))*
-     &                 ((dup6*USbgl(2,1) + 
+     &                    UStgl(1,1) + dup5*Mf(tM1,3)*UStgl(1,2))*
+     &                 ((dup1*USbgl(2,1) + 
      &                      SB2*Ybgl*Mf(bM1,3)*USbgl(2,2))*
-     &                    UStglC(1,1) + dup8*Mf(tM1,3)*UStglC(1,2))
+     &                    UStglC(1,1) + dup3*Mf(tM1,3)*UStglC(1,2))
      &                ) + DB0(k2,MSbgl2(1),MStgl2(2))*
-     &              (2*CB2**2*dup2*dup4*USbgl(1,1)*USbglC(1,1) - 
-     &                2*((dup6*USbglC(1,1) + 
+     &              (2*CB2**2*dup7*dup9*USbgl(1,1)*USbglC(1,1) - 
+     &                2*((dup1*USbglC(1,1) + 
      &                      SB2*YbglC*Mf(bM1,3)*USbglC(1,2))*
-     &                    UStgl(2,1) + dup9*Mf(tM1,3)*UStgl(2,2))*
-     &                 ((dup6*USbgl(1,1) + 
+     &                    UStgl(2,1) + dup4*Mf(tM1,3)*UStgl(2,2))*
+     &                 ((dup1*USbgl(1,1) + 
      &                      SB2*Ybgl*Mf(bM1,3)*USbgl(1,2))*
-     &                    UStglC(2,1) + dup7*Mf(tM1,3)*UStglC(2,2))
+     &                    UStglC(2,1) + dup2*Mf(tM1,3)*UStglC(2,2))
      &                ) + DB0(k2,MSbgl2(2),MStgl2(2))*
-     &              (2*CB2**2*dup2*dup4*USbgl(2,1)*USbglC(2,1) - 
-     &                2*((dup6*USbglC(2,1) + 
+     &              (2*CB2**2*dup7*dup9*USbgl(2,1)*USbglC(2,1) - 
+     &                2*((dup1*USbglC(2,1) + 
      &                      SB2*YbglC*Mf(bM1,3)*USbglC(2,2))*
-     &                    UStgl(2,1) + dup10*Mf(tM1,3)*UStgl(2,2))*
-     &                 ((dup6*USbgl(2,1) + 
+     &                    UStgl(2,1) + dup5*Mf(tM1,3)*UStgl(2,2))*
+     &                 ((dup1*USbgl(2,1) + 
      &                      SB2*Ybgl*Mf(bM1,3)*USbgl(2,2))*
-     &                    UStglC(2,1) + dup8*Mf(tM1,3)*UStglC(2,2))
+     &                    UStglC(2,1) + dup3*Mf(tM1,3)*UStglC(2,2))
      &                ))))/(MW2*S2B**2*SW2*TB2)
 
 #ifdef DETAILED_DEBUG

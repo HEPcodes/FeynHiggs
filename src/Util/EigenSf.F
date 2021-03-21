@@ -1,7 +1,7 @@
 * EigenSf.F
 * diagonalization of the Hermitian 2-by-2 sfermion mass matrix
 * this file is part of FeynHiggs
-* last modified 14 Feb 18 th
+* last modified 10 Apr 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -19,11 +19,11 @@
 
 #include "FH.h"
 
-	QuadType h, c, m1, m2
+	RealQuad h, c, m1, m2
 	RealType M12sq
 	ComplexType M12, s
 
-	QuadType dm2
+	RealQuad dm2
 	common /eigensfvars/ dm2
 
 * Note the conventions for better numerical stability:

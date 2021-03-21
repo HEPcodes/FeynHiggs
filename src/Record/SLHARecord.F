@@ -1,7 +1,7 @@
 * SLHARecord.F
 * initialize FeynHiggs record from an SLHA data structure
 * this file is part of FeynHiggs
-* last modified 26 Oct 17 th
+* last modified 12 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -30,7 +30,12 @@
 	character*12 qsf_from
 	data qsf_from /"QSf(t) from "/
 
+	RealType Para, def
+	ComplexType val
+
 #include "DeltaAlfaTop.h"
+
+	Para(val, def) = merge(Re(val), def, Re(val) .gt. 0)
 
 	error = 0
 
@@ -46,38 +51,35 @@ c	if( extpar_Q .eq. invalid ) extpar_Q = 2D16
 
 #define R(i) record(i,iLower)
 
-	R(iinvAlfaMZ) = Re(SMInputs_invAlfaMZ) +
-     &    DeltaAlfaTopAlfa(Re(SMInputs_Mt)**2, Re(SMInputs_MZ)**2)
-	R(iAlfasMZ) = Re(SMInputs_AlfasMZ)
-	R(iGF) = Re(SMInputs_GF)
+	if( Re(SMInputs_invAlfaMZ) .gt. 0 ) then
+	  R(iinvAlfaMZ) = Re(SMInputs_invAlfaMZ) +
+     &      DeltaAlfaTopAlfa(Re(SMInputs_Mt)**2, Re(SMInputs_MZ)**2)
+	else
+	  R(iinvAlfaMZ) = invAlfaMZ_default
+	endif
+	R(iAlfasMZ) = Para(SMInputs_AlfasMZ, AlfasMZ_default)
+	R(iGF) = Para(SMInputs_GF, GF_default)
 
-	R(iME) = Re(SMInputs_Me)
-	R(iMU) = Re(SMInputs_Mu)
-	R(iMD) = Re(SMInputs_Md)
-	R(iMM) = Re(SMInputs_Mmu)
-	R(iMC) = Re(SMInputs_Mc)
-	R(iMS) = Re(SMInputs_Ms)
-	R(iML) = Re(SMInputs_Mtau)
+	R(iME) = Para(SMInputs_Me, ME_default)
+	R(iMU) = Para(SMInputs_Mu, MU_default)
+	R(iMD) = Para(SMInputs_Md, MD_default)
+	R(iMM) = Para(SMInputs_Mmu, MM_default)
+	R(iMC) = Para(SMInputs_Mc, MC_default)
+	R(iMS) = Para(SMInputs_Ms, MS_default)
+	R(iML) = Para(SMInputs_Mtau, ML_default)
 	R(iMT) = Re(SMInputs_Mt)
-	R(iMB) = Re(SMInputs_Mb)
+	R(iMB) = Para(SMInputs_Mb, MB_default)
 
 	R(iMW) = -1
-	R(iMZ) = Re(SMInputs_MZ)
+	R(iMZ) = Para(SMInputs_MZ, MZ_default)
 
 	if( SLHAValid(BlockVCKMIn(1), LengthVCKMIn) .ne. 0 ) then
 	  Origin("CKM from VCKMIn")
-	  R(iCKMlambda) = Re(VCKMIn_lambda)
-	  R(iCKMA) = Re(VCKMIn_A)
-	  R(iCKMrhobar) = Re(VCKMIn_rhobar)
-	  R(iCKMetabar) = Re(VCKMIn_etabar)
 	endif
-
-	call SMDefaults(R(iinvAlfa0), R(iinvAlfaMZ), R(iAlfasMZ), R(iGF),
-     &    R(iME), R(iMU), R(iMD),
-     &    R(iMM), R(iMC), R(iMS),
-     &    R(iML),         R(iMB),
-     &    R(iMW), R(iMZ), R(iGammaW), R(iGammaZ),
-     &    R(iCKMlambda), R(iCKMA), R(iCKMrhobar), R(iCKMetabar))
+	R(iCKMlambda) = Para(VCKMIn_lambda, CKMlambda_default)
+	R(iCKMA) = Para(VCKMIn_A, CKMA_default)
+	R(iCKMrhobar) = Para(VCKMIn_rhobar, CKMrhobar_default)
+	R(iCKMetabar) = Para(VCKMIn_etabar, CKMetabar_default)
 
 	if( int(ModSel_Content) .gt. 0 )
      &    Warning("SLHA record indicates model other than MSSM")

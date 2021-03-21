@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 18 Feb 18 th
+* last modified 4 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -26,7 +26,7 @@
 	ComplexType DRbarshift(se2Rn)
 	integer i, c, fail, tlx
 
-	integer tlxbits(0:6), axatbits, axabbits
+	integer tlxbits(0:3), axatbits, axabbits
 	parameter (axabbits = 2**asab + 2**atab)
 	parameter (axatbits = axabbits + 2**asat + 2**atat)
 
@@ -36,7 +36,7 @@
 	save blurb
 	data blurb /.TRUE./
 
-	data tlxbits /axatbits, 0, 5*axabbits/
+	data tlxbits /axatbits, 0, 2*axabbits/
 
 	data catname(asat) /"asat"/
 	data catname(atat) /"atat"/
@@ -74,10 +74,7 @@
 	se2Rcat(:,:) = 0
 	dPhi = 0
 
-	Deltab = 0
-	BSS2(1) = DSS2(1,4,3)
-	BSS2(2) = DSS2(2,4,3)
-	MBy = Mf(bM,3)
+	if( tlx .eq. 0 ) goto 1
 
 	do ipi = 1, ipn
 	  if( debuglevel .ge. 3 )
@@ -86,99 +83,88 @@
 	  MUEr = Re(MUEc)
 	  MUEr2 = MUEr**2
 	  Abr = Re(Abc)
-	  if( bM .ne. 4 ) then
-	    call TLps_Deltab(fail)
-	    bpara_ps(1,ipi) = BSS2(1)
-	    bpara_ps(2,ipi) = Deltab
-	    bpara_ps(3,ipi) = MBy
-	    if( debuglevel .gt. 3 ) then
-	      DSELF "BSS2(1) =", BSS2(1)
-	      DSELF "Deltab  =", Deltab
-	      DSELF "MBy     =", MBy
-	    endif
+	  call TLps_Deltab(fail)
+	  bpara_ps(1,ipi) = BSS2(1)
+	  bpara_ps(2,ipi) = Deltab
+	  bpara_ps(3,ipi) = MBy
+	  if( debuglevel .gt. 3 ) then
+	    DSELF "BSS2(1) =", BSS2(1)
+	    DSELF "Deltab  =", Deltab
+	    DSELF "MBy     =", MBy
 	  endif
 
 	  fail = 0
 	  call TLps_normalTB(fail, MBy)
 	  if( fail .ne. 0 ) goto 999
 
-	  if( tlx .ne. 0 ) then
-	    if( btest(tlx, asat) ) call TLps_asat(dPhi(1,asat,ipi))
-	    if( btest(tlx, atat) ) call TLps_atat(dPhi(1,atat,ipi))
-	    if( btest(tlx, asab) .and. Ab_bad .eq. 0 ) then
-	      call TLps_largeTB(fail)
-	      if( fail .ne. 0 ) goto 999
-	      call TLps_asab(dPhi(1,asab,ipi))
+	  if( btest(tlx, asat) ) call TLps_asat(dPhi(1,asat,ipi))
+	  if( btest(tlx, atat) ) call TLps_atat(dPhi(1,atat,ipi))
+	  if( btest(tlx, asab) .and. Ab_bad .eq. 0 ) then
+	    call TLps_largeTB(fail)
+	    if( fail .ne. 0 ) goto 999
+	    call TLps_asab(dPhi(1,asab,ipi))
 * the O(at^2) part at large TB will be subtracted in TLps_atab:
-	      call TLps_atat(dPhi(1,atab,ipi))
-	      call TLps_atab(dPhi(1,atab,ipi))
-	    endif
+	    call TLps_atat(dPhi(1,atab,ipi))
+	    call TLps_atab(dPhi(1,atab,ipi))
+	  endif
 
-	    if( debuglevel .ge. 4 ) then
-	      DSELF "Sigma11_asat =", dPhi(se11,asat,ipi) ENDL
-	      DSELF "        atat =", dPhi(se11,atat,ipi) ENDL
-	      DSELF "        asab =", dPhi(se11,asab,ipi) ENDL
-	      DSELF "        atab =", dPhi(se11,atab,ipi) ENDL
-	      DSELF "Sigma12_asat =", dPhi(se12,asat,ipi) ENDL
-	      DSELF "        atat =", dPhi(se12,atat,ipi) ENDL
-	      DSELF "        asab =", dPhi(se12,asab,ipi) ENDL
-	      DSELF "        atab =", dPhi(se12,atab,ipi) ENDL
-	      DSELF "Sigma22_asat =", dPhi(se22,asat,ipi) ENDL
-	      DSELF "        atat =", dPhi(se22,atat,ipi) ENDL
-	      DSELF "        asab =", dPhi(se22,asab,ipi) ENDL
-	      DSELF "        atab =", dPhi(se22,atab,ipi) ENDL
-	    endif
+	  if( debuglevel .ge. 4 ) then
+	    DSELF "Sigma11_asat =", dPhi(se11,asat,ipi) ENDL
+	    DSELF "        atat =", dPhi(se11,atat,ipi) ENDL
+	    DSELF "        asab =", dPhi(se11,asab,ipi) ENDL
+	    DSELF "        atab =", dPhi(se11,atab,ipi) ENDL
+	    DSELF "Sigma12_asat =", dPhi(se12,asat,ipi) ENDL
+	    DSELF "        atat =", dPhi(se12,atat,ipi) ENDL
+	    DSELF "        asab =", dPhi(se12,asab,ipi) ENDL
+	    DSELF "        atab =", dPhi(se12,atab,ipi) ENDL
+	    DSELF "Sigma22_asat =", dPhi(se22,asat,ipi) ENDL
+	    DSELF "        atat =", dPhi(se22,atat,ipi) ENDL
+	    DSELF "        asab =", dPhi(se22,asab,ipi) ENDL
+	    DSELF "        atab =", dPhi(se22,atab,ipi) ENDL
 	  endif
 
 999	  continue
 	enddo
 
-	if( tlx .ne. 0 ) then
-	  if( bM .ne. 4 ) then
-	    if( debuglevel .ge. 3 ) DPARA "interpolating BSS" ENDL
-	    call CplxInterpolate(error, DSS2(1,bTR0,3), bpara_ps(1,1),3)
+	if( debuglevel .ge. 3 ) DPARA "interpolating BSS" ENDL
+	call CplxInterpolate(error, DSS2(1,bMps,3), bpara_ps(1,1),3)
 
-	    if( debuglevel .ge. 3 ) DPARA "interpolating Deltab" ENDL
-	    Deltaf(bTR0,3) = 0
-	    call CplxInterpolate(error, Deltaf(bTR0,3), bpara_ps(2,1),3)
+	if( debuglevel .ge. 3 ) DPARA "interpolating Deltab" ENDL
+	call CplxInterpolate(error, Deltaf(bMps,3), bpara_ps(2,1),3)
 
-	    if( debuglevel .ge. 3 ) DPARA "interpolating MBy" ENDL
-	    call CplxInterpolate(error, Mf(bTR0,3), bpara_ps(3,1),3)
-	    Mf2(bTR0,3) = Mf(bTR0,3)**2
+	if( debuglevel .ge. 3 ) DPARA "interpolating MBy" ENDL
+	call CplxInterpolate(error, Mf(bMps,3), bpara_ps(3,1),3)
 
-	    if( debuglevel .gt. 3 ) then
-	      DPARA "============================"	ENDL
-	      DPARA "DSS2(1,bTR0,3) =", DSS2(1,bTR0,3)	ENDL
-	      DPARA "Deltaf(bTR0,3) =", Deltaf(bTR0,3)	ENDL
-	      DPARA "Mf(bTR0,3) =", Mf(bTR0,3)		ENDL
-	    endif
-
-	    call SfUpdate(error, X4(0,bTR0,bTR0,4), SORT_SF, 1)
-	    call SbglUpdate(error, bTR0)
-	    if( error .ne. 0 ) return
-	  endif
-
-	  do c = asat, atab
-	    if( btest(tlx, c) ) then
-	      if( debuglevel .ge. 3 )
-     &          DSELF "interpolating ", catname(c) ENDL
-	      call CplxInterpolate(error,
-     &          dPhi(se11,c,1), dPhi(se11,c,1),dPhin*se2Rc)
-	      call CplxInterpolate(error,
-     &          dPhi(se12,c,1), dPhi(se12,c,1),dPhin*se2Rc)
-	      call CplxInterpolate(error,
-     &          dPhi(se22,c,1), dPhi(se22,c,1),dPhin*se2Rc)
-	      if( TLallow(c, h0h0) )
-     &          se2Rcat(h0h0,c) = R_h0h0(rA, cpe_dPhi(c))
-	      if( TLallow(c, HHHH) )
-     &          se2Rcat(HHHH,c) = R_HHHH(rA, cpe_dPhi(c))
-	      if( TLallow(c, h0HH) )
-     &          se2Rcat(h0HH,c) = R_h0HH(rA, cpe_dPhi(c))
-	    endif
-	  enddo
+	if( debuglevel .gt. 3 ) then
+	  DPARA "============================"		ENDL
+	  DPARA "DSS2(1,bMps,3) =", DSS2(1,bMps,3)	ENDL
+	  DPARA "Deltaf(bMps,3) =", Deltaf(bMps,3)	ENDL
+	  DPARA "Mf(bMps,3) =", Mf(bMps,3)		ENDL
 	endif
 
-	call TLhrSE(btest(tlx, asat))
+	call SfUpdate(error, X4(0,bMps,bMps,4), SORT_SF, 1)
+	call SbglUpdate(error, bMps)
+	if( error .ne. 0 ) return
+
+	do c = asat, atab
+	  if( .not. btest(tlx, c) ) cycle
+	  if( debuglevel .ge. 3 )
+     &      DSELF "interpolating ", catname(c) ENDL
+	  call CplxInterpolate(error,
+     &      dPhi(se11,c,1), dPhi(se11,c,1),dPhin*se2Rc)
+	  call CplxInterpolate(error,
+     &      dPhi(se12,c,1), dPhi(se12,c,1),dPhin*se2Rc)
+	  call CplxInterpolate(error,
+     &      dPhi(se22,c,1), dPhi(se22,c,1),dPhin*se2Rc)
+	  if( TLallow(c, h0h0) )
+     &      se2Rcat(h0h0,c) = R_h0h0(rA, cpe_dPhi(c))
+	  if( TLallow(c, HHHH) )
+     &      se2Rcat(HHHH,c) = R_HHHH(rA, cpe_dPhi(c))
+	  if( TLallow(c, h0HH) )
+     &      se2Rcat(h0HH,c) = R_h0HH(rA, cpe_dPhi(c))
+	enddo
+
+1	call TLhrSE(btest(tlx, asat))
 	call TLspSE(btest(tlx, atat))
 
 	if( tM2 .eq. tMT .or. tM2 .eq. tMT1 ) then
@@ -218,6 +204,7 @@
 	  se2Rcat(A0A0,sDRb) = -DRbarshift(A0A0)
 	  se2Rcat(h0A0,sDRb) = -C_h0A0(rBA, cpo(DRbarshift))
 	  se2Rcat(HHA0,sDRb) = -C_HHA0(rBA, cpo(DRbarshift))
+	  se2Rcat(HmHp,sDRb) = -DRbarshift(HmHp)
 	  if( debuglevel .ge. 4 ) then
 	    DSELF "DRbar shifts:" ENDL
 	    DSELF "DRbar scale =", QSf2(3) ENDL
@@ -227,6 +214,7 @@
 	    DSELF "shift(A0A0) =", se2Rcat(A0A0,sDRb) ENDL
 	    DSELF "shift(h0A0) =", se2Rcat(h0A0,sDRb) ENDL
 	    DSELF "shift(HHA0) =", se2Rcat(HHA0,sDRb) ENDL
+	    DSELF "shift(HmHp) =", se2Rcat(HmHp,sDRb) ENDL
 	  endif
 	endif
 
@@ -237,7 +225,8 @@
 * add Im(se1L)*Im(dse1L) to dMA02/dMHmHp2 CT
 * NB: seRgl = seUgl here since RC not computed yet but need Im only
 	if( dmtlimim .eq. 1 ) then
-	  call CalcSE_gl(inputmass, SEKey(inputmass), SEKey(inputmass))
+	  call CalcSEgl(Msqgl(inputmass), SEKey(inputmass),
+     &                                    SEKey(inputmass))
 	  dM2imxim = Im(seRgl(inputmass))*Im(dseRgl(inputmass))
 	  se2R(h0h0) = se2R(h0h0) - CBA2*dM2imxim
 	  se2R(h0HH) = se2R(h0HH) + CBA*SBA*dM2imxim

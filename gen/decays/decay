@@ -34,6 +34,8 @@ AppendTo[$Echo, "stdout"];
 FormPre = Identity;
 FormSub = Identity;
 
+SetLanguage["Fortran", "novec"];
+
 (*loopopt[1] = LastSelections -> F[15];*)
 _loopopt = Sequence[];
 
@@ -70,70 +72,61 @@ EL = EL0;
 Sq[EL0] = 4 Pi Alfa0;
 
 trigrulz = {
-  CA a_ + CA2 b_ -> CA (a + CA b),
-  SA a_ + SA2 b_ -> SA (a + SA b),
-  CB a_ + CB2 b_ -> CB (a + CB b),
-  SB a_ + SB2 b_ -> SB (a + SB b)
+  CA a_ + CA2 b_ :> CA (a + CA b),
+  SA a_ + SA2 b_ :> SA (a + SA b),
+  CB a_ + CB2 b_ :> CB (a + CB b),
+  SB a_ + SB2 b_ :> SB (a + SB b)
 };
 
-frulz[_ -> 0] = {};
+frulz[_, 0] = {};
 
-frulz[t_ -> ty_] := {
-  Mf[t,1] -> Mf[ty,1],
-  Mf[t,2] -> Mf[ty,2],
-  Mf[t,3] -> Mf[ty,3],
-  Mf[t,g_] -> Mf[ty,g],
-  Mf2[t,1] -> Mf2[ty,1],
-  Mf2[t,2] -> Mf2[ty,2],
-  Mf2[t,3] -> Mf2[ty,3],
-  Mf2[t,g_] -> Mf2[ty,g] };
+frulz[t_, ty_] := {
+  Mf[t,g_] :> Mf[ty,g],
+  Mf2[t,g_] :> Mf2[ty,g] };
 
-sfrulz[t_ -> 0] := {		(* for SM *)
-  Mqy[t,g_] -> Mf[t,g] };
+sfrulz[t_, 0] := {		(* for SM *)
+  Mqy[t,g_] :> Mf[t,g] };
 
-sfrulz[t_ -> ty_] := {
-  Mqy[t,g_] -> Mf[ty,g],
-  MSf[s_,t,g_] -> MSf[s,ty,g],
-  MSf2[s_,t,g_] -> MSf2[s,ty,g],
-  USf[s__,t,g_] -> USf[s,ty,g],
-  USfC[s__,t,g_] -> USfC[s,ty,g],
-  MASf[as_,t] -> MASf[as,ty],
-  MASf2[as_,t] -> MASf2[as,ty],
-  UASf[as__,t] -> UASf[as,ty],
-  UASfC[as__,t] -> UASfC[as,ty],
-  Kf[g__,t] -> Kf[g,ty],
-  KfC[g__,t] -> KfC[g,ty] };
+sfrulz[t_, ty_] := {
+  Mqy[t,g_] :> Mf[ty,g],
+  MSf[s_,t,g_] :> MSf[s,ty,g],
+  MSf2[s_,t,g_] :> MSf2[s,ty,g],
+  USf[s__,t,g_] :> USf[s,ty,g],
+  USfC[s__,t,g_] :> USfC[s,ty,g],
+  MASf[as_,t] :> MASf[as,ty],
+  MASf2[as_,t] :> MASf2[as,ty],
+  UASf[as__,t] :> UASf[as,ty],
+  UASfC[as__,t] :> UASfC[as,ty],
+  Kf[g__,t] :> Kf[g,ty],
+  KfC[g__,t] :> KfC[g,ty] };
 
 massrulz[u_, uy_, d_, dy_] := Flatten[{
-  frulz[3 -> u],
-  sfrulz[3 -> uy],
-  frulz[4 -> d],
-  sfrulz[4 -> dy] }];
+  frulz[3, u], sfrulz[3, uy],
+  frulz[4, d], sfrulz[4, dy] }];
 
 final[expr_] := expr /.
   gather[q_, a_:1] :> sgather[reim[q] a] /.
   sgather -> split /.
   { Finite -> 1,
-    USf[a__] USfC[a__] -> USf2[a],
-    ZHiggs[i_, j_] -> XHiggs[i, j, uzext],
-    IndexDelta -> IDelta,
+    USf[a__] USfC[a__] :> USf2[a],
+    ZHiggs[i_, j_] :> XHiggs[i, j, uzext],
     Sqrt[2] -> sqrt2,
     1/Sqrt[2] -> 1/sqrt2,
     re[h_[x__]] :> ToSymbol[h, "Re"][x],
     im[h_[x__]] :> ToSymbol[h, "Im"][x] } /.
-  IDelta -> Delta;
+  IndexDelta -> IDelta;
 
 (*Mdy[g_] := Mfy[7, g];*)
 Sq[Mfy[a__]] = Mfy2[a];
 RealQ[_Mfy] = True;
 
-Dim[gno1] = Dim[gno2] = 3;
-
 Format[Mino3, FortranForm] := "M_3";
 Format[Mino3C, FortranForm] := "M_3C";
 
 
-$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCOUP ", " ENDL"};
+$DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
+$DebugCmd[1] = "DCOUP \"" <> tag <> "-`1` `2` =\", `3` ENDL\n";
+$DebugPost[1] = "#endif\n";
 
 deepestOnly[{___, l_}] = {l};
 
@@ -188,28 +181,30 @@ Block[ {io, top, ins, insv, insct, amp, vert},
     3 -> ((If[# === 0, m3 = m32 = 0]; m3)&)];
 
 FormSub = simp1 (*Identity*) (*TermCollect*) (*Simplify*);
-  vert = CalcFeynAmp[foo[amp /. rul]];
+  vert = amp /. rul;
+  vert = CalcFeynAmp[vert];
+  vert = foo[vert];
   vert = final[vert];
-(*
-  vert = Collect[vert, {_Mat, _SumOver, _Den, _IndexDelta}, simp1];
-*)
-
-  Abbreviate[vert, 5, Preprocess -> simp1 (*, Deny -> HffDb*)] //elimDiv
+  vert = Abbreviate[vert, 5, Preprocess -> simp1];
+  vert = elimDiv[vert];
+  vert
 ];
 
 
-IDelta/: IDelta[i_, j_] a_ := IDelta[i, j] (a /. j -> i) /; !FreeQ[a, j];
+IDelta/: IDelta[i_, j_] a_. := Delta[i, j] (a /. {s_SumOver :> s, j -> i})
 
 
 fxi[x_] := fsimp[x //. trigrulz] /. trigrulz;
 
 Attributes[fsi] = {Listable};
+fsi[var_ -> x_] := var -> fsi[x];
 fsi[x_] := x /; FreeQ[x, Plus];
 fsi[x_] := fsi[x] = fxi[fxi[x]];
 
 xi[x_] := simp[x //. trigrulz] /. trigrulz;
 
 Attributes[si] = {Listable};
+si[var_ -> x_] := var -> si[x];
 si[x_] := x /; FreeQ[x, Plus];
 si[x_] := si[x] = xi[xi[x]];
 
@@ -224,17 +219,13 @@ SetOptions[PrepareExpr,
 
 
 elimDiv[expr_] := ToIndexIf[ expr /.
-  (d:Den[MHiggs2[i_], MHiggs2[j_]]) -> d IndexDiff[i, j] ];
+  (d:Den[MHiggs2[i_], MHiggs2[j_]]) :> d IndexDiff[i, j] ];
 
 
 SetOptions[WriteSquaredME,
   FilePrefix -> tag <> "-",
   SymbolPrefix -> tag <> "_",
   Folder -> tag <> "-squaredme",
-  FileIncludes -> {"#include \"externals.h\"\n\
-#include \"types.h\"\n\
-#include \"debug.h\"\n\n",
-    "#include \"inline.h\"\n"},
   FileHeader -> StringReplace[FileHeader /. Options[WriteSquaredME],
     "#endif" -> "* this file is part of FeynHiggs\n#endif"]];
 
@@ -242,7 +233,7 @@ SetOptions[WriteRenConst,
   Folder -> tag <> "-renconst"];
 
 job[proc_, model_, excl_, rul0_, rul1_, foo_, opt___] :=
-Block[ {v0, v1, col, abbr, sub, uzext},
+Block[ {v0, v1, col, abbr, sub, uzext, DoDim},
   v0 = amps[0, proc, model, excl, rul0, foo, opt];
   v1 = amps[1, proc, model, excl, rul1, foo, opt];
 
@@ -250,17 +241,27 @@ Block[ {v0, v1, col, abbr, sub, uzext},
 
   col = ColourME[All, All];
   abbr = OptimizeAbbr[final[Abbr[]]];
-  sub = OptimizeAbbr[Subexpr[]] //fsi;
+  sub = OptimizeAbbr[Subexpr[]];
+  sub = fsi[sub];
 
   Put[{v0, v1, col, abbr, sub}, ToFileName["m", tag <> ".amp"]];
 
-  rcs = FindRenConst[{v0, v1, sub}];
+  rcs = FindRenConst[{v0, v1}][[1]];
 
-  SetOptions[WriteSquaredME, SubroutineIncludes -> {
-    If[ Length[rcs] === 0,
-      "#include \"Decay.h\"\n",
-      "#include \"Decay.h\"\n#include \"" <> tag <> "-renconst.h\"\n" ],
-    "#include \"inline.h\"\n" }];
+  rcinc = If[ Length[rcs] === 0, "",
+    "#include \"" <> tag <> "-RenConst.h.F\"\n"];
+
+  SetOptions[WriteSquaredME, 
+    FileIncludes -> {"\
+#include \"externals.h\"\n\
+#include \"types.h\"\n\
+#include \"debug.h\"\n" <> rcinc,
+      "\
+#include \"inline.h\"\n" },
+    SubroutineIncludes -> {"\
+#include \"Decay.h\"\n" <> rcinc,
+      "\
+#include \"inline.h\"\n" }];
 
   WriteSquaredME[v0, v1, col, abbr, sub, "f",
     ExtraRules -> ToOldBRules,
@@ -269,6 +270,7 @@ Block[ {v0, v1, col, abbr, sub, uzext},
 
   If[ Length[rcs] > 0,
 FormSub = simp1;
+    DoDim[gno1] = DoDim[gno2] = 3;
     rcs = final[foo[CalcRenConst[rcs, loopopt[1]] /. rul1] /.
       ToOldBRules];
     Put[rcs, ToFileName["m", tag <> ".rc"]];
@@ -277,7 +279,7 @@ FormSub = simp1;
 
 
 gather/: gather[q_, expr_:1] x_ := gather[q, expr x] /;
-  FreeQ[x, gather];
+  FreeQ[x, gather | SUNT | IndexDelta];
 
 gather/: gather[q_, a_:1] + gather[q_, b_:1] := gather[q, a + b] /;
   FreeQ[{a, b}, gather];
@@ -359,7 +361,7 @@ decay["hhh"] := job[
   S[10, {hno}] -> {S[10, {hno1}], S[10, {hno2}]},
   cMSSM /. "FV" -> "Hhh", 2|3,
   {}, DeltaHhh -> 0,
-  # /. massrulz[3, 3, bTR, bTR] /. {
+  # /. massrulz[tM3, tM3, bTR, bTR] /. {
     _Yuk -> 1,
     _Hbb -> 1 } &,
   ExcludeParticles -> {U[5], V[5]} ];
@@ -415,7 +417,7 @@ _EOF_
 
 # prepare generated code for inclusion in FH
 
-for file in d/*.ps ; do gzip -f $file ; done
+test -d d && gzip d/*.ps
 
 cd f
 
@@ -425,9 +427,8 @@ mkdir $tag
 convert() {
   script='
 /INI_S/d
-/INI_ANGLE/d
+/INI_A/d
 /DEINI/d
-/seq(.) = seq(.) + 1/d
 /PAR_PREP/d
 /PAR_SYNC/d
 s/PAR_EXEC(\([^,]*\), \([^)]*\))/call \1(\2)/
@@ -435,7 +436,9 @@ s/SIMD_CEIL(\([^)]*\))/\1/
 /SIMD/d
 /#define LEGS/d
 /#if PARALLEL/,/#endif/d
+/#if DEBUG/,/#endif/d
 /BEGIN HSEL/,/END HSEL/d
+/BEGIN SETMASS/,/END SETMASS/ d
 s/ResType/RealType/g
 s/HelType/ComplexType/g
 s/HelInd(\([^)]*\))/\1/g
@@ -444,8 +447,11 @@ s/HelSum(\(.*\))/\1/
 s/, helicities//
 s/, flags//
 /flags/d
-/hbits/d
 /helicities/d
+/hbits/d
+/seq/d
+/hlast/d
+/-specs\.h/d
 /MASK_HEL/d
 /call hdd_v0/i\
 \	sub1L = 1\n\

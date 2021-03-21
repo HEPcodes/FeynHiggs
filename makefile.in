@@ -1,22 +1,24 @@
-FHVERSION = 2.14.1
+FHVERSION = 2.14.2
+
+BLD = build$(QUADSUFFIX)
+VERSION = $(BLD)/version.h
 
 LIBDIR = $(PREFIX)/lib$(LIBDIRSUFFIX)
 INCLUDEDIR = $(PREFIX)/include
 BINDIR = $(PREFIX)/bin
-
-VERSION = $(BLD)/version.h
 
 ARGS = $(PARALLEL) \
   GM2FULL="$(GM2FULL)" \
   NOUNDERSCORE="$(NOUNDERSCORE)" \
   EXE="$(EXE)" \
   FC="$(FC)" \
-  FFLAGS="$(FFLAGS) $(DEF)HASQUAD=$(HASQUAD) $(DEF)GM2FULL=$(GM2FULL) $(DEF)SLHAPARA=$(SLHAPARA) $(DEF)VT100=$(VT100)" \
+  FFLAGS="$(FFLAGS)" \
   CC="$(CC)" \
-  CFLAGS="$(CFLAGS) -DNOUNDERSCORE=$(NOUNDERSCORE) -DVT100=$(VT100)" \
+  CFLAGS="$(CFLAGS)" \
   CXX="$(CXX)" \
   CXXFLAGS="$(CXXFLAGS)" \
-  QUAD="$(QUAD)" \
+  QUADSUFFIX="$(QUADSUFFIX)" \
+  QUADSIZE="$(QUADSIZE)" \
   ML="$(ML)" \
   MCC="$(MCC)" \
   MCFLAGS="$(MCFLAGS)" \
@@ -30,6 +32,9 @@ ARGS = $(PARALLEL) \
 default all lib frontend mma: force
 	cd $(BLD) && $(MAKE) $(ARGS) $@
 
+FHBIN = $(BLD)/FeynHiggs$(EXE) $(BLD)/table$(EXE)
+MFHBIN = $(BLD)/MFeynHiggs$(EXE)
+
 install: default
 	-mkdir "$(PREFIX)"
 	-mkdir "$(LIBDIR)" "$(INCLUDEDIR)" "$(BINDIR)"
@@ -37,10 +42,13 @@ install: default
 	cp -p $(BLD)/CFeynHiggs.h $(BLD)/CSLHA.h $(BLD)/FHCouplings.h \
 	  $(BLD)/FHRecord.h $(BLD)/SLHA.h $(BLD)/SLHADefs.h \
 	  $(BLD)/PDG.h "$(INCLUDEDIR)"
-	strip $(BLD)/FeynHiggs$(EXE) $(BLD)/table$(EXE)
-	cp -p $(BLD)/FeynHiggs$(EXE) $(BLD)/table$(EXE) $(BLD)/fcc "$(BINDIR)"
-	-strip $(BLD)/MFeynHiggs$(EXE)
-	-cp -p $(BLD)/MFeynHiggs$(EXE) "$(BINDIR)"
+	strip $(FHBIN)
+	cp -p $(FHBIN) $(BLD)/fcc "$(BINDIR)"
+	test ! -f $(MFHBIN) || { \
+	  test -z "$(EXE)" || ldd $(MFHBIN) | awk '/\/usr\/bin\/cyg/ { system("cp -p " $$3 " $(BINDIR)/"); }' ; \
+	  strip $(MFHBIN) ; \
+	  cp -p $(MFHBIN) $(BINDIR); \
+	}
 
 force: $(BLD)/version.h
 

@@ -1,5 +1,5 @@
 * td_h0_nmfv.F
-* generated 17-Jan-2018 8:12
+* generated 8-May-2018 11:26
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -17,7 +17,7 @@
 
 	integer All2, Cha2, Gen2, Ind1, Ind2, Neu2
 
-	ComplexType tmp1, tmp2, tmp3
+	ComplexType A0tmp1, A0tmp2, A0tmp3
 
 	se = 0
 
@@ -30,14 +30,14 @@
 
 	LOOP(All2, 1,6,gM)
 
-	tmp1 = A0(MASf2(All2,tM1))
+	A0tmp1 = A0(MASf2(All2,tM1))
 
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
 
         se = se + 1/(32.D0*Pi**2)*
-     &     (EL1L*tmp1*((Delta(Ind1,Ind2)*
-     &              (MW*MZ*SAB*(SB - 4*CW2*SB) + 
+     &     (A0tmp1*EL1L*((Delta(Ind1,Ind2)*
+     &              ((1 - 4*CW2)*MW*MZ*SAB*SB + 
      &                6*CA*CW*Mf2(tM1,Ind1))*UASf(All2,Ind2,tM1) + 
      &             3*CW*(CA*Kf(Ind1,Ind2,tM1) + 
      &                MUEC*SA*Delta(Ind1,Ind2)*Mf(tM1,Ind1))*
@@ -50,8 +50,8 @@
      &              UASf(All2,3 + Ind2,tM1))*
      &           UASfC(All2,3 + Ind1,tM1)))/(CW*MW*SB*SW)
 
-	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
 	ENDLOOP(All2)
 
@@ -70,14 +70,14 @@
 
 	LOOP(All2, 1,6,gM)
 
-	tmp2 = A0(MASf2(All2,bM1))
+	A0tmp2 = A0(MASf2(All2,bM1))
 
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
 
         se = se + 1/(32.D0*Pi**2)*
-     &     (EL1L*tmp2*((Delta(Ind1,Ind2)*
-     &              (CB*MW*MZ*(SAB + 2*CW2*SAB) - 
+     &     (A0tmp2*EL1L*((Delta(Ind1,Ind2)*
+     &              (CB*(1 + 2*CW2)*MW*MZ*SAB - 
      &                6*CW*SA*Mf2(bM1,Ind1))*UASf(All2,Ind2,bM1) - 
      &             3*CW*(SA*Kf(Ind1,Ind2,bM1) + 
      &                CA*MUEC*Delta(Ind1,Ind2)*Mf(bM1,Ind1))*
@@ -90,8 +90,8 @@
      &              UASf(All2,3 + Ind2,bM1))*
      &           UASfC(All2,3 + Ind1,bM1)))/(CB*CW*MW*SW)
 
-	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
 	ENDLOOP(All2)
 
@@ -111,14 +111,14 @@
 
 	LOOP(All2, 1,6,1)
 
-	tmp3 = A0(MASf2(All2,2))
+	A0tmp3 = A0(MASf2(All2,2))
 
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
 
         se = se - 1/(32.D0*Pi**2)*
-     &     (EL1L*tmp3*((Delta(Ind1,Ind2)*
-     &              (CB*MW*MZ*(SAB - 2*CW2*SAB) + 
+     &     (A0tmp3*EL1L*((Delta(Ind1,Ind2)*
+     &              (CB*(1 - 2*CW2)*MW*MZ*SAB + 
      &                2*CW*SA*Mf2(2,Ind1))*UASf(All2,Ind2,2) + 
      &             CW*(SA*Kf(Ind1,Ind2,2) + 
      &                CA*MUEC*Delta(Ind1,Ind2)*Mf(2,Ind1))*
@@ -131,8 +131,8 @@
      &              UASf(All2,3 + Ind2,2))*UASfC(All2,3 + Ind1,2)))
      &       /(CB*CW*MW*SW)
 
-	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
 	ENDLOOP(All2)
 
@@ -145,9 +145,9 @@
         se = se + 1/(64.D0*Pi**2)*
      &     (EL1L*MW*(SAB*(C2B*A0(MA02) + 3*C2A*A0(Mh02)) - 
      &          (2*CAB*S2A + C2A*SAB)*A0(MHH2) + 
-     &          2*(CA*(C2B + 2*CW2)*SB - CW2*S2B*SA*SB - 
-     &             CB*(SA - 2*CB2*SA*SW2))*A0(MHp2) - 
-     &          2*(C2B*SAB - 6*CW2*SBA)*A0(MW2) - 
+     &          2*(CA*(C2B + 2*CW2)*SB - 
+     &             SA*(CW2*S2B*SB + CB*(1 - 2*CB2*SW2)))*A0(MHp2)-
+     &            2*(C2B*SAB - 6*CW2*SBA)*A0(MW2) - 
      &          (C2B*SAB - 6*SBA)*A0(MZ2)))/(CW2*SW)
 
 	LOOP(Cha2, 1,2,1)

@@ -1148,11 +1148,11 @@
 
 	Sf8631 = 3 - 4*USbot22**2
 
-	Sf1770 = (2*ML2*SA - CB*SAB*Ss443)*UStau21 + 
-     &   ML*(CA*reMUE + SA*Re(Atau))*UStau22
+	Sf1770 = (2*MTau2*SA - CB*SAB*Ss443)*UStau21 + 
+     &   MTau*(CA*reMUE + SA*Re(Atau))*UStau22
 
-	Sf1746 = (2*ML2*SA - CB*SAB*Ss443)*UStau11 + 
-     &   ML*(CA*reMUE + SA*Re(Atau))*UStau12
+	Sf1746 = (2*MTau2*SA - CB*SAB*Ss443)*UStau11 + 
+     &   MTau*(CA*reMUE + SA*Re(Atau))*UStau12
 
 	Sf7377 = 2 - 6*USbot22**2
 
@@ -2641,14 +2641,14 @@
 	Sf9168 = -2*MZ2**3 + 
      &   MHiggs2(1)*(MHiggs2(1)**2 + MZ2*(-MZ2 + MHiggs2(1)))
 
-	Sf1734 = 2*ML2*SA*UStau21 - CB*SAB*Ss443*UStau21 + 
-     &   ML*SA*Re(Atau)*UStau22
+	Sf1734 = 2*MTau2*SA*UStau21 - CB*SAB*Ss443*UStau21 + 
+     &   MTau*SA*Re(Atau)*UStau22
 
 	Sf8544 = Sf8543*MStau2(1) + 
      &   2*UStau11*(MSneu2(1) + MStau2(2)*(1 - UStau22**2))
 
-	Sf946 = 2*ML2*SA*UStau11 - CB*SAB*Ss443*UStau11 + 
-     &   ML*SA*Re(Atau)*UStau12
+	Sf946 = 2*MTau2*SA*UStau11 - CB*SAB*Ss443*UStau11 + 
+     &   MTau*SA*Re(Atau)*UStau12
 
 	Sf2310 = (reMUE*TB + Re(Atop))*USbot21 + 
      &   MBot*Ss199*USbot22
@@ -2662,7 +2662,7 @@
 	Sf8588 = 11 - 2*USbot22**2
 
 	Sf5228 = 3*MBot*MSbot2(3)*USbot21*USbot22 + 
-     &   ML*MStau2(2)*UStau21*UStau22
+     &   MTau*MStau2(2)*UStau21*UStau22
 
 	Sf2259 = (reMUE*TB + Re(Atop))*USbot11 + 
      &   MBot*Ss199*USbot12

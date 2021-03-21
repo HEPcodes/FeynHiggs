@@ -526,22 +526,22 @@
      &       USbot22**2*UStop22**2)
 
 	Sf1361 = (Sf440 - MHiggs2(4)*MStau2(2))*UStau21 - 
-     &   ML*Sf215*MHiggs2(4)*UStau22
+     &   MTau*Sf215*MHiggs2(4)*UStau22
 
-	Sf1994 = ML2*Sf1987*UStau21 - Sf1993*UStau21 - 
-     &   ML*Sf1987*Sf215*UStau22
+	Sf1994 = MTau2*Sf1987*UStau21 - Sf1993*UStau21 - 
+     &   MTau*Sf1987*Sf215*UStau22
 
-	Sf1843 = ML2*Sf1835*UStau21 + Sf1842*UStau21 - 
-     &   ML*Sf1835*Sf215*UStau22
+	Sf1843 = MTau2*Sf1835*UStau21 + Sf1842*UStau21 - 
+     &   MTau*Sf1835*Sf215*UStau22
 
 	Sf441 = (Sf440 - MHiggs2(4)*MStau2(1))*UStau11 - 
-     &   ML*Sf215*MHiggs2(4)*UStau12
+     &   MTau*Sf215*MHiggs2(4)*UStau12
 
-	Sf1936 = ML2*Sf1928*UStau11 - Sf1935*UStau11 - 
-     &   ML*Sf1928*Sf215*UStau12
+	Sf1936 = MTau2*Sf1928*UStau11 - Sf1935*UStau11 - 
+     &   MTau*Sf1928*Sf215*UStau12
 
-	Sf1064 = ML2*Sf1046*UStau11 + Sf1063*UStau11 - 
-     &   ML*Sf1046*Sf215*UStau12
+	Sf1064 = MTau2*Sf1046*UStau11 + Sf1063*UStau11 - 
+     &   MTau*Sf1046*Sf215*UStau12
 
 	Sf8713 = Sf4906**3*Sf8709*MSq2Diff(2,2)**2*
      &    USbot22**2 + Sf4820*
@@ -677,29 +677,29 @@
 
 	Sf5887 = Sf2198*UStop11 + Sf4828*UStop21
 
-	Sf1981 = ML*Sf1980*UStau21 - 
-     &   ML2*MW2**2*Sf1459*Sf215*Sf44*MStau2(2)*UStau22
+	Sf1981 = MTau*Sf1980*UStau21 - 
+     &   MTau2*MW2**2*Sf1459*Sf215*Sf44*MStau2(2)*UStau22
 
-	Sf1727 = Sf1697*UStau21 - ML*MW2*Sf1673*Sf215*UStau22
+	Sf1727 = Sf1697*UStau21 - MTau*MW2*Sf1673*Sf215*UStau22
 
-	Sf1516 = Sf1479*UStau21 - 3*ML*Sf1484*Sf215*UStau22
+	Sf1516 = Sf1479*UStau21 - 3*MTau*Sf1484*Sf215*UStau22
 
-	Sf1863 = Sf1093*UStau21 - 3*ML*Sf215*MHiggs2(4)*UStau22
+	Sf1863 = Sf1093*UStau21 - 3*MTau*Sf215*MHiggs2(4)*UStau22
 
-	Sf1826 = Sf1033*UStau21 - ML*Sf215*Ss115*Ss25*UStau22
+	Sf1826 = Sf1033*UStau21 - MTau*Sf215*Ss115*Ss25*UStau22
 
-	Sf938 = Sf898*UStau11 - ML*MW2*Sf215*Sf857*UStau12
+	Sf938 = Sf898*UStau11 - MTau*MW2*Sf215*Sf857*UStau12
 
 	Sf8612 = -15*MZ2**5*Sf8551 + Sf8610*UStau11
 
-	Sf621 = Sf578*UStau11 - 3*ML*Sf215*Sf583*UStau12
+	Sf621 = Sf578*UStau11 - 3*MTau*Sf215*Sf583*UStau12
 
-	Sf1921 = ML*Sf1920*UStau11 - 
-     &   ML2*MW2**2*Sf215*Sf31*Sf556*MStau2(1)*UStau12
+	Sf1921 = MTau*Sf1920*UStau11 - 
+     &   MTau2*MW2**2*Sf215*Sf31*Sf556*MStau2(1)*UStau12
 
-	Sf1094 = Sf1093*UStau11 - 3*ML*Sf215*MHiggs2(4)*UStau12
+	Sf1094 = Sf1093*UStau11 - 3*MTau*Sf215*MHiggs2(4)*UStau12
 
-	Sf1034 = Sf1033*UStau11 - ML*Sf215*Ss115*Ss25*UStau12
+	Sf1034 = Sf1033*UStau11 - MTau*Sf215*Ss115*Ss25*UStau12
 
 	Sf6087 = Sf5692*USbot21**2 - Sf2225*Sf6086*USbot22
 
@@ -1122,9 +1122,9 @@
      &   Sf166**3*Sf2320**3*Sf2334**3*Sf4820**3*Sf4906**3*Sf8339*
      &    UStau21**2
 
-	Sf842 = ML*Sf341*Sf834 + Sf841*UStau11
+	Sf842 = MTau*Sf341*Sf834 + Sf841*UStau11
 
-	Sf795 = 3*ML2*Sf789 + Sf794*MSl2Diff(1,1)
+	Sf795 = 3*MTau2*Sf789 + Sf794*MSl2Diff(1,1)
 
 	Sf7495 = 3*Sf7463 + Sf7494
 
@@ -1194,10 +1194,10 @@
      &     MW2*MSl2Diff(1,1)**4*(20*MSneu2(1) + 27*MStau2(1)) - 
      &     MW2**2*MSl2Diff(1,1)*
      &      (-(tmp93*MSl2Diff(1,1)) + 
-     &        ML2*MSneu2(1)*(2*MSneu2(1) + 2*MStau2(1))) + 
-     &     MW2**4*(2*ML2*MSneu2(1) + 45*MStau2(1)**2 + 
+     &        MTau2*MSneu2(1)*(2*MSneu2(1) + 2*MStau2(1))) + 
+     &     MW2**4*(2*MTau2*MSneu2(1) + 45*MStau2(1)**2 + 
      &        MSneu2(1)*((4 + 4*C2B)*MSneu2(1) + 7*MStau2(1))) - 
-     &     MW2**3*(4*ML2*MSneu2(1)**2 + 70*MStau2(1)**3 + 
+     &     MW2**3*(4*MTau2*MSneu2(1)**2 + 70*MStau2(1)**3 + 
      &        MSneu2(1)*(MSneu2(1)*
      &            ((17 + 2*C2B)*MSneu2(1) - 4*MStau2(1)) - 
      &           19*MStau2(1)**2 - 2*C2B*MStau2(1)**2)))
@@ -1228,7 +1228,7 @@
 
 	Sf4365 = 2*Sf4308 + MW2*Sf4335
 
-	Sf436 = 9*ML*Sf341*Sf429 + Sf435*UStau11
+	Sf436 = 9*MTau*Sf341*Sf429 + Sf435*UStau11
 
 	tmp90 = 2*MBot2 - 2*MTop2 + (-3 + 4*C2B)*MSbot2(2)
 
@@ -1455,9 +1455,9 @@
 
 	Sf1815 = 3*Sf1800*Sf1801*Sf1812 - Sf1814*MSneu2(1)
 
-	Sf1659 = ML*Sf1293*Sf1651 + Sf1658*UStau21
+	Sf1659 = MTau*Sf1293*Sf1651 + Sf1658*UStau21
 
-	Sf1621 = 3*ML2*Sf1619 + Sf1620*MSl2Diff(2,1)
+	Sf1621 = 3*MTau2*Sf1619 + Sf1620*MSl2Diff(2,1)
 
 	Sf1513 = Sf1511 - Sf1512*MSneu2(1)
 
@@ -1477,17 +1477,17 @@
      &     MW2*MSl2Diff(2,1)**4*(20*MSneu2(1) + 27*MStau2(2)) - 
      &     MW2**2*MSl2Diff(2,1)*
      &      (-(tmp95*MSl2Diff(2,1)) + 
-     &        ML2*MSneu2(1)*(2*MSneu2(1) + 2*MStau2(2))) + 
-     &     MW2**4*(2*ML2*MSneu2(1) + 45*MStau2(2)**2 + 
+     &        MTau2*MSneu2(1)*(2*MSneu2(1) + 2*MStau2(2))) + 
+     &     MW2**4*(2*MTau2*MSneu2(1) + 45*MStau2(2)**2 + 
      &        MSneu2(1)*((4 + 4*C2B)*MSneu2(1) + 7*MStau2(2))) - 
-     &     MW2**3*(4*ML2*MSneu2(1)**2 + 70*MStau2(2)**3 + 
+     &     MW2**3*(4*MTau2*MSneu2(1)**2 + 70*MStau2(2)**3 + 
      &        MSneu2(1)*(MSneu2(1)*
      &            ((17 + 2*C2B)*MSneu2(1) - 4*MStau2(2)) - 
      &           19*MStau2(2)**2 - 2*C2B*MStau2(2)**2)))
 
 	Sf1368 = Sf1363 - MHiggs2(4)*MSneu2(1)*UStau21
 
-	Sf1359 = 9*ML*Sf1293*Sf1352 - Sf1358*UStau21
+	Sf1359 = 9*MTau*Sf1293*Sf1352 - Sf1358*UStau21
 
 	Sf1514 = (MW2 - MStau2(2))**3*(MHiggs2(4) - MStau2(2)) - 
      &   MSneu2(1)*(MW2**3 - (3*MW2 + MHiggs2(4))*MStau2(2)**2 + 
@@ -1517,7 +1517,7 @@
 
 	tmp96 = (MW2 - MSneu2(1))**2 - MStau2(1)**2
 
-	Sf996 = 3*ML2**2*MW2**2*tmp96*MSneu2(1) + 
+	Sf996 = 3*MTau2**2*MW2**2*tmp96*MSneu2(1) + 
      &   3*C2B**2*MW2**4*tmp96*MSneu2(1) + 
      &   (MSl2Diff(1,1)**2 + 
      &      MW2*(MW2 - 2*MSneu2(1) - 2*MStau2(1)))*
@@ -1536,7 +1536,7 @@
      &      MW2**3*(70*MStau2(1)**3 + 
      &         MSneu2(1)*(MSneu2(1)*(17*MSneu2(1) - 4*MStau2(1)) - 
      &            19*MStau2(1)**2))) + 
-     &   3*ML2*(2*MW2**6 - MW2**5*tmp92 + 
+     &   3*MTau2*(2*MW2**6 - MW2**5*tmp92 + 
      &      MW2**2*tmp93*MSl2Diff(1,1)**2 + 5*MSl2Diff(1,1)**6 - 
      &      MW2*MSl2Diff(1,1)**4*(20*MSneu2(1) + 27*MStau2(1)) + 
      &      MW2**4*(45*MStau2(1)**2 + 
@@ -1552,7 +1552,7 @@
      &         MW2*(3*Sf839 + MW2*(3*Sf838 + 7*MW2*MSl2Diff(1,1))))
      &      )*UStau22**2
 
-	Sf807 = ML2*Sf806 + 9*MSl2Diff(1,1)**6 + 
+	Sf807 = MTau2*Sf806 + 9*MSl2Diff(1,1)**6 + 
      &   MW2*(-3*Sf798*MSl2Diff(1,1)**4 + 
      &      MW2*(MW2*(-3*Sf789 + 
      &            MW2*(MW2*(MW2*Sf741 - 6*Sf766) + 3*Sf801)) + 
@@ -1606,7 +1606,7 @@
 
 	tmp97 = (MW2 - MSneu2(1))**2 - MStau2(2)**2
 
-	Sf1808 = 3*ML2**2*MW2**2*tmp97*MSneu2(1) + 
+	Sf1808 = 3*MTau2**2*MW2**2*tmp97*MSneu2(1) + 
      &   3*C2B**2*MW2**4*tmp97*MSneu2(1) + 
      &   (MSl2Diff(2,1)**2 + 
      &      MW2*(MW2 - 2*MSneu2(1) - 2*MStau2(2)))*
@@ -1625,7 +1625,7 @@
      &      MW2**3*(70*MStau2(2)**3 + 
      &         MSneu2(1)*(MSneu2(1)*(17*MSneu2(1) - 4*MStau2(2)) - 
      &            19*MStau2(2)**2))) + 
-     &   3*ML2*(2*MW2**6 - MW2**5*tmp94 + 
+     &   3*MTau2*(2*MW2**6 - MW2**5*tmp94 + 
      &      MW2**2*tmp95*MSl2Diff(2,1)**2 + 5*MSl2Diff(2,1)**6 - 
      &      MW2*MSl2Diff(2,1)**4*(20*MSneu2(1) + 27*MStau2(2)) + 
      &      MW2**4*(45*MStau2(2)**2 + 
@@ -1642,7 +1642,7 @@
      &            MW2*(-3*Sf1655 + 7*MW2*MSl2Diff(2,1)))))*
      &    UStau21**2
 
-	Sf1632 = -(ML2*Sf1631) - 9*MSl2Diff(2,1)**6 + 
+	Sf1632 = -(MTau2*Sf1631) - 9*MSl2Diff(2,1)**6 + 
      &   MW2*(3*Sf1624*MSl2Diff(2,1)**4 + 
      &      MW2*(MW2*(3*Sf1619 + 
      &            MW2*(-3*Sf1626 + MW2*(6*Sf1609 - MW2*Sf741))) - 
@@ -1851,7 +1851,7 @@
 	Sf8858 = Sf25**2*Sf8765*Sf8768 + 
      &   3*Sf60**2*Sf8783*Sf8786 + Sf112**2*Sf8813*Sf8816
 
-	Sf537 = ML2*Sf512 - Sf536*MHiggs2(4) - MSl2Diff(1,1)**5
+	Sf537 = MTau2*Sf512 - Sf536*MHiggs2(4) - MSl2Diff(1,1)**5
 
 	Sf7119 = Sf4898*Ss25**3 + 
      &   MW2*(-3*MW2**2*Sf4899 + 3*Sf4899*MHiggs2(4)**2)
@@ -1861,7 +1861,7 @@
 
 	Sf1827 = Sf1826 + Sf1823*MSneu2(1) + Sf1824*MStau2(2)
 
-	Sf1442 = ML2*Sf1423 + Sf1441*MHiggs2(4) - MSl2Diff(2,1)**5
+	Sf1442 = MTau2*Sf1423 + Sf1441*MHiggs2(4) - MSl2Diff(2,1)**5
 
 	Sf6926 = Sf138*Ss25**3 + 
      &   MW2*(-3*MW2**2*Sf139 + 3*Sf139*MHiggs2(4)**2)
@@ -1997,49 +1997,49 @@
      &   MW2**2*MSneu2(1)**5 + Sf167**2*Sf179*MStau2(1)
 
 	Sf1210 = MW2**2*MSneu2(1)**5 - 
-     &   MSneu2(1)**4*((ML2 + MW2 - C2B*MW2)*MHiggs2(4)*
+     &   MSneu2(1)**4*((MTau2 + MW2 - C2B*MW2)*MHiggs2(4)*
      &       (-3*MW2 + MHiggs2(4)) + 
-     &      MW2**2*(2*ML2 + 6*MW2 - 2*C2B*MW2 + 5*MStau2(2))) + 
+     &      MW2**2*(2*MTau2 + 6*MW2 - 2*C2B*MW2 + 5*MStau2(2))) + 
      &   (MW2 - MStau2(2))**2*MStau2(2)*
-     &    (4*ML2*MW2**3 - MW2*(-3*ML2 + MW2 + 3*C2B*MW2)*
+     &    (4*MTau2*MW2**3 - MW2*(-3*MTau2 + MW2 + 3*C2B*MW2)*
      &       MHiggs2(4)**2 + 
      &      (-2*MW2 + MHiggs2(4))*
-     &       (MW2*(-MW2 - MHiggs2(4)) + ML2*(MW2 - MHiggs2(4)) + 
+     &       (MW2*(-MW2 - MHiggs2(4)) + MTau2*(MW2 - MHiggs2(4)) + 
      &         C2B*MW2*(-MW2 + MHiggs2(4)))*MStau2(2) - 
      &      MW2**2*(C2B*MW2*(4*MW2 - 7*MHiggs2(4)) + 
-     &         MW2*(3*MW2 - 3*MHiggs2(4)) + 7*ML2*MHiggs2(4) + 
+     &         MW2*(3*MW2 - 3*MHiggs2(4)) + 7*MTau2*MHiggs2(4) + 
      &         MStau2(2)**2)) + 
      &   MSneu2(1)**3*(2*MW2**2*
      &       ((7 - 4*C2B)*MW2**2 + (7 - 4*C2B)*MW2*MStau2(2) + 
-     &         4*ML2*(MW2 + MStau2(2)) + 
+     &         4*MTau2*(MW2 + MStau2(2)) + 
      &         MStau2(2)*((-5 + 6*C2B)*MHiggs2(4) + 5*MStau2(2)))+
-     &        MHiggs2(4)*(-12*ML2*MW2*MStau2(2) + 
-     &         (ML2 + MW2 - C2B*MW2)*
+     &        MHiggs2(4)*(-12*MTau2*MW2*MStau2(2) + 
+     &         (MTau2 + MW2 - C2B*MW2)*
      &          (MW2*(-13*MW2 + 5*MHiggs2(4)) + 
      &            4*MHiggs2(4)*MStau2(2)))) - 
      &   MSneu2(1)**2*(-6*(-MW2 + MHiggs2(4))*
-     &       (MW2*(MW2 - MHiggs2(4)) + ML2*(2*MW2 - MHiggs2(4)) + 
+     &       (MW2*(MW2 - MHiggs2(4)) + MTau2*(2*MW2 - MHiggs2(4)) + 
      &         C2B*MW2*(-2*MW2 + MHiggs2(4)))*MStau2(2)**2 + 
-     &      MW2*((2*MW2**2*(4*ML2 + MW2 - 4*C2B*MW2) + 
-     &            MW2*(-13*ML2 + MW2 + 13*C2B*MW2)*MHiggs2(4) + 
-     &            (5*ML2 - MW2 - 5*C2B*MW2)*MHiggs2(4)**2)*
+     &      MW2*((2*MW2**2*(4*MTau2 + MW2 - 4*C2B*MW2) + 
+     &            MW2*(-13*MTau2 + MW2 + 13*C2B*MW2)*MHiggs2(4) + 
+     &            (5*MTau2 - MW2 - 5*C2B*MW2)*MHiggs2(4)**2)*
      &          MStau2(2) + 
-     &         MW2*(2*MW2**2*(5*ML2 + 7*MW2 - 5*C2B*MW2) + 
-     &            (ML2 + MW2 - C2B*MW2)*MHiggs2(4)*
+     &         MW2*(2*MW2**2*(5*MTau2 + 7*MW2 - 5*C2B*MW2) + 
+     &            (MTau2 + MW2 - C2B*MW2)*MHiggs2(4)*
      &             (-17*MW2 + 7*MHiggs2(4)) + 10*MStau2(2)**3))) + 
-     &   MSneu2(1)*(2*(MW2**2*(4*ML2 - 3*MW2 - 4*C2B*MW2) - 
-     &         3*MW2*(2*ML2 + MW2 - 2*C2B*MW2)*MHiggs2(4) + 
-     &         2*(ML2 + MW2 - C2B*MW2)*MHiggs2(4)**2)*MStau2(2)**3+
-     &        MW2*((4*MW2**2*(-2*ML2 - MW2 + 2*C2B*MW2) + 
-     &            13*MW2*(ML2 + MW2 - C2B*MW2)*MHiggs2(4) + 
-     &            (-5*ML2 - 7*MW2 + 5*C2B*MW2)*MHiggs2(4)**2)*
+     &   MSneu2(1)*(2*(MW2**2*(4*MTau2 - 3*MW2 - 4*C2B*MW2) - 
+     &         3*MW2*(2*MTau2 + MW2 - 2*C2B*MW2)*MHiggs2(4) + 
+     &         2*(MTau2 + MW2 - C2B*MW2)*MHiggs2(4)**2)*MStau2(2)**3+
+     &        MW2*((4*MW2**2*(-2*MTau2 - MW2 + 2*C2B*MW2) + 
+     &            13*MW2*(MTau2 + MW2 - C2B*MW2)*MHiggs2(4) + 
+     &            (-5*MTau2 - 7*MW2 + 5*C2B*MW2)*MHiggs2(4)**2)*
      &          MStau2(2)**2 + 
      &         MW2*(5*MStau2(2)**4 + 
-     &            MW2*(4*ML2*MW2**2 + (5 - 4*C2B)*MW2**3 + 
-     &               (ML2 + MW2 - C2B*MW2)*MHiggs2(4)*
+     &            MW2*(4*MTau2*MW2**2 + (5 - 4*C2B)*MW2**3 + 
+     &               (MTau2 + MW2 - C2B*MW2)*MHiggs2(4)*
      &                (-7*MW2 + 3*MHiggs2(4)) - 
      &               2*(-MW2 + MHiggs2(4))*
-     &                (-ML2 - MW2 + C2B*MW2 + MHiggs2(4))*MStau2(2)
+     &                (-MTau2 - MW2 + C2B*MW2 + MHiggs2(4))*MStau2(2)
      &               ))))
 
 	Sf7172 = Sf122*MSbot2(1) + Sf138*MSbot2(2) - 

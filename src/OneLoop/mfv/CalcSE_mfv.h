@@ -1,5 +1,5 @@
 * CalcSE_mfv.h
-* generated 17-Jan-2018 8:12
+* generated 8-May-2018 11:26
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -13,7 +13,7 @@
 	RealType p2
 	ComplexType se
 
-	bM1 = bM0
+	bM1 = bMps
 
 	p2 = P2(h0h0)
 
@@ -213,7 +213,7 @@
 	ComplexType dZh0h0, dZHHHH, seA0A0, seHmHp, seWW, seZZ, tdA0
 	ComplexType tdh0, tdHH
 
-	bM1 = bM0
+	bM1 = bMps
 
 	call dZ_h0h0_mfv(dZh0h0)
 
@@ -247,7 +247,7 @@
      &   CBA2*dMsq1_(A0A0) + 
      &    1/2.D0*(S2B*(CAB*MZ2*SAB - CBA*MA02*SBA)*
      &       (Re(dZh0h0) - Re(dZHHHH))) + 
-     &    EL1L/(2.D0*MW*SW)*(SBA*(Re(tdh0) + CBA2*Re(tdh0)) - 
+     &    EL1L/(2.D0*MW*SW)*((1 + CBA2)*SBA*Re(tdh0) - 
      &       CBA*SBA2*Re(tdHH)) + SAB**2*Re(seZZ)
 
         dMsq1_(HHHH) = 
@@ -255,7 +255,7 @@
      &    1/2.D0*(S2B*(CAB*MZ2*SAB - CBA*MA02*SBA)*
      &       (Re(dZh0h0) - Re(dZHHHH))) - 
      &    EL1L/(2.D0*MW*SW)*(CBA2*SBA*Re(tdh0) - 
-     &       CBA*(Re(tdHH) + SBA2*Re(tdHH))) + CAB**2*Re(seZZ)
+     &       CBA*(1 + SBA2)*Re(tdHH)) + CAB**2*Re(seZZ)
 
         dMsq1_(h0HH) = 
      &   1/4.D0*(4*EL1L/(2.D0*MW*SW)*

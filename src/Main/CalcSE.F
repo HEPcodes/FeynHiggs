@@ -1,7 +1,7 @@
 * CalcSE.F
 * Calculate the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 13 Jan 18 th
+* last modified 15 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -206,9 +206,9 @@ c#define FinCheck(div) div
 
 	if( debuglevel .lt. 2 ) return
 
-	DSELF "========================"	ENDL
+	DSELF "========================="	ENDL
 	DSELF "renormalization constants"	ENDL
-	DSELF "------------------------"	ENDL
+	DSELF "-------------------------"	ENDL
 	DSELF "dMsq1(h0h0) =", dMsq1(h0h0)	ENDL
 	DSELF "dMsq1(HHHH) =", dMsq1(HHHH)	ENDL
 	DSELF "dMsq1(A0A0) =", dMsq1(A0A0)	ENDL

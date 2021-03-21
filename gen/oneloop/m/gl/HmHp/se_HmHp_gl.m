@@ -1,5 +1,5 @@
-{{(-2*dMHiggs1gl[5, 5] + (k2 - MHin2)*(dZbarHiggs1gl[5, 5] + 
-      dZHiggs1gl[5, 5]))/2}, 
+{{-dMHiggs1gl[5, 5] + ((k2 - MHin2)*(dZbarHiggs1gl[5, 5] + dZHiggs1gl[5, 5]))/
+    2}, 
  {(3*Alfa1L*(S2B^2*(k2*B0i[bb1, k2, 0, Mf2[tM1, 3]] + 
        B0i[bb0, k2, 0, Mf2[tM1, 3]]*(k2 - Mf2[tM1, 3]))*Mf2[tM1, 3] + 
      2*CB2^2*TB2*(Mf2[tM1, 3]*(A0[MSbgl2[1]]*USbgl2[1, 1] + 

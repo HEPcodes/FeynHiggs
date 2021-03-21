@@ -2,7 +2,7 @@
 * computes the rate for Delta M_{B_s}
 * the calculation follows closely hep-ph/0102316
 * this file is part of FeynHiggs
-* last modified 27 Jan 17 th
+* last modified 9 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -50,7 +50,7 @@
 
 * the implementation follows closely hep-ph/0102316
 
-	call AlphaS(asMB, nfdummy, MB2 + 1D-11)
+	call AlphaS(asMB, nfdummy, Mf2(4,3) + 1D-11)
 	call AlphaS(asMT, nfdummy, Mf2(tT,3) - 1D-11)
 	eta5 = asMT/asMB
 
@@ -110,7 +110,7 @@
 	etaSLL(2,2) = 1.0153D0*et2 - .0153*et1
 #endif
 
-	eff = 1.44D0*(4.4D0/(MB + MS))**2
+	eff = 1.44D0*(4.4D0/(Mf(4,3) + Mf(4,2)))**2
 	BVLL = .61D0*eff
 	BLR1 = .96D0*eff
 	BLR2 = 1.30D0*eff

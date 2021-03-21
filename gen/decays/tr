@@ -1,0 +1,8 @@
+<< FormCalc`
+
+{v0SM, v1SM, colSM, abbrSM, subSM} = << m/heeSM.amp;
+{v0, v1, col, abbr, sub} = << m/hee.amp;
+
+trSM = Plus@@ v0SM //. Join[abbrSM, subSM];
+tr = Plus@@ v0 //. Join[abbr, sub];
+

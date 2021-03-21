@@ -1,4 +1,4 @@
-{bM1 -> bM0, {dZh0h0 -> Call["dZ_h0h0_gl"[AddrOf[dZh0h0]]], 
+{bM1 -> bMps, {dZh0h0 -> Call["dZ_h0h0_gl"[AddrOf[dZh0h0]]], 
   dZh0HH -> Call["dZ_h0HH_gl"[AddrOf[dZh0HH]]], 
   dZHHHH -> Call["dZ_HHHH_gl"[AddrOf[dZHHHH]]], 
   tdh0 -> Call["td_h0_gl"[AddrOf[tdh0]]], 
@@ -11,12 +11,12 @@
   dMsq1["h0HH"] -> (MA02*S2B*(-(CB2*dZh0h0) + CB2*dZHHHH - 2*dZh0HH*S2B + 
        dZh0h0*SB2 - dZHHHH*SB2))/4 + (EL1L*Re[tdHH])/(2*CW*MZ*SW), 
   dZ1["h0h0"] -> dZh0h0, dZ1["HHHH"] -> dZHHHH, dZ1["h0HH"] -> dZh0HH}, 
- bM1 -> bM, {dseHmHp -> Call["dse_HmHp_gl"[AddrOf[dseHmHp], MHin2]], 
-  tdA0 -> Call["td_A0_gl"[AddrOf[tdA0]]], IndexIf[inputmass == A0A0, 
+ bM1 -> bM, {tdA0 -> Call["td_A0_gl"[AddrOf[tdA0]]], 
+  IndexIf[inputmass == A0A0, 
    {seA0A0 -> Call["se_A0A0_gl"[AddrOf[seA0A0], MHin2]], 
     dMsq1["A0A0"] -> Re[seA0A0]}, True, 
    {seHmHp -> Call["se_HmHp_gl"[AddrOf[seHmHp], MHin2]], 
     dMsq1["A0A0"] -> Re[seHmHp]}], dMsq1["HmHp"] -> dMsq1["A0A0"], 
   dMsq1["h0A0"] -> (EL1L*Re[tdA0])/(2*CW*MZ*SW), dMsq1["HHA0"] -> 0, 
-  dZ1["A0A0"] -> dZ1["HHHH"], dZ1["HmHp"] -> -dseHmHp, dZ1["h0A0"] -> 0, 
+  dZ1["A0A0"] -> dZ1["HHHH"], dZ1["HmHp"] -> 0, dZ1["h0A0"] -> 0, 
   dZ1["HHA0"] -> 0}}

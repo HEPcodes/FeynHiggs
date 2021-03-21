@@ -1,5 +1,5 @@
 * CalcSE_gl.h
-* generated 19-Jan-2018 18:29
+* generated 8-May-2018 11:30
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -13,7 +13,7 @@
 	RealType p2
 	ComplexType se
 
-	bM1 = bM0
+	bM1 = bMps
 
 	p2 = P2(h0h0)
 
@@ -126,10 +126,10 @@
 #include "FH.h"
 #include "looptools.h"
 
-	ComplexType dseHmHp, dZh0h0, dZh0HH, dZHHHH, seA0A0, seHmHp
-	ComplexType tdA0, tdh0, tdHH
+	ComplexType dZh0h0, dZh0HH, dZHHHH, seA0A0, seHmHp, tdA0
+	ComplexType tdh0, tdHH
 
-	bM1 = bM0
+	bM1 = bMps
 
 	call dZ_h0h0_gl(dZh0h0)
 
@@ -172,8 +172,6 @@
 
 	bM1 = bM
 
-	call dse_HmHp_gl(dseHmHp,MHin2)
-
 	call td_A0_gl(tdA0)
 
 	if( inputmass.eq.A0A0 ) then
@@ -198,7 +196,7 @@
 
 	dZ1_(A0A0) = dZ1_(HHHH)
 
-	dZ1_(HmHp) = -dseHmHp
+	dZ1_(HmHp) = 0
 
 	dZ1_(h0A0) = 0
 

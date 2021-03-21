@@ -69,7 +69,7 @@
 
 	dH = MHr/MH0_SW
 	lH = log(dH)
-	dT = MT/MT0_SW
+	dT = Mf(3,3)/MT0_SW
 	dT = (dT - 1)*(dT + 1)
 * Delta alpha_had is not input (yet)
 	dAlfa = 0

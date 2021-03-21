@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 13 Feb 18 th
+		last modified 20 Apr 18 th
 */
 
 
@@ -44,7 +44,7 @@ enum { nrecord = 4*FHRecordN };
 #define _fh_Cac_(v,d) ComplexType v d
 #define _fh_Ca_(f) f(_fh_c_, _fh_Cr_, _fh_Cc_, _fh_Car_, _fh_Cac_)
 
-#if QUAD
+#if QUAD && CQUADSIZE != QUADSIZE
 
 #define _fh_Pcr_(v,d) (CREAL *)v##_
 #define _fh_Pcc_(v,d) (CCOMPLEX *)v##_

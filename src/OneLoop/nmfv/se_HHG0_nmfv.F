@@ -1,5 +1,5 @@
 * se_HHG0_nmfv.F
-* generated 17-Jan-2018 8:13
+* generated 8-May-2018 11:28
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -19,9 +19,10 @@
 	integer All3, All4, Cha3, Cha4, Ind1, Ind2, Ind3, Ind4, Neu3
 	integer Neu4
 
-	ComplexType dup1, dup10, dup11, dup12, dup13, dup14, dup15
-	ComplexType dup16, dup17, dup2, dup3, dup4, dup5, dup6, dup7
-	ComplexType dup8, dup9, tmp1, tmp2, tmp3, tmp4, tmp5
+	ComplexType A0tmp1, A0tmp2, B0tmp1, B0tmp2, B0tmp3, dup1
+	ComplexType dup10, dup11, dup12, dup13, dup14, dup15, dup16
+	ComplexType dup17, dup2, dup3, dup4, dup5, dup6, dup7, dup8
+	ComplexType dup9
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_HHG0_nmfv k2 =", k2 ENDL
@@ -29,19 +30,19 @@
 
 	se = 0
 
-	LOOP(All4, 1,6,gM)
 	LOOP(All3, 1,6,gM)
+	LOOP(All4, 1,6,gM)
 
-	tmp1 = B0(k2,MASf2(All3,tM1),MASf2(All4,tM1))
+	B0tmp1 = B0(k2,MASf2(All3,tM1),MASf2(All4,tM1))
 
-	LOOP(Ind4, 1,3,1)
-	LOOP(Ind3, 1,3,1)
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
+	LOOP(Ind3, 1,3,1)
+	LOOP(Ind4, 1,3,1)
 
         se = se - cI/(16.D0*Pi)*
-     &     (Alfa1L*tmp1*((Delta(Ind3,Ind4)*
-     &              (CAB*MW*MZ*(SB - 4*CW2*SB) - 
+     &     (Alfa1L*B0tmp1*((Delta(Ind3,Ind4)*
+     &              (CAB*(1 - 4*CW2)*MW*MZ*SB - 
      &                6*CW*SA*Mf2(tM1,Ind3))*UASf(All4,Ind4,tM1) - 
      &             3*CW*(SA*Kf(Ind3,Ind4,tM1) - 
      &                CA*MUEC*Delta(Ind3,Ind4)*Mf(tM1,Ind3))*
@@ -61,13 +62,13 @@
      &           UASf(All3,Ind2,tM1)*UASfC(All4,3 + Ind1,tM1)))/
      &      (CW*MW2*SB2*SW2)
 
-	ENDLOOP(Ind1)
-	ENDLOOP(Ind2)
-	ENDLOOP(Ind3)
 	ENDLOOP(Ind4)
+	ENDLOOP(Ind3)
+	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
-	ENDLOOP(All3)
 	ENDLOOP(All4)
+	ENDLOOP(All3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_HHG0_nmfv  t/st =", se ENDL
@@ -75,19 +76,19 @@
 
 	if( mssmpart .le. 1 ) return
 
-	LOOP(All4, 1,6,gM)
 	LOOP(All3, 1,6,gM)
+	LOOP(All4, 1,6,gM)
 
-	tmp2 = B0(k2,MASf2(All3,bM1),MASf2(All4,bM1))
+	B0tmp2 = B0(k2,MASf2(All3,bM1),MASf2(All4,bM1))
 
-	LOOP(Ind4, 1,3,1)
-	LOOP(Ind3, 1,3,1)
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
+	LOOP(Ind3, 1,3,1)
+	LOOP(Ind4, 1,3,1)
 
         se = se + cI/(16.D0*Pi)*
-     &     (Alfa1L*tmp2*((Delta(Ind3,Ind4)*
-     &              (CAB*CB*MW*(MZ + 2*CW2*MZ) - 
+     &     (Alfa1L*B0tmp2*((Delta(Ind3,Ind4)*
+     &              (CAB*CB*(1 + 2*CW2)*MW*MZ - 
      &                6*CA*CW*Mf2(bM1,Ind3))*UASf(All4,Ind4,bM1) - 
      &             3*CW*(CA*Kf(Ind3,Ind4,bM1) - 
      &                MUEC*SA*Delta(Ind3,Ind4)*Mf(bM1,Ind3))*
@@ -107,13 +108,13 @@
      &           UASf(All3,Ind2,bM1)*UASfC(All4,3 + Ind1,bM1)))/
      &      (CB2*CW*MW2*SW2)
 
-	ENDLOOP(Ind1)
-	ENDLOOP(Ind2)
-	ENDLOOP(Ind3)
 	ENDLOOP(Ind4)
+	ENDLOOP(Ind3)
+	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
-	ENDLOOP(All3)
 	ENDLOOP(All4)
+	ENDLOOP(All3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_HHG0_nmfv +b/sb =", se ENDL
@@ -121,19 +122,19 @@
 
 	if( mssmpart .le. 2 ) return
 
-	LOOP(All4, 1,6,1)
 	LOOP(All3, 1,6,1)
+	LOOP(All4, 1,6,1)
 
-	tmp3 = B0(k2,MASf2(All3,2),MASf2(All4,2))
+	B0tmp3 = B0(k2,MASf2(All3,2),MASf2(All4,2))
 
-	LOOP(Ind4, 1,3,1)
-	LOOP(Ind3, 1,3,1)
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
+	LOOP(Ind3, 1,3,1)
+	LOOP(Ind4, 1,3,1)
 
         se = se - cI/(16.D0*Pi)*
-     &     (Alfa1L*tmp3*((Delta(Ind3,Ind4)*
-     &              (CAB*CB*MW*(MZ - 2*CW2*MZ) + 
+     &     (Alfa1L*B0tmp3*((Delta(Ind3,Ind4)*
+     &              (CAB*CB*(1 - 2*CW2)*MW*MZ + 
      &                2*CA*CW*Mf2(2,Ind3))*UASf(All4,Ind4,2) + 
      &             CW*(CA*Kf(Ind3,Ind4,2) - 
      &                MUEC*SA*Delta(Ind3,Ind4)*Mf(2,Ind3))*
@@ -152,13 +153,13 @@
      &           UASf(All3,Ind2,2)*UASfC(All4,3 + Ind1,2)))/
      &      (CB2*CW*MW2*SW2)
 
-	ENDLOOP(Ind1)
-	ENDLOOP(Ind2)
-	ENDLOOP(Ind3)
 	ENDLOOP(Ind4)
+	ENDLOOP(Ind3)
+	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
-	ENDLOOP(All3)
 	ENDLOOP(All4)
+	ENDLOOP(All3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_HHG0_nmfv +l/sl =", se ENDL
@@ -168,7 +169,7 @@
 
 	LOOP(Cha4, 1,2,1)
 
-	tmp4 = A0(MCha2(Cha4))
+	A0tmp1 = A0(MCha2(Cha4))
 
 	LOOP(Cha3, 1,2,1)
 
@@ -186,7 +187,7 @@
 
         se = se - cI/(4.D0*Pi)*
      &     (Alfa1L*((dup1*dup3 - dup2*dup4)*
-     &           (tmp4 + k2*B1(k2,MCha2(Cha3),MCha2(Cha4))) + 
+     &           (A0tmp1 + k2*B1(k2,MCha2(Cha3),MCha2(Cha4))) + 
      &          B0(k2,MCha2(Cha3),MCha2(Cha4))*
      &           (dup4*(dup3*MCha(Cha3)*MCha(Cha4) - 
      &                dup2*MCha2(Cha3)) - 
@@ -199,7 +200,7 @@
 
 	LOOP(Neu4, 1,4,1)
 
-	tmp5 = A0(MNeu2(Neu4))
+	A0tmp2 = A0(MNeu2(Neu4))
 
 	LOOP(Neu3, 1,4,1)
 
@@ -233,7 +234,7 @@
      &    dup14*(dup12*dup7*dup8 - dup13*(dup6*dup8 + dup5*dup9))
 
         se = se + cI/(16.D0*Pi)*
-     &     (Alfa1L*(dup17*(tmp5 + 
+     &     (Alfa1L*(dup17*(A0tmp2 + 
      &             k2*B1(k2,MNeu2(Neu3),MNeu2(Neu4))) - 
      &          B0(k2,MNeu2(Neu3),MNeu2(Neu4))*
      &           ((dup15*(dup11*dup13*dup14 + dup11**2*dup16) + 

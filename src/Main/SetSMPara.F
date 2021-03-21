@@ -1,7 +1,7 @@
 * SetSMPara.F
 * set the SM inputs for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 23 Jan 18 th
+* last modified 9 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -30,15 +30,13 @@
 	RealType c12, c23, c13
 	ComplexType s13c
 
-	integer*8 Sf_flat(sizeof(Sf)/8)
-	equivalence (Sf, Sf_flat)
+	RealType Para, val, def
+	Para(val, def) = merge(val, def, val .gt. 0)
 
 	sm_valid = 0
 	para_valid = 0
 
 	error = 0
-
-	Sf_flat = 0
 
 	if( debuglevel .ge. 2 ) then
 	  DPARA "============================"	ENDL
@@ -65,41 +63,38 @@
 	  call flush(paraunit)
 	endif
 
-	invAlfa0 = invAlfa0_
-	invAlfaMZ = invAlfaMZ_
-	AlfasMZ = AlfasMZ_
-	GF = GF_
+	Mf(2,1) = Para(ME_, ME_default)
+	Mf2(2,1) = Mf(2,1)**2
+	Mf(3,1) = Para(MU_, MU_default)
+	Mf2(3,1) = Mf(3,1)**2
+	Mf(4,1) = Para(MD_, MD_default)
+	Mf2(4,1) = Mf(4,1)**2
 
-	ME = ME_
-	MU = MU_
-	MD = MD_
-	MM = MM_
-	MC = MC_
-	MS = MS_
-	ML = ML_
-	MB = MB_
+	Mf(2,2) = Para(MM_, MM_default)
+	Mf2(2,2) = Mf(2,2)**2
+	Mf(3,2) = Para(MC_, MC_default)
+	Mf2(3,2) = Mf(3,2)**2
+	Mf(4,2) = Para(MS_, MS_default)
+	Mf2(4,2) = Mf(4,2)**2
 
-	MZ = MZ_
-	MW = MW_
-	GammaW = GammaW_
-	GammaZ = GammaZ_
+	Mf(2,3) = Para(ML_, ML_default)
+	Mf2(2,3) = Mf(2,3)**2
+	Mf(4,3) = Para(MB_, MB_default)
+	Mf2(4,3) = Mf(4,3)**2
 
-	CKMlambda = CKMlambda_
-	CKMA = CKMA_
-	CKMrhobar = CKMrhobar_
-	CKMetabar = CKMetabar_
-
-	call SMDefaults(invAlfa0, invAlfaMZ, AlfasMZ, GF,
-     &    ME, MU, MD, MM, MC, MS, ML, MB,
-     &    MW, MZ, GammaW, GammaZ,
-     &    CKMlambda, CKMA, CKMrhobar, CKMetabar)
-
+	MZ = Para(MZ_, MZ_default)
 	MZ2 = MZ**2
+	MW = Para(MW_, MW_default)
 	MW2 = MW**2
 	CW = MW/MZ
 	CW2 = CW**2
 	SW2 = (1 - CW)*(1 + CW)
 	SW = sqrt(SW2)
+
+	invAlfa0 = Para(invAlfa0_, invAlfa0_default)
+	invAlfaMZ = Para(invAlfaMZ_, invAlfaMZ_default)
+	AlfasMZ = Para(AlfasMZ_, AlfasMZ_default)
+	GF = Para(GF_, GF_default)
 
 	vev = 1/sqrt(sqrt2*GF)
 	AlfaGF = sqrt2/pi*GF*MW2*SW2
@@ -110,14 +105,13 @@
 	AlfaMZ = 1/invAlfaMZ
 	ELMZ = sqrt(4*pi*AlfaMZ)
 
-	ME2 = ME**2
-	MM2 = MM**2
-	ML2 = ML**2
-	MU2 = MU**2
-	MC2 = MC**2
-	MD2 = MD**2
-	MS2 = MS**2
-	MB2 = MB**2
+	GammaZ = Para(GammaZ_, GammaZ_default)
+	GammaW = Para(GammaW_, GammaW_default)
+
+	CKMlambda = Para(CKMlambda_, CKMlambda_default)
+	CKMA = Para(CKMA_, CKMA_default)
+	CKMrhobar = Para(CKMrhobar_, CKMrhobar_default)
+	CKMetabar = Para(CKMetabar_, CKMetabar_default)
 
 	s12 = CKMlambda
 	c12 = sqrt((1 - s12)*(1 + s12))
@@ -155,14 +149,14 @@
 	DPARA "AlfasMZ =", AlfasMZ		ENDL
 	DPARA "vev =", vev			ENDL
 	DPARA "GF =", GF			ENDL
-	DPARA "ME =", ME			ENDL
-	DPARA "MU =", MU			ENDL
-	DPARA "MD =", MD			ENDL
-	DPARA "MM =", MM			ENDL
-	DPARA "MC =", MC			ENDL
-	DPARA "MS =", MS			ENDL
-	DPARA "ML =", ML			ENDL
-	DPARA "MB =", MB			ENDL
+	DPARA "ME =", Mf(2,1)			ENDL
+	DPARA "MU =", Mf(3,1)			ENDL
+	DPARA "MD =", Mf(4,1)			ENDL
+	DPARA "MM =", Mf(2,2)			ENDL
+	DPARA "MC =", Mf(3,2)			ENDL
+	DPARA "MS =", Mf(4,2)			ENDL
+	DPARA "ML =", Mf(2,3)			ENDL
+	DPARA "MB =", Mf(4,3)			ENDL
 	DPARA "MW =", MW			ENDL
 	DPARA "MZ =", MZ			ENDL
 	DPARA "GammaW =", GammaW		ENDL
@@ -177,44 +171,3 @@
 	DPARA "CKM(3,2) =", CKMin(3,2)		ENDL
 	DPARA "CKM(3,3) =", CKMin(3,3)		ENDL
 	end
-
-
-************************************************************************
-
-	subroutine SMDefaults(invAlfa0_, invAlfaMZ_, AlfasMZ_, GF_,
-     &    ME_, MU_, MD_, MM_, MC_, MS_, ML_, MB_,
-     &    MW_, MZ_, GammaW_, GammaZ_,
-     &    CKMlambda_, CKMA_, CKMrhobar_, CKMetabar_)
-	implicit none
-	RealType invAlfa0_, invAlfaMZ_, AlfasMZ_, GF_
-	RealType ME_, MU_, MD_, MM_, MC_, MS_, ML_, MB_
-	RealType MW_, MZ_, GammaW_, GammaZ_
-	RealType CKMlambda_, CKMA_, CKMrhobar_, CKMetabar_
-
-#include "const.h"
-
-	if( invAlfa0_ .le. 0 ) invAlfa0_ = invAlfa0_default
-	if( invAlfaMZ_ .le. 0 ) invAlfaMZ_ = invAlfaMZ_default
-	if( AlfasMZ_ .le. 0 ) AlfasMZ_ = AlfasMZ_default
-	if( GF_ .le. 0 ) GF_ = GF_default
-
-	if( ME_ .le. 0 ) ME_ = ME_default
-	if( MU_ .le. 0 ) MU_ = MU_default
-	if( MD_ .le. 0 ) MD_ = MD_default
-	if( MM_ .le. 0 ) MM_ = MM_default
-	if( MC_ .le. 0 ) MC_ = MC_default
-	if( MS_ .le. 0 ) MS_ = MS_default
-	if( ML_ .le. 0 ) ML_ = ML_default
-	if( MB_ .le. 0 ) MB_ = MB_default
-
-	if( MZ_ .le. 0 ) MZ_ = MZ_default
-	if( MW_ .le. 0 ) MW_ = MW_default
-	if( GammaZ_ .le. 0 ) GammaZ_ = GammaZ_default
-	if( GammaW_ .le. 0 ) GammaW_ = GammaW_default
-
-	if( CKMlambda_ .lt. 0 ) CKMlambda_ = CKMlambda_default
-	if( CKMA_ .lt. 0 ) CKMA_ = CKMA_default
-	if( CKMrhobar_ .lt. 0 ) CKMrhobar_ = CKMrhobar_default
-	if( CKMetabar_ .lt. 0 ) CKMetabar_ = CKMetabar_default
-	end
-

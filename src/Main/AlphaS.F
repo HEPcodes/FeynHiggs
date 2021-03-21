@@ -3,7 +3,7 @@
 * Code is transcribed from I. Hinchliffe's Java applet at
 * http://www-theory.lbl.gov/~ianh/alpha/alpha.html.
 * this file is part of FeynHiggs
-* last modified 12 Dec 17 th
+* last modified 9 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -99,26 +99,26 @@
 	  return
 	endif
 
-	if( Q2 .gt. MT2 ) then
+	if( Q2 .gt. Mf2(3,3) ) then
 	  nf = 6
 	  beta0 = beta6_0
 	  beta1 = beta6_1
 	  beta2 = beta6_2
-	  t = MT/lam5
+	  t = Mf(3,3)/lam5
 	  lam = lam5*t**(-2/21D0)*(2*log(t))**(-107/1127D0)
-	else if( Q2 .gt. MB2 ) then
+	else if( Q2 .gt. Mf2(4,3) ) then
 	  nf = 5
 	  beta0 = beta5_0
 	  beta1 = beta5_1
 	  beta2 = beta5_2
 	  lam = lam5
 	else
-	  t = 2*log(MB/lam5)
+	  t = 2*log(Mf(4,3)/lam5)
 	  l = log(t)
 	  lam = lam5*exp(delta54_0*t +
      &      delta54_11*l + delta54_10 +
      &      (delta54_21*l + delta54_20)/t)
-	  if( Q2 .gt. MC2 ) then
+	  if( Q2 .gt. Mf2(3,2) ) then
 	    nf = 4
 	    beta0 = beta4_0
 	    beta1 = beta4_1
@@ -128,7 +128,7 @@
 	    beta0 = beta3_0
 	    beta1 = beta3_1
 	    beta2 = beta3_2
-	    t = 2*log(MC/lam)
+	    t = 2*log(Mf(3,2)/lam)
 	    l = log(t)
 	    lam = lam*exp(delta43_0*t +
      &        delta43_11*l + delta43_10 +
@@ -185,9 +185,9 @@
 
 	entry RunQCD(m_to, Q2_to, m_from, Q2_from)
 
-	Q2(3) = MC2
-	Q2(4) = MB2
-	Q2(5) = MT2
+	Q2(3) = Mf2(3,2)
+	Q2(4) = Mf2(4,3)
+	Q2(5) = Mf2(3,3)
 
 	call AlphaS(as1, nf_to, Q2_to)
 	call AlphaS(as2, nf_from, Q2_from)

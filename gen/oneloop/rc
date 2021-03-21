@@ -100,7 +100,7 @@ rcExpr[{seCom_, seHp_, seA0_}, {rcCom_, rcHp_, rcA0_}] := Flatten[{
 {hHA0, ijA0} = rcCat[seA0, rcA0];
 
 fexpr = {
-  bM1 -> bM0,
+  bM1 -> bMps,
   rcExpr@@ MapThread[rcIf, {hHHp, hHA0}],
   bM1 -> bM,
   rcExpr@@ MapThread[rcIf, {ijHp, ijA0}] };
@@ -124,7 +124,7 @@ xcall[i_ -> full_] := {
     "DSEr"[i, se] }]
 }
 
-secall = Flatten[{bM1 -> bM0, xcall/@ hH, bM1 -> bM, xcall/@ ij}];
+secall = Flatten[{bM1 -> bMps, xcall/@ hH, bM1 -> bM, xcall/@ ij}];
 
 Put[secall, file <> ".se.m"];
 

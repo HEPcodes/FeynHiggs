@@ -1,0 +1,24 @@
+<< FeynArts`
+<< FormCalc`
+
+$CKM = True
+
+tops = CreateTopologies[1, 1 -> 2];
+
+ins = InsertFields[tops,
+  F[4,{3}] -> {F[4,{2}], V[1]},
+  InsertionLevel -> {Classes}]
+
+amp = CreateFeynAmp[ins];
+
+Diagram[i_] := IndexDelta[i, 122]
+
+tamp = TagDiagrams[amp]
+
+vert := CalcFeynAmp[ amp,
+  MomElim -> 2,
+  FermionChains -> Chiral,
+  FermionOrder -> None,
+  EditCode -> True
+];
+

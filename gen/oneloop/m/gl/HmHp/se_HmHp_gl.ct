@@ -1,2 +1,2 @@
 {dMsq1["HmHp"] -> dMHiggs1gl[5, 5], dZ1["HmHp"] -> 
-  (dZbarHiggs1gl[5, 5] + dZHiggs1gl[5, 5])/2}
+  dZbarHiggs1gl[5, 5]/2 + dZHiggs1gl[5, 5]/2}

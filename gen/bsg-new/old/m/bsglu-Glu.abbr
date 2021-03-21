@@ -1,0 +1,12 @@
+{F3 -> DiracChain[Spinor[k[2], 0, 1], 6, Spinor[k[1], MB, 1]], 
+ F4 -> DiracChain[Spinor[k[2], 0, 1], 7, Spinor[k[1], MB, 1]], 
+ F2 -> ((I/2)*DiracChain[sigmunu[6]] + 2*DiracChain[Spinor[k[2], 0, 1], 6, 
+      Spinor[k[1], MB, 1]]*Pair[ec[3], k[1]])/MB, 
+ F1 -> ((I/2)*DiracChain[sigmunu[7]] + 2*DiracChain[Spinor[k[2], 0, 1], 7, 
+      Spinor[k[1], MB, 1]]*Pair[ec[3], k[1]])/MB, Pair1 -> Pair[ec[3], k[1]], 
+ SUN1 -> SUNT[Glu3, Col2, Col1], Sub3[All4_] -> 
+  Mino3C*UASf[All4, 3, 4] + MB*UASf[All4, 6, 4], 
+ Sub4[All4_] -> MB*UASf[All4, 3, 4] + Mino3*UASf[All4, 6, 4], 
+ Sub1[All4_] -> (MGl2 - MASf2[All4, 4])*UASf[All4, 3, 4] - 
+   MB*Mino3*UASf[All4, 6, 4], Sub2[All4_] -> MB*Mino3C*UASf[All4, 3, 4] + 
+   (-MGl2 + MASf2[All4, 4])*UASf[All4, 6, 4]}

@@ -1,7 +1,7 @@
 * TLps.F
 * computes the two-loop corrections of P. Slavich et al.
 * this file is part of FeynHiggs
-* last modified 25 Feb 18 th
+* last modified 23 Apr 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -34,7 +34,7 @@
 
 	error = 0
 
-	BSS2(1) = DSS2(1,4,3)
+	BSS2(:) = DSS2(:,4,3)
 	call TLps_normalTB(error, TLMBrun)
 	if( error .ne. 0 ) goto 999
 
@@ -53,14 +53,13 @@
 
 	BSS2(1) = BSS2(1) + dMSQ2(1) + dMSQ2(2)
 
-	if( btest(botResum, 8) ) then
-* for FHUncertainties: expanded to first order
-	  MBy = TLMBrun*(1 + db(1) + db(2) -
-     &      dvevvev - eb(1) - eb(2) - dhbhb(1) - dhbhb(2))
-	else
+	if( bMps .eq. bTRps ) then
 	  MBy = TLMBrun*((1 + db(1) + db(2))/
      &        ((1 + dvevvev)*abs(1 + eb(1) + eb(2))) -
      &      dhbhb(1) - dhbhb(2))
+	else
+	  MBy = TLMBrun*(1 + db(1) + db(2) -
+     &      dvevvev - eb(1) - eb(2) - dhbhb(1) - dhbhb(2))
 	endif
 	Deltab = TLMBrun/MBy - 1
 
@@ -150,7 +149,7 @@
 
 	RealType DSS2large(2)
 	RealType MbSL2
-c	integer try
+	integer try
 
 	RealType eps
 	parameter (eps = 1D-5)
@@ -176,21 +175,14 @@ c	integer try
 
 	MbSL2 = BSS2(2) + BSS2(1) - DSf(1,4)
 
-#if 1
+#if 0
 * StglUpdate already makes sure denominators are ok
-c	call TLps_Sf(error, StopPara(1),
-c     &    DSS2(1,tMT,3), Mf(tS2,3), Atc,
-c     &    "large TB: MStop^2 negative")
 	call TLps_Sf(error, StopPara(1),
      &    DSStgl2, Mf(tS2,3), Atc,
      &    "large TB: MStop^2 negative")
 #else
-c	DSS2large(2) = Re(MSS2(3,3,tU(3)))
-c	DSS2large(1) = Re(MSS2(3,3,tQ(3))) - DSS2large(2)
-c	DSS2large(1) = DSS2(1,tMT,3)
-c	DSS2large(2) = DSS2(1,tMT,3)
-	DSS2large(1) = DSStgl2(1)
-	DSS2large(2) = DSStgl2(2)
+c	DSS2large = DSStgl2
+	DSS2large = DSS2(:,tMT,3)
 
 	do try = 1, 10
 	  call TLps_Sf(error, StopPara(1),
@@ -205,8 +197,6 @@ c	DSS2large(2) = DSS2(1,tMT,3)
 	enddo
 #endif
 
-c	DSS2large(1) = BSS2(1) - MZ2*C2B*(-.5D0 - 2*Qd*SW2)
-c	DSS2large(2) = BSS2(2) - MZ2*C2B*Qd*SW2 - pMB2
 	DSS2large(1) = BSS2(1) - (DSf(1,4) - DSf(2,4))
 	DSS2large(2) = BSS2(2) - DSf(2,4) - pMB2
 
@@ -384,8 +374,7 @@ c	DSS2large(2) = BSS2(2) - MZ2*C2B*Qd*SW2 - pMB2
 	subroutine TLps_Sf(error, StopPara, M11, Mf_, Xf_, msg)
 	implicit none
 	integer error
-	RealType StopPara(*), M11(2), Mf_
-	ComplexType Xf_
+	RealType StopPara(*), M11(2), Mf_, Xf_
 	character*(*) msg
 
 #include "FH.h"
@@ -393,11 +382,11 @@ c	DSS2large(2) = BSS2(2) - MZ2*C2B*Qd*SW2 - pMB2
 
 	RealType M12sq, delta, h
 
-	M12sq = Mf_**2*Sq(Xf_)
+	M12sq = (Mf_*Xf_)**2
 	h = .5D0*(M11(1) + sign(sqrt(M11(1)**2 + 4*M12sq), M11(1)))
 	if( h .ne. 0 ) h = 1/h
 	delta = h*M12sq
-	stt = Mf_*Re(Xf_)*h/sqrt(delta*h + 1)
+	stt = Mf_*Xf_*h/sqrt(delta*h + 1)
 	stt2 = stt**2
 	ctt2 = (1 - stt)*(1 + stt)
 	ctt = sqrt(ctt2)
@@ -417,9 +406,9 @@ c	DSS2large(2) = BSS2(2) - MZ2*C2B*Qd*SW2 - pMB2
 	if( debuglevel .lt. 4 ) return
 
 	DHIGGS msg(1:index(msg, "^")-1), sqrt(MSt12), sqrt(MSt22) ENDL
-	DHIGGS "  MSq2diff =", MSt2diff			ENDL
-	DHIGGS "  M11 =", M11(1) + M11(2)		ENDL
-	DHIGGS "  M22 =", M11(2)			ENDL
-	DHIGGS "  Xf  =", Re(Xf_)			ENDL
-	DHIGGS "  Mf  =", Mf_				ENDL
+	DHIGGS "  MSq2diff =", MSt2diff		ENDL
+	DHIGGS "  M11 =", M11(1) + M11(2)	ENDL
+	DHIGGS "  M22 =", M11(2)		ENDL
+	DHIGGS "  Xf  =", Xf_			ENDL
+	DHIGGS "  Mf  =", Mf_			ENDL
 	end

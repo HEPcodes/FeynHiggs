@@ -92,7 +92,8 @@
 	DEFT "dy(igy) =", dy(igy) ENDL
 #endif
 
-	dy(itb) = -((3*k1L)/2.D0*(yht2*(1 + ytb2))/y(itb))
+	dy(itb) = merge(-3/2D0*k1L*(yht2*(1 + ytb2))/y(itb),
+     &    0D0, t .gt. tmudim)
 
 #ifdef DETAILED_DEBUG
 	DEFT "dy(itb) =", dy(itb) ENDL
@@ -266,7 +267,8 @@
 	DEFT "dy(igy) =", dy(igy) ENDL
 #endif
 
-	dy(itb) = -((3*k1L)/2.D0*(yht2*(1 + ytb2))/y(itb))
+	dy(itb) = merge(-3/2D0*k1L*(yht2*(1 + ytb2))/y(itb),
+     &    0D0, t .gt. tmudim)
 
 #ifdef DETAILED_DEBUG
 	DEFT "dy(itb) =", dy(itb) ENDL

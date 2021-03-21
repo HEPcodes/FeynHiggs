@@ -1,5 +1,5 @@
 * td_h0_mfv.F
-* generated 17-Jan-2018 8:10
+* generated 8-May-2018 11:23
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -26,12 +26,12 @@
 
 	ENDLOOP(Gen2)
 
-	LOOP(Gen2, gM,3,1)
 	LOOP(Sfe2, 1,2,1)
+	LOOP(Gen2, gM,3,1)
 
         se = se + 1/(32.D0*Pi**2)*
      &     (EL1L*A0(MSf2(Sfe2,tM1,Gen2))*
-     &        ((MW*MZ*SAB*(SB - 4*CW2*SB) + 6*CA*CW*Mf2(tM1,Gen2))*
+     &        (((1 - 4*CW2)*MW*MZ*SAB*SB + 6*CA*CW*Mf2(tM1,Gen2))*
      &           USf2(Sfe2,1,tM1,Gen2) - 
      &          2*(2*MW*MZ*SAB*SB*SW2 - 3*CA*CW*Mf2(tM1,Gen2))*
      &           USf2(Sfe2,2,tM1,Gen2) + 
@@ -42,8 +42,8 @@
      &              USf(Sfe2,1,tM1,Gen2)*USfC(Sfe2,2,tM1,Gen2))))/
      &      (CW*MW*SB*SW)
 
-	ENDLOOP(Sfe2)
 	ENDLOOP(Gen2)
+	ENDLOOP(Sfe2)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "td_h0_mfv  t/st =", se ENDL
@@ -58,13 +58,13 @@
 
 	ENDLOOP(Gen2)
 
-	LOOP(Gen2, gM,3,1)
 	LOOP(Sfe2, 1,2,1)
+	LOOP(Gen2, gM,3,1)
 
         se = se + 1/(32.D0*Pi**2)*
      &     (EL1L*A0(MSf2(Sfe2,bM1,Gen2))*
-     &        ((CB*MW*MZ*(SAB + 2*CW2*SAB) - 
-     &             6*CW*SA*Mf2(bM1,Gen2))*USf2(Sfe2,1,bM1,Gen2) + 
+     &        ((CB*(1 + 2*CW2)*MW*MZ*SAB - 6*CW*SA*Mf2(bM1,Gen2))*
+     &           USf2(Sfe2,1,bM1,Gen2) + 
      &          2*(CB*MW*MZ*SAB*SW2 - 3*CW*SA*Mf2(bM1,Gen2))*
      &           USf2(Sfe2,2,bM1,Gen2) - 
      &          3*CW*((SA*Kf(Gen2,Gen2,bM1) + 
@@ -74,8 +74,8 @@
      &              USf(Sfe2,1,bM1,Gen2)*USfC(Sfe2,2,bM1,Gen2))))/
      &      (CB*CW*MW*SW)
 
-	ENDLOOP(Sfe2)
 	ENDLOOP(Gen2)
+	ENDLOOP(Sfe2)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "td_h0_mfv +b/sb =", se ENDL
@@ -91,12 +91,12 @@
 
 	ENDLOOP(Gen2)
 
-	LOOP(Sfe2, 1,2,1)
 	LOOP(Gen2, 1,3,1)
+	LOOP(Sfe2, 1,2,1)
 
         se = se - 1/(32.D0*Pi**2)*
      &     (EL1L*A0(MSf2(Sfe2,2,Gen2))*
-     &        ((CB*MW*MZ*(SAB - 2*CW2*SAB) + 2*CW*SA*Mf2(2,Gen2))*
+     &        ((CB*(1 - 2*CW2)*MW*MZ*SAB + 2*CW*SA*Mf2(2,Gen2))*
      &           USf2(Sfe2,1,2,Gen2) - 
      &          2*(CB*MW*MZ*SAB*SW2 - CW*SA*Mf2(2,Gen2))*
      &           USf2(Sfe2,2,2,Gen2) + 
@@ -106,8 +106,8 @@
      &              USf(Sfe2,1,2,Gen2)*USfC(Sfe2,2,2,Gen2))))/
      &      (CB*CW*MW*SW)
 
-	ENDLOOP(Gen2)
 	ENDLOOP(Sfe2)
+	ENDLOOP(Gen2)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "td_h0_mfv +l/sl =", se ENDL
@@ -118,9 +118,9 @@
         se = se + 1/(64.D0*Pi**2)*
      &     (EL1L*MW*(SAB*(C2B*A0(MA02) + 3*C2A*A0(Mh02)) - 
      &          (2*CAB*S2A + C2A*SAB)*A0(MHH2) + 
-     &          2*(CA*(C2B + 2*CW2)*SB - CW2*S2B*SA*SB - 
-     &             CB*(SA - 2*CB2*SA*SW2))*A0(MHp2) - 
-     &          2*(C2B*SAB - 6*CW2*SBA)*A0(MW2) - 
+     &          2*(CA*(C2B + 2*CW2)*SB - 
+     &             SA*(CW2*S2B*SB + CB*(1 - 2*CB2*SW2)))*A0(MHp2)-
+     &            2*(C2B*SAB - 6*CW2*SBA)*A0(MW2) - 
      &          (C2B*SAB - 6*SBA)*A0(MZ2)))/(CW2*SW)
 
 	LOOP(Cha2, 1,2,1)

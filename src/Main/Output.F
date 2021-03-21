@@ -1,7 +1,7 @@
 * Output.F
 * run FH functions encoded in key and write output to unit
 * this file is part of FeynHiggs
-* last modified 4 Jan 17 th
+* last modified 9 Mar 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -117,16 +117,16 @@
 	write(unit,101) "AlfasMZ", AlfasMZ
 	write(unit,101) "GF", GF
 
-	write(unit,101) "ME", ME
-	write(unit,101) "MU", MU
-	write(unit,101) "MD", MD
-	write(unit,101) "MM", MM
-	write(unit,101) "MC", MC
-	write(unit,101) "MS", MS
-	write(unit,101) "ML", ML
-	write(unit,101) "MT", MT
+	write(unit,101) "ME", Mf(2,1)
+	write(unit,101) "MU", Mf(3,1)
+	write(unit,101) "MD", Mf(4,1)
+	write(unit,101) "MM", Mf(2,2)
+	write(unit,101) "MC", Mf(3,2)
+	write(unit,101) "MS", Mf(4,2)
+	write(unit,101) "ML", Mf(2,3)
+	write(unit,101) "MT", Mf(3,3)
 	write(unit,101) "MTrun", Mf(tT,3)
-	write(unit,101) "MB", MB
+	write(unit,101) "MB", Mf(4,3)
 
 	write(unit,101) "MW", MW
 	write(unit,101) "MZ", MZ

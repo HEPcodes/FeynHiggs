@@ -729,7 +729,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 13 Feb 18 th
+		last modified 19 Apr 18 th
 */
 
 
@@ -747,6 +747,7 @@
 #define MLCONST
 #endif
 
+#define CQUADSIZE 10
 #include "CFeynHiggs.h"
 #include "CSLHA.h"
 
@@ -786,47 +787,46 @@ typedef const long len_t;
 #define _La_(f) f(_s_, _Lr_, _Lc_, _Lar_, _Lac_)
 
 
-static int stdoutorig, stdoutpipe[2], stdoutthr;
-
-extern void FORTRAN(fortranflush)();
-
-#define BeginRedirect() \
-  dup2(stdoutpipe[1], 1)
-
-#define EndRedirect() \
-  FORTRAN(fortranflush)(); \
-  fflush(stdout); \
-  if( stdoutthr ) { \
-    char eot = 0; \
-    write(1, &eot, 1); \
-    read(1, &eot, 1); \
-  } \
-  dup2(stdoutorig, 1)
+static int stdoutorig = -1, stdoutpipe[2] = {2, 2}, stdoutthr = 0;
+static byte *stdoutbuf = NULL;
 
 /******************************************************************/
 
-static void *MLstdout(void *pfd)
-{
-  int fd = ((int *)pfd)[0];
-  byte *buf = NULL;
-  long size = 0;
+#define CaptureStdout() dup2(stdoutpipe[1], 1)
+
+static inline void MLPutStdout(MLINK mlp) {
+  long len;
+  extern void FORTRAN(fortranflush)();
+
+  FORTRAN(fortranflush)();
+  fflush(stdout);
+
+  if( stdoutthr ) {
+    write(1, "", 1);
+    read(1, &len, sizeof len);
+    if( len > 1 ) {
+      MLPutFunction(mlp, "CompoundExpression", 2);
+      MLPutFunction(mlp, "FHWrite", 1);
+      MLPutByteString(mlp, stdoutbuf, len - 1);
+    }
+  }
+
+  dup2(stdoutorig, 1);
+}
+
+/******************************************************************/
+
+static void *capturestdout(void *pfd) {
+  cint fd = ((int *)pfd)[0];
+  long size = 0, len = 0, n;
   enum { unit = 10240 };
-  long len = 0, n = 0;
 
   do {
-    if( size - len < 128 ) buf = realloc(buf, size += unit);
-    len += n = read(fd, buf + len, size - len);
-    if( len > 0 && buf[len-1] == 0 ) {
-      if( len > 1 ) {
-        MLPutFunction(stdlink, "EvaluatePacket", 1);
-        MLPutFunction(stdlink, "FHWrite", 1);
-        MLPutByteString(stdlink, buf, len - 1);
-        MLEndPacket(stdlink);
-        MLNextPacket(stdlink);
-        MLNewPacket(stdlink);
-      }
+    if( size - len < 128 ) stdoutbuf = realloc(stdoutbuf, size += unit);
+    len += n = read(fd, stdoutbuf + len, size - len);
+    if( len > 0 && stdoutbuf[len-1] == 0 ) {
+      write(fd, &len, sizeof len);
       len = 0;
-      write(fd, "", 1);
     }
   } while( n > 0 );
 
@@ -835,8 +835,7 @@ static void *MLstdout(void *pfd)
 
 /******************************************************************/
 
-static void MLPutStatus(MLINK mlp, int error)
-{
+static void MLPutStatus(MLINK mlp, int error) {
   if( error ) {
     MLPutFunction(mlp, "FHError", 1);
     MLPutInteger(mlp, error);
@@ -878,8 +877,7 @@ static void MLPutStatus(MLINK mlp, int error)
 
 /******************************************************************/
 
-static void MLPutComplex(MLINK mlp, cComplexType c)
-{
+static void MLPutComplex(MLINK mlp, cComplexType c) {
   if( Im(c) == 0 ) MLPutReal(mlp, Re(c));
   else {
     MLPutFunction(mlp, "Complex", 2);
@@ -916,13 +914,13 @@ static void mFHSetFlags(cint mssmpart, cint higgsmix, cint p2approx,
 {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHSetFlags(&error,
     mssmpart, higgsmix, p2approx, looplevel, loglevel,
     runningMT, botResum, tlCplxApprox);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -930,15 +928,14 @@ static void mFHSetFlags(cint mssmpart, cint higgsmix, cint p2approx,
 
 /******************************************************************/
 
-static void mFHSetFlagsString(cchar *flags)
-{
+static void mFHSetFlagsString(cchar *flags) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHSetFlagsString(&error, flags);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -946,19 +943,18 @@ static void mFHSetFlagsString(cchar *flags)
 
 /******************************************************************/
 
-static void mFHRetrieveFlags(void)
-{
+static void mFHRetrieveFlags(void) {
   int error;
   int mssmpart, higgsmix, p2approx, looplevel, loglevel;
   int runningMT, botResum, tlCplxApprox;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRetrieveFlags(&error,
     &mssmpart, &higgsmix, &p2approx, &looplevel, &loglevel,
     &runningMT, &botResum, &tlCplxApprox);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -979,16 +975,15 @@ static void mFHRetrieveFlags(void)
 
 /******************************************************************/
 
-static void mFHRetrieveFlagsString(void)
-{
+static void mFHRetrieveFlagsString(void) {
   int error;
   char flags[10];
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRetrieveFlagsString(&error, flags);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else MLPutByteString(stdlink, (unsigned char *)flags, 9);
@@ -998,15 +993,14 @@ static void mFHRetrieveFlagsString(void)
 
 /******************************************************************/
 
-static void mFHSetSMPara(_Ma_(argsSetSMPara))
-{
+static void mFHSetSMPara(_Ma_(argsSetSMPara)) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHSetSMPara(&error, _Va_(argsSetSMPara));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -1014,16 +1008,15 @@ static void mFHSetSMPara(_Ma_(argsSetSMPara))
 
 /******************************************************************/
 
-static void mFHRetrieveSMPara(void)
-{
+static void mFHRetrieveSMPara(void) {
   int error;
   _La_(argsSetSMPara);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRetrieveSMPara(&error, _Ra_(argsSetSMPara));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1059,16 +1052,15 @@ static void mFHRetrieveSMPara(void)
 
 /******************************************************************/
 
-static void mFHGetSMPara(void)
-{
+static void mFHGetSMPara(void) {
   int error;
   _La_(argsGetSMPara);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHGetSMPara(&error, _Ra_(argsGetSMPara));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1085,15 +1077,14 @@ static void mFHGetSMPara(void)
 
 /******************************************************************/
 
-static void mFHSetPara(_Ma_(argsOSPara), _Ma_(argsQPara))
-{
+static void mFHSetPara(_Ma_(argsOSPara), _Ma_(argsQPara)) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHSetPara(&error, _Va_(argsOSPara), _Va_(argsQPara));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -1101,17 +1092,16 @@ static void mFHSetPara(_Ma_(argsOSPara), _Ma_(argsQPara))
 
 /******************************************************************/
 
-static void mFHRetrievePara(void)
-{
+static void mFHRetrievePara(void) {
   int error;
   _La_(argsOSPara);
   _La_(argsQPara);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRetrievePara(&error, _Ra_(argsOSPara), _Ra_(argsQPara));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1170,16 +1160,15 @@ static void mFHRetrievePara(void)
 
 /******************************************************************/
 
-static void mFHRetrieveOSPara(void)
-{
+static void mFHRetrieveOSPara(void) {
   int error;
   _La_(argsOSPara);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRetrieveOSPara(&error, _Ra_(argsOSPara));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1234,17 +1223,16 @@ static void mFHRetrieveOSPara(void)
 
 /******************************************************************/
 
-static void mFHSetSLHA(cchar *file)
-{
+static void mFHSetSLHA(cchar *file) {
   int error;
   COMPLEX slhadata[nslhadata];
 
-  BeginRedirect();
+  CaptureStdout();
 
   SLHARead(&error, slhadata, file, 0);
   if( error == 0 ) FHSetSLHA(&error, slhadata);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -1252,15 +1240,14 @@ static void mFHSetSLHA(cchar *file)
 
 /******************************************************************/
 
-static void mFHSetLFV(_Ma_(argsSetLFV))
-{
+static void mFHSetLFV(_Ma_(argsSetLFV)) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHSetLFV(&error, _Va_(argsSetLFV));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -1268,16 +1255,15 @@ static void mFHSetLFV(_Ma_(argsSetLFV))
 
 /******************************************************************/
 
-static void mFHRetrieveLFV(void)
-{
+static void mFHRetrieveLFV(void) {
   int error;
   _La_(argsSetLFV);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRetrieveLFV(&error, _Ra_(argsSetLFV));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1305,15 +1291,14 @@ static void mFHRetrieveLFV(void)
 
 /******************************************************************/
 
-static void mFHSetNMFV(_Ma_(argsSetNMFV))
-{
+static void mFHSetNMFV(_Ma_(argsSetNMFV)) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHSetNMFV(&error, _Va_(argsSetNMFV));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -1321,16 +1306,15 @@ static void mFHSetNMFV(_Ma_(argsSetNMFV))
 
 /******************************************************************/
 
-static void mFHRetrieveNMFV(void)
-{
+static void mFHRetrieveNMFV(void) {
   int error;
   _La_(argsSetNMFV);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRetrieveNMFV(&error, _Ra_(argsSetNMFV));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1370,16 +1354,15 @@ static void mFHRetrieveNMFV(void)
 
 /******************************************************************/
 
-static void mFHGetPara(void)
-{
+static void mFHGetPara(void) {
   int error, nmfv, t, g;
   _La_(argsGetPara);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHGetPara(&error, &nmfv, _Ra_(argsGetPara));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1436,16 +1419,15 @@ static void mFHGetPara(void)
 
 /******************************************************************/
 
-static void mFHGetTLPara(void)
-{
+static void mFHGetTLPara(void) {
   int error;
   _La_(argsGetTLPara);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHGetTLPara(&error, _Ra_(argsGetTLPara));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1469,16 +1451,15 @@ static void mFHGetTLPara(void)
 
 /******************************************************************/
 
-static void mFHGetFV(void)
-{
+static void mFHGetFV(void) {
   int error, t, n;
   _La_(argsGetFV);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHGetFV(&error, _Ra_(argsGetFV));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1504,16 +1485,15 @@ static void mFHGetFV(void)
 
 /******************************************************************/
 
-static void mFHHiggsCorr(void)
-{
+static void mFHHiggsCorr(void) {
   int error;
   _La_(argsHiggsCorr);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHHiggsCorr(&error, _Ra_(argsHiggsCorr));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1535,16 +1515,15 @@ static void mFHHiggsCorr(void)
 
 /******************************************************************/
 
-static void mFHUncertainties(void)
-{
+static void mFHUncertainties(void) {
   int error;
   _La_(argsUncertainties);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHUncertainties(&error, _Ra_(argsUncertainties));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1566,16 +1545,15 @@ static void mFHUncertainties(void)
 
 /******************************************************************/
 
-static void mFHCouplings(cint fast)
-{
+static void mFHCouplings(cint fast) {
   int error;
   _La_(argsCouplings);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHCouplings(&error, _Ra_(argsCouplings), fast);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1682,16 +1660,15 @@ static void mFHCouplings(cint fast)
 
 /******************************************************************/
 
-static void mFHConstraints(void)
-{
+static void mFHConstraints(void) {
   int error, ccb;
   _La_(argsConstraints);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHConstraints(&error, _Ra_(argsConstraints), &ccb);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1709,16 +1686,15 @@ static void mFHConstraints(void)
 
 /******************************************************************/
 
-static void mFHEWPO(void)
-{
+static void mFHEWPO(void) {
   int error;
   _La_(argsEWPO);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHEWPO(&error, _Ra_(argsEWPO));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1737,16 +1713,15 @@ static void mFHEWPO(void)
 
 /******************************************************************/
 
-static void mFHFlavour(void)
-{
+static void mFHFlavour(void) {
   int error;
   _La_(argsFlavour);
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHFlavour(&error, _Ra_(argsFlavour));
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1765,16 +1740,15 @@ static void mFHFlavour(void)
 
 /******************************************************************/
 
-static void mFHHiggsProd(cRealType sqrts)
-{
+static void mFHHiggsProd(cRealType sqrts) {
   int error;
   RealType prodxs[nprodxs];
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHHiggsProd(&error, sqrts, prodxs);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
 #define ProdXS(channel) \
   MLPutRule(stdlink, channel); \
@@ -1811,16 +1785,15 @@ static void mFHHiggsProd(cRealType sqrts)
 
 /******************************************************************/
 
-static void mFHGetSelf(_Mc_(k2,[1]), cint key, cint dkey, cint ren)
-{
+static void mFHGetSelf(_Mc_(k2,[1]), cint key, cint dkey, cint ren) {
   int error, i;
   ComplexType sig[nsig], dsig[nsig];
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHGetSelf(&error, _Vc_(k2,[1]), key, sig, dkey, dsig, ren);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1852,15 +1825,14 @@ static void mFHGetSelf(_Mc_(k2,[1]), cint key, cint dkey, cint ren)
 
 /******************************************************************/
 
-static void mFHAddSelf(RealType *sig, len_t sig_len, cint flags)
-{
+static void mFHAddSelf(RealType *sig, len_t sig_len, cint flags) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHAddSelf(&error, sig_len/(2*nsig), (cComplexType *)sig, flags);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -1868,15 +1840,14 @@ static void mFHAddSelf(RealType *sig, len_t sig_len, cint flags)
 
 /******************************************************************/
 
-static void mFHOutput(cchar *file, cint key, cRealType sqrts)
-{
+static void mFHOutput(cchar *file, cint key, cRealType sqrts) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHOutput(&error, file, key, sqrts);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else MLPutString(stdlink, file);
@@ -1886,18 +1857,17 @@ static void mFHOutput(cchar *file, cint key, cRealType sqrts)
 
 /******************************************************************/
 
-static void mFHOutputSLHA(cchar *file, cint key)
-{
+static void mFHOutputSLHA(cchar *file, cint key) {
   int error;
   COMPLEX slhadata[nslhadata];
 
-  BeginRedirect();
+  CaptureStdout();
 
   SLHAClear(slhadata);
   FHOutputSLHA(&error, slhadata, key);
   if( error == 0 ) SLHAWrite(&error, slhadata, file);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else MLPutString(stdlink, file);
@@ -1907,15 +1877,14 @@ static void mFHOutputSLHA(cchar *file, cint key)
 
 /******************************************************************/
 
-static void mFHRecordIndex(cchar *para)
-{
+static void mFHRecordIndex(cchar *para) {
   int ind;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRecordIndex(&ind, para);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutInteger(stdlink, ind);
   MLEndPacket(stdlink);
@@ -1923,15 +1892,14 @@ static void mFHRecordIndex(cchar *para)
 
 /******************************************************************/
 
-static void mFHClearRecord(void)
-{
+static void mFHClearRecord(void) {
   RealType record[nrecord];
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHClearRecord(record);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutFunction(stdlink, "FeynHiggs`Private`ToRecord", 1);
   MLPutRealList(stdlink, record, nrecord);
@@ -1940,17 +1908,16 @@ static void mFHClearRecord(void)
 
 /******************************************************************/
 
-static void mFHReadRecord(cchar *file)
-{
+static void mFHReadRecord(cchar *file) {
   int error;
   RealType record[nrecord];
   COMPLEX slhadata[nslhadata];
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHReadRecord(&error, record, slhadata, file);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
 /* 0 = SLHA, 2 = FH file, all others are true errors */
   if( error & ~2 ) MLPutStatus(stdlink, error);
@@ -1964,18 +1931,17 @@ static void mFHReadRecord(cchar *file)
 
 /******************************************************************/
 
-static void mFHSLHARecord(cchar *file)
-{
+static void mFHSLHARecord(cchar *file) {
   int error;
   RealType record[nrecord];
   COMPLEX slhadata[nslhadata];
 
-  BeginRedirect();
+  CaptureStdout();
 
   SLHARead(&error, slhadata, file, 0);
   if( error == 0 ) FHSLHARecord(&error, record, slhadata);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -1988,14 +1954,13 @@ static void mFHSLHARecord(cchar *file)
 
 /******************************************************************/
 
-static void mFHLoopRecord(RealType *record, len_t record_len)
-{
+static void mFHLoopRecord(RealType *record, len_t record_len) {
   int error = 999;
 
   if( record_len == nrecord ) {
-    BeginRedirect();
+    CaptureStdout();
     FHLoopRecord(&error, record);
-    EndRedirect();
+    MLPutStdout(stdlink);
   }
 
   if( error > 0 ) MLPutStatus(stdlink, error);
@@ -2010,14 +1975,13 @@ static void mFHLoopRecord(RealType *record, len_t record_len)
 
 /******************************************************************/
 
-static void mFHSetRecord(RealType *record, len_t record_len)
-{
+static void mFHSetRecord(RealType *record, len_t record_len) {
   int error = 999;
 
   if( record_len == nrecord ) {
-    BeginRedirect();
+    CaptureStdout();
     FHSetRecord(&error, record);
-    EndRedirect();
+    MLPutStdout(stdlink);
   }
 
   if( error ) MLPutStatus(stdlink, error);
@@ -2031,14 +1995,13 @@ static void mFHSetRecord(RealType *record, len_t record_len)
 
 /******************************************************************/
 
-static void mFHRetrieveRecord(RealType *record, len_t record_len, cint iX)
-{
+static void mFHRetrieveRecord(RealType *record, len_t record_len, cint iX) {
   int error = 999;
 
   if( record_len == nrecord ) {
-    BeginRedirect();
+    CaptureStdout();
     FHRetrieveRecord(&error, record, iX);
-    EndRedirect();
+    MLPutStdout(stdlink);
   }
 
   if( error ) MLPutStatus(stdlink, error);
@@ -2052,15 +2015,14 @@ static void mFHRetrieveRecord(RealType *record, len_t record_len, cint iX)
 
 /******************************************************************/
 
-static void mFHLoadTable(cchar *file)
-{
+static void mFHLoadTable(cchar *file) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHLoadTable(&error, file);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else MLPutSymbol(stdlink, "True");
@@ -2076,9 +2038,9 @@ static void mFHTableRecord(RealType *record, len_t record_len,
   int error = 999;
 
   if( record_len == nrecord ) {
-    BeginRedirect();
+    CaptureStdout();
     FHTableRecord(&error, record, i1, i2);
-    EndRedirect();
+    MLPutStdout(stdlink);
   }
 
   if( error ) MLPutStatus(stdlink, error);
@@ -2092,13 +2054,12 @@ static void mFHTableRecord(RealType *record, len_t record_len,
 
 /******************************************************************/
 
-static void mFHSetDebug(cint debuglevel)
-{
-  BeginRedirect();
+static void mFHSetDebug(cint debuglevel) {
+  CaptureStdout();
 
   FHSetDebug(debuglevel);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutSymbol(stdlink, "Null");
   MLEndPacket(stdlink);
@@ -2106,13 +2067,12 @@ static void mFHSetDebug(cint debuglevel)
 
 /******************************************************************/
 
-static void mFHSetDebugFile(cchar *debugfile)
-{
-  BeginRedirect();
+static void mFHSetDebugFile(cchar *debugfile) {
+  CaptureStdout();
 
   FHSetDebugFile(debugfile);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutSymbol(stdlink, "Null");
   MLEndPacket(stdlink);
@@ -2120,13 +2080,12 @@ static void mFHSetDebugFile(cchar *debugfile)
 
 /******************************************************************/
 
-static void mFHSetParaFile(cchar *parafile)
-{
-  BeginRedirect();
+static void mFHSetParaFile(cchar *parafile) {
+  CaptureStdout();
 
   FHSetParaFile(parafile);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutSymbol(stdlink, "Null");
   MLEndPacket(stdlink);
@@ -2134,15 +2093,14 @@ static void mFHSetParaFile(cchar *parafile)
 
 /******************************************************************/
 
-static void mFHSelectUZ(cint uzint, cint uzext, cint mfeff)
-{
+static void mFHSelectUZ(cint uzint, cint uzext, cint mfeff) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHSelectUZ(&error, uzint, uzext, mfeff);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -2150,15 +2108,14 @@ static void mFHSelectUZ(cint uzint, cint uzext, cint mfeff)
 
 /******************************************************************/
 
-static void mFHSelectIpol(cint xt, cint xb)
-{
+static void mFHSelectIpol(cint xt, cint xb) {
   int error;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHSelectIpol(&error, xt, xb);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   MLPutStatus(stdlink, error);
   MLEndPacket(stdlink);
@@ -2166,16 +2123,15 @@ static void mFHSelectIpol(cint xt, cint xb)
 
 /******************************************************************/
 
-static void mFHAlphaS(cRealType Q2)
-{
+static void mFHAlphaS(cRealType Q2) {
   int error, nf;
   RealType AlphaS;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHAlphaS(&error, &AlphaS, &nf, Q2);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else {
@@ -2193,16 +2149,15 @@ static void mFHAlphaS(cRealType Q2)
 
 /******************************************************************/
 
-static void mFHRunQCD(cRealType Qto, cRealType mfrom, cRealType Qfrom)
-{
+static void mFHRunQCD(cRealType Qto, cRealType mfrom, cRealType Qfrom) {
   int error;
   RealType mto;
 
-  BeginRedirect();
+  CaptureStdout();
 
   FHRunQCD(&error, &mto, Qto, mfrom, Qfrom);
 
-  EndRedirect();
+  MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
   else MLPutReal(stdlink, mto);
@@ -2218,22 +2173,35 @@ static int mFHSetEnv(cchar *var, cchar *val) {
 
 /******************************************************************/
 
-int main(int argc, char **argv)
-{
-  int fd, ret;
+static inline void openstdout() {
+  int fd = open("/dev/null", O_WRONLY);
+  dup2(fd, 1);
+  close(fd);
+}
+
+static void __attribute__((constructor(4711))) make_sure_stdout_is_open() {
+  if( fcntl(1, F_GETFD) == -1 ) openstdout();
+}
+
+/******************************************************************/
+
+int main(int argc, char **argv) {
+  int ret;
   pthread_t stdouttid;
   void *thr_ret;
 
-	/* make sure a pipe will not overlap with 0, 1, 2 */
-  do { fd = open("/dev/null", O_WRONLY); } while( fd <= 2 );
-  close(fd);
-
-  stdoutorig = dup(1);
-
-  stdoutthr = getenv("FHFORCESTDERR") == NULL &&
-    socketpair(AF_UNIX, SOCK_STREAM, 0, stdoutpipe) != -1 &&
-    pthread_create(&stdouttid, NULL, MLstdout, stdoutpipe) == 0;
-  if( stdoutthr == 0 ) stdoutpipe[1] = 2;
+  if( getenv("FHFORCESTDERR") == NULL ) {
+    stdoutorig = dup(1);
+    if( stdoutorig == -1 && getenv("FHRESPAWN") == NULL ) {
+      openstdout();
+      putenv("FHRESPAWN=1");
+      execv(argv[0], argv);
+      exit(1);
+    }
+    stdoutthr =
+      socketpair(AF_LOCAL, SOCK_STREAM, 0, stdoutpipe) != -1 &&
+      pthread_create(&stdouttid, NULL, capturestdout, stdoutpipe) == 0;
+  }
 
   ret = MLMain(argc, argv);
 

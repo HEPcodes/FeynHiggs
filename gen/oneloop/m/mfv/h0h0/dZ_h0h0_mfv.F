@@ -1,5 +1,5 @@
 * dZ_h0h0_mfv.F
-* generated 17-Jan-2018 8:11
+* generated 8-May-2018 11:24
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -47,8 +47,8 @@
         se = se + 1/(8.D0*Pi)*
      &     (Alfa1L*(1 + 2*CW2)*Divergence)/(CW2*SW2)
 
-	LOOP(Cha4, 1,2,1)
 	LOOP(Cha3, 1,2,1)
+	LOOP(Cha4, 1,2,1)
 
         se = se - 1/(8.D0*Pi)*
      &     (Alfa1L*Divergence*
@@ -57,11 +57,11 @@
      &          UCha(Cha3,1)*UChaC(Cha3,1)*VCha(Cha4,2)*
      &           VChaC(Cha4,2)))/SW2
 
-	ENDLOOP(Cha3)
 	ENDLOOP(Cha4)
+	ENDLOOP(Cha3)
 
-	LOOP(Neu4, 1,4,1)
 	LOOP(Neu3, 1,4,1)
+	LOOP(Neu4, 1,4,1)
 
         se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*Divergence*
@@ -72,8 +72,8 @@
      &          (SW*ZNeuC(Neu3,1) - CW*ZNeuC(Neu3,2))*ZNeuC(Neu4,4)
      &          ))/(CW2*SW2)
 
-	ENDLOOP(Neu3)
 	ENDLOOP(Neu4)
+	ENDLOOP(Neu3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dZ_h0h0_mfv  all  =", se ENDL

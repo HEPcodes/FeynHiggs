@@ -1,0 +1,122 @@
+FeynAmpList[Process -> {{F[4, {3, Index[Colour, 1]}], 
+      FourMomentum[Incoming, 1], MB, {-Charge/3, (2*ColorCharge)/
+        Sqrt[3]}}} -> {{F[4, {2, Index[Colour, 2]}], 
+      FourMomentum[Outgoing, 1], 0, {-Charge/3, (2*ColorCharge)/Sqrt[3]}}, 
+     {V[5, {Index[Gluon, 3]}], FourMomentum[Outgoing, 2], 0, 
+      {Sqrt[3]*ColorCharge}}}, Model -> {"myMSSMQCD"}, 
+  GenericModel -> {"Lorentz"}, AmplitudeLevel -> {Classes}, 
+  ExcludeParticles -> {}, ExcludeFieldPoints -> {}, 
+  LastSelections -> {F[11]}][FeynAmp[GraphID[Topology == 1, Generic == 1, 
+   Classes == 1, Number == 1], Integral[FourMomentum[Internal, 1]], 
+  ((I/16)*GS*FermionChain[NonCommutative[DiracSpinor[FourMomentum[Outgoing, 
+        1], 0]], ((I/3)*EL*NonCommutative[ChiralityProjector[1]]*
+        UASfC[Index[AllSfermion, 4], 2, 4]*
+        (-(SW*ZNeu[Index[Neutralino, 4], 1]) + 
+         3*CW*ZNeu[Index[Neutralino, 4], 2]))/(Sqrt[2]*CW*SW) - 
+      ((I/3)*Sqrt[2]*EL*NonCommutative[ChiralityProjector[-1]]*
+        UASfC[Index[AllSfermion, 4], 5, 4]*ZNeuC[Index[Neutralino, 4], 1])/
+       CW, NonCommutative[DiracSlash[FourMomentum[Internal, 1]] + 
+       MNeu[Index[Neutralino, 4]]], 
+     ((-I/3)*EL*NonCommutative[ChiralityProjector[1]]*
+        (2*CB*MW*SW*UASf[Index[AllSfermion, 4], 6, 4]*
+          ZNeu[Index[Neutralino, 4], 1] + 3*CW*Mdy[3]*
+          UASf[Index[AllSfermion, 4], 3, 4]*ZNeu[Index[Neutralino, 4], 3]))/
+       (Sqrt[2]*CB*CW*MW*SW) + ((I/3)*EL*NonCommutative[ChiralityProjector[
+          -1]]*(-(CB*MW*SW*UASf[Index[AllSfermion, 4], 3, 4]*
+           ZNeuC[Index[Neutralino, 4], 1]) + 
+         3*CW*(CB*MW*UASf[Index[AllSfermion, 4], 3, 4]*
+            ZNeuC[Index[Neutralino, 4], 2] - Mdy[3]*
+            UASf[Index[AllSfermion, 4], 6, 4]*ZNeuC[Index[Neutralino, 4], 
+             3])))/(Sqrt[2]*CB*CW*MW*SW), NonCommutative[
+      DiracSpinor[FourMomentum[Incoming, 1], MB]]]*
+    FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+      MNeu[Index[Neutralino, 4]]], PropagatorDenominator[
+      FourMomentum[Internal, 1] - FourMomentum[Outgoing, 1], 
+      MASf[Index[AllSfermion, 4], 4]], PropagatorDenominator[
+      FourMomentum[Internal, 1] - FourMomentum[Outgoing, 1] - 
+       FourMomentum[Outgoing, 2], MASf[Index[AllSfermion, 4], 4]]]*
+    FourVector[-2*FourMomentum[Internal, 1] + 2*FourMomentum[Outgoing, 1] + 
+      FourMomentum[Outgoing, 2], Index[Lorentz, 1]]*
+    SumOver[Index[AllSfermion, 4], 6]*SumOver[Index[Neutralino, 4], 4]*
+    SumOver[Index[Colour, 1], 3, External]*SumOver[Index[Colour, 2], 3, 
+     External]*SumOver[Index[Gluon, 3], 8, External]*
+    SUNT[Index[Gluon, 3], Index[Colour, 2], Index[Colour, 1]]*
+    Conjugate[PolarizationVector][V[5, {Index[Gluon, 3]}], 
+     FourMomentum[Outgoing, 2], Index[Lorentz, 1]])/Pi^4], 
+ FeynAmp[GraphID[Topology == 2, Generic == 1, Classes == 1, Number == 2], 
+  Integral[FourMomentum[Internal, 1]], 
+  -(FermionChain[NonCommutative[DiracSpinor[FourMomentum[Outgoing, 1], 0]], 
+      ((I/3)*EL*NonCommutative[ChiralityProjector[1]]*
+         UASfC[Index[AllSfermion, 4], 2, 4]*
+         (-(SW*ZNeu[Index[Neutralino, 4], 1]) + 
+          3*CW*ZNeu[Index[Neutralino, 4], 2]))/(Sqrt[2]*CW*SW) - 
+       ((I/3)*Sqrt[2]*EL*NonCommutative[ChiralityProjector[-1]]*
+         UASfC[Index[AllSfermion, 4], 5, 4]*ZNeuC[Index[Neutralino, 4], 1])/
+        CW, NonCommutative[DiracSlash[-FourMomentum[Internal, 1]] + 
+        MNeu[Index[Neutralino, 4]]], 
+      ((-I/3)*EL*NonCommutative[ChiralityProjector[1]]*
+         (2*CB*MW*SW*UASf[Index[AllSfermion, 4], 6, 4]*
+           ZNeu[Index[Neutralino, 4], 1] + 3*CW*Mdy[3]*
+           UASf[Index[AllSfermion, 4], 3, 4]*ZNeu[Index[Neutralino, 4], 3]))/
+        (Sqrt[2]*CB*CW*MW*SW) + ((I/3)*EL*NonCommutative[ChiralityProjector[
+           -1]]*(-(CB*MW*SW*UASf[Index[AllSfermion, 4], 3, 4]*
+            ZNeuC[Index[Neutralino, 4], 1]) + 
+          3*CW*(CB*MW*UASf[Index[AllSfermion, 4], 3, 4]*
+             ZNeuC[Index[Neutralino, 4], 2] - Mdy[3]*UASf[Index[AllSfermion, 
+               4], 6, 4]*ZNeuC[Index[Neutralino, 4], 3])))/
+        (Sqrt[2]*CB*CW*MW*SW), NonCommutative[
+       MB + DiracSlash[FourMomentum[Outgoing, 1]]], 
+      (-I)*GS*NonCommutative[DiracMatrix[Index[Lorentz, 1]], 
+         ChiralityProjector[-1]]*SUNT[Index[Gluon, 3], Index[Colour, 2], 
+         Index[Colour, 1]] - I*GS*NonCommutative[DiracMatrix[
+          Index[Lorentz, 1]], ChiralityProjector[1]]*SUNT[Index[Gluon, 3], 
+         Index[Colour, 2], Index[Colour, 1]], NonCommutative[
+       DiracSpinor[FourMomentum[Incoming, 1], MB]]]*
+     FeynAmpDenominator[PropagatorDenominator[FourMomentum[Internal, 1], 
+       MNeu[Index[Neutralino, 4]]], PropagatorDenominator[
+       FourMomentum[Internal, 1] + FourMomentum[Outgoing, 1], 
+       MASf[Index[AllSfermion, 4], 4]]]*PropagatorDenominator[
+      -FourMomentum[Outgoing, 1], MB]*SumOver[Index[AllSfermion, 4], 6]*
+     SumOver[Index[Neutralino, 4], 4]*SumOver[Index[Colour, 1], 3, External]*
+     SumOver[Index[Colour, 2], 3, External]*SumOver[Index[Gluon, 3], 8, 
+      External]*Conjugate[PolarizationVector][V[5, {Index[Gluon, 3]}], 
+      FourMomentum[Outgoing, 2], Index[Lorentz, 1]])/(16*Pi^4)], 
+ FeynAmp[GraphID[Topology == 3, Generic == 1, Classes == 1, Number == 3], 
+  Integral[FourMomentum[Internal, 1]], 
+  -(FermionChain[NonCommutative[DiracSpinor[FourMomentum[Outgoing, 1], 0]], 
+      (-I)*GS*NonCommutative[DiracMatrix[Index[Lorentz, 1]], 
+         ChiralityProjector[-1]]*SUNT[Index[Gluon, 3], Index[Colour, 2], 
+         Index[Colour, 1]] - I*GS*NonCommutative[DiracMatrix[
+          Index[Lorentz, 1]], ChiralityProjector[1]]*SUNT[Index[Gluon, 3], 
+         Index[Colour, 2], Index[Colour, 1]], NonCommutative[
+       DiracSlash[FourMomentum[Outgoing, 1] + FourMomentum[Outgoing, 2]]], 
+      ((I/3)*EL*NonCommutative[ChiralityProjector[1]]*
+         UASfC[Index[AllSfermion, 4], 2, 4]*
+         (-(SW*ZNeu[Index[Neutralino, 4], 1]) + 
+          3*CW*ZNeu[Index[Neutralino, 4], 2]))/(Sqrt[2]*CW*SW) - 
+       ((I/3)*Sqrt[2]*EL*NonCommutative[ChiralityProjector[-1]]*
+         UASfC[Index[AllSfermion, 4], 5, 4]*ZNeuC[Index[Neutralino, 4], 1])/
+        CW, NonCommutative[DiracSlash[FourMomentum[Internal, 1]] + 
+        MNeu[Index[Neutralino, 4]]], 
+      ((-I/3)*EL*NonCommutative[ChiralityProjector[1]]*
+         (2*CB*MW*SW*UASf[Index[AllSfermion, 4], 6, 4]*
+           ZNeu[Index[Neutralino, 4], 1] + 3*CW*Mdy[3]*
+           UASf[Index[AllSfermion, 4], 3, 4]*ZNeu[Index[Neutralino, 4], 3]))/
+        (Sqrt[2]*CB*CW*MW*SW) + ((I/3)*EL*NonCommutative[ChiralityProjector[
+           -1]]*(-(CB*MW*SW*UASf[Index[AllSfermion, 4], 3, 4]*
+            ZNeuC[Index[Neutralino, 4], 1]) + 
+          3*CW*(CB*MW*UASf[Index[AllSfermion, 4], 3, 4]*
+             ZNeuC[Index[Neutralino, 4], 2] - Mdy[3]*UASf[Index[AllSfermion, 
+               4], 6, 4]*ZNeuC[Index[Neutralino, 4], 3])))/
+        (Sqrt[2]*CB*CW*MW*SW), NonCommutative[DiracSpinor[
+        FourMomentum[Incoming, 1], MB]]]*FeynAmpDenominator[
+      PropagatorDenominator[FourMomentum[Internal, 1], 
+       MNeu[Index[Neutralino, 4]]], PropagatorDenominator[
+       FourMomentum[Internal, 1] - FourMomentum[Outgoing, 1] - 
+        FourMomentum[Outgoing, 2], MASf[Index[AllSfermion, 4], 4]]]*
+     PropagatorDenominator[-FourMomentum[Outgoing, 1] - 
+       FourMomentum[Outgoing, 2], 0]*SumOver[Index[AllSfermion, 4], 6]*
+     SumOver[Index[Neutralino, 4], 4]*SumOver[Index[Colour, 1], 3, External]*
+     SumOver[Index[Colour, 2], 3, External]*SumOver[Index[Gluon, 3], 8, 
+      External]*Conjugate[PolarizationVector][V[5, {Index[Gluon, 3]}], 
+      FourMomentum[Outgoing, 2], Index[Lorentz, 1]])/(16*Pi^4)]]

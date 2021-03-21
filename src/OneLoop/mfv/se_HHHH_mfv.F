@@ -1,5 +1,5 @@
 * se_HHHH_mfv.F
-* generated 17-Jan-2018 8:11
+* generated 8-May-2018 11:23
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -18,10 +18,10 @@
 
 	integer Cha3, Cha4, Gen3, Neu3, Neu4, Sfe3, Sfe4
 
-	ComplexType dup1, dup10, dup11, dup12, dup13, dup14, dup15
-	ComplexType dup16, dup17, dup18, dup19, dup2, dup20, dup21
-	ComplexType dup22, dup23, dup24, dup3, dup4, dup5, dup6
-	ComplexType dup7, dup8, dup9, tmp1, tmp2
+	ComplexType A0tmp1, A0tmp2, dup1, dup10, dup11, dup12, dup13
+	ComplexType dup14, dup15, dup16, dup17, dup18, dup19, dup2
+	ComplexType dup20, dup21, dup22, dup23, dup24, dup3, dup4
+	ComplexType dup5, dup6, dup7, dup8, dup9
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_HHHH_mfv k2 =", k2 ENDL
@@ -40,22 +40,22 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Gen3, gM,3,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
         se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*A0(MSf2(Sfe3,tM1,Gen3))*
-     &        ((C2A*MW2*(SB2 - 4*CW2*SB2) - 
-     &             6*CW2*SA2*Mf2(tM1,Gen3))*USf2(Sfe3,1,tM1,Gen3)-
-     &            2*(2*C2A*MW2*SB2*SW2 + 3*CW2*SA2*Mf2(tM1,Gen3))*
+     &        ((C2A*(1 - 4*CW2)*MW2*SB2 - 6*CW2*SA2*Mf2(tM1,Gen3))*
+     &           USf2(Sfe3,1,tM1,Gen3) - 
+     &          2*(2*C2A*MW2*SB2*SW2 + 3*CW2*SA2*Mf2(tM1,Gen3))*
      &           USf2(Sfe3,2,tM1,Gen3)))/(CW2*MW2*SB2*SW2)
 
-	ENDLOOP(Sfe3)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe3)
 
-	LOOP(Gen3, gM,3,1)
-	LOOP(Sfe4, 1,2,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
 	dup1 = SA*KfC(Gen3,Gen3,tM1) - CA*MUE*Mf(tM1,Gen3)
 
@@ -63,7 +63,7 @@
 
 	dup3 = 2*CAB*MW*MZ*SB*SW2 + 3*CW*SA*Mf2(tM1,Gen3)
 
-	dup4 = -(CAB*MW*MZ*(SB - 4*CW2*SB)) + 6*CW*SA*Mf2(tM1,Gen3)
+	dup4 = -(CAB*(1 - 4*CW2)*MW*MZ*SB) + 6*CW*SA*Mf2(tM1,Gen3)
 
         se = se + 1/(48.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,tM1,Gen3),MSf2(Sfe4,tM1,Gen3))*
@@ -81,9 +81,9 @@
      &             2*dup3*USfC(Sfe4,2,tM1,Gen3))))/
      &      (CW2*MW2*SB2*SW2)
 
-	ENDLOOP(Sfe3)
-	ENDLOOP(Sfe4)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_HHHH_mfv  t/st =", se ENDL
@@ -102,22 +102,22 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Gen3, gM,3,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
         se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*A0(MSf2(Sfe3,bM1,Gen3))*
-     &        ((C2A*CB2*(MW2 + 2*CW2*MW2) - 
-     &             6*CA2*CW2*Mf2(bM1,Gen3))*USf2(Sfe3,1,bM1,Gen3)+
-     &            2*(C2A*CB2*MW2*SW2 - 3*CA2*CW2*Mf2(bM1,Gen3))*
+     &        ((C2A*CB2*(1 + 2*CW2)*MW2 - 6*CA2*CW2*Mf2(bM1,Gen3))*
+     &           USf2(Sfe3,1,bM1,Gen3) + 
+     &          2*(C2A*CB2*MW2*SW2 - 3*CA2*CW2*Mf2(bM1,Gen3))*
      &           USf2(Sfe3,2,bM1,Gen3)))/(CB2*CW2*MW2*SW2)
 
-	ENDLOOP(Sfe3)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe3)
 
-	LOOP(Gen3, gM,3,1)
-	LOOP(Sfe4, 1,2,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
 	dup5 = -(CA*KfC(Gen3,Gen3,bM1)) + MUE*SA*Mf(bM1,Gen3)
 
@@ -125,7 +125,7 @@
 
 	dup7 = CAB*CB*MW*MZ*SW2 - 3*CA*CW*Mf2(bM1,Gen3)
 
-	dup8 = CAB*CB*MW*(MZ + 2*CW2*MZ) - 6*CA*CW*Mf2(bM1,Gen3)
+	dup8 = CAB*CB*(1 + 2*CW2)*MW*MZ - 6*CA*CW*Mf2(bM1,Gen3)
 
         se = se + 1/(48.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,bM1,Gen3),MSf2(Sfe4,bM1,Gen3))*
@@ -143,9 +143,9 @@
      &             2*dup7*USfC(Sfe4,2,bM1,Gen3))))/
      &      (CB2*CW2*MW2*SW2)
 
-	ENDLOOP(Sfe3)
-	ENDLOOP(Sfe4)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_HHHH_mfv +b/sb =", se ENDL
@@ -167,22 +167,22 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, 1,3,1)
+	LOOP(Sfe3, 1,2,1)
 
         se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*A0(MSf2(Sfe3,2,Gen3))*
-     &        ((C2A*CB2*(MW2 - 2*CW2*MW2) + 2*CA2*CW2*Mf2(2,Gen3))*
+     &        ((C2A*CB2*(1 - 2*CW2)*MW2 + 2*CA2*CW2*Mf2(2,Gen3))*
      &           USf2(Sfe3,1,2,Gen3) - 
      &          2*(C2A*CB2*MW2*SW2 - CA2*CW2*Mf2(2,Gen3))*
      &           USf2(Sfe3,2,2,Gen3)))/(CB2*CW2*MW2*SW2)
 
-	ENDLOOP(Gen3)
 	ENDLOOP(Sfe3)
+	ENDLOOP(Gen3)
 
-	LOOP(Sfe4, 1,2,1)
-	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, 1,3,1)
+	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
 
 	dup9 = -(CA*KfC(Gen3,Gen3,2)) + MUE*SA*Mf(2,Gen3)
 
@@ -190,7 +190,7 @@
 
 	dup11 = CAB*CB*MW*MZ*SW2 - CA*CW*Mf2(2,Gen3)
 
-	dup12 = -(CAB*CB*MW*(MZ - 2*CW2*MZ)) - 2*CA*CW*Mf2(2,Gen3)
+	dup12 = -(CAB*CB*(1 - 2*CW2)*MW*MZ) - 2*CA*CW*Mf2(2,Gen3)
 
         se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,2,Gen3),MSf2(Sfe4,2,Gen3))*
@@ -207,9 +207,9 @@
      &           (dup12*USfC(Sfe4,1,2,Gen3) + 
      &             CW*dup9*USfC(Sfe4,2,2,Gen3))))/(CB2*CW2*MW2*SW2)
 
-	ENDLOOP(Gen3)
-	ENDLOOP(Sfe3)
 	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
+	ENDLOOP(Gen3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_HHHH_mfv +l/sl =", se ENDL
@@ -224,7 +224,7 @@
      &                9*C2A**2*B0(k2,MHH2,MHH2)) + 
      &             ((C2B + 2*CW2)*
      &                 ((2*C2B*SA2 + CW2*(2*S2A*S2B + 4*SA2))*
-     &                    SB2 + S2A*(S2B - 2*CB2*S2B*SW2)) + 
+     &                    SB2 + S2A*S2B*(1 - 2*CB2*SW2)) + 
      &                2*CA2*
      &                 (CW2*S2B**2*(1 + CW2*SB2) - 4*CB2**2*SW2 + 
      &                   4*CB2**3*SW2**2 + 
@@ -253,7 +253,7 @@
 
 	LOOP(Cha4, 1,2,1)
 
-	tmp1 = A0(MCha2(Cha4))
+	A0tmp1 = A0(MCha2(Cha4))
 
 	LOOP(Cha3, 1,2,1)
 
@@ -271,7 +271,7 @@
 
         se = se - 1/(4.D0*Pi)*
      &     (Alfa1L*((dup13*dup15 + dup14*dup16)*
-     &           (tmp1 + k2*B1(k2,MCha2(Cha3),MCha2(Cha4))) + 
+     &           (A0tmp1 + k2*B1(k2,MCha2(Cha3),MCha2(Cha4))) + 
      &          B0(k2,MCha2(Cha3),MCha2(Cha4))*
      &           (dup16*(dup15*MCha(Cha3)*MCha(Cha4) + 
      &                dup14*MCha2(Cha3)) + 
@@ -284,7 +284,7 @@
 
 	LOOP(Neu4, 1,4,1)
 
-	tmp2 = A0(MNeu2(Neu4))
+	A0tmp2 = A0(MNeu2(Neu4))
 
 	LOOP(Neu3, 1,4,1)
 
@@ -307,7 +307,7 @@
         se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(2*(dup18*dup19 + dup17*dup20)*
      &           (dup22*dup23 + dup21*dup24)*
-     &           (tmp2 + k2*B1(k2,MNeu2(Neu3),MNeu2(Neu4))) + 
+     &           (A0tmp2 + k2*B1(k2,MNeu2(Neu3),MNeu2(Neu4))) + 
      &          B0(k2,MNeu2(Neu3),MNeu2(Neu4))*
      &           ((dup17**2*dup20**2 + 
      &                dup18*

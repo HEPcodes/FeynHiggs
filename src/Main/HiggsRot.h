@@ -25,7 +25,7 @@
 #ifndef r_
 #define r_ c_,s_,i_
 #define rA CA,SA,1
-#define rB CB,SB,-1
+#define rB SB,-CB,1
 #define rBA CBA,SBA,-1
 
 #define cpe(f) f(h0h0),f(HHHH),f(h0HH)
@@ -48,4 +48,3 @@
 	def_H1(R_h0HH, R_h0A0, R11_,R22_,R12_)
 	def_H1(R_HHHH, R_HHA0, R11_,R22_,R12_)
 	def_H2(R_h0h0, R_HHHH, R11_,R22_,R12_)
-

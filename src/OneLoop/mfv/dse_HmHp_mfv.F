@@ -1,5 +1,5 @@
 * dse_HmHp_mfv.F
-* generated 17-Jan-2018 8:11
+* generated 8-May-2018 11:24
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -18,9 +18,9 @@
 
 	integer Cha3, Gen3, Gen4, Neu3, Sfe3, Sfe4
 
-	ComplexType dup1, dup10, dup2, dup3, dup4, dup5, dup6, dup7
-	ComplexType dup8, dup9, tmp1, tmp2, tmp3, tmp4, tmp5, tmp6
-	ComplexType tmp7, tmp8
+	ComplexType B0tmp1, B0tmp2, B1tmp1, B1tmp2, DB0tmp1, DB0tmp2
+	ComplexType DB1tmp1, DB1tmp2, dup1, dup10, dup2, dup3, dup4
+	ComplexType dup5, dup6, dup7, dup8, dup9
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_HmHp_mfv k2 =", k2 ENDL
@@ -30,29 +30,30 @@
 
 	LOOP(Gen3, gM,3,1)
 
-	tmp1 = B0(k2,0.D0,Mf2(tM1,Gen3))
+	B0tmp1 = B0(k2,0.D0,Mf2(tM1,Gen3))
 
-	tmp2 = B1(k2,0.D0,Mf2(tM1,Gen3))
+	B1tmp1 = B1(k2,0.D0,Mf2(tM1,Gen3))
 
-	tmp3 = DB0(k2,0.D0,Mf2(tM1,Gen3))
+	DB0tmp1 = DB0(k2,0.D0,Mf2(tM1,Gen3))
 
-	tmp4 = DB1(k2,0.D0,Mf2(tM1,Gen3))
+	DB1tmp1 = DB1(k2,0.D0,Mf2(tM1,Gen3))
 
 	LOOP(Gen4, gM,3,1)
 
         se = se + 3/(4.D0*Pi)*
      &     (Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
-     &        (tmp1 + tmp2 + k2*tmp4 + tmp3*(k2 - Mf2(tM1,Gen3)))*
-     &        Mf2(tM1,Gen3))/(MW2*SW2*TB2)
+     &        (B0tmp1 + B1tmp1 + DB1tmp1*k2 + 
+     &          DB0tmp1*(k2 - Mf2(tM1,Gen3)))*Mf2(tM1,Gen3))/
+     &      (MW2*SW2*TB2)
 
 	ENDLOOP(Gen4)
 
 	ENDLOOP(Gen3)
 
-	LOOP(Gen4, gM,3,1)
-	LOOP(Gen3, gM,3,1)
-	LOOP(Sfe4, 1,2,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
+	LOOP(Gen3, gM,3,1)
+	LOOP(Gen4, gM,3,1)
 
 	dup1 = MW2*S2B**2 - 2*CB2*Mf2(tM1,Gen3)
 
@@ -67,10 +68,10 @@
      &           USfC(Sfe3,2,tM1,Gen3))*USfC(Sfe4,1,bM1,Gen4))/
      &      (MW2*S2B**2*SW2)
 
-	ENDLOOP(Sfe3)
-	ENDLOOP(Sfe4)
-	ENDLOOP(Gen3)
 	ENDLOOP(Gen4)
+	ENDLOOP(Gen3)
+	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_HmHp_mfv  t/st =", se ENDL
@@ -80,21 +81,21 @@
 
 	LOOP(Gen3, gM,3,1)
 
-	tmp5 = B0(k2,0.D0,Mf2(tM1,Gen3))
+	B0tmp2 = B0(k2,0.D0,Mf2(tM1,Gen3))
 
-	tmp6 = B1(k2,0.D0,Mf2(tM1,Gen3))
+	B1tmp2 = B1(k2,0.D0,Mf2(tM1,Gen3))
 
-	tmp7 = DB0(k2,0.D0,Mf2(tM1,Gen3))
+	DB0tmp2 = DB0(k2,0.D0,Mf2(tM1,Gen3))
 
-	tmp8 = DB1(k2,0.D0,Mf2(tM1,Gen3))
+	DB1tmp2 = DB1(k2,0.D0,Mf2(tM1,Gen3))
 
 	LOOP(Gen4, gM,3,1)
 
         se = se + 3/(4.D0*Pi)*
      &     (Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
-     &        (-((tmp5 + tmp6 + k2*tmp8 + 
-     &               tmp7*(k2 - Mf2(tM1,Gen3)))*Mf2(tM1,Gen3)) + 
-     &          (B0(k2,Mf2(bM1,Gen4),Mf2(tM1,Gen3)) + 
+     &        (-((B0tmp2 + B1tmp2 + DB1tmp2*k2 + 
+     &               DB0tmp2*(k2 - Mf2(tM1,Gen3)))*Mf2(tM1,Gen3))+
+     &            (B0(k2,Mf2(bM1,Gen4),Mf2(tM1,Gen3)) + 
      &             B1(k2,Mf2(bM1,Gen4),Mf2(tM1,Gen3)) + 
      &             k2*DB1(k2,Mf2(bM1,Gen4),Mf2(tM1,Gen3)))*
      &           (TB2**2*Mf2(bM1,Gen4) + Mf2(tM1,Gen3)) + 
@@ -108,10 +109,10 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Gen4, gM,3,1)
-	LOOP(Gen3, gM,3,1)
-	LOOP(Sfe4, 1,2,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
+	LOOP(Gen3, gM,3,1)
+	LOOP(Gen4, gM,3,1)
 
 	dup2 = 2*CB2*KfC(Gen3,Gen3,tM1) + MUE*S2B*Mf(tM1,Gen3)
 
@@ -151,10 +152,10 @@
      &                   2*Mf(bM1,Gen4)*USfC(Sfe4,2,bM1,Gen4))))))/
      &      (MW2*S2B**2*SW2)
 
-	ENDLOOP(Sfe3)
-	ENDLOOP(Sfe4)
-	ENDLOOP(Gen3)
 	ENDLOOP(Gen4)
+	ENDLOOP(Gen3)
+	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_HmHp_mfv +b/sb =", se ENDL
@@ -171,8 +172,8 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, 1,3,1)
+	LOOP(Sfe3, 1,2,1)
 
 	dup5 = CB*MW2*S2B - SB*Mf2(2,Gen3)
 
@@ -185,8 +186,8 @@
      &          (SB*KfC(Gen3,Gen3,2) + CB*MUE*Mf(2,Gen3))*
      &           USfC(Sfe3,2,2,Gen3)))/(CB2*MW2*SW2)
 
-	ENDLOOP(Gen3)
 	ENDLOOP(Sfe3)
+	ENDLOOP(Gen3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_HmHp_mfv +l/sl =", se ENDL
@@ -237,8 +238,8 @@
      &             4*(B1(k2,MHp2,MZ2) + k2*DB1(k2,MHp2,MZ2)))))/
      &      (CW2**2*SW2)
 
-	LOOP(Neu3, 1,4,1)
 	LOOP(Cha3, 1,2,1)
+	LOOP(Neu3, 1,4,1)
 
 	dup6 = (SW*ZNeu(Neu3,1) + CW*ZNeu(Neu3,2))/CW
 
@@ -282,8 +283,8 @@
      &              (sqrt2*(VChaC(Cha3,1)*ZNeuC(Neu3,4)) + 
      &                dup8*VChaC(Cha3,2)))))/(CW2*SW2)
 
-	ENDLOOP(Cha3)
 	ENDLOOP(Neu3)
+	ENDLOOP(Cha3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_HmHp_mfv  all  =", se ENDL

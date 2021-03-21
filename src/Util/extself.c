@@ -3,7 +3,7 @@
 		call external program with preset environment
 		for the computation of the Higgs SE
 		this file is part of FeynHiggs
-		last modified 31 Jan 16 th
+		last modified 20 Apr 18 th
 */
 
 #define _XOPEN_SOURCE 700
@@ -21,6 +21,8 @@
 #include <assert.h>
 
 #include "externals.h"
+
+#define CQUADSIZE 10
 #include "ftypes.h"
 
 /* (a < 0) ? -1 : 0 */
@@ -45,8 +47,8 @@ static int firstrun = 1;
 #define lengthof(x) sizeof(x)/sizeof(*(x))
 
 typedef struct {
-  RealType re, im;
-} cplx;
+  REAL re, im;
+} CPLX;
 
 typedef struct {
   char *tag;
@@ -65,10 +67,10 @@ static void cleanup(int sig) {
   if( keep == 0 ) nftw(tmpdir, (ftwfun)remove, 64, FTW_DEPTH | FTW_PHYS);
 }
 
-void extself_(int *flags, int *n, cplx *se, const int *ldsig, const char *cmd, ...) {
+void extself_(int *flags, int *n, CPLX *se, const int *ldsig, const char *cmd, ...) {
   int fd[2];
   char buf[256], val[32], *s;
-  RealType *r;
+  REAL *r;
   va_list v1, v2;
   int cmd_len, s_len, i, rot, sub, np = 0;
   FILE *h;
@@ -128,16 +130,16 @@ void extself_(int *flags, int *n, cplx *se, const int *ldsig, const char *cmd, .
 
     va_start(v1, cmd);
     va_copy(v2, v1);
-    while( *va_arg(v1, char *) != '-' ) va_arg(v1, RealType *);
+    while( *va_arg(v1, char *) != '-' ) va_arg(v1, REAL *);
     cmd_len = va_arg(v1, int);
     for( ; ; ) {
       s = va_arg(v2, char *);
       if( *s == '-' ) break;
-      r = va_arg(v2, RealType *);
+      r = va_arg(v2, REAL *);
       s_len = va_arg(v1, int);
       memcpy(buf, s, s_len);
       buf[s_len] = 0;
-      sprintf(val, "%.15lg", *r);
+      sprintf(val, "%.15" PRIprec "g", ToReal(*r));
       setenv(buf, val, 1);
     }
     va_end(v2);
@@ -154,7 +156,7 @@ void extself_(int *flags, int *n, cplx *se, const int *ldsig, const char *cmd, .
   keep = 0;
   signal(SIGINT, cleanup);
 
-  memset(se, 0, semax*seXmax*sizeof(cplx));
+  memset(se, 0, semax*seXmax*sizeof(CPLX));
   rot = sub = 0;
 
   setbuf(stdout, NULL);
@@ -177,9 +179,12 @@ void extself_(int *flags, int *n, cplx *se, const int *ldsig, const char *cmd, .
       }
       else for( i = 0; i < lengthof(hid); ++i ) {
         if( strncmp(s, hid[i].tag, strlen(hid[i].tag)) == 0 ) {
-          cplx *sei = &se[hid[i].off & 0x7f];
+          RealType re, im;
+          CPLX *sei = &se[hid[i].off & 0x7f];
           rot |= hid[i].off;
-          sscanf(s+8, " %lg %lg", &sei->re, &sei->im);
+          sscanf(s+8, " %" PRIprec "g %" PRIprec "g", &re, &im);
+          sei->re = ToREAL(re);
+          sei->im = ToREAL(im);
           np = IMax(i/(semax + 3) + 1, np);
           break;
         }

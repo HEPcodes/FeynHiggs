@@ -362,7 +362,7 @@
 
 	Sf215 = reMUE*TB - Re(Atau)
 
-	Sf152 = MW2*S2B*SW2 - CW2*ML2*TB
+	Sf152 = MW2*S2B*SW2 - CW2*MTau2*TB
 
 	Sf125 = MW2*S2B*SW2 - 3*CW2*MBot2*TB
 
@@ -637,11 +637,11 @@
 
 	Sf7353 = 4*MW2 - MZ2*Sf7352
 
-	Sf10220 = ML*SA + Ss937*UStau21*UStau22
+	Sf10220 = MTau*SA + Ss937*UStau21*UStau22
 
 	Sf7324 = 2*MW2 - MZ2*Sf7323
 
-	Sf9300 = ML*SA + Ss937*UStau11*UStau12
+	Sf9300 = MTau*SA + Ss937*UStau11*UStau12
 
 	Sf7309 = 2*MW2 - MZ2*Sf7308
 
@@ -811,19 +811,19 @@
 
 	Sf10345 = Sf10344 - MHiggs2(1)*MStop2(2)
 
-	Sf10221 = CB*MW*MZ*SAB*Sf10219 - 2*CW*ML*Sf10220
+	Sf10221 = CB*MW*MZ*SAB*Sf10219 - 2*CW*MTau*Sf10220
 
 	Sf10088 = Sf10086 - MHiggs2(1)*MStau2(1)
 
 	Sf10058 = Sf10057 - MHiggs2(1)*MStau2(2)
 
-	Sf942 = ML2*SA*SB + CAB*CB2*MZ2*SW2
+	Sf942 = MTau2*SA*SB + CAB*CB2*MZ2*SW2
 
 	Sf130 = 3*MBot2*SA*SB + CAB*CB2*MZ2*SW2
 
 	Sf7190 = 3*MTop2*SA + 2*CAB*MZ2*SB*SW2
 
-	Sf1744 = ML2*SA - CB*MZ2*SAB*SW2
+	Sf1744 = MTau2*SA - CB*MZ2*SAB*SW2
 
 	Sf4764 = 3*MBot2*SA - CB*MZ2*SAB*SW2
 
@@ -1537,81 +1537,81 @@
 
 	Sf2193 = MTop2 - Sf2192*TB
 
-	Sf345 = ML2**2 + C2B**2*MW2**2
+	Sf345 = MTau2**2 + C2B**2*MW2**2
 
-	Sf150 = CW2*ML2 - C2B*MW2*SW2
+	Sf150 = CW2*MTau2 - C2B*MW2*SW2
 
-	Sf1750 = CA*ML2 - CAB*CB*MZ2*SW2
+	Sf1750 = CA*MTau2 - CAB*CB*MZ2*SW2
 
-	Sf1622 = 9*ML2 + 10*MSl2Diff(2,1)
+	Sf1622 = 9*MTau2 + 10*MSl2Diff(2,1)
 
-	Sf796 = 9*ML2 + 10*MSl2Diff(1,1)
+	Sf796 = 9*MTau2 + 10*MSl2Diff(1,1)
 
-	Sf1247 = 7*ML2 + 6*MStau2(2)
+	Sf1247 = 7*MTau2 + 6*MStau2(2)
 
-	Sf273 = 7*ML2 + 6*MStau2(1)
+	Sf273 = 7*MTau2 + 6*MStau2(1)
 
-	Sf1256 = 5*ML2 - 22*MStau2(2)
+	Sf1256 = 5*MTau2 - 22*MStau2(2)
 
-	Sf289 = 5*ML2 - 22*MStau2(1)
+	Sf289 = 5*MTau2 - 22*MStau2(1)
 
-	Sf1555 = 3*ML2 - 26*MStau2(2)
+	Sf1555 = 3*MTau2 - 26*MStau2(2)
 
-	Sf685 = 3*ML2 - 26*MStau2(1)
+	Sf685 = 3*MTau2 - 26*MStau2(1)
 
-	Sf2109 = 2*ML2 - MStau2(2)
+	Sf2109 = 2*MTau2 - MStau2(2)
 
-	Sf1974 = 2*ML2 - 39*MStau2(2)
+	Sf1974 = 2*MTau2 - 39*MStau2(2)
 
-	Sf2025 = 2*ML2 - MStau2(1)
+	Sf2025 = 2*MTau2 - MStau2(1)
 
-	Sf1914 = 2*ML2 - 39*MStau2(1)
+	Sf1914 = 2*MTau2 - 39*MStau2(1)
 
-	Sf1560 = ML2 - 4*C2B*MStau2(2)
+	Sf1560 = MTau2 - 4*C2B*MStau2(2)
 
-	Sf1549 = ML2 + 42*MStau2(2)
+	Sf1549 = MTau2 + 42*MStau2(2)
 
-	Sf1426 = ML2 + MStau2(2)
+	Sf1426 = MTau2 + MStau2(2)
 
-	Sf1572 = ML2 - 3*MStau2(2)
+	Sf1572 = MTau2 - 3*MStau2(2)
 
-	Sf1497 = ML2 - 4*MStau2(2)
+	Sf1497 = MTau2 - 4*MStau2(2)
 
-	Sf2110 = ML2 - 7*MStau2(2)
+	Sf2110 = MTau2 - 7*MStau2(2)
 
-	Sf1480 = ML2 - 13*MStau2(2)
+	Sf1480 = MTau2 - 13*MStau2(2)
 
-	Sf1553 = ML2 - 23*MStau2(2)
+	Sf1553 = MTau2 - 23*MStau2(2)
 
-	Sf691 = ML2 - 4*C2B*MStau2(1)
+	Sf691 = MTau2 - 4*C2B*MStau2(1)
 
-	Sf676 = ML2 + 42*MStau2(1)
+	Sf676 = MTau2 + 42*MStau2(1)
 
-	Sf515 = ML2 + MStau2(1)
+	Sf515 = MTau2 + MStau2(1)
 
-	Sf706 = ML2 - 3*MStau2(1)
+	Sf706 = MTau2 - 3*MStau2(1)
 
-	Sf597 = ML2 - 4*MStau2(1)
+	Sf597 = MTau2 - 4*MStau2(1)
 
-	Sf2026 = ML2 - 7*MStau2(1)
+	Sf2026 = MTau2 - 7*MStau2(1)
 
-	Sf579 = ML2 - 13*MStau2(1)
+	Sf579 = MTau2 - 13*MStau2(1)
 
-	Sf681 = ML2 - 23*MStau2(1)
+	Sf681 = MTau2 - 23*MStau2(1)
 
-	Sf1559 = ML2 - MSl2Diff(2,1)
+	Sf1559 = MTau2 - MSl2Diff(2,1)
 
-	Sf1485 = ML2 - 3*MSl2Diff(2,1)
+	Sf1485 = MTau2 - 3*MSl2Diff(2,1)
 
-	Sf1530 = ML2 - 9*MSl2Diff(2,1)
+	Sf1530 = MTau2 - 9*MSl2Diff(2,1)
 
-	Sf689 = ML2 - MSl2Diff(1,1)
+	Sf689 = MTau2 - MSl2Diff(1,1)
 
-	Sf584 = ML2 - 3*MSl2Diff(1,1)
+	Sf584 = MTau2 - 3*MSl2Diff(1,1)
 
-	Sf636 = ML2 - 9*MSl2Diff(1,1)
+	Sf636 = MTau2 - 9*MSl2Diff(1,1)
 
-	Sf241 = ML2 - C2B*MW2
+	Sf241 = MTau2 - C2B*MW2
 
 	Sf6197 = -64*MW2**3*Sf99 + 20*MHiggs2(4)**4
 
@@ -3369,7 +3369,7 @@
 
 	Sf2022 = 1 - Log(MSneu2(1))
 
-	Sf8715 = 1 - Log(MM2)
+	Sf8715 = 1 - Log(MMu2)
 
 	Sf4772 = 1 + 2*CW2
 
@@ -3653,12 +3653,12 @@
      &      MW2*(27*MSbot2(1)**2 + MW2*(MW2*Sf5689 + 26*MSbot2(1)))
      &      )
 
-	Sf1813 = 4*ML2*MW2**3 - 75*MStau2(2)**4 + 
+	Sf1813 = 4*MTau2*MW2**3 - 75*MStau2(2)**4 + 
      &   MW2*(82*MStau2(2)**3 + 
      &      MW2*(MW2*(-4*MW2*Sf174 - 4*MStau2(2)) - 
      &         11*MStau2(2)**2))
 
-	Sf1002 = 4*ML2*MW2**3 - 75*MStau2(1)**4 + 
+	Sf1002 = 4*MTau2*MW2**3 - 75*MStau2(1)**4 + 
      &   MW2*(82*MStau2(1)**3 + 
      &      MW2*(MW2*(-4*MW2*Sf174 - 4*MStau2(1)) - 
      &         11*MStau2(1)**2))
@@ -3796,10 +3796,10 @@
 	Sf5708 = 2*MTop2*MW2**2 + 80*MSbot2(1)**3 + 
      &   MW2*(24*MSbot2(1)**2 + MW2*(MW2*Sf5664 + 29*MSbot2(1)))
 
-	Sf1810 = 6*ML2*MW2**2 - 300*MStau2(2)**3 + 
+	Sf1810 = 6*MTau2*MW2**2 - 300*MStau2(2)**3 + 
      &   MW2*(MW2*(-(MW2*Sf998) - 57*MStau2(2)) - 36*MStau2(2)**2)
 
-	Sf999 = 6*ML2*MW2**2 - 300*MStau2(1)**3 + 
+	Sf999 = 6*MTau2*MW2**2 - 300*MStau2(1)**3 + 
      &   MW2*(MW2*(-(MW2*Sf998) - 57*MStau2(1)) - 36*MStau2(1)**2)
 
 	tmp5 = MW2**2*(-7*MW2 + 3*MHiggs2(4))
@@ -3940,13 +3940,13 @@
 	Sf9888 = Sf9884 - Sf9885*MStau2(2) + 
      &   MStau2(2)**2*(Sf9886 - Sf9887*MStau2(2))
 
-	Sf1434 = 3*ML2*Sf47 + 
+	Sf1434 = 3*MTau2*Sf47 + 
      &   MSneu2(1)*(11*MSneu2(1) - 4*MStau2(2)) - 7*MStau2(2)**2
 
-	Sf1545 = 3*ML2*Sf47 + 
+	Sf1545 = 3*MTau2*Sf47 + 
      &   MSneu2(1)*(-23*MSneu2(1) - 4*MStau2(2)) + 27*MStau2(2)**2
 
-	Sf1503 = ML2*Sf47 + 
+	Sf1503 = MTau2*Sf47 + 
      &   MSneu2(1)*(-11*MSneu2(1) - 4*MStau2(2)) + 15*MStau2(2)**2
 
 	Sf6287 = Sf3976 - 4*Sf3977*MStop2(2) + 
@@ -3961,13 +3961,13 @@
 	Sf3882 = Sf3879 - 4*Sf3880*MStop2(1) + 
      &   (8*Sf3881 - 12*MStop2(1))*MStop2(1)**2
 
-	Sf525 = 3*ML2*Sf34 + 
+	Sf525 = 3*MTau2*Sf34 + 
      &   MSneu2(1)*(11*MSneu2(1) - 4*MStau2(1)) - 7*MStau2(1)**2
 
-	Sf671 = 3*ML2*Sf34 + 
+	Sf671 = 3*MTau2*Sf34 + 
      &   MSneu2(1)*(-23*MSneu2(1) - 4*MStau2(1)) + 27*MStau2(1)**2
 
-	Sf606 = ML2*Sf34 + 
+	Sf606 = MTau2*Sf34 + 
      &   MSneu2(1)*(-11*MSneu2(1) - 4*MStau2(1)) + 15*MStau2(1)**2
 
 	Sf10363 = 2*MZ2**2*MHiggs2(1) + 3*Sf9113*MStop2(2)**2 + 
@@ -4026,10 +4026,10 @@
 
 	Sf5715 = -MSbot2(1)**2 + MW2*(MW2 - 2*MStop2(1)) + MStop2(1)**2
 
-	Sf1802 = ML2*(ML2 + 2*MW2*Sf2) - MW2**2*Sf983 + 
+	Sf1802 = MTau2*(MTau2 + 2*MW2*Sf2) - MW2**2*Sf983 + 
      &   23*Sf241*MStau2(2)
 
-	Sf984 = ML2*(ML2 + 2*MW2*Sf2) - MW2**2*Sf983 + 
+	Sf984 = MTau2*(MTau2 + 2*MW2*Sf2) - MW2**2*Sf983 + 
      &   23*Sf241*MStau2(1)
 
 	Sf1531 = 6*MHiggs2(4)**2 + 

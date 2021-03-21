@@ -3,7 +3,7 @@
 * code adapted from the "Handbook" routines
 * (Wilkinson, Reinsch: Handbook for Automatic Computation, p. 202)
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 12 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -23,14 +23,11 @@
 	ComplexType A(ldA,*), U(ldU,*)
 	RealType d(*)
 
-	integer p, q, j
+	integer sweep, p, q, j
 	RealType red, off, thresh
 	RealType sqp, sqq, t, invc
 	ComplexType f, x, y
 	ComplexType ev(2,MAXDIM)
-
-	integer sweep
-	common /nsweeps/ sweep
 
 	if( n .gt. MAXDIM ) then
 	  print *, "Dimension too large"
@@ -38,27 +35,18 @@
 	  return
 	endif
 
-	do p = 1, n
+	forall(p = 1:n)
 	  ev(1,p) = 0
 	  ev(2,p) = A(p,p)
-	enddo
+	endforall
 
-	do p = 1, n
-	  do q = 1, n
-	    U(q,p) = 0
-	  enddo
-	  U(p,p) = 1
-	enddo
+	U(1:n,1:n) = 0
+	forall(p = 1:n) U(p,p) = 1
 
 	red = .04D0/n**4
 
 	do sweep = 1, 50
-	  off = 0
-	  do q = 2, n
-	    do p = 1, q - 1
-	      off = off + Sq(A(p,q))
-	    enddo
-	  enddo
+	  off = sum((/(Sq(A(1:q-1,q)), q = 2, n)/))
 	  if( .not. off .gt. SYM_EPS ) goto 1
 
 	  thresh = 0
@@ -128,10 +116,10 @@
 	    enddo
 	  enddo
 
-	  do p = 1, n
+	  forall(p = 1:n)
 	    ev(1,p) = 0
 	    A(p,p) = ev(2,p)
-	  enddo
+	  endforall
 	enddo
 
 	print *, "Bad convergence in TakagiFactor"
@@ -142,12 +130,8 @@
 
 	do p = 1, n
 	  d(p) = abs(A(p,p))
-	  if( d(p) .gt. DBL_EPS .and. d(p) .ne. Re(A(p,p)) ) then
-	    f = sqrt(A(p,p)/d(p))
-	    do q = 1, n
-	      U(p,q) = U(p,q)*f
-	    enddo
-	  endif
+	  if( d(p) .gt. DBL_EPS .and. d(p) .ne. Re(A(p,p)) )
+     &      U(p,1:n) = sqrt(A(p,p)/d(p))*U(p,1:n)
 	enddo
 
 	if( sort .eq. 0 ) return

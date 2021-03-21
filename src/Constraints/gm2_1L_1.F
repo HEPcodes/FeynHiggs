@@ -117,7 +117,7 @@
      &      (MNeu2(4)**2 + 4*tmp18*MNeu2(4)*MSf2(2,2,2) - 
      &        MSf2(2,2,2)**2)*ZNeuC(4,3))
 
-        tmp31 = MM2/(192.D0*MW*Pi**2*SW2)*
+        tmp31 = MMu2/(192.D0*MW*Pi**2*SW2)*
      &   (ELGF**3*((-(4.242640687119286D0*
      &              (MCha(1)*(MCha2(1) - MSf2(1,1,2))*
      &                (MCha2(1)**2 - 4*MCha2(1)*MSf2(1,1,2) + 
@@ -149,23 +149,23 @@
      &                   2*MSf2(1,1,2)**3)*VChaC(2,1)))*VCha(2,1))/
      &         (MCha2(2) - MSf2(1,1,2))**4))/CB
 
-        tmp31 = tmp31 - MM/(192.D0*CW2*MW*Pi**2*SW2)*
-     &    (ELGF**3*((MM*(SW*tmp23*USf(1,1,2,2)*ZNeuC(1,1)) + 
-     &            CW*MM*(tmp23*USf(1,1,2,2)*ZNeuC(1,2)) - 
+        tmp31 = tmp31 - MMu/(192.D0*CW2*MW*Pi**2*SW2)*
+     &    (ELGF**3*((MMu*(SW*tmp23*USf(1,1,2,2)*ZNeuC(1,1)) + 
+     &            CW*MMu*(tmp23*USf(1,1,2,2)*ZNeuC(1,2)) - 
      &            3*tmp1*(2*MW*(CB*SW*USf(1,2,2,2)*ZNeu(1,1)) + 
-     &               CW*MM*(USf(1,1,2,2)*ZNeu(1,3)))*MNeu(1)*
+     &               CW*MMu*(USf(1,1,2,2)*ZNeu(1,3)))*MNeu(1)*
      &             (MNeu2(1) - MSf2(1,2,2))*
      &             (MNeu2(1)**2 + 4*tmp7*MNeu2(1)*MSf2(1,2,2) - 
      &               MSf2(1,2,2)**2))*USfC(1,1,2,2) + 
      &         2*SW*USfC(1,2,2,2)*
-     &          (3*CW*MM*(MNeu(1)*(MNeu2(1) - MSf2(1,2,2))*
+     &          (3*CW*MMu*(MNeu(1)*(MNeu2(1) - MSf2(1,2,2))*
      &               (MNeu2(1)**2 + 4*tmp7*MNeu2(1)*MSf2(1,2,2) - 
      &                 MSf2(1,2,2)**2)*USf(1,2,2,2)*ZNeu(1,1)*
      &               ZNeu(1,3)) - 
      &            3*MW*(CB*SW*MNeu(1)*(MNeu2(1) - MSf2(1,2,2))*
      &               (MNeu2(1)**2 + 4*tmp7*MNeu2(1)*MSf2(1,2,2) - 
      &                 MSf2(1,2,2)**2)*USf(1,1,2,2)*ZNeuC(1,1)**2)+
-     &              (MM*((2*MW*
+     &              (MMu*((2*MW*
      &                     (CB*SW*
      &                       (2*MNeu2(1)**3 + 
      &                       3*tmp11*MNeu2(1)**2*MSf2(1,2,2) - 
@@ -184,23 +184,23 @@
      &                    MSf2(1,2,2)**2)*USf(1,1,2,2)*ZNeuC(1,2)))
      &              *ZNeuC(1,1))))/(CB*(MNeu2(1) - MSf2(1,2,2))**4)
 
-        tmp31 = tmp31 - MM/(192.D0*CW2*MW*Pi**2*SW2)*
-     &    (ELGF**3*((MM*(SW*tmp24*USf(2,1,2,2)*ZNeuC(1,1)) + 
-     &            CW*MM*(tmp24*USf(2,1,2,2)*ZNeuC(1,2)) - 
+        tmp31 = tmp31 - MMu/(192.D0*CW2*MW*Pi**2*SW2)*
+     &    (ELGF**3*((MMu*(SW*tmp24*USf(2,1,2,2)*ZNeuC(1,1)) + 
+     &            CW*MMu*(tmp24*USf(2,1,2,2)*ZNeuC(1,2)) - 
      &            3*tmp1*(2*MW*(CB*SW*USf(2,2,2,2)*ZNeu(1,1)) + 
-     &               CW*MM*(USf(2,1,2,2)*ZNeu(1,3)))*MNeu(1)*
+     &               CW*MMu*(USf(2,1,2,2)*ZNeu(1,3)))*MNeu(1)*
      &             (MNeu2(1) - MSf2(2,2,2))*
      &             (MNeu2(1)**2 + 4*tmp15*MNeu2(1)*MSf2(2,2,2) - 
      &               MSf2(2,2,2)**2))*USfC(2,1,2,2) + 
      &         2*SW*USfC(2,2,2,2)*
-     &          (3*CW*MM*(MNeu(1)*(MNeu2(1) - MSf2(2,2,2))*
+     &          (3*CW*MMu*(MNeu(1)*(MNeu2(1) - MSf2(2,2,2))*
      &               (MNeu2(1)**2 + 4*tmp15*MNeu2(1)*MSf2(2,2,2) - 
      &                 MSf2(2,2,2)**2)*USf(2,2,2,2)*ZNeu(1,1)*
      &               ZNeu(1,3)) - 
      &            3*MW*(CB*SW*MNeu(1)*(MNeu2(1) - MSf2(2,2,2))*
      &               (MNeu2(1)**2 + 4*tmp15*MNeu2(1)*MSf2(2,2,2) - 
      &                 MSf2(2,2,2)**2)*USf(2,1,2,2)*ZNeuC(1,1)**2)+
-     &              (MM*((2*MW*
+     &              (MMu*((2*MW*
      &                     (CB*SW*
      &                       (2*MNeu2(1)**3 + 
      &                       3*tmp19*MNeu2(1)**2*MSf2(2,2,2) - 
@@ -219,23 +219,23 @@
      &                    MSf2(2,2,2)**2)*USf(2,1,2,2)*ZNeuC(1,2)))
      &              *ZNeuC(1,1))))/(CB*(MNeu2(1) - MSf2(2,2,2))**4)
 
-        tmp31 = tmp31 - MM/(192.D0*CW2*MW*Pi**2*SW2)*
-     &    (ELGF**3*((MM*(SW*tmp25*USf(1,1,2,2)*ZNeuC(2,1)) + 
-     &            CW*MM*(tmp25*USf(1,1,2,2)*ZNeuC(2,2)) - 
+        tmp31 = tmp31 - MMu/(192.D0*CW2*MW*Pi**2*SW2)*
+     &    (ELGF**3*((MMu*(SW*tmp25*USf(1,1,2,2)*ZNeuC(2,1)) + 
+     &            CW*MMu*(tmp25*USf(1,1,2,2)*ZNeuC(2,2)) - 
      &            3*tmp2*(2*MW*(CB*SW*USf(1,2,2,2)*ZNeu(2,1)) + 
-     &               CW*MM*(USf(1,1,2,2)*ZNeu(2,3)))*MNeu(2)*
+     &               CW*MMu*(USf(1,1,2,2)*ZNeu(2,3)))*MNeu(2)*
      &             (MNeu2(2) - MSf2(1,2,2))*
      &             (MNeu2(2)**2 + 4*tmp8*MNeu2(2)*MSf2(1,2,2) - 
      &               MSf2(1,2,2)**2))*USfC(1,1,2,2) + 
      &         2*SW*USfC(1,2,2,2)*
-     &          (3*CW*MM*(MNeu(2)*(MNeu2(2) - MSf2(1,2,2))*
+     &          (3*CW*MMu*(MNeu(2)*(MNeu2(2) - MSf2(1,2,2))*
      &               (MNeu2(2)**2 + 4*tmp8*MNeu2(2)*MSf2(1,2,2) - 
      &                 MSf2(1,2,2)**2)*USf(1,2,2,2)*ZNeu(2,1)*
      &               ZNeu(2,3)) - 
      &            3*MW*(CB*SW*MNeu(2)*(MNeu2(2) - MSf2(1,2,2))*
      &               (MNeu2(2)**2 + 4*tmp8*MNeu2(2)*MSf2(1,2,2) - 
      &                 MSf2(1,2,2)**2)*USf(1,1,2,2)*ZNeuC(2,1)**2)+
-     &              (MM*((2*MW*
+     &              (MMu*((2*MW*
      &                     (CB*SW*
      &                       (2*MNeu2(2)**3 + 
      &                       3*tmp12*MNeu2(2)**2*MSf2(1,2,2) - 
@@ -254,23 +254,23 @@
      &                    MSf2(1,2,2)**2)*USf(1,1,2,2)*ZNeuC(2,2)))
      &              *ZNeuC(2,1))))/(CB*(MNeu2(2) - MSf2(1,2,2))**4)
 
-        tmp31 = tmp31 - MM/(192.D0*CW2*MW*Pi**2*SW2)*
-     &    (ELGF**3*((MM*(SW*tmp26*USf(2,1,2,2)*ZNeuC(2,1)) + 
-     &            CW*MM*(tmp26*USf(2,1,2,2)*ZNeuC(2,2)) - 
+        tmp31 = tmp31 - MMu/(192.D0*CW2*MW*Pi**2*SW2)*
+     &    (ELGF**3*((MMu*(SW*tmp26*USf(2,1,2,2)*ZNeuC(2,1)) + 
+     &            CW*MMu*(tmp26*USf(2,1,2,2)*ZNeuC(2,2)) - 
      &            3*tmp2*(2*MW*(CB*SW*USf(2,2,2,2)*ZNeu(2,1)) + 
-     &               CW*MM*(USf(2,1,2,2)*ZNeu(2,3)))*MNeu(2)*
+     &               CW*MMu*(USf(2,1,2,2)*ZNeu(2,3)))*MNeu(2)*
      &             (MNeu2(2) - MSf2(2,2,2))*
      &             (MNeu2(2)**2 + 4*tmp16*MNeu2(2)*MSf2(2,2,2) - 
      &               MSf2(2,2,2)**2))*USfC(2,1,2,2) + 
      &         2*SW*USfC(2,2,2,2)*
-     &          (3*CW*MM*(MNeu(2)*(MNeu2(2) - MSf2(2,2,2))*
+     &          (3*CW*MMu*(MNeu(2)*(MNeu2(2) - MSf2(2,2,2))*
      &               (MNeu2(2)**2 + 4*tmp16*MNeu2(2)*MSf2(2,2,2) - 
      &                 MSf2(2,2,2)**2)*USf(2,2,2,2)*ZNeu(2,1)*
      &               ZNeu(2,3)) - 
      &            3*MW*(CB*SW*MNeu(2)*(MNeu2(2) - MSf2(2,2,2))*
      &               (MNeu2(2)**2 + 4*tmp16*MNeu2(2)*MSf2(2,2,2) - 
      &                 MSf2(2,2,2)**2)*USf(2,1,2,2)*ZNeuC(2,1)**2)+
-     &              (MM*((2*MW*
+     &              (MMu*((2*MW*
      &                     (CB*SW*
      &                       (2*MNeu2(2)**3 + 
      &                       3*tmp20*MNeu2(2)**2*MSf2(2,2,2) - 
@@ -289,23 +289,23 @@
      &                    MSf2(2,2,2)**2)*USf(2,1,2,2)*ZNeuC(2,2)))
      &              *ZNeuC(2,1))))/(CB*(MNeu2(2) - MSf2(2,2,2))**4)
 
-        tmp31 = tmp31 - MM/(192.D0*CW2*MW*Pi**2*SW2)*
-     &    (ELGF**3*((MM*(SW*tmp27*USf(1,1,2,2)*ZNeuC(3,1)) + 
-     &            CW*MM*(tmp27*USf(1,1,2,2)*ZNeuC(3,2)) - 
+        tmp31 = tmp31 - MMu/(192.D0*CW2*MW*Pi**2*SW2)*
+     &    (ELGF**3*((MMu*(SW*tmp27*USf(1,1,2,2)*ZNeuC(3,1)) + 
+     &            CW*MMu*(tmp27*USf(1,1,2,2)*ZNeuC(3,2)) - 
      &            3*tmp3*(2*MW*(CB*SW*USf(1,2,2,2)*ZNeu(3,1)) + 
-     &               CW*MM*(USf(1,1,2,2)*ZNeu(3,3)))*MNeu(3)*
+     &               CW*MMu*(USf(1,1,2,2)*ZNeu(3,3)))*MNeu(3)*
      &             (MNeu2(3) - MSf2(1,2,2))*
      &             (MNeu2(3)**2 + 4*tmp9*MNeu2(3)*MSf2(1,2,2) - 
      &               MSf2(1,2,2)**2))*USfC(1,1,2,2) + 
      &         2*SW*USfC(1,2,2,2)*
-     &          (3*CW*MM*(MNeu(3)*(MNeu2(3) - MSf2(1,2,2))*
+     &          (3*CW*MMu*(MNeu(3)*(MNeu2(3) - MSf2(1,2,2))*
      &               (MNeu2(3)**2 + 4*tmp9*MNeu2(3)*MSf2(1,2,2) - 
      &                 MSf2(1,2,2)**2)*USf(1,2,2,2)*ZNeu(3,1)*
      &               ZNeu(3,3)) - 
      &            3*MW*(CB*SW*MNeu(3)*(MNeu2(3) - MSf2(1,2,2))*
      &               (MNeu2(3)**2 + 4*tmp9*MNeu2(3)*MSf2(1,2,2) - 
      &                 MSf2(1,2,2)**2)*USf(1,1,2,2)*ZNeuC(3,1)**2)+
-     &              (MM*((2*MW*
+     &              (MMu*((2*MW*
      &                     (CB*SW*
      &                       (2*MNeu2(3)**3 + 
      &                       3*tmp13*MNeu2(3)**2*MSf2(1,2,2) - 
@@ -324,23 +324,23 @@
      &                    MSf2(1,2,2)**2)*USf(1,1,2,2)*ZNeuC(3,2)))
      &              *ZNeuC(3,1))))/(CB*(MNeu2(3) - MSf2(1,2,2))**4)
 
-        tmp31 = tmp31 - MM/(192.D0*CW2*MW*Pi**2*SW2)*
-     &    (ELGF**3*((MM*(SW*tmp28*USf(2,1,2,2)*ZNeuC(3,1)) + 
-     &            CW*MM*(tmp28*USf(2,1,2,2)*ZNeuC(3,2)) - 
+        tmp31 = tmp31 - MMu/(192.D0*CW2*MW*Pi**2*SW2)*
+     &    (ELGF**3*((MMu*(SW*tmp28*USf(2,1,2,2)*ZNeuC(3,1)) + 
+     &            CW*MMu*(tmp28*USf(2,1,2,2)*ZNeuC(3,2)) - 
      &            3*tmp3*(2*MW*(CB*SW*USf(2,2,2,2)*ZNeu(3,1)) + 
-     &               CW*MM*(USf(2,1,2,2)*ZNeu(3,3)))*MNeu(3)*
+     &               CW*MMu*(USf(2,1,2,2)*ZNeu(3,3)))*MNeu(3)*
      &             (MNeu2(3) - MSf2(2,2,2))*
      &             (MNeu2(3)**2 + 4*tmp17*MNeu2(3)*MSf2(2,2,2) - 
      &               MSf2(2,2,2)**2))*USfC(2,1,2,2) + 
      &         2*SW*USfC(2,2,2,2)*
-     &          (3*CW*MM*(MNeu(3)*(MNeu2(3) - MSf2(2,2,2))*
+     &          (3*CW*MMu*(MNeu(3)*(MNeu2(3) - MSf2(2,2,2))*
      &               (MNeu2(3)**2 + 4*tmp17*MNeu2(3)*MSf2(2,2,2) - 
      &                 MSf2(2,2,2)**2)*USf(2,2,2,2)*ZNeu(3,1)*
      &               ZNeu(3,3)) - 
      &            3*MW*(CB*SW*MNeu(3)*(MNeu2(3) - MSf2(2,2,2))*
      &               (MNeu2(3)**2 + 4*tmp17*MNeu2(3)*MSf2(2,2,2) - 
      &                 MSf2(2,2,2)**2)*USf(2,1,2,2)*ZNeuC(3,1)**2)+
-     &              (MM*((2*MW*
+     &              (MMu*((2*MW*
      &                     (CB*SW*
      &                       (2*MNeu2(3)**3 + 
      &                       3*tmp21*MNeu2(3)**2*MSf2(2,2,2) - 
@@ -359,23 +359,23 @@
      &                    MSf2(2,2,2)**2)*USf(2,1,2,2)*ZNeuC(3,2)))
      &              *ZNeuC(3,1))))/(CB*(MNeu2(3) - MSf2(2,2,2))**4)
 
-        tmp31 = tmp31 - MM/(192.D0*CW2*MW*Pi**2*SW2)*
-     &    (ELGF**3*((MM*(SW*tmp29*USf(1,1,2,2)*ZNeuC(4,1)) + 
-     &            CW*MM*(tmp29*USf(1,1,2,2)*ZNeuC(4,2)) - 
+        tmp31 = tmp31 - MMu/(192.D0*CW2*MW*Pi**2*SW2)*
+     &    (ELGF**3*((MMu*(SW*tmp29*USf(1,1,2,2)*ZNeuC(4,1)) + 
+     &            CW*MMu*(tmp29*USf(1,1,2,2)*ZNeuC(4,2)) - 
      &            3*tmp4*(2*MW*(CB*SW*USf(1,2,2,2)*ZNeu(4,1)) + 
-     &               CW*MM*(USf(1,1,2,2)*ZNeu(4,3)))*MNeu(4)*
+     &               CW*MMu*(USf(1,1,2,2)*ZNeu(4,3)))*MNeu(4)*
      &             (MNeu2(4) - MSf2(1,2,2))*
      &             (MNeu2(4)**2 + 4*tmp10*MNeu2(4)*MSf2(1,2,2) - 
      &               MSf2(1,2,2)**2))*USfC(1,1,2,2) + 
      &         2*SW*USfC(1,2,2,2)*
-     &          (3*CW*MM*(MNeu(4)*(MNeu2(4) - MSf2(1,2,2))*
+     &          (3*CW*MMu*(MNeu(4)*(MNeu2(4) - MSf2(1,2,2))*
      &               (MNeu2(4)**2 + 4*tmp10*MNeu2(4)*MSf2(1,2,2) - 
      &                 MSf2(1,2,2)**2)*USf(1,2,2,2)*ZNeu(4,1)*
      &               ZNeu(4,3)) - 
      &            3*MW*(CB*SW*MNeu(4)*(MNeu2(4) - MSf2(1,2,2))*
      &               (MNeu2(4)**2 + 4*tmp10*MNeu2(4)*MSf2(1,2,2) - 
      &                 MSf2(1,2,2)**2)*USf(1,1,2,2)*ZNeuC(4,1)**2)+
-     &              (MM*((2*MW*
+     &              (MMu*((2*MW*
      &                     (CB*SW*
      &                       (2*MNeu2(4)**3 + 
      &                       3*tmp14*MNeu2(4)**2*MSf2(1,2,2) - 
@@ -394,23 +394,23 @@
      &                    MSf2(1,2,2)**2)*USf(1,1,2,2)*ZNeuC(4,2)))
      &              *ZNeuC(4,1))))/(CB*(MNeu2(4) - MSf2(1,2,2))**4)
 
-        tmp31 = tmp31 - MM/(192.D0*CW2*MW*Pi**2*SW2)*
-     &    (ELGF**3*((MM*(SW*tmp30*USf(2,1,2,2)*ZNeuC(4,1)) + 
-     &            CW*MM*(tmp30*USf(2,1,2,2)*ZNeuC(4,2)) - 
+        tmp31 = tmp31 - MMu/(192.D0*CW2*MW*Pi**2*SW2)*
+     &    (ELGF**3*((MMu*(SW*tmp30*USf(2,1,2,2)*ZNeuC(4,1)) + 
+     &            CW*MMu*(tmp30*USf(2,1,2,2)*ZNeuC(4,2)) - 
      &            3*tmp4*(2*MW*(CB*SW*USf(2,2,2,2)*ZNeu(4,1)) + 
-     &               CW*MM*(USf(2,1,2,2)*ZNeu(4,3)))*MNeu(4)*
+     &               CW*MMu*(USf(2,1,2,2)*ZNeu(4,3)))*MNeu(4)*
      &             (MNeu2(4) - MSf2(2,2,2))*
      &             (MNeu2(4)**2 + 4*tmp18*MNeu2(4)*MSf2(2,2,2) - 
      &               MSf2(2,2,2)**2))*USfC(2,1,2,2) + 
      &         2*SW*USfC(2,2,2,2)*
-     &          (3*CW*MM*(MNeu(4)*(MNeu2(4) - MSf2(2,2,2))*
+     &          (3*CW*MMu*(MNeu(4)*(MNeu2(4) - MSf2(2,2,2))*
      &               (MNeu2(4)**2 + 4*tmp18*MNeu2(4)*MSf2(2,2,2) - 
      &                 MSf2(2,2,2)**2)*USf(2,2,2,2)*ZNeu(4,1)*
      &               ZNeu(4,3)) - 
      &            3*MW*(CB*SW*MNeu(4)*(MNeu2(4) - MSf2(2,2,2))*
      &               (MNeu2(4)**2 + 4*tmp18*MNeu2(4)*MSf2(2,2,2) - 
      &                 MSf2(2,2,2)**2)*USf(2,1,2,2)*ZNeuC(4,1)**2)+
-     &              (MM*((2*MW*
+     &              (MMu*((2*MW*
      &                     (CB*SW*
      &                       (2*MNeu2(4)**3 + 
      &                       3*tmp22*MNeu2(4)**2*MSf2(2,2,2) - 

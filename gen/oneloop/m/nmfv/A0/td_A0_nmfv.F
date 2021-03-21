@@ -1,5 +1,5 @@
 * td_A0_nmfv.F
-* generated 17-Jan-2018 8:12
+* generated 8-May-2018 11:26
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -17,19 +17,19 @@
 
 	integer All2, Cha2, Ind1, Ind2, Neu2
 
-	ComplexType tmp1, tmp2, tmp3
+	ComplexType A0tmp1, A0tmp2, A0tmp3
 
 	se = 0
 
 	LOOP(All2, 1,6,gM)
 
-	tmp1 = A0(MASf2(All2,tM1))
+	A0tmp1 = A0(MASf2(All2,tM1))
 
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
 
         se = se + (3*cI)/(32.D0*Pi**2)*
-     &     (EL1L*tmp1*((CB*Kf(Ind1,Ind2,tM1) + 
+     &     (A0tmp1*EL1L*((CB*Kf(Ind1,Ind2,tM1) + 
      &             MUEC*SB*Delta(Ind1,Ind2)*Mf(tM1,Ind1))*
      &           UASf(All2,3 + Ind2,tM1)*UASfC(All2,Ind1,tM1) - 
      &          (CB*KfC(Ind2,Ind1,tM1) + 
@@ -37,8 +37,8 @@
      &           UASf(All2,Ind2,tM1)*UASfC(All2,3 + Ind1,tM1)))/
      &      (MW*SB*SW)
 
-	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
 	ENDLOOP(All2)
 
@@ -50,13 +50,13 @@
 
 	LOOP(All2, 1,6,gM)
 
-	tmp2 = A0(MASf2(All2,bM1))
+	A0tmp2 = A0(MASf2(All2,bM1))
 
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
 
         se = se + (3*cI)/(32.D0*Pi**2)*
-     &     (EL1L*tmp2*((SB*Kf(Ind1,Ind2,bM1) + 
+     &     (A0tmp2*EL1L*((SB*Kf(Ind1,Ind2,bM1) + 
      &             CB*MUEC*Delta(Ind1,Ind2)*Mf(bM1,Ind1))*
      &           UASf(All2,3 + Ind2,bM1)*UASfC(All2,Ind1,bM1) - 
      &          (SB*KfC(Ind2,Ind1,bM1) + 
@@ -64,8 +64,8 @@
      &           UASf(All2,Ind2,bM1)*UASfC(All2,3 + Ind1,bM1)))/
      &      (CB*MW*SW)
 
-	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
 	ENDLOOP(All2)
 
@@ -77,13 +77,13 @@
 
 	LOOP(All2, 1,6,1)
 
-	tmp3 = A0(MASf2(All2,2))
+	A0tmp3 = A0(MASf2(All2,2))
 
-	LOOP(Ind2, 1,3,1)
 	LOOP(Ind1, 1,3,1)
+	LOOP(Ind2, 1,3,1)
 
         se = se + cI/(32.D0*Pi**2)*
-     &     (EL1L*tmp3*((SB*Kf(Ind1,Ind2,2) + 
+     &     (A0tmp3*EL1L*((SB*Kf(Ind1,Ind2,2) + 
      &             CB*MUEC*Delta(Ind1,Ind2)*Mf(2,Ind1))*
      &           UASf(All2,3 + Ind2,2)*UASfC(All2,Ind1,2) - 
      &          (SB*KfC(Ind2,Ind1,2) + 
@@ -91,8 +91,8 @@
      &           UASf(All2,Ind2,2)*UASfC(All2,3 + Ind1,2)))/
      &      (CB*MW*SW)
 
-	ENDLOOP(Ind1)
 	ENDLOOP(Ind2)
+	ENDLOOP(Ind1)
 
 	ENDLOOP(All2)
 

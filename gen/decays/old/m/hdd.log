@@ -1,0 +1,466 @@
+Mathematica 10.0 for Mac OS X x86 (64-bit)
+Copyright 1988-2014 Wolfram Research, Inc.
+
+In[1]:= 
+FeynArts 3.9
+by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
+last revised 24 Oct 14
+
+In[2]:= In[2]:= 
+FormCalc 8.4
+by Thomas Hahn
+last revised 27 Feb 15
+
+In[3]:= In[3]:= 
+In[4]:= 
+In[5]:= In[5]:= 
+In[6]:= 
+In[7]:= In[7]:= 
+In[8]:= 
+In[9]:= In[9]:= 
+In[10]:= 
+In[11]:= In[11]:= 
+In[12]:= In[12]:= 
+In[13]:= 
+In[14]:= 
+In[15]:= 
+In[16]:= In[16]:= 
+In[17]:= 
+In[18]:= 
+In[19]:= 
+In[20]:= 
+In[21]:= 
+In[22]:= 
+In[23]:= 
+In[24]:= 
+In[25]:= 
+In[26]:= 
+In[27]:= 
+In[28]:= In[28]:= 
+In[29]:= 
+In[30]:= 
+In[31]:= 
+In[32]:= In[32]:= 
+In[33]:= 
+In[34]:= 
+In[35]:= In[35]:= 
+In[36]:= In[36]:= 
+In[37]:= In[37]:= 
+In[38]:= In[38]:= 
+In[39]:= In[39]:= 
+In[40]:= In[40]:= 
+In[41]:= In[41]:= 
+In[42]:= In[42]:= 
+In[43]:= 
+In[44]:= 
+In[45]:= In[45]:= 
+In[46]:= In[46]:= 
+In[47]:= 
+In[48]:= In[48]:= In[48]:= 
+In[49]:= In[49]:= 
+In[50]:= In[50]:= 
+In[51]:= In[51]:= 
+In[52]:= In[52]:= In[52]:= 
+In[53]:= In[53]:= In[53]:= 
+In[54]:= 
+In[55]:= 
+In[56]:= 
+In[57]:= In[57]:= In[57]:= 
+In[58]:= In[58]:=                   
+In[59]:= In[59]:= In[59]:= 
+In[60]:= In[60]:= In[60]:= 
+In[61]:= In[61]:= 
+In[62]:= 
+In[63]:= 
+In[64]:= In[64]:= 
+In[65]:= In[65]:= 
+In[66]:= 
+In[67]:= 
+In[68]:= In[68]:= 
+In[69]:= 
+In[70]:= In[70]:= 
+In[71]:= In[71]:= 
+In[72]:= In[72]:= In[72]:= 
+In[73]:= In[73]:= In[73]:= 
+In[74]:= In[74]:= 
+In[75]:= In[75]:= 
+In[76]:= In[76]:= In[76]:= 
+In[77]:= In[77]:= 
+In[78]:= In[78]:= In[78]:= 
+In[79]:= In[79]:= 
+In[80]:= In[80]:= 
+In[81]:= In[81]:= In[81]:= 
+In[82]:= In[82]:= In[82]:= 
+In[83]:= 
+In[84]:= 
+In[85]:= 
+In[86]:= 
+In[87]:= In[87]:= 
+Out[87]= Hel[2]
+
+In[88]:= In[88]:= In[88]:= 
+In[89]:= In[89]:= 
+In[90]:= In[90]:= In[90]:= 
+In[91]:= In[91]:= 
+In[92]:= In[92]:= In[92]:= 
+In[93]:= In[93]:= 
+In[94]:= In[94]:= In[94]:= 
+In[95]:= In[95]:= In[95]:= 
+In[96]:= In[96]:= 
+In[97]:= In[97]:= 
+In[98]:= In[98]:= 
+In[99]:= In[99]:= 
+In[100]:= In[100]:= 
+In[101]:= In[101]:= 
+In[102]:= In[102]:= 
+In[103]:= In[103]:= 
+In[104]:= In[104]:= In[104]:=                                                   
+In[105]:= In[105]:= In[105]:= 
+In[106]:= In[106]:= In[106]:= 
+loading generic model file /Users/hahn/FeynArts/Models/Lorentz.gen
+> $GenericMixing is OFF
+generic model {Lorentz} initialized
+
+loading classes model file /Users/hahn/FeynArts/Models/MSSMQCD.mod
+  loading classes model file /Users/hahn/FeynArts/Models/MSSM.mod
+loading classes model file /Users/hahn/fh-2a/gen/decays/dAlfa.mod
+loading classes model file /Users/hahn/fh-2a/gen/decays/KW.mod
+loading classes model file /Users/hahn/FeynArts/Models/FV.mod
+
+$FV = {12, 13, 14}
+
+loading classes model file /Users/hahn/fh-2a/gen/decays/Kf.mod
+loading classes model file /Users/hahn/fh-2a/gen/decays/Yuk.mod
+loading classes model file /Users/hahn/fh-2a/gen/decays/HMixExt.mod
+> 74 particles (incl. antiparticles) in 28 classes
+> $CounterTerms are ON
+> 685 vertices
+> 67 counter terms of order 1
+classes model {MSSMQCD, dAlfa, KW, FV, Kf, Yuk, HMixExt} initialized
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 1 Generic, 1 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 1 Generic, 1 Classes insertions
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 0 Generic, 0 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 1 Generic, 1 Classes amplitudes
+in total: 1 Generic, 1 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-amp-1.frm
+running FORM... 
+ok
+
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 6 Generic, 47 Classes insertions
+> Top. 2: 0 Generic, 0 Classes insertions
+> Top. 3: 2 Generic, 46 Classes insertions
+> Top. 4: 0 Generic, 0 Classes insertions
+> Top. 5: 0 Generic, 0 Classes insertions
+> Top. 6: 10 Generic, 118 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 18 Generic, 211 Classes insertions
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 1 Generic, 1 Classes insertions
+> Top. 2: 2 Generic, 5 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 3 Generic, 6 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 6 Generic, 47 Classes amplitudes
+> Top. 2: 1 Generic, 10 Classes amplitudes
+> Top. 3: 9 Generic, 40 Classes amplitudes
+> Top. 4: 1 Generic, 1 Classes amplitudes
+> Top. 5: 2 Generic, 2 Classes amplitudes
+in total: 19 Generic, 100 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-amp-1.frm
+running FORM... 
+ok
+
+dMA0G0sq1
+dMh0A0sq1
+dMh0G0sq1
+dMHHA0sq1
+dMHHG0sq1
+dMWsq1
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 13 Classes insertions
+> Top. 2: 5 Generic, 21 Classes insertions
+in total: 7 Generic, 34 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 13 Classes amplitudes
+> Top. 2: 5 Generic, 21 Classes amplitudes
+in total: 7 Generic, 34 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dMZsq1
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 11 Classes insertions
+> Top. 2: 5 Generic, 23 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 7 Generic, 34 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 11 Classes amplitudes
+> Top. 2: 5 Generic, 23 Classes amplitudes
+in total: 7 Generic, 34 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dSW1
+dTA01
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 8 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 2 Generic, 8 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 8 Classes amplitudes
+in total: 2 Generic, 8 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dTB1
+dTh01
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 4 Generic, 20 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 4 Generic, 20 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 4 Generic, 20 Classes amplitudes
+in total: 4 Generic, 20 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dTHH1
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 4 Generic, 20 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 4 Generic, 20 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 4 Generic, 20 Classes amplitudes
+in total: 4 Generic, 20 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dZA0A01
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 12 Classes insertions
+> Top. 2: 3 Generic, 18 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 5 Generic, 30 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 12 Classes amplitudes
+> Top. 2: 3 Generic, 18 Classes amplitudes
+in total: 5 Generic, 30 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dZA0G01
+dZAA1heavy
+
+Excluding 0 Generic, 4 Classes, and 12 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 6 Classes insertions
+> Top. 2: 5 Generic, 12 Classes insertions
+
+Restoring 0 Generic, 4 Classes, and 12 Particles fields
+in total: 7 Generic, 18 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 6 Classes amplitudes
+> Top. 2: 5 Generic, 12 Classes amplitudes
+in total: 7 Generic, 18 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dZAA1light
+
+Excluding 0 Generic, 0 Classes, and 2 Particles fields
+
+inserting at level(s) {Particles}
+> Top. 1: 0 Particles insertions
+> Top. 2: 8 Particles insertions
+
+Restoring 0 Generic, 0 Classes, and 2 Particles fields
+in total: 8 Particles insertions
+
+creating amplitudes at level(s) {Particles}
+> Top. 1: 8 Particles amplitudes
+in total: 8 Particles amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dZe1
+dZh0h01
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 12 Classes insertions
+> Top. 2: 5 Generic, 30 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 7 Generic, 42 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 12 Classes amplitudes
+> Top. 2: 5 Generic, 30 Classes amplitudes
+in total: 7 Generic, 42 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dZh0HH1
+dZHHHH1
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 12 Classes insertions
+> Top. 2: 5 Generic, 30 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 7 Generic, 42 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 12 Classes amplitudes
+> Top. 2: 5 Generic, 30 Classes amplitudes
+in total: 7 Generic, 42 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dZZA1
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 6 Classes insertions
+> Top. 2: 5 Generic, 14 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 7 Generic, 20 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 6 Classes amplitudes
+> Top. 2: 5 Generic, 14 Classes amplitudes
+in total: 7 Generic, 20 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dMf1[4, gno1]
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 0 Generic, 0 Classes insertions
+> Top. 2: 2 Generic, 11 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 2 Generic, 11 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 11 Classes amplitudes
+in total: 2 Generic, 11 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dZfL1[4, gno1, gno2]
+
+Excluding 0 Generic, 2 Classes, and 2 Particles fields
+
+inserting at level(s) {Generic, Classes}
+> Top. 1: 0 Generic, 0 Classes insertions
+> Top. 2: 2 Generic, 11 Classes insertions
+
+Restoring 0 Generic, 2 Classes, and 2 Particles fields
+in total: 2 Generic, 11 Classes insertions
+
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 2 Generic, 11 Classes amplitudes
+in total: 2 Generic, 11 Classes amplitudes
+
+preparing FORM code in /Users/hahn/fh-2a/gen/decays/fc-rc-1.frm
+running FORM... 
+ok
+
+dZfR1[4, gno1, gno2]
+
+In[107]:= In[107]:= 
+In[108]:= 
+
+LinkObject::linkn: 
+   Argument LinkObject['/Users/hahn/FormCalc/MacOSX-x86-64/ReadForm', 66, 1]
+     in LinkClose[LinkObject['/Users/hahn/FormCalc/MacOSX-x86-64/ReadForm', 
+      66, 1]] has an invalid LinkObject number; the link may be closed.
+
+Unset::norep: Assignment on LinkPatterns for 
+    LinkPatterns[LinkObject['/Users/hahn/FormCalc/MacOSX-x86-64/ReadForm', 
+      66, 1]] not found.

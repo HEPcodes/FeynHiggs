@@ -2082,11 +2082,11 @@
 
 	Sf9311 = UStau12*UStau21 + UStau11*UStau22
 
-	Sf1730 = ML*reMUE*SA*UStau21 - 2*MZ2*SAB*SB*SW2*UStau22
+	Sf1730 = MTau*reMUE*SA*UStau21 - 2*MZ2*SAB*SB*SW2*UStau22
 
-	Sf1729 = CB*reMUE*UStau21 + 2*ML*SB*UStau22
+	Sf1729 = CB*reMUE*UStau21 + 2*MTau*SB*UStau22
 
-	Sf1733 = 2*ML*UStau21 + Re(Atau)*UStau22
+	Sf1733 = 2*MTau*UStau21 + Re(Atau)*UStau22
 
 	Sf7447 = 4 - 4*UStau22**2
 
@@ -2106,11 +2106,11 @@
 
 	Sf7308 = 2 - UStau22**2
 
-	Sf941 = ML*reMUE*SA*UStau11 - 2*MZ2*SAB*SB*SW2*UStau12
+	Sf941 = MTau*reMUE*SA*UStau11 - 2*MZ2*SAB*SB*SW2*UStau12
 
-	Sf940 = CB*reMUE*UStau11 + 2*ML*SB*UStau12
+	Sf940 = CB*reMUE*UStau11 + 2*MTau*SB*UStau12
 
-	Sf945 = 2*ML*UStau11 + Re(Atau)*UStau12
+	Sf945 = 2*MTau*UStau11 + Re(Atau)*UStau12
 
 	Sf7522 = Ss879**2*USbot21**2 + 4*SW2**2*USbot22**2
 

@@ -1,5 +1,5 @@
 * se_A0A0_mfv.F
-* generated 17-Jan-2018 8:11
+* generated 8-May-2018 11:23
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -18,9 +18,9 @@
 
 	integer Cha3, Cha4, Gen3, Neu3, Neu4, Sfe3, Sfe4
 
-	ComplexType dup1, dup10, dup11, dup12, dup13, dup14, dup15
-	ComplexType dup16, dup17, dup18, dup2, dup3, dup4, dup5
-	ComplexType dup6, dup7, dup8, dup9, tmp1, tmp2
+	ComplexType A0tmp1, A0tmp2, dup1, dup10, dup11, dup12, dup13
+	ComplexType dup14, dup15, dup16, dup17, dup18, dup2, dup3
+	ComplexType dup4, dup5, dup6, dup7, dup8, dup9
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_A0A0_mfv k2 =", k2 ENDL
@@ -37,8 +37,8 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Gen3, gM,3,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
         se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*A0(MSf2(Sfe3,tM1,Gen3))*
@@ -50,12 +50,12 @@
      &                SW2*USf2(Sfe3,2,tM1,Gen3)))))/
      &      (CW2*MW2*SB2*SW2)
 
-	ENDLOOP(Sfe3)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe3)
 
-	LOOP(Gen3, gM,3,1)
-	LOOP(Sfe4, 1,2,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
 	dup1 = CB*KfC(Gen3,Gen3,tM1) + MUE*SB*Mf(tM1,Gen3)
 
@@ -69,9 +69,9 @@
      &          dup1*USf(Sfe3,1,tM1,Gen3)*USfC(Sfe4,2,tM1,Gen3)))/
      &      (MW2*SB2*SW2)
 
-	ENDLOOP(Sfe3)
-	ENDLOOP(Sfe4)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_A0A0_mfv  t/st =", se ENDL
@@ -88,22 +88,22 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Gen3, gM,3,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
         se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*A0(MSf2(Sfe3,bM1,Gen3))*
-     &        ((C2B*CB2*(MW2 + 2*CW2*MW2) + 
-     &             6*CW2*SB2*Mf2(bM1,Gen3))*USf2(Sfe3,1,bM1,Gen3)+
-     &            2*(C2B*CB2*MW2*SW2 + 3*CW2*SB2*Mf2(bM1,Gen3))*
+     &        ((C2B*CB2*(1 + 2*CW2)*MW2 + 6*CW2*SB2*Mf2(bM1,Gen3))*
+     &           USf2(Sfe3,1,bM1,Gen3) + 
+     &          2*(C2B*CB2*MW2*SW2 + 3*CW2*SB2*Mf2(bM1,Gen3))*
      &           USf2(Sfe3,2,bM1,Gen3)))/(CB2*CW2*MW2*SW2)
 
-	ENDLOOP(Sfe3)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe3)
 
-	LOOP(Gen3, gM,3,1)
-	LOOP(Sfe4, 1,2,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
 	dup3 = SB*KfC(Gen3,Gen3,bM1) + CB*MUE*Mf(bM1,Gen3)
 
@@ -117,9 +117,9 @@
      &          dup3*USf(Sfe3,1,bM1,Gen3)*USfC(Sfe4,2,bM1,Gen3)))/
      &      (CB2*MW2*SW2)
 
-	ENDLOOP(Sfe3)
-	ENDLOOP(Sfe4)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_A0A0_mfv +b/sb =", se ENDL
@@ -137,22 +137,22 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, 1,3,1)
+	LOOP(Sfe3, 1,2,1)
 
         se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*A0(MSf2(Sfe3,2,Gen3))*
-     &        ((C2B*CB2*(MW2 - 2*CW2*MW2) - 2*CW2*SB2*Mf2(2,Gen3))*
+     &        ((C2B*CB2*(1 - 2*CW2)*MW2 - 2*CW2*SB2*Mf2(2,Gen3))*
      &           USf2(Sfe3,1,2,Gen3) - 
      &          2*(C2B*CB2*MW2*SW2 + CW2*SB2*Mf2(2,Gen3))*
      &           USf2(Sfe3,2,2,Gen3)))/(CB2*CW2*MW2*SW2)
 
-	ENDLOOP(Gen3)
 	ENDLOOP(Sfe3)
+	ENDLOOP(Gen3)
 
-	LOOP(Sfe4, 1,2,1)
-	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, 1,3,1)
+	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
 
 	dup5 = SB*KfC(Gen3,Gen3,2) + CB*MUE*Mf(2,Gen3)
 
@@ -166,9 +166,9 @@
      &          dup5*USf(Sfe3,1,2,Gen3)*USfC(Sfe4,2,2,Gen3)))/
      &      (CB2*MW2*SW2)
 
-	ENDLOOP(Gen3)
-	ENDLOOP(Sfe3)
 	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
+	ENDLOOP(Gen3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "se_A0A0_mfv +l/sl =", se ENDL
@@ -199,7 +199,7 @@
 
 	LOOP(Cha4, 1,2,1)
 
-	tmp1 = A0(MCha2(Cha4))
+	A0tmp1 = A0(MCha2(Cha4))
 
 	LOOP(Cha3, 1,2,1)
 
@@ -217,7 +217,7 @@
 
         se = se - 1/(4.D0*Pi)*
      &     (Alfa1L*((dup10*dup8 + dup7*dup9)*
-     &           (tmp1 + k2*B1(k2,MCha2(Cha3),MCha2(Cha4))) - 
+     &           (A0tmp1 + k2*B1(k2,MCha2(Cha3),MCha2(Cha4))) - 
      &          B0(k2,MCha2(Cha3),MCha2(Cha4))*
      &           (dup10*(dup9*MCha(Cha3)*MCha(Cha4) - 
      &                dup8*MCha2(Cha3)) + 
@@ -230,7 +230,7 @@
 
 	LOOP(Neu4, 1,4,1)
 
-	tmp2 = A0(MNeu2(Neu4))
+	A0tmp2 = A0(MNeu2(Neu4))
 
 	LOOP(Neu3, 1,4,1)
 
@@ -253,7 +253,7 @@
         se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(2*(dup12*dup13 + dup11*dup14)*
      &           (dup16*dup17 + dup15*dup18)*
-     &           (tmp2 + k2*B1(k2,MNeu2(Neu3),MNeu2(Neu4))) - 
+     &           (A0tmp2 + k2*B1(k2,MNeu2(Neu3),MNeu2(Neu4))) - 
      &          B0(k2,MNeu2(Neu3),MNeu2(Neu4))*
      &           ((dup11**2*dup14**2 + 
      &                dup12*

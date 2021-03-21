@@ -1,5 +1,5 @@
 * dse_G0G0_mfv.F
-* generated 17-Jan-2018 8:11
+* generated 8-May-2018 11:24
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -37,9 +37,9 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Gen3, gM,3,1)
-	LOOP(Sfe4, 1,2,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
 	dup1 = SB*KfC(Gen3,Gen3,tM1) - CB*MUE*Mf(tM1,Gen3)
 
@@ -53,9 +53,9 @@
      &          dup1*USf(Sfe3,1,tM1,Gen3)*USfC(Sfe4,2,tM1,Gen3)))/
      &      (MW2*SB2*SW2)
 
-	ENDLOOP(Sfe3)
-	ENDLOOP(Sfe4)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_G0G0_mfv  t/st =", se ENDL
@@ -72,9 +72,9 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Gen3, gM,3,1)
-	LOOP(Sfe4, 1,2,1)
 	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
+	LOOP(Gen3, gM,3,1)
 
 	dup3 = CB*KfC(Gen3,Gen3,bM1) - MUE*SB*Mf(bM1,Gen3)
 
@@ -88,9 +88,9 @@
      &          dup3*USf(Sfe3,1,bM1,Gen3)*USfC(Sfe4,2,bM1,Gen3)))/
      &      (CB2*MW2*SW2)
 
-	ENDLOOP(Sfe3)
-	ENDLOOP(Sfe4)
 	ENDLOOP(Gen3)
+	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_G0G0_mfv +b/sb =", se ENDL
@@ -107,9 +107,9 @@
 
 	ENDLOOP(Gen3)
 
-	LOOP(Sfe4, 1,2,1)
-	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, 1,3,1)
+	LOOP(Sfe3, 1,2,1)
+	LOOP(Sfe4, 1,2,1)
 
 	dup5 = CB*KfC(Gen3,Gen3,2) - MUE*SB*Mf(2,Gen3)
 
@@ -123,9 +123,9 @@
      &          dup5*USf(Sfe3,1,2,Gen3)*USfC(Sfe4,2,2,Gen3)))/
      &      (CB2*MW2*SW2)
 
-	ENDLOOP(Gen3)
-	ENDLOOP(Sfe3)
 	ENDLOOP(Sfe4)
+	ENDLOOP(Sfe3)
+	ENDLOOP(Gen3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_G0G0_mfv +l/sl =", se ENDL
@@ -149,8 +149,8 @@
      &          k2*(2*CBA2*CW2*DB1(k2,MHH2,MZ2) + 
      &             4*CW2**2*DB1(k2,MW2,MW2))))/(CW2**2*SW2)
 
-	LOOP(Cha4, 1,2,1)
 	LOOP(Cha3, 1,2,1)
+	LOOP(Cha4, 1,2,1)
 
         dup7 = CB*UCha(Cha4,2)*VCha(Cha3,1) - 
      &    SB*UCha(Cha4,1)*VCha(Cha3,2)
@@ -174,11 +174,11 @@
      &             dup7*(dup8*MCha(Cha3)*MCha(Cha4) - 
      &                dup9*MCha2(Cha3)))))/SW2
 
-	ENDLOOP(Cha3)
 	ENDLOOP(Cha4)
+	ENDLOOP(Cha3)
 
-	LOOP(Neu4, 1,4,1)
 	LOOP(Neu3, 1,4,1)
+	LOOP(Neu4, 1,4,1)
 
 	dup11 = SW*ZNeu(Neu3,1) - CW*ZNeu(Neu3,2)
 
@@ -212,8 +212,8 @@
      &              (dup16*dup17 + dup15*dup18)*MNeu2(Neu3))))/
      &      (CW2*SW2)
 
-	ENDLOOP(Neu3)
 	ENDLOOP(Neu4)
+	ENDLOOP(Neu3)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_G0G0_mfv  all  =", se ENDL

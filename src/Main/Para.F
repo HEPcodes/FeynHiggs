@@ -1,7 +1,7 @@
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 27 Feb 18 th
+* last modified 29 Apr 18 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -65,7 +65,6 @@
 
 	seX = 0
 	hX = 0
-	seXflags = 0
 
 	fv = 0
 
@@ -74,27 +73,28 @@
 	Qf(3) = Qu
 	Qf(4) = Qd
 
-	MT = MT_
-	if( MT .lt. 0 ) Error(error, "invalid MT")
-	MT2 = MT**2
+	Mf(3,3) = MT_
+	if( Mf(3,3) .lt. 0 ) Error(error, "invalid MT")
+	Mf2(3,3) = Mf(3,3)**2
 
 	do ty = 5, SfSlots
 	  t = GetSfIni(ty)
-	  Mf(ty,:) = Mf(t,:)
 	  Mf2(ty,:) = Mf2(t,:)
+	  Mf(ty,:) = Mf(t,:)
 	enddo
 
 	call ltini
 	scalefactor = scalefactor_
 	if( scalefactor .lt. 0 ) scalefactor = 1
-	mudim = (scalefactor*MT)**2
+	mudim = (scalefactor*Mf(3,3))**2
 
-	AlfasMT = AlfasMZ/(1 + (11 - 10/3D0)/(4*pi)*AlfasMZ*log(MT2/MZ2))
-c	call AlphaS(AlfasMT, nf, MT2)
+	AlfasMT = AlfasMZ/
+     &    (1 + (11 - 10/3D0)/(4*pi)*AlfasMZ*log(Mf2(3,3)/MZ2))
+c	call AlphaS(AlfasMT, nf, Mf2(3,3))
 	gsMT2 = 4*pi*AlfasMT
 	gsMT = sqrt(gsMT2)
 
-	call RunQCD(MB_MT,MT2, MB,MB2)
+	call RunQCD(MB_MT,Mf2(3,3), Mf(4,3),Mf2(4,3))
 
 	M_3 = M_3_
 	MGl = abs(M_3)
@@ -410,24 +410,26 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	enddo
 
 * need this for TLps:
-	DSS2(1,tM3,3) = DSS2(1,3,3)
-	DSS2(2,tM3,3) = DSS2(2,3,3)
+	DSS2(:,tM3,3) = DSS2(:,3,3)
 
 	DSStgl2(2) = Re(MSS2(3,3,tU(3)))
 	DSStgl2(1) = Re(MSS2(3,3,tQ(3))) - DSStgl2(2)
 c tmp for TLps:
-c	DSS2(1,tMT,3) = DSStgl2(1)
-c	DSS2(2,tMT,3) = DSStgl2(2)
-	if( debuglevel .gt. 4 )
-     &    DPARA "DSStgl2 orig =", DSStgl2 ENDL
-	if( abs(DSStgl2(1)) .lt. 1D-6 )
-     &    DSStgl2(1) = DSStgl2(1) - .001D0*DSStgl2(2)
+	DSS2(:,tMT,3) = DSStgl2
+
+	if( debuglevel .gt. 4 ) DPARA "DSStgl2 orig =", DSStgl2 ENDL
+#if 0
+	if( abs(DSStgl2(1)) .lt. 1D-6 ) then
+	  DSStgl2(1) = 1D-4*DSStgl2(2)
+	  DSStgl2(2) = DSStgl2(2) - DSStgl2(1)
+	endif
+#endif
 	if( DSStgl2(1)**2 + Sq(Xf(3,3)) .lt. .1D0 )
      &    DSStgl2(1) = -.2D0*sqrt(DSStgl2(2))
 
 	DSSbgl2(2) = Re(MSS2(3,3,tU(4)))
 	DSSbgl2(1) = Re(MSS2(3,3,tQ(4))) - DSSbgl2(2)
-     
+
 * DRbar -> OS transition
 	Q2cur = -1
 	drbar = 0
@@ -532,7 +534,7 @@ c	DSS2(2,tMT,3) = DSStgl2(2)
 	DPARA "parameters set by FHSetPara"	ENDL
 	DPARA "----------------------------"	ENDL
 	DPARA "mudim =", sqrt(mudim)		ENDL
-	DPARA "MT =", MT			ENDL
+	DPARA "MT =", Mf(3,3)			ENDL
 	DPARA "MTrun =", Mf(tT,3)		ENDL
 	DPARA "1/Alfa(MZ) =", 1/AlfaMZ		ENDL
 	DPARA "AlfasMT =", AlfasMT		ENDL

@@ -94,7 +94,8 @@
 
 * evaluate loopfunctions necessary for threshold corrections
 	call loopfunSf(lfSf, MStQ/MStU)
-	call loopfunIno(lfM12, Re(M_1)/Re(MUEc), Re(M_2)/Re(MUEc))
+	call loopfunIno(lfM12, Re(M_1)/(mueOS*MSUSYOS),
+     &                         Re(M_2)/(mueOS*MSUSYOS))
 
 	tSS(:) = 2/3D0*log(abs(MSS0(:,1)*MSS0(:,2)*MSS0(:,3)))
 	tSS1 = 3*tSS(tQ(2)) + 6*tSS(tU(2)) +
@@ -103,7 +104,7 @@
 	tSQ = 2*log(abs(MStQ))
 	tSU = 2*log(abs(MStU))
 	tA0 = log(MA02)
-	tMUE = log(Sq(MUEc))
+	tMUE = 2*log(abs(mueOS*MSUSYOS))
 	tM_2 = log(Sq(M_2))
 
 * initial values from tree-level relations
@@ -122,16 +123,21 @@
 	  Mh2 = x(ilam) + subnonlog2Lb
 	  if( loglevel .lt. 3 ) Mh2 = Mh2 + subnonlog2La
 	  Mh2 = vev**2*Mh2
+#define Q Mf2(3,3)
 	  Mh2 = Mh2 - k1L/vev**2*(
-     &      6*MT2*(Mh2 - 4*MT2)*Re(B0q(Mh2,MT2,MT2,MT2)) +
-     &      .5D0*(Mh2*(Mh2 - 4*MZ2) + 12*MZ2**2)*Re(B0q(Mh2,MZ2,MZ2,MT2)) +
-     &      (Mh2*(Mh2 - 4*MW2) + 12*MW2**2)*Re(B0q(Mh2,MW2,MW2,MT2)) +
-     &      Mh2*( 6*Re(A0q(MT2,MT2)) +
-     &        (7*MW2 - 4*MZ2)*Re(A0q(MZ2,MT2))/(MZ2 - MW2) -
-     &        3*MW2*Re(A0q(Mh2,MT2))/(Mh2 - MW2) +
-     &        (3*(Mh2/(Mh2 - MW2) - MW2/(MZ2 - MW2)) - 11)*Re(A0q(MW2,MT2)) +
-     &        4.5D0*Mh2*Re(B0q(Mh2,Mh2,Mh2,MT2)) +
-     &        .5D0*(Mh2 + MZ2 + 2*MW2 - 6*MT2) ) -
+     &      6*Mf2(3,3)*(Mh2 - 4*Mf2(3,3))*
+     &        Re(B0q(Mh2,Mf2(3,3),Mf2(3,3),Q)) +
+     &      .5D0*(Mh2*(Mh2 - 4*MZ2) + 12*MZ2**2)*
+     &        Re(B0q(Mh2,MZ2,MZ2,Q)) +
+     &      (Mh2*(Mh2 - 4*MW2) + 12*MW2**2)*
+     &        Re(B0q(Mh2,MW2,MW2,Q)) +
+     &      Mh2*( 6*Re(A0q(Mf2(3,3),Q)) +
+     &        (7*MW2 - 4*MZ2)*Re(A0q(MZ2,Q))/(MZ2 - MW2) -
+     &        3*MW2*Re(A0q(Mh2,Q))/(Mh2 - MW2) +
+     &        (3*(Mh2/(Mh2 - MW2) - MW2/(MZ2 - MW2)) - 11)*
+     &          Re(A0q(MW2,Q)) +
+     &        4.5D0*Mh2*Re(B0q(Mh2,Mh2,Mh2,Q)) +
+     &        .5D0*(Mh2 + MZ2 + 2*MW2 - 6*Mf2(3,3)) ) -
      &      4*(MZ2**2 + 2*MW2**2) )
 	  res = Mh2
 	else if( looplevel .eq. 1 ) then

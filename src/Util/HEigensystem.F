@@ -3,7 +3,7 @@
 * code adapted from the "Handbook" routines for complex A
 * (Wilkinson, Reinsch: Handbook for Automatic Computation, p. 202)
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 12 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -23,14 +23,11 @@
 	ComplexType A(ldA,*), U(ldU,*)
 	RealType d(*)
 
-	integer p, q, j
-	RealType red, off, thresh
+	integer sweep, p, q, j, pmin
+	RealType red, off, thresh, o, omin
 	RealType t, delta, invc, s
 	ComplexType x, y, Apq
 	RealType ev(2,MAXDIM)
-
-	integer sweep
-	common /nsweeps/ sweep
 
 	if( n .gt. MAXDIM ) then
 	  print *, "Dimension too large"
@@ -38,28 +35,19 @@
 	  return
 	endif
 
-	do p = 1, n
+	forall(p = 1:n)
 	  ev(1,p) = 0
 	  ev(2,p) = Re(A(p,p))
 	  d(p) = ev(2,p)
-	enddo
+	endforall
 
-	do p = 1, n
-	  do q = 1, n
-	    U(q,p) = 0
-	  enddo
-	  U(p,p) = 1
-	enddo
+	U(1:n,1:n) = 0
+	forall(p = 1:n) U(p,p) = 1
 
 	red = .04D0/n**4
 
 	do sweep = 1, 50
-	  off = 0
-	  do q = 2, n
-	    do p = 1, q - 1
-	      off = off + Sq(A(p,q))
-	    enddo
-	  enddo
+	  off = sum((/(Sq(A(1:q-1,q)), q = 2, n)/))
 	  if( .not. off .gt. SYM_EPS ) goto 1
 
 	  thresh = 0
@@ -119,10 +107,10 @@
 	    enddo
 	  enddo
 
-	  do p = 1, n
+	  forall(p = 1:n)
 	    ev(1,p) = 0
 	    d(p) = ev(2,p)
-	  enddo
+	  endforall
 	enddo
 
 	print *, "Bad convergence in HEigensystem"
@@ -131,25 +119,47 @@
 
 * sort the eigenvalues
 
+* ascending eigenvalues
+*#define sortby(p,q) d(p)
+
+* biggest overlap with ('closest to') {h,H,A}
+#define sortby(p,q) -abs(U(p,q))
+
+#ifdef DETAILED_DEBUG
+	print *, "HEigensystem unsorted"
+100	format("U",I1,I1," = ",2F20.8)
+101	format("M",I1," = ",1F20.8)
+	print 100, ((p, q, U(p,q), q = 1, n), p = 1, n)
+	print 101, (p, d(p), p = 1, n)
+#endif
+
 	do p = 1, n - 1
-	  j = p
-	  t = d(p)
+	  pmin = p
+	  omin = sortby(p,p)
 	  do q = p + 1, n
-	    if( sort*(t - d(q)) .gt. 0 ) then
-	      j = q
-	      t = d(q)
+	    o = sortby(q,p)
+	    if( o .lt. omin ) then
+	      pmin = q
+	      omin = o
 	    endif
 	  enddo
 
-	  if( j .ne. p ) then
-	    d(j) = d(p)
-	    d(p) = t
+	  if( pmin .ne. p ) then
+	    t = d(p)
+	    d(p) = d(pmin)
+	    d(pmin) = t
 	    do q = 1, n
 	      x = U(p,q)
-	      U(p,q) = U(j,q)
-	      U(j,q) = x
+	      U(p,q) = U(pmin,q)
+	      U(pmin,q) = x
 	    enddo
 	  endif
 	enddo
+
+#ifdef DETAILED_DEBUG
+	print *, "sorted"
+	print 100, ((p, q, U(p,q), q = 1, n), p = 1, n)
+	print 101, (p, d(p), p = 1, n)
+#endif
 	end
 

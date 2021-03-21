@@ -7,9 +7,36 @@
 #define FORTRAN(s) s##_
 #endif
 
-#if QUAD
+#ifndef CQUADSIZE
+#define CQUADSIZE QUADSIZE
+#endif
 
+#if QUAD && CQUADSIZE == 16
+
+#include <quadmath.h>
+
+#define _prec(f) f##q
+#define PRIprec "Q"
+#define RealType __float128
+typedef __float128 REAL;
+
+#define ToReal(r) (RealType)(r)
+#define ToREAL(r) (REAL)(r)
+
+#elif QUAD && CQUADSIZE == 10
+
+#define _prec(f) f##l
+#define PRIprec "L"
 #define RealType long double
+
+#if QUADSIZE == CQUADSIZE
+
+typedef RealType REAL;
+
+#define ToReal(r) (r)
+#define ToREAL(r) (r)
+
+#else
 
 #pragma pack(push, 1)
 typedef struct {
@@ -56,8 +83,12 @@ static inline void ToREALArray(REAL *out, const RealType *in, const int n) {
   for( i = 0; i < n; ++i ) out[i] = ToREAL(in[i]);
 }
 
+#endif
+
 #else
 
+#define _prec(f) f
+#define PRIprec "l"
 #define RealType double
 typedef double REAL;
 
@@ -90,15 +121,9 @@ typedef std::complex<RealType> ComplexType;
 typedef RealType complex ComplexType;
 #define ToComplex(c) (ToReal((c).re) + I*ToReal((c).im))
 #define ToComplex2(r,i) (r + I*(i))
-#if QUAD
-#define Re(x) creall(x)
-#define Im(x) cimagl(x)
-#define Conjugate(x) conjl(x)
-#else
-#define Re(x) creal(x)
-#define Im(x) cimag(x)
-#define Conjugate(x) conj(x)
-#endif
+#define Re(c) _prec(creal)(c)
+#define Im(c) _prec(cimag)(c)
+#define Conjugate(c) _prec(conj)(c)
 
 #else
 

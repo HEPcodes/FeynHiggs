@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 27 Feb 18 th
+* last modified 16 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -110,7 +110,7 @@
 	if( runningMT .eq. 3 ) then
 	  Sf(tMD) = Sf(3)
 	  call DeltaMT_MSSM(dMT, AlfasMT, mudim)
-	  Mf(tMD,3) = MT + dMT
+	  Mf(tMD,3) = Mf(3,3) + dMT
 	  Mf2(tMD,3) = Mf(tMD,3)**2
 	  Kf(3,3,tMD) = Kf(3,3,tMD) - dMT*MUETB(3)
 	  Afgl(tMD) = Kf(3,3,tMD)/MTgl
@@ -179,7 +179,9 @@
 	if( btest(fv, 4) ) then
 	  call SfUpdateNMFV(error, X3(4,4,4), 1)
 	  call SfUpdateNMFV(error, X3(bTR,4,4), SORT_SF)
-	  Sf(bTR0) = Sf(bTR)
+	  call SfUpdateNMFV(error, X3(bTR1,4,4), SORT_SF)
+	  Sf(bTRps) = Sf(bTR)
+	  Sf(bTR1ps) = Sf(bTR1)
 	endif
 
 	if( Mf(tMT,3) .eq. Mf(tMT1,3) ) Sf(tMT1) = Sf(tMT)
@@ -189,14 +191,14 @@
 	if( debuglevel .lt. 2 ) return
 
 	DPARA "Sfermion Summary:" ENDL
-	do t = 1, tH-1
+	do t = 1, bTRps-1
 	  if( MSf(1,t,3) .eq. 0 ) cycle
 	  id = sfid(t)
 	  l = len_trim(id)
 	  DPARA "MSf(",ID,",3)",SR,"=", MSf(:,t,3) ENDL
 	enddo
 	DPARA "----------------------------" ENDL
-	do t = 1, tH-1
+	do t = 1, bTRps-1
 	  if( MSfgl(1,t) .eq. 0 ) cycle
 	  id = sfid(t)
 	  l = len_trim(id)
@@ -221,7 +223,7 @@
 	integer j, g, fail, nfdummy, pass
 	RealType Qew, Qqcd, asew, db2Lqcd, db2Lew, adb(3,3,2)
 	RealType Mdin(3), Mdbar(3)
-	ComplexType db, Mcorr(3,3), se(3,3)
+	ComplexType db, Mcorr(3,3), se(3,3,3)
 	ComplexType DL(3,3), DR(3,3)
 
 	RealType Deltab2L_ew, Deltab2L_qcd
@@ -246,7 +248,7 @@
 	call SfUpdate(error, X4(0,4,4,4), 1)
 	call SbglUpdate(error, 4)
 
-	Sf(bTR) = Sf(4)
+	DSS2(:,bTR,:) = DSS2(:,4,:)
 	Mf(bTR,3) = MB_MT
 	Mdin = Mf(bTR,:)
 
@@ -286,10 +288,11 @@
 	endif
 
 	do g = 1, 3
-	  call MDcorr(se, g, g, Qqcd, adb(g,g,1), Qew, adb(g,g,2))
-	  Deltaf(bTR,g) = se(1,1)/Mf(bTR,g)
-	  Mf(bTR,g) = Re(Mdin(g)/abs(1 + Deltaf(bTR,g))*
-     &      (1 - .5D0*(se(2,1) + se(3,1))))
+	  call MDcorr(se(1,g,g), g, g,
+     &      Qqcd, adb(g,g,1), Qew, adb(g,g,2))
+	  Deltaf(bTR,g) = se(1,g,g)/Mf(bTR,g)
+	  Mf(bTR,g) = Mdin(g)/abs(1 + Deltaf(bTR,g))*
+     &      Re(1 - .5D0*(se(2,g,g) + se(3,g,g)))
 	enddo
 
 	do pass = 1, 20
@@ -315,14 +318,14 @@
 
 	  do g = 1, 3
 	    do j = 1, 3
-	      call MDcorr(se(1,j), j, g,
+	      call MDcorr(se(1,j,g), j, g,
      &          Qqcd, adb(j,g,1), Qew, adb(j,g,2))
-	      Mcorr(j,g) = se(1,j) +
-     &          Mf(bTR,j)*se(2,j) + Mf(bTR,g)*se(3,j)
 	    enddo
-	    Deltaf(bTR,g) = se(1,g)/Mf(bTR,g)
-	    Mf(bTR,g) = Re(Mdin(g)/abs(1 + Deltaf(bTR,g))*
-     &        (1 - .5D0*(se(2,g) + se(3,g))))
+	    Mcorr(:,g) = se(1,:,g) +
+     &        Mf(bTR,:)*se(2,:,g) + Mf(bTR,g)*se(3,:,g)
+	    Deltaf(bTR,g) = se(1,g,g)/Mf(bTR,g)
+	    Mf(bTR,g) = Mdin(g)/abs(1 + Deltaf(bTR,g))*
+     &        Re(1 - .5D0*(se(2,g,g) + se(3,g,g)))
 	    Mcorr(g,g) = Mcorr(g,g) + Mf(bTR,g)
 	  enddo
 
@@ -334,13 +337,10 @@
 	    DPARA "MDc3 =", Mdbar(3), Mdin(3) ENDL
 	  endif
 
-	  do g = 1, 3
-	    CKM(:,g) = CKMin(:,1)*DL(1,g) +
-     &                 CKMin(:,2)*DL(2,g) + 
-     &                 CKMin(:,3)*DL(3,g)
-c	    DL(g,g) = DL(g,g) - 1
-c	    DR(g,g) = DR(g,g) - 1
-	  enddo
+	  forall(g = 1:3) CKM(:,g) =
+     &      CKMin(:,1)*DL(1,g) +
+     &      CKMin(:,2)*DL(2,g) + 
+     &      CKMin(:,3)*DL(3,g)
 
 	  if( abs(Deltaf(bTR,3) - db) .lt. 1D-6 ) goto 99
 	enddo
@@ -349,22 +349,34 @@ c	    DR(g,g) = DR(g,g) - 1
 
 99	continue
 
-* Delta_b with just the 1L corrections for subtraction in Hff:
-	Deltaf(4,1) = Deltaf(bTR,1)
-	Deltaf(4,2) = Deltaf(bTR,2)
-	call MDcorr(se, 3, 3, Qqcd, AlfasDb, Qew, AlfaGF)
-	Deltaf(4,3) = se(1,1)/Mf(bTR,3)
-
 	if( fail .ne. 0 )
      &    Error(error, "negative sbottom mass squares in Delta b")
 
 	call SfUpdate(error, X4(0,bTR,4,4), SORT_SF)
 	call SbglUpdate(error, bTR)
-	Sf(bTR0) = Sf(bTR)
+	Sf(bTRps) = Sf(bTR)
 
-	Mf(bBR,1) = Mf(4,1)/abs(1 + Deltaf(bTR,1))
-	Mf(bBR,2) = Mf(4,2)/abs(1 + Deltaf(bTR,2))
-	Mf(bBR,3) = Mf(4,3)/abs(1 + Deltaf(bTR,3))
+* Delta_b with just the 1L corrections for subtraction in Hff:
+	DSS2(:,bTR1,:) = DSS2(:,4,:)
+#if 1
+	call MDcorr(se(1,3,3), 3, 3, Qqcd, AlfasDb, Qew, AlfaGF)
+	forall(g = 1:3)
+	  Deltaf(bTR1,g) = se(1,g,g)/Mf(bTR,g)
+	  Mf(bTR1,g) = Mdin(g)*
+     &      Re(1 - Deltaf(bTR1,g) - .5D0*(se(2,g,g) + se(3,g,g)))
+	endforall
+#else
+* pre-2.14.2
+	Deltaf(bTR1,:) = 0
+	Mf(bTR1,:) = Mf(bTR,:)
+c	Mf(bTR1,3) = Mf(4,3)
+#endif
+
+	call SfUpdate(error, X4(0,bTR1,4,4), SORT_SF)
+	call SbglUpdate(error, bTR1)
+	Sf(bTR1ps) = Sf(bTR1)
+
+	Mf(bBR,:) = Mf(4,:)/abs(1 + Deltaf(bTR,:))
 	call SfUpdate(error, X4(0,bBR,4,4), 1)
 	end
 
@@ -705,11 +717,11 @@ c	    DR(g,g) = DR(g,g) - 1
 #include "looptools.h"
 
 	RealType shift
-	QuadType d2, x, y
+	RealQuad d2, x, y
 	integer try, fail, ts2, l
 	SfIdType id
 
-	QuadType dm2
+	RealQuad dm2
 	common /eigensfvars/ dm2
 
 	SfIdType sfid(SfSlots)
@@ -766,6 +778,7 @@ c	    DR(g,g) = DR(g,g) - 1
 
 	  shift = shift + shift
 	  DSStgl2(1) = DSStgl2(1) + shift
+	  DSStgl2(2) = DSStgl2(2) - shift
 	enddo
 
 	if( debuglevel .gt. 4 )
@@ -902,6 +915,7 @@ c	MGlpTmSt2(2) = MGlpT2 - MStgl2(2)
 ************************************************************************
 
 	block data sfidini
+	implicit none
 
 #include "FH.h"
 
@@ -919,7 +933,9 @@ c	MGlpTmSt2(2) = MGlpT2 - MStgl2(2)
 	data sfid(tMD) /"tMD"/
 	data sfid(bBR) /"bBR"/
 	data sfid(bTR) /"bTR"/
-	data sfid(bTR0) /"bTR0"/
+	data sfid(bTR1) /"bTR1"/
+	data sfid(bTRps) /"bTRps"/
+	data sfid(bTR1ps) /"bTR1ps"/
 	data sfid(tH) /"tH"/
 	data sfid(bH) /"bH"/
 	data sfid(bHR) /"bHR"/

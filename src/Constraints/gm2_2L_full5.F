@@ -1396,7 +1396,7 @@
 
 	Sf1975 = Sf1974*MStau2(2)**2 + 
      &   MSneu2(1)*(MSneu2(1)*(50*MSneu2(1) - 11*MStau2(2)) + 
-     &      2*ML2*MStau2(2))
+     &      2*MTau2*MStau2(2))
 
 	Sf1905 = Sf1904*MStau2(1)**3 + 
      &   MSneu2(1)*(-8*MStau2(1)**2 + 
@@ -1404,7 +1404,7 @@
 
 	Sf1915 = Sf1914*MStau2(1)**2 + 
      &   MSneu2(1)*(MSneu2(1)*(50*MSneu2(1) - 11*MStau2(1)) + 
-     &      2*ML2*MStau2(1))
+     &      2*MTau2*MStau2(1))
 
 	Sf1471 = -45*MStau2(2)**3 + 
      &   MSneu2(1)*(Sf190*MStau2(2)**2 + 
@@ -1778,14 +1778,14 @@
 
 	tmp18 = reMUE*SA - CA*Re(Atau)
 
-	Sf1772 = ML*tmp18*UStau21 - 2*Sf1750*UStau22
+	Sf1772 = MTau*tmp18*UStau21 - 2*Sf1750*UStau22
 
-	Sf1769 = ML*(CA*reMUE + SA*Re(Atau))*UStau21 + 
+	Sf1769 = MTau*(CA*reMUE + SA*Re(Atau))*UStau21 + 
      &   2*Sf1744*UStau22
 
-	Sf1751 = ML*tmp18*UStau11 - 2*Sf1750*UStau12
+	Sf1751 = MTau*tmp18*UStau11 - 2*Sf1750*UStau12
 
-	Sf1745 = ML*(CA*reMUE + SA*Re(Atau))*UStau11 + 
+	Sf1745 = MTau*(CA*reMUE + SA*Re(Atau))*UStau11 + 
      &   2*Sf1744*UStau12
 
 	Sf4777 = Sf15*Sf4773*USbot11*USbot21**2 - 
@@ -1915,11 +1915,11 @@
      &   Ss965*UStop12*UStop22 - 
      &   2*Ss967*UStop12*UStop22
 
-	Sf10055 = CW*ML*Sf9311*Ss937 - 
+	Sf10055 = CW*MTau*Sf9311*Ss937 - 
      &   Ss936*UStau12*UStau22 + 
      &   2*Ss938*UStau12*UStau22
 
-	Sf9312 = CW*ML*Sf9311*Ss924 + 
+	Sf9312 = CW*MTau*Sf9311*Ss924 + 
      &   Ss923*UStau12*UStau22 - 
      &   2*Ss925*UStau12*UStau22
 
@@ -2182,9 +2182,9 @@
 
 	Sf166 = MW2*(MW2 - 2*Sf34) + MSl2Diff(1,1)**2
 
-	Sf988 = ML2*(2*ML2 - 4*MW2*Sf174) - MW2**2*Sf987
+	Sf988 = MTau2*(2*MTau2 - 4*MW2*Sf174) - MW2**2*Sf987
 
-	Sf978 = C2B*MW2**2*Sf118 + ML2*(ML2 - MW2*Sf720)
+	Sf978 = C2B*MW2**2*Sf118 + MTau2*(MTau2 - MW2*Sf720)
 
 	Sf5198 = -(Sf5171*Sf5197) + 
      &   MHiggs2(4)**2*(-2*Sf5038 + 3*MHiggs2(4))
@@ -2355,41 +2355,41 @@
 	Sf8540 = 3*Sf8539*MStau2(1) + 
      &   Sf8538*UStau12*UStau21*UStau22
 
-	Sf2171 = Sf345*UStau21**2 + ML2*Sf215**2*UStau22**2
+	Sf2171 = Sf345*UStau21**2 + MTau2*Sf215**2*UStau22**2
 
 	Sf1182 = MW2*Sf149*UStau21**2 + 2*Sf150*UStau22**2
 
 	Sf1183 = MW2*S2B*UStau21**2 - 2*Sf152*UStau22**2
 
-	Sf1636 = Sf215**2*UStau22**2 + ML2*(1 - UStau22**2)
+	Sf1636 = Sf215**2*UStau22**2 + MTau2*(1 - UStau22**2)
 
-	Sf1362 = 3*MStau2(2)*UStau21 + ML*Sf215*UStau22
+	Sf1362 = 3*MStau2(2)*UStau21 + MTau*Sf215*UStau22
 
-	Sf1190 = ML*TB*UStau21 + Sf160*UStau22
+	Sf1190 = MTau*TB*UStau21 + Sf160*UStau22
 
-	Sf1227 = Sf241*UStau21 - ML*Sf215*UStau22
+	Sf1227 = Sf241*UStau21 - MTau*Sf215*UStau22
 
-	Sf1226 = Sf239*UStau21 + 2*ML*Sf215*UStau22
+	Sf1226 = Sf239*UStau21 + 2*MTau*Sf215*UStau22
 
 	Sf1774 = Sf1773*UStau21 - Sf1772*UStau22
 
 	Sf1771 = Sf1770*UStau21 + Sf1769*UStau22
 
-	Sf1882 = Sf1140*UStau21 + 6*ML*Sf215*UStau22
+	Sf1882 = Sf1140*UStau21 + 6*MTau*Sf215*UStau22
 
-	Sf1881 = Sf1138*UStau21 + 3*ML*Sf215*UStau22
+	Sf1881 = Sf1138*UStau21 + 3*MTau*Sf215*UStau22
 
-	Sf1879 = Sf1134*UStau21 - 3*ML*Sf215*UStau22
+	Sf1879 = Sf1134*UStau21 - 3*MTau*Sf215*UStau22
 
-	Sf1877 = Sf1130*UStau21 + 3*ML*Sf215*UStau22
+	Sf1877 = Sf1130*UStau21 + 3*MTau*Sf215*UStau22
 
-	Sf1876 = Sf1127*UStau21 - 3*ML*Sf215*UStau22
+	Sf1876 = Sf1127*UStau21 - 3*MTau*Sf215*UStau22
 
-	Sf1866 = Sf1107*UStau21 + 3*ML*Sf215*UStau22
+	Sf1866 = Sf1107*UStau21 + 3*MTau*Sf215*UStau22
 
-	Sf1297 = 2*ML**3*UStau21 - ML2*Sf215*UStau22
+	Sf1297 = 2*MTau**3*UStau21 - MTau2*Sf215*UStau22
 
-	Sf1293 = ML*UStau21 - Sf215*UStau22
+	Sf1293 = MTau*UStau21 - Sf215*UStau22
 
 	Sf8602 = 2*Sf8534*Sf8598*UStau12**2 + 
      &   Sf8536*Sf8597*Ss443**2*UStau21**2
@@ -2407,7 +2407,7 @@
 
 	Sf1178 = Sf37*UStau22**2 + Sf50*(1 - UStau22**2)
 
-	Sf2102 = ML2*Sf215**2*UStau12**2 + Sf345*UStau22**2
+	Sf2102 = MTau2*Sf215**2*UStau12**2 + Sf345*UStau22**2
 
 	Sf151 = 2*Sf150*UStau12**2 + MW2*Sf149*UStau22**2
 
@@ -2415,35 +2415,35 @@
 
 	Sf153 = -2*Sf152*UStau12**2 + MW2*S2B*UStau22**2
 
-	Sf811 = Sf215**2*UStau12**2 + ML2*UStau22**2
+	Sf811 = Sf215**2*UStau12**2 + MTau2*UStau22**2
 
-	Sf444 = 3*MStau2(1)*UStau11 + ML*Sf215*UStau12
+	Sf444 = 3*MStau2(1)*UStau11 + MTau*Sf215*UStau12
 
-	Sf161 = ML*TB*UStau11 + Sf160*UStau12
+	Sf161 = MTau*TB*UStau11 + Sf160*UStau12
 
-	Sf242 = Sf241*UStau11 - ML*Sf215*UStau12
+	Sf242 = Sf241*UStau11 - MTau*Sf215*UStau12
 
-	Sf240 = Sf239*UStau11 + 2*ML*Sf215*UStau12
+	Sf240 = Sf239*UStau11 + 2*MTau*Sf215*UStau12
 
 	Sf1753 = Sf1752*UStau11 - Sf1751*UStau12
 
 	Sf1747 = Sf1746*UStau11 + Sf1745*UStau12
 
-	Sf1141 = Sf1140*UStau11 + 6*ML*Sf215*UStau12
+	Sf1141 = Sf1140*UStau11 + 6*MTau*Sf215*UStau12
 
-	Sf1139 = Sf1138*UStau11 + 3*ML*Sf215*UStau12
+	Sf1139 = Sf1138*UStau11 + 3*MTau*Sf215*UStau12
 
-	Sf1135 = Sf1134*UStau11 - 3*ML*Sf215*UStau12
+	Sf1135 = Sf1134*UStau11 - 3*MTau*Sf215*UStau12
 
-	Sf1131 = Sf1130*UStau11 + 3*ML*Sf215*UStau12
+	Sf1131 = Sf1130*UStau11 + 3*MTau*Sf215*UStau12
 
-	Sf1128 = Sf1127*UStau11 - 3*ML*Sf215*UStau12
+	Sf1128 = Sf1127*UStau11 - 3*MTau*Sf215*UStau12
 
-	Sf1108 = Sf1107*UStau11 + 3*ML*Sf215*UStau12
+	Sf1108 = Sf1107*UStau11 + 3*MTau*Sf215*UStau12
 
-	Sf346 = 2*ML**3*UStau11 - ML2*Sf215*UStau12
+	Sf346 = 2*MTau**3*UStau11 - MTau2*Sf215*UStau12
 
-	Sf341 = ML*UStau11 - Sf215*UStau12
+	Sf341 = MTau*UStau11 - Sf215*UStau12
 
 	Sf3578 = Sf2807*USbot21**2 + MBot2*Sf2225**2*USbot22**2
 

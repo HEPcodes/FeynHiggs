@@ -1,7 +1,7 @@
 * SVD.F
 * singular value decomposition of an m-by-n matrix
-* this file is part of the Diag library
-* last modified 30 Nov 11 th
+* this file is part of FeynHiggs
+* last modified 14 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -22,11 +22,11 @@
 	ComplexType Ao(ldA,*), Vo(ldV,*), Wo(ldW,*)
 	RealType d(*)
 
-	integer nx, nm, p, q, px, qx, j, rev, pi(MAXDIM)
+	integer sweep, nx, nm, p, q, px, qx, j, rev, pi(MAXDIM)
 	RealType red, off, thresh
 	RealType t, dv, dw, xv, xw, invc
 	ComplexType App, Apq, Aqp, Aqq
-	ComplexType x, y, sv, sw, tv, tw, f
+	ComplexType x, y, sv, sw, tv, tw
 	ComplexType VW(MAXDIM,MAXDIM,0:2)
 
 * note: for better cache efficiency, the Vx, Wx arrays
@@ -38,9 +38,6 @@
 	equivalence (VW(1,1,1), W)
 	equivalence (VW(1,1,2), A)
 
-	integer sweep
-	common /nsweeps/ sweep
-
 	nx = max(m, n)
 
 	if( nx .gt. MAXDIM ) then
@@ -49,40 +46,20 @@
 	  return
 	endif
 
-	do p = 1, nx
-	  do q = 1, nx
-	    V(q,p) = 0
-	    W(q,p) = 0
-	    A(q,p) = 0
-	  enddo
-	  V(p,p) = 1
-	  W(p,p) = 1
-	enddo
+	VW = 0
+	forall(p = 1:n) VW(p,p,:) = 1
 
 	rev = ibits(m - n, 15, 1)
 	if( rev .eq. 1 ) then
-	  do p = 1, n
-	    do q = 1, m
-	      A(p,q) = Ao(q,p)
-	    enddo
-	  enddo
+	  forall(p = 1:n) A(p,1:m) = Ao(1:m,p)
 	else
-	  do p = 1, n
-	    do q = 1, m
-	      A(q,p) = Ao(q,p)
-	    enddo
-	  enddo
+	  A(1:m,1:n) = Ao(1:m,1:n)
 	endif
 
 	red = .01D0/nx**4
 
 	do sweep = 1, 50
-	  off = 0
-	  do q = 2, nx
-	    do p = 1, q - 1
-	      off = off + Sq(A(p,q)) + Sq(A(q,p))
-	    enddo
-	  enddo
+	  off = sum((/(Sq(A(1:q-1,q)) + Sq(A(q,1:q-1)), q = 2, nx)/))
 	  if( .not. off .gt. EPS ) goto 1
 
 	  thresh = 0
@@ -198,19 +175,13 @@ c	        t = sqrt(dv**2 + Sq(tv))
 
 	do p = 1, nm
 	  d(p) = abs(A(p,p))
-	  if( d(p) .gt. DBL_EPS .and. d(p) .ne. Re(A(p,p)) ) then
-	    f = A(p,p)/d(p)
-	    do q = 1, nm
-	      W(q,p) = W(q,p)*f
-	    enddo
-	  endif
+	  if( d(p) .gt. DBL_EPS .and. d(p) .ne. Re(A(p,p)) )
+     &      W(1:nm,p) = A(p,p)/d(p)*W(1:nm,p)
 	enddo
 
 * sort the singular values
 
-	do p = 1, nm
-	  pi(p) = p
-	enddo
+	forall(p = 1:nm) pi(p) = p
 
 	do p = 1, nm
 	  j = p
@@ -230,12 +201,8 @@ c	        t = sqrt(dv**2 + Sq(tv))
 	  q = pi(j)
 	  pi(j) = pi(p)
 
-	  do j = 1, m
-	    Vo(p,j) = VW(j,q,rev)
-	  enddo
-	  do j = 1, n
-	    Wo(p,j) = VW(j,q,1-rev)
-	  enddo
+	  Vo(p,1:m) = VW(1:m,q,rev)
+	  Wo(p,1:n) = VW(1:n,q,1-rev)
 	enddo
 	end
 

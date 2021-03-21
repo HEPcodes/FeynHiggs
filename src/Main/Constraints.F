@@ -2,7 +2,7 @@
 * evaluation of electroweak precision observables
 * used as further constraints for the MSSM parameter space
 * this file is part of FeynHiggs
-* last modified 14 Feb 17 th
+* last modified 9 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -34,7 +34,7 @@
 	LambdaNP = (MSneu(1) + MStau(1) + MStau(2) + 
      &    MCha(1) + MCha(2) +
      &    MNeu(1) + MNeu(2) + MNeu(3) + MNeu(4))/9D0
-	gm2_2L_QEDfactor = -4*AlfaGF/pi*log(LambdaNP/MM)
+	gm2_2L_QEDfactor = -4*AlfaGF/pi*log(LambdaNP/Mf(2,2))
 
 * two-loop corrections from hep-ph/0312264
 	MSl2Diff(1,1) = (MStau(1) - MSneu(1))*(MStau(1) + MSneu(1))
@@ -82,7 +82,7 @@
 #endif
 
 	gm2 = (1 + gm2_2L_QEDfactor)*Re(gm2_1L) +
-     &    5/(24*pi**2)*AlfaGF**2*MM2/(MW2*SW2)*Re(gm2_2L)
+     &    5/(24*pi**2)*AlfaGF**2*Mf2(2,2)/(MW2*SW2)*Re(gm2_2L)
 
 * b) EDMs
 	call CalcEDMs(edmeTh, edmn, edmHg)

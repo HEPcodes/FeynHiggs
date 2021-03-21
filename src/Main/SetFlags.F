@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 16 Feb 18 th
+* last modified 12 Mar 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -83,9 +83,9 @@ c	  call setfpu
 
 	botResum = botResum_
 	Check(botResum, 0, 2, "botResum")
-	b = merge(1, 0, botResum .gt. 0)
-	bM = 4 + (bTR - 4)*b
-	bM0 = 4 + (bTR0 - 4)*b
+	b = merge(1, 0, botResum .eq. 0)
+	bM = bTR + (bTR1 - bTR)*b
+	bMps = bTRps + (bTR1ps - bTRps)*b
 
 	tlCplxApprox = tlCplxApprox_
 	Check(tlCplxApprox, 0, 3, "tlCplxApprox")
@@ -148,14 +148,8 @@ c	  call setfpu
 	print *, "env FHTLPSMASK ", tlpsmask
 30	continue
 
-	tlzeromask(1) = 0
-	tlzeromask(2) = 0
-	tlzeromask(3) = 0
-	tlzeromask(4) = 0
-	call getenv("FHTLZEROMASK", env)
-	read(env, *, end=31, err=31) tlzeromask
-	print *, "env FHTLZEROMASK ", tlzeromask
-31	continue
+	call getenv("FHTLZERO", env)
+	if( env(1:1) .ne. ' ' ) call ParseTLZero(env)
 
 	loglevelmt = loglevel
 	call getenv("FHLOGLEVELMT", env)
@@ -193,8 +187,13 @@ c	  call setfpu
 	print *, "env FHDMTLIMIM ", dmtlimim
 90	continue
 
+	interpolateEFT = 1
+	call getenv("FHINTERPOLATEEFT", env)
+	read(env, *, end=100, err=100) interpolateEFT
+	print *, "env FHINTERPOLATEEFT ", interpolateEFT
+100	continue
+
 	call getenv("FHEXTSE", extSE)
-	l = len_trim(extSE)
 	if( extSE(1:1) .ne. ' ' )
      &    print *, "env FHEXTSE ", extSE(1:len_trim(extSE))
 
@@ -244,4 +243,62 @@ c	  call setfpu
 	call FHSetFlags(error,
      &    Flag(1), Flag(2), Flag(3), Flag(4), Flag(5),
      &    Flag(6), Flag(7), Flag(8))
+	end
+
+
+************************************************************************
+
+	subroutine ParseTLZero(s)
+	implicit none
+	character*(*) s
+
+#include "FH.h"
+
+	character*4 keyword(se2Rn+se2Rc)
+	data keyword /
+     &    "h0h0", "HHHH", "A0A0", "HmHp", "h0HH", "h0A0", "HHA0",
+     &    "asat", "atat", "asab", "atab", "sdMT", "sDRb" /
+
+	integer zero, last, token, mask, i
+
+	integer NextToken
+	external NextToken
+
+	zero = 0
+	last = 1
+
+	do while( .TRUE. )
+	  token = NextToken(s, last)
+	  if( token .eq. 0 ) exit
+
+	  do while( token + 3 .lt. last )
+	    do i = 1, se2Rn+se2Rc
+	      if( s(token:token+3) .eq. keyword(i) ) then
+	        zero = ior(zero, ishft(1, i))
+	        exit
+	      endif
+	    enddo
+	    token = token + 4
+	    if( s(token:token) .eq. ":" ) token = token + 1
+	  enddo
+
+	  if( zero .eq. 0 ) cycle
+
+	  mask = ibits(zero, 0, se2Rn+1)
+	  if( mask .eq. 0 ) mask = 2**(se2Rn+1) - 1
+	  zero = ishft(zero, -se2Rn-1)
+	  if( zero .eq. 0 ) zero = -1
+	  i = 0
+	  do while( zero .ne. 0 )
+	    i = i + 1
+	    if( btest(zero, 0) ) tlzeromask(i) = ior(tlzeromask(i), mask)
+	    zero = ishft(zero, -1)
+	  enddo
+	enddo
+
+100	format(" env FHTLZERO ", A, B9.8)
+	do i = 1, se2Rc
+	  if( tlzeromask(i) .ne. 0 )
+     &      print 100, keyword(se2Rn+i), tlzeromask(i)
+	enddo
 	end
