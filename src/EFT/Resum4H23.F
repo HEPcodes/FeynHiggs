@@ -24,88 +24,66 @@
 
 	integer fail
 	RealType x(nSM)
-	RealType yOS, msMS, logarg
-	RealType g1uC, g1uC2, g1dC, g1dC2
-	RealType g2uC, g2uC2, g2dC, g2dC2
-	RealType htC, htC2, lC
-	RealType gMs, gMs2, gyMs, gyMs2
-	RealType tbMs, sbMs, sbMs2, cbMs2, c2bMs, s2bMs
+	RealType lamTree, lamOL, Mh0tree2
+	RealType dmz2, gOS, gyOS, gOS2, gyOS2
+	RealType g1uOS, g1uOS2, g1dOS, g1dOS2
+	RealType g2uOS, g2uOS2, g2dOS, g2dOS2
 	RealType htMT2sub, sublog1L, sublog2L
 	RealType subnonlog1L, subnonlog2La, subnonlog2Lb
 	RealType dlam_asatOS, dlam_atatOS
-	RealType Mh2, tSS(5)
+	RealType Mh2, tSS(5), tSSq(5)
 	RealType XtOS, YtOS
 	RealType dup1, dup2
 
 	external threshdiff
 
-	yOS = xOS + mueOS*(1/TB + TB)
 	XtOS = xOS*MSUSYOS
 	YtOS = yOS*MSUSYOS
 
-	if( drbarvars .eq. 1 ) then
-	  xMS = xOS
-	  mueMS = mueOS
-	  if( loglevel .gt. 2 ) then
-	    call loopfun4H(lfmueMS, mueMS)
-	    call TLthresholdasat(dlam_asatMS, xMS*MSUSYOS)
-	    call TLthresholdatatCoeff(clam_atat, MSUSYOS)
-	  endif
-	else
-	  if( loglevelXt .eq. 2 ) then
-	    xMS = .75D0*htMT2*xOS1
-	    xMS = xOS*(1 + k1L*(4*g3MT2 - xMS)*llog)
-	    mueMS = mueOS
-	    if( loglevel .gt. 2 ) then
-	      call loopfun4H(lfmueMS, mueMS)
-	      call TLthresholdasat(dlam_asatMS, xMS*MSUSYOS)
-  	      call TLthresholdatatCoeff(clam_atat, MSUSYOS)
-	    endif
-	  else
-	    call loopfun4H(lfmueOS, mueOS)
-	    xMS = 32/3D0*g3MT2 + (6 - pi*sqrt3)*htMT2*yOS/TB2
-	    logarg = abs(xOS)*Mf(tMT1,3)/MSUSYOS
-	    if( logarg .gt. 1D-12 ) xMS = xMS + xOS*(
-     &        4/3D0*g3MT2*(5 + 3*llog - xOS) -
-     &        .75D0*htMT2/SB2*(
-     &          2*lfmueOS(4) - mueOS**2*lfmueOS(2) - 3 +
-     &          (llog - 35/6D0)*SB2 +
-     &          (4/3D0*log2 + 2*log(logarg))*SB2*xOS2 -
-     &          (4/9D0*pi*sqrt3 - 2)*CB2*yOS**2 )
-     &        )
-	    msMS = 1 + k1L*(-16/3D0*g3MT2 +
-     &        .75D0*htMT2/SB2*(lfmueOS(5) + CB2 +
-     &          2*SB2*xOS2 - (pi/sqrt2 - 2)*CB2*yOS**2))
-	    xMS = (xOS + k1L*xMS)/msMS
-	    tSUSYMS = tSUSYOS + log(msMS**2)
-	    mueMS = mueOS/msMS
-	    call loopfun4H(lfmueMS, mueMS)
-	    call TLthresholdasat(dlam_asatMS, xMS*msMS*MSUSYOS)
-	    call TLthresholdatatCoeff(clam_atat, MSUSYOS)
-	  endif
-        endif
-	xMS2 = xMS**2
-
-#ifdef DETAILED_DEBUG
-	DEFT "xOS =", xOS	ENDL
-	DEFT "xMS =", xMS	ENDL
-	DEFT "mueOS =", mueOS	ENDL
-	DEFT "mueMS =", mueMS	ENDL
-#endif
+	call loopfun4H(lfmueMS, mueMS)
+	if( loglevel .gt. 2 ) then
+	  call TLthresholdasat(dlam_asatMS, MSQq, MSUq,
+     &                         xMS*sqrt(MSQq*MSUq), matchsf*MSUSYOS)
+	  call TLthresholdatatCoeff(clam_atatq, MSQq, MSUq, MUEq,
+     &                              matchsf*MSUSYOS)
+	endif
 
 * evaluate loopfunctions necessary for threshold corrections
-	call loopfunSf(lfSf, MStQ/MStU)
+	call loopfunSf(lfSf, MSS0(3,3)/MSS0(4,3))
+	call loopfunSf(lfSfq, MSQq/MSUq)
+
+	if( gMSSMthresholds .eq. 1 ) then
+	  call loopfunSf6(htlfSf(1), MSS0(3,3)/m_3OS)
+	  call loopfunSf6(htlfSf(2), MSS0(4,3)/m_3OS)
+	  call loopfunSf9(htlfSf(3), MSS0(3,3)/m_3OS, MSS0(4,3)/m_3OS)
+	  htlfSf(4) = lfSf(5)
+	  call loopfunSf6(htlfSf(5), MSS0(3,3)/(mueOS*MSUSYOS))
+	  call loopfunSf6(htlfSf(6), MSS0(4,3)/(mueOS*MSUSYOS))
+	endif
+
 	call loopfunIno(lfM12, Re(M_1)/(mueOS*MSUSYOS),
      &                         Re(M_2)/(mueOS*MSUSYOS))
+	call loopfunIno(lfM12q, Re(M_1)/MUEq, Re(M_2)/MUEq)
 
 	tSS(:) = 2/3D0*log(abs(MSS0(:,1)*MSS0(:,2)*MSS0(:,3)))
+	tSSq = tSS
+	tSSq(3) = 2/3D0*log(abs(MSS0(3,1)*MSS0(3,2)*MSQq))
+	tSSq(4) = 2/3D0*log(abs(MSS0(4,1)*MSS0(4,2)*MSUq))
+	tSSq(5) = 2/3D0*log(abs(MSS0(5,1)*MSS0(5,2)*MSDq))
 	tSS1 = 3*tSS(tQ(2)) + 6*tSS(tU(2)) +
      &    tSS(tQ(3)) + 8*tSS(tU(3)) + 2*tSS(tU(4))
+	tSS1q = 3*tSSq(tQ(2)) + 6*tSSq(tU(2)) +
+     &    tSSq(tQ(3)) + 8*tSSq(tU(3)) + 2*tSSq(tU(4))
 	tSS2 = tSS(tQ(2)) + 3*tSS(tQ(3))
-	tSQ = 2*log(abs(MStQ))
-	tSU = 2*log(abs(MStU))
+	tSS2q = tSSq(tQ(2)) + 3*tSSq(tQ(3))
+	tSQ = 2*log(abs(MSS0(3,3)))
+	tSQq = 2*log(MSQq)
+	tSU = 2*log(abs(MSS0(4,3)))
+	tSUq = 2*log(MSUq)
 	tA0 = log(MA02)
-	tMUE = 2*log(abs(mueOS*MSUSYOS))
+	tA0q = log(MA02q)
+	tMUE = 2*log(mueOS*MSUSYOS)
+	tMUEq = 2*log(MUEq)
 	tM_2 = log(Sq(M_2))
 
 	if( (finfieldren .eq. 1) .AND. (tbdef .eq. 0) ) then
@@ -119,11 +97,19 @@
 	x(ig) = gMT
 	x(igy) = gyMT
 	x(ig3) = g3MT
-	x(iht) = htMT
+	if( gMSSMthresholds .eq. 0 ) then
+	  x(iht) = htMT
+	else
+	  x(iht) = htMT/SB
+	endif
 	x(itb) = TB
 
 * solve for x using Newton procedure
 	call FindMinimum(fail, threshdiff, x, nSM - 1)
+
+	if ( matchsf .eq. 1 ) then
+	  HScouplings = x
+	endif
 
 #include "FOSubtract.h"
 
@@ -131,30 +117,13 @@
 	  Mh2 = x(ilam) + subnonlog2Lb
 	  if( loglevel .lt. 3 ) Mh2 = Mh2 + subnonlog2La
 	  Mh2 = vev**2*Mh2
-#define Q Mf2(3,3)
-	  Mh2 = Mh2 - k1L/vev**2*(
-     &      6*Mf2(3,3)*(Mh2 - 4*Mf2(3,3))*
-     &        Re(B0q(Mh2,Mf2(3,3),Mf2(3,3),Q)) +
-     &      .5D0*(Mh2*(Mh2 - 4*MZ2) + 12*MZ2**2)*
-     &        Re(B0q(Mh2,MZ2,MZ2,Q)) +
-     &      (Mh2*(Mh2 - 4*MW2) + 12*MW2**2)*
-     &        Re(B0q(Mh2,MW2,MW2,Q)) +
-     &      Mh2*( 6*Re(A0q(Mf2(3,3),Q)) +
-     &        (7*MW2 - 4*MZ2)*Re(A0q(MZ2,Q))/(MZ2 - MW2) -
-     &        3*MW2*Re(A0q(Mh2,Q))/(Mh2 - MW2) +
-     &        (3*(Mh2/(Mh2 - MW2) - MW2/(MZ2 - MW2)) - 11)*
-     &          Re(A0q(MW2,Q)) +
-     &        4.5D0*Mh2*Re(B0q(Mh2,Mh2,Mh2,Q)) +
-     &        .5D0*(Mh2 + MZ2 + 2*MW2 - 6*Mf2(3,3)) ) -
-     &      4*(MZ2**2 + 2*MW2**2) )
 	  res = Mh2
 	else if( looplevel .eq. 1 ) then
-	  res = vev**2*sublog1L + vMS2*(subnonlog1L - subnonlog2Lb)
-	  if( loglevel .lt. 3 ) res = res - vMS2*subnonlog2La
+	  res = vev**2*(sublog1L + subnonlog1L)
 	  res = vev**2*x(ilam) - res
 	else
-	  res = vev**2*(sublog1L + sublog2L) + vMS2*subnonlog1L
-	  if( loglevel .ge. 3 ) res = res + vMS2*subnonlog2La
+	  res = vev**2*(sublog1L + sublog2L) + vev**2*subnonlog1L
+	  if( loglevel .ge. 3 ) res = res + vev**2*subnonlog2La
 	  res = vMS2*x(ilam) - res
 	endif
 
@@ -192,6 +161,7 @@
 	RealType yg1d2, yg2d2, yg1u2, yg2u2
 	RealType dx2, yMS
 	RealType dlam_atatMS
+	RealType tmp
 
 	external betaSM2L, betaSplit2L
 
@@ -213,40 +183,44 @@
 	yC2B = yCB2*(1 - y(itb))*(1 + y(itb))
 	yS2B = 2*ySB*yCB
 
+	if( gMSSMthresholds .eq. 1) then
+	  yht2 = y(iht)**2*ySB2
+	endif
+
 * threshold corrections at Q = MSUSY
 
 	y(ig1d) = y(igy)*yCB*(1 - k1L/48D0*(
      &    12*xMS2*yht2 +
-     &    9*yg2*(2 - (7 - 6*tA0 + 6*tSUSYMS)*ySB2) +
-     &    ygy2*(4*(33 - 2*tA0 + 42*tSUSYMS) -
-     &      3*(7 - 6*tA0 + 6*tSUSYMS)*ySB2 - 8*tSS1) ))
+     &    9*yg2*(2 - (7 - 6*tA0q + 6*tMatch)*ySB2) +
+     &    ygy2*(4*(33 - 2*tA0q + 42*tMatch) -
+     &      3*(7 - 6*tA0q + 6*tMatch)*ySB2 - 8*tSS1q) ))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig1d) =", y(ig1d) ENDL
 #endif
 
 	y(ig2d) = y(ig)*yCB*(1 - k1L/48D0*(
      &    6*(ygy2 + 2*xMS2*yht2) -
-     &    3*(7 - 6*tA0 + 6*tSUSYMS)*ygy2*ySB2 +
-     &    yg2*(32 - 8*tA0 + 104*tSUSYMS +
-     &      (33 - 42*tA0 + 42*tSUSYMS)*ySB2 - 24*tSS2) ))
+     &    3*(7 - 6*tA0q + 6*tMatch)*ygy2*ySB2 +
+     &    yg2*(32 - 8*tA0q + 104*tMatch +
+     &      (33 - 42*tA0q + 42*tMatch)*ySB2 - 24*tSS2q) ))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig2d) =", y(ig2d) ENDL
 #endif
 
 	y(ig1u) = y(igy)*(ySB + k1L/48D0/ySB*(
-     &    12*yht2*(9 + 7*tSQ - 13*tSU + 6*tSUSYMS - xMS2*ySB**2) -
-     &    ySB**2*(9*(2 - (7 - 6*tA0 + 6*tSUSYMS)*yCB2)*yg2 +
-     &      ygy2*(132 - tA0*(8 - 18*yCB2) +
-     &      6*tSUSYMS*(28 - 3*yCB2) - 21*yCB2 - 8*tSS1)) ))
+     &    12*yht2*(9 + 7*tSQ - 13*tSU + 6*tMatch - xMS2*ySB**2) -
+     &    ySB**2*(9*(2 - (7 - 6*tA0q + 6*tMatch)*yCB2)*yg2 +
+     &      ygy2*(132 - tA0q*(8 - 18*yCB2) +
+     &      6*tMatch*(28 - 3*yCB2) - 21*yCB2 - 8*tSS1q)) ))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig1u) =", y(ig1u) ENDL
 #endif
 
 	y(ig2u) = y(ig)*(ySB + k1L/48D0/ySB*(
-     &    12*yht2*(9 - 9*tSQ + 3*tSU + 6*tSUSYMS - xMS2*ySB**2) -
-     &    ySB**2*(3*(2 - (7 - 6*tA0 + 6*tSUSYMS)*yCB2)*ygy2 +
-     &      yg2*(32 - 8*tA0 + 104*tSUSYMS +
-     &        (33 - 42*tA0 + 42*tSUSYMS)*yCB2 - 24*tSS2)) ))
+     &    12*yht2*(9 - 9*tSQ + 3*tSU + 6*tMatch - xMS2*ySB**2) -
+     &    ySB**2*(3*(2 - (7 - 6*tA0q + 6*tMatch)*yCB2)*ygy2 +
+     &      yg2*(32 - 8*tA0q + 104*tMatch +
+     &        (33 - 42*tA0q + 42*tMatch)*yCB2 - 24*tSS2q)) ))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig2u) =", y(ig2u) ENDL
 #endif
@@ -258,16 +232,16 @@
 #endif
 
 * lambda(MSUSY): 1L DRbar -> MSbar
-	y(ilam) = y(ilam) -
+	y(ilam) = y(ilam) - supfac*
      &    k1L/12D0*((9 - 2*yC2B**2)*yg2**2 + 6*yg2*ygy2 + 3*ygy2**2)
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff:        +1MS =", y(ilam) ENDL
 #endif
 
 * lambda(MSUSY): 1L heavy Higgs
-	y(ilam) = y(ilam) -
+	y(ilam) = y(ilam) - supfac*
      &    k1L*(3/4.D0*(yC2B**2*(yg2 + ygy2)**2*yS2B**2) -
-     &       1/192.D0*((tA0 - tSUSYMS)*
+     &       1/192.D0*((tA0q - tMatch)*
      &          (53*yg2**2 + 42*yg2*ygy2 + 29*ygy2**2 -
      &            4*(ygy2**2 + yg2*(7*yg2 + 6*ygy2))*(yC2B - yS2B)*
      &             (yC2B + yS2B) -
@@ -278,16 +252,16 @@
 #endif
 
 * lambda(MSUSY): 1L sfermions
-	y(ilam) = y(ilam) -
+	y(ilam) = y(ilam) - supfac*
      &    k1L/12.D0*(yht2*(6*
-     &           (yC2B*(3*tSUSYMS*yg2 - tSQ*(3*yg2 - ygy2) +
-     &                (-4*tSU + 3*tSUSYMS)*ygy2) -
-     &             6*(tSQ + tSU - 2*tSUSYMS)*yht2) -
-     &          3*xMS2*(yht2*(24*lfSf(1) - 2*xMS2*lfSf(2)) +
-     &             yC2B*(3*(ygy2*lfSf(3) + yg2*lfSf(4)) -
-     &                yC2B*(yg2 + ygy2)*lfSf(5)))) +
-     &       yC2B**2*(4*tSUSYMS*(3*yg2**2 + 5*ygy2**2) -
-     &          3*yg2**2*tSS2 - ygy2**2*tSS1))
+     &           (yC2B*(3*tMatch*yg2 - tSQq*(3*yg2 - ygy2) +
+     &                (-4*tSUq + 3*tMatch)*ygy2) -
+     &             6*(tSQq + tSUq - 2*tMatch)*yht2) -
+     &          3*xMS2*(yht2*(24*lfSfq(1) - 2*xMS2*lfSfq(2)) +
+     &             yC2B*(3*(ygy2*lfSfq(3) + yg2*lfSfq(4)) -
+     &                yC2B*(yg2 + ygy2)*lfSfq(5)))) +
+     &       yC2B**2*(4*tMatch*(3*yg2**2 + 5*ygy2**2) -
+     &          3*yg2**2*tSS2q - ygy2**2*tSS1q))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff:        +1sf =", y(ilam) ENDL
 #endif
@@ -309,8 +283,8 @@
      &            (6 - (12 - xMS2)*xMS2)*lfmueMS(2)) +
      &          8*lfmueMS(3)))/ySB2
 	  else
-	    call TLthresholdatat(dlam_atatMS, clam_atat,
-     &        xMS*MSUSYOS, yMS*MSUSYOS, yTB2, ySB2)
+	    call TLthresholdatat(dlam_atatMS, clam_atatq,
+     &        xMS*sqrt(MSQq*MSUq), yMS*sqrt(MSQq*MSUq), yTB2, ySB2)
 	  endif
 	  y(ilam) = y(ilam) + k2L*yht2**2*
      &      (4*y(ig3)**2*dlam_asatMS + yht2*dlam_atatMS)
@@ -319,6 +293,30 @@
 	  DEFT "threshdiff: dlam_asatMS =", dlam_asatMS ENDL
 	  DEFT "threshdiff: dlam_atatMS =", dlam_atatMS ENDL
 #endif
+	endif
+
+	if( gMSSMthresholds .eq. 1) then
+	  tmp = 4/3D0*y(ig3)**2*(1 + tGlu - tMatch
+     &                             + htlfSf(1) + htlfSf(2)
+     &                             - Xtq/m_3OS*htlfSf(3))
+     &              + yht2*(  3/4D0*(tMUEq - tMatch)/ySB2
+     &                      + 3/8D0*(2*(tA0q - tMatch) - 1)/yTB2
+     &                      - xMS2/4D0*htlfSf(4) + htlfSf(5)/ySB2
+     &                      + htlfSf(6)/(2*ySB2))
+
+	  y(iht) = y(iht)*ySB*(1 + k1L*tmp)
+
+	  if( loglevel .gt. 2 ) then
+	    y(ilam) = y(ilam) + supfac*4*k2L*tmp*yht2**2
+     &                      *(  3*(tSQq + tSUq - 2*tMatch)
+     &                        + 6*xMS2*(lfSfq(1) - xMS2/12D0*lfSfq(2)))
+	  endif
+
+	  y(ig3) = y(ig3) - k1L*y(ig3)**3*(1/2D0 - tGlu + tMatch
+     &      - 1/6D0*(  2*log(MSS0(3,1)) + log(MSS0(4,1))+ log(MSS0(5,1))
+     &               + 2*log(MSS0(3,2)) + log(MSS0(4,2))+ log(MSS0(5,2))
+     &               + 2*log(MSQq) + log(MSUq)+ log(MSDq)
+     &               - 6*tMatch))
 	endif
 
 * threshold between tbMSSM and tbTHDM
@@ -330,20 +328,21 @@
      &             - 1/8D0*k1L*(3*yg2*db0m2mue + ygy2*db0m1mue)
      &                        *(y(itb)-1/y(itb)))
 	endif
+
 * run from Q = MSUSY to Q = MCha with Split RGEs
 
 	call ODESolve(nSplit, betaSplit2L, y,
-     &    tSUSYMS, tCha, odeeps, odeh1, 0)
+     &    tMatch, tChaq, odeeps, odeh1, 0)
 
 * threshold conditions @ MCha
 
-	y(ig) = y(ig)*(1 - k1L/3.D0*(3*tCha - tMUE - 2*tM_2)*yg2)
+	y(ig) = y(ig)*(1 - k1L/3.D0*(3*tChaq - tMUEq - 2*tM_2)*yg2)
 	yg2 = y(ig)**2
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig) =", y(ig) ENDL
 #endif
 
-	y(igy) = y(igy)*(1 - k1L/3.D0*(tCha - tMUE)*ygy2)
+	y(igy) = y(igy)*(1 - k1L/3.D0*(tChaq - tMUEq)*ygy2)
 	ygy2 = y(igy)**2
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(igy) =", y(igy) ENDL
@@ -355,33 +354,33 @@
 	yg2d2 = y(ig2d)**2
 
 	y(iht) = (1 -
-     &      k1L/12.D0*((3*tCha - 3*tMUE)*
+     &      k1L/12.D0*((3*tChaq - 3*tMUEq)*
      &          (yg1d2 + yg1u2 + 3*(yg2d2 + yg2u2)) -
-     &         (yg1d2 + yg1u2)*lfM12(6,1) -
-     &         3*(yg2d2 + yg2u2)*lfM12(6,2) -
-     &         2*lfM12(5,1)*y(ig1d)*y(ig1u) -
-     &         6*lfM12(5,2)*y(ig2d)*y(ig2u)))*y(iht)
+     &         (yg1d2 + yg1u2)*lfM12q(6,1) -
+     &         3*(yg2d2 + yg2u2)*lfM12q(6,2) -
+     &         2*lfM12q(5,1)*y(ig1d)*y(ig1u) -
+     &         6*lfM12q(5,2)*y(ig2d)*y(ig2u)))*y(iht)
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(iht) =", y(iht) ENDL
 #endif
 
 	y(ilam) = y(ilam) -
-     &    k1L/12.D0*(7*(yg1d2**2 + yg1u2**2)*lfM12(1,1) +
-     &       27*(yg2d2**2 + yg2u2**2)*lfM12(2,2) +
-     &       14*(yg1d2*yg2d2 + yg1u2*yg2u2)*lfM12(2,3) +
-     &       18*yg1d2*yg1u2*lfM12(3,1) +
-     &       2*(yg1u2*yg2d2 + yg1d2*yg2u2)*lfM12(3,3) +
-     &       42*yg2d2*yg2u2*lfM12(4,2) +
-     &       16*lfM12(4,3)*(y(ig1u)*y(ig2d) + y(ig1d)*y(ig2u))*
+     &    supfac*k1L/12.D0*(7*(yg1d2**2 + yg1u2**2)*lfM12q(1,1) +
+     &       27*(yg2d2**2 + yg2u2**2)*lfM12q(2,2) +
+     &       14*(yg1d2*yg2d2 + yg1u2*yg2u2)*lfM12q(2,3) +
+     &       18*yg1d2*yg1u2*lfM12q(3,1) +
+     &       2*(yg1u2*yg2d2 + yg1d2*yg2u2)*lfM12q(3,3) +
+     &       42*yg2d2*yg2u2*lfM12q(4,2) +
+     &       16*lfM12q(4,3)*(y(ig1u)*y(ig2d) + y(ig1d)*y(ig2u))*
      &        (y(ig1d)*y(ig2d) + y(ig1u)*y(ig2u)) +
      &       8*y(ig1d)*y(ig1u)*
-     &        (4*lfM12(1,3)*y(ig2d)*y(ig2u) +
-     &          lfM12(5,1)*(2*(yg1d2 + yg1u2) - y(ilam))) +
-     &       24*lfM12(5,2)*y(ig2d)*y(ig2u)*
+     &        (4*lfM12q(1,3)*y(ig2d)*y(ig2u) +
+     &          lfM12q(5,1)*(2*(yg1d2 + yg1u2) - y(ilam))) +
+     &       24*lfM12q(5,2)*y(ig2d)*y(ig2u)*
      &        (2*(yg2d2 + yg2u2) - y(ilam)) -
-     &       12*((1/3.D0*((yg1d2 + yg1u2)*lfM12(6,1)) +
-     &             (yg2d2 + yg2u2)*lfM12(6,2))*y(ilam) +
-     &          .5D0*(tCha - tMUE)*
+     &       12*((1/3.D0*((yg1d2 + yg1u2)*lfM12q(6,1)) +
+     &             (yg2d2 + yg2u2)*lfM12q(6,2))*y(ilam) +
+     &          .5D0*(tChaq - tMUEq)*
      &           (yg1d2**2 + yg1u2**2 +
      &             2*(yg1u2 + yg2d2)*(yg1d2 + yg2u2) +
      &             5*(yg2d2**2 + yg2u2**2) +
@@ -394,12 +393,7 @@
 * run from Q = MCha to Q = MT with SM RGEs
 
 	call ODESolve(nSM, betaSM2L, y,
-     &    tCha, tTop, odeeps, odeh1, 0)
-
-* return lambda(MT)
-* (must do this explicitly since minimization does not extend over lambda)
-
-	x(ilam) = y(ilam)
+     &    tChaq, tTop, odeeps, odeh1, 0)
 
 * calc difference to known values of SM couplings @MT
 
@@ -434,7 +428,14 @@
 #endif
 
 	dxmin = dx2
+
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: dxmin =", dxmin ENDL
 #endif
+
+* return lambda(MT)
+* (must do this explicitly since minimization does not extend over lambda)
+
+	x(ilam) = y(ilam)
+
 	end

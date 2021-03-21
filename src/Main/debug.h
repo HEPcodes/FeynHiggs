@@ -28,6 +28,9 @@ if( para_valid .ne. valid ) Error(err, "must set parameters before")
 #define CheckSf(err) \
 if( sf_valid .ne. valid ) call SfermionsDelayed(err)
 
+#define CheckdZHfin(err) \
+if( dZHfin_valid .ne. valid .and. finfieldren .ne. 0) call CalcdZHfin
+
 #define CheckTL(err) \
 if( looplevel .gt. 1 .and. tl_valid .ne. valid ) call CalcRenSETL(err)
 
@@ -75,4 +78,3 @@ c#define zO zRan
 #define DTAGimz(i,x) DTAGz(iIm(i),Im(x))
 
 #endif
-

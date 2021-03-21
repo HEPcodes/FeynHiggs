@@ -296,7 +296,7 @@
      &             ygy2 - 156*ygy2**2 +
      &            4*(-135*yg2 + 81*(yg1u2 + yg2u2) - 480*yg32 -
      &               85*ygy2)*yht2 + 648*yht2**2 +
-     &            24*(17*yg2 - 6*ylam2) +
+     &            24*(17*yg2**2 - 6*ylam2) +
      &            288*(yg1ud2 + yg2u2)*y(ilam)))*y(ig1u) +
      &      72*(4 - k1L*(3*yg1d2 + 8*yg1u2 - 17*yg2 + 11*yg2d2 +
      &            6*yg2u2 - ygy2 + 12*yht2 + 4*y(ilam)))*y(ig1d)*

@@ -84,6 +84,84 @@
 	endif
 	end
 
+	subroutine loopfunSf6(f, x)
+	implicit none
+	RealType f, x
+
+#include "FH.h"
+
+	RealType x1, x2, L2
+
+	x1 = (1 - x)*(1 + x)
+	if( abs(x1) .lt. 1D-5 ) then
+	  f = 0
+	else
+	  x2 = x**2
+	  L2 = log(x2)/x1
+* F6~(x) Eq. (70a)
+	  f = -1/4D0/x1*(1 + (2 - x2)*(1 + 2*x2*L2))
+	endif
+	end
+
+
+	subroutine loopfunSf9(f, x, y)
+	implicit none
+	RealType f, x, y
+
+#include "FH.h"
+
+	RealType x1, x2, Lx2
+	RealType y1, y2, Ly2
+
+	x1 = (1 - x)*(1 + x)
+	y1 = (1 - y)*(1 + y)
+
+	if( abs(x-y) .lt. 1D-5 ) then
+	  if( abs(x1) .lt. 1D-5 ) then
+c           x == y == 1
+	    f = 1D0
+          else
+c           x == y
+            x2 = x**2
+            Lx2 = log(x2)
+
+            f = -2*(1-x2+Lx2)/x1**2
+          endif
+	else
+	  if( abs(x1) .lt. 1D-5 ) then
+	    if( abs(y1) .lt. 1D-5 ) then
+c             x == y == 1
+	      f = 1D0
+	    else
+c             x == 1, y != 1
+              y2 = y**2
+              Ly2 = log(y2)
+
+	      f = 2*(y1+y2*Ly2)/y1**2
+	    endif
+          else
+	    if( abs(y1) .lt. 1D-5 ) then
+c             x != 1, y == 1
+              x2 = x**2
+              Lx2 = log(x2)
+
+	      f = 2*(x1+x2*Lx2)/x1**2
+	    else
+c             x != 1, y != 1
+              x2 = x**2
+              Lx2 = log(x2)
+              y2 = y**2
+              Ly2 = log(y2)
+
+* F9~(x,y) Eq. (70d)
+	      f = -2*(x2*Lx2/x1-y2*Ly2/y1)/(x2-y2)
+	    endif
+
+	  endif
+	endif
+
+	end
+
 
 ************************************************************************
 * loop functions for the gaugino-Higgsino contribution to lambda & gt

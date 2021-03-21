@@ -10,9 +10,9 @@
 
 * conventions according to arXiv:1407.4081v2
 
-	subroutine TLthresholdasat(dlam_asat, Q)
+	subroutine TLthresholdasat(dlam_asat, MSQ_, MSU_, Xt_, Q)
 	implicit none
-	RealType dlam_asat, Q
+	RealType dlam_asat, MSQ_, MSU_, Xt_, Q
 
 #include "Resum4H.h"
 
@@ -22,17 +22,17 @@
 	RealType eps
 	parameter (eps = 1D-2)
 
-	LGlq2 = tGlu - tSUSYOS
+	LGlq2 = tGlu - 2*log(Q)
 
 	sg = 1/Re(m_3OS)
 c	sg = 1/abs(m_3OS)
-	xg = Q*sg
-	rSQ = MStQ*sg
+	xg = Xt_*sg
+	rSQ = MSQ_*sg
 	xSQ = rSQ**2
 	xSQ1 = (1 - rSQ)*(1 + rSQ)
 	LSQ = log(xSQ)
 	Li2SQ = Li21m(1/xSQ)
-	rSU = MStU*sg
+	rSU = MSU_*sg
 	xSQU2 = (rSQ - rSU)*(rSQ + rSU)
 
 	if( abs(xSQU2) .lt. eps ) then
@@ -207,4 +207,3 @@ c	sg = 1/abs(m_3OS)
 
 	dlam_asat = (-2*tmp1)/(xSQ*xSQ1**2*xSQU2**4*xSU*xSU1**2)
 	end
-

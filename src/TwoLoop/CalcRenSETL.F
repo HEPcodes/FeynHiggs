@@ -57,6 +57,8 @@
 	  blurb = .FALSE.
 	endif
 
+	call SetTLalfas()
+
 	dMT1OS = 1 - Delta(tM2, tMD)
 
 	tlx = ior(tlxbits(tlCplxApprox), tlpsmask)
@@ -164,12 +166,16 @@
 	if( tM2 .eq. tMT .or. tM2 .eq. tMT1 ) then
 	  dMT = 0
 	  if( tlzeromask(asat) .eq. 0 )
-     &      dMT = dMT + 1/(3*pi)*Alfas2L*(4 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
+     &      dMT = dMT + 1/(3*pi)*AlfasMT*(4 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
 	  if( tlzeromask(atat) .eq. 0 ) then
 	    alfat = 1/(4*pi)*2*Mf2(tM2,3)/vev**2
 	    dMT = dMT - 1/(16*pi)*alfat*(8 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
 	  endif
 	  dMT = dMT*Mf(tM2,3)
+	  if( drbartopmass .eq. 1 ) then
+	    call DeltaMT_MSSM(dMT, AlfasMS, MSS0(3,3)*MSS0(4,3))
+	    dMT = - dMT
+	  endif
 	  call MTrepara(dMTshift, dMT)
 	  se2Rcat(h0h0,sdMT) = R_h0h0(rA, cpe(dMTshift))
 	  se2Rcat(HHHH,sdMT) = R_HHHH(rA, cpe(dMTshift))
@@ -177,6 +183,20 @@
 	  se2Rcat(A0A0,sdMT) = dMTshift(A0A0)
 	  se2Rcat(h0A0,sdMT) = R_h0A0(rA, cpo(dMTshift))
 	  se2Rcat(HHA0,sdMT) = R_HHA0(rA, cpo(dMTshift))
+
+* ensure that O(asat) h0h0 SM contribution is evaluated with alfasMT
+* (SM contribution taken form 1205.6497v2 eq. (20))
+	  if( (tlalfas .ne. 0)
+     &        .and. (tM2 .eq. tMT .or. tM2 .eq. tMT1)
+     &        .and. (loglevel .gt. 0) ) then
+	    se2Rcat(h0h0,sdMT) = se2Rcat(h0h0,sdMT)
+     &       -  (AlfasMT - Alfas2L)*Mf2(tM2,3)**2/(2*Pi**3*vev**2)
+     &         *(3*log(Mf2(tM2,3)/Mf2(3,3))**2 + log(Mf2(tM2,3)/Mf2(3,3)))
+     &       -  6*k1L*vev**2*(2*Mf2(tM2,3)/vev**2)**2
+     &                      *(1 + 2*log(Mf2(tM2,3)/Mf2(3,3)))
+     &                      *2/(3*pi)*(AlfasMT - Alfas2L)
+     &                               *(4 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
+	  endif
 	  if( debuglevel .ge. 4 ) then
 	    DSELF "dMT shifts:" ENDL
 	    DSELF "dMT =", dMT ENDL

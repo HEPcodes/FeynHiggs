@@ -111,6 +111,11 @@
 	  if( loglevelmt .eq. 0 ) Mf(tMT1,3) = MTMT
 	endif
 
+	if( drbartopmass .eq. 1 ) then
+	  call DeltaMT_MSSM(MTMT, AlfasMS, MSS0(3,3)*MSS0(4,3))
+	  MTMT = Mf(3,3) + MTMT
+	endif
+
 	Mf(tT,3) = MTMT
 	Mf(tMT,3) = Mf(tT,3)
 	Mf2(tT,3) = Mf(tT,3)**2
@@ -163,4 +168,3 @@
 	DPARA "dMTs       =", dMTs ENDL
 	DPARA "dMTy       =", dMTy ENDL
 	end
-

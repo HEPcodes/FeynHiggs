@@ -29,7 +29,7 @@ RenConst[dMHiggs1gl[3,4]] := -dMHiggs1gl[1,2]
 
 RenConst[dMHiggs1gl[5,5]] := dMHinsq1
 
-RenConst[dMHiggs1gl[5,6]] := ivev (dTHH1 - I dTA01) - MHin2 CB2 dTB1gl
+RenConst[dMHiggs1gl[5,6]] := ivev (dTHH1 + I dTA01) - MHin2 CB2 dTB1gl
 
 dMHiggs1gl[6,5] := Conjugate[dMHiggs1gl[5,6]]
 

@@ -90,7 +90,6 @@
 
 	AlfasMT = AlfasMZ/
      &    (1 + (11 - 10/3D0)/(4*pi)*AlfasMZ*log(Mf2(3,3)/MZ2))
-c	call AlphaS(AlfasMT, nf, Mf2(3,3))
 	gsMT2 = 4*pi*AlfasMT
 	gsMT = sqrt(gsMT2)
 
@@ -397,6 +396,25 @@ c	call AlphaS(AlfasMT, nf, Mf2(3,3))
 	character*(*) cplxmsg
 	parameter (cplxmsg = " in the presence of complex parameters")
 
+	gMSSMthresholds = 0
+	suppressedterms = 0
+	htMT3L = 0
+	matchsf = 1D0
+
+	pdscale = Mf2(3,3)
+	AlfasMS = AlfasMT/
+     &   (1 + 7/(4*pi)*AlfasMT*log(MSS0(tQ(3),3)*MSS0(tU(3),3)/MT2))
+	gsMS2 = 4*pi*AlfasMS
+	gsMS = sqrt(gsMS2)
+	AlfasPlus = AlfasMT*
+     &   (1 + 1/(4*pi)*AlfasMZ*log(MSS0(tQ(3),3)*MSS0(tU(3),3)/MT2))
+	gsPlus2 = 4*pi*AlfasPlus
+	gsPlus = sqrt(gsPlus2)
+	AlfasMinus = AlfasMT*
+     &   (1 + 1/(4*pi)*AlfasMZ*log(MSS0(tQ(3),3)*MSS0(tU(3),3)/MT2))
+	gsMinus2 = 4*pi*AlfasMinus
+	gsMinus = sqrt(gsMinus2)
+
 	CKM = CKMin
 	call MTatMT_SM
 
@@ -537,7 +555,6 @@ c tmp for TLps:
 	dTBfin = 0
 	if( finfieldren .ne. 0 ) then
 	  call CalcdZHfin
-	  if( tbdef .ne. 0 ) call TBrepara
 	endif
 
 	if( error .eq. 0 ) para_valid = valid
@@ -608,6 +625,28 @@ c tmp for TLps:
 	call flush(debugunit)
 	end
 
+************************************************************************
+* set Alfas used in TL corrections
+
+	subroutine SetTLalfas
+
+#include "FH.h"
+
+	if( tlalfas .eq. 1 ) then
+	  gs2L = gsPlus
+	  gs2L2 = gsPlus2
+	  Alfas2L = AlfasPlus
+	else if ( tlalfas .eq. 2 ) then
+	  gs2L = gsMinus
+	  gs2L2 = gsMinus2
+	  Alfas2L = AlfasMinus
+	else
+	  gs2L = gsMT
+	  gs2L2 = gsMT2
+	  Alfas2L = AlfasMT
+	endif
+
+	end
 
 ************************************************************************
 

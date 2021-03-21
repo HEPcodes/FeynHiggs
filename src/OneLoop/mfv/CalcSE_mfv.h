@@ -225,16 +225,16 @@
 
 	call td_HH_mfv(tdHH)
 
-        dZ1_(h0h0) = 
-     &   -(S2A*Re(dZ12H1fin)) + CA2*(Re(dZ22H1fin) + Re(dZh0h0)) + 
+        dZ1_(h0h0) =
+     &   -(S2A*Re(dZ12H1fin)) + CA2*(Re(dZ22H1fin) + Re(dZh0h0)) +
      &    SA2*(Re(dZ11H1fin) + Re(dZHHHH))
 
-        dZ1_(h0HH) = 
-     &   -(1/2.D0*(S2A*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) + 
+        dZ1_(h0HH) =
+     &   -(1/2.D0*(S2A*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) +
      &           Re(dZHHHH)))) + C2A*Re(dZ12H1fin)
 
-        dZ1_(HHHH) = 
-     &   S2A*Re(dZ12H1fin) + SA2*(Re(dZ22H1fin) + Re(dZh0h0)) + 
+        dZ1_(HHHH) =
+     &   S2A*Re(dZ12H1fin) + SA2*(Re(dZ22H1fin) + Re(dZh0h0)) +
      &    CA2*(Re(dZ11H1fin) + Re(dZHHHH))
 
 	if( inputmass.eq.A0A0 ) then
@@ -255,33 +255,33 @@
 
 	endif
 
-        dMsq1_(h0h0) = 
-     &   2*dA1*(CAB*MZ2*SAB + CBA*MA02*SBA) + 
-     &    CBA2*dMsq1_(A0A0) + 
+        dMsq1_(h0h0) =
+     &   2*dA1*(CAB*MZ2*SAB + CBA*MA02*SBA) +
+     &    CBA2*dMsq1_(A0A0) +
      &    CB2*(CAB*MZ2*SAB - CBA*MA02*SBA)*
-     &     (2*dTB1fin + Re(dZ12H1fin) - TB2*Re(dZ12H1fin) - 
-     &       TB*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) + 
-     &          Re(dZHHHH))) + SAB**2*Re(seZZ) + 
+     &     (2*dTB1fin + Re(dZ12H1fin) - TB2*Re(dZ12H1fin) -
+     &       TB*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) +
+     &          Re(dZHHHH))) + SAB**2*Re(seZZ) +
      &    1/2.D0*EL1L/(MW*SW)*
      &     ((1 + CBA2)*SBA*Re(tdh0) - CBA*SBA2*Re(tdHH))
 
-        dMsq1_(h0HH) = 
-     &   dA1*(CBA2*MA02 + MZ2*(-CAB**2 + SAB**2) - MA02*SBA2) - 
-     &    CBA*SBA*dMsq1_(A0A0) - 
-     &    1/2.D0*(CB2*(CBA2*MA02 + MZ2*(CAB**2 - SAB**2) - 
-     &         MA02*SBA2)*(2*dTB1fin + Re(dZ12H1fin) - 
-     &         TB2*Re(dZ12H1fin) - 
-     &         TB*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) + 
-     &            Re(dZHHHH)))) - CAB*SAB*Re(seZZ) + 
+        dMsq1_(h0HH) =
+     &   dA1*(CBA2*MA02 + MZ2*(-CAB**2 + SAB**2) - MA02*SBA2) -
+     &    CBA*SBA*dMsq1_(A0A0) -
+     &    1/2.D0*(CB2*(CBA2*MA02 + MZ2*(CAB**2 - SAB**2) -
+     &         MA02*SBA2)*(2*dTB1fin + Re(dZ12H1fin) -
+     &         TB2*Re(dZ12H1fin) -
+     &         TB*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) +
+     &            Re(dZHHHH)))) - CAB*SAB*Re(seZZ) +
      &    1/2.D0*EL1L/(MW*SW)*(CBA*CBA2*Re(tdh0) + SBA*SBA2*Re(tdHH))
 
-        dMsq1_(HHHH) = 
-     &   -2*dA1*(CAB*MZ2*SAB + CBA*MA02*SBA) + 
-     &    SBA2*dMsq1_(A0A0) - 
+        dMsq1_(HHHH) =
+     &   -2*dA1*(CAB*MZ2*SAB + CBA*MA02*SBA) +
+     &    SBA2*dMsq1_(A0A0) -
      &    CB2*(CAB*MZ2*SAB - CBA*MA02*SBA)*
-     &     (2*dTB1fin + Re(dZ12H1fin) - TB2*Re(dZ12H1fin) - 
-     &       TB*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) + 
-     &          Re(dZHHHH))) + CAB**2*Re(seZZ) - 
+     &     (2*dTB1fin + Re(dZ12H1fin) - TB2*Re(dZ12H1fin) -
+     &       TB*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) +
+     &          Re(dZHHHH))) + CAB**2*Re(seZZ) -
      &    1/2.D0*EL1L/(MW*SW)*
      &     (CBA2*SBA*Re(tdh0) - CBA*(1 + SBA2)*Re(tdHH))
 
@@ -299,43 +299,43 @@
 
 	call td_HH_mfv(tdHH)
 
-        dMsq1_(A0G0) = 
+        dMsq1_(A0G0) =
      &   1/4.D0*(-((2*(CB2*MA02 + C2B*(MA02 + MZ2)) - 2*MA02*SB2)*
-     &         Re(dZ12H1fin)) + 
-     &      MA02*(4*dBn1 - 4*CB2*dTB1fin + 2*C2B*Re(dZ12H1fin)) + 
+     &         Re(dZ12H1fin)) +
+     &      MA02*(4*dBn1 - 4*CB2*dTB1fin + 2*C2B*Re(dZ12H1fin)) +
      &      (MA02 + MZ2)*S2B*
-     &       (Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) + 
-     &         Re(dZHHHH)) + 
+     &       (Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) +
+     &         Re(dZHHHH)) +
      &      4*(1/2.D0*EL1L/(MW*SW))*(CBA*Re(tdh0) - SBA*Re(tdHH)))
 
-        dMsq1_(G0G0) = 
-     &   -(MZ2*(S2B*Re(dZ12H1fin) + 
-     &         SB2*(Re(dZ22H1fin) + Re(dZh0h0)) + 
-     &         CB2*(Re(dZ11H1fin) + Re(dZHHHH)))) + 
+        dMsq1_(G0G0) =
+     &   -(MZ2*(S2B*Re(dZ12H1fin) +
+     &         SB2*(Re(dZ22H1fin) + Re(dZh0h0)) +
+     &         CB2*(Re(dZ11H1fin) + Re(dZHHHH)))) +
      &    1/2.D0*EL1L/(MW*SW)*(SBA*Re(tdh0) + CBA*Re(tdHH))
 
 	dMsq1_(h0A0) = SBA*(1/2.D0*EL1L/(MW*SW))*Re(tdA0)
 
-        dMsq1_(h0G0) = 
-     &   -(1/2.D0*(CBA*(MZ2*Im(dZ12H1fin) + 
+        dMsq1_(h0G0) =
+     &   -(1/2.D0*(CBA*(MZ2*Im(dZ12H1fin) +
      &          2*(1/2.D0*EL1L/(MW*SW))*Re(tdA0))))
 
 	dMsq1_(HHA0) = CBA*(1/2.D0*EL1L/(MW*SW))*Re(tdA0)
 
-        dMsq1_(HHG0) = 
-     &   SBA*(1/2.D0*(MZ2*Im(dZ12H1fin)) + 
+        dMsq1_(HHG0) =
+     &   SBA*(1/2.D0*(MZ2*Im(dZ12H1fin)) +
      &      1/2.D0*EL1L/(MW*SW)*Re(tdA0))
 
-        dZ1_(A0A0) = 
-     &   -(S2B*Re(dZ12H1fin)) + CB2*(Re(dZ22H1fin) + Re(dZh0h0)) + 
+        dZ1_(A0A0) =
+     &   -(S2B*Re(dZ12H1fin)) + CB2*(Re(dZ22H1fin) + Re(dZh0h0)) +
      &    SB2*(Re(dZ11H1fin) + Re(dZHHHH))
 
-        dZ1_(A0G0) = 
-     &   -(1/2.D0*(S2B*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) + 
+        dZ1_(A0G0) =
+     &   -(1/2.D0*(S2B*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) +
      &           Re(dZHHHH)))) + C2B*Re(dZ12H1fin)
 
-        dZ1_(G0G0) = 
-     &   S2B*Re(dZ12H1fin) + SB2*(Re(dZ22H1fin) + Re(dZh0h0)) + 
+        dZ1_(G0G0) =
+     &   S2B*Re(dZ12H1fin) + SB2*(Re(dZ22H1fin) + Re(dZh0h0)) +
      &    CB2*(Re(dZ11H1fin) + Re(dZHHHH))
 
 	dZ1_(GmGp) = dZ1_(G0G0)
@@ -352,18 +352,18 @@
 
 	dZ1_(HmHp) = dZ1_(A0A0)
 
-        dMsq1_(GmGp) = 
-     &   -(MW2*dZ1_(G0G0)) + 
+        dMsq1_(GmGp) =
+     &   -(MW2*dZ1_(G0G0)) +
      &    1/2.D0*EL1L/(MW*SW)*(SBA*Re(tdh0) + CBA*Re(tdHH))
 
-        dMsq1_(HmGp) = 
+        dMsq1_(HmGp) =
      &   1/2.D0*(-((MHp2 + MW2)*
-     &         (dZ1_(A0G0) + cI*Im(dZ12H1fin))) + 
-     &      MHp2*(dZ1_(A0G0) - cI*Im(dZ12H1fin) - 
-     &         CB2*(2*Conjugate(dTB1fin) + Re(dZ12H1fin) - 
-     &            TB2*Re(dZ12H1fin) - 
-     &            TB*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) + 
-     &               Re(dZHHHH)))) + 
+     &         (dZ1_(A0G0) + cI*Im(dZ12H1fin))) +
+     &      MHp2*(dZ1_(A0G0) - cI*Im(dZ12H1fin) -
+     &         CB2*(2*Conjugate(dTB1fin) + Re(dZ12H1fin) -
+     &            TB2*Re(dZ12H1fin) -
+     &            TB*(Re(dZ11H1fin) - Re(dZ22H1fin) - Re(dZh0h0) +
+     &               Re(dZHHHH)))) +
      &      2*(1/2.D0*EL1L/(MW*SW))*
      &       (cI*Re(tdA0) + CBA*Re(tdh0) - SBA*Re(tdHH)))
 

@@ -223,7 +223,10 @@
 	RealType GammaW, GammaZ
 	RealType invAlfa0, invAlfaMZ, GF, vev, DeltaAlfa
 	RealType EL0, Alfa0, ELGF, AlfaGF, ELMZ, AlfaMZ
-	RealType gsMT, gsMT2, AlfasMT, AlfasMZ, AlfasDb, AlfasMH
+	RealType AlfasMT, AlfasMZ, AlfasMS, AlfasDb, AlfasMH, Alfas2L
+	RealType gsMT, gsMT2, gsMS, gsMS2, gs2L, gs2L2
+	RealType AlfasPlus, gsPlus, gsPlus2
+	RealType AlfasMinus, gsMinus, gsMinus2
 	RealType htMT, htMT2
 
 	common /smpara/
@@ -235,16 +238,15 @@
      &    GammaW, GammaZ,
      &    invAlfa0, invAlfaMZ, GF, vev, DeltaAlfa,
      &    EL0, Alfa0, ELGF, AlfaGF, ELMZ, AlfaMZ,
-     &    gsMT, gsMT2, AlfasMT, AlfasMZ, AlfasDb, AlfasMH,
+     &    AlfasMT, AlfasMZ, AlfasMS, AlfasDb, AlfasMH, Alfas2L,
+     &    AlfasPlus, gsPlus, gsPlus2,
+     &    AlfasMinus, gsMinus, gsMinus2,
+     &    gsMT, gsMT2, gsMS, gsMS2, gs2L, gs2L2,
      &    htMT, htMT2
 
 	RealType Alfa1L, Alfa2L, EL1L, EL2L
 	equivalence (AlfaGF, Alfa1L, Alfa2L)
 	equivalence (ELGF, EL1L, EL2L)
-
-	RealType gs2L, Alfas2L
-	equivalence (gsMT, gs2L)
-	equivalence (AlfasMT, Alfas2L)
 
 
 * MSSM parameters
@@ -593,6 +595,7 @@
 	integer forceSU2, drbarmode, drbarvars, fopoleeq
 	integer interpolateEFT, dmtlimim
 	integer finfieldren, tbdef
+	integer uncmask(8), drbartopmass
 	integer tM1, tM2, bM, bMps, bM1, gM
 	character*256 extSE
 
@@ -611,19 +614,29 @@
      &    forceSU2, drbarmode, drbarvars, fopoleeq,
      &    interpolateEFT, dmtlimim,
      &    finfieldren, tbdef,
+     &    uncmask, drbartopmass,
      &    tM1, tM2, bM, bMps, bM1, gM,
      &    extSE
 
+* variables for controlling new uncertainty determination
+	integer htMT3L, gMSSMthresholds, suppressedterms, tlalfas
+	RealType pdscale, matchsf
+
+	common /uncertainty/
+     &    htMT3L, gMSSMthresholds, suppressedterms, tlalfas,
+     &    pdscale, matchsf
+
 
 	integer flags_valid, sm_valid, para_valid, sf_valid
+	integer dZHfin_valid
 	integer tl_valid, eft_valid, higgs_valid, coup_valid
 	integer Ab_bad
 
 	common /valids/
      &    flags_valid, sm_valid, para_valid, sf_valid,
+     &    dZHfin_valid,
      &    tl_valid, eft_valid, higgs_valid, coup_valid,
      &    Ab_bad
 
 	character*1 cMSS(5), cAf(4)
 	common /debug/ cMSS, cAf
-

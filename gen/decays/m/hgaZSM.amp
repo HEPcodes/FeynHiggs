@@ -14,8 +14,8 @@
   Abb9 -> (3*m12 - m32)*Pair1 + 2*Pair2*Pair3, 
   Abb1 -> -2*Eps1 + (-m12 + m32)*Pair1 + 4*Pair2*Pair3, 
   Abb2 -> 2*Eps1 + (-m12 + m32)*Pair1 + 4*Pair2*Pair3, 
-  Abb3 -> 2*Eps1 + (-m12 + m32)*Pair1 + 2*Pair2*Pair3, 
-  Abb4 -> -2*Eps1 + (-m12 + m32)*Pair1 + 2*Pair2*Pair3}, 
+  Abb3 -> -2*Eps1 + (-m12 + m32)*Pair1 + 2*Pair2*Pair3, 
+  Abb4 -> 2*Eps1 + (-m12 + m32)*Pair1 + 2*Pair2*Pair3}, 
  {Sub10 -> B0i[bb0, 0, MW2, MW2] + ((3*CW2 + 2*SW2)*B0i[bb0, m32, MW2, MW2])/
      SW2, Sub11 -> (Alfa0*Sub10)/(CW*Pi) - (2*dZZA1)/(CW2*SW), 
   Sub12 -> Abb5*CW + (Abb8 + 2*Pair2*Pair3)/CW, 

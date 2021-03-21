@@ -40,7 +40,7 @@
 
 	call TLps_StrongShifts(db(1), dhbhb(1), dMSQ2(1))
 
-	eb(1) = C_F/(4*pi)*AlfasMT*2*MUEr*MGl*TB*
+	eb(1) = C_F/(4*pi)*Alfas2L*2*MUEr*MGl*TB*
      &    (mld(MSb22, MGl2) - mld(MSb12, MGl2))/MSb2diff
 
 	eb(2) = 1/(16*pi**2)*ht2*Atr*MUEr*TB*
@@ -247,13 +247,13 @@ c	DSS2large = DSStgl2
 	b0MSt12 = myB0(MSt12, pMT2, MGl2, TLMBscale)
 	b0MSt22 = myB0(MSt22, pMT2, MGl2, TLMBscale)
 
-	db = C_F/(4*pi)*AlfasMT*(3/2D0 - LGl2 + .5D0*(
+	db = C_F/(4*pi)*Alfas2L*(3/2D0 - LGl2 + .5D0*(
      &    MSb12/(MGl2 - MSb12)*(1 - (LGl2 - LSb12)*
      &      (1 + MGl2/(MGl2 - MSb12) + 4*MGl*Abr/MSb2diff)) +
      &    MSb22/(MGl2 - MSb22)*(1 - (LGl2 - LSb22)*
      &      (1 + MGl2/(MGl2 - MSb22) - 4*MGl*Abr/MSb2diff)) ))
 
-	dhbhb = C_F/(4*pi)*AlfasMT*(-4 - 2*LGl2 - 2/MSb2diff*(
+	dhbhb = C_F/(4*pi)*Alfas2L*(-4 - 2*LGl2 - 2/MSb2diff*(
      &    MSb12*(2*LSb12 -
      &      (1 - MGl2/MSb12)**2*log(abs(1 - MSb12/MGl2))) -
      &    MSb22*(2*LSb22 -
@@ -294,7 +294,7 @@ c	DSS2large = DSStgl2
 	sbot12 =
      &    c2tb*s2tb*(MSb22*(1 - LSb22) - MSb12*(1 - LSb12))
 
-	dMSQ2 = C_F/(4*pi)*AlfasMT*(
+	dMSQ2 = C_F/(4*pi)*Alfas2L*(
      &    (ctt2*stop11 + stt2*stop22 - s2tt*stop12) -
      &    (ctb2*sbot11 + stb2*sbot22 - s2tb*sbot12) -
      &    2*pMT*top )

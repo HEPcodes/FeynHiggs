@@ -27,9 +27,8 @@
 	dZ_St3(t_,g_) = Sq(Af0(t_,g_))
 
 * ren scale of FO calculation:
-#define hiscale mudim
+#define renscale mudim
 * scale at which poles are determined (i.e., scale of dse):
-#define loscale Mf2(3,3)
 
 #define dZ_t (/0D0, 0D0, lmu/)
 #define dZ_b (/lmu, 0D0, 0D0/)
@@ -37,7 +36,7 @@
 #define dZ_Sb(t,g) (/dZ_St3(t,g), dZ_St2(t,g), dZ_St1(t,g)/)
 #define DB0_Sf(t,g) DB0(0D0, MSS0(tQ(t),g)**2, MSS0(tU(t),g)**2)
 
-	lmu = log(hiscale/loscale)
+	lmu = log(renscale/pdscale)
 
 	fac = -AlfaGF/(16*Pi*MW2*SW2)
 
@@ -62,7 +61,8 @@
 #endif
 
 * dZH1fingl only gets contributions from third-gen (s)quarks
-	dZH1fingl(zM,cpeRan) = dZ
+c take only real part to prevent unwanted higher order terms relevant for low tanb and high MA
+	dZH1fingl(zM,cpeRan) = Re(dZ)
 
 	if( debuglevel .ge. 4 ) then
 	  DPARA "dZ11H1fingl =", dZH1fingl(zM,se11) ENDL
@@ -101,9 +101,9 @@ c	do g = 1, 2
 	dbM_1 = Re(DB0(0D0, M_12, MUE2))
 	dbM_2 = Re(DB0(0D0, M_22, MUE2))
 	dZHiiew = -4*MZ2*fac*(
-     &    SW2*(Re(B1q(0D0, M_12, MUE2, loscale)) + M_12*dbM_1) +
-     &    CW2*(Re(B1q(0D0, M_22, MUE2, loscale)) -
-     &         Re(B0q(0D0, M_22, MUE2, loscale)) +
+     &    SW2*(Re(B1q(0D0, M_12, MUE2, pdscale)) + M_12*dbM_1) +
+     &    CW2*(Re(B1q(0D0, M_22, MUE2, pdscale)) -
+     &         Re(B0q(0D0, M_22, MUE2, pdscale)) +
      &         (2*M_22 + MUE2)*dbM_2) )
 	dZH12ew = -4*MZ2*fac*abs(MUE)*(
      &    SW2*abs(M_1)*dbM_1 + 3*CW2*abs(M_2)*dbM_2 )
@@ -116,7 +116,7 @@ c	do g = 1, 2
 #endif
 
 * Higgs, vector bosons
-	dZ = dZ + fac*(2*MW2 + MZ2)*(-3 + 2*log(MHin2/loscale))*
+	dZ = dZ + fac*(2*MW2 + MZ2)*(-3 + 2*log(MHin2/pdscale))*
      &    (/SB2, -SB*CB, CB2/)
 
 #ifdef DETAILED_DEBUG
@@ -125,9 +125,16 @@ c	do g = 1, 2
 	DPARA "  22      + heavyH =", dZ(se22) ENDL
 #endif
 
-	dZH1fin(zM,:) = dZ
+c take only real part to prevent unwanted higher order terms relevant for low tanb and high MA
+	dZH1fin(zM,:) = Re(dZ)
+
+	if( tbdef .ne. 0 ) call TBrepara
+
+	dZHfin_valid = valid
 
 	if( debuglevel .ge. 4 ) then
+	  DPARA "renscale   =", renscale	ENDL
+	  DPARA "pdscale    =", pdscale 	ENDL
 	  DPARA "dZH11H1fin =", dZH1fin(zM,se11) ENDL
 	  DPARA "   12      =", dZH1fin(zM,se12) ENDL
 	  DPARA "   22      =", dZH1fin(zM,se22) ENDL

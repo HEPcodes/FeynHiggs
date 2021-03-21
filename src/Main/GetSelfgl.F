@@ -23,6 +23,7 @@
 
 	error = 0
 	CheckSf(error)
+	CheckdZHfin(error)
 	CheckTL(error)
 	CheckRGE(error)
 	if( error .gt. 0 ) return
@@ -41,4 +42,3 @@
 	  dsig(1:semax) = dseR(z0,1:semax)
 	endif
 	end
-

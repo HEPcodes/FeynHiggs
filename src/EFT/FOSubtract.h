@@ -1,139 +1,161 @@
 * FOSubtract.h
 * the fixed-order subtraction terms
 * this file is part of FeynHiggs
-* last modified 12 Mar 18 th
+* last modified 10 Mar 17 th
 
 	htMT2sub = 2*Mf2(tM2,3)/vev**2
 
 	subnonlog1L = 0
 	sublog1L = 0
 
-	if( (finfieldren .eq. 1) .AND. (tbdef .eq. 0) ) then
-	  tbMs = TB*(1
-     &               - 3/2D0*k1L*htMT2/SB2
-     &                             *xOS*(xOS+mueOS*(1/TB+TB))
-     &                             *db0msqmsu
-     &                + 1/8D0*k1L*(3*gMT2*db0m2mue + gyMT2*db0m1mue)
-     &                            *(TB-1/TB))
-	else
-	  tbMs = TB
-	endif
-
-	sbMs2 = tbMs**2/(1+tbMs**2)
-	sbMs = sqrt(sbMs2)
-	cbMs2 = 1/(1+tbMs**2)
-	c2bMs = cbMs2 - sbMs2
-	s2bMs = 2*tbMs/(1+tbMs**2)
-
 	if( looplevel .gt. 0 ) then
-	  gyMs = gyMT*(1 + k1L/3D0*gyMT2*(tCha - tMUE))
-	  gyMs2 = gyMs**2
 
-	  gMs = gMT*(1 + k1L/3D0*gMT2*(3*tCha - tMUE - 2*tM_2))
-	  gMs2 = gMs**2
+	  gOS2 = 4*MW2/vev**2
+	  gOS = sqrt(gOS2)
 
-	  g1dC = CB*gyMs*(1 - k1L/48D0*(
-     &      9*gMs2*(2 - SB2*(7 + 6*(tSUSYOS - tA0))) +
-     &      12*(11*gyMs2 + htMT**2*xOS**2) -
-     &      gyMs2*(3*SB2*(7 + 6*(tSUSYOS - tA0)) +
-     &        8*(tA0 - 21*tSUSYOS + tSS1)) ))
-	  g1dC2 = g1dC**2
+	  gyOS2 = 4*MZ2/vev**2 - gOS2
+	  gyOS = sqrt(gyOS2)
 
-#ifdef DETAILED_DEBUG
-	  DEFT "g1dC =", g1dC ENDL
-#endif
+	  g1dOS = CB*gyOS
+	  g1dOS2 = g1dOS**2
 
-	  g2dC = CB*gMs*(1 + k1L/48D0*(
-     &      3*gyMs2*SB2*(7 + 6*(tSUSYOS - tA0)) -
-     &      6*(gyMs2 + 2*htMT**2*xOS**2) -
-     &      gMs2*(SB2*(33 + 42*(tSUSYOS - tA0)) +
-     &      8*(4 - tA0 + 13*tSUSYOS - 3*tSS2)) ))
-	  g2dC2 = g2dC**2
+	  g2dOS = CB*gOS
+	  g2dOS2 = g2dOS**2
 
-#ifdef DETAILED_DEBUG
-	  DEFT "g2dC =", g2dC ENDL
-#endif
+	  g1uOS = SB*gyOS
+	  g1uOS2 = g1uOS**2
 
-	  g1uC = gyMs*(SB + k1L/192D0/SB*(
-     &      -9*gMs2*(8*SB2 - S2B**2*(7 + 6*(tSUSYOS - tA0))) +
-     &      48*htMT**2*(9 + 7*tSQ - 13*tSU + 6*tSUSYOS - SB2*xOS**2) -
-     &      gyMs2*(-3*S2B**2*(7 + 6*(tSUSYOS - tA0)) +
-     &        SB2*(528 - 32*(tA0 - 21*tSUSYOS + tSS1))) ))
-	  g1uC2 = g1uC**2
-
-#ifdef DETAILED_DEBUG
-	  DEFT "g1uC =", g1uC ENDL
-#endif
-
-	  g2uC = gMs*(SB - k1L/192D0/SB*(
-     &      3*gyMs2*(8*SB2 - S2B**2*(7 + 6*(tSUSYOS - tA0))) -
-     &      48*htMT**2*(9 - 9*tSQ + 3*tSU + 6*tSUSYOS - SB2*xOS**2) +
-     &      gMs2*(S2B**2*(33 + 42*(tSUSYOS - tA0)) +
-     &        32*SB2*(4 - tA0 + 13*tSUSYOS - 3*tSS2)) ))
-	  g2uC2 = g2uC**2
-
-#ifdef DETAILED_DEBUG
-	  DEFT "g2uC =", g2uC ENDL
-#endif
-
-	  htC = htMT*(1 - k1L/12D0*(
-     &      2*g1dC*g1uC*lfM12(5,1) +
-     &      6*g2dC*g2uC*lfM12(5,2) -
-     &      (g1dC2 + g1uC2)*(3*(tCha - tMUE) - lfM12(6,1)) -
-     &      3*(g2dC2 + g2uC2)*(3*(tCha - tMUE) - lfM12(6,2)) ))
-	  htC2 = htC**2
+	  g2uOS = SB*gOS
+	  g2uOS2 = g2uOS**2
 
 * lambda(MSUSY) -> tree-level
-	  lC = 1/4.D0*(c2bMs**2*(gMs2 + gyMs2))
+	  lamTree = 1/4.D0*(C2B**2*(gOS2 + gyOS2))
 
 * lambda(MSUSY) -> 1L DRbar -> MSbar
-	  lC = lC - k1L/12.D0*
-     &     ((9 - 2*c2bMs**2)*gMs2**2 + gyMs2*(6*gMs2 + 3*gyMs2))
+	  lamOL = - k1L/12.D0*
+     &     ((9 - 2*C2B**2)*gOS2**2 + gyOS2*(6*gOS2 + 3*gyOS2))
 
 * lambda(MSUSY) -> 1L heavy Higgs
-	  lC = lC - k1L*
-     &     (3/4.D0*(c2bMs**2*(gMs2 + gyMs2)**2*s2bMs**2) -
-     &       1/192.D0*((53*gMs2**2 + 42*gMs2*gyMs2 + 29*gyMs2**2 -
-     &            4*(gyMs2**2 + gMs2*(7*gMs2 + 6*gyMs2))*
-     &             (c2bMs - s2bMs)*(c2bMs + s2bMs) -
-     &            9*(gMs2 + gyMs2)**2*
-     &             (s2bMs**4 + c2bMs**2*(c2bMs**2 - 6*s2bMs**2)))*
+	  lamOL = lamOL - k1L*
+     &     (3/4.D0*(C2B**2*(gOS2 + gyOS2)**2*S2B**2) -
+     &       1/192.D0*((53*gOS2**2 + 42*gOS2*gyOS2 + 29*gyOS2**2 -
+     &            4*(gyOS2**2 + gOS2*(7*gOS2 + 6*gyOS2))*
+     &             (C2B - S2B)*(C2B + S2B) -
+     &            9*(gOS2 + gyOS2)**2*
+     &             (S2B**4 + C2B**2*(C2B**2 - 6*S2B**2)))*
      &          (tA0 - tSUSYOS)))
 
 * lambda(MSUSY) -> 1L sfermions
-	  lC = lC + k1L/12.D0*
-     &     (6*htC2**2*(6*(tSQ + tSU - 2*tSUSYOS +
+	  lamOL = lamOL + k1L/12.D0*
+     &     (6*htMT2sub**2*(6*(tSQ + tSU - 2*tSUSYOS +
      &             2*xOS**2*lfSf(1)) - xOS2**2*lfSf(2)) -
-     &       3*c2bMs*htC2*(gyMs2*
+     &       3*C2B*htMT2sub*(gyOS2*
      &           (2*tSQ - 8*tSU + 6*tSUSYOS - 3*xOS**2*lfSf(3)) -
-     &          3*gMs2*(2*tSQ - 2*tSUSYOS + xOS**2*lfSf(4))) -
-     &       c2bMs**2*(3*(gMs2*htC2*xOS**2*lfSf(5) +
-     &             gMs2**2*(4*tSUSYOS - tSS(1) - 3*tSS(3))) +
-     &          gyMs2*(3*htC2*xOS**2*lfSf(5) +
-     &             gyMs2*(20*tSUSYOS - 3*tSS(1) - 6*tSS(2) -
+     &          3*gOS2*(2*tSQ - 2*tSUSYOS + xOS**2*lfSf(4))) -
+     &       C2B**2*(3*(gOS2*htMT2sub*xOS**2*lfSf(5) +
+     &             gOS2**2*(4*tSUSYOS - tSS(1) - 3*tSS(3))) +
+     &          gyOS2*(3*htMT2sub*xOS**2*lfSf(5) +
+     &             gyOS2*(20*tSUSYOS - 3*tSS(1) - 6*tSS(2) -
      &                tSS(3) - 8*tSS(4) - 2*tSS(5)))))
-#ifdef DETAILED_DEBUG
-	  DEFT "lC =", lC ENDL
-#endif
 
-	  subnonlog1L = lC + k1L/12.D0*(12*(g1dC2**2 + g1uC2**2 +
-     &          4*g1dC*g1uC*g2dC*g2uC +
-     &          2*(g1uC2 + g2dC2)*(g1dC2 + g2uC2) +
-     &          5*(g2dC2**2 + g2uC2**2) -
-     &          2*(g1dC2 + g1uC2 + 3*(g2dC2 + g2uC2))*lC)*
-     &        .5D0*(tCha - tMUE) - 7*(g1dC2**2 + g1uC2**2)*lfM12(1,1) -
-     &       27*(g2dC2**2 + g2uC2**2)*lfM12(2,2) -
-     &       14*(g1dC2*g2dC2 + g1uC2*g2uC2)*lfM12(2,3) -
-     &       18*g1dC2*g1uC2*lfM12(3,1) -
-     &       2*(g1uC2*g2dC2 + g1dC2*g2uC2)*lfM12(3,3) -
-     &       42*g2dC2*g2uC2*lfM12(4,2) -
-     &       16*(g1uC*g2dC + g1dC*g2uC)*(g1dC*g2dC + g1uC*g2uC)*
+* lambda(MSUSY) -> EWinos
+	  lamOL = lamOL + k1L/12.D0*(12*(g1dOS2**2 + g1uOS2**2 +
+     &          4*g1dOS*g1uOS*g2dOS*g2uOS +
+     &          2*(g1uOS2 + g2dOS2)*(g1dOS2 + g2uOS2) +
+     &          5*(g2dOS2**2 + g2uOS2**2) -
+     &          (g1dOS2 + g1uOS2 + 3*(g2dOS2 + g2uOS2))*2*lamTree)*
+     &       .5D0*(tCha - tMUE) - 7*(g1dOS2**2 + g1uOS2**2)*lfM12(1,1) -
+     &       27*(g2dOS2**2 + g2uOS2**2)*lfM12(2,2) -
+     &       14*(g1dOS2*g2dOS2 + g1uOS2*g2uOS2)*lfM12(2,3) -
+     &       18*g1dOS2*g1uOS2*lfM12(3,1) -
+     &       2*(g1uOS2*g2dOS2 + g1dOS2*g2uOS2)*lfM12(3,3) -
+     &       42*g2dOS2*g2uOS2*lfM12(4,2) -
+     &       16*(g1uOS*g2dOS + g1dOS*g2uOS)*(g1dOS*g2dOS + g1uOS*g2uOS)*
      &        lfM12(4,3) -
-     &       8*g1dC*g1uC*(4*g2dC*g2uC*lfM12(1,3) +
-     &          (2*(g1dC2 + g1uC2) - lC)*lfM12(5,1)) -
-     &       24*g2dC*g2uC*(2*(g2dC2 + g2uC2) - lC)*lfM12(5,2) +
-     &       4*lC*((g1dC2 + g1uC2)*lfM12(6,1) +
-     &          3*(g2dC2 + g2uC2)*lfM12(6,2)))
+     &       8*g1dOS*g1uOS*(4*g2dOS*g2uOS*lfM12(1,3) +
+     &          (2*(g1dOS2 + g1uOS2) - lamTree)*lfM12(5,1)) -
+     &       24*g2dOS*g2uOS*(2*(g2dOS2 + g2uOS2) - lamTree)*lfM12(5,2) +
+     &       4*lamTree*((g1dOS2 + g1uOS2)*lfM12(6,1) +
+     &          3*(g2dOS2 + g2uOS2)*lfM12(6,2)))
+
+* shifts from tree-level lambda gMs, gyMs -> gMT, gyMT
+	  lamOL = lamOL + 1/6D0*k1L*(gyOS**4*(tCha - tMUE)
+     &                               +gOS**4*(3*tCha - 2*tM_2 - tMUE))
+
+* shifts from tree-level lambda MSbar -> OS
+	  Mh0tree2 = MZ2*C2B**2
+	  dmz2 = 1/(48.D0*MW2*MZ2*Pi*SW2)*
+     &    (AlfaGF*(6*(MW2*(12*MW2 - 4*MZ2) + MZ2**2)*
+     &         Re(A0q(MW2,Mf2(tM2,3))) -
+     &        12*MW2*(9*MW2 - 2*MZ2)*MZ2*
+     &         Re(B0q(MZ2,MW2,MW2,Mf2(tM2,3))) +
+     &        3*MZ2**2*(Re(A0q(Mh0tree2,Mf2(tM2,3))) +
+     &           Re(A0q(MZ2,Mf2(tM2,3))) -
+     &           2*(ME2*Re(B0q(MZ2,ME2,ME2,Mf2(tM2,3))) +
+     &              3*(MC2*Re(B0q(MZ2,MC2,MC2,Mf2(tM2,3))) +
+     &                 MD2*Re(B0q(MZ2,MD2,MD2,Mf2(tM2,3))) +
+     &                 Mf2(bM,3)*
+     &                  Re(B0q(MZ2,Mf2(bM,3),Mf2(bM,3),Mf2(tM2,3)))
+     &                 ))) -
+     &        2*(MZ2*(3*(MW2*(8*MW2 - 12*MZ2) + 5*MZ2**2)*
+     &               (Re(B1q(MZ2,ME2,ME2,Mf2(tM2,3))) +
+     &                 Re(B1q(MZ2,ML2,ML2,Mf2(tM2,3))) +
+     &                 Re(B1q(MZ2,MM2,MM2,Mf2(tM2,3)))) +
+     &              MW2**2*
+     &               (4 + 12*Re(B1q(MZ2,MW2,MW2,Mf2(tM2,3)))) +
+     &              (MW2*(8*MW2 - 4*MZ2) + 5*MZ2**2)*
+     &               (Re(B1q(MZ2,MD2,MD2,Mf2(tM2,3))) +
+     &                 Re(B1q(MZ2,MS2,MS2,Mf2(tM2,3))) +
+     &                 Re(B1q(MZ2,Mf2(bM,3),Mf2(bM,3),Mf2(tM2,3))))
+     &                + (MW2*(32*MW2 - 40*MZ2) + 17*MZ2**2)*
+     &               (Re(B1q(MZ2,MC2,MC2,Mf2(tM2,3))) +
+     &                 Re(B1q(MZ2,MU2,MU2,Mf2(tM2,3))) +
+     &                 Re(B1q(MZ2,Mf2(tM2,3),Mf2(tM2,3),
+     &                   Mf2(tM2,3))))) +
+     &           (MW2*(8*MW2 - 4*MZ2) + 5*MZ2**2)*
+     &            (Re(A0q(MD2,Mf2(tM2,3))) +
+     &              Re(A0q(MS2,Mf2(tM2,3))) +
+     &              Re(A0q(Mf2(bM,3),Mf2(tM2,3)))) +
+     &           (MW2*(32*MW2 - 40*MZ2) + 17*MZ2**2)*
+     &            (Re(A0q(MC2,Mf2(tM2,3))) +
+     &              Re(A0q(MU2,Mf2(tM2,3))) +
+     &              Re(A0q(Mf2(tM2,3),Mf2(tM2,3)))) +
+     &           6*(MW2*(12*MW2 - 4*MZ2) + MZ2**2)*
+     &            Re(B00q(MZ2,MW2,MW2,Mf2(tM2,3))) -
+     &           2*((MW2*(8*MW2 - 4*MZ2) + 5*MZ2**2)*
+     &               (Re(B00q(MZ2,MD2,MD2,Mf2(tM2,3))) +
+     &                 Re(B00q(MZ2,MS2,MS2,Mf2(tM2,3))) +
+     &                 Re(B00q(MZ2,Mf2(bM,3),Mf2(bM,3),Mf2(tM2,3)))
+     &                 ) +
+     &              (MW2*(32*MW2 - 40*MZ2) + 17*MZ2**2)*
+     &               (Re(B00q(MZ2,MC2,MC2,Mf2(tM2,3))) +
+     &                 Re(B00q(MZ2,MU2,MU2,Mf2(tM2,3))) +
+     &                 Re(B00q(MZ2,Mf2(tM2,3),Mf2(tM2,3),
+     &                   Mf2(tM2,3))))) -
+     &           6*(MZ2**2*
+     &               (3*Re(B00q(MZ2,0D0,0D0,Mf2(tM2,3))) -
+     &                 Re(B00q(MZ2,Mh0tree2,MZ2,Mf2(tM2,3)))) +
+     &              MZ2**3*Re(B0q(MZ2,Mh0tree2,MZ2,Mf2(tM2,3)))) +
+     &           3*((MW2*(8*MW2 - 12*MZ2) + 5*MZ2**2)*
+     &               (Re(A0q(ME2,Mf2(tM2,3))) +
+     &                 Re(A0q(ML2,Mf2(tM2,3))) +
+     &                 Re(A0q(MM2,Mf2(tM2,3))) -
+     &                 2*(Re(B00q(MZ2,ME2,ME2,Mf2(tM2,3))) +
+     &                    Re(B00q(MZ2,ML2,ML2,Mf2(tM2,3))) +
+     &                    Re(B00q(MZ2,MM2,MM2,Mf2(tM2,3))))) +
+     &              MZ2**2*
+     &               (ML2*Re(B0q(MZ2,ML2,ML2,Mf2(tM2,3))) +
+     &                 MM2*Re(B0q(MZ2,MM2,MM2,Mf2(tM2,3))) +
+     &                 3*(MS2*Re(B0q(MZ2,MS2,MS2,Mf2(tM2,3))) +
+     &                    MU2*Re(B0q(MZ2,MU2,MU2,Mf2(tM2,3))) +
+     &                    Mf2(tM2,3)*
+     &                     Re(B0q(MZ2,Mf2(tM2,3),Mf2(tM2,3),
+     &                       Mf2(tM2,3)))))) +
+     &           9*MZ2**3*Re(B1q(MZ2,0D0,0D0,Mf2(tM2,3))))))
+	  lamOL = lamOL + dmz2/vev**2*C2B**2
+
+
+	  subnonlog1L = lamTree + lamOL
 
 #ifdef DETAILED_DEBUG
 	  DEFT "subnonlog1L =", subnonlog1L ENDL
@@ -164,25 +186,33 @@
 
 	if( looplevel .gt. 1 ) then
 	  sublog2L = 6*k2L*(htMT2sub**2*llog*
-     &      (8/3.D0*(gsMT2*(2 - 3*(llog + xOS2))) -
+     &      (8/3.D0*(gs2L2*(2 - 3*(llog + xOS2))) -
      &        0.5D0*(htMT2sub*
      &           (7 - 3*(llog + xOS2*(1 + xOS2*(1 - 1/6.D0*xOS2))))))
      &      )
 
+c compensated for non-degenerate 1L threshold
 	  sublog2L = sublog2L +
      &      3*k2L*(htMT2sub**2*llog*xOS2*
-     &       (16*gsMT2*(1 - lfSf(1)) -
+     &       (16*gs2L2*(1 - lfSf(1)) -
      &         htMT2sub*(3*(1 - lfSf(1))*(1 + xOS2) -
      &           .5D0*xOS2**2*(1 - lfSf(2)))))
 
 	  if( tM2 .eq. tM3 ) then
+c add logs associated with dMTOS
 	    sublog2L = sublog2L +
-     &        k2L*llog*htMT2sub**2*(-128*gsMT2 + 48*htMT2sub)
+     &        k2L*llog*htMT2sub**2*(-128*gs2L2 + 48*htMT2sub)
+	  else
+c if gsMS is used compensate for Karina terms calculatd with gsMT
+	    sublog2L = sublog2L +
+     &       k2L*llog*htMT2sub**2*(gs2L2 - gsMT2)
+     &                           *(- 128 - 96*log(Mf2(3,3)/Mf2(tM1,3)))
 	  endif
 
+c add logs generated by OS -> DRbar transistion in FO result
 	  if( drbarvars .eq. 1 ) then
 	    sublog2L = sublog2L - k2L*htMT2sub**2*xOS2*llog*
-     &        (gsMT2*(48*lfSf(1) - 8*lfSf(2)*xOS2) -
+     &        (gs2L2*(48*lfSf(1) - 8*lfSf(2)*xOS2) -
      &         htMT2sub*xOS1*(9*lfSf(1) - 1.5D0*lfSf(2)*xOS2))
 	  endif
 
@@ -193,9 +223,14 @@
 
 ************************************************************************
 
-	call TLthresholdasat(dlam_asatOS, xOS*MSUSYOS)
+	subnonlog2La = 0D0
 
-* subtraction of 2L thresholds
+	if( looplevel .gt. 1 ) then
+
+	call TLthresholdasat(dlam_asatOS, MSS0(3,3), MSS0(4,3),
+     &                       xOS*MSUSYOS, MSUSYOS)
+
+* terms originating from 2L thresholds
 	if( tldegatat .ne. 0 ) then
 	  call loopfun4H(lfmueOS, mueOS)
 	  dlam_atatOS = 1/4D0*(CB2*(3*
@@ -210,18 +245,45 @@
      &         xOS2*(11 - SB2*xOS2 - lfmueOS(1) + lfmueOS(2))) +
      &       8*lfmueOS(3)))/SB2
 	else
+	  call TLthresholdatatCoeff(clam_atat, MSS0(tQ(3),3),
+     &                              MSS0(tU(3),3), mueOS*MSUSYOS, MSUSYOS)
 	  call TLthresholdatat(dlam_atatOS, clam_atat,
      &      XtOS, YtOS, TB2, SB2)
 	endif
 
-	subnonlog2La = k2L*htMT2**2*
-     &    (4*g3MT2*dlam_asatOS + htMT2*dlam_atatOS)
+	subnonlog2La = k2L*htMT2sub**2*
+     &    (4*gs2L2*dlam_asatOS + htMT2sub*dlam_atatOS)
+
+* terms induced by mtMS -> mtOS conversion of 1L nonlog terms
+* (~= Karina terms)
+	if( tM2 .eq. tM3 ) then
+	  subnonlog2La = subnonlog2La
+     &                   + 1/12D0*k2L*htMT2sub**2
+     &                     *(57*htMT2sub - 128*gs2L2)
+     &                     *(6*(tSQ + tSU - 2*tSUSYOS)
+     &                       + 12*lfSf(1)*xOS2 - lfSf(2)*xOS2**2)
+	else
+c terms generate by vMS2 -> vOS2 in 1L correction
+	  subnonlog2La = subnonlog2La + 3/4D0*k2L*htMT2sub**3*
+     &                     *(1 - 2*log(Mf2(tM2,3)/Mf2(3,3)))
+     &                     *(6*(tSQ + tSU - 2*tSUSYOS)
+     &                       + 12*lfSf(1)*xOS2 - lfSf(2)*xOS2**2)
+c if gsMS is used compensate for Karina terms calculatd with gsMT
+	  subnonlog2La = subnonlog2La
+     &                   + 1/12D0*k2L*htMT2sub**2
+     &                     *(- 32*(4 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
+     &                           *(gs2L2 - gsMT2))
+     &                     *(6*(tSQ + tSU - 2*tSUSYOS)
+     &                       + 12*lfSf(1)*xOS2 - lfSf(2)*xOS2**2)
+	endif
 
 #ifdef DETAILED_DEBUG
 	DEFT "dlam_asatOS =", dlam_asatOS ENDL
 	DEFT "dlam_atatOS =", dlam_atatOS ENDL
 	DEFT "subnonlog2La =", subnonlog2La ENDL
 #endif
+
+	endif
 
 ************************************************************************
 
@@ -237,7 +299,7 @@
 	    if( abs(mueOS1) .gt. 1D-12 ) then
 * Xt conversion for xOS != 0, mueOS != 1
 	      subnonlog2Lb = 1/24.D0*k2L*htMT2sub**2*xOS*
-     &         (64*dup1*gsMT2 +
+     &         (64*dup1*gs2L2 +
      &         (htMT2sub*(6 - xOS2)*
      &           (36*mueOS**4*(1 - 3*mueOS1**2)*xOS*log(mueOS2) +
      &             mueOS1*((123*mueOS1 - 108*mueOS1**2 +
@@ -255,7 +317,7 @@
      &           (mueOS1**2*SB2))
 * MSusy conversion for xOS != 0, mueOS != 1
 	      subnonlog2Lb = subnonlog2Lb - (k2L*htMT2sub**2*
-     &         (64*gsMT2*SB2**2 -
+     &         (64*gs2L2*SB2**2 -
      &          3*htMT2sub*
      &           (6*(mueOS2 + mueOS*S2B*xOS + SB2*xOS2) +
      &             3/4.D0*S2B**2 -
@@ -265,7 +327,7 @@
 	    else
 * Xt conversion for xOS != 0, mueOS == 1
 	      subnonlog2Lb =  1/24.D0*k2L*htMT2sub**2*xOS*
-     &         (64*dup1*gsMT2 +
+     &         (64*dup1*gs2L2 +
      &         (htMT2sub*(6 - xOS2)*
      &           (xOS*(213 + yOS**2*(-72 + 14*Pi*sqrt3)) +
      &             yOS*(144 - 24*Pi*sqrt3) +
@@ -275,7 +337,7 @@
      &          SB2)
 * MSusy conversion for xOS != 0, mueOS == 1
 	      subnonlog2Lb = subnonlog2Lb - (k2L*htMT2sub**2*
-     &         (SB2*(64*gsMT2*SB2 -
+     &         (SB2*(64*gs2L2*SB2 -
      &             htMT2sub*(18 + 18*xOS2 - 3*Pi*(SB2*sqrt3))) +
      &          htMT2sub*(3*Pi*(sqrt3*(CB2**2 + CB2*S2B*xOS)) -
      &             3*(S2B*xOS*(6 - Pi*(SB2*sqrt3)) +
@@ -288,7 +350,7 @@
 	    if( abs(mueOS1) .gt. 1D-12 ) then
 * MSusy conversion for xOS == 0, mueOS != 1
 	      subnonlog2Lb = -(k2L*htMT2sub**2*
-     &        (64*gsMT2*SB2**2 -
+     &        (64*gs2L2*SB2**2 -
      &          htMT2sub*(9/4.D0*S2B**2 +
      &             mueOS2*(CB2*(18 - 3*Pi*(CB2*sqrt3)) -
      &                (3*Pi)/2.D0*(S2B**2*sqrt3) +
@@ -299,7 +361,7 @@
 	    else
 * MSusy conversion for xOS == 0, mueOS == 1
 	      subnonlog2Lb = -(k2L*htMT2sub**2*
-     &        (64*gsMT2*SB2**2 +
+     &        (64*gs2L2*SB2**2 +
      &          htMT2sub*(3*Pi*(CB2**2*sqrt3) -
      &             3*(CB2*(6 + SB2*(3 - 2*Pi*sqrt3)) +
      &                SB2*(6 - Pi*(SB2*sqrt3))))))/SB2**2

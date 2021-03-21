@@ -25,8 +25,9 @@
 	ComplexType cI
 	parameter (cI = (0D0, 1D0))
 
-	RealType k1L, k2L, k3L
-	parameter (k1L = 1/(16*pi**2), k2L = k1L**2, k3L = k1L**3)
+	RealType k1L, k2L, k3L, k4L
+	parameter (k1L = 1/(16*pi**2),
+     &             k2L = k1L**2, k3L = k1L**3, k4L = k1L**4)
 
 	RealType Qe, Qu, Qd
 	parameter (Qe = -1, Qu = 2/3D0, Qd = -1/3D0)

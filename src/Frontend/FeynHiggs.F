@@ -8,7 +8,7 @@
 #include "debug.h"
 #include "version.h"
 
-#define defaultflags "42423110"
+#define defaultflags "42423120"
 
 
 	program FeynHiggs

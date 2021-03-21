@@ -49,7 +49,7 @@
 	  DEFT "lam(MSUSY) =", y(jlam)		ENDL
 	endif
 
-	call ODESolve(3, rge, y, tSUSYMS, tTop, 1D-5, -2D0, 0)
+	call ODESolve(3, rge, y, tMatch, tTop, 1D-5, -2D0, 0)
 
 	if( debuglevel .gt. 5 ) then
 	  DEFT "rough values @ MT:"		ENDL
@@ -60,7 +60,7 @@
 
 	y(jgs2) = gsMT2
 	y(jht2) = htMT2
-	call ODESolve(3, rge, y, tTop, tSUSYMS, 1D-5, +2D0, 0)
+	call ODESolve(3, rge, y, tTop, tMatch, 1D-5, +2D0, 0)
 
 	if( debuglevel .gt. 5 ) then
 	  DEFT "refined values @ MSUSY:"	ENDL
@@ -70,7 +70,7 @@
 	endif
 
 	y(jlam) = 6*k1L*y(jht2)**2*x
-	call ODESolve(3, rge, y, tSUSYMS, tTop, 1D-5, -2D0, 0)
+	call ODESolve(3, rge, y, tMatch, tTop, 1D-5, -2D0, 0)
 
 * subtract leading logs and nonlogarithmic pieces
 	subnonlog = 0
@@ -137,4 +137,3 @@
      &    k2L*(ht2*(3*ht2*(20*ht2 - lam) + gs2*(80*lam - 64*ht2) -
      &      72*lam2) - 78*lam*lam2) )
 	end
-

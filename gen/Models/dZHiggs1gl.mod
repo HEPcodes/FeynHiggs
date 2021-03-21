@@ -27,8 +27,8 @@ setdZHiggsgl[dZHiggs_, dZbarHiggs_, {dZ11H_, dZ12H_, dZ22H_}] := (
 
   RenConst[dZHiggs[5,5]] := dZHiggs[3,3];
   RenConst[dZbarHiggs[5,5]] := dZHiggs[5,5];
-  RenConst[dZHiggs[5,6]] := dZHiggs[3,4] - I Im[dZ12H];
-  RenConst[dZHiggs[6,5]] := dZHiggs[3,4] + I Im[dZ12H];
+  RenConst[dZHiggs[5,6]] := dZHiggs[3,4] + I Im[dZ12H];
+  RenConst[dZHiggs[6,5]] := dZHiggs[3,4] - I Im[dZ12H];
   RenConst[dZHiggs[6,6]] := dZHiggs[4,4];
 
   RenConst[dZHiggs[1,3]] := -Im[dZ12H];

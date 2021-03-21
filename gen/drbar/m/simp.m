@@ -1,29 +1,30 @@
 {dMf1[3, 3] -> 
   -(((2*Alfas*(Re[B0[Mf2[tM1, 3], MGl2, MSf2[1, 3, 3]]] - 
         Re[B0[Mf2[tM1, 3], MGl2, MSf2[2, 3, 3]]])*U2s1[3, Mino3])/3 - 
-     Mf[tM1, 3]*((Alfas*(1 - Re[B1[Mf2[tM1, 3], MGl2, MSf2[1, 3, 3]]] - 
+     Mf[tM1, 3]*(((16*Alfas + (3*Alfa1L*Mf2[tM1, 3])/(MW2*SW2))*
+         Re[B1[Mf2[tM1, 3], 0, Mf2[tM1, 3]]])/24 - 
+       (Alfas*(Re[B1[Mf2[tM1, 3], MGl2, MSf2[1, 3, 3]]] + 
           Re[B1[Mf2[tM1, 3], MGl2, MSf2[2, 3, 3]]]))/3 - 
-       (((16*Alfas*MW2*SW2 - 3*Alfa1L*Mf2[tM1, 3])*
-           (2 + Re[B0[0, Mf2[tM1, 3], Mf2[tM1, 3]]]))/24 - 
-         ((16*Alfas*MW2*SW2 + 3*Alfa1L*Mf2[tM1, 3])*
-           Re[B1[Mf2[tM1, 3], 0, Mf2[tM1, 3]]])/24 + 
-         (Alfa1L*((Mf2[bM1, 3] - Mf2[tM1, 3])*Re[B0[Mf2[tM1, 3], 0, Mf2[bM1, 
-                3]]] - (Mf2[bM1, 3] + Mf2[tM1, 3])*Re[B1[Mf2[tM1, 3], 0, Mf2[
-                bM1, 3]]] - ((TB2*(2 + TB2)*Mf2[bM1, 3] + Mf2[tM1, 3])*Re[
-                B0[Mf2[tM1, 3], MHin2, Mf2[bM1, 3]]] + (TB2^2*Mf2[bM1, 3] + 
-                Mf2[tM1, 3])*Re[B1[Mf2[tM1, 3], MHin2, Mf2[bM1, 3]]])/TB2 - 
-            (4*MMUE*Mf[bM1, 3]*(Re[B0[Mf2[tM1, 3], MMUE2, MSf2[1, 4, 3]]] - 
-               Re[B0[Mf2[tM1, 3], MMUE2, MSf2[2, 4, 3]]])*U2s1[4, EMUEC])/
-             S2B + (4*(SB2*Mf2[bM1, 3]*(Re[B1[Mf2[tM1, 3], MMUE2, MSf2[2, 4, 
-                     3]]]*UCSf[1, 1, 4, 3] + Re[B1[Mf2[tM1, 3], MMUE2, 
-                    MSf2[1, 4, 3]]]*UCSf[1, 2, 4, 3]) - CB2*Mf2[tM1, 3]*
-                (2*CB2*(Re[B0[Mf2[tM1, 3], MHin2, Mf2[tM1, 3]]] + 
-                   Re[B1[Mf2[tM1, 3], MHin2, Mf2[tM1, 3]]]) - 
-                 Re[B1[Mf2[tM1, 3], MMUE2, MSf2[1, 3, 3]]] - 
-                 Re[B1[Mf2[tM1, 3], MMUE2, MSf2[2, 3, 3]]] - 
-                 Re[B1[Mf2[tM1, 3], MMUE2, MSf2[1, 4, 3]]]*UCSf[1, 1, 4, 3] - 
-                 Re[B1[Mf2[tM1, 3], MMUE2, MSf2[2, 4, 3]]]*UCSf[1, 2, 4, 
-                   3])))/S2B^2))/16)/(MW2*SW2)))/Pi), 
+       (2*(16*Alfas*MW2*SW2 - 3*Alfa1L*Mf2[tM1, 3])*
+          (2 + Re[B0[0, Mf2[tM1, 3], Mf2[tM1, 3]]]) - 
+         Alfa1L*((12*MMUE*Mf[bM1, 3]*(Re[B0[Mf2[tM1, 3], MMUE2, MSf2[1, 4, 
+                 3]]] - Re[B0[Mf2[tM1, 3], MMUE2, MSf2[2, 4, 3]]])*
+             U2s1[4, EMUEC])/S2B - 3*((Mf2[bM1, 3] - Mf2[tM1, 3])*
+              Re[B0[Mf2[tM1, 3], 0, Mf2[bM1, 3]]] - 
+             ((TB2*(2 + TB2)*Mf2[bM1, 3] + Mf2[tM1, 3])*Re[B0[Mf2[tM1, 3], 
+                 MHin2, Mf2[bM1, 3]]])/TB2 - (Mf2[bM1, 3] + Mf2[tM1, 3])*
+              Re[B1[Mf2[tM1, 3], 0, Mf2[bM1, 3]]] - ((TB2^2*Mf2[bM1, 3] + 
+                Mf2[tM1, 3])*Re[B1[Mf2[tM1, 3], MHin2, Mf2[bM1, 3]]])/TB2 + 
+             (4*(SB2*Mf2[bM1, 3]*(Re[B1[Mf2[tM1, 3], MMUE2, MSf2[2, 4, 3]]]*
+                   UCSf[1, 1, 4, 3] + Re[B1[Mf2[tM1, 3], MMUE2, MSf2[1, 4, 
+                      3]]]*UCSf[1, 2, 4, 3]) - CB2*Mf2[tM1, 3]*
+                 (2*CB2*(Re[B0[Mf2[tM1, 3], MHin2, Mf2[tM1, 3]]] + 
+                    Re[B1[Mf2[tM1, 3], MHin2, Mf2[tM1, 3]]]) - 
+                  Re[B1[Mf2[tM1, 3], MMUE2, MSf2[1, 3, 3]]] - 
+                  Re[B1[Mf2[tM1, 3], MMUE2, MSf2[2, 3, 3]]] - 
+                  Re[B1[Mf2[tM1, 3], MMUE2, MSf2[1, 4, 3]]]*UCSf[1, 1, 4, 
+                    3] - Re[B1[Mf2[tM1, 3], MMUE2, MSf2[2, 4, 3]]]*
+                   UCSf[1, 2, 4, 3])))/S2B^2)))/(48*MW2*SW2)))/Pi), 
  dMSfsq1[1, 1, 3, 3] -> 
   -(((2*Alfas*(MSf2[1, 3, 3]*(Re[B1[MSf2[1, 3, 3], 0, MSf2[1, 3, 3]]] - 
           2*Re[B1[MSf2[1, 3, 3], MGl2, Mf2[tM1, 3]]]) + 

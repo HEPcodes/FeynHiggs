@@ -99,9 +99,6 @@ c	  call setfpu
 	if( runningMT .eq. 3 .and. loglevel .ne. 0 )
      &    Error(error, "runningMT = 3 allowed only with loglevel = 0")
 
-! 	if( looplevel .lt. 2 .and. loglevel .ne. 0 )
-!      &    Error(error, "looplevel < 2 allowed only with loglevel = 0")
-
 	if( error .eq. 0 ) flags_valid = valid
 
 	debuglevel = 0
@@ -207,6 +204,33 @@ c	  call setfpu
 	read(env, *, end=120, err=120) tbdef
 	print *, "env FHTBDEF ", tbdef
 120	continue
+
+* a) variation of mudim from MT/2 to 2 MT
+	uncmask(1) = 0
+* b) exclude higher-order MB resummation effects
+	uncmask(2) = 1
+* c) use MTpole instead of MTrun in the two-loop corrections
+	uncmask(3) = 1
+* d) use htMSSM for expressing lambda threshold instead of ytSM
+	uncmask(4) = 1
+* e) variation of QMatch from MSUSY/2 to 2 MSUSY
+	uncmask(5) = 1
+* f) use 3L htMT instead of 2L htMT
+	uncmask(6) = 1
+* g) uncertainty from Alfas -> Alfas*(1 +- Alfas/(4 Pi)*Log)
+	uncmask(7) = 1
+* h) uncertainty from suppressed term if looplevel = 0
+	uncmask(8) = 1
+	call getenv("FHUNCMASK", env)
+	read(env, *, end=130, err=130) uncmask
+	print *, "env FHUNCMASK ", uncmask
+130	continue
+
+	drbartopmass = 0
+	call getenv("FHDRTOPMASS", env)
+	read(env, *, end=140, err=140) drbartopmass
+	print *, "env FHDRTOPMASS ", drbartopmass
+140	continue
 
 	call getenv("FHEXTSE", extSE)
 	if( extSE(1:1) .ne. ' ' )

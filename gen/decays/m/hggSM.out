@@ -1,8 +1,12 @@
-{"/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/hggSM-squaredme/hggSM-abbr\
-1h.F", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/hggSM-squaredme/hggS\
-M-abbr1s.F", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/hggSM-squaredm\
-e/hggSM-makefile", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/hggSM-sq\
-uaredme/hggSM-specs.h", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/hgg\
-SM-squaredme/hggSM-SquaredME.F", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/dec\
-ays/f/hggSM-squaredme/hggSM-v1_Gen4.F", "/home/pcl301/hahn/fh-2143/feynhiggs/\
-gen/decays/f/hggSM-squaredme/hggSM-vars.h"}
+{
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hggSM-squaredme/hggSM-abbr1h.F"\
+, 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hggSM-squaredme/hggSM-abbr1s.F\
+", 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hggSM-squaredme/hggSM-makefile\
+", 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hggSM-squaredme/hggSM-specs.h"\
+, "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hggSM-squaredme/hggSM-Squared\
+ME.F", "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hggSM-squaredme/hggSM-v1\
+_Gen4.F", 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hggSM-squaredme/hggSM-vars.h"}

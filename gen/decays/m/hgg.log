@@ -1,14 +1,18 @@
-Mathematica 11.3.0 Kernel for Linux x86 (64-bit)
-Copyright 1988-2018 Wolfram Research, Inc.
+Mathematica 12.0.0 Kernel for Linux x86 (64-bit)
+Copyright 1988-2019 Wolfram Research, Inc.
 
 In[1]:= 
 In[2]:= In[2]:= << FeynArts`;
-FeynArts 3.10 (11 Jul 2018)
+args::shdw: Symbol args appears in multiple contexts {FeynArts`, Global`}
+    ; definitions in context FeynArts`
+     may shadow or be shadowed by other definitions.
+
+FeynArts 3.11 (11 Apr 2019)
 by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
 
 In[3]:= In[3]:= PrependTo[$ModelPath, "../model"];
 In[4]:= In[4]:= << FormCalc`;
-FormCalc 9.7 (3 Aug 2018)
+FormCalc 9.8 (22 Apr 2019)
 by Thomas Hahn
 
 In[5]:= In[5]:= (*SetOptions[CalcFeynAmp, RetainFile -> True];*)
@@ -294,79 +298,44 @@ decay["hnn"] := write[ CalcFeynAmp @
 *)
 In[108]:= In[108]:= In[108]:= _decay := Abort[];
 In[109]:= In[109]:= In[109]:= decay[tag];
-loading generic model file /home/pcl301/hahn/FeynArts/Models/Lorentz.gen
+loading generic model file /home/desy/FeynTools/FeynArts-3.11/Models/Lorentz.\
+ 
+      gen
 > $GenericMixing is OFF
 generic model {Lorentz} initialized
 
-loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/mss\
+loading classes model file /home/desy/FeynTools/feynhiggs1/gen/decays/mssm-hg\
  
-      m-hgg.mod
-  loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models/M\
+      g.mod
+  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/MSSMD\
  
-      SSMDecay.mod
-    loading classes model file /home/pcl301/hahn/FeynArts/Models/MSSMQCD.mod
-      loading classes model file /home/pcl301/hahn/FeynArts/Models/MSSM.mod
-    loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models\
+      ecay.mod
+    loading classes model file /home/desy/FeynTools/FeynArts-3.11/Models/MSSM\
  
-      /dMHiggs1.mod
-    loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models\
+      QCD.mod
+      loading classes model file 
  
-      /dZHiggs1.mod
-  loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models/F\
+     /home/desy/FeynTools/FeynArts-3.11/Models/MSSM.mod
+    loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/dMH\
  
-      V.mod
+      iggs1.mod
+    loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/dZH\
+ 
+      iggs1.mod
+  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/FV.mod
 
 $FV = {12, 13, 14}
 
-  loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models/K\
- 
-      f.mod
-  loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models/Y\
- 
-      uk.mod
-  loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models/d\
- 
-      Alfa.mod
-loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models/HMi\
- 
-      xExt.mod
-> 74 particles (incl. antiparticles) in 28 classes
-> $CounterTerms are ON
-> 685 vertices
-> 67 counterterms of order 1
-classes model {mssm-hgg, HMixExt} initialized
 
-inserting at level(s) {Generic, Classes}
-> Top. 1: 0 Generic, 0 Classes insertions
-in total: 0 Generic, 0 Classes insertions
-in total: 0 Generic, 0 Classes insertions
+ReplaceCoupling::warning: Coupling #212 still contains s2.
 
-creating amplitudes at level(s) {Generic, Classes}
-in total: 0 Generic, 0 Classes amplitudes
+ReplaceCoupling::warning: Coupling #213 still contains s2.
 
-inserting at level(s) {Generic, Classes}
-> Top. 1: 2 Generic, 8 Classes insertions
-> Top. 2: 1 Generic, 2 Classes insertions
-> Top. 3: 0 Generic, 0 Classes insertions
-> Top. 4: 0 Generic, 0 Classes insertions
-in total: 3 Generic, 10 Classes insertions
+ReplaceCoupling::warning: Coupling #214 still contains s2.
 
-inserting at level(s) {Generic, Classes}
-> Top. 1: 0 Generic, 0 Classes insertions
-in total: 0 Generic, 0 Classes insertions
+General::stop: Further output of ReplaceCoupling::warning
+     will be suppressed during this calculation.
 
-creating amplitudes at level(s) {Generic, Classes}
-> Top. 1: 2 Generic, 8 Classes amplitudes
-> Top. 2: 1 Generic, 2 Classes amplitudes
-in total: 3 Generic, 10 Classes amplitudes
-
-preparing FORM code in\
- 
-     /home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/fc-amp-1.frm
-running FORM... 
-ok
-
-
-RenConst::nodefs: Warning: no definitions for RenConst found.
+Out[109]= $Aborted
 
 In[110]:= In[110]:= 

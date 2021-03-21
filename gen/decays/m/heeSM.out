@@ -1,12 +1,15 @@
-{"/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/heeSM-squaredme/heeSM-abbr\
-0h.F", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/heeSM-squaredme/heeS\
-M-abbr1h.F", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/heeSM-squaredm\
-e/heeSM-abbr1s.F", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/heeSM-sq\
-uaredme/heeSM-makefile", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/he\
-eSM-squaredme/heeSM-specs.h", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays\
-/f/heeSM-squaredme/heeSM-SquaredME.F", 
- "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/heeSM-squaredme/heeSM-v0.F\
+{
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-abbr0h.F"\
+, 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-abbr1h.F\
 ", 
- "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/heeSM-squaredme/heeSM-v1.F\
-", "/home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/f/heeSM-squaredme/heeSM-va\
-rs.h"}
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-abbr1s.F\
+", 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-makefile\
+", 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-specs.h"\
+, "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-Squared\
+ME.F", 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-v0.F", 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-v1.F", 
+ "/home/desy/FeynTools/feynhiggs1/gen/decays/f/heeSM-squaredme/heeSM-vars.h"}

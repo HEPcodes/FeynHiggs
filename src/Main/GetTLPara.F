@@ -21,6 +21,7 @@
 
 	error = 0
 	CheckSf(error)
+	CheckdZHfin(error)
 	CheckTL(error)
 	if( error .gt. 0 ) return
 
@@ -35,4 +36,3 @@
 	MbSL2_ = DSS2(2,bMps,3) + DSS2(1,bMps,3) - DSf(1,4)
 	Deltab_ = Deltaf(bMps,3)
 	end
-

@@ -8,6 +8,7 @@
 #define MyType RealType
 c#define MyType QuadType
 
+	RealType MSQ_, MSU_, MUE_
 	RealType refscale, refscale2, rSQ, rSU, rMUE, rA0
 	RealType rQ2, rSQ2, rSU2, rMUE2, rA02
 	MyType LQ2, LSQ2, LSU2, LMUE2, LA02
@@ -22,19 +23,19 @@ c	parameter (eps = .00001D0)
 	rDen(a_, b_, c_) =
      &    (a_ - b_ - c_)*(a_ + b_ - c_)*(a_ - b_ + c_)*(a_ + b_ + c_)
 
-	refscale = max(MMUE, 1D0)
+	refscale = max(MUE_, 1D0)
 	refscale2 = refscale**2
 
 	rQ2 = (Q/refscale)**2
 	LQ2 = log(rQ2)
 
-	rSQ = MSS0(3,3)/refscale
+	rSQ = MSQ_/refscale
 	rSQ2 = rSQ**2
 	LSQ2 = log(rSQ2)
 
 * shift inputs to avoid singular points
 
-	rSU = MSS0(4,3)/refscale
+	rSU = MSU_/refscale
 	do try = 1, 10
 	  if( abs(rSQ - rSU) .gt. eps ) exit
 	  rSU = rSU*(1 + eps)
@@ -43,7 +44,7 @@ c	parameter (eps = .00001D0)
 	rSU2 = rSU**2
 	LSU2 = log(rSU2)
 
-	rMUE = max(MMUE/refscale, 1D-10)
+	rMUE = max(MUE_/refscale, 1D-10)
 	do try = 1, 10
 	  if( abs(rSQ - rMUE) .gt. eps .and.
      &        abs(rSU - rMUE) .gt. eps ) exit
@@ -54,7 +55,7 @@ c	parameter (eps = .00001D0)
 	rMUE2 = rMUE**2
 	LMUE2 = log(rMUE2)
 
-	rA0 = MA0/refscale
+	rA0 = sqrt(MA02q)/refscale
 	do try = 1, 10
 	  if( abs(rDen(rSQ, rSQ, rA0)) .gt. eps .and.
      &        abs(rDen(rSQ, rSU, rA0)) .gt. eps .and.
@@ -68,8 +69,7 @@ c	parameter (eps = .00001D0)
 	  DEFT "nondegenerate atat thresholds"	ENDL
 	  DEFT "shifted input, orig:"		ENDL
 	  DEFT "MSQ =", rSQ*refscale		ENDL
-	  DEFT "MSU =", rSU*refscale, MStU	ENDL
-	  DEFT "MUE =", rMUE*refscale, MMUE	ENDL
-	  DEFT "MA0 =", rA0*refscale, MA0	ENDL
+	  DEFT "MSU =", rSU*refscale, MSU_	ENDL
+	  DEFT "MUE =", rMUE*refscale, MUE_	ENDL
+	  DEFT "MA0 =", rA0*refscale, sqrt(MA02q)	ENDL
 	endif
-

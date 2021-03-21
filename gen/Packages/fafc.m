@@ -8,6 +8,7 @@
 
 inimod[mod_, opt___] := (
   SetOptions[InsertFields, Model -> mod, opt];
+  SetOptions[CalcFeynAmp, Dimension -> 4];
   InitializeModel[mod, Reinitialize -> True];
 )
 
@@ -127,7 +128,7 @@ sfsimp["gl"][expr_] := usfsimp[expr] /. {
   Xb -> Xbgl, XbC -> XbglC,
   Yt -> Ytgl, YtC -> YtglC,
   Yb -> Ybgl, YbC -> YbglC,
-  Alfas -> gsMT2/(4 Pi)
+  Alfas -> gs2L2/(4 Pi)
 }
 
 sfsimp[_][expr_] := usfsimp[expr] /.

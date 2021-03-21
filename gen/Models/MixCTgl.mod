@@ -8,3 +8,4 @@ RenConst[dMHiggs1gl[1,2]] -= dA1gl MHin2
 
 RenConst[dMHiggs1gl[3,4]] += dBn1gl MHin2
 
+RenConst[dMHiggs1gl[5,6]] += dBc1gl MHin2

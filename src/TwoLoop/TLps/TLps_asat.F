@@ -68,77 +68,77 @@
         F1 = -6 + (4*(MGl2 + pMT2 - MGl*pMT*s2tt) - MSt22*s2tt2)/
      &    MSt12 + (-2 + (4*MGl2*
      &         (2*MGl2*pMT - MGl*(MGl2 - MSt12 + pMT2)*s2tt)*x1)/pMT)*
-     &    (-x3 + x4) + c2tt2*(-2 + (x4 - x5)**2) + 
+     &    (-x3 + x4) + c2tt2*(-2 + (x4 - x5)**2) +
      &   (-x3 + x5)*(-2 + 4*MGl2*
-     &       (2*MGl2 + (MGl*(MGl2 - MSt22 + pMT2)*s2tt)/pMT)*x6) + 
-     &   (5 + 2*x5 - 2*x7)*(x4 - x7) + (x4 - x7)**2 + 
-     &   5*(x5 - x7) + (x5 - x7)**2 + 
-     &   x6*(4*MGl2*tmp2*x10 + 
-     &      ((2*MGl2**2*MSt22*pMT + 
+     &       (2*MGl2 + (MGl*(MGl2 - MSt22 + pMT2)*s2tt)/pMT)*x6) +
+     &   (5 + 2*x5 - 2*x7)*(x4 - x7) + (x4 - x7)**2 +
+     &   5*(x5 - x7) + (x5 - x7)**2 +
+     &   x6*(4*MGl2*tmp2*x10 +
+     &      ((2*MGl2**2*MSt22*pMT +
      &           4*MGl2*pMT2*
      &            (pMT*(5*MSt22 + pMT2) + MGl*(3*MSt22 + pMT2)*s2tt)-
      &             2*(MSt22 - pMT2)**2*
      &            (MSt22*pMT + 2*pMT2*(pMT + MGl*s2tt)))*(-x3 + x7))/
-     &       (MSt22*pMT)) + 
-     &   (4*(MGl2 + pMT2 + MGl*pMT*s2tt) - MSt12*s2tt2 + 
+     &       (MSt22*pMT)) +
+     &   (4*(MGl2 + pMT2 + MGl*pMT*s2tt) - MSt12*s2tt2 +
      &      ((-4*MSt2sum*(MGl2 + pMT2) + 4*MGl*MSt2diff*pMT*s2tt)*
-     &         (x3 - x8))/MSt12)/MSt22 + 
-     &   8*(-x3 + x7 + (x7 - x8)**2) + 
+     &         (x3 - x8))/MSt12)/MSt22 +
+     &   8*(-x3 + x7 + (x7 - x8)**2) +
      &   (1 - (MSt2diff*s2tt2)/MSt22 + (4*MGl*s2tt*(x7 - x8))/pMT)*
-     &    (x4 - x8) + (-4 + (2*MGl*s2tt)/pMT)*(x4 - x8)**2 + 
+     &    (x4 - x8) + (-4 + (2*MGl*s2tt)/pMT)*(x4 - x8)**2 +
      &   (1 + (MSt2diff*s2tt2)/MSt12 - (4*MGl*s2tt*(x7 - x8))/pMT)*
-     &    (x5 - x8) + (-4 - (2*MGl*s2tt)/pMT)*(x5 - x8)**2 + 
-     &   6*(x7 - x8) + (4*MGl*s2tt*(x10 - x9))/pMT + 
-     &   x1*(((2*MGl2**2*MSt12*pMT + 
+     &    (x5 - x8) + (-4 - (2*MGl*s2tt)/pMT)*(x5 - x8)**2 +
+     &   6*(x7 - x8) + (4*MGl*s2tt*(x10 - x9))/pMT +
+     &   x1*(((2*MGl2**2*MSt12*pMT +
      &           4*MGl2*pMT2*
      &            (pMT*(5*MSt12 + pMT2) - MGl*(3*MSt12 + pMT2)*s2tt)-
      &             2*(MSt12 - pMT2)**2*
      &            (MSt12*pMT + 2*pMT2*(pMT - MGl*s2tt)))*(-x3 + x7))/
      &       (MSt12*pMT) + 4*MGl2*tmp1*x9)
 
-        s2ttF2 = (-2*s2tt + 
+        s2ttF2 = (-2*s2tt +
      &      4*MGl2*((MGl2 - MSt12 + pMT2)*s2tt - 2*MGl*pMT*s2tt2)*x1)
      &     *(-x3 + x4) + (-x3 + x5)*
      &    (2*s2tt - 4*MGl2*
-     &       ((MGl2 - MSt22 + pMT2)*s2tt + 2*MGl*pMT*s2tt2)*x6) + 
-     &   x6*(-(((8*MGl*MGl2*pMT*pMT2*s2tt + 
-     &             (MGl2 - MSt22 + pMT2)**3*s2tt2)*x10)/(MGl*pMT)) - 
-     &      (4*(-((MSt22 - pMT2)**2*(pMT2*s2tt + MGl*pMT*s2tt2)) + 
-     &           MGl2*(pMT2*(3*MSt22 + pMT2)*s2tt + 
+     &       ((MGl2 - MSt22 + pMT2)*s2tt + 2*MGl*pMT*s2tt2)*x6) +
+     &   x6*(-(((8*MGl*MGl2*pMT*pMT2*s2tt +
+     &             (MGl2 - MSt22 + pMT2)**3*s2tt2)*x10)/(MGl*pMT)) -
+     &      (4*(-((MSt22 - pMT2)**2*(pMT2*s2tt + MGl*pMT*s2tt2)) +
+     &           MGl2*(pMT2*(3*MSt22 + pMT2)*s2tt +
      &              MGl*pMT*(MSt22 + pMT2)*s2tt2))*(-x3 + x7))/MSt22)
-     &     + ((4*MSt2diff*pMT*(MGl2 + pMT2)*s2tt - 
-     &         (4*MGl*(3*MSt12*MSt22 + MSt2sum*pMT2) + 
-     &            MSt2diff*MSt2sum*pMT*s2tt)*s2tt2 + 
+     &     + ((4*MSt2diff*pMT*(MGl2 + pMT2)*s2tt -
+     &         (4*MGl*(3*MSt12*MSt22 + MSt2sum*pMT2) +
+     &            MSt2diff*MSt2sum*pMT*s2tt)*s2tt2 +
      &         ((4*MSt2diff*
-     &               (-(MSt2diff*pMT*(MGl2 + pMT2)*s2tt) + 
-     &                 MGl*MSt2sum*pMT2*s2tt2) + 
+     &               (-(MSt2diff*pMT*(MGl2 + pMT2)*s2tt) +
+     &                 MGl*MSt2sum*pMT2*s2tt2) +
      &              MGl*MSt12*MSt22*(2*MGl2 + MSt2sum - 2*pMT2)*
-     &               s2tt2*(x4 - x5))*(x3 - x8))/MSt2diff)/MSt22 + 
-     &      (((2*MGl*MSt12*(4*MSt22 + MSt2sum) + 
-     &              MSt22*MSt2diff*pMT*s2tt)*s2tt2 + 
+     &               s2tt2*(x4 - x5))*(x3 - x8))/MSt2diff)/MSt22 +
+     &      (((2*MGl*MSt12*(4*MSt22 + MSt2sum) +
+     &              MSt22*MSt2diff*pMT*s2tt)*s2tt2 +
      &           MGl*MSt12*
-     &            (-8*c2tt2*pMT2 + 
+     &            (-8*c2tt2*pMT2 +
      &              (8*pMT2 - (-2*MGl2 + MSt2sum + 10*pMT2)*s2tt2)*
-     &               (x7 - x8)))*(x5 - x8))/MSt2diff)/(MSt12*pMT) + 
+     &               (x7 - x8)))*(x5 - x8))/MSt2diff)/(MSt12*pMT) +
      &   (-3*s2tt + (MGl*MSt2sum*s2tt2)/(MSt2diff*pMT))*
-     &    (x4 - x8)**2 + (3*s2tt - 
-     &      (MGl*MSt2sum*s2tt2)/(MSt2diff*pMT))*(x5 - x8)**2 + 
-     &   x1*((4*((MSt12 - pMT2)**2*(-(pMT2*s2tt) + MGl*pMT*s2tt2) + 
-     &           MGl2*(pMT2*(3*MSt12 + pMT2)*s2tt - 
+     &    (x4 - x8)**2 + (3*s2tt -
+     &      (MGl*MSt2sum*s2tt2)/(MSt2diff*pMT))*(x5 - x8)**2 +
+     &   x1*((4*((MSt12 - pMT2)**2*(-(pMT2*s2tt) + MGl*pMT*s2tt2) +
+     &           MGl2*(pMT2*(3*MSt12 + pMT2)*s2tt -
      &              MGl*pMT*(MSt12 + pMT2)*s2tt2))*(-x3 + x7))/MSt12+
-     &        ((8*MGl*MGl2*pMT*pMT2*s2tt - 
-     &           (MGl2 - MSt12 + pMT2)**3*s2tt2)*x9)/(MGl*pMT)) + 
-     &   (s2tt*(x4 - x5)*(5*(1 + c2tt2)*MSt2diff + 
-     &         c2tt2*(MSt2sum*x4 - 2*MSt22*x5 - MSt2sum*x5 + 
-     &            2*MSt12*(x4 - x8) + 2*MSt22*x8)) + 
-     &      (((-((2*MGl*MSt22*(4*MSt12 + MSt2sum) + 
-     &                   MSt12*MSt2diff*pMT*s2tt)*s2tt2) + 
+     &        ((8*MGl*MGl2*pMT*pMT2*s2tt -
+     &           (MGl2 - MSt12 + pMT2)**3*s2tt2)*x9)/(MGl*pMT)) +
+     &   (s2tt*(x4 - x5)*(5*(1 + c2tt2)*MSt2diff +
+     &         c2tt2*(MSt2sum*x4 - 2*MSt22*x5 - MSt2sum*x5 +
+     &            2*MSt12*(x4 - x8) + 2*MSt22*x8)) +
+     &      (((-((2*MGl*MSt22*(4*MSt12 + MSt2sum) +
+     &                   MSt12*MSt2diff*pMT*s2tt)*s2tt2) +
      &              MGl*MSt22*
-     &               (8*c2tt2*pMT2 + 
-     &                 (-8*pMT2 + 
+     &               (8*c2tt2*pMT2 +
+     &                 (-8*pMT2 +
      &                    (-2*MGl2 + MSt2sum + 10*pMT2)*s2tt2)*
-     &                  (x7 - x8)))*(x4 - x8))/MSt22 + 
-     &         (8*c2tt2*MGl2*pMT2*(-x10 + x9) + 
+     &                  (x7 - x8)))*(x4 - x8))/MSt22 +
+     &         (8*c2tt2*MGl2*pMT2*(-x10 + x9) +
      &            s2tt2*((-2*x10)/x6 + (2*x9)/x1))/MGl)/pMT)/
      &    MSt2diff
 
@@ -146,68 +146,68 @@
 
 	s2ttAtrdF2 = 2*MGl*s2tt*tmp5
 
-        tmp3 = MSt2diff*(-2*MSt2sum + 4*(MGl2 + pMT2))*s2tt + 
+        tmp3 = MSt2diff*(-2*MSt2sum + 4*(MGl2 + pMT2))*s2tt +
      &   4*MGl*MSt2sum*pMT*(2 - 3*s2tt2)
 
-        tmp4 = MSt2diff*(MSt2sum - 2*(MGl2 + pMT2))*s2tt + 
+        tmp4 = MSt2diff*(MSt2sum - 2*(MGl2 + pMT2))*s2tt +
      &   2*MGl*MSt2sum*pMT*(-2 + 3*s2tt2)
 
-        s2ttF3 = s2tt*(10 + 18*c2tt2 - 
-     &      4*(c2tt2 + (MSt12*(MGl2 + pMT2))/(MSt22*MSt2diff)) + 
-     &      ((4*MSt22*(MGl2 + pMT2))/MSt2diff - 
-     &         ((MSt12**2 + MSt22**2)*s2tt2)/MSt22)/MSt12) + 
-     &   ((-2 + (2*(MSt22 - pMT2))/MGl2 - (8*pMT2)/MSt2diff)*s2tt - 
+        s2ttF3 = s2tt*(10 + 18*c2tt2 -
+     &      4*(c2tt2 + (MSt12*(MGl2 + pMT2))/(MSt22*MSt2diff)) +
+     &      ((4*MSt22*(MGl2 + pMT2))/MSt2diff -
+     &         ((MSt12**2 + MSt22**2)*s2tt2)/MSt22)/MSt12) +
+     &   ((-2 + (2*(MSt22 - pMT2))/MGl2 - (8*pMT2)/MSt2diff)*s2tt -
      &      (4*pMT*(MGl2 - MSt22 + pMT2)*(-2 + 3*s2tt2))/
-     &       (MGl*MSt2diff))*x10 + 
+     &       (MGl*MSt2diff))*x10 +
      &   (MGl*pMT*(64 + (-88 - (4*MSt12)/MSt22 - (4*MSt22)/MSt12)*
      &          s2tt2) - 3*MSt2sum*s2tt*(x4 - x5)*(x4 + x5 - 2*x8))
      &     /MSt2diff + x6*(4*pMT2*
-     &       (s2tt*tmp2*x10 + 
-     &         (((-(MSt22 - pMT2)**2 + MGl2*(MSt22 + pMT2))*s2tt + 
+     &       (s2tt*tmp2*x10 +
+     &         (((-(MSt22 - pMT2)**2 + MGl2*(MSt22 + pMT2))*s2tt +
      &              MGl*pMT*(MGl2 + MSt22 - pMT2)*s2tt2)*(x7 - x8))/
-     &          MSt22) + (8*MGl2*pMT2*s2tt + 
-     &         4*MGl*pMT*(MGl2 - MSt22 + pMT2)*s2tt2)*(x5 - x8)) + 
-     &   (x3 - x8)*(MGl2*(((-4*MSt2sum*s2tt)/MSt22 + 
-     &            4*(-((MGl2 + MSt12 - pMT2)*pMT2*s2tt) - 
+     &          MSt22) + (8*MGl2*pMT2*s2tt +
+     &         4*MGl*pMT*(MGl2 - MSt22 + pMT2)*s2tt2)*(x5 - x8)) +
+     &   (x3 - x8)*(MGl2*(((-4*MSt2sum*s2tt)/MSt22 +
+     &            4*(-((MGl2 + MSt12 - pMT2)*pMT2*s2tt) -
      &               MGl*pMT*(-MGl2 + MSt12 + pMT2)*s2tt2)*x1)/MSt12+
-     &           (4*(-((MGl2 + MSt22 - pMT2)*pMT2*s2tt) + 
+     &           (4*(-((MGl2 + MSt22 - pMT2)*pMT2*s2tt) +
      &              MGl*pMT*(-MGl2 + MSt22 + pMT2)*s2tt2)*x6)/MSt22)+
      &        (2*tmp4*x4 + tmp3*x5 - tmp3*x8 - 2*tmp4*x8)/
-     &       MSt2diff**2) + 
-     &   ((-2 + (2*(MSt12 - pMT2))/MGl2 + (8*pMT2)/MSt2diff)*s2tt + 
+     &       MSt2diff**2) +
+     &   ((-2 + (2*(MSt12 - pMT2))/MGl2 + (8*pMT2)/MSt2diff)*s2tt +
      &      (pMT*(MGl2 - MSt12 + pMT2)*(8 - 12*s2tt2))/(MGl*MSt2diff)
-     &      )*x9 + x1*((8*MGl2*pMT2*s2tt - 
-     &         4*MGl*pMT*(MGl2 - MSt12 + pMT2)*s2tt2)*(x4 - x8) + 
+     &      )*x9 + x1*((8*MGl2*pMT2*s2tt -
+     &         4*MGl*pMT*(MGl2 - MSt12 + pMT2)*s2tt2)*(x4 - x8) +
      &      4*pMT2*((((-(MSt12 - pMT2)**2 + MGl2*(MSt12 + pMT2))*
      &               s2tt - MGl*pMT*(MGl2 + MSt12 - pMT2)*s2tt2)*
-     &            (x7 - x8))/MSt12 + s2tt*tmp1*x9)) + 
-     &   ((x5 - x8)*(-8*MGl2*MSt2diff*s2tt - 
-     &         3*MSt22*MSt2diff*s2tt - 
-     &         13*c2tt2*MSt22*MSt2diff*s2tt - 
-     &         8*MSt2diff*pMT2*s2tt + 
-     &         (MSt22**2*MSt2diff*s2tt*s2tt2)/MSt12 - 
-     &         2*MSt2diff**2*s2tt*s2tt2 + 
+     &            (x7 - x8))/MSt12 + s2tt*tmp1*x9)) +
+     &   ((x5 - x8)*(-8*MGl2*MSt2diff*s2tt -
+     &         3*MSt22*MSt2diff*s2tt -
+     &         13*c2tt2*MSt22*MSt2diff*s2tt -
+     &         8*MSt2diff*pMT2*s2tt +
+     &         (MSt22**2*MSt2diff*s2tt*s2tt2)/MSt12 -
+     &         2*MSt2diff**2*s2tt*s2tt2 +
      &         8*MGl*pMT*(-2 + 3*s2tt2)*
-     &          (2*MSt22 + MSt2sum - (MGl2 - pMT2)*(x3 - x7)) + 
-     &         tmp3*x7 - tmp3*x8) + 
-     &      (x4 - x8)*(8*MGl2*MSt2diff*s2tt + 
-     &         3*MSt12*MSt2diff*s2tt + 
-     &         13*c2tt2*MSt12*MSt2diff*s2tt + 
-     &         8*MSt2diff*pMT2*s2tt - 
-     &         (MSt12**2*MSt2diff*s2tt*s2tt2)/MSt22 - 
-     &         2*MSt2diff**2*s2tt*s2tt2 - 
+     &          (2*MSt22 + MSt2sum - (MGl2 - pMT2)*(x3 - x7)) +
+     &         tmp3*x7 - tmp3*x8) +
+     &      (x4 - x8)*(8*MGl2*MSt2diff*s2tt +
+     &         3*MSt12*MSt2diff*s2tt +
+     &         13*c2tt2*MSt12*MSt2diff*s2tt +
+     &         8*MSt2diff*pMT2*s2tt -
+     &         (MSt12**2*MSt2diff*s2tt*s2tt2)/MSt22 -
+     &         2*MSt2diff**2*s2tt*s2tt2 -
      &         8*MGl*pMT*(-2 + 3*s2tt2)*
-     &          (2*MSt12 + MSt2sum - (MGl2 - pMT2)*(x3 - x7)) + 
-     &         2*tmp4*x7 - 2*tmp4*x8) + 
+     &          (2*MSt12 + MSt2sum - (MGl2 - pMT2)*(x3 - x7)) +
+     &         2*tmp4*x7 - 2*tmp4*x8) +
      &      MSt2sum*s2tt*(x4 - x5)*
-     &       ((3 + 9*c2tt2)*MSt2diff + 
-     &         c2tt2*(MSt2sum*x4 - 6*MSt22*x5 - MSt2sum*x5 + 
-     &            6*MSt12*(x4 - x8) + 6*MSt22*x8)) + 
+     &       ((3 + 9*c2tt2)*MSt2diff +
+     &         c2tt2*(MSt2sum*x4 - 6*MSt22*x5 - MSt2sum*x5 +
+     &            6*MSt12*(x4 - x8) + 6*MSt22*x8)) +
      &      ((MGl*MSt2diff*s2tt + 2*MGl2*pMT*(-2 + 3*s2tt2))*
      &         ((-4*x10)/x6 + (4*x9)/x1))/(MGl*MGl2))/MSt2diff**2
 
         s2ttAtrdF3 = (2*MGl*s2tt*
-     &     (4*MSt2diff + MSt2sum*tmp5 + 4*MSt12*x4 - 4*MSt22*x5 - 
+     &     (4*MSt2diff + MSt2sum*tmp5 + 4*MSt12*x4 - 4*MSt22*x5 -
      &       4*MSt12*x8 + 4*MSt22*x8))/MSt2diff
 
 * COUNTER TERMS:
@@ -217,24 +217,24 @@
 	  F2o = x4 - x5
 	  F3o = 2 + (MSt2sum*(x4 - x5))/MSt2diff
 
-	  dpMTpMT = 1/2.D0*(MSt2sum + 2*MSDR*pMT2 + tmp1*x11 + 
-     &      tmp2*x12 - MSt12*x4 - MSt22*x5 + 6*pMT2*x7 + 
+	  dpMTpMT = 1/2.D0*(MSt2sum + 2*MSDR*pMT2 + tmp1*x11 +
+     &      tmp2*x12 - MSt12*x4 - MSt22*x5 + 6*pMT2*x7 +
      &      2*MGl2*(-1 + x3 - x8) + MSt12*x8 + MSt22*x8 - 6*pMT2*x8)
      &     /pMT2
 	  dpMTpMTx = dpMTpMT*dMT1OS
 
-	  dMSt12 = -2*(MGl2 + 3*MSt12 + pMT2 + tmp1*x13) + 
-     &     2*(MGl2*(x3 - x8) + pMT2*(x7 - x8)) - 
-     &     (-3 + c2tt2)*MSt12*(x4 - x8) + 
+	  dMSt12 = -2*(MGl2 + 3*MSt12 + pMT2 + tmp1*x13) +
+     &     2*(MGl2*(x3 - x8) + pMT2*(x7 - x8)) -
+     &     (-3 + c2tt2)*MSt12*(x4 - x8) +
      &     s2tt2*(MSt2diff + MSt22*(-x5 + x8))
 
-	  dMSt22 = -(MSt2diff*s2tt2) - 
-     &     2*(MGl2 + 3*MSt22 + pMT2 + tmp2*x14) + 2*MGl2*(x3 - x8) - 
-     &     MSt12*s2tt2*(x4 - x8) - (-3 + c2tt2)*MSt22*(x5 - x8) + 
+	  dMSt22 = -(MSt2diff*s2tt2) -
+     &     2*(MGl2 + 3*MSt22 + pMT2 + tmp2*x14) + 2*MGl2*(x3 - x8) -
+     &     MSt12*s2tt2*(x4 - x8) - (-3 + c2tt2)*MSt22*(x5 - x8) +
      &     2*pMT2*(x7 - x8)
 
 	  ds2tt = (-2*c2tt2*
-     &     (2*MGl*pMT*(x13 + x14) + 
+     &     (2*MGl*pMT*(x13 + x14) +
      &       s2tt*(MSt2diff + MSt12*(x4 - x8) - MSt22*(x5 - x8))))
      &      /MSt2diff
 
@@ -257,7 +257,7 @@
 	  s2ttAtrdF3 = s2ttAtrdF3 + s2ttdAtr*F3o
 	endif
 
-	k = -C_F*Nc/(64*pi**3)*AlfasMT*ht2
+	k = -C_F*Nc/(64*pi**3)*Alfas2L*ht2
 
 * Eq. (25)
 	dPhi(se11) = k*.5D0*MUEr2*s2tt*s2ttF3

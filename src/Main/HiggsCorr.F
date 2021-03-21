@@ -59,6 +59,7 @@
 
 	entry CalcHiggsCorr(error)
 
+	CheckdZHfin(error)
 	CheckTL(error)
 	CheckRGE(error)
 	if( error .gt. 0 ) return
@@ -173,7 +174,6 @@ c	      Error(error, "error computing Mh"//Digit(i))
 	DHIGGS "------------------------"	ENDL
 	DHIGGS "SAeff =", SAeff			ENDL
 	end
-
 
 ************************************************************************
 * CalcUHiggs: Calculate UHiggs and initial values for MHiggs2 at k^2 = 0

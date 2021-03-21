@@ -111,7 +111,7 @@ TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
   DRbar2LShifts.o dZHfin2LShifts.o MTrepara.o
 
 EFT = Resum4H.o Resum4H1.o \
-  Resum4H23.o eftloopfun.o beta4H.o \
+  Resum4H23.o eftloopfun.o beta4H.o runStopPara.o \
   TLthresholdasat.o TLthresholdatat.o \
   PhiQuad.o spenceQuad.o
 
@@ -119,9 +119,13 @@ PhiQuad.o: Phi.F
 
 spenceQuad.o: spence.F
 
-Resum4H23.o: FOSubtract.h
+TLthresholdasat.o: Resum4H.h
+TLthresholdatat.o: TLthresholdatat.h Resum4H.h
 
-TLthresholdatat.o: TLthresholdatat.h
+Resum4H.o: Resum4H.h
+Resum4H1.o: Resum4H.h
+Resum4H23.o: FOSubtract.h Resum4H.h \
+	           TLthresholdasat.o TLthresholdatat.o
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 
@@ -395,7 +399,7 @@ CSLHA.h: CSLHA.h.in ftypes.h
 FE = FeynHiggs.o pager.o
 
 FeynHiggs$(EXE): $(FE) libFH.a
-	$(FC) $(FFLAGS) -o FeynHiggs$(EXE) $(FE) libFH.a
+	$(FC) $(FFLAGS) -o FeynHiggs$(EXE) $(FE) libFH.a -lstdc++
 
 MFeynHiggs$(EXE): MFeynHiggs$(QUADSUFFIX).tm CFeynHiggs.h CSLHA.h fcc fortranflush.o libFH.a
 	test -d =. || ln -s . =.
@@ -422,4 +426,3 @@ fcc: fcc.in makefile
 
 table$(EXE): table.c
 	$(CC) $(CFLAGS) -o table$(EXE) table.c
-
