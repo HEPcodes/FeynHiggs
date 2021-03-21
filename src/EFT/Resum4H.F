@@ -1,48 +1,44 @@
-* Resum4Hb.F
+* Resum4H.F
 * resums the 4H coupling taking into account four scales:
 *   low scale = MT
 *   medium scale 1 = MCha
 *   medium scale 2 = MGlu
 *   high scale = MSUSY
 * this file is part of FeynHiggs
-* last modified 23 Jun 16 th
+* last modified 12 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
 
+#define loglevelXt 2
+
 
 * Main function calculating the correction to Mh due to resummation
 
-	subroutine Resum4Hb(dPhi22, XtOS, rMUE)
+	subroutine Resum4H(dPhi22, XtOS, rMUE)
 	implicit none
-	RealType dPhi22, rMUE, XtOS
+	RealType dPhi22, XtOS, rMUE
 
-#include "Resum4Hb.h"
-#define __SUBROUTINE__ "Resum4Hb"
+#include "Resum4H.h"
+#define __SUBROUTINE__ "Resum4H"
 
 	integer fail
 	RealType x(nSM:nSplit)
-	RealType htMT2sub, MSUSYOS, llog
-	RealType mueOS, mueOS2, mueOS1, xOS2, xOS1, yOS
+	RealType xOS1, yOS, mueOS2, mueOS1, logarg, msMS
 	RealType g1uC, g1dC, g1udC, g2uC, g2dC, g2udC, htC, lC
+	RealType htMT2sub, sublog1L, sublog2L
 	RealType subnonlog1L, subnonlog2L
-	RealType sublog2L, sublog1L
 	external threshdiff
-
-#ifdef XT_CONVERSION
-	RealType logarg, msMS
-#endif
 
 	RealType ggyMT2
 	parameter (ggyMT2 = 1/24D0*gMT2*gyMT2*
      &    (gyMT2 - 25*gMT2)/(gMT2 + gyMT2)**2)
 
 	tTop = log(MT2)
-	tCha = log(MCha(1)*MCha(2))
-	tGlu = log(MGl2)
 	MSUSYOS = MSf(1,3,3)*MSf(2,3,3)
-	tSUSY = log(MSUSYOS)
-	tSUSYMS = tSUSY
+	tSUSYOS = log(MSUSYOS)
+	tSUSYMS = tSUSYOS
+	llog = tSUSYOS - tTop
 	MSUSYOS = sqrt(MSUSYOS)
 	if( MA0 .lt. 1D-2*MSUSYOS ) Warning("Resum4H: MA << MSUSY")
 	if( MSUSYOS .lt. 1D-2*MA0 ) Warning("Resum4H: MSUSY << MA")
@@ -50,29 +46,27 @@
 	xOS = XtOS/MSUSYOS
 	xOS2 = xOS**2
 	xOS1 = (1 - xOS)*(1 + xOS)
+
+	if( loglevel .eq. 1 ) then
+	  xMS = xOS*(1 + llog*(AlfasMT/pi - .75D0*k1L*htMT2*xOS1))
+	  call Resum4Ha(dPhi22)
+	  return
+	endif
+
 	mueOS = rMUE/MSUSYOS
 	mueOS2 = mueOS**2
 	mueOS1 = (1 - mueOS)*(1 + mueOS)
 	yOS = xOS + mueOS*(1/TB + TB)
-	llog = tSUSY - tTop
-	if( tCha .gt. tSUSY ) then
-	  Warning("Resum4H: MCha > MSUSY, setting MCha = MSUSY")
-	  tCha = tSUSY
-	endif
 
-#ifdef XT_CONVERSION
-	if( loglevel .eq. 2 ) then
-#endif
-c	  xMS = 4*g3MT2 - ggyMT2 - .75D0*htMT2*xOS1
-c	  xMS = xOS*(1 + k1L*xMS*llog)
+	if( loglevelXt .eq. 2 ) then
 	  xMS = ggyMT2 + .75D0*htMT2*xOS1
 	  xMS = xOS*(1 + k1L*(4*g3MT2 - xMS)*llog)
 	  mueMS = mueOS
-#ifdef XT_CONVERSION
+	  if( loglevel .gt. 2 ) call rgeloopfun(lfMS, mueMS)
 	else
 	  call rgeloopfun(lfOS, mueOS)
 	  xMS = 32/3D0*g3MT2 + (6 - pi*sqrt3)*htMT2*yOS/TB2
-	  logarg = abs(xOS)*Mf(tT,3)/MSUSYOS
+	  logarg = abs(xOS)*Mf(tT2,3)/MSUSYOS
 	  if( logarg .gt. 1D-12 ) xMS = xMS + xOS*(
      &      4/3D0*g3MT2*(5 + 3*llog - xOS) -
      &      ggyMT2*llog -
@@ -86,11 +80,17 @@ c	  xMS = xOS*(1 + k1L*xMS*llog)
      &      .75D0*htMT2/SB2*(lfOS(5) + CB2 +
      &        2*SB2*xOS2 - (pi/sqrt2 - 2)*CB2*yOS**2))
 	  xMS = (xOS + k1L*xMS)/msMS
-	  tSUSYMS = tSUSY + log(msMS**2)
+	  tSUSYMS = tSUSYOS + log(msMS**2)
 	  mueMS = mueOS/msMS
 	  call rgeloopfun(lfMS, mueMS)
 	endif
-#endif
+
+	tCha = log(MCha(1)*MCha(2))
+	tGlu = log(MGl2)
+	if( tCha .gt. tSUSYOS ) then
+	  Warning("Resum4H: MCha > MSUSY, setting MCha = MSUSY")
+	  tCha = tSUSYOS
+	endif
 
 * initial values from tree-level relations
 	x(ilam) = .15D0
@@ -105,16 +105,16 @@ c	  xMS = xOS*(1 + k1L*xMS*llog)
 #include "FOSubtract.h"
 
 * calc Mh^RGE, combine with subtraction terms
-	dPhi22 = (vev**2*x(ilam) - subnonlog1L -
-     &    subnonlog2L - sublog1L - sublog2L)/SB2
+	dPhi22 = -vev**2/SB2*(x(ilam) - subnonlog1L -
+     &    subnonlog2L - sublog1L - sublog2L)
 
 	if( debuglevel .gt. 4 ) then
 	  DHIGGS "final values:"
 	  DHIGGS "lam(MT)     =", x(ilam)	ENDL
-	  DHIGGS "subnonlog1L =", subnonlog1L	ENDL
-	  DHIGGS "subnonlog2L =", subnonlog2L	ENDL
 	  DHIGGS "sublog1L    =", sublog1L	ENDL
 	  DHIGGS "sublog2L    =", sublog2L	ENDL
+	  DHIGGS "subnonlog1L =", subnonlog1L	ENDL
+	  DHIGGS "subnonlog2L =", subnonlog2L	ENDL
 	  DHIGGS "dPhi22      =", dPhi22	ENDL
 	endif
 	end
@@ -134,7 +134,7 @@ c	  xMS = xOS*(1 + k1L*xMS*llog)
 	integer n
 	RealType x(nSM:nSplit), dx(nSM:nSplit), dxmin
 
-#include "Resum4Hb.h"
+#include "Resum4H.h"
 
 	RealType y(nSplit)
 	RealType yg1ud, yg2ud, y13, yMS

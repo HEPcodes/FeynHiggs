@@ -1,7 +1,7 @@
 // demo.cc
 // demonstration program for calling FeynHiggs from C++
 // this file is part of FeynHiggs
-// last modified 23 Jan 14 th
+// last modified 8 Jul 16 th
 
 
 #include <stdlib.h>
@@ -21,6 +21,7 @@ static void setFlags()
     higgsmix = 2,
     p2approx = 0,
     looplevel = 2,
+    loglevel = 0,
     runningMT = 1,
     botResum = 1,
     tlCplxApprox = 3
@@ -29,7 +30,7 @@ static void setFlags()
   int error;
 
   FHSetFlags(&error, mssmpart, fieldren, tanbren, higgsmix,
-    p2approx, looplevel, runningMT, botResum, tlCplxApprox);
+    p2approx, looplevel, loglevel, runningMT, botResum, tlCplxApprox);
   if( error ) exit(error);
 }
 

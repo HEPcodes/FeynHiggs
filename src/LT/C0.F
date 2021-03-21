@@ -2,8 +2,8 @@
 * the scalar three-point function
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
-* this file is part of LoopTools
-* last modified 27 Jan 15 th
+* this file is part of FeynHiggs
+* last modified 9 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -281,7 +281,7 @@
 
 	if( abs(p1p2) .lt. diffeps .or. abs(p1) .lt. diffeps ) then
 	  print *, "C0ir: mass singular case"
-	  C0ir = nan
+	  C0ir = bogus
 	  return
 	endif
 

@@ -16,10 +16,11 @@ MAIN = SetFlags.o RetrieveFlags.o \
   SetSMPara.o RetrieveSMPara.o GetSMPara.o \
   SetPara.o RetrievePara.o RetrieveOSPara.o GetPara.o GetTLPara.o \
   SetFV.o RetrieveFV.o GetFV.o SetSLHA.o \
-  Para.o Sfermions.o SetDebug.o SetExt.o GetSelf.o HiggsCorr.o \
-  Uncertainties.o Couplings.o SelectUZ.o Constraints.o Flavour.o \
-  HiggsProd.o CalcSelf.o AddSelf.o AddExt.o Error.o DRbartoOS.o \
-  AlphaS.o MDcorr.o Deltab2L.o \
+  Para.o Sfermions.o SetDebug.o \
+  SetExt.o GetSelf.o HiggsCorr.o Uncertainties.o \
+  Couplings.o SelectUZ.o Constraints.o Flavour.o \
+  HiggsProd.o CalcSelf.o AddSelf.o AddExt.o Error.o \
+  DRbartoOS.o DeltaMT.o AlphaS.o MDcorr.o Deltab2L.o \
   Output.o OutputSLHA.o
 #MAIN += gghNLO.o
 #MAIN += DRbar2OS_t.o
@@ -71,10 +72,12 @@ TLSP = TLsp.o TLsp_atat_c1.o TLsp_atat_c2.o \
   TLsp_atat_o1.o TLsp_atat_o2.o
 
 TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
-  Resum4Ha.o Resum4Hb.o rgeloopfun.o beta4H.o \
-  CalcRenSETL.o MTrepara.o InvTri.o Phi.o TLSfgl.o
+  Resum4Ha.o Resum4H.o rgeloopfun.o beta4H.o \
+  CalcRenSETL.o MTrepara.o InvTri.o Phi.o Sfgl.o
 
-Resum4Hb.o: Resum4Hb.F Resum4Hb.h FOSubtract.h
+Resum4H.o: Resum4H.F Resum4H.h FOSubtract.h
+
+Resum4Ha.o: Resum4Ha.F Resum4H.h
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 
@@ -224,11 +227,11 @@ libFH.a: $(ALL)
 
 $(ALL): externals.h types.h
 
-$(MOST) LoopRecord.o ReadRecord.o TableRecord.o: FH.h const.h
+$(MOST) EigenSf.o LoopRecord.o ReadRecord.o TableRecord.o: FH.h const.h
 
 $(REC) SetSMPara.o Para.o SetSLHA.o SetNMFV.o: FHRecord.h
 
-ReadRecord.o LoopRecord.o SetRecord.o LoadTable.o TableRecord.o: debug.h
+EigenSf.o ReadRecord.o LoopRecord.o SetRecord.o LoadTable.o TableRecord.o: debug.h
 
 LoopRecord.o SetRecord.o: Defaults.h
 
@@ -347,11 +350,12 @@ FeynHiggs$(EXE): $(FE) libFH.a
 	$(FC) $(FFLAGS) -o FeynHiggs$(EXE) $(FE) libFH.a
 
 MFeynHiggs$(EXE): MFeynHiggs$(QUAD).tm CFeynHiggs.h CSLHA.h fcc fortranflush.o libFH.a
+	test -d =. || ln -s . =.
 	NM="$(NM)" DLLTOOL="$(DLLTOOL)" \
 	CC="./fcc" REALCC="$(CC) $(CFLAGS)" \
 	CXX="./f++" REALCXX="$(CXX) $(CXXFLAGS)" \
 	PATH="$$PATH:." \
-	  mcc -o MFeynHiggs$(EXE) $(MCFLAGS) -DQUAD=0$(QUAD) MFeynHiggs$(QUAD).tm \
+	  $(MCC) -o MFeynHiggs$(EXE) $(MCFLAGS) -DQUAD=0$(QUAD) MFeynHiggs$(QUAD).tm \
 	    fortranflush.o libFH.a $(MCLIBS)
 	rm -f MFeynHiggs$(QUAD).tm.*
 

@@ -1,6 +1,6 @@
 * TLhr_self_c.F
 * this file is part of FeynHiggs
-* generated 10-May-2015 20:27
+* generated 2-Aug-2016 18:12
 
 #include "externals.h"
 #include "types.h"
@@ -77,8 +77,6 @@
      &                  UStop2(1,1)*UStop2(1,2)))))/
      &       (MTy*MW2*SW2*TB2*MStop2(1)*MStop2(2)**2*MStop2(3)**2))
 
-	DTLHR "selfA0A0 =", selfA0A0 ENDL
-
         tmp1 = Alfa2L*(MTy*MSbot2(1)*MSq2Diff(1,1)*MStop2(1)*
      &       ((6*Alfas2L*Cc(870)*Cc(1309) + 
      &            9*Pi*(Cc(943)*Conjugate(dAf133eps(-1))*
@@ -150,7 +148,5 @@
      &    (MTy2*tmp1)/
      &     (MTy*MW2*SW2*TB2*MSbot2(1)*MSq2Diff(1,1)**2*
      &       MSq2Diff(1,2)**2*MStop2(1)*MStop2(2)*MStop2(3))
-
-	DTLHR "selfHmHp =", selfHmHp ENDL
 
 	end

@@ -1,7 +1,7 @@
-* TLSfgl.h
-* TLhr/TLsp sfermion parameters
+* Sfgl.h
+* gaugeless sfermion parameters
 * this file is part of FeynHiggs
-* last modified 2 Mar 15 th
+* last modified 27 Jul 16 th
 
 #ifndef UStopC
 #define UStopC(i,j) Conjugate(UStop(i,j))

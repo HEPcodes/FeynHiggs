@@ -50,8 +50,8 @@
 
 * the implementation follows closely hep-ph/0102316
 
-	call AlphaS(asMB, nfdummy, MB + 1D-14)
-	call AlphaS(asMT, nfdummy, Mf(tT,3) - 1D-14)
+	call AlphaS(asMB, nfdummy, MB2 + 1D-11)
+	call AlphaS(asMT, nfdummy, Mf2(tT,3) - 1D-11)
 	eta5 = asMT/asMB
 
 #if 1

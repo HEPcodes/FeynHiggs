@@ -1,6 +1,6 @@
 * TLhr_self_d.F
 * this file is part of FeynHiggs
-* generated 10-May-2015 20:28
+* generated 2-Aug-2016 18:13
 
 #include "externals.h"
 #include "types.h"
@@ -10,7 +10,6 @@
 	implicit none
 
 #include "TLhr.h"
-
 
         tadh0 = -(1/(768.D0*Pi**4)*
      &      (EL2L*(4*Pi*(MTy2*MStop2(1)*MStop2(2)*
@@ -70,8 +69,6 @@
      &       (MTy*MW*SB*SW*Cc(1076)*Cc(1154)*MStop2(1)*MStop2(2)*
      &         MStop2(3)))
 
-	DTLHR "tadh0 =", tadh0 ENDL
-
         tadHH = 1/(768.D0*Pi**4)*
      &    (EL2L*(4*Pi*(MTy2*MStop2(1)*MStop2(2)*
      &            (9*Pi*(Cc(1076)*Cc(1154)*(Cd(379) - Cd(381))) - 
@@ -127,8 +124,6 @@
      &                     Cd(340)*Cr(35)*MStop2(2)))))*MStop2(3)))
      &      /(MTy*MW*SB*SW*Cc(1076)*Cc(1154)*MStop2(1)*MStop2(2)*
      &       MStop2(3))
-
-	DTLHR "tadHH =", tadHH ENDL
 
         selfh0h0 = -(1/(96.D0*Pi**2)*
      &      (MTy2*(Alfa2L*MStop2(3)*
@@ -221,8 +216,6 @@
      &                  UStop2(1,1)*UStop2(1,2)))))/
      &       (MW2*SB2*SW2*MStop2(1)**2*MStop2(2)*MStop2(3)**2))
 
-	DTLHR "selfh0h0 =", selfh0h0 ENDL
-
         selfHHHH = 1/(96.D0*Pi**2)*
      &    (MTy2*(Alfa2L*(6*Alfas2L*
      &             (4*SA2*Cd(896) - Cd(9814) - 
@@ -310,7 +303,5 @@
      &                  6*Cd(9790)*MStop2(1)*MStop2(3)**2)*
      &                UStop2(1,1)*UStop2(1,2)))/
      &          (MStop2(1)*MStop2(2)*MStop2(3)**2)))/(MW2*SB2*SW2)
-
-	DTLHR "selfHHHH =", selfHHHH ENDL
 
 	end

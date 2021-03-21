@@ -1,7 +1,7 @@
 * EDM.F
 * computation of the electric dipole moments
 * this file is part of FeynHiggs
-* last modified 15 May 12 th
+* last modified 27 Jul 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -111,8 +111,8 @@
 	    sumC = sumC + pre*edmC(ratio)
 	  enddo
 
-	  edm(1,t) = edm(1,t) + Q(t)*2*AlfasMT/(3*pi)*sum
-	  edm(2,t) = edm(2,t) + GSMT*AlfasMT/(4*pi)*sumC
+	  edm(1,t) = edm(1,t) + 2*4/3D0*Q(t)*gsMT2*sum
+	  edm(2,t) = edm(2,t) + gsMT*gsMT2*sumC
 	enddo
 
 * Neutralino contribution
@@ -140,7 +140,7 @@
 	  enddo
 
 	  edm(1,t) = edm(1,t) + Q(t)*aew*sum
-	  edm(2,t) = edm(2,t) + GSMT*aew*sum
+	  edm(2,t) = edm(2,t) + gsMT*aew*sum
 	enddo
 
 * Chargino contribution (electron)
@@ -176,7 +176,7 @@
 	enddo
 
 	edm(1,3) = edm(1,3) + aew*sum
-	edm(2,3) = edm(2,3) + GSMT*aew*sumC
+	edm(2,3) = edm(2,3) + gsMT*aew*sumC
 
 * Chargino contribution (down)
 * from hep-ph/9708456v3, Eq. (28)
@@ -197,7 +197,7 @@
 	enddo
 
 	edm(1,4) = edm(1,4) + aew*sum
-	edm(2,4) = edm(2,4) + GSMT*aew*sumC
+	edm(2,4) = edm(2,4) + gsMT*aew*sumC
 
 * two-loop contribution
 * from hep-ph/0311314, Eq. (4.48) and hep-ph/9811202, Eq. (8)
@@ -218,9 +218,9 @@
 	enddo
 
 	do t = 2, 4
-	  pre = r(t)*m(t)/MA02
-	  edm(1,t) = edm(1,t) - AlfaGF/(32*pi**3)*Q(t)*pre*sum
-	  edm(2,t) = edm(2,t) - GSMT*AlfasMT/(64*pi**3)*pre*sumC
+	  pre = 1/(64*pi**3)*r(t)*m(t)/MA02
+	  edm(1,t) = edm(1,t) - 2*AlfaGF*Q(t)*pre*sum
+	  edm(2,t) = edm(2,t) - gsMT*AlfasMT*pre*sumC
 	enddo
 
 c FIXME: OVERALL SIGN OF CEDM ??

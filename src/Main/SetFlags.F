@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 4 May 16 th
+* last modified 14 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -79,10 +79,7 @@ c	  call setfpu
 	runningMT = runningMT_
 	Check(runningMT, 0, 3, "runningMT")
 
-* for safety:
-	if( tT - 3 .ne. tD - tT ) stop "bad tT, tD in FH.h"
-
-	tM1 = MTindex(runningMT)
+	tM1 = tSelect(3,tT,tT,tD, runningMT)
 	tM2 = tM1
 
 	botResum = botResum_
@@ -103,21 +100,11 @@ c	  call setfpu
 	if( fieldren .eq. 4 .and. tanbren .eq. 1 )
      &    Error(error, "fieldren = 4 not compatible with tanbren = 1")
 
-
-	if( loglevel .gt. 0 ) then
-	  if( loglevel .eq. 3 ) then
-	    if( runningMT .ne. 1 )
-     &        Error(error, "loglevel 3 only with runningMT = 1")
-	  else
-	    if( iand(runningMT - 1, -2) .ne. 0 )
-     &        Error(error, "loglevel > 0 only with runningMT = 1,2")
-	  endif
-	endif
-
 	if( error .eq. 0 ) flags_valid = valid
 
 	debuglevel = 0
 	debugunit = 6
+	paraunit = 6
 	uzint = 1
 	uzext = 3
 	mfeff = 1
@@ -129,7 +116,7 @@ c	  call setfpu
 
 	call getenv("FHDEBUG", env)
 	read(env, *, end=10, err=10) debuglevel
-	print *, "debug level ", debuglevel
+	print *, "env FHDEBUG ", debuglevel
 10	continue
 
 	call getenv("FHDEBUGFILE", env)
@@ -137,39 +124,55 @@ c	  call setfpu
 	if( l .gt. 0 ) then
 	  open(66, file=env, status="unknown", err=11)
 	  debugunit = 66
-	  print *, "debug file ", env(1:l)
+	  paraunit = debugunit
+	  print *, "env FHDEBUGFILE ", env(1:l)
 	endif
 11	continue
 
-	call getenv("FHSELECTUZ", env)
-	read(env, *, end=12, err=12) uzint, uzext, mfeff
-	print *, "uzint, uzext, mfeff ", uzint, uzext, mfeff
+	call getenv("FHPARAFILE", env)
+	l = len_trim(env)
+	if( l .gt. 0 ) then
+	  open(67, file=env, status="unknown", err=12)
+	  paraunit = 67
+	  print *, "env FHPARAFILE ", env(1:l)
+	endif
 12	continue
+
+	call getenv("FHSELECTUZ", env)
+	read(env, *, end=13, err=13) uzint, uzext, mfeff
+	print *, "env FHSELECTUZ uzint, uzext, mfeff ", uzint, uzext, mfeff
+13	continue
 	Check(uzint, 1, 2, "FHSELECTUZ(uzint)")
 	Check(uzext, 1, 3, "FHSELECTUZ(uzext)")
 	Check(mfeff, 0, 2, "FHSELECTUZ(mfeff)")
 
 	call getenv("FHTLPSMASK", env)
-	read(env, *, end=13, err=13) tlpsmask
-	print *, "tlpsmask ", tlpsmask
-13	continue
+	read(env, *, end=14, err=14) tlpsmask
+	print *, "env FHTLPSMASK ", tlpsmask
+14	continue
 
 	call getenv("FHTLZEROMASK", env)
-	read(env, *, end=14, err=14)
+	read(env, *, end=15, err=15)
      &    tlzeromask(1), tlzeromask(2), tlzeromask(3), tlzeromask(4)
-	print *, "tlzeromask ", tlzeromask
-14	continue
+	print *, "env FHTLZEROMASK ", tlzeromask
+15	continue
 
 	loglevelmt = loglevel
 	call getenv("FHLOGLEVELMT", env)
-	read(env, *, end=15, err=15) loglevelmt
-	print *, "loglevelmt ", loglevelmt
-15	continue
+	read(env, *, end=16, err=16) loglevelmt
+	print *, "env FHLOGLEVELMT ", loglevelmt
+16	continue
+
+	forceSU2 = 0
+	call getenv("FHFORCESU2", env)
+	read(env, *, end=17, err=17) forceSU2
+	print *, "env FHFORCESU2 ", forceSU2
+17	continue
 
 	call getenv("FHEXTSE", extSE)
 	l = len_trim(extSE)
 	if( extSE(1:1) .ne. ' ' )
-     &    print *, "extSE ", extSE(1:len_trim(extSE))
+     &    print *, "env FHEXTSE ", extSE(1:len_trim(extSE))
 
 	if( debuglevel .lt. 1 ) return
 

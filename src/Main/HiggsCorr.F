@@ -159,10 +159,10 @@
 
 	DHIGGS "------------------------"	ENDL
 	DHIGGS "final values:"			ENDL
-	DHIGGS "MHiggs(1) =", MHiggs(1)		ENDL
-	DHIGGS "MHiggs(2) =", MHiggs(2)		ENDL
-	DHIGGS "MHiggs(3) =", MHiggs(3)		ENDL
-	DHIGGS "MHiggs(4) =", MHiggs(4)		ENDL
+	DHIGGS "fMHiggs(1) =", MHiggs(1)	ENDL
+	DHIGGS "fMHiggs(2) =", MHiggs(2)	ENDL
+	DHIGGS "fMHiggs(3) =", MHiggs(3)	ENDL
+	DHIGGS "fMHiggs(4) =", MHiggs(4)	ENDL
 	DHIGGS "------------------------"	ENDL
 	DHIGGS "UHiggs(1,1) =", UHiggs(1,1)	ENDL
 	DHIGGS "UHiggs(1,2) =", UHiggs(1,2)	ENDL
@@ -250,11 +250,11 @@ c	MHiggs2(A0A0) = M(3,3)
 
 	DHIGGS "========================"		ENDL
 	DHIGGS "initial values:"			ENDL
-	DHIGGS "MHiggs(0) =", SignSqrt(MHiggs2(0))	ENDL
-	DHIGGS "MHiggs(1) =", SignSqrt(MHiggs2(1))	ENDL
-	DHIGGS "MHiggs(2) =", SignSqrt(MHiggs2(2))	ENDL
-	DHIGGS "MHiggs(3) =", SignSqrt(MHiggs2(3))	ENDL
-	DHIGGS "MHiggs(4) =", SignSqrt(MHiggs2(4))	ENDL
+	DHIGGS "iMHiggs(0) =", SignSqrt(MHiggs2(0))	ENDL
+	DHIGGS "iMHiggs(1) =", SignSqrt(MHiggs2(1))	ENDL
+	DHIGGS "iMHiggs(2) =", SignSqrt(MHiggs2(2))	ENDL
+	DHIGGS "iMHiggs(3) =", SignSqrt(MHiggs2(3))	ENDL
+	DHIGGS "iMHiggs(4) =", SignSqrt(MHiggs2(4))	ENDL
 	DHIGGS "------------------------"		ENDL
 	end
 

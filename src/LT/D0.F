@@ -3,7 +3,7 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs
-* last modified 4 Jan 15 th
+* last modified 9 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -721,18 +721,18 @@ c	r14 = r14*ToComplex(1D0, sign(eps, Re(1/r14 - r14)))
 	z12 = z1*z2
 	im12 = im2*sign(1D0, Re(z1))
 	if( Re(z12) .gt. .5D0 ) then
-	  cspence = spence(1, z12, 0D0)
+	  cspence = spence(1, z12, 0)
 	  etas = eta(z1, z2, im1, im2, im12)
 	  if( etas .ne. 0 ) cspence = cspence +
      &      etas*ln(1 - z12, -im12)*c2ipi
 	else if( abs(z12) .lt. 1D-4 ) then
 	  cspence = zeta2
 	  if( abs(z12) .gt. 1D-14 ) cspence = cspence -
-     &      spence(0, z12, 0D0) +
+     &      spence(0, z12, 0) +
      &      (ln(z1, im1) + ln(z2, im2))*z12*
      &        (1 + z12*(.5D0 + z12*(1/3D0 + z12/4D0)))
 	else
-	  cspence = zeta2 - spence(0, z12, 0D0) -
+	  cspence = zeta2 - spence(0, z12, 0) -
      &      (ln(z1, im1) + ln(z2, im2))*ln(1 - z12, 0D0)
 	endif
 	end

@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 1 Jul 16 th
+* last modified 12 Dec 16 th
 
 
 #ifndef SignSq
@@ -18,7 +18,9 @@
 
 #define isQ(t) ibits(t+1,2,1)
 #define ifQ(t,i) iand(-isQ(t),i)
-#define isB(t) ibits(t,2,1)
+#define isT(t) Delta(t,3)
+#define ifT(t,i) iand(-isT(t),i)
+#define isB(t) Delta(t,4)
 #define ifB(t,i) iand(-isB(t),i)
 #define isMFV(t) ibits(not(fv),t,1)
 #define ifMFV(t,i) iand(-isMFV(t),i)
@@ -27,10 +29,11 @@
 #define tQ(t) Ncolor(t)
 #define tU(t) (t + isQ(t))
 
-* MTindex maps {0,1,2,3} -> {3,tT,tT,tD}
-#define MTindex(rMT) int(ibits(MTindices,4*rMT,4))
-* tS1 maps {3,6=tT,9=tD} -> {3,tT,3}
-#define tS1 (iand(tM1,7)+2*ibits(tM1,3,1))
+#define SetSfIni(t,t0) t0*8**(t-5)
+#define GetSfIni(t) int(ibits(SfIni,3*(t-5),3))
+
+#define tSelect(tOS,tSM2,tSM1,tMSSM, t) \
+  int(ibits(tOS+16*tSM2+16**2*tSM1+16**3*tMSSM,4*t,4))
 
 * for encoding sfermion type in SfUpdate and Couplings.F:
 #define X2(x1,x0) (x1)*16 + x0
@@ -108,8 +111,8 @@
 	RealType MW, MW2, MZ, MZ2
 	RealType SW, SW2, CW, CW2
 	RealType invAlfaMZ, GF, vev
-	RealType ELGF, AlfaGF, EL0, ELMZ, AlfaMZ
-	RealType GSMT, AlfasMT, AlfasMZ, AlfasDb, AlfasMH
+	RealType EL0, ELGF, AlfaGF, ELMZ, AlfaMZ
+	RealType gsMT, gsMT2, AlfasMT, AlfasMZ, AlfasDb, AlfasMH
 	RealType htMT, htMT2
 
 	common /smpara/
@@ -117,17 +120,17 @@
      &    Qf, MB_MT,
      &    MW, MW2, MZ, MZ2, CW, CW2, SW, SW2,
      &    invAlfaMZ, GF, vev,
-     &    ELGF, AlfaGF, EL0, ELMZ, AlfaMZ,
-     &    GSMT, AlfasMT, AlfasMZ, AlfasDb, AlfasMH,
+     &    EL0, ELGF, AlfaGF, ELMZ, AlfaMZ,
+     &    gsMT, gsMT2, AlfasMT, AlfasMZ, AlfasDb, AlfasMH,
      &    htMT, htMT2
 
 	RealType Alfa1L, Alfa2L, EL1L, EL2L
 	equivalence (AlfaGF, Alfa1L, Alfa2L)
 	equivalence (ELGF, EL1L, EL2L)
 
-	RealType Alfas2L, GS2L
+	RealType gs2L, Alfas2L
+	equivalence (gsMT, gs2L)
 	equivalence (AlfasMT, Alfas2L)
-	equivalence (GSMT, GS2L)
 
 	RealType ME, ME2, MM, MM2, ML, ML2
 	RealType MU, MU2, MC, MC2, MT, MT2
@@ -156,7 +159,7 @@
 	RealType MSS(5,3), MSS0(5,3)
 	RealType DSf(2,5), QSf(2:4)
         RealType MHtree(4), MHtree2(4)
-	RealType MGl, MGl2
+	RealType MUE2, MGl, MGl2
 	RealType CB, SB, TB, CB2, SB2, TB2, C2B, S2B
 	RealType CA, SA, CA2, SA2, C2A, S2A
 	RealType CAB, SAB, CBA, SBA, CBA2, SBA2, SCB(2:4)
@@ -172,7 +175,7 @@
      &    MSS, MSS0,
      &    DSf, QSf,
      &    MHtree, MHtree2,
-     &    MGl, MGl2,
+     &    MUE2, MGl, MGl2,
      &    CB, SB, TB, CB2, SB2, TB2, C2B, S2B,
      &    CA, SA, CA2, SA2, C2A, S2A,
      &    CAB, SAB, CBA, SBA, CBA2, SBA2, SCB,
@@ -222,23 +225,29 @@
 * Sf(*,3) = Sup with MT(pole)			- set in Sfermions.F
 * Sf(*,4) = Sdown with MB(MB)			- set in Sfermions.F
 *
-* Sf(*,5=bBR) = Sdown with MB(MB)/|1 + Db|	- set in Sfermions.F
+* Sf(*,5=tT) = Sup with MSbar MT(MT)		- set in Sfermions.F
+* Sf(*,6=tT2) = Sup with MSbar MT(MT)_1LEW	- set in Sfermions.F
+* Sf(*,7=tD) = Sup with DRbar MT(MT)		- set in Sfermions.F
 *
-* Sf(*,6=tT) = Sup with MSbar MT(MT)		- set in Sfermions.F
-* Sf(*,7=bTR) = Sdown with MB(MT)/|1 + Db|	- set in Sfermions.F
-* Sf(*,8=bTR0) = ditto but compatible with TLps	- set in TLShifts.F
+* Sf(*,8=bBR) = Sdown with MB(MB)/|1 + Db|	- set in Sfermions.F
+* Sf(*,9=bTR) = Sdown with MB(MT)/|1 + Db|	- set in Sfermions.F
+* Sf(*,10=bTR0) = ditto compatible with TLps	- set in TLShifts.F
 *   (latter used for neutral Higgs masses only)
 *
-* Sf(*,9=tD) = Sup with DRbar MT(MT)		- set in Sfermions.F
-*   (cave: 3 -> 2*3(tT) -> 3*3(tD) used in SetFlags + Uncertainties + tS1)
-*
-* Sf(*,10=tH) = Sup with MT(Mh) for Decays	- set in Couplings.F
-* Sf(*,11=bH) = Sdown with MB(Mh) for Decays	- set in Couplings.F
-* Sf(*,12=bHR) = Sdown with MB(Mh)/|1 + Db|	- set in Couplings.F
+* Sf(*,11=tH) = Sup with MT(Mh) for Decays	- set in Couplings.F
+* Sf(*,12=bH) = Sdown with MB(Mh) for Decays	- set in Couplings.F
+* Sf(*,13=bHR) = Sdown with MB(Mh)/|1 + Db|	- set in Couplings.F
 
-	integer SfSlots
-	integer*8 SfIni
-	parameter (SfSlots = 12, SfIni = O'123443443344')
+	integer tT, tT2, tD, bBR, bTR, bTR0, tH, bH, bHR
+	parameter (tT = 5, tT2 = 6, tD = 7)
+	parameter (bBR = 8, bTR = 9, bTR0 = 10)
+	parameter (tH = 11, bH = 12, bHR = 13)
+
+	integer SfSlots, SfIni
+	parameter (SfSlots = 13, SfIni =
+     &    SetSfIni(tT,3) + SetSfIni(tT2,3) + SetSfIni(tD,3) +
+     &    SetSfIni(bBR,4) + SetSfIni(bTR,4) + SetSfIni(bTR0,4) +
+     &    SetSfIni(tH,3) + SetSfIni(bH,4) + SetSfIni(bHR,4))
 
 	RealType Sf(NSf,SfSlots)
 
@@ -248,13 +257,6 @@
 	ComplexType CSf(NSf/2,SfSlots)
 	equivalence (Sf, Sf_flat, CSf)
 
-	integer bBR, tT, bTR, bTR0, tD, tH, bH, bHR
-	parameter (bBR = 5, tT = 6, bTR = 7, bTR0 = 8, tD = 9)
-	parameter (tH = 10, bH = 11, bHR = 12)
-
-	integer MTindices
-	parameter (MTindices = 3 + 16*tT + 16**2*tT + 16**3*tD)
-
 * Higgs results
 
 	integer h0h0, HHHH, A0A0, HmHp
@@ -262,14 +264,14 @@
 	integer G0G0, h0G0, HHG0, A0G0
 	integer GmGp, HmGp
 	integer h0td, HHtd, A0td
-	integer seonly, semax
+	integer se2Rn, seonly, semax
 	integer cpeven, cpodd, goldstones
 	parameter (h0h0 = 1, HHHH = 2, A0A0 = 3, HmHp = 4)
 	parameter (h0HH = 5, h0A0 = 6, HHA0 = 7)
 	parameter (G0G0 = 8, h0G0 = 9, HHG0 = 10, A0G0 = 11)
 	parameter (GmGp = 12, HmGp = 13)
 	parameter (h0td = 14, HHtd = 15, A0td = 16)
-	parameter (seonly = HmGp, semax = A0td)
+	parameter (se2Rn = HHA0, seonly = HmGp, semax = A0td)
 	parameter (cpeven = SEKey(h0h0) + SEKey(HHHH) + SEKey(h0HH))
 	parameter (cpodd = SEKey(A0A0) + SEKey(h0A0) + SEKey(HHA0))
 	parameter (goldstones = SEKey(G0G0) + SEKey(h0G0) +
@@ -284,10 +286,6 @@
 
 * renormalized self-energies & counter terms
 
-	integer se11, se12, se22, se2Rn
-	parameter (se11 = 1, se12 = 2, se22 = 3, se2Rn = 3)
-	integer se1A, se2A, seAA
-	parameter (se1A = se11, se2A = se12, seAA = se22)
 	integer asat, atat, asab, atab, dMTH, dMTA, se2Rc
 	parameter (asat = 1, atat = 2, asab = 3, atab = 4)
 	parameter (dMTH = 5, dMTA = 6, se2Rc = 6)
@@ -361,10 +359,10 @@
 	integer mssmpart, fieldren, tanbren
 	integer higgsmix, p2approx, looplevel, loglevel
 	integer runningMT, botResum, tlCplxApprox
-	integer debuglevel, debugunit, fv
+	integer debuglevel, debugunit, paraunit, fv
 	integer uzint, uzext, mfeff
-	integer tlpsmask, tlzeromask(4), loglevelmt
-	integer tM1, tM2, bM, bM0, gM
+	integer tlpsmask, tlzeromask(4), loglevelmt, forceSU2
+	integer tM1, tM2, tS2, bM, bM0, gM
 	character*256 extSE
 
 * debuglevel = 0: no debug messages
@@ -376,10 +374,10 @@
      &    mssmpart, fieldren, tanbren,
      &    higgsmix, p2approx, looplevel, loglevel,
      &    runningMT, botResum, tlCplxApprox,
-     &    debuglevel, debugunit, fv,
+     &    debuglevel, debugunit, paraunit, fv,
      &    uzint, uzext, mfeff,
-     &    tlpsmask, tlzeromask, loglevelmt,
-     &    tM1, tM2, bM, bM0, gM,
+     &    tlpsmask, tlzeromask, loglevelmt, forceSU2,
+     &    tM1, tM2, tS2, bM, bM0, gM,
      &    extSE
 
 

@@ -1,7 +1,7 @@
 * FOSubtract.h
 * the fixed-order subtraction terms
 * this file is part of FeynHiggs
-* last modified 27 Jun 16 th
+* last modified 8 Dec 16 th
 
 
         g1uC = gyMT*SB*
@@ -34,29 +34,30 @@
 	DHIGGS "g2dC =", g2dC ENDL
 #endif
 
-	htMT2sub = 2*Mf2(tM2,3)/vev**2
-        sublog2L = k2L/2.D0*vev**2*
-     &    (htMT2sub**2*(tSUSY - tTop)*
-     &      (GSMT**2*(64 - 96*xOS2) - 
-     &        3*htMT2sub*(2 + xOS2)*(10 - (8 - xOS2)*xOS2) - 
-     &        (96*GSMT**2 - 18*htMT2sub)*(tSUSY - tTop)))
-
-#ifdef DETAILED_DEBUG
-	DHIGGS "sublog2L =", sublog2L ENDL
-#endif
-
-        sublog1L = 1/(24.D0*Pi)*
-     &    (Alfa1L*(2*(10*C2B**2*MW2*MZ2 - 
+        sublog1L = 1/(24.D0*Pi)*Alfa1L/vev**2*
+     &    (2*(10*C2B**2*MW2*MZ2 -
      &            4*MW2**2*(8 - 5*S2B**2) - MZ2**2*(5 + S2B**2))*
-     &          (tCha - tTop) + 
-     &         (36*Mf2(tM1,3)**2 + (18*C2B*Mf2(tM1,3)
-     &             - 84*C2B**2*MW2)*MZ2 + 
-     &            MW2**2*(68 - 62*S2B**2) + 
+     &          (tCha - tTop) +
+     &         (36*Mf2(tM2,3)**2 + (18*C2B*Mf2(tM2,3)
+     &             - 84*C2B**2*MW2)*MZ2 +
+     &            MW2**2*(68 - 62*S2B**2) +
      &            3*MZ2**2*(14 - S2B**2*(10 + 3*S2B**2)))*
-     &          (tSUSY - tTop)))/(MW2*SW2)
+     &          (tSUSYOS - tTop))/(MW2*SW2)
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "sublog1L =", sublog1L ENDL
+#endif
+
+	htMT2sub = 2*Mf2(tM2,3)/vev**2
+	sublog2L = 6*k2L*htMT2sub**2*llog*(
+     &    .5D0*htMT2sub*
+     &      (3*(llog + xOS2*(xOS2*(1 - xOS2/6D0) + 1)) - 7) -
+     &    8/3D0*gsMT2*(3*(llog + xOS2) - 2) )
+	if( tM2 .eq. 3 ) sublog2L = sublog2L +
+     &    k2L*llog*htMT2sub**2*(-128*gsMT2 + 48*htMT2sub)
+
+#ifdef DETAILED_DEBUG
+	DHIGGS "sublog2L =", sublog2L ENDL
 #endif
 
 	g1udC = g1dC + g1uC
@@ -80,7 +81,7 @@
 #endif
 
         subnonlog1L = 1/12.D0*
-     &    (vev**2*(3*C2B**2*(gMT2 + gyMT2) - 
+     &    (3*C2B**2*(gMT2 + gyMT2) - 
      &        k1L*(7*(g1dC**4 + g1uC**4) + 
      &           16*g1dC*g1uC*(g1dC**2 + g1uC**2 + g2udC**2) + 
      &           2*(g1uC**2*g2udC*(6*g2uC + g2udC) + 
@@ -91,7 +92,7 @@
      &               (g2dC*(9*g2dC - 2*g2uC) + 9*g2uC**2 - 4*lC) + 
      &              gyMT2*(2*gMT2 + gyMT2)*(1 + 3*C2B**2*S2B**2))-
      &             ((9 - 3*C2B)*C2B*(gMT2 + gyMT2)*htC**2 + 
-     &              htC**4*(72 - 6*xOS2))*xOS2)))
+     &              htC**4*(72 - 6*xOS2))*xOS2))
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "subnonlog1L =", subnonlog1L ENDL
@@ -103,7 +104,7 @@
 	  call rgeloopfun(lfOS, mueOS)
 
 * subtraction of 2L thresholds
-	  subnonlog2L = -(k2L/12.D0*(htMT2**2*vev**2*
+	  subnonlog2L = -(k2L/12.D0*(htMT2**2*
      &         (16*g3MT2*SB2*
      &            (24*xOS + (11 + xOS*(-26 - 2*xOS1) + xOS1)*xOS2)+
      &             3*htMT2*
@@ -135,7 +136,7 @@
 	    if( abs(mueOS1) .gt. 1D-12 ) then
 * Xt conversion for xOS != 0, mueOS != 1
 	      subnonlog2L = subnonlog2L +
-     &          k2L/48.D0*(htMT2*vev**2*xOS*
+     &          k2L/48.D0*(htMT2*xOS*
      &       (C2B*(3*gMT2 + C2B*(-gMT2 - gyMT2) + 3*gyMT2) + 
      &         htMT2*(20 + 4*xOS1))*
      &       (mueOS1*(mueOS1*
@@ -164,7 +165,7 @@
      &         12*C2B*(gMT2 + gyMT2)*(7*C2B*gMT2 - 3*htMT2) + 
      &         144*htMT2**2 + 
      &         3*(gMT2 + gyMT2)**2*(14 - S2B**2*(10 + 3*S2B**2)))*
-     &       vev**2*(64*g3MT**2 - 
+     &       (64*g3MT**2 - 
      &         9/sqrt2*(htMT2*
      &             (3*sqrt2*mueOS1 + 2*sqrt2*(SB2*xOS2) + 
      &               CB2*(-(pi*yOS**2) + sqrt2*(1 + 2*yOS**2)) + 
@@ -174,7 +175,7 @@
 	    else
 * Xt conversion for xOS != 0, mueOS == 1
 	      subnonlog2L = subnonlog2L +
-     &          k2L/192.D0*(htMT2*vev**2*xOS*
+     &          k2L/192.D0*(htMT2*xOS*
      &       (C2B*(3*gMT2 + C2B*(-gMT2 - gyMT2) + 3*gyMT2) + 
      &         htMT2*(20 + 4*xOS1))*
      &       (128*g3MT2*SB2**2*(7 + 9*xOS + xOS1) + 
@@ -196,7 +197,7 @@
      &          12*C2B*(gMT2 + gyMT2)*(7*C2B*gMT2 - 3*htMT2) + 
      &          144*htMT2**2 + 
      &          3*(gMT2 + gyMT2)**2*(14 - S2B**2*(10 + 3*S2B**2)))*
-     &        vev**2*(144*CB2*htMT2*
+     &        (144*CB2*htMT2*
      &           (S2B**2 - pi*sqrt2*(CB2**2*SB2) - 
      &             pi*sqrt2*(S2B*SB2*xOS)) - 
      &          S2B**2*(512*g3MT**2*SB2**2 - 
@@ -216,7 +217,7 @@
      &          12*C2B*(gMT2 + gyMT2)*(7*C2B*gMT2 - 3*htMT2) + 
      &          144*htMT2**2 + 
      &          3*(gMT2 + gyMT2)**2*(14 - S2B**2*(10 + 3*S2B**2)))*
-     &        vev**2*(256*g3MT2*SB2**2 - 
+     &        (256*g3MT2*SB2**2 - 
      &          9*htMT2*(S2B**2 + 
      &             2*mueOS2*(4 - 6*SB2 - pi*sqrt2) + 
      &             4*SB2*(3 + mueOS2**2*log(mueOS2) - 
@@ -224,12 +225,12 @@
 	    else
 * MSusy conversion for xOS == 0, mueOS == 1
 	      subnonlog2L = subnonlog2L + k2L/576.D0*
-     &          ((2*(3 + 31*C2B**2)*gMT2**2 - 
-     &          12*C2B*(gMT2 + gyMT2)*(7*C2B*gMT2 - 3*htMT2) + 
-     &          144*htMT2**2 + 
-     &          3*(gMT2 + gyMT2)**2*(14 - S2B**2*(10 + 3*S2B**2)))*
-     &        (-256*g3MT**2*SB2**2 + 
-     &          htMT2*(72 + 9*S2B**2 - 18*pi*sqrt2))*vev**2)/SB2**2
+     &          (2*(3 + 31*C2B**2)*gMT2**2 - 
+     &            12*C2B*(gMT2 + gyMT2)*(7*C2B*gMT2 - 3*htMT2) + 
+     &            144*htMT2**2 + 
+     &            3*(gMT2 + gyMT2)**2*(14 - S2B**2*(10 + 3*S2B**2)))*
+     &          (-256*g3MT**2*SB2**2 + 
+     &          htMT2*(72 + 9*S2B**2 - 18*pi*sqrt2))/SB2**2
 	    endif
 	    
 	  endif

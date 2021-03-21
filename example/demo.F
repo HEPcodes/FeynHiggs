@@ -1,7 +1,7 @@
 * demo.F
 * demonstration program for calling FeynHiggs from Fortran
 * this file is part of FeynHiggs
-* last modified 23 Jan 14 th
+* last modified 6 Oct 16 th
 
 * compile this file with something like
 * f77 -Ibuild example/demo.F -Lbuild -lFH
@@ -29,13 +29,14 @@ c	call setSLHA("myfile.slha")
 	implicit none
 
 	integer mssmpart, fieldren, tanbren, higgsmix, p2approx
-	integer looplevel, runningMT, botResum, tlCplxApprox
+	integer loglevel, looplevel, runningMT, botResum, tlCplxApprox
 	parameter (mssmpart = 4)
 	parameter (fieldren = 0)
 	parameter (tanbren = 0)
 	parameter (higgsmix = 2)
 	parameter (p2approx = 0)
 	parameter (looplevel = 2)
+	parameter (loglevel = 0)
 	parameter (runningMT = 1)
 	parameter (botResum = 1)
 	parameter (tlCplxApprox = 3)
@@ -43,7 +44,7 @@ c	call setSLHA("myfile.slha")
 	integer error
 
 	call FHSetFlags(error, mssmpart, fieldren, tanbren,
-     &    higgsmix, p2approx, looplevel,
+     &    higgsmix, p2approx, looplevel, loglevel,
      &    runningMT, botResum, tlCplxApprox)
 	if( error .ne. 0 ) stop
 	end

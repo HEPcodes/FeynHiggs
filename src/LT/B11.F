@@ -3,7 +3,7 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 1 Jan 15 th
+* last modified 9 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -53,7 +53,7 @@
 	    B11q = (-4/3D0 - log(m1/q) - x1 - x2)/3D0
 	  else
 	    print *, "B11(", p, ",", m1, ",", m2, ") not defined"
-	    B11q = nan
+	    B11q = bogus
 	  endif
 * zero momentum
 	else if( abs(m1 - m2) .gt. minacc ) then

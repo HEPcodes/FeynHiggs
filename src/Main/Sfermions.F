@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 11 Dec 15 th
+* last modified 14 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -12,27 +12,59 @@
 #define MX2_RR(i,j) MX2(i+3,j+3)
 
 
+	subroutine SfermionsDelayed(error)
+	implicit none
+	integer error
+
+#include "FH.h"
+#define __SUBROUTINE__ "SfermionsDelayed"
+
+	ComplexType MX2(3,3)
+
+	error = 0
+	CheckPara(error)
+	if( error .ne. 0 ) return
+
+	if( btest(fv, 2) ) then
+	  MX2_LL(1,1) = MSf2(1,1,1)
+	  MX2_LL(2,2) = MSf2(1,1,2)
+	  MX2_LL(3,3) = MSf2(1,1,3)
+	  MX2_LL(1,2) = MSS2(1,2,1)
+	  MX2_LL(2,3) = MSS2(2,3,1)
+	  MX2_LL(1,3) = MSS2(1,3,1)
+	  call SfEigensystem(3, MX2,3, MASf2(1,1), UASf(1,1,1),6, 0, 3)
+	  call SfUpdateNMFV(error, X3(2,2,2), 1)
+	endif
+
+	if( btest(fv, 3) ) then
+	  call SfUpdateNMFV(error, X3(3,3,3), 1)
+	  call SfUpdateNMFV(error, X3(tT,3,3), SORT_SF)
+	  call SfUpdateNMFV(error, X3(tT2,3,3), SORT_SF)
+	endif
+
+	if( btest(fv, 4) ) call SfUpdateNMFV(error, X3(4,4,4), 1)
+
+	if( error .eq. 0 ) sf_valid = valid
+	end
+
+
+************************************************************************
+
 	subroutine Sfermions(error)
 	implicit none
 	integer error
 
 #include "FH.h"
 #include "looptools.h"
-#define __SUBROUTINE__ "Sfermions"
 
 	integer i, j, g, fail, nfdummy, pass
 	RealType Qew, Qqcd, asew, db2Lqcd, db2Lew, adb(3,3,2)
-	RealType Mdin(3), Mdbar(3)
-	RealType dMTs, dMTy, mx, a0t, a0st, MUE2
-	ComplexType MX2(3,3), db, Mcorr(3,3), se(3,3)
+	RealType Mdin(3), Mdbar(3), dMT
+	ComplexType db, Mcorr(3,3), se(3,3)
 	ComplexType DL(3,3), DR(3,3)
 
 	RealType Deltab2L_ew, Deltab2L_qcd
 	external Deltab2L_ew, Deltab2L_qcd
-
-	error = 0
-	CheckPara(error)
-	if( error .ne. 0 ) return
 
 	do i = 1, 3*3
 	  CKM_flat(i) = CKMin_flat(i)
@@ -67,16 +99,6 @@
 	MSf(1,1,3) = sqrt(MSf2(1,1,3))
 	MASf(3,1) = MSf(1,1,3)
 
-	if( btest(fv, 2) ) then
-	  MX2_LL(1,1) = MSf2(1,1,1)
-	  MX2_LL(2,2) = MSf2(1,1,2)
-	  MX2_LL(3,3) = MSf2(1,1,3)
-	  MX2_LL(1,2) = MSS2(1,2,1)
-	  MX2_LL(2,3) = MSS2(2,3,1)
-	  MX2_LL(1,3) = MSS2(1,3,1)
-	  call SfEigensystem(3, MX2,3, MASf2(1,1), UASf(1,1,1),6, 0, 3)
-	endif
-
 	do g = 1, 3
 	  if( MSf2(1,1,g) .lt. 0 ) then
 	    Error(error, "negative sneutrino mass squares")
@@ -95,60 +117,28 @@
 	  DPARA "MSf(1,3) =", MSf(1,1,3)	ENDL
 	endif
 
-	call SfUpdate(error, X3(2,2,2), 1, 1)
-	call SfUpdate(error, X3(3,3,3), 1, 1)
-	call SfUpdate(error, X3(4,4,4), 1, 1)
-	call SfUpdate(error, X3(tT,3,3), SORT_SF, 1)
+	call SfUpdate(error, X4(0,2,2,2), 1)
+	call SfUpdate(error, X4(0,3,3,3), 1)
+	call SfUpdate(error, X4(0,4,4,4), 1)
+	call SfUpdate(error, X4(0,tT,3,3), SORT_SF)
+	call SfUpdate(error, X4(0,tT2,3,3), SORT_SF)
 	if( error .ne. 0 ) return
 
 * for the DRbar-MT(MT) we keep the sf masses the same as for MT(os)
 * and adjust the breaking parameters
 * only Kf actually enters the Feynman rules
-* the tS2 definition in FH.h takes care that MT(os) is also used
+* the FtoSf definition in FH.h takes care that MT(os) is also used
 * in subsequent sf-mass computations in the two-loop sector
 
 	if( runningMT .eq. 3 ) then
 	  do i = 1, NSf
 	    Sf(i,tD) = Sf(i,3)
 	  enddo
-
-	  mx = 4*MT*Re(USf(1,2,3,3)*USfC(1,1,3,3)*M_3)
-	  a0st = Re(A0(MSf2(1,3,3))) + Re(A0(MSf2(2,3,3)))
-	  a0t = Re(A0(MT2))
-	  dMTs = AlfasMT/(6*pi*MT)*(
-     &      a0st +
-     &      (MGl2 + MT2 - MSf2(1,3,3) - mx)*
-     &        Re(B0(MT2, MGl2, MSf2(1,3,3))) +
-     &      (MGl2 + MT2 - MSf2(2,3,3) + mx)*
-     &        Re(B0(MT2, MGl2, MSf2(2,3,3))) -
-     &      2*Re(A0(MGl2)) - 6*a0t - 4*MT2 )
-
-* use same Alfat as in TLsp:
-#define alfat (sqrt2/vev*MT/SB)**2/(4*pi)
-	  MUE2 = Sq(MUE)
-	  dMTy = alfat/(16*pi*MT)*(
-     &      a0st + Re(A0(MSf2(1,4,3))) +
-     &      (MUE2 + MT2 - MSf2(1,3,3))*
-     &        Re(B0(MT2, MUE2, MSf2(1,3,3))) +
-     &      (MUE2 + MT2 - MSf2(2,3,3))*
-     &        Re(B0(MT2, MUE2, MSf2(2,3,3))) +
-     &      (MUE2 + MT2 - MSf2(1,4,3))*
-     &        Re(B0(MT2, MUE2, MSf2(1,4,3))) +
-     &      CB2*(3*Re(A0(MHp2)) -
-     &        (MHp2 - MT2)*Re(B0(MT2, 0D0, MHp2)) -
-     &        2*(MHp2 - 2*MT2)*Re(B0(MT2, MHp2, MT2))) +
-     &      SB2*MT2*(4 + Re(B0(MT2, 0D0, 0D0))) -
-     &      3*Re(A0(MUE2)) - 2*C2B*a0t )
-
-	  Mf(tD,3) = MT + dMTs + dMTy
+	  call DeltaMT_MSSM(error, dMT, AlfasMT, mudim)
+	  Mf(tD,3) = MT + dMT
 	  Mf2(tD,3) = Mf(tD,3)**2
-
-	  Kf(3,3,tD) = Kf(3,3,tD) - (dMTs + dMTy)*MUETB(3)
-
+	  Kf(3,3,tD) = Kf(3,3,tD) - dMT*MUETB(3)
 	  if( debuglevel .ge. 3 ) then
-	    DPARA "dMTs       =", dMTs		ENDL
-	    DPARA "MTs        =", MT + dMTs	ENDL
-	    DPARA "dMTy       =", dMTy		ENDL
 	    DPARA "MT(tD,3)   =", Mf(tD,3)	ENDL
 	    if( debuglevel .ge. 4 ) then
 	      DPARA "Kf(3,3,3)  =", Kf(3,3,3)	ENDL
@@ -170,25 +160,22 @@
 	fail = 0
 	call SfUpdateLargeTB(fail)
 
-	Qew = (MSf(1,3,3) + MSf(2,3,3) + abs(MUE))/3D0
-	Qqcd = (MSdL(1,3) + MSdL(2,3) + MGl)/3D0
+	Qew = ((MSf(1,3,3) + MSf(2,3,3) + abs(MUE))/3D0)**2
+	Qqcd = ((MSdL(1,3) + MSdL(2,3) + MGl)/3D0)**2
 * for comparison with 2.7.4, for the moment:
 	if( botResum .eq. 1 ) then
-	  Qew = sqrt(MSdL(1,3)*MSdL(2,3))
+	  Qew = MSdL(1,3)*MSdL(2,3)
 	  Qqcd = Qew
 	endif
 	call AlphaS(asew, nfdummy, Qew)
 	call AlphaS(AlfasDb, nfdummy, Qqcd)
 
 	if( DEBUGLEVEL .gt. 3 ) then
-	  DPARA "Delta b  Q(QCD)  =", Qqcd	ENDL
-	  DPARA "Delta b  as(QCD) =", AlfasDb	ENDL
-	  DPARA "Delta b  Q(ew)   =", Qew	ENDL
-	  DPARA "Delta b  as(ew)  =", asew	ENDL
+	  DPARA "Delta b  Q(QCD)  =", sqrt(Qqcd)	ENDL
+	  DPARA "Delta b  as(QCD) =", AlfasDb		ENDL
+	  DPARA "Delta b  Q(ew)   =", sqrt(Qew)		ENDL
+	  DPARA "Delta b  as(ew)  =", asew		ENDL
 	endif
-
-	Qqcd = Qqcd**2
-	Qew = Qew**2
 
 	adb(1,1,1) = AlfasDb
 	adb(2,1,1) = AlfasDb
@@ -296,8 +283,8 @@ c	    DR(g,g) = DR(g,g) - 1
 	if( fail .ne. 0 )
      &    Error(error, "negative sbottom mass squares in Delta b")
 
-	call SfUpdate(error, X3(bTR,4,4), SORT_SF, 1)
-c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
+	call SfUpdate(error, X4(0,bTR,4,4), SORT_SF)
+c	call SfUpdate(error, X4(0,bTR,4,4), 1)
 
 	do i = 1, NSf
 	  Sf(i,bTR0) = Sf(i,bTR)
@@ -306,9 +293,7 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	Mf(bBR,1) = Mf(4,1)/abs(1 + Deltaf(bTR,1))
 	Mf(bBR,2) = Mf(4,2)/abs(1 + Deltaf(bTR,2))
 	Mf(bBR,3) = Mf(4,3)/abs(1 + Deltaf(bTR,3))
-	call SfUpdate(error, X3(bBR,4,4), 1, 1)
-
-	if( error .eq. 0 ) sf_valid = valid
+	call SfUpdate(error, X4(0,bBR,4,4), 1)
 	end
 
 ************************************************************************
@@ -351,13 +336,13 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 
 	call EigenSf(fail, 1,
      &    MSdL(1,1), MSdL2(1,1), USdL(1,1,1),
-     &    DSS2(1,4,1), Mf(bTR,1), MUETB(4), 0)
+     &    DSS2(1,4,1), Mf(bTR,1), MUETB(4), SORT_SF)
 	call EigenSf(fail, 1,
      &    MSdL(1,2), MSdL2(1,2), USdL(1,1,2),
-     &    DSS2(1,4,2), Mf(bTR,2), MUETB(4), 0)
+     &    DSS2(1,4,2), Mf(bTR,2), MUETB(4), SORT_SF)
 	call EigenSf(fail, 1,
      &    MSdL(1,3), MSdL2(1,3), USdL(1,1,3),
-     &    DSS2(1,4,3), Mf(bTR,3), MUETB(4), 0)
+     &    DSS2(1,4,3), Mf(bTR,3), MUETB(4), SORT_SF)
 
 	if( debuglevel .lt. 2 ) return
 
@@ -369,13 +354,14 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 
 ************************************************************************
 
-	subroutine SfUpdate(error, ty_ts_t, sort, show)
+	subroutine SfUpdate(error, tn_ty_ts_t, sort)
 	implicit none
-	integer error, ty_ts_t, sort, show
+	integer error, tn_ty_ts_t, sort
 
 #include "FH.h"
 
-	integer g, t, ty, fail
+	RealType uu
+	integer i, g, t, ts, ty, tn, fail
 	character h
 
 	character*4 sftype(SfSlots)
@@ -388,18 +374,35 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
      &    "negative sbottom mass squares" /
 
 	fail = 0
-	ty = nib2(ty_ts_t)
-	t = nib0(ty_ts_t)
+	tn = nib3(tn_ty_ts_t)
+	ty = nib2(tn_ty_ts_t)
+	ts = nib1(tn_ty_ts_t)
+	t = nib0(tn_ty_ts_t)
 
 	Mf2(ty,1) = Mf(ty,1)**2
-	Mf2(ty,2) = Mf(ty,2)**2
-	Mf2(ty,3) = Mf(ty,3)**2
-
 	Kf(1,1,ty) = Mf(ty,1)*Af(t,1)
+	Mf2(ty,2) = Mf(ty,2)**2
 	Kf(2,2,ty) = Mf(ty,2)*Af(t,2)
+	Mf2(ty,3) = Mf(ty,3)**2
 	Kf(3,3,ty) = Mf(ty,3)*Af(t,3)
 
-	call SfUpdateMFV(fail, ty_ts_t, sort)
+	call EigenSf(fail, 1,
+     &    MSf(1,ty,1), MSf2(1,ty,1), USf(1,1,ty,1),
+     &    DSS2(1,ts,1), Mf(ty,1), Xf(t,1), sort)
+	call EigenSf(fail, 1,
+     &    MSf(1,ty,2), MSf2(1,ty,2), USf(1,1,ty,2),
+     &    DSS2(1,ts,2), Mf(ty,2), Xf(t,2), sort)
+	call EigenSf(fail, 1,
+     &    MSf(1,ty,3), MSf2(1,ty,3), USf(1,1,ty,3),
+     &    DSS2(1,ts,3), Mf(ty,3), Xf(t,3), sort)
+	error = ior(error, fail)
+	if( fail .ne. 0 ) Error(error, msg(t))
+
+#define CSf(i,t) i
+	do i = UASf(1,1,*), UASf(6,6,*)
+#undef CSf
+	  CSf(i,ty) = 0
+	enddo
 	do g = 1, 3
 	  MASf(g,ty) = MSf(1,ty,g)
 	  MASf(g+3,ty) = MSf(2,ty,g)
@@ -415,10 +418,7 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	  USf2(2,2,ty,g) = Sq(USf(2,2,ty,g))
 	enddo
 
-	if( btest(fv, t) ) call SfUpdateNMFV(fail, ty_ts_t, sort)
-
-	error = ior(error, fail)
-	if( iand(fail, -show) .ne. 0 ) Error(error, msg(t))
+	if( btest(fv, tn) ) call SfUpdateNMFV(error, tn_ty_ts_t, 1)
 
 	if( debuglevel .lt. 1 ) return
 
@@ -437,7 +437,8 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	DPARA "   (1,2)     =", USf(1,2,ty,3)			ENDL
 	DPARA "   (2,1)     =", USf(2,1,ty,3)			ENDL
 	DPARA "   (2,2)     =", USf(2,2,ty,3)			ENDL
-	DPARA "   11^2+12^2 =", USf2(1,1,ty,3) + USf2(1,2,ty,3)	ENDL
+	uu = USf2(1,1,ty,3) + USf2(1,2,ty,3)
+	if( abs(uu - 1) .gt. 1D-8 ) DPARA "   11^2+12^2 =", uu	ENDL
 
 	if( debuglevel .lt. 3 ) return
 
@@ -445,44 +446,15 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	DPARA "   (1,2)     =", USf(1,2,ty,2)			ENDL
 	DPARA "   (2,1)     =", USf(2,1,ty,2)			ENDL
 	DPARA "   (2,2)     =", USf(2,2,ty,2)			ENDL
-	DPARA "   11^2+12^2 =", USf2(1,1,ty,2) + USf2(1,2,ty,2)	ENDL
+	uu = USf2(1,1,ty,2) + USf2(1,2,ty,2)
+	if( abs(uu - 1) .gt. 1D-8 ) DPARA "   11^2+12^2 =", uu	ENDL
 
 	DPARA "USf(1,1,",h,",1) =", USf(1,1,ty,1)		ENDL
 	DPARA "   (1,2)     =", USf(1,2,ty,1)			ENDL
 	DPARA "   (2,1)     =", USf(2,1,ty,1)			ENDL
 	DPARA "   (2,2)     =", USf(2,2,ty,1)			ENDL
-	DPARA "   11^2+12^2 =", USf2(1,1,ty,1) + USf2(1,2,ty,1)	ENDL
-	end
-
-************************************************************************
-
-	subroutine SfUpdateMFV(fail, ty_ts_t, sort)
-	implicit none
-	integer fail, ty_ts_t, sort
-
-#include "FH.h"
-
-	integer ty, ts, t, i
-
-	ty = nib2(ty_ts_t)
-	ts = nib1(ty_ts_t)
-	t = nib0(ty_ts_t)
-
-#define CSf(i,t) i
-	do i = UASf(1,1,*), UASf(6,6,*)
-#undef CSf
-	  CSf(i,ty) = 0
-	enddo
-
-	call EigenSf(fail, 1,
-     &    MSf(1,ty,1), MSf2(1,ty,1), USf(1,1,ty,1),
-     &    DSS2(1,ts,1), Mf(ty,1), Xf(t,1), sort)
-	call EigenSf(fail, 1,
-     &    MSf(1,ty,2), MSf2(1,ty,2), USf(1,1,ty,2),
-     &    DSS2(1,ts,2), Mf(ty,2), Xf(t,2), sort)
-	call EigenSf(fail, 1,
-     &    MSf(1,ty,3), MSf2(1,ty,3), USf(1,1,ty,3),
-     &    DSS2(1,ts,3), Mf(ty,3), Xf(t,3), sort)
+	uu = USf2(1,1,ty,1) + USf2(1,2,ty,1)
+	if( abs(uu - 1) .gt. 1D-8 ) DPARA "   11^2+12^2 =", uu	ENDL
 	end
 
 ************************************************************************
@@ -642,29 +614,42 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 
 ************************************************************************
 
-	RealType function Tdmb(x, y, z)
+	subroutine dMT_MSSM_DRbar(dMT)
 	implicit none
-	RealType x, y, z
+	RealType dMT
 
-	RealType n, d
+#include "FH.h"
+#include "looptools.h"
 
-	n = 0
-	d = 1
+	RealType mx, a0st, a0t
 
-	if( x .ne. y ) then
-	  if( x*y .ne. 0 ) n = n + x*y*log(x/y)
-	  d = d*(x - y)
-	endif
-	if( x .ne. z ) then
-	  if( x*z .ne. 0 ) n = n + x*z*log(z/x)
-	  d = d*(x - z)
-	endif
-	if( y .ne. z ) then
-	  if( y*z .ne. 0 ) n = n + y*z*log(y/z)
-	  d = d*(y - z)
-	endif
+	mx = 4*MT*Re(USf(1,2,3,3)*USfC(1,1,3,3)*M_3)
+	a0st = Re(A0(MSf2(1,3,3))) + Re(A0(MSf2(2,3,3)))
+	a0t = Re(A0(MT2))
 
-	Tdmb = n/d
+* use same Alfat as in TLsp:
+#define alfat (sqrt2/vev*MT/SB)**2/(4*pi)
+
+	dMT = AlfasMT/(6*pi*MT)*(
+     &      a0st +
+     &      (MGl2 + MT2 - MSf2(1,3,3) - mx)*
+     &        Re(B0(MT2, MGl2, MSf2(1,3,3))) +
+     &      (MGl2 + MT2 - MSf2(2,3,3) + mx)*
+     &        Re(B0(MT2, MGl2, MSf2(2,3,3))) -
+     &      2*Re(A0(MGl2)) - 6*a0t - 4*MT2 ) +
+     &    alfat/(16*pi*MT)*(
+     &      a0st + Re(A0(MSf2(1,4,3))) +
+     &      (MUE2 + MT2 - MSf2(1,3,3))*
+     &        Re(B0(MT2, MUE2, MSf2(1,3,3))) +
+     &      (MUE2 + MT2 - MSf2(2,3,3))*
+     &        Re(B0(MT2, MUE2, MSf2(2,3,3))) +
+     &      (MUE2 + MT2 - MSf2(1,4,3))*
+     &        Re(B0(MT2, MUE2, MSf2(1,4,3))) +
+     &      CB2*(3*Re(A0(MHp2)) -
+     &        (MHp2 - MT2)*Re(B0(MT2, 0D0, MHp2)) -
+     &        2*(MHp2 - 2*MT2)*Re(B0(MT2, MHp2, MT2))) +
+     &      SB2*MT2*(4 + Re(B0(MT2, 0D0, 0D0))) -
+     &      3*Re(A0(MUE2)) - 2*C2B*a0t )
 	end
 
 ************************************************************************
@@ -680,13 +665,14 @@ c	call SfUpdate(error, X3(bTR,4,4), 1, 1)
 	data sftype(2) /"e"/
 	data sftype(3) /"u"/
 	data sftype(4) /"d"/
-	data sftype(5) /"bBR"/
-	data sftype(6) /"tT"/
-	data sftype(7) /"bTR"/
-	data sftype(8) /"bTR0"/
-	data sftype(9) /"tD"/
-	data sftype(10) /"tH"/
-	data sftype(11) /"bH"/
-	data sftype(12) /"bHR"/
+	data sftype(tT) /"tT"/
+	data sftype(tT2) /"tT2"/
+	data sftype(tD) /"tD"/
+	data sftype(bBR) /"bBR"/
+	data sftype(bTR) /"bTR"/
+	data sftype(bTR0) /"bTR0"/
+	data sftype(tH) /"tH"/
+	data sftype(bH) /"bH"/
+	data sftype(bHR) /"bHR"/
 	end
 

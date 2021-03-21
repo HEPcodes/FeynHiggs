@@ -1,6 +1,6 @@
 * TLhr_self_o.F
 * this file is part of FeynHiggs
-* generated 10-May-2015 20:34
+* generated 2-Aug-2016 18:18
 
 #include "externals.h"
 #include "types.h"
@@ -10,7 +10,6 @@
 	implicit none
 
 #include "TLhr.h"
-
 
         tadA0 = 1/(384.D0*Pi**4)*
      &    (EL2L*(cI*(MTy2*Cc(1076)*Cc(1154)*
@@ -72,8 +71,6 @@
      &                       )))*MStop2(1))*MStop2(2)))*MStop2(3)))
      &      /(MTy*MW*SW*TB*Cc(1076)*Cc(1154)*MStop2(1)*MStop2(2)*
      &       MStop2(3))
-
-	DTLHR "tadA0 =", tadA0 ENDL
 
         selfh0A0 = -(1/(48.D0*Pi**2)*
      &      (MTy2*(3*cI*(Alfa2L*Alfas2L*
@@ -148,8 +145,6 @@
      &                       MStop2(3)**2))))))/
      &       (MW2*SB*SW2*TB*MStop2(1)**2*MStop2(2)**2*MStop2(3)**2)
      &      )
-
-	DTLHR "selfh0A0 =", selfh0A0 ENDL
 
         selfHHA0 = -(1/(48.D0*Pi**2)*
      &      (MTy2*(3*cI*(Alfa2L*Alfas2L*
@@ -227,7 +222,5 @@
      &                       MStop2(3)**2))))))/
      &       (MW2*SB*SW2*TB*MStop2(1)**2*MStop2(2)**2*MStop2(3)**2)
      &      )
-
-	DTLHR "selfHHA0 =", selfHHA0 ENDL
 
 	end

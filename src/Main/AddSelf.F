@@ -1,7 +1,7 @@
 * AddSelf.F
 * Add user-specified values to the Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 24 Apr 15 th
+* last modified 19 Jul 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -38,20 +38,20 @@
 	enddo
 
 	sub_h0h0 =
-     &    ibits(flags, asat, 1)*se2Rcat(se11,asat) +
-     &    ibits(flags, atat, 1)*se2Rcat(se11,atat) +
-     &    ibits(flags, asab, 1)*se2Rcat(se11,asab) +
-     &    ibits(flags, atab, 1)*se2Rcat(se11,atab)
+     &    ibits(flags, asat, 1)*se2Rcat(h0h0,asat) +
+     &    ibits(flags, atat, 1)*se2Rcat(h0h0,atat) +
+     &    ibits(flags, asab, 1)*se2Rcat(h0h0,asab) +
+     &    ibits(flags, atab, 1)*se2Rcat(h0h0,atab)
 	sub_HHHH =
-     &    ibits(flags, asat, 1)*se2Rcat(se22,asat) +
-     &    ibits(flags, atat, 1)*se2Rcat(se22,atat) +
-     &    ibits(flags, asab, 1)*se2Rcat(se22,asab) +
-     &    ibits(flags, atab, 1)*se2Rcat(se22,atab)
+     &    ibits(flags, asat, 1)*se2Rcat(HHHH,asat) +
+     &    ibits(flags, atat, 1)*se2Rcat(HHHH,atat) +
+     &    ibits(flags, asab, 1)*se2Rcat(HHHH,asab) +
+     &    ibits(flags, atab, 1)*se2Rcat(HHHH,atab)
 	sub_h0HH =
-     &    ibits(flags, asat, 1)*se2Rcat(se12,asat) +
-     &    ibits(flags, atat, 1)*se2Rcat(se12,atat) +
-     &    ibits(flags, asab, 1)*se2Rcat(se12,asab) +
-     &    ibits(flags, atab, 1)*se2Rcat(se12,atab)
+     &    ibits(flags, asat, 1)*se2Rcat(h0HH,asat) +
+     &    ibits(flags, atat, 1)*se2Rcat(h0HH,atat) +
+     &    ibits(flags, asab, 1)*se2Rcat(h0HH,asab) +
+     &    ibits(flags, atab, 1)*se2Rcat(h0HH,atab)
 
 	if( debuglevel .ge. 3 ) then
 	  DSELF "AddSelf points =", n ENDL

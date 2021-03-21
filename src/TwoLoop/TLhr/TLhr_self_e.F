@@ -1,6 +1,6 @@
 * TLhr_self_e.F
 * this file is part of FeynHiggs
-* generated 10-May-2015 20:33
+* generated 2-Aug-2016 18:18
 
 #include "externals.h"
 #include "types.h"
@@ -10,7 +10,6 @@
 	implicit none
 
 #include "TLhr.h"
-
 
         selfh0HH = -(1/64.D0*
      &      (MTy2*(-12*Ce(89)*Conjugate(dAf133eps(0)) + 
@@ -80,7 +79,5 @@
      &                       UStop2(1,2))))/
      &                (SB2*SW2*MStop2(1)*MStop2(2)*MStop2(3)**2))))
      &        /MW2)
-
-	DTLHR "selfh0HH =", selfh0HH ENDL
 
 	end

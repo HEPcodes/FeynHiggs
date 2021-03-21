@@ -2,7 +2,7 @@
 * Compute (actually, not completely invent) an error estimate
 * for the Higgs masses and mixings
 * this file is part of FeynHiggs
-* last modified 3 Jun 16 th
+* last modified 13 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -27,7 +27,7 @@
 	RealType HiggsSave(NHiggsData)
 	RealType HiggsBase(NHiggsErr)
 	RealType oldmudim
-	integer i, j, err
+	integer i, j, err, tMsave
 
 	integer NSfData
 	parameter (NSfData = NSf - 9)
@@ -67,9 +67,10 @@
 	do i = 1, NHiggsData
 	  HiggsSave(i) = HiggsData(i)
 	enddo
-
 	do i = 1, NHiggsErr
 	  HiggsBase(i) = HiggsData(i)
+	enddo
+	do i = 1, NHiggsErr
 	  HiggsErr(i) = uncomputable
 	enddo
 
@@ -80,15 +81,15 @@
 	if( debuglevel .ge. 2 )
      &    DHIGGS "Uncertainties: mudim = 1/2 MT" ENDL
 
-	oldmudim = getmudim()
+	oldmudim = mudim
 
-	call setmudim(.25D0*MT2)
+	mudim = .25D0*MT2
 	tl_valid = 0
 	call CalcHiggsCorr(err)
 
 	if( err .ne. 0 ) then
 	  Warning("Could not evaluate corrections at mudim = MT/2")
-	  call setmudim(oldmudim)
+	  mudim = oldmudim
 	  goto 999
 	endif
 
@@ -101,11 +102,11 @@
 	if( debuglevel .ge. 2 )
      &    DHIGGS "Uncertainties: mudim = 2 MT" ENDL
 
-	call setmudim(4*MT2)
+	mudim = 4*MT2
 	tl_valid = 0
 	call CalcHiggsCorr(err)
 
-	call setmudim(oldmudim)
+	mudim = oldmudim
 
 	if( err .ne. 0 ) then
 	  Warning("Could not evaluate corrections at mudim = 2 MT")
@@ -162,15 +163,33 @@
 	if( debuglevel .ge. 2 )
      &    DHIGGS "Uncertainties: MTpole in 2L corrections" ENDL
 
-	tM2 = MTindex(signbit(runningMT - 1))
-	if( loglevel .eq. 0 ) tM1 = tM2
+	tMsave = tM2
+
+	if( tM2 .eq. tT .and. loglevel .eq. 1 ) then
+* we re-do the computation with tT2 (i.e. MT(MT) incl EW corr),
+* so that the error estimate for loglevel = 1 is not smaller than
+* for loglevel = 2
+	  tM2 = tT2
+	  tM1 = tT2
+	  tl_valid = 0
+	  call CalcHiggsCorr(err)
+	  do i = 1, NHiggsErr
+	    HiggsBase(i) = HiggsData(i)
+	  enddo
+	endif
+
+	tM2 = tSelect(tT2,3,3,3, runningMT)
+c	if( loglevel .eq. 0 ) tM1 = tM2
+	tM1 = tM2
+
 	tl_valid = 0
 	call CalcHiggsCorr(err)
-	tM1 = MTindex(runningMT)
-	tM2 = tM1
+
+	tM2 = tMsave
+	tM1 = tM2
 
 	if( err .ne. 0 ) then
-	  Warning("Could not evaluate corrections for MTrun = MTpole")
+	  Warning("Could not evaluate corrections for MTrun <-> MTpole")
 	  goto 998
 	endif
 

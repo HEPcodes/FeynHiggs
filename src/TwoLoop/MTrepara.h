@@ -4,7 +4,7 @@
      &        MStop2(2) + MTy2*(-Xt2 + MStop2(4))))/
      &   (MStop2(1)*MStop2(2))
 
-	if( imass .ne. 3 ) then
+	if( inputmass .ne. 3 ) then
 
         dcH = 1/2.D0*(MTy2*
      &      (2*Log(MStop2(1))*

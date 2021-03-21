@@ -2,7 +2,7 @@
    demo.m
    demonstration program for calling FeynHiggs from Mathematica
    this file is part of FeynHiggs
-   last modified 5 May 11 th
+   last modified 8 Jul 16 th
 *)
 
 
@@ -11,7 +11,7 @@ Install["build/MFeynHiggs"]
 
 mhiggs[i_, TB_] :=
 Block[ {mssmpart, fieldren, tanbren, higgsmix, p2approx,
-looplevel, runningMT, botResum, tlCplxApprox,
+looplevel, loglevel, runningMT, botResum, tlCplxApprox,
 invAlfa, AlfasMZ, GF, MU, MD, MC, MS, MB, MW, MZ,
 CKMlambda, CKMA, CKMrho, CKMeta,
 scalefactor, MT, MA0, MHp,
@@ -23,11 +23,12 @@ Qtau, Qt, Qb},
   higgsmix = 2;
   p2approx = 0;
   looplevel = 2;
+  loglevel = 0;
   runningMT = 1;
   botResum = 1;
   tlCplxApprox = 3;
   FHSetFlags[mssmpart, fieldren, tanbren, higgsmix, p2approx,
-    looplevel, runningMT, botResum, tlCplxApprox];
+    looplevel, loglevel, runningMT, botResum, tlCplxApprox];
 
   invAlfa = -1;
   AlfasMZ = -1;

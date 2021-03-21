@@ -3,7 +3,7 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 1 Jan 15 th
+* last modified 9 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -40,7 +40,7 @@
 	    DB0 = -Re(2 + (1 - 2*x1)*fpv(0, x1, y1))/p
 	  else
 	    print *, "DB0(", p, ",", m1, ",", m2, ") not defined"
-	    DB0 = nan
+	    DB0 = bogus
 	  endif
 * zero momentum
 	else if( abs(m1 - m2) .gt. minacc ) then

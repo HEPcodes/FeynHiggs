@@ -1,22 +1,22 @@
-* TLSfgl.F
+* Sfgl.F
 * sfermion masses in the gaugeless limit
 * this file is part of FeynHiggs
-* last modified 12 Jun 15 th
+* last modified 1 Aug 16 th
 
 #include "externals.h"
 #include "types.h"
 #include "debug.h"
 
-#define __SUBROUTINE__ "TLSfgl"
+#define __SUBROUTINE__ "Sfgl"
 
 
-	subroutine TLSfgl(error, shift)
+	subroutine Sfgl(error, shift)
 	implicit none
 	integer error
 	RealType shift
 
 #include "FH.h"
-#include "TLSfgl.h"
+#include "Sfgl.h"
 
 	RealType DSStop2(2), DSSbot2(2), d2
 	integer fail
@@ -31,7 +31,7 @@
      &    DSStop2(1) = -.2D0*sqrt(DSStop2(2))
 	fail = 0
 	call EigenSf(fail, 1, MStop, MStop2, UStop,
-     &    DSStop2, Mf(tS1,3), Xf(3,3), 0)
+     &    DSStop2, Mf(tS2,3), Xf(3,3), 0)
 	if( fail .ne. 0 ) then
 	  Error(error, "negative stop mass squares")
 	  return
@@ -46,11 +46,11 @@
 	MSbot(1) = sqrt(MSbot2(1))
 	MSbot(2) = sqrt(MSbot2(2))
 
-	if( debuglevel .ge. 4 ) then
+	if( debuglevel .gt. 4 ) then
 	  DHIGGS "gaugeless approximation:"	ENDL
 	  DHIGGS "MStop =", MStop(1), MStop(2)	ENDL
 	  DHIGGS "MSbot =", MSbot(1), MSbot(2)	ENDL
-	  if( debuglevel .ge. 5 ) then
+	  if( debuglevel .gt. 5 ) then
 	    DHIGGS "UStop(1,1) =", UStop(1,1) ENDL
 	    DHIGGS "UStop(1,2) =", UStop(1,2) ENDL
 	    DHIGGS "UStop(2,1) =", UStop(2,1) ENDL
@@ -58,7 +58,7 @@
 	  endif
 	endif
 
-	d2 = (DSSbot2(2) - DSStop2(2)) - Mf2(tS1,3)
+	d2 = (DSSbot2(2) - DSStop2(2)) - Mf2(tS2,3)
 	MSq2Diff(1,1) = d2 - delta + (DSSbot2(1) - DSStop2(1))
 	MSq2Diff(2,1) = d2 - delta - DSStop2(1)
 	MSq2Diff(1,2) = d2 + delta + DSSbot2(1)

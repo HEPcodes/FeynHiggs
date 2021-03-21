@@ -1,24 +1,27 @@
 * TLhr.F
 * master file for Heidi Rzehak's 2L asat corrections
 * this file is part of FeynHiggs
-* last modified 8 Jun 15 th
+* last modified 24 Nov 16 th
 
 #include "externals.h"
 #include "types.h"
 
 
-	subroutine TLhrSE(error, mudim, ps)
+	subroutine TLhrSE(error, ps)
 	implicit none
 	integer error
-	RealType mudim
 	logical ps
 
 #include "TLhr.h"
 #define __SUBROUTINE__ "TLhrSE"
 
-	RealType c
+	RealType c, shift
 
-	call TLSfgl(error, 0D0)
+	logical zden
+	RealType den, eps, a_, b_, c_
+	den(a_, b_, c_) = a_**2 + (b_ - c_)**2 - 2*a_*(b_ + c_)
+	eps(a_, b_, c_) = 1D-10*(a_**2 + b_**2 + c_**2)
+	zden(a_, b_, c_) = abs(den(a_, b_, c_)) .lt. eps(a_, b_, c_)
 
 	MTy = Mf(tM2,3)
 	MTy2 = MTy**2
@@ -26,11 +29,18 @@
 	Xt = At + MUETB(3)
 	MUEXt = MUE*Xt
 
-	Q = mudim
 	c = abs(At)
 	PhiAt = c
 	if( c .gt. 1D-14 ) PhiAt = At/c
 	MUE2 = Sq(MUE)
+
+	shift = 0
+1	call Sfgl(error, shift)
+	if( zden(MGl2, MTy2, MStop2(1)) .or.
+     &      zden(MGl2, MTy2, MStop2(2)) ) then
+	  shift = shift + .1D0
+	  goto 1
+	endif
 
 	c = 2*MGl*MTy
 	MGlmT2 = MGl2 - MTy2
@@ -47,7 +57,7 @@
 	A0delGl = A0delq(MGl2, Q)
 	A0delT = A0delq(MTy2, Q)
 
-	if( debuglevel .ge. 2 ) then
+	if( debuglevel .ge. 4 ) then
 	  DSELF "==========================="	ENDL
 	  DSELF "two-loop self-energies (hr)"	ENDL
 	  DSELF "---------------------------"	ENDL
@@ -65,16 +75,11 @@
 	if( inputmass .eq. 3 ) then
 	  seinput = selfA0A0
 	  if( TLallow(asat, HmHp) )
-     &      se2R(HmHp) = se2R(HmHp) + selfHmHp - seinput
+     &      se2Rcat(HmHp,asat) = selfHmHp - seinput
 	else
 	  seinput = selfHmHp
 	  if( TLallow(asat, A0A0) )
-     &      se2R(A0A0) = se2R(A0A0) + selfA0A0 - seinput
-	endif
-
-	if( debuglevel .ge. 2 ) then
-	  DSELF "se2R(A0A0) =", se2R(A0A0)	ENDL
-	  DSELF "se2R(HmHp) =", se2R(HmHp)	ENDL
+     &      se2Rcat(A0A0,asat) = selfA0A0 - seinput
 	endif
 
 	if( ps ) return
@@ -101,21 +106,14 @@
 
 	if( TLallow(asat, h0h0) ) then
 	  se2U(h0h0) = se2U(h0h0) + selfh0h0
-	  se2Rcat(se11,asat) = selfh0h0 - CBA2*seinput +
+	  se2Rcat(h0h0,asat) = selfh0h0 - CBA2*seinput +
      &      c*SBA*(CBA*SBA*tadHH - (1 + CBA2)*tadh0)
-	  se2R(h0h0) = se2R(h0h0) + se2Rcat(se11,asat)
 	endif
 
 	if( TLallow(asat, HHHH) ) then
 	  se2U(HHHH) = se2U(HHHH) + selfHHHH
-	  se2Rcat(se22,asat) = selfHHHH - SBA2*seinput +
+	  se2Rcat(HHHH,asat) = selfHHHH - SBA2*seinput +
      &      c*CBA*(CBA*SBA*tadh0 - (1 + SBA2)*tadHH)
-	  se2R(HHHH) = se2R(HHHH) + se2Rcat(se22,asat)
-	endif
-
-	if( debuglevel .ge. 2 ) then
-	  DSELF "se2R(h0h0) =", se2R(h0h0)	ENDL
-	  DSELF "se2R(HHHH) =", se2R(HHHH)	ENDL
 	endif
 
 	if( higgsmix .lt. 2 ) return
@@ -127,13 +125,8 @@
 
 	if( TLallow(asat, h0HH) ) then
 	  se2U(h0HH) = se2U(h0HH) + selfh0HH
-	  se2Rcat(se12,asat) = selfh0HH + CBA*SBA*seinput -
+	  se2Rcat(h0HH,asat) = selfh0HH + CBA*SBA*seinput -
      &      c*(CBA**3*tadh0 + SBA**3*tadHH)
-	  se2R(h0HH) = se2R(h0HH) + se2Rcat(se12,asat)
-	endif
-
-	if( debuglevel .ge. 2 ) then
-	  DSELF "se2R(h0HH) =", se2R(h0HH)	ENDL
 	endif
 
 	if( higgsmix .lt. 3 ) return
@@ -147,17 +140,12 @@
 
 	if( TLallow(asat, h0A0) ) then
 	  se2U(h0A0) = se2U(h0A0) + selfh0A0
-	  se2R(h0A0) = se2R(h0A0) + selfh0A0 - c*SBA*tadA0
+	  se2Rcat(h0A0,asat) = selfh0A0 - c*SBA*tadA0
 	endif
 
 	if( TLallow(asat, HHA0) ) then
 	  se2U(HHA0) = se2U(HHA0) + selfHHA0
-	  se2R(HHA0) = se2R(HHA0) + selfHHA0 - c*CBA*tadA0
-	endif
-
-	if( debuglevel .ge. 2 ) then
-	  DSELF "se2R(h0A0) =", se2R(h0A0)	ENDL
-	  DSELF "se2R(HHA0) =", se2R(HHA0)	ENDL
+	  se2Rcat(HHA0,asat) = selfHHA0 - c*CBA*tadA0
 	endif
 	end
 

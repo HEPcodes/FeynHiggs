@@ -46,12 +46,12 @@ c	parameter (k77 = 75.67D-2 + 3.47D-2)
 	  return
 	endif
 
-c	call AlphaS(asMT, nfdummy, MT)
+c	call AlphaS(asMT, nfdummy, MT2)
 c	MTr2 = MT2*(asMW/asMT)**(24/23D0)*(1 - 8/(3*pi)*asMT)
 c	MTr = sqrt(MTr2)
 
-	call AlphaS(asMW, nfdummy, MW)
-	call AlphaS(asMB, nfdummy, MB)
+	call AlphaS(asMW, nfdummy, MW2)
+	call AlphaS(asMB, nfdummy, MB2)
 	eta = asMW/asMB
 
 #include "bsgamma.h"

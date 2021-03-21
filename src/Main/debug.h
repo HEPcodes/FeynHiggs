@@ -1,7 +1,7 @@
 * debug.h
 * definitions for error handling and debugging
 * this file is part of FeynHiggs
-* last modified 31 Jul 12 th
+* last modified 14 Dec 16 th
 
 
 #ifndef DEBUG_H
@@ -26,7 +26,7 @@ if( sm_valid .ne. valid ) Error(err, "must set SM parameters before")
 if( para_valid .ne. valid ) Error(err, "must set parameters before")
 
 #define CheckSf(err) \
-if( sf_valid .ne. valid ) call Sfermions(err)
+if( sf_valid .ne. valid ) call SfermionsDelayed(err)
 
 #define CheckTL(err) \
 if( looplevel .gt. 1 .and. tl_valid .ne. valid ) call CalcRenSETL(err)
@@ -37,7 +37,8 @@ if( looplevel .gt. 1 .and. tl_valid .ne. valid ) call CalcRenSETL(err)
 * FHUncertainties).  Toggling this flag provides an additional means
 * to check the calculations.
 
-#define SORT_SF 0
+c#define SORT_SF 0
+#define SORT_SF 1
 
 
 #define Digit(n) char(48+n)
@@ -55,10 +56,10 @@ if( looplevel .gt. 1 .and. tl_valid .ne. valid ) call CalcRenSETL(err)
 #define PURPLE char(27)//"[35m"
 #define CYAN char(27)//"[36m"
 #define WHITE char(27)//"[37m"
-#define DCOLOR(c) print *, c//"FH> ",
+#define DCOLOR(c) write(debugunit,*) c//"FH> ",
 #define ENDL ,RESET
 #else
-#define DCOLOR(c) print *, "FH> ",
+#define DCOLOR(c) write(debugunit,*) "FH> ",
 #define ENDL
 #endif
 
@@ -72,7 +73,7 @@ if( looplevel .gt. 1 .and. tl_valid .ne. valid ) call CalcRenSETL(err)
 #define DPROD DCOLOR(PURPLE)
 #define DCONST DCOLOR(GREEN)
 
-#define DTAG(i,x) write(debugunit,*) FHName(i), x
+#define DTAG(i,x) write(paraunit,*) FHName(i), x
 #define DTAGm(i,x) if(x.gt.0) DTAG(i,x)
 #define DTAGz(i,x) if(x.ne.0) DTAG(i,x)
 #define DTAGre(i,x) DTAG(iRe(i),Re(x))

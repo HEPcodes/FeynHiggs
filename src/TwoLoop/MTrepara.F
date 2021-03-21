@@ -2,36 +2,34 @@
 * terms correcting the use of MT-DRbar at 1L
 * arXiv:1103.1335 Eqs. (97)-(102) and App. C
 * this file is part of FeynHiggs
-* last modified 26 May 15 th
+* last modified 22 Jul 16 th
 
 #include "externals.h"
 #include "types.h"
 
 
-	subroutine MTrepara(dPhi, dMT, MUE_, Xt_, imass)
+	subroutine MTrepara(dPhi, dMT)
 	implicit none
 
 #include "TLhr.h"
 #define __SUBROUTINE__ "MTrepara"
 
 	RealType dPhi(se2Rn,dMTH:dMTA), dMT
-	ComplexType MUE_, Xt_
-	integer imass
 
 	RealType MSQ2, Xt2, ReAtCXt, dl22, dcH, dcA, dlA, G, c
 	RealType dsig11, dsig12, dsig22, dsig1A, dsig2A, dsigAA
 
 	MSQ2 = Re(MSS2(3,3,3))
-	MUEXt = MUE_*Xt_
-	Xt2 = Sq(Xt_)
-	ReAtCXt = Re(Xt_*(Conjugate(Xt_) + MUE_/TB))
+	MUEXt = MUE*Xf(3,3)
+	Xt2 = Sq(Xf(3,3))
+	ReAtCXt = Xt2 + Re(MUEXt)/TB
 
 #define MTy Mf(tM2,3)
 #define MTy2 Mf2(tM2,3)
 
 #include "MTrepara.h"
 
-	if( imass .eq. 3 ) then
+	if( inputmass .eq. 3 ) then
 	  G = -Im(MUEXt)**2*dcA
 	else
 	  G = .5D0*Sq(MUE)*dcH

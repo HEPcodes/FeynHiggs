@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 23 Jun 16 th
+* last modified 9 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -19,18 +19,23 @@
 #include "TLps.h"
 #define __SUBROUTINE__ "CalcRenSETL"
 
-	RealType dMT(0:1), dPhi22, alfat
-	RealType dPhi(se2Rn,se2Rc,MaxSlots)
-	integer i, fail, tlx
+	ComplexType se
+	RealType dMTMT, alfat
+	RealType dPhi(dPhin,se2Rc,MaxSlots)
+	integer i, c, fail, tlx
 
-	RealType dPhi_flat(se2Rn*se2Rc,MaxSlots)
-	equivalence (dPhi, dPhi_flat)
+	RealType dPhi_flat(dPhin*se2Rc,MaxSlots)
+	RealType dPhi_fflat(dPhin*se2Rc*MaxSlots)
+	equivalence (dPhi, dPhi_flat, dPhi_fflat)
 
 	integer tlxbits(0:6), axatbits, axabbits
 	parameter (axabbits = 2**asab + 2**atab)
 	parameter (axatbits = axabbits + 2**asat + 2**atat)
 
-	character*4 tlnames(se2Rc)
+	RealType Ra_h0h0, Ra_HHHH, Ra_h0HH
+	RealType Ra_h0A0, Ra_HHA0, Ra_A0A0
+
+	character*4 catname(se2Rc), sename(se2Rn)
 
 	logical blurb
 	save blurb
@@ -38,32 +43,51 @@
 
 	data tlxbits /axatbits, 0, 5*axabbits/
 
-	data tlnames(asat) /"asat"/
-	data tlnames(atat) /"atat"/
-	data tlnames(asab) /"asab"/
-	data tlnames(atab) /"atab"/
-	data tlnames(dMTH) /"dMTH"/
-	data tlnames(dMTA) /"dMTA"/
+	data catname(asat) /"asat"/
+	data catname(atat) /"atat"/
+	data catname(asab) /"asab"/
+	data catname(atab) /"atab"/
+	data catname(dMTH) /"dMTH"/
+	data catname(dMTA) /"dMTA"/
+
+	data sename(h0h0) /"h0h0"/
+	data sename(HHHH) /"HHHH"/
+	data sename(A0A0) /"A0A0"/
+	data sename(HmHp) /"HmHp"/
+	data sename(h0HH) /"h0HH"/
+	data sename(h0A0) /"h0A0"/
+	data sename(HHA0) /"HHA0"/
+
+	Ra_h0h0(c) = SA2*dPhi(se11,c,1) + CA2*dPhi(se22,c,1) -
+     &    S2A*dPhi(se12,c,1)
+	Ra_HHHH(c) = CA2*dPhi(se11,c,1) + SA2*dPhi(se22,c,1) +
+     &    S2A*dPhi(se12,c,1)
+	Ra_h0HH(c) = .5D0*S2A*(dPhi(se22,c,1) - dPhi(se11,c,1)) +
+     &    C2A*dPhi(se12,c,1)
+
+	Ra_h0A0(c) = CA*dPhi(se2A,c,1) - SA*dPhi(se1A,c,1)
+	Ra_HHA0(c) = CA*dPhi(se1A,c,1) + SA*dPhi(se2A,c,1)
+	Ra_A0A0(c) = dPhi(seAA,c,1)
+
+	if( blurb ) then
+	  print *, "FHHiggsCorr contains code by:"
+	  print *, "P. Slavich et al. (2L rMSSM Higgs self-energies)"
+	  print *, "H. Rzehak et al. (2L cMSSM asat Higgs self-energies)"
+	  print *, "S. Passehr et al. (2L cMSSM atat Higgs self-energies)"
+	  blurb = .FALSE.
+	endif
+
+	Q = mudim
+	dMT1OS = 1 - Delta(tM2, tD)
+	tS2 = 3 + (tM2 - 3)*dMT1OS
 
 	tlx = ior(tlxbits(tlCplxApprox), tlpsmask)
-	if( tlx .ne. 0 ) then
+	if( ior(tlx, loglevel) .ne. 0 ) then
 	  call TLSetupInterpol(error)
 	  if( error .ne. 0 ) return
 	endif
-	call SfUpdate(error, X3(bTR0,bTR0,4), SORT_SF, 1)
+	call SfUpdate(error, X4(0,bTR0,bTR0,4), SORT_SF, 1)
 	if( error .ne. 0 ) return
-
-	Q = getmudim()
-
-#define Ra11(i) SA2*dPhi(se11,i,1) + CA2*dPhi(se22,i,1) - S2A*dPhi(se12,i,1)
-#define Ra22(i) CA2*dPhi(se11,i,1) + SA2*dPhi(se22,i,1) + S2A*dPhi(se12,i,1)
-#define Ra12(i) C2A*dPhi(se12,i,1) + .5D0*S2A*(dPhi(se22,i,1) - dPhi(se11,i,1))
-
-#define Ra1A(i) CA*dPhi(se2A,i,1) - SA*dPhi(se1A,i,1)
-#define Ra2A(i) CA*dPhi(se1A,i,1) + SA*dPhi(se2A,i,1)
-#define RaAA(i) dPhi(seAA,i,1)
-
-	dMT1OS = 1 - Delta(tM2, tD)
 
 	do i = 1, semax
 	  se2U(i) = 0
@@ -75,138 +99,111 @@
 	  se2Rcat_flat(i) = 0
 	enddo
 
-	call TLhrSE(error, Q, btest(tlx, asat))
-	call TLspSE(error, Q, btest(tlx, atat))
-
-	dMT(0) = 0
-	dMT(1) = 0
-	if( tM1 .eq. tT .or. tM2 .eq. tT ) then
-	  i = ibits(tlx, asat, 1)
-	  tlx = ior(tlx, ishft(i, dMTH))
-	  dMT(i) = 4/(3*pi)*Alfas2L*Mf(tM2,3)
-	  i = ibits(tlx, atat, 1)
-	  tlx = ior(tlx, ishft(i, dMTH))
-	  alfat = 1/(4*pi)*2*Mf2(tT,3)/vev**2
-	  dMT(i) = dMT(i) - 1/(2*pi)*alfat*Mf(tM2,3)
-	endif
-	tlx = ior(tlx, iand(2 - looplevel, ibset(0, dMTH)))
-
-	if( blurb ) then
-	  print *, "FHHiggsCorr contains code by:"
-	  print *, "P. Slavich et al. (2L rMSSM Higgs self-energies)"
-	  print *, "H. Rzehak et al. (2L cMSSM asat Higgs self-energies)"
-	  print *, "S. Passehr et al. (2L cMSSM atat Higgs self-energies)"
-	  blurb = .FALSE.
-	endif
-
-	if( tlx .eq. 0 ) goto 1
+	do i = 1, dPhin*se2Rc*ibset(0, nvars)
+	  dPhi_fflat(i) = 0
+	enddo
 
 	do vs = 1, ibset(0, nvars)
 	  if( debuglevel .ge. 3 ) DSELF "point ", vs ENDL
-
-	  do i = 1, se2Rn*se2Rc
-	    dPhi_flat(i,vs) = 0
-	  enddo
 	  fail = 0
-
 	  call TLps_normalTB(fail, MBy)
 	  if( fail .ne. 0 ) goto 999
 
-	  if( btest(tlx, asat) ) call TLps_asat(dPhi(1,asat,vs))
-	  if( btest(tlx, atat) ) call TLps_atat(dPhi(1,atat,vs))
-	  if( btest(tlx, asab) .and. Ab_bad .eq. 0 ) then
-	    call TLps_largeTB(fail)
-	    if( fail .ne. 0 ) goto 999
-	    call TLps_asab(dPhi(1,asab,vs))
+	  if( tlx .ne. 0 ) then
+	    if( btest(tlx, asat) ) call TLps_asat(dPhi(1,asat,vs))
+	    if( btest(tlx, atat) ) call TLps_atat(dPhi(1,atat,vs))
+	    if( btest(tlx, asab) .and. Ab_bad .eq. 0 ) then
+	      call TLps_largeTB(fail)
+	      if( fail .ne. 0 ) goto 999
+	      call TLps_asab(dPhi(1,asab,vs))
 * the O(at^2) part at large TB will be subtracted in TLps_atab:
-	    call TLps_atat(dPhi(1,atab,vs))
-	    call TLps_atab(dPhi(1,atab,vs))
-	  endif
-
-	  if( debuglevel .ge. 4 ) then
-	    DSELF "vs =", vs ENDL
-	    DSELF "Sigma11_asat =", dPhi(se11,asat,vs)	ENDL
-	    DSELF "        atat =", dPhi(se11,atat,vs)	ENDL
-	    DSELF "        asab =", dPhi(se11,asab,vs)	ENDL
-	    DSELF "        atab =", dPhi(se11,atab,vs)	ENDL
-	    DSELF "Sigma12_asat =", dPhi(se12,asat,vs)	ENDL
-	    DSELF "        atat =", dPhi(se12,atat,vs)	ENDL
-	    DSELF "        asab =", dPhi(se12,asab,vs)	ENDL
-	    DSELF "        atab =", dPhi(se12,atab,vs)	ENDL
-	    DSELF "Sigma22_asat =", dPhi(se22,asat,vs)	ENDL
-	    DSELF "        atat =", dPhi(se22,atat,vs)	ENDL
-	    DSELF "        asab =", dPhi(se22,asab,vs)	ENDL
-	    DSELF "        atab =", dPhi(se22,atab,vs)	ENDL
-	  endif
-
-	  if( btest(tlx, dMTH) ) then
-	    call TLSfgl(error, 0D0)
-	    if( error .eq. 0 ) call MTrepara(dPhi(1,dMTH,vs),
-     &        dMT(1), MUEc, Xtc, 3)
-	  endif
-
-	  if( loglevel .gt. 0 ) then 
-	    if( loglevel .eq. 1 ) then
-	      call Resum4Ha(dPhi22, Xtc)
-	    else
-	      call Resum4Hb(dPhi22, Xtc, MUEc)
+	      call TLps_atat(dPhi(1,atab,vs))
+	      call TLps_atab(dPhi(1,atab,vs))
 	    endif
-	    dPhi(se22,dMTH,vs) = dPhi(se22,dMTH,vs) - dPhi22
+
+	    if( debuglevel .ge. 4 ) then
+	      DSELF "vs =", vs ENDL
+	      DSELF "Sigma11_asat =", dPhi(se11,asat,vs) ENDL
+	      DSELF "        atat =", dPhi(se11,atat,vs) ENDL
+	      DSELF "        asab =", dPhi(se11,asab,vs) ENDL
+	      DSELF "        atab =", dPhi(se11,atab,vs) ENDL
+	      DSELF "Sigma12_asat =", dPhi(se12,asat,vs) ENDL
+	      DSELF "        atat =", dPhi(se12,atat,vs) ENDL
+	      DSELF "        asab =", dPhi(se12,asab,vs) ENDL
+	      DSELF "        atab =", dPhi(se12,atab,vs) ENDL
+	      DSELF "Sigma22_asat =", dPhi(se22,asat,vs) ENDL
+	      DSELF "        atat =", dPhi(se22,atat,vs) ENDL
+	      DSELF "        asab =", dPhi(se22,asab,vs) ENDL
+	      DSELF "        atab =", dPhi(se22,atab,vs) ENDL
+	    endif
 	  endif
+
+	  if( loglevel .gt. 0 )
+     &      call Resum4H(dPhi(se22,dMTH,vs), Xtc, MUEc)
 
 999	  continue
 	enddo
 
-	do i = asat, atab
-	  if( btest(tlx, i) ) then
-	    if( debuglevel .ge. 3 )
-     &        DSELF "interpolating ", tlnames(i) ENDL
-	    call TLInterpolate(error,
-     &        dPhi(se11,i,1), dPhi(se11,i,1),se2Rn*se2Rc)
-	    call TLInterpolate(error,
-     &        dPhi(se12,i,1), dPhi(se12,i,1),se2Rn*se2Rc)
-	    call TLInterpolate(error,
-     &        dPhi(se22,i,1), dPhi(se22,i,1),se2Rn*se2Rc)
-	    if( TLallow(i, h0h0) ) then
-	      se2Rcat(se11,i) = Ra11(i)
-	      se2R(h0h0) = se2R(h0h0) + se2Rcat(se11,i)
+	if( tlx .ne. 0 ) then
+	  do c = asat, atab
+	    if( btest(tlx, c) ) then
+	      if( debuglevel .ge. 3 )
+     &          DSELF "interpolating ", catname(c) ENDL
+	      call TLInterpolate(error,
+     &          dPhi(se11,c,1), dPhi(se11,c,1),dPhin*se2Rc)
+	      call TLInterpolate(error,
+     &          dPhi(se12,c,1), dPhi(se12,c,1),dPhin*se2Rc)
+	      call TLInterpolate(error,
+     &          dPhi(se22,c,1), dPhi(se22,c,1),dPhin*se2Rc)
+	      if( TLallow(c, h0h0) ) se2Rcat(h0h0,c) = Ra_h0h0(c)
+	      if( TLallow(c, HHHH) ) se2Rcat(HHHH,c) = Ra_HHHH(c)
+	      if( TLallow(c, h0HH) ) se2Rcat(h0HH,c) = Ra_h0HH(c)
 	    endif
-	    if( TLallow(i, HHHH) ) then
-	      se2Rcat(se22,i) = Ra22(i)
-	      se2R(HHHH) = se2R(HHHH) + se2Rcat(se22,i)
-	    endif
-	    if( TLallow(i, h0HH) ) then
-	      se2Rcat(se12,i) = Ra12(i)
-	      se2R(h0HH) = se2R(h0HH) + se2Rcat(se12,i)
-	    endif
-	  endif
-	enddo
-
-	if( btest(tlx, dMTH) ) then
-	  do i = se2Rn*(dMTH - 1) + 1, se2Rn*se2Rc
-	    call TLInterpolate(error,
-     &        dPhi_flat(i,1), dPhi_flat(i,1),se2Rn*se2Rc)
 	  enddo
 	endif
 
-1	continue
+	if( loglevel .ne. 0 ) then
+	  if( debuglevel .ge. 3 ) DSELF "interpolating dPhi22" ENDL
+	  call TLInterpolate(error,
+     &      dPhi(se22,dMTH,1), dPhi(se22,dMTH,1),dPhin*se2Rc)
+	  if( debuglevel .ge. 4 ) then
+	    DSELF "resum4H h0h0 =", Ra_h0h0(dMTH) ENDL
+	    DSELF "resum4H HHHH =", Ra_HHHH(dMTH) ENDL
+	    DSELF "resum4H h0HH =", Ra_h0HH(dMTH) ENDL
+	  endif
+	endif
 
-	if( dMT(0) .ne. 0 ) call MTrepara(dPhi(1,dMTH,1),
-     &    dMT(0), MUE, Xf(3,3), inputmass)
+	call TLhrSE(error, btest(tlx, asat))
+	call TLspSE(error, btest(tlx, atat))
 
-	se2Rcat(se11,dMTH) = Ra11(dMTH)
-	se2R(h0h0) = se2R(h0h0) + se2Rcat(se11,dMTH)
-	se2Rcat(se22,dMTH) = Ra22(dMTH)
-	se2R(HHHH) = se2R(HHHH) + se2Rcat(se22,dMTH)
-	se2Rcat(se12,dMTH) = Ra12(dMTH)
-	se2R(h0HH) = se2R(h0HH) + se2Rcat(se12,dMTH)
+c	if( tM1 .ne. 3 .or. tM2 .ne. 3 ) then
+	if( tM2 .ne. 3 ) then
+c	if( tM1 .ne. 3 ) then
+	  dMTMT = 0
+	  if( tlzeromask(asat) .eq. 0 )
+     &      dMTMT = dMTMT + 4/(3*pi)*Alfas2L
+	  if( tlzeromask(atat) .eq. 0 ) then
+	    alfat = 1/(4*pi)*2*Mf2(tM2,3)/vev**2
+	    dMTMT = dMTMT - 1/(2*pi)*alfat
+	  endif
+	  call MTrepara(dPhi(1,dMTH,1), Mf(tM2,3)*dMTMT)
 
-	se2Rcat(se1A,dMTA) = Ra1A(dMTA)
-	se2R(h0A0) = se2R(h0A0) + se2Rcat(se1A,dMTA)
-	se2Rcat(se2A,dMTA) = Ra2A(dMTA)
-	se2R(HHA0) = se2R(HHA0) + se2Rcat(se2A,dMTA)
-	se2Rcat(seAA,dMTA) = RaAA(dMTA)
-	se2R(A0A0) = se2R(A0A0) + se2Rcat(seAA,dMTA)
+	  se2Rcat(h0A0,dMTA) = Ra_h0A0(dMTA)
+	  se2Rcat(HHA0,dMTA) = Ra_HHA0(dMTA)
+	  se2Rcat(A0A0,dMTA) = Ra_A0A0(dMTA)
+	endif
+
+	se2Rcat(h0h0,dMTH) = Ra_h0h0(dMTH)
+	se2Rcat(HHHH,dMTH) = Ra_HHHH(dMTH)
+	se2Rcat(h0HH,dMTH) = Ra_h0HH(dMTH)
+
+	do i = 1, se2Rn
+	  se = 0
+	  do c = 1, se2Rc
+	    se = se + se2Rcat(i,c)
+	  enddo
+	  se2R(i) = se
+	enddo
 
 	if( error .eq. 0 ) tl_valid = valid
 
@@ -215,31 +212,15 @@
 	DSELF "========================"	ENDL
 	DSELF "two-loop self-energies"		ENDL
 	DSELF "------------------------"	ENDL
-	DSELF "se2R(h0h0) =", se2R(h0h0)	ENDL
-	DSELF "se2R(HHHH) =", se2R(HHHH)	ENDL
-	DSELF "se2R(h0HH) =", se2R(h0HH)	ENDL
-	DSELF "se2R(A0A0) =", se2R(A0A0)	ENDL
-	DSELF "se2R(h0A0) =", se2R(h0A0)	ENDL
-	DSELF "se2R(HHA0) =", se2R(HHA0)	ENDL
-	DSELF "se2R(HmHp) =", se2R(HmHp)	ENDL
 
-	if( debuglevel .lt. 5 ) return
-
-	DSELF "se2R(h0h0,asat) =", se2Rcat(se11,asat)	ENDL
-	DSELF "se2R(HHHH,asat) =", se2Rcat(se22,asat)	ENDL
-	DSELF "se2R(h0HH,asat) =", se2Rcat(se12,asat)	ENDL
-
-	DSELF "se2R(h0h0,atat) =", se2Rcat(se11,atat)	ENDL
-	DSELF "se2R(HHHH,atat) =", se2Rcat(se22,atat)	ENDL
-	DSELF "se2R(h0HH,atat) =", se2Rcat(se12,atat)	ENDL
-
-	DSELF "se2R(h0h0,asab) =", se2Rcat(se11,asab)	ENDL
-	DSELF "se2R(HHHH,asab) =", se2Rcat(se22,asab)	ENDL
-	DSELF "se2R(h0HH,asab) =", se2Rcat(se12,asab)	ENDL
-
-	DSELF "se2R(h0h0,atab) =", se2Rcat(se11,atab)	ENDL
-	DSELF "se2R(HHHH,atab) =", se2Rcat(se22,atab)	ENDL
-	DSELF "se2R(h0HH,atab) =", se2Rcat(se12,atab)	ENDL
+	do i = 1, se2Rn
+	  DSELF "se2R(", sename(i), ") =", se2R(i)
+	  if( debuglevel .ge. 3 ) then
+	    do c = 1, se2Rc
+	      DSELF "  ", catname(c), se2Rcat(i,c) ENDL
+	    enddo
+	  endif
+	enddo
 	end
 
 #undef __SUBROUTINE__

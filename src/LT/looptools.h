@@ -1,7 +1,7 @@
 * looptools.h
 * the declarations for LoopTools Light
 * this file is part of FeynHiggs
-* last modified 27 Jan 15 th
+* last modified 11 Jul 16 th
 
 #include "ltdefs.h"
 #include "ltcache.h"
@@ -15,7 +15,6 @@
 	ComplexType C0, D0p
 	RealType C0z, C00z, D0z, D00z
 	memindex Cget, Dget
-	RealType getmudim, getdelta, getlambda
 
 	external A0, A0q
 	external B0, B0q, B1, B1q, B00, B00q, B11, B11q
@@ -23,7 +22,6 @@
 	external C0, D0p
 	external C0z, C00z, D0z, D00z
 	external Cget, Dget
-	external getmudim, getdelta, getlambda
 
 * these are the conventions of Slavich et al.
 
@@ -38,4 +36,7 @@
 	ComplexType B0del, DB0del
 	external A0del, A0delq, myG
 	external B0del, DB0del
+
+	RealType mudim, delta, lambda
+	common /cutoff/ mudim, delta, lambda
 

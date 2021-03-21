@@ -3,7 +3,7 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 1 Jan 15 th
+* last modified 9 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -50,7 +50,7 @@
      &        (1 + x1)*fpv(1, y1, x1) + (1 + x2)*fpv(1, y2, x2))
 	  else
 	    print *, "B1(", p, ",", m1, ",", m2, ") not defined"
-	    B1q = nan
+	    B1q = bogus
 	  endif
 * zero momentum
 	else if( abs(m1 - m2) .gt. minacc ) then

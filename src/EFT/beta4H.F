@@ -1,7 +1,7 @@
 * beta4H.F
 * the SM and SUSY beta functions
 * this file is part of FeynHiggs
-* last modified 25 May 16 th
+* last modified 8 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -13,7 +13,7 @@
 	RealType dy(*), y(*), t
 	external userarg
 
-#include "Resum4Hb.h"
+#include "Resum4H.h"
 
 	RealType yg2, ygy2, yg32, yht2, ytb2, ylam2
 
@@ -132,7 +132,7 @@
 	RealType dy(*), y(*), t
 	external userarg
 
-#include "Resum4Hb.h"
+#include "Resum4H.h"
 
 	RealType yg2, ygy2, yg32, yht2, ytb2, ylam2, yg1d2, yg1u2
 	RealType yg2d2, yg2u2, yg1ud2, yg2ud2

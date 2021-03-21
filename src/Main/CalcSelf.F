@@ -1,7 +1,7 @@
 * CalcSelf.F
 * Calculation of the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 8 Jun 15 th
+* last modified 22 Jul 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -293,11 +293,11 @@
 	omega_t = c*(log(MSf(1,tM1,3)*MSf(2,tM1,3)/Mf2(tM1,3)) +
      &    Af(3,3)*(x + Af(3,3)*x2))
 
-	seR(h0h0) = -(SA2*sigma_t + CA2*omega_t - 2*SA*CA*lam_t) +
+	seR(h0h0) = -(SA2*sigma_t + CA2*omega_t - S2A*lam_t) +
      &    seX(h0h0,hX)
-	seR(HHHH) = -(CA2*sigma_t + SA2*omega_t + 2*SA*CA*lam_t) +
+	seR(HHHH) = -(CA2*sigma_t + SA2*omega_t + S2A*lam_t) +
      &    seX(HHHH,hX)
-	seR(h0HH) = -((CA2 - SA2)*lam_t + SA*CA*(omega_t - sigma_t)) +
+	seR(h0HH) = -(C2A*lam_t + .5D0*S2A*(omega_t - sigma_t)) +
      &    seX(h0HH,hX)
 	end
 

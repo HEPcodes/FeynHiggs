@@ -2,7 +2,7 @@
 * computes the decay rate of B_s -> l+ l-
 * the calculation follows closely hep-ph/0112305
 * this file is part of FeynHiggs
-* last modified 4 Aug 14 th
+* last modified 12 Jul 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -58,7 +58,7 @@ c	integer Sfe6
 	  return
 	endif
 
-	call AlphaS(asMT, nfdummy, Mf(tT,3))
+	call AlphaS(asMT, nfdummy, Mf2(tT,3))
 
 #include "bsll.h"
 

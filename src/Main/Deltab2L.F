@@ -2,7 +2,7 @@
 * 2-loop parts of Delta b
 * code adapted from HDecay
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 8 Jul 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -24,7 +24,6 @@
 	equivalence (MSd12, MSdL2(1,2)), (MSd22, MSdL2(2,2))
 	equivalence (MSb12, MSdL2(1,3)), (MSb22, MSdL2(2,3))
 
-	RealType MUE2
 	RealType fnorm, anomalous, finscale
 	ComplexType d, yt1, yt2, XGl2, XT2
 	ComplexType XSt12, XSt22, XSb12, XSb22
@@ -34,8 +33,6 @@
 
 	RealType T134s, T134p, TLdb
 	external T134s, T134p, TLdb
-
-	MUE2 = Sq(MUE)
 
 	fnorm = 1/MUE2
 	d = fnorm*Ieps

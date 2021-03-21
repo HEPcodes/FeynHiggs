@@ -3,15 +3,15 @@
 * Code is transcribed from I. Hinchliffe's Java applet at
 * http://www-theory.lbl.gov/~ianh/alpha/alpha.html.
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 12 Jul 16 th
 
 #include "externals.h"
 #include "types.h"
 
 
-	subroutine AlphaS(as, nf, scale)
+	subroutine AlphaS(as, nf, Q)
 	implicit none
-	RealType as, scale
+	RealType as, Q
 	integer nf
 
 #include "FH.h"
@@ -86,19 +86,19 @@
      &      (1 + c*(c + 1) + l*(3*l - 5*c - 2) + 3*b))
 	enddo
 
-	if( scale .lt. .5D0 ) then
+	if( Q .lt. .25D0 ) then
 	  as = 1D10
 	  return
 	endif
 
-	if( scale .gt. MT ) then
+	if( Q .gt. MT2 ) then
 	  nf = 6
 	  beta0 = beta6_0
 	  beta1 = beta6_1
 	  beta2 = beta6_2
 	  t = MT/lam5
 	  lam = lam5*t**(-2/21D0)*(2*log(t))**(-107/1127D0)
-	else if( scale .gt. MB ) then
+	else if( Q .gt. MB2 ) then
 	  nf = 5
 	  beta0 = beta5_0
 	  beta1 = beta5_1
@@ -110,7 +110,7 @@
 	  lam = lam5*exp(delta54_0*t +
      &      delta54_11*l + delta54_10 +
      &      (delta54_21*l + delta54_20)/t)
-	  if( scale .gt. MC ) then
+	  if( Q .gt. MC2 ) then
 	    nf = 4
 	    beta0 = beta4_0
 	    beta1 = beta4_1
@@ -128,7 +128,7 @@
 	  endif
 	endif
 
-	t = 2*log(scale/lam)
+	t = log(Q/lam**2)
 	c = 2*beta1/(beta0**2*t)
 	l = c*log(t)
 	b = c**2*(beta2*beta0/(8*beta1**2) - 1)
@@ -144,11 +144,11 @@
 
 #include "FH.h"
 
-	RealType scale(3:5), as1, as2
+	RealType Q(3:5), as1, as2
 	integer nf, nf_from, nf_to, nf1, nf2
 
 	RealType g0, eps
-	parameter (g0 = -8, eps = 1D-12)
+	parameter (g0 = -8, eps = 1D-11)
 
 	RealType beta0, cfn, as
 
@@ -167,9 +167,9 @@
 	cfn(as, nf) = (beta0(nf)*as/(2*pi))**(-g0/(2*beta0(nf))) *
      &    (1 + as*(c1(nf) + as*c2(nf)))
 
-	scale(3) = MC
-	scale(4) = MB
-	scale(5) = MT
+	Q(3) = MC2
+	Q(4) = MB2
+	Q(5) = MT2
 
 	call AlphaS(as1, nf_to, Q_to)
 	call AlphaS(as2, nf_from, Q_from)
@@ -178,15 +178,15 @@
 
 * nf_to > nf_from
 	do nf = nf_from, nf_to - 1
-	  call AlphaS(as1, nf1, scale(nf))
-	  call AlphaS(as2, nf2, scale(nf) + eps)
+	  call AlphaS(as1, nf1, Q(nf))
+	  call AlphaS(as2, nf2, Q(nf) + eps)
 	  Run = cfn(as1, nf1)/cfn(as2, nf2)*Run
 	enddo
 
 * nf_to < nf_from
 	do nf = nf_from - 1, nf_to, -1
-	  call AlphaS(as1, nf1, scale(nf))
-	  call AlphaS(as2, nf2, scale(nf) + eps)
+	  call AlphaS(as1, nf1, Q(nf))
+	  call AlphaS(as2, nf2, Q(nf) + eps)
 	  Run = cfn(as2, nf2)/cfn(as1, nf1)*Run
 	enddo
 	end

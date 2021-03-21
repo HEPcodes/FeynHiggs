@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 24 Apr 15 th
+* last modified 9 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -160,7 +160,6 @@ c#define HFFTEST 1
 *** COUPLINGS AND DECAY WIDTHS ***
 
 c	call setdelta(100D0)
-	Divergence = getdelta()
 	call clearcache
 
 * For couplings where the order is essential, the following
@@ -328,7 +327,7 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 * note: for mfeff = 0, t = 4, we take HffDb(tc = 3) (which is 1)
 * to omit the Db resummation
 	    tc = t - ifB(t, Delta(mfeff, 0))
-	    ty = t + ifQ(t, dteff)
+	    ty = t + ifT(t, dteff)
 	    do g = 1, 3
 	      c = -.5D0*EL0/(SW*MW)*Mf(ty,g)*cI
 	      LCouplingSM(H0FF(h,t,g,g)) = c
@@ -365,8 +364,8 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 	  do t = 1, 4
 	    Nc = Ncolor(t)
 	    tk = t + ifB(t, bBR - 4)
-	    tc = t + ifQ(t, dteff) + ifB(t, dbReff)
-	    ty = t + ifQ(t, tT - 3) + ifB(t, bHR - bTR)
+	    tc = t + ifT(t, dteff) + ifB(t, dbReff)
+	    ty = t + ifT(t, tT - 3) + ifB(t, bHR - 4)
 	    do g = 1, 3
 	      call H0SfSfCouplings(chss, X5(h,tc,t,g,uzint), DD)
 	      call H0SfSfCouplings(chssy, X5(h,ty,t,g,uzext0), DD)
@@ -404,7 +403,7 @@ c	    HffDb(0,h,4,g) = (1 + rtb(h)*Deltaf(bTR,g))/abs(1 + Deltaf(bTR,g))
 	  Nc = Ncolor(t)
 c	  i = -iand(isB(t), isMFV(t))
 	  i = -isB(t)
-	  tc = t + ifQ(t, dteff)
+	  tc = t + ifT(t, dteff)
 	  bc = tc + iand(i, dbReff)
 	  ty = t + ifB(t, bH - 4)
 	  by = ty + iand(i, bHR - bH)
@@ -536,7 +535,7 @@ c	  i = -iand(isB(t), isMFV(t))
 	  Nc = Ncolor(t)
 c	  i = -iand(isB(t), isMFV(t))
 	  i = -isB(t)
-	  tc = t + ifQ(t, dteff) + iand(i, dbReff)
+	  tc = t + ifT(t, dteff) + iand(i, dbReff)
 	  ty = t + ifB(t, bH - 4)
 	  by = ty + iand(i, bHR - bH)
 	  tk = t + iand(i, bBR - 4)
@@ -1255,20 +1254,21 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 
 #include "Decay.h"
 
-	RealType qrun
+	RealType mh2, qrun
 	integer nf
 
 	RealType Run
 	external Run
 
-	call AlphaS(AlfasMH, nf, mh)
+	mh2 = mh**2
 
-	qrun = Run(2D0, mh)
+	call AlphaS(AlfasMH, nf, mh2)
 
+	qrun = Run(4D0, mh2)
 	Mf(tH,1) = MU*qrun
-	Mf(tH,2) = MC*Run(MC, mh)
+	Mf(tH,2) = MC*Run(MC2, mh2)
 	Mf(tH,3) = mtr
-	if( Mf(tH,3) .lt. 0 ) Mf(tH,3) = Mf(tT,3)*Run(MT, mh)
+	if( Mf(tH,3) .lt. 0 ) Mf(tH,3) = Mf(tT,3)*Run(MT2, mh2)
 	if( debuglevel .ge. 5 ) then
 	  DCOUP "SetDecayScale Q =", mh ENDL
 	  DCOUP "Alfas(Q) =", AlfasMH	ENDL
@@ -1276,22 +1276,22 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	  DCOUP "  (tH,2) =", Mf(tH,2)	ENDL
 	  DCOUP "  (tH,3) =", Mf(tH,3)	ENDL
 	endif
-	call SfUpdate(fail, X3(tH,3,3), sort, 1)
+	call SfUpdate(fail, X4(3,tH,3,3), sort)
 
 	Mf(bH,1) = MD*qrun
 	Mf(bH,2) = MS*qrun
-	Mf(bH,3) = MB*Run(MB, mh)
+	Mf(bH,3) = MB*Run(MB2, mh2)
 	if( debuglevel .ge. 5 ) then
 	  DCOUP "Mf(bH,1) =", Mf(bH,1)	ENDL
 	  DCOUP "  (bH,2) =", Mf(bH,2)	ENDL
 	  DCOUP "  (bH,3) =", Mf(bH,3)	ENDL
 	endif
-	call SfUpdate(fail, X3(bH,4,4), sort, 1)
+	call SfUpdate(fail, X4(4,bH,4,4), sort)
 
 	Mf(bHR,1) = Mf(bH,1)/abs(1 + Deltaf(bTR,1))
 	Mf(bHR,2) = Mf(bH,2)/abs(1 + Deltaf(bTR,2))
 	Mf(bHR,3) = Mf(bH,3)/abs(1 + Deltaf(bTR,3))
-	call SfUpdate(fail, X3(bHR,4,4), sort, 1)
+	call SfUpdate(fail, X4(4,bHR,4,4), sort)
 
 	hggSq(1) = sqrt(1 + AlfasMH/pi*(95/4D0 - 7/6D0*nf))
 	hggSq(2) = hggSq(1)
