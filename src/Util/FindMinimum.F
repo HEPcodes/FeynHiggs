@@ -1,7 +1,7 @@
 * FindMinimum.F
 * find minimum of function
 * this file is part of FeynHiggs
-* last modified 14 Jan 16 th
+* last modified 6 Feb 16 th
 
 #include "externals.h"
 #include "types.h"

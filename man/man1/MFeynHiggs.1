@@ -1,4 +1,4 @@
-.TH MFeynHiggs 1 "30-May-2012"
+.TH MFeynHiggs 1 "9-Feb-2017"
 .SH NAME
 .PP
 MFeynHiggs \- the Mathematica interface to FeynHiggs
@@ -45,6 +45,9 @@ self-couplings for a given mixing matrix.
 .B FHSelectUZ
 chooses whether to use UHiggs or ZHiggs for internal and external Higgs
 bosons.
+.TP
+.B FHSelectIpol
+chooses between interpolation in At vs Xt and Ab vs Xb.
 .TP
 .B FHHiggsProd
 computes (approximate) Higgs production cross-sections.
@@ -100,9 +103,15 @@ the most recent values calculated by FHHiggsCorr can be obtained with
 .P
   FHCouplings[]
 .P
-Electroweak precision observables can be obtained with
+Electroweak precision observables, flavour observables, and further 
+constraints can respectively be obtained with
 .P
+  FHEWPO[]
+.br
+  FHFlavour[]
+.br
   FHConstraints[]
+.P
 .SH SEE ALSO
 .PP
 libFH(1), FeynHiggs(1)

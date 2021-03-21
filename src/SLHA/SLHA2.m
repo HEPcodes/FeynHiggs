@@ -466,6 +466,7 @@ desc = {
     UA[{h1,3},{h2,3}]
   },
   PrecObs[prcob] -> {
+    DeltaR,
     DeltaRho,
     MWMSSM,
     MWSM,

@@ -1,7 +1,7 @@
 * GetSelf.F
 * Subroutines for outside access to the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 7 May 15 th
+* last modified 6 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -24,6 +24,7 @@
 	error = 0
 	CheckSf(error)
 	CheckTL(error)
+	CheckRGE(error)
 	if( error .gt. 0 ) return
 
 	dk = dkey

@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 12 Dec 16 th
+* last modified 9 Feb 17 th
 
 
 #ifndef SignSq
@@ -48,13 +48,11 @@
 
 #define Mf(t,g) Sf(g,t)
 #define Mf2(t,g) Sf(g+3,t)
-#define MSf(s,t,g) Sf(s+2*(g)+4,t)
-#define MSf2(s,t,g) Sf(s+4*(g)+8,t)
-#define MASf(as,t) Sf(as+24,t)
-#define MASf2(as,t) Sf(as+30,t)
-#define USf2(s1,s2,t,g) Sf(s1+2*(s2)+4*(g)+36,t)
-#define USf(s1,s2,t,g) CSf(s1+2*(s2)+4*(g)+21,t)
-#define USf_flat(i,t) CSf(i+27,t)
+#define MSf2(s,t,g) Sf(s+6*(g),t)
+#define USf2(s1,s2,t,g) Sf(s1+2*(s2)+4*(g)+18,t)
+#define USf(s1,s2,t,g) CSf(s1+2*(s2)+4*(g)+12,t)
+#define MASf(as,t) Sf(as+60,t)
+#define MASf2(as,t) Sf(as+66,t)
 #define UASf(as1,as2,t) CSf(as1+6*(as2)+33,t)
 #define UASf_flat(i,t) CSf(i+39,t)
 #define DSS2(s,t,g) Sf(s+2*(g)+148,t)
@@ -65,6 +63,8 @@
 #define CKM_flat(i) CSf(i+87,1)
 #define NSf 194
 
+#define MSf(s,t,g) MSf2(s+4,t,g)
+#define MSdL(s,g) MSdL2(s+4,g)
 #define USfC(s1,s2,t,g) Conjugate(USf(s1,s2,t,g))
 #define UASfC(as1,as2,t) Conjugate(UASf(as1,as2,t))
 #define VChaC(c1,c2) Conjugate(VCha(c1,c2))
@@ -81,6 +81,13 @@
 #define XfC(t,g) Conjugate(Xf(t,g))
 #define MUEC Conjugate(MUE)
 #define M_3C Conjugate(M_3)
+
+#define M_3c ipslot(1,ipi)
+#define MUEc ipslot(2,ipi)
+#define Xtc ipslot(3,ipi)
+#define Atc ipslot(4,ipi)
+#define Xbc ipslot(5,ipi)
+#define Abc ipslot(6,ipi)
 
 #define deltaSf_LL(i,j,t) deltaSf(i,j,t)
 #define deltaSf_LR(i,j,t) deltaSf(i,j+3,t)
@@ -110,17 +117,20 @@
 	RealType Qf(4), MB_MT
 	RealType MW, MW2, MZ, MZ2
 	RealType SW, SW2, CW, CW2
-	RealType invAlfaMZ, GF, vev
-	RealType EL0, ELGF, AlfaGF, ELMZ, AlfaMZ
+	RealType GammaW, GammaZ
+	RealType invAlfa0, invAlfaMZ, GF, vev, DeltaAlfa
+	RealType EL0, Alfa0, ELGF, AlfaGF, ELMZ, AlfaMZ
 	RealType gsMT, gsMT2, AlfasMT, AlfasMZ, AlfasDb, AlfasMH
 	RealType htMT, htMT2
 
 	common /smpara/
      &    CKMin, CKMlambda, CKMA, CKMrhobar, CKMetabar,
      &    Qf, MB_MT,
-     &    MW, MW2, MZ, MZ2, CW, CW2, SW, SW2,
-     &    invAlfaMZ, GF, vev,
-     &    EL0, ELGF, AlfaGF, ELMZ, AlfaMZ,
+     &    MW, MW2, MZ, MZ2,
+     &    CW, CW2, SW, SW2,
+     &    GammaW, GammaZ,
+     &    invAlfa0, invAlfaMZ, GF, vev, DeltaAlfa,
+     &    EL0, Alfa0, ELGF, AlfaGF, ELMZ, AlfaMZ,
      &    gsMT, gsMT2, AlfasMT, AlfasMZ, AlfasDb, AlfasMH,
      &    htMT, htMT2
 
@@ -209,12 +219,22 @@
 	ComplexType UChaL(2,2), VChaL(2,2)
 	ComplexType ZNeuL(4,4), USdL(2,2,3)
 	RealType MChaL(2), MNeuL(4)
-	RealType MSdL(2,3), MSdL2(4,3)
+	RealType MSdL2(6,3)
 
 	common /mssmparaLargeTB/
      &    UChaL, VChaL, ZNeuL, USdL,
-     &    MChaL, MNeuL, MSdL, MSdL2
+     &    MChaL, MNeuL, MSdL2
 
+* variables for interpolation:
+
+	integer ipvars, ippara, ipslots
+	parameter (ipvars = 4)
+	parameter (ippara = 6)
+	parameter (ipslots = 2**ipvars)
+	ComplexType ipslot(ippara,ipslots)
+	RealType ipmonomial(ipslots)
+	integer ipvdmb(ipslots), ipn, ipi
+	common /ipolpara/ ipslot, ipmonomial, ipvdmb, ipn, ipi
 
 * Note: despite its name, sfermpara contains not only
 * sfermion parameters, but all variables which need to be
@@ -326,7 +346,8 @@
 	equivalence (seX, seX_flat)
 
 	ComplexType seU(semax), dseU(semax), se2U(semax)
-	common /higgsunren/ seU, dseU, se2U
+	RealType seEFT(semax), Mh02EFT
+	common /higgsunren/ seU, dseU, se2U, seEFT, Mh02EFT
 
 
 * couplings and widths
@@ -360,7 +381,7 @@
 	integer higgsmix, p2approx, looplevel, loglevel
 	integer runningMT, botResum, tlCplxApprox
 	integer debuglevel, debugunit, paraunit, fv
-	integer uzint, uzext, mfeff
+	integer uzint, uzext, mfeff, ipolXt, ipolXb
 	integer tlpsmask, tlzeromask(4), loglevelmt, forceSU2
 	integer tM1, tM2, tS2, bM, bM0, gM
 	character*256 extSE
@@ -375,18 +396,20 @@
      &    higgsmix, p2approx, looplevel, loglevel,
      &    runningMT, botResum, tlCplxApprox,
      &    debuglevel, debugunit, paraunit, fv,
-     &    uzint, uzext, mfeff,
+     &    uzint, uzext, mfeff, ipolXt, ipolXb,
      &    tlpsmask, tlzeromask, loglevelmt, forceSU2,
      &    tM1, tM2, tS2, bM, bM0, gM,
      &    extSE
 
 
 	integer flags_valid, sm_valid, para_valid, sf_valid
-	integer tl_valid, higgs_valid, coup_valid, Ab_bad
+	integer tl_valid, eft_valid, higgs_valid, coup_valid
+	integer Ab_bad
 
 	common /valids/
      &    flags_valid, sm_valid, para_valid, sf_valid,
-     &    tl_valid, higgs_valid, coup_valid, Ab_bad
+     &    tl_valid, eft_valid, higgs_valid, coup_valid,
+     &    Ab_bad
 
 
 	character*1 cMSS(5), cAf(4)

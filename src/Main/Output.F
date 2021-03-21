@@ -1,7 +1,7 @@
 * Output.F
 * run FH functions encoded in key and write output to unit
 * this file is part of FeynHiggs
-* last modified 25 May 16 th
+* last modified 4 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -42,7 +42,7 @@
 	ComplexType DeltaZHiggs(NNeutral,NNeutral)
 
 	RealType gm2
-	RealType DeltaRho, MWMSSM, MWSM, SW2MSSM, SW2SM
+	RealType DeltaR, DeltaRho, MWMSSM, MWSM, SW2MSSM, SW2SM
 	RealType edmeTh, edmn, edmHg
 	RealType bsgMSSM, bsgSM
 	RealType deltaMsMSSM, deltaMsSM
@@ -596,31 +596,24 @@
 	  enddo
 	enddo
 
-*** bit 6: Constraints
+*** bit 6: EW Precision Observables
 
 6	if( .not. btest(key, 6) ) goto 7
 
-160	format(/"-------------------- EW CONSTRAINTS --------------------"
-     &    /"Note: MW, SW2, and the EDMs are not fully checked yet!")
+160	format(/"--------------- EW PRECISION OBSERVABLES ---------------")
 	write(unit,160)
 
-	call FHConstraints(error, gm2,
-     &    DeltaRho, MWMSSM, MWSM, SW2MSSM, SW2SM,
-     &    edmeTh, edmn, edmHg, ccb)
+	call FHEWPO(error, DeltaR, DeltaRho,
+     &    MWMSSM, MWSM, SW2MSSM, SW2SM)
 	if( error .ne. 0 ) goto 500
 
 161	format(TAG, A, EQU, 1P, GAMMA_FMT)
+	write(unit,161) "DeltaR", DeltaR
 	write(unit,161) "DeltaRho", DeltaRho
 	write(unit,161) "MWMSSM", MWMSSM
 	write(unit,161) "MWSM", MWSM
 	write(unit,161) "SW2effMSSM", SW2MSSM
 	write(unit,161) "SW2effSM", SW2SM
-	write(unit,161) "g-2", gm2
-	write(unit,161) "EDMeTh", edmeTh
-	write(unit,161) "EDMn", edmn
-	write(unit,161) "EDMHg", edmHg
-
-	if( ccb .ne. 0 ) Warning("Colour-breaking minimum detected")
 
 *** bit 7: Flavour
 
@@ -642,41 +635,59 @@
 	write(unit,161) "bsmumu", bsmumuMSSM
 	write(unit,161) "bsmumuSM", bsmumuSM
 
+*** bit 8: Other Constraints
+
+8	if( .not. btest(key, 8) ) goto 9
+
+180	format(/"--------------------- CONSTRAINTS ----------------------")
+	write(unit,180)
+
+	call FHConstraints(error, gm2,
+     &    edmeTh, edmn, edmHg, ccb)
+	if( error .ne. 0 ) goto 500
+
+	write(unit,161) "g-2", gm2
+	write(unit,161) "EDMeTh", edmeTh
+	write(unit,161) "EDMn", edmn
+	write(unit,161) "EDMHg", edmHg
+
+	if( ccb .ne. 0 ) Warning("Colour-breaking minimum detected")
+
 *** Production XS
 
-8	if( sqrts .le. 0 ) goto 500
+9	if( sqrts .le. 0 ) goto 500
 
-180	format(/"-------------- PRODUCTION CROSS-SECTIONS ---------------")
-	print 180
+190	format(/"-------------- PRODUCTION CROSS-SECTIONS ---------------")
+	print 190
 
 	call FHHiggsProd(error, sqrts, prodxs)
 	if( error .ne. 0 ) goto 500
 
-181	format(TAG, A, GAMMA_BR_FMT)
-182	format(/"  Channel", T29,A, T44,A,:,T59,A)
-183	format(TAG, A,"-",A, GAMMA_BR_FMT)
+191	format(TAG, A, GAMMA_BR_FMT)
+192	format(/"  Channel", T29,A, T44,A,:,T59,A)
+193	format(TAG, A,"-",A, GAMMA_BR_FMT)
 
-	write(unit,181) "prod:sqrts", sqrts
+	write(unit,191) "prod:sqrts", sqrts
 
-	write(unit,182) "xsection/fb", "SM xsection/fb"
+	write(unit,192) "xsection/fb", "SM xsection/fb"
 
 	do h = 1, 3
-	  write(unit,183) "prod:b-b",higgs(h), bbh(h), bbhSM(h)
-	  write(unit,183) "prod:btag-b",higgs(h), btagbh(h), btagbhSM(h)
-	  write(unit,183) "prod:g-g",higgs(h), ggh(h), gghSM(h)
-	  write(unit,183) "prod:alt-g-g",higgs(h), ggh2(h), gghSM(h)
-	  write(unit,183) "prod:q-q",higgs(h), qqh(h), qqhSM(h)
-	  write(unit,183) "prod:t-t",higgs(h), tth(h), tthSM(h)
-	  write(unit,183) "prod:W",  higgs(h), Wh(h), WhSM(h)
-	  write(unit,183) "prod:Z",  higgs(h), Zh(h), ZhSM(h)
-	  write(unit,183) "prod:St-St", higgs(h), StSth(h)
+	  write(unit,193) "prod:b-b",higgs(h), bbh(h), bbhSM(h)
+	  write(unit,193) "prod:btag-b",higgs(h), btagbh(h), btagbhSM(h)
+	  write(unit,193) "prod:g-g",higgs(h), ggh(h), gghSM(h)
+	  write(unit,193) "prod:alt-g-g",higgs(h), ggh2(h), gghSM(h)
+	  write(unit,193) "prod:q-q",higgs(h), qqh(h), qqhSM(h)
+	  write(unit,193) "prod:t-t",higgs(h), tth(h), tthSM(h)
+	  write(unit,193) "prod:W",  higgs(h), Wh(h), WhSM(h)
+	  write(unit,193) "prod:Z",  higgs(h), Zh(h), ZhSM(h)
+	  write(unit,193) "prod:St-St", higgs(h), StSth(h)
 	enddo
 
-	write(unit,182) "xsection/fb"
-	write(unit,183) "prod:t", higgs(4), tHm
-	write(unit,183) "prod:alt-t", higgs(4), tHm2
-	write(unit,183) "prod:altlo-t", higgs(4), tHm2lo
-	write(unit,183) "prod:althi-t", higgs(4), tHm2hi
+	write(unit,192) "xsection/fb"
+	write(unit,193) "prod:t", higgs(4), tHm
+	write(unit,193) "prod:alt-t", higgs(4), tHm2
+	write(unit,193) "prod:altlo-t", higgs(4), tHm2lo
+	write(unit,193) "prod:althi-t", higgs(4), tHm2hi
 
 500	if( unit .eq. 10 ) close(unit)
 	return

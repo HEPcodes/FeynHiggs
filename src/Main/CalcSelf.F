@@ -1,7 +1,7 @@
 * CalcSelf.F
 * Calculation of the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 22 Jul 16 th
+* last modified 10 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 
 #define computeSE(i) ibits(key,i-1,1) .eq. 1
 #define SEu(i) se1+se2U(i)
-#define SEr(i) se1+dZ(i)*(p2-Msq(i))-dMsq(i)+se2R(i)+seX(i,hX)
+#define SEr(i) se1+dZ(i)*(p2-Msq(i))-dMsq(i)+se2R(i)+seEFT(i)+seX(i,hX)
 
 #define computeDSE(i) ibits(dkey,i-1,1) .eq. 1
 #define DSEu(i) se1
@@ -313,7 +313,7 @@
 
 #include "FH.h"
 
-	RealType DSStop2(2), MStop2(4), MStop(2)
+	RealType DSStop2(2), MStop2(6)
 	ComplexType UStop(2,2)
 	RealType d, MSbot12, mlog1, dmlog
 	integer fail
@@ -328,7 +328,7 @@
 	if( DSStop2(1)**2 + Sq(Xf(3,3)) .lt. .1D0 )
      &    DSStop2(1) = -.2D0*sqrt(DSStop2(2))
 	fail = 0
-	call EigenSf(fail, 1, MStop, MStop2, UStop,
+	call EigenSf(fail, MStop2, UStop,
      &    DSStop2, Mf(tM1,3), Xf(3,3), 0)
 	if( fail .ne. 0 ) Warning("negative stop mass squares")
 
@@ -356,6 +356,7 @@
 
 #include "FH.h"
 #include "OneLoop.h"
+#include "looptools.h"
 
 	RealType d1, d2, c
 	RealType dZH(2,4:5), dTB(4:5)
@@ -374,6 +375,8 @@
 	Msq(A0G0) = .5D0*(Msq(A0A0) + Msq(G0G0))
 	Msq(GmGp) = 0
 	Msq(HmGp) = .5D0*(Msq(HmHp) + Msq(GmGp))
+
+	if( looplevel .eq. 0 ) return
 
 * choose the field renormalization:
 	dZH(1,4) = 0

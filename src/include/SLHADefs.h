@@ -1,7 +1,7 @@
 #if 0
 	SLHADefs.h
 		declarations for SLHALib data
-		generated 1 Jun 2012 9:36
+		generated 4 Jan 2017 22:09
 #endif
 
 #ifndef SLHADEFS_H
@@ -694,49 +694,50 @@
 #define NMAMix_UAFlat(i) Slhadata(1254+i)
 
 #define OffsetPrecObs 1263
-#define LengthPrecObs 15
+#define LengthPrecObs 16
 #define BlockPrecObs(i) SlhaData(1263+i)
-#define PrecObs_DeltaRho Slhadata(1264)
-#define PrecObs_MWMSSM Slhadata(1265)
-#define PrecObs_MWSM Slhadata(1266)
-#define PrecObs_SW2effMSSM Slhadata(1267)
-#define PrecObs_SW2effSM Slhadata(1268)
-#define PrecObs_gminus2mu Slhadata(1269)
-#define PrecObs_EDMeTh Slhadata(1270)
-#define PrecObs_EDMn Slhadata(1271)
-#define PrecObs_EDMHg Slhadata(1272)
-#define PrecObs_bsgammaMSSM Slhadata(1273)
-#define PrecObs_bsgammaSM Slhadata(1274)
-#define PrecObs_DeltaMsMSSM Slhadata(1275)
-#define PrecObs_DeltaMsSM Slhadata(1276)
-#define PrecObs_BsmumuMSSM Slhadata(1277)
-#define PrecObs_BsmumuSM Slhadata(1278)
+#define PrecObs_DeltaR Slhadata(1264)
+#define PrecObs_DeltaRho Slhadata(1265)
+#define PrecObs_MWMSSM Slhadata(1266)
+#define PrecObs_MWSM Slhadata(1267)
+#define PrecObs_SW2effMSSM Slhadata(1268)
+#define PrecObs_SW2effSM Slhadata(1269)
+#define PrecObs_gminus2mu Slhadata(1270)
+#define PrecObs_EDMeTh Slhadata(1271)
+#define PrecObs_EDMn Slhadata(1272)
+#define PrecObs_EDMHg Slhadata(1273)
+#define PrecObs_bsgammaMSSM Slhadata(1274)
+#define PrecObs_bsgammaSM Slhadata(1275)
+#define PrecObs_DeltaMsMSSM Slhadata(1276)
+#define PrecObs_DeltaMsSM Slhadata(1277)
+#define PrecObs_BsmumuMSSM Slhadata(1278)
+#define PrecObs_BsmumuSM Slhadata(1279)
 
-#define OffsetSPInfo 1278
+#define OffsetSPInfo 1279
 #define LengthSPInfo 92
-#define BlockSPInfo(i) SlhaData(1278+i)
-#define SPInfo_NLines SlhaData(1279)
-#define SPInfo_Severity SlhaData(1280)
-#define SPInfo_Code(n) SlhaData(1280+n)
-#define SPInfo_Text(i,n) SlhaData(1290+i+5*(n))
-#define SPInfo_TextFlat(i) SlhaData(1295+i)
+#define BlockSPInfo(i) SlhaData(1279+i)
+#define SPInfo_NLines SlhaData(1280)
+#define SPInfo_Severity SlhaData(1281)
+#define SPInfo_Code(n) SlhaData(1281+n)
+#define SPInfo_Text(i,n) SlhaData(1291+i+5*(n))
+#define SPInfo_TextFlat(i) SlhaData(1296+i)
 #define   SPInfo_Len 80
 
-#define OffsetDCInfo 1370
+#define OffsetDCInfo 1371
 #define LengthDCInfo 92
-#define BlockDCInfo(i) SlhaData(1370+i)
-#define DCInfo_NLines SlhaData(1371)
-#define DCInfo_Severity SlhaData(1372)
-#define DCInfo_Code(n) SlhaData(1372+n)
-#define DCInfo_Text(i,n) SlhaData(1382+i+5*(n))
-#define DCInfo_TextFlat(i) SlhaData(1387+i)
+#define BlockDCInfo(i) SlhaData(1371+i)
+#define DCInfo_NLines SlhaData(1372)
+#define DCInfo_Severity SlhaData(1373)
+#define DCInfo_Code(n) SlhaData(1373+n)
+#define DCInfo_Text(i,n) SlhaData(1383+i+5*(n))
+#define DCInfo_TextFlat(i) SlhaData(1388+i)
 #define   DCInfo_Len 80
 
-#define OffsetDecays 1462
+#define OffsetDecays 1463
 #define LengthDecays 4096
-#define BlockDecays(i) SlhaData(1462+i)
-#define Decays_Data(n) Slhadata(1462+n)
+#define BlockDecays(i) SlhaData(1463+i)
+#define Decays_Data(n) Slhadata(1463+n)
 
-#define nslhadata 5558
+#define nslhadata 5559
 
 #endif

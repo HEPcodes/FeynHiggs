@@ -1,0 +1,30 @@
+(*Attributes[regabb] = {HoldFirst}*)
+
+regabb[s_ -> p___Pair e___Eps t___Pol d___DiracChain w___WeylChain x___] :=
+  fooregabb[s, x, Times[p], Times[e], Times[t], d w]
+
+
+ToCat[n_, {}] := Table[{}, {n}]
+
+ToCat[_, li_] := Flatten/@ Transpose[li]
+
+
+abbbin[p_Pair] := {1, p, 1, 1, 1}
+
+abbbin[e_Eps] := {1, 1, e, 1, 1}
+
+abbbin[t_Pol] := {1, 1, 1, t, 1}
+
+abbbin[d_DiracChain] := {1, 1, 1, 1, d}
+
+abbbin[w_WeylChain] := {1, 1, 1, 1, w}
+
+abbbin[other_] := {other, 1, 1, 1, 1}
+
+regabb[s_ -> rhs_Times] :=
+  Level[x={{s}, Times@@@ ToCat[5, abbbin/@ List@@ rhs]}, {2}, fooregabb]
+
+
+regabb[F4 -> DiracChain[Spinor[k[2], 0, 1], 6, Lor[1], Spinor[k[1], MB, 1]]*
+             DiracChain[Spinor[k[3], 0, 1], 6, Lor[1], Spinor[k[4], 0, -1]]]
+

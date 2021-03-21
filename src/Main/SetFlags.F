@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 21 Dec 16 th
+* last modified 13 Feb 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -49,6 +49,7 @@ c	  call setfpu
 	para_valid = 0
 	sf_valid = 0
 	tl_valid = 0
+	eft_valid = 0
 	higgs_valid = 0
 	coup_valid = 0
 
@@ -89,7 +90,7 @@ c	  call setfpu
 	bM0 = 4 + (bTR0 - 4)*b
 
 	tlCplxApprox = tlCplxApprox_
-	Check(tlCplxApprox, 0, 6, "tlCplxApprox")
+	Check(tlCplxApprox, 0, 3, "tlCplxApprox")
 
 	if( mssmpart .eq. 0 ) then
 	  p2approx = 1
@@ -106,22 +107,12 @@ c	  call setfpu
 	if( error .eq. 0 ) flags_valid = valid
 
 	debuglevel = 0
-	debugunit = 6
-	paraunit = 6
-	uzint = 1
-	uzext = 3
-	mfeff = 1
-	tlpsmask = 0
-	tlzeromask(1) = 0
-	tlzeromask(2) = 0
-	tlzeromask(3) = 0
-	tlzeromask(4) = 0
-
 	call getenv("FHDEBUG", env)
 	read(env, *, end=10, err=10) debuglevel
 	print *, "env FHDEBUG ", debuglevel
 10	continue
 
+	debugunit = 6
 	call getenv("FHDEBUGFILE", env)
 	l = len_trim(env)
 	if( l .gt. 0 ) then
@@ -132,6 +123,7 @@ c	  call setfpu
 	endif
 11	continue
 
+	paraunit = 6
 	call getenv("FHPARAFILE", env)
 	l = len_trim(env)
 	if( l .gt. 0 ) then
@@ -141,36 +133,51 @@ c	  call setfpu
 	endif
 12	continue
 
+	uzint = 1
+	uzext = 3
+	mfeff = 1
 	call getenv("FHSELECTUZ", env)
-	read(env, *, end=13, err=13) uzint, uzext, mfeff
+	read(env, *, end=20, err=20) uzint, uzext, mfeff
 	print *, "env FHSELECTUZ uzint, uzext, mfeff ", uzint, uzext, mfeff
-13	continue
+20	continue
 	Check(uzint, 1, 2, "FHSELECTUZ(uzint)")
 	Check(uzext, 1, 3, "FHSELECTUZ(uzext)")
 	Check(mfeff, 0, 2, "FHSELECTUZ(mfeff)")
 
-	call getenv("FHTLPSMASK", env)
-	read(env, *, end=14, err=14) tlpsmask
-	print *, "env FHTLPSMASK ", tlpsmask
-14	continue
+	ipolXt = 0
+	ipolXb = 0
+	call getenv("FHSELECTIPOL", env)
+	read(env, *, end=21, err=21) ipolXt, ipolXb
+21	continue
+	Check(ipolXt, 0, 1, "FHSELECTIPOL(xt)")
+	Check(ipolXb, 0, 1, "FHSELECTIPOL(xb)")
 
+	tlpsmask = 0
+	call getenv("FHTLPSMASK", env)
+	read(env, *, end=30, err=30) tlpsmask
+	print *, "env FHTLPSMASK ", tlpsmask
+30	continue
+
+	tlzeromask(1) = 0
+	tlzeromask(2) = 0
+	tlzeromask(3) = 0
+	tlzeromask(4) = 0
 	call getenv("FHTLZEROMASK", env)
-	read(env, *, end=15, err=15)
-     &    tlzeromask(1), tlzeromask(2), tlzeromask(3), tlzeromask(4)
+	read(env, *, end=31, err=31) tlzeromask
 	print *, "env FHTLZEROMASK ", tlzeromask
-15	continue
+31	continue
 
 	loglevelmt = loglevel
 	call getenv("FHLOGLEVELMT", env)
-	read(env, *, end=16, err=16) loglevelmt
+	read(env, *, end=40, err=40) loglevelmt
 	print *, "env FHLOGLEVELMT ", loglevelmt
-16	continue
+40	continue
 
 	forceSU2 = 0
 	call getenv("FHFORCESU2", env)
-	read(env, *, end=17, err=17) forceSU2
+	read(env, *, end=50, err=50) forceSU2
 	print *, "env FHFORCESU2 ", forceSU2
-17	continue
+50	continue
 
 	call getenv("FHEXTSE", extSE)
 	l = len_trim(extSE)

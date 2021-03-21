@@ -1,9 +1,9 @@
 << FormCalc`
 
-debug = False (*True*)
+debug = (*False*) True
 
 plotmin = 50;
-plotmax = 600 (*1000*);
+plotmax = (*600*) 3000;
 (*
 plotmin = 30;
 plotmax = 2000;
@@ -146,13 +146,11 @@ fitfunc[_bbhSM, _LHC] = poly[sqrtm, sqrts, 2]
 
 fitfunc[_bbhSM, _] = poly[sqrtm, 3]
 
-fitfunc[_tthSM, LHC[14]] = poly[sqrtm, 4]
+fitfunc[_tthSM, LHC[13|14]] = poly[sqrtm, 4]
 
-fitfunc[_WhSM, LHC[8]] = poly[sqrtm, 4]
+fitfunc[_ZhSM, LHC[8|13]] = poly[sqrtm, 4]
 
-fitfunc[_ZhSM, LHC[8]] = poly[sqrtm, 4]
-
-fitfunc[_WhSM, LHC[14]] = poly[sqrtm, 4]
+fitfunc[_WhSM, LHC[8|13|14]] = poly[sqrtm, 4]
 
 fitfunc[GammaSM[_H0VV], _] = If@@ {
   m < 161., poly[m, 3] (*poly[m, 4]/poly[m, 4, "b"]*),
@@ -341,6 +339,12 @@ nfitsLHC8 := write["NHiggsProdFits-LHC8", fit[LHC[8]]/@ {
   qqhSM[h] -> "vbf-lhc8.dat",
   WhSM[h] -> "wh-lhc8.dat",
   ZhSM[h] -> "zh-lhc8.dat" }]
+
+nfitsLHC13 := write["NHiggsProdFits-LHC13", fit[LHC[13]]/@ {
+  tthSM[h] -> "tth-lhc14.dat",
+  qqhSM[h] -> "vbf-lhc14.dat",
+  WhSM[h] -> "wh-lhc14.dat",
+  ZhSM[h] -> "zh-lhc14.dat" }]
 
 nfitsLHC14 := write["NHiggsProdFits-LHC14", fit[LHC[14]]/@ {
   btagbhSM[h] -> "bbh-lhc14-tag.dat",

@@ -1,4 +1,4 @@
-.TH LIBFH 1 "30-May-2012"
+.TH LIBFH 1 "9-Feb-2017"
 .SH NAME
 .PP
 libFH \- the FeynHiggs library
@@ -54,12 +54,20 @@ self-couplings for a given mixing matrix.
 chooses whether to use UHiggs or ZHiggs for internal and external Higgs
 bosons.
 .TP
+.B FHSelectIpol
+chooses between interpolation in At vs Xt and Ab vs Xb.
+.TP
 .B FHHiggsProd
 calculates (approximate) Higgs production cross-sections,
 .TP
+.B FHEWPO
+evaluates electroweak precision observables.
+.TP
+.B FHFlavour
+evaluates flavour observables.
+.TP
 .B FHConstraints
-evaluates electroweak precision observables which are used as further
-constraints on the MSSM parameter space.
+evaluates further constraints, such as g-2.
 .TP
 .B FHOutput
 run FeynHiggs functions and produce output according to a key and
@@ -127,8 +135,13 @@ the most recent values calculated by FHHiggsCorr can be obtained with
   #include "FHCouplings.h"
   call FHCouplings(...)
 .P
-Electroweak precision observables can be obtained with
+Electroweak precision observables, flavour observables, and further
+constraints can respectively be obtained with
 .P
+  call FHEWPO(...)
+.br
+  call FHFlavour(...)
+.br
   call FHConstraints(...)
 .SH LINKING
 Just add the path to libFH.a and -lFH to the compiler command line, as 
@@ -138,13 +151,14 @@ in:
 .P
 For example:
 .P
-  f77 myprogram.f -L$HOME/FeynHiggs-2.7.1/i586-linux/lib -lFH
+  f77 myprogram.f -L$HOME/FeynHiggs-x.y.z/i586-linux/lib -lFH
 .SH SEE ALSO
 .PP
-FeynHiggs(1), MFeynHiggs(1), FHSetFlags(1), FHRetrieveFlags(1), 
-FHSetSMPara(1), FHRetrieveSMPara(1), FHSetPara(1), FHRetrievePara(1), 
-FHSetSLHA(1), FHSetNMFV(1), FHRetrieveNMFV(1), FHSetDebug(1), 
-FHGetPara(1), FHGetSelf(1), FHAddSelf(1), FHHiggsCorr(1), 
-FHUncertainties(1), FHCouplings(1), FHSelectUZ(1), FHHiggsProd(1), 
-FHConstraints(1), FGClearRecord(1), FHReadRecord(1), FHLoopRecord(1), 
-FHSetRecord(1), FHRecordIndex(1), FHLoadTable(1), FHTableRecord(1)
+FeynHiggs(1), MFeynHiggs(1), FHSetFlags(1), FHRetrieveFlags(1),
+FHSetSMPara(1), FHRetrieveSMPara(1), FHSetPara(1), FHRetrievePara(1),
+FHSetSLHA(1), FHSetNMFV(1), FHRetrieveNMFV(1), FHSetDebug(1),
+FHGetPara(1), FHGetSelf(1), FHAddSelf(1), FHHiggsCorr(1),
+FHUncertainties(1), FHCouplings(1), FHSelectUZ(1), FHSelectIpol(1),
+FHHiggsProd(1), FHEWPO(1), FHConstraints(1), FGClearRecord(1),
+FHReadRecord(1), FHLoopRecord(1), FHSetRecord(1), FHRecordIndex(1),
+FHLoadTable(1), FHTableRecord(1)

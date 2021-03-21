@@ -12,8 +12,8 @@ Install["build/MFeynHiggs"]
 mhiggs[i_, TB_] :=
 Block[ {mssmpart, fieldren, tanbren, higgsmix, p2approx,
 looplevel, loglevel, runningMT, botResum, tlCplxApprox,
-invAlfa, AlfasMZ, GF, MU, MD, MC, MS, MB, MW, MZ,
-CKMlambda, CKMA, CKMrho, CKMeta,
+invAlfa0, invAlfaMZ, AlfasMZ, GF, MU, MD, MC, MS, MB,
+MW, MZ, GammaW, GammaZ, CKMlambda, CKMA, CKMrho, CKMeta,
 scalefactor, MT, MA0, MHp,
 MSL, MSE, MSQ, MSU, MSD, MUE, Af, M1, M2, M3,
 Qtau, Qt, Qb},
@@ -30,7 +30,8 @@ Qtau, Qt, Qb},
   FHSetFlags[mssmpart, fieldren, tanbren, higgsmix, p2approx,
     looplevel, loglevel, runningMT, botResum, tlCplxApprox];
 
-  invAlfa = -1;
+  invAlfa0 = -1;
+  invAlfaMZ = -1;
   AlfasMZ = -1;
   GF = -1;
   ME = -1;
@@ -43,15 +44,17 @@ Qtau, Qt, Qb},
   MB = -1;
   MW = -1;
   MZ = -1;
+  GammaW = -1;
+  GammaZ = -1;
 
   CKMlambda = -1;
   CKMA = -1;
   CKMrhobar = -1;
   CKMetabar = -1;
 
-  FHSetSMPara[invAlfa, AlfasMZ, GF,
+  FHSetSMPara[invAlfa0, invAlfaMZ, AlfasMZ, GF,
     ME, MU, MD, MM, MC, MS, ML, MB,
-    MW, MZ,
+    MW, MZ, GammaW, GammaZ,
     CKMlambda, CKMA, CKMrho, CKMeta];
 
   scalefactor = 1;

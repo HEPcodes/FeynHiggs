@@ -24,22 +24,23 @@ AppendTo[$Echo, "stdout"];
 CKM = IndexDelta;
 
 sfrulz[t_, ty_] = {
-  MSf[s_,t,g_] -> MSf[s,ty,g],
-  MSf2[s_,t,g_] -> MSf2[s,ty,g],
-  USf[s1_,s2_,t,g_] -> USf[s1,s2,ty,g],
-  USfC[s1_,s2_,t,g_] -> USfC[s1,s2,ty,g],
-  MASf[as_,t] -> MASf[as,ty],
-  MASf2[as_,t] -> MASf2[as,ty],
-  UASf[as1_,as2_,t] -> UASf[as1,as2,ty],
-  UASfC[as1_,as2_,t] -> UASfC[as1,as2,ty],
-  Kf[g__,t] -> Kf[g,ty],
-  KfC[g__,t] -> KfC[g,ty]
+  MSf[s_,t,g_] :> MSf[s,ty,g],
+  MSf2[s_,t,g_] :> MSf2[s,ty,g],
+  USf[s1_,s2_,t,g_] :> USf[s1,s2,ty,g],
+  USfC[s1_,s2_,t,g_] :> USfC[s1,s2,ty,g],
+  MASf[as_,t] :> MASf[as,ty],
+  MASf2[as_,t] :> MASf2[as,ty],
+  UASf[as1_,as2_,t] :> UASf[as1,as2,ty],
+  UASfC[as1_,as2_,t] :> UASfC[as1,as2,ty],
+  Kf[g__,t] :> Kf[g,ty],
+  KfC[g__,t] :> KfC[g,ty]
 };
 
 $DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCONST ", " ENDL"};
 
 NClear[];
 N[sqrt2] = Sqrt[2.];
+RealQ[GF] = True;
 
 opt["sf"] := SetOptions[InsertFields,
   Model -> {MSSM, FV (*, Gen3*)},
@@ -70,24 +71,24 @@ SetOptions[CalcFeynAmp, Dimension -> 4];
 (*sm[x_] := (FullSimplify[x /. SW2 -> 1 - CW2 /. CW2 -> MW2/MZ2];*)
 (*, {MW2 == CW2 MZ2, CW2 + SW2 == 1}];*)
 
-sm[x_] := Simplify[x /. {CW2 MZ2 -> MW2, 1/CW2 1/MZ2 -> 1/MW2}]
+sm[x_] := Simplify[x /. {CW2 MZ2 -> MW2, 1/CW2 1/MZ2 -> 1/MW2}];
 
 simp[x_] := Collect[x, {_A0, _B0}, sm];
 
 
-SetOptions[Paint, PaintLevel -> {InsertionLevel}]
+SetOptions[Paint, PaintLevel -> {InsertionLevel}];
 
 MkDir[$PaintSE = "d/"];
 
 (* name = "DeltaRho1L_" <> tag; *)
-name = "DeltaRho_1L";
+name = "DrhoMSSM1LSf";
 
 
 SigZZ = SelfEnergy[V[2], 0];
 
 SigWW = SelfEnergy[V[3], 0];
 
-res = SigZZ/MZ2 - SigWW/MW2 /. ToOldBRules;
+res = SigZZ/MZ2 - SigWW/MW2 /. ToOldBRules /. int:PaVeIntegral[__] :> Re[int];
 
 Put[res, ToFileName["m", name <> ".raw"]];
 
@@ -95,6 +96,9 @@ res = SplitSums[res /.
     Alfa -> Sqrt[2]/Pi GF MW2 SW2, simp] /. MW2/(CW2 MZ2) -> 1 /.
   sfrulz[4, bBR];
 
+toRe[s___SumOver r_] := s Re[r];
+
+res = toRe/@ res;
 
 Put[res, ToFileName["m", name <> ".m"]];
 
@@ -108,21 +112,21 @@ WriteString[hh, "\
 #include \"externals.h\"\n\
 #include \"types.h\"\n\
 #include \"debug.h\"\n\n\n\
-\tRealType function " <> name <> "()\n\
-\timplicit none\n\n\
+\tsubroutine " <> name <> "(drho)\n\
+\timplicit none\n\
+\tRealType drho\n\n\
 #include \"FH.h\"\n\
-#include \"looptools.h\"\n\n\
-\tComplexType drho\n"];
+#include \"looptools.h\"\n\n"];
 
 WriteExpr[hh,
   { drho -> res /. {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2},
-    name -> Re[drho],
     "\
 \tif( debuglevel .lt. 3 ) return\n\n\
-\tDCONST '" <> name <> " =', " <> name <> " ENDL\n\
+\tDCONST '" <> name <> " =', drho ENDL\n\
 \tend\n" },
   Optimize -> True,
-  Expensive -> {_A0, _B0, _B1, _B00, _B11},
+  Expensive -> {_Re (*_A0, _B0, _B1, _B00, _B11*)},
+  TmpType -> "RealType",
   IndexType -> "integer",
   (*DebugLines -> True,*)
   FinalTouch -> sm];

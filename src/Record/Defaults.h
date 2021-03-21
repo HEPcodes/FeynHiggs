@@ -1,3 +1,4 @@
+	RConstDefault(iinvAlfa0, invAlfa0_default)
 	RConstDefault(iinvAlfaMZ, invAlfaMZ_default)
 	RConstDefault(iAlfasMZ, AlfasMZ_default)
 	RConstDefault(iGF, GF_default)
@@ -13,6 +14,8 @@
 
 	RConstDefault(iMW, MW_default)
 	RConstDefault(iMZ, MZ_default)
+	RConstDefault(iGammaW, GammaW_default)
+	RConstDefault(iGammaZ, GammaZ_default)
 
 	RConstDefault(iCKMlambda, CKMlambda_default)
 	RConstDefault(iCKMA, CKMA_default)

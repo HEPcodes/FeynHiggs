@@ -4,7 +4,7 @@
 * Written by P. Slavich (e-mail: slavich@lpthe.jussieu.fr).
 * Based on A. Dedes, G. Degrassi, and P. Slavich, hep-ph/0305127.
 * this file is part of FeynHiggs
-* last modified 17 Aug 15 th
+* last modified 31 Dec 16 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -78,26 +78,26 @@ c#define COMPLETE_REN
 
         Lambhb(p) = -(1/2.D0*
      &     (2*Abr*hb2*MSt2diff*Nc*x1 + 
-     &        2*Abr*hb2*MSt2diff*myB0(p,MSb12,MA02,Q) + 
-     &        2*Abr*hb2*MSt2diff*myB0(p,MSb22,MA02,Q) - 
-     &        2*Atr*ht2*MUEr2*myB0(p,MSt12,0.D0,Q) + 
-     &        ht2*MSt2diff*pMT*s2tt*myB0(p,MSt12,0.D0,Q) + 
-     &        2*Atr*ht2*MSt2diff*stt2*myB0(p,MSt12,0.D0,Q) + 
-     &        2*Abr*ctt2*hb2*MSt2diff*myB0(p,MSt12,MA02,Q) - 
-     &        2*Abr*ht2*MUEr2*myB0(p,MSt12,MA02,Q) + 
-     &        hb2*MSt2diff*pMT*s2tt*myB0(p,MSt12,MA02,Q) + 
-     &        2*Atr*ctt2*ht2*MSt2diff*myB0(p,MSt22,0.D0,Q) + 
-     &        2*Atr*ht2*MUEr2*myB0(p,MSt22,0.D0,Q) - 
-     &        ht2*MSt2diff*pMT*s2tt*myB0(p,MSt22,0.D0,Q) + 
-     &        2*Abr*ht2*MUEr2*myB0(p,MSt22,MA02,Q) - 
-     &        hb2*MSt2diff*pMT*s2tt*myB0(p,MSt22,MA02,Q) + 
-     &        2*Abr*hb2*MSt2diff*stt2*myB0(p,MSt22,MA02,Q))/
+     &        2*Abr*hb2*MSt2diff*myB0(p,MSb12,MA02,mudim) + 
+     &        2*Abr*hb2*MSt2diff*myB0(p,MSb22,MA02,mudim) - 
+     &        2*Atr*ht2*MUEr2*myB0(p,MSt12,0D0,mudim) + 
+     &        ht2*MSt2diff*pMT*s2tt*myB0(p,MSt12,0D0,mudim) + 
+     &        2*Atr*ht2*MSt2diff*stt2*myB0(p,MSt12,0D0,mudim) + 
+     &        2*Abr*ctt2*hb2*MSt2diff*myB0(p,MSt12,MA02,mudim) - 
+     &        2*Abr*ht2*MUEr2*myB0(p,MSt12,MA02,mudim) + 
+     &        hb2*MSt2diff*pMT*s2tt*myB0(p,MSt12,MA02,mudim) + 
+     &        2*Atr*ctt2*ht2*MSt2diff*myB0(p,MSt22,0D0,mudim) + 
+     &        2*Atr*ht2*MUEr2*myB0(p,MSt22,0D0,mudim) - 
+     &        ht2*MSt2diff*pMT*s2tt*myB0(p,MSt22,0D0,mudim) + 
+     &        2*Abr*ht2*MUEr2*myB0(p,MSt22,MA02,mudim) - 
+     &        hb2*MSt2diff*pMT*s2tt*myB0(p,MSt22,MA02,mudim) + 
+     &        2*Abr*hb2*MSt2diff*stt2*myB0(p,MSt22,MA02,mudim))/
      &      (MSt2diff*Sqrt(2.D0)))
 
         PiAAb(p) = 1/2.D0*(Nc*
-     &     (hb2*(-4*x3 + 2*(x4 + x5 + p*myB0(p,0.D0,0.D0,Q)) + 
-     &          Abr**2*myB0(p,MSb12,MSb22,Q)) + 
-     &       ht2*MUEr2*myB0(p,MSt12,MSt22,Q)))
+     &     (hb2*(-4*x3 + 2*(x4 + x5 + p*myB0(p,0D0,0D0,mudim)) + 
+     &          Abr**2*myB0(p,MSb12,MSb22,mudim)) + 
+     &       ht2*MUEr2*myB0(p,MSt12,MSt22,mudim)))
 
 	x44 = InvTri(MSb12,MSb12,MA02)
 
@@ -163,15 +163,15 @@ c#define COMPLETE_REN
 
 	x24 = Log(MUEr2)
 
-	x10 = Log(Q)
+	x10 = Log(mudim)
 
-	x3 = myAA(0.D0,Q)
+	x3 = myAA(0D0,mudim)
 
-	x4 = myAA(MSb12,Q)
+	x4 = myAA(MSb12,mudim)
 
-	x5 = myAA(MSb22,Q)
+	x5 = myAA(MSb22,mudim)
 
-	x1 = myB0(0.D0,MSb12,MSb22,Q)
+	x1 = myB0(0D0,MSb12,MSb22,mudim)
 
 	x45 = Phi(MA02,MSb12,MSb12)
 
@@ -2093,12 +2093,12 @@ c#define COMPLETE_REN
         s2tt2F3t = (lc14 + lc12/(MSb12 - MSt22) + 
      &       (lc13 + lc11/(MSb12 - MSt22))/(MSb22 - MSt22))*
      &     Log(MSt22/MSt12) + 
-     &    Log(MSt12/Q)*(lc20 + lc21/(MSb12 - MSt12) + 
+     &    Log(MSt12/mudim)*(lc20 + lc21/(MSb12 - MSt12) + 
      &       (lc22 + lc23/(MSb12 - MSt12))/(MSb22 - MSt12) + 
      &       ((lc19 + lc24)/((MSb12 - MSt12)*(MSb12 - MSt22)) - 
      &          (lc19 - lc25)/((MSb22 - MSt12)*(MSb22 - MSt22)))*
-     &        MSt2diff + lc3*Log(MSt22/Q)) + 
-     &    lc4*Log(MSt12/MSt22)*Log(Q)
+     &        MSt2diff + lc3*Log(MSt22/mudim)) + 
+     &    lc4*Log(MSt12/MSt22)*Log(mudim)
 
         s2tt2F3t = s2tt2F3t +
      &    tmp12/MSt2diff**2 + tmp8*(x21 - x10) + tmp9*(x22 - x10)
@@ -2606,11 +2606,11 @@ c#define COMPLETE_REN
      &                  MSb2diff*(-1 + MA02*(MA02 - 6*MSb12)*x44))*
      &                x45)/(MSb12**2*MSb2diff*x44))))
 
-        s2tbF2b = -lc9 - lc7*Log(MSb12/Q) + 
-     &    lc8*Log(MSb22/Q) - 
+        s2tbF2b = -lc9 - lc7*Log(MSb12/mudim) + 
+     &    lc8*Log(MSb22/mudim) - 
      &    Log(MSb22/MSb12)*
-     &     (lc4*Log(MA02/Q) - lc3*(Log(MSb12/Q) + Log(MSb22/Q)) - 
-     &       lc5*Log(MSt12/Q) - lc6*Log(MSt22/Q))
+     &     (lc4*Log(MA02/mudim) - lc3*(Log(MSb12/mudim) + Log(MSb22/mudim)) - 
+     &       lc5*Log(MSt12/mudim) - lc6*Log(MSt22/mudim))
 
         tmp14 = (-2*hb*ht*pMT*MUEr*(MSb2sum + 2*pMT2 - 2*MUEr2)*s2tb*
      &       (-2 + 3*s2tb2) + 
@@ -5096,19 +5096,19 @@ c#define COMPLETE_REN
      &          4*ctb2*stt2*fW(MSt22,MSb12) + 
      &          4*stb2*stt2*fW(MSt22,MSb22)))/pMT2)
 
-	  dpMTpMT = dMT1OS*Pitt(pMT2)/pMT
-	  dMSt12 = Pi11t(MSt12)
-	  dMSt22 = Pi22t(MSt22)
-	  pi1 = Pi12t(MSt12)
-	  pi2 = Pi12t(MSt22)
+	  dpMTpMT = dMT1OS*Pitt(pMT2, mudim)/pMT
+	  dMSt12 = Pi11t(MSt12, mudim)
+	  dMSt22 = Pi22t(MSt22, mudim)
+	  pi1 = Pi12t(MSt12, mudim)
+	  pi2 = Pi12t(MSt22, mudim)
 	  ds2tt = -c2tt*(pi1 + pi2)/MSt2diff
 
 	  dhtht = dpMTpMT - .5D0*dvev2vev2
 
-	  dMSb12 = Pi11b(MSb12)
-	  dMSb22 = Pi22b(MSb22)
-	  pi1 = Pi12b(MSb12)
-	  pi2 = Pi12b(MSb22)
+	  dMSb12 = Pi11b(MSb12, mudim)
+	  dMSb22 = Pi22b(MSb22, mudim)
+	  pi1 = Pi12b(MSb12, mudim)
+	  pi2 = Pi12b(MSb22, mudim)
 	  ds2tb = -c2tb*(pi1 + pi2)/MSb2diff
 
 	  s2tbdhbhb =
@@ -5120,7 +5120,8 @@ c#define COMPLETE_REN
 	  s2ttdAtrF3t = s2ttdAtrAtr*F3tol
 
 	  dAbthb = -.5D0*Abr*(PiAAb(MSb12) - PiAAb(MSb22) +
-     &      dMSb12 + Pi22b(MSb12) - Pi11b(MSb22) - dMSb22)/MSb2diff -
+     &        Pi22b(MSb12, mudim) - Pi11b(MSb22, mudim) +
+     &        dMSb12 - dMSb22)/MSb2diff -
      &      1/sqrt2*(Lambhb(MSb12) + Lambhb(MSb22))
 	  s2tbdAb = s2tb*dAbthb - Abr*s2tbdhbhb
 	  s2tbAbdAbF3b = s2tbdAb*F3bol

@@ -1,15 +1,15 @@
 * Pi12b.F
 * the sbottom1-sbottom2 self-energy
 * this file is part of FeynHiggs
-* last modified 11 Jun 15 th
+* last modified 1 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
 
 
-	RealType function Pi12b(p)
+	RealType function Pi12b(p, Q)
 	implicit none
-	RealType p
+	RealType p, Q
 
 #include "TLps.h"
 

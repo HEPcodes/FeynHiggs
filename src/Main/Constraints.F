@@ -2,7 +2,7 @@
 * evaluation of electroweak precision observables
 * used as further constraints for the MSSM parameter space
 * this file is part of FeynHiggs
-* last modified 26 Sep 12 th
+* last modified 4 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -10,13 +10,11 @@
 
 
 	subroutine FHConstraints(error, gm2,
-     &    deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM,
      &    edmeTh, edmn, edmHg,
      &    ccb)
 	implicit none
 	integer error
 	RealType gm2
-	RealType deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM
 	RealType edmeTh, edmn, edmHg
 	integer ccb
 
@@ -86,13 +84,10 @@
 	gm2 = (1 + gm2_2L_QEDfactor)*Re(gm2_1L) +
      &    5/(24*pi**2)*AlfaGF**2*MM2/(MW2*SW2)*Re(gm2_2L)
 
-* b) EW precision observables
-	call EWPO(deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM)
-
-* c) EDMs
+* b) EDMs
 	call CalcEDMs(edmeTh, edmn, edmHg)
 
-* d) test for colour-breaking minimum
+* c) test for colour-breaking minimum
 	cd = Sq(MUE) - .5D0*MZ2
 	cu = (MA02 + MZ2)*CB2 + cd
 	cd = (MA02 + MZ2)*SB2 + cd

@@ -1,7 +1,7 @@
 * debug.h
 * definitions for error handling and debugging
 * this file is part of FeynHiggs
-* last modified 14 Dec 16 th
+* last modified 6 Jan 17 th
 
 
 #ifndef DEBUG_H
@@ -30,6 +30,9 @@ if( sf_valid .ne. valid ) call SfermionsDelayed(err)
 
 #define CheckTL(err) \
 if( looplevel .gt. 1 .and. tl_valid .ne. valid ) call CalcRenSETL(err)
+
+#define CheckRGE(err) \
+if( loglevel .gt. 0 .and. eft_valid .ne. valid ) call Resum4H(err)
 
 
 * SORT_SF is used in all places where the sfermion masses need not

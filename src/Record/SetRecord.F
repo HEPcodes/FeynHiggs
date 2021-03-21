@@ -1,7 +1,7 @@
 * SetRecord.F
 * initialize the FH parameters from a record
 * this file is part of FeynHiggs
-* last modified 29 May 12 th
+* last modified 25 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -27,21 +27,21 @@
 	endif
 
 	call FHSetSMPara(error,
-     &    R(iinvAlfaMZ), R(iAlfasMZ), R(iGF),
+     &    R(iinvAlfa0), R(iinvAlfaMZ), R(iAlfasMZ), R(iGF),
      &    R(iME), R(iMU), R(iMD),
      &    R(iMM), R(iMC), R(iMS),
      &    R(iML),         R(iMB),
-     &    R(iMW), R(iMZ),
+     &    R(iMW), R(iMZ), R(iGammaW), R(iGammaZ),
      &    R(iCKMlambda), R(iCKMA),
      &    R(iCKMrhobar), R(iCKMetabar))
 	if( error .ne. 0 ) return
 
 	call FHRetrieveSMPara(error,
-     &    R(iinvAlfaMZ), R(iAlfasMZ), R(iGF),
+     &    R(iinvAlfa0), R(iinvAlfaMZ), R(iAlfasMZ), R(iGF),
      &    R(iME), R(iMU), R(iMD),
      &    R(iMM), R(iMC), R(iMS),
      &    R(iML),         R(iMB),
-     &    R(iMW), R(iMZ),
+     &    R(iMW), R(iMZ), R(iGammaW), R(iGammaZ),
      &    R(iCKMlambda), R(iCKMA),
      &    R(iCKMrhobar), R(iCKMetabar))
 	if( error .ne. 0 ) return

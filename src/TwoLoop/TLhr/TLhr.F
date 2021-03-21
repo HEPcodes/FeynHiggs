@@ -1,7 +1,7 @@
 * TLhr.F
 * master file for Heidi Rzehak's 2L asat corrections
 * this file is part of FeynHiggs
-* last modified 24 Nov 16 th
+* last modified 8 Feb 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -16,6 +16,7 @@
 #define __SUBROUTINE__ "TLhrSE"
 
 	RealType c, shift
+	QuadType x, y
 
 	logical zden
 	RealType den, eps, a_, b_, c_
@@ -38,19 +39,25 @@
 1	call Sfgl(error, shift)
 	if( zden(MGl2, MTy2, MStop2(1)) .or.
      &      zden(MGl2, MTy2, MStop2(2)) ) then
-	  shift = shift + .1D0
+	  shift = shift + 1
 	  goto 1
 	endif
 
-	c = 2*MGl*MTy
-	MGlmT2 = MGl2 - MTy2
+	MGlmT2 = (MGl - MTy)*(MGl + MTy)
 	MGlpT2 = MGl2 + MTy2
-	MGlpTmSt2(1) = MGlpT2 - MStop2(1)
+
+	x = MGl2 - DSStop2(2) - DSStop2(1) - dm2
+c	MGlpTmSt2(1) = MGlpT2 - MStop2(1)
+	MGlpTmSt2(1) = Re(x)
 	MGlpTmSt4(1) = MGlpTmSt2(1)**2
-	MGlpTmStxGlT4(1) = (MGlpTmSt2(1) - c)*(MGlpTmSt2(1) + c)
-	MGlpTmSt2(2) = MGlpT2 - MStop2(2)
+	y = 2*MGl*MTy
+	MGlpTmStxGlT4(1) = Re((x - y)*(x + y))
+
+	x = MGl2 - DSStop2(2) + dm2
+c	MGlpTmSt2(2) = MGlpT2 - MStop2(2)
+	MGlpTmSt2(2) = Re(x)
 	MGlpTmSt4(2) = MGlpTmSt2(2)**2
-	MGlpTmStxGlT4(2) = (MGlpTmSt2(2) - c)*(MGlpTmSt2(2) + c)
+	MGlpTmStxGlT4(2) = Re((x - y)*(x + y))
 
 	A0delStop(1) = A0delq(MStop2(1), Q)
 	A0delStop(2) = A0delq(MStop2(2), Q)

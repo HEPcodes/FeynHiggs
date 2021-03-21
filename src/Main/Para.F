@@ -1,7 +1,7 @@
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 12 Dec 16 th
+* last modified 27 Jan 17 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -33,12 +33,10 @@
 	integer i, t, ty
 	RealType i3part, qpart
 
-	RealType Run
-	external Run
-
 	para_valid = 0
 	sf_valid = 0
 	tl_valid = 0
+	eft_valid = 0
 	higgs_valid = 0
 	coup_valid = 0
 
@@ -54,12 +52,16 @@
 	  DTAG(iTB, TB_)
 	  DTAGre(iM3, M_3_)
 	  DTAGimz(iM3, M_3_)
+	  call flush(paraunit)
 	endif
 
 	fv = 0
 
 	do i = 1, semax
 	  se2U(i) = 0
+	enddo
+	do i = 1, semax
+	  seEFT(i) = 0
 	enddo
 	do i = 1, semax
 	  se2R(i) = 0
@@ -106,7 +108,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	gsMT2 = 4*pi*AlfasMT
 	gsMT = sqrt(gsMT2)
 
-	MB_MT = MB*Run(MB2, MT2)
+	call RunQCD(MB_MT,MT2, MB,MB2)
 
 	M_3 = M_3_
 	MGl = abs(M_3)
@@ -162,6 +164,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	  DPARA "----------------------------"	ENDL
 	  DTAGm(iMA0, MA0_)
 	  DTAGm(iMHp, MHp_)
+	  call flush(paraunit)
 	endif
 
 	if( MA0_ .ge. 0 ) then
@@ -187,6 +190,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	deltaMH2 = sqrt((avgMH2 - deltaMH2)*(avgMH2 + deltaMH2))
 * the 1D-6 is so we don't get killed by e.g. B0(0, Mh02, Mh02) later
 	Mh02 = max(avgMH2 - deltaMH2, 1D-6)
+	Mh02EFT = Mh02
 	MHH2 = avgMH2 + deltaMH2
 	Mh0 = -1
 	if( Mh02 .ge. 0 ) Mh0 = sqrt(Mh02)
@@ -227,6 +231,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	  DTAGimz(iM2, M_2_)
 	  DTAGre(iMUE, MUE_)
 	  DTAGimz(iMUE, MUE_)
+	  call flush(paraunit)
 	endif
 
 	M_2 = M_2_
@@ -266,6 +271,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	  DPARA "----------------------------"	ENDL
 	  DTAGrez(iM1, M_1_)
 	  DTAGimz(iM1, M_1_)
+	  call flush(paraunit)
 	endif
 
 	M_1 = M_1_
@@ -330,6 +336,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	  DTAGre(iAf(t,3), Af3_)
 	  DTAGimz(iAf(t,3), Af3_)
 	  DTAGz(iQSf(t), Q_)
+	  call flush(paraunit)
 	endif
 
 	MSS0(nQ,1) = M1SL_
@@ -368,9 +375,6 @@ c	call AlphaS(AlfasMT, nf, MT2)
 
 	RealType m1, m2, Qdefault, ospara(3,3:4)
 	integer t, g, fail, drbar, nQ, nU
-
-	RealType Run
-	external Run
 
 	RealType Qcur
 	common /DRbarvars/ Qcur
@@ -459,6 +463,8 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	    endif
 	  endif
 	enddo
+
+	call SetupInterpolation
 
 	call Sfermions(error)
 
@@ -552,6 +558,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	data cMSS /"L", "E", "Q", "U", "D"/
 	data cAf /"n", "e", "u", "d"/
 
+	data FHName(iinvAlfa0) /"invAlfa0"/
 	data FHName(iinvAlfaMZ) /"invAlfaMZ"/
 	data FHName(iAlfasMZ) /"AlfasMZ"/
 	data FHName(iGF) /"GF"/
@@ -568,6 +575,8 @@ c	call AlphaS(AlfasMT, nf, MT2)
 
 	data FHName(iMW) /"MW"/
 	data FHName(iMZ) /"MZ"/
+	data FHName(iGammaW) /"GammaW"/
+	data FHName(iGammaZ) /"GammaZ"/
 
 	data FHName(iCKMlambda) /"CKMlambda"/
 	data FHName(iCKMA) /"CKMA"/

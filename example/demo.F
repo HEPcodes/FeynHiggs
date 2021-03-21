@@ -1,7 +1,7 @@
 * demo.F
 * demonstration program for calling FeynHiggs from Fortran
 * this file is part of FeynHiggs
-* last modified 6 Oct 16 th
+* last modified 25 Jan 17 th
 
 * compile this file with something like
 * f77 -Ibuild example/demo.F -Lbuild -lFH
@@ -54,10 +54,12 @@ c	call setSLHA("myfile.slha")
 	subroutine setPara
 	implicit none
 
-	double precision invAlfa, AlfasMZ, GF
-	double precision ME, MU, MD, MM, MC, MS, ML, MB, MZ, MW
+	double precision invAlfa0, invAlfaMZ, AlfasMZ, GF
+	double precision ME, MU, MD, MM, MC, MS, ML, MB
+	double precision MZ, MW, GammaW, GammaZ
 	double precision CKMlambda, CKMA, CKMrhobar, CKMetabar
-	parameter (invAlfa = -1)
+	parameter (invAlfa0 = -1)
+	parameter (invAlfaMZ = -1)
 	parameter (AlfasMZ = -1)
 	parameter (GF = -1)
 	parameter (ME = -1)
@@ -70,6 +72,8 @@ c	call setSLHA("myfile.slha")
 	parameter (MB = -1)
 	parameter (MW = -1)
 	parameter (MZ = -1)
+	parameter (GammaW = -1)
+	parameter (GammaZ = -1)
 	parameter (CKMlambda = -1)
 	parameter (CKMA = -1)
 	parameter (CKMrhobar = -1)
@@ -134,9 +138,9 @@ c	call setSLHA("myfile.slha")
 	integer error
 
 	call FHSetSMPara(error,
-     &    invAlfa, AlfasMZ, GF,
+     &    invAlfa0, invAlfaMZ, AlfasMZ, GF,
      &    ME, MU, MD, MM, MC, MS, ML, MB,
-     &    MW, MZ,
+     &    MW, MZ, GammaW, GammaZ,
      &    CKMlambda, CKMA, CKMrhobar, CKMetabar)
 	if( error .ne. 0 ) stop
 

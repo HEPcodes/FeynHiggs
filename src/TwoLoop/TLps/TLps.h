@@ -1,14 +1,11 @@
 * TLps.h
 * declarations for the two-loop routines
 * this file is part of FeynHiggs
-* last modified 27 Jan 16 th
+* last modified 1 Jan 17 th
 
 #include "TL.h"
 
-#ifndef TLpsvars
-#define TLpsvars
-#include "TLpsvars.h"
-
+#ifndef MSt12
 #define MSt12 StopPara(1)
 #define MSt22 StopPara(2)
 #define MSt2diff StopPara(3)
@@ -41,7 +38,7 @@
 	parameter (MSDR = -5)
 
 	RealType TLMBscale, TLMBrun
-	equivalence (TLMBscale, MT)
+	equivalence (TLMBscale, MT2)
 	equivalence (TLMBrun, MB_MT)
 
 * the ren. scheme: .FALSE. = DRbar, .TRUE. = on-shell
@@ -52,27 +49,16 @@
 	ComplexType spence
 	external Phi, InvTri, spence
 
-	integer MaxVars, MaxSlots, Nvr
-	parameter (MaxVars = 4)
-	parameter (MaxSlots = 2**MaxVars)
-	parameter (Nvr = 18)
-	RealType vr(Nvr,MaxSlots)
-	RealType monomial(MaxSlots)
-	integer vdmb(MaxSlots)
-	common /TLpsipol/ vr, monomial, vdmb
-
-	ComplexType vc(Nvr/2,MaxSlots)
-	equivalence (vr, vc)
-
 	RealType StopPara(12), SbotPara(12)
-	RealType pMT, pMT2, pMB, pMB2, Q
+	RealType pMT, pMT2, pMB, pMB2
 	RealType pSB2, pCB2
-	RealType Atr, Xtr, Ytr, ht2, ht, hb2, hb
-	integer vs, nvars
+	RealType BSS2(2), Deltab, MBy
+	RealType MUEr, MUEr2, Abr, Xtr, Atr, Ytr
+	RealType ht2, ht, hb2, hb
 
 	common /TLps/ StopPara, SbotPara,
-     &    pMT, pMT2, pMB, pMB2, Q,
+     &    pMT, pMT2, pMB, pMB2,
      &    pSB2, pCB2,
-     &    Atr, Xtr, Ytr, ht2, ht, hb2, hb,
-     &    vs, nvars
-
+     &    BSS2, Deltab, MBy,
+     &    MUEr, MUEr2, Atr, Xtr, Ytr, Abr,
+     &    ht2, ht, hb2, hb

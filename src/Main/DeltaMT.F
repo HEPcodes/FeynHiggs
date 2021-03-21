@@ -1,7 +1,7 @@
 * DeltaMT.F
 * various incarnations of MTrun/dMT
 * this file is part of FeynHiggs
-* last modified 12 Dec 16 th
+* last modified 9 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -17,10 +17,6 @@
 	RealType ht0, MTMT, MTMTold
 	RealType a_h, a_w, a_z, a_b, a_t
 	RealType b_0w, b_bw, b_ht, b_tz
-
-* Mh0_ used in Buttazzo formula, to avoid self-consistency iteration
-	RealType Mh0_, Mh02_
-	parameter (Mh0_ = 125, Mh02_ = Mh0_**2)
 
 	RealType dMTMT2_QCD, dMTMT2_EW
 * 2L QCD corrections according to L. Mihaila:
@@ -40,18 +36,20 @@
      &      (MT2 + MZ2*(1 - 8/9D0*(3 - 4*SW2)*SW2))*a_z +
      &      MZ2*(MT2*(3 + SW2*(38/9D0 - 64/9D0*SW2)) - (MT2 - MZ2 +
      &        8/9D0*(2*MT2 + MZ2)*(3 - 4*SW2)*SW2)*b_tz) -
-     &      MT2*(a_h + (4*MT2 - Mh02_)*b_ht) )
+     &      MT2*(a_h + (4*MT2 - Mh02RGE)*b_ht) )
 
 	dhtht10() = -k1L*(16/3D0*4*pi*AlfasMT - 11/4D0*ht0**2)
 
 	dhtht1() = -k1L/MT2*(
      &    4/3D0*g3MT2*(MT2 + 3*a_t) -
      &    .25D0*ht0**2*(
-     &      .5D0*Mh02_ - 3*MT2 - 1/9D0*(17 + 64*SW2)*MW2 + 7/18D0*MZ2 -
-     &      (7 - 3*Mh02_/(Mh02_ - MW2) + 3/SW2 - 2*MW2/MT2)*a_w +
+     &      .5D0*Mh02RGE - 3*MT2 -
+     &      1/9D0*(17 + 64*SW2)*MW2 + 7/18D0*MZ2 -
+     &      (7 - 3*Mh02RGE/(Mh02RGE - MW2) +
+     &      3/SW2 - 2*MW2/MT2)*a_w +
      &      (MT2 + MW2 - 2*MW2**2/MT2)*b_0w +
-     &      (4 - 3*Mh02_/(Mh02_ - MW2))*a_h +
-     &      (4*MT2 - Mh02_)*b_ht +
+     &      (4 - 3*Mh02RGE/(Mh02RGE - MW2))*a_h +
+     &      (4*MT2 - Mh02RGE)*b_ht +
      &      ( (36*MT2 - 17*MZ2 + 8*(1 - 8*SW2)*MW2)*a_t -
      &        (9*(6 - 3/SW2)*MT2 - 17*MZ2 + 8*(1 + 4*SW2)*MW2)*a_z -
      &        ((7*MT2 + 17*MZ2)*MZ2 -
@@ -61,20 +59,20 @@
 
 	dht2_EW() = k2L*(
      &    (6.48D0 - 7.53D0*g3MT2) +
-     &    (-.01D0 + .09D0*g3MT2)*(Mh0_ - 125) +
+     &    (-.01D0 + .09D0*g3MT2)*dMh0RGE +
      &    (.18D0 - .23*g3MT2)*(MT - 173) )
 
 	ht0 = MT/(vev/sqrt2)
 
 	if( loglevelmt .gt. 0 ) then
-	  a_h = Re(A0q(Mh02_, MT2))
+	  a_h = Re(A0q(Mh02RGE, MT2))
 	  a_w = Re(A0q(MW2, MT2))
 	  a_z = Re(A0q(MZ2, MT2))
 	  a_b = Re(A0q(MB2, MT2))
 	  a_t = Re(A0q(MT2, MT2))
 	  b_0w = Re(B0q(MT2, 0D0, MW2, MT2))
 	  b_bw = Re(B0q(MT2, MB2, MW2, MT2))
-	  b_ht = Re(B0q(MT2, Mh02_, MT2, MT2))
+	  b_ht = Re(B0q(MT2, Mh02RGE, MT2, MT2))
 	  b_tz = Re(B0q(MT2, MT2, MZ2, MT2))
 
 	  MTMT = MT*(1 + dMTMT1())

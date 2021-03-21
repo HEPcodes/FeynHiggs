@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 29 Jan 16 th
+		last modified 9 Feb 17 th
 */
 
 
@@ -110,11 +110,11 @@ extern void FORTRAN(fhretrieveflagsstring)(INTEGER *error,
 
 
 #define argsSetSMPara(x,r,c,ra,ca) \
-  r(invAlfa,[1]) x r(AlfasMZ,[1]) x r(GF,[1]) x \
+  r(invAlfa0,[1]) x r(invAlfaMZ,[1]) x r(AlfasMZ,[1]) x r(GF,[1]) x \
   r(ME,[1]) x r(MU,[1]) x r(MD,[1]) x \
   r(MM,[1]) x r(MC,[1]) x r(MS,[1]) x \
   r(ML,[1]) x             r(MB,[1]) x \
-  r(MW,[1]) x r(MZ,[1]) x \
+  r(MW,[1]) x r(MZ,[1]) x r(GammaW,[1]) x r(GammaZ,[1]) x \
   r(CKMlambda,[1]) x r(CKMA,[1]) x r(CKMrhobar,[1]) x r(CKMetabar,[1])
 
 extern void FORTRAN(fhsetsmpara)(INTEGER *error,
@@ -124,7 +124,7 @@ extern void FORTRAN(fhretrievesmpara)(INTEGER *error,
   _fh_Fa_(argsSetSMPara));
 
 #define argsGetSMPara(x,r,c,ra,ca) \
-  ca(CKM,[3][3])
+  ca(CKM,[3][3]) x r(DeltaAlfa,[1])
 
 extern void FORTRAN(fhgetsmpara)(INTEGER *error,
   _fh_Fa_(argsGetSMPara));
@@ -163,7 +163,8 @@ extern void FORTRAN(fhsetslha)(INTEGER *error,
   ra(MASf,[5][6]) x ca(UASf,[5][6][6]) x \
   ra(MCha,[2]) x ca(UCha,[2][2]) x ca(VCha,[2][2]) x \
   ra(MNeu,[4]) x ca(ZNeu,[4][4]) x \
-  c(Deltab,[1]) x r(MGl,[1]) x ra(MHtree,[4]) x r(SAtree,[1])
+  c(Deltab,[1]) x r(MGl,[1]) x \
+  ra(MHtree,[4]) x r(SAtree,[1]) x r(AlfasMT,[1])
 
 extern void FORTRAN(fhgetpara)(INTEGER *error,
   INTEGER *nmfv, _fh_Fa_(argsGetPara));
@@ -234,13 +235,19 @@ extern void FORTRAN(fhcouplings)(INTEGER *error,
 
 
 #define argsConstraints(x,r,c,ra,ca) \
-  r(gm2,[1]) x r(DeltaRho,[1]) x \
-  r(MWMSSM,[1]) x r(MWSM,[1]) x \
-  r(SW2MSSM,[1]) x r(SW2SM,[1]) x \
-  r(EDMeTh,[1]) x r(EDMn,[1]) x r(EDMHg,[1])
+  r(gm2,[1]) x r(EDMeTh,[1]) x r(EDMn,[1]) x r(EDMHg,[1])
 
 extern void FORTRAN(fhconstraints)(INTEGER *error,
   _fh_Fa_(argsConstraints), INTEGER *ccb);
+
+
+#define argsEWPO(x,r,c,ra,ca) \
+  r(DeltaR,[1]) x r(DeltaRho,[1]) x \
+  r(MWMSSM,[1]) x r(MWSM,[1]) x \
+  r(SW2MSSM,[1]) x r(SW2SM,[1])
+
+extern void FORTRAN(fhewpo)(INTEGER *error,
+  _fh_Fa_(argsEWPO));
 
 
 #define argsFlavour(x,r,c,ra,ca) \
@@ -305,6 +312,17 @@ extern void FORTRAN(fhsetdebug)(CINTEGER *debuglevel);
 
 extern void FORTRAN(fhselectuz)(INTEGER *error,
   CINTEGER *uzint, CINTEGER *uzext, CINTEGER *mfeff);
+
+extern void FORTRAN(fhselectipol)(INTEGER *error,
+  CINTEGER *xt, CINTEGER *xb);
+
+
+extern void FORTRAN(fhalphas)(INTEGER *error,
+  _fh_Fr_(as,[1]), INTEGER *nf, _fh_Fcr_(Q,[1]));
+
+extern void FORTRAN(fhrunqcd)(INTEGER *error,
+  _fh_Fr_(mto,[1]), _fh_Fcr_(Qto,[1]),
+  _fh_Fcr_(mfrom,[1]), _fh_Fcr_(Qfrom,[1]));
 
 #ifdef __cplusplus
 }
@@ -508,6 +526,15 @@ static inline void FHConstraints(int *error,
 }
 
 
+static inline void FHEWPO(int *error,
+  _fh_Ca_(argsEWPO))
+{
+  _fh_Da_(argsEWPO);
+  FORTRAN(fhewpo)(error, _fh_Pa_(argsEWPO));
+  _fh_Oa_(argsEWPO);
+}
+
+
 static inline void FHFlavour(int *error,
   _fh_Ca_(argsFlavour))
 {
@@ -657,6 +684,41 @@ static inline void FHSelectUZ(int *error,
   const int uzint, const int uzext, const int mfeff)
 {
   FORTRAN(fhselectuz)(error, &uzint, &uzext, &mfeff);
+}
+
+
+static inline void FHSelectIpol(int *error,
+  const int xt, const int xb)
+{
+  FORTRAN(fhselectipol)(error, &xt, &xb);
+}
+
+
+static inline void FHAlphaS(int *error,
+  RealType *as, int *nf, cRealType Q)
+{
+  _fh_Dr_(as,[1]);
+  _fh_Dr_(Q,[1]);
+  _fh_Ir_(Q,[1]);
+  FORTRAN(fhalphas)(error, _fh_Pr_(as,[1]), nf, _fh_Pcr_(Q,[1]));
+  _fh_Or_(as,[1]);
+}
+
+
+static inline void FHRunQCD(int *error,
+  RealType *mto, RealType Qto,
+  RealType mfrom, RealType Qfrom)
+{
+  _fh_Dr_(mto,[1]);
+  _fh_Dr_(Qto,[1]);
+  _fh_Dr_(mfrom,[1]);
+  _fh_Dr_(Qfrom,[1]);
+  _fh_Ir_(Qto,[1]);
+  _fh_Ir_(mfrom,[1]);
+  _fh_Ir_(Qfrom,[1]);
+  FORTRAN(fhrunqcd)(error, _fh_Pr_(mto,[1]), _fh_Pcr_(Qto,[1]),
+    _fh_Pcr_(mfrom,[1]), _fh_Pcr_(Qfrom,[1]));
+  _fh_Or_(mto,[1]);
 }
 
 #endif

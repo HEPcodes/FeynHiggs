@@ -3,7 +3,7 @@
 * to the MSSM Higgs sector
 * this file is part of FeynHiggs
 * V1.0 by Markus Frank 21/08/2002
-* last modified 24 Apr 15 th
+* last modified 9 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -67,6 +67,7 @@
 	entry CalcHiggsCorr(error)
 
 	CheckTL(error)
+	CheckRGE(error)
 	if( error .gt. 0 ) return
 
 	call CalcCTs
@@ -91,7 +92,9 @@
 
 	hmix = higgsmix - ishft(higgsmix, -2)
 
-	if( looplevel .ne. 0 ) then
+	if( looplevel .eq. 0 ) then
+	  MHiggs2(1) = Mh02EFT
+	else
 	  call CalcUHiggs
 	  if( extSE(1:1) .eq. ' ' .or. calledFromFHUncertainties ) then
 	    call CalcZHiggs

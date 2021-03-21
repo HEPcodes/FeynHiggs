@@ -2,7 +2,7 @@
 * Compute (actually, not completely invent) an error estimate
 * for the Higgs masses and mixings
 * this file is part of FeynHiggs
-* last modified 13 Dec 16 th
+* last modified 2 Feb 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -85,6 +85,7 @@
 
 	mudim = .25D0*MT2
 	tl_valid = 0
+	eft_valid = 0
 	call CalcHiggsCorr(err)
 
 	if( err .ne. 0 ) then
@@ -104,6 +105,7 @@
 
 	mudim = 4*MT2
 	tl_valid = 0
+	eft_valid = 0
 	call CalcHiggsCorr(err)
 
 	mudim = oldmudim
@@ -133,6 +135,7 @@
 	  bM = bTR
 	  bM0 = bTR0
 	  tl_valid = 0
+	  eft_valid = 0
 	  call CalcHiggsCorr(err)
 	  bM = 4
 	  bM0 = 4
@@ -143,6 +146,7 @@
 
 	botResum = ibset(botResum, 8)
 	tl_valid = 0
+	eft_valid = 0
 	call CalcHiggsCorr(err)
 	botResum = ibclr(botResum, 8)
 
@@ -172,6 +176,7 @@
 	  tM2 = tT2
 	  tM1 = tT2
 	  tl_valid = 0
+	  eft_valid = 0
 	  call CalcHiggsCorr(err)
 	  do i = 1, NHiggsErr
 	    HiggsBase(i) = HiggsData(i)
@@ -183,6 +188,7 @@ c	if( loglevel .eq. 0 ) tM1 = tM2
 	tM1 = tM2
 
 	tl_valid = 0
+	eft_valid = 0
 	call CalcHiggsCorr(err)
 
 	tM2 = tMsave
@@ -208,6 +214,7 @@ c	if( loglevel .eq. 0 ) tM1 = tM2
 	  HiggsData(i) = HiggsSave(i)
 	enddo
 	tl_valid = valid
+	eft_valid = valid
 	higgs_valid = valid
 
 	if( err .eq. 0 ) then

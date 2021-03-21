@@ -4,7 +4,7 @@
 * Based on A. Brignole, G. Degrassi, P. Slavich and F. Zwirner,
 * hep-ph/0112177.
 * this file is part of FeynHiggs
-* last modified 11 Dec 15 th
+* last modified 31 Dec 16 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -84,61 +84,61 @@
 
 	x8 = Log(MUEr2)
 
-	x10 = Log(Q)
+	x10 = Log(mudim)
 
-	x44 = myAA(MA02,Q)
+	x44 = myAA(MA02,mudim)
 
-	x41 = myAA(MbSL2,Q)
+	x41 = myAA(MbSL2,mudim)
 
-	x46 = myAA(MSt12,Q)
+	x46 = myAA(MSt12,mudim)
 
-	x38 = myAA(MSt22,Q)
+	x38 = myAA(MSt22,mudim)
 
-	x39 = myAA(pMT2,Q)
+	x39 = myAA(pMT2,mudim)
 
-	x40 = myAA(MUEr2,Q)
+	x40 = myAA(MUEr2,mudim)
 
-	x42 = myB0(MSt12,0.D0,MUEr2,Q)
+	x42 = myB0(MSt12,0.D0,MUEr2,mudim)
 
-	x43 = myB0(MSt12,MbSL2,0.D0,Q)
+	x43 = myB0(MSt12,MbSL2,0.D0,mudim)
 
-	x45 = myB0(MSt12,MbSL2,MA02,Q)
+	x45 = myB0(MSt12,MbSL2,MA02,mudim)
 
-	x47 = myB0(MSt12,MSt12,0.D0,Q)
+	x47 = myB0(MSt12,MSt12,0.D0,mudim)
 
-	x49 = myB0(MSt12,MSt12,MA02,Q)
+	x49 = myB0(MSt12,MSt12,MA02,mudim)
 
-	x48 = myB0(MSt12,MSt22,0.D0,Q)
+	x48 = myB0(MSt12,MSt22,0.D0,mudim)
 
-	x50 = myB0(MSt12,MSt22,MA02,Q)
+	x50 = myB0(MSt12,MSt22,MA02,mudim)
 
-	x51 = myB0(MSt12,pMT2,MUEr2,Q)
+	x51 = myB0(MSt12,pMT2,MUEr2,mudim)
 
-	x52 = myB0(MSt22,0.D0,MUEr2,Q)
+	x52 = myB0(MSt22,0.D0,MUEr2,mudim)
 
-	x53 = myB0(MSt22,MbSL2,0.D0,Q)
+	x53 = myB0(MSt22,MbSL2,0.D0,mudim)
 
-	x54 = myB0(MSt22,MbSL2,MA02,Q)
+	x54 = myB0(MSt22,MbSL2,MA02,mudim)
 
-	x55 = myB0(MSt22,MSt12,0.D0,Q)
+	x55 = myB0(MSt22,MSt12,0.D0,mudim)
 
-	x56 = myB0(MSt22,MSt12,MA02,Q)
+	x56 = myB0(MSt22,MSt12,MA02,mudim)
 
-	x57 = myB0(MSt22,MSt22,0.D0,Q)
+	x57 = myB0(MSt22,MSt22,0.D0,mudim)
 
-	x58 = myB0(MSt22,MSt22,MA02,Q)
+	x58 = myB0(MSt22,MSt22,MA02,mudim)
 
-	x59 = myB0(MSt22,pMT2,MUEr2,Q)
+	x59 = myB0(MSt22,pMT2,MUEr2,mudim)
 
-	x34 = myB0(pMT2,0.D0,MA02,Q)
+	x34 = myB0(pMT2,0.D0,MA02,mudim)
 
-	x33 = myB0(pMT2,pMT2,MA02,Q)
+	x33 = myB0(pMT2,pMT2,MA02,mudim)
 
-	x35 = myB0(pMT2,MUEr2,MbSL2,Q)
+	x35 = myB0(pMT2,MUEr2,MbSL2,mudim)
 
-	x36 = myB0(pMT2,MUEr2,MSt12,Q)
+	x36 = myB0(pMT2,MUEr2,MSt12,mudim)
 
-	x37 = myB0(pMT2,MUEr2,MSt22,Q)
+	x37 = myB0(pMT2,MUEr2,MSt22,mudim)
 
 	x15 = Phi(MA02,MbSL2,MSt12)
 
@@ -898,18 +898,18 @@
 
 	lc9 = ((MSt2sum - 2*(MUEr2 + pMT2))*s2tt)/MSt2diff
 
-        s2ttF3 = -lc21 + lc13*Log(MA02/Q) + 
-     &    lc14*Log(MbSL2/Q) + lc15*Log(MSt12/Q)**2 - 
-     &    lc18*Log(MSt22/Q) + lc17*Log(MSt22/Q)**2 - 
-     &    Log(MSt12/Q)*(lc16 - lc12*Log(MSt22/Q)) - 
-     &    lc19*Log(MUEr2/Q) - lc20*Log(pMT2/Q) - 
+        s2ttF3 = -lc21 + lc13*Log(MA02/mudim) + 
+     &    lc14*Log(MbSL2/mudim) + lc15*Log(MSt12/mudim)**2 - 
+     &    lc18*Log(MSt22/mudim) + lc17*Log(MSt22/mudim)**2 - 
+     &    Log(MSt12/mudim)*(lc16 - lc12*Log(MSt22/mudim)) - 
+     &    lc19*Log(MUEr2/mudim) - lc20*Log(pMT2/mudim) - 
      &    Log(MSt22/MSt12)*
      &     (lc6*Log(MA02) - lc7*Log(MbSL2) - lc4*Log(MA02/MSt12) + 
      &       lc5*Log(MA02/MSt22) - 
      &       lc3*Log((MA02*MbSL2)/(MSt12*MSt22)) + 
      &       lc8*Log(MSt12*MSt22) - lc10*Log(MUEr2) - 
      &       lc9*Log((MSt12*MSt22)/(MUEr2*pMT2)) + 
-     &       lc11*(1 + Log(Q)))
+     &       lc11*(1 + Log(mudim)))
 
 	tmp21 = -2*x10*x11 + x11**2 + 2*x10*x9 - x9**2
 

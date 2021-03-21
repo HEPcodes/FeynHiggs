@@ -1,0 +1,38 @@
+.TH FHEWPO 1 "9-Feb-2017"
+.SH NAME
+.PP
+FHEWPO \- evaluate electroweak precision observables
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error
+.br
+double precision Deltar, Deltarho
+.br
+double precision MWMSSM, MWSM, SW2MSSM, SW2SM
+.sp
+subroutine FHEWPO(error, Deltar, Deltarho,
+.br
+  MWMSSM, MWSM, SW2MSSM, SW2SM)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHEWPO[]
+.SH DESCRIPTION
+FHEWPO evaluates electroweak precision observables which can be used as
+further constraints on the MSSM parameter space.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in Constraints.F from
+which the error message was emitted.
+.TP
+.B Deltar (output)
+Delta r.
+.TP
+.B Deltarho (output)
+Delta rho.
+.TP
+.B MWMSSM, MWSM, SW2MSSM, SW2SM (output)
+the W mass and effective weak mixing angle in the MSSM and SM.
+.SH SEE ALSO
+.PP
+libFH(1)

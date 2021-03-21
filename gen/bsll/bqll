@@ -13,12 +13,13 @@ test -d m || mkdir m
 
 mma="math -run me=\"$me\" -run tag=\"$1\" -run name=\"$name\""
 
-rm -f $name.*
+#rm -f $name.*
 #trap "rm -f $name.fc*" 0
 
 
 $mma << \_EOF_ > $name.log
 AppendTo[$Echo, "stdout"];
+tmInOn;
 
 << FeynArts`
 
@@ -30,28 +31,30 @@ sqrt2/: sqrt2/2 = 1/sqrt2;
 sqrt2/: sqrt2^2 = 2;
 sqrt2/: sqrt2^-2 = 1/2;
 
-nsimp = Simplify;
-fsimp = FullSimplify;
+nsimp = (*Simplify*) TermCollect;
+fsimp = (*FullSimplify*) Simplify;
+
+$KeepDir = name;
 
 massrulz = {
   MT -> Mf[tT,3],
   MT2 -> Mf2[tT,3],
-  Mdy[g_] -> Mf[bTR,g],
+  Mdy[g_] :> Mf[bTR,g],
 (*
   MB -> Mf[bTR,3],
   MB2 -> Mf[bTR,3],
 *)
-  MSf[s_,4,g_] -> MSf[s,bTR,g],
-  MSf2[s_,4,g_] -> MSf2[s,bTR,g],
-  USf[s__,4,g_] -> USf[s,bTR,g],
-  USfC[s__,4,g_] -> USfC[s,bTR,g],
-  MASf[as_,4] -> MASf[as,bTR],
-  MASf2[as_,4] -> MASf2[as,bTR],
-  UASf[as__,4] -> UASf[as,bTR],
-  UASfC[as__,4] -> UASfC[as,bTR],
-  Kf[g__,4] -> Kf[g,bTR],
-  KfC[g__,4] -> KfC[g,bTR]
-}
+  MSf[s_,4,g_] :> MSf[s,bTR,g],
+  MSf2[s_,4,g_] :> MSf2[s,bTR,g],
+  USf[s__,4,g_] :> USf[s,bTR,g],
+  USfC[s__,4,g_] :> USfC[s,bTR,g],
+  MASf[as_,4] :> MASf[as,bTR],
+  MASf2[as_,4] :> MASf2[as,bTR],
+  UASf[as__,4] :> UASf[as,bTR],
+  UASfC[as__,4] :> UASfC[as,bTR],
+  Kf[g__,4] :> Kf[g,bTR],
+  KfC[g__,4] :> KfC[g,bTR]
+};
 
 Neglect[Mq] = Neglect[Mq2] = 0;
 Sq[Mq] = Mq2;
@@ -104,30 +107,31 @@ Block[ {amp},
 
   DiracChain[__, _k, __] = 0;
 
-  amp = CalcFeynAmp[ amp, opt,
+If[ tag === "Cha", amp = TagDiagrams[amp] ];
+
+  raw = Keep[
+    CalcFeynAmp[amp, opt,
 (*RetainFile -> True,*)
-    CancelQ2 -> False,
+      CancelQ2 -> False,
 (*OnShell -> ExceptDirac,*)
-    FermionChains -> Chiral,
+      FermionChains -> Chiral,
 (*SortDen -> False,*)
 (*RetainFile -> True,*)
-    (*Antisymmetrize -> False, FermionOrder -> None*)
-    FermionOrder -> {2, 1, 3, 4} ];
+      (*Antisymmetrize -> False, FermionOrder -> None*)
+      FermionOrder -> {2, 1, 3, 4}],
+    ".raw" ];
 
-  Put[amp, name <> ".raw"];
+  raw2 = Keep[
+    raw //. Subexpr[] /.
+      C0i[Except[LoopTools`cc0 | LoopTools`cc00], __] -> 0 /.
+      D0i[Except[LoopTools`dd0 | LoopTools`dd00], __] -> 0 /.
+      (* (#1 -> 0 &)@@@ Select[Abbr[], !FreeQ[#, DiracChain[__, _k, __]] &] /. *)
+      FormCalc`S23 | FormCalc`T12 | T (*13*) -> 0,
+    ".raw2" ];
 
-  amp = amp //. Subexpr[] /.
-    C0i[Except[LoopTools`cc0 | LoopTools`cc00], __] -> 0 /.
-    D0i[Except[LoopTools`dd0 | LoopTools`dd00], __] -> 0 /.
-    (* (#1 -> 0 &)@@@ Select[Abbr[], !FreeQ[#, DiracChain[__, _k, __]] &] /. *)
-    FormCalc`S23 | FormCalc`T12 | FormCalc`T13 -> 0;
-
-  Put[amp, name <> ".raw2"];
-
-  amp = ApplyUnitarity[amp, CKM, 3 (*, TermCollect*)];
-
-  Put[amp, name <> ".amp"];
-  Put[Abbr[], name <> ".abbr"];
+  amp = Keep[
+    ApplyUnitarity[raw2, CKM, 3(**), TermCollect(**)],
+    ".amp" ];
 
   Plus@@ amp //. Abbr[]
 ];
@@ -188,20 +192,20 @@ Attributes[ColorDelta] = {Orderless};
 omend[om_Integer, g___] :=
   Opi[g, {R, L}[[1 + Mod[om + Length[{g}], 2]]]]
 
-dc = amp /.
-  {Col1 -> 1, Col3 -> 3,
-   Col2 -> 2, Col4 -> 4,
-   Spinor[_[1], __] -> b,
-   Spinor[_[2], __] -> s,
-   Spinor[_[3], __] -> lbar,
-   Spinor[_[4], __] -> l} /.
-  SUNT[i_, j_] -> ColorDelta[i, j] /.
-  Mat[ DiracChain[s1:s, g1__, s2_] ColorDelta[1, 2] *
-       DiracChain[s3_, g2__, s4_] ] :>
-    Op[s1.omend[g1].s2, s3.omend[g2].s4] /.
-  {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2};
-
-Put[dc, name <> ".dc"];
+dc = Keep[
+  amp /.
+    {Col1 -> 1, Col3 -> 3,
+     Col2 -> 2, Col4 -> 4,
+     Spinor[_[1], __] -> b,
+     Spinor[_[2], __] -> s,
+     Spinor[_[3], __] -> lbar,
+     Spinor[_[4], __] -> l} /.
+    SUNT[i_, j_] -> ColorDelta[i, j] /.
+    Mat[ DiracChain[s1:s, g1__, s2_] ColorDelta[1, 2] *
+         DiracChain[s3_, g2__, s4_] ] :>
+      Op[s1.omend[g1].s2, s3.omend[g2].s4] /.
+    {Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2},
+  ".dc" ];
 
 
 (* VVV = ijk ijk, vvv = ijk kji *)
@@ -233,7 +237,7 @@ Op[s1_ . Opi[om1_] . s2_,
 Opx[s.op_[om1_].b, lbar.op_[om2_].l] := OP[op[om1, om2]];
 
 
-Put[dc, name <> ".dc1"];
+Keep[dc, ".dc1"];
 
 
 (* Note: the following Fierz identities from 0112305 are used only
@@ -267,13 +271,13 @@ OP[S[om_,L]] := OP[S[om,1]] - OP[S[om,5]];
 MB2/: MB2 Den[MB2, 0] = 1;
 MB2/: MB2 Den[0, MB2] = -1;
 
-dc = SCsimp[nsimp[dc /. Mq|Mq2 -> 0 /. massrulz /.
+dc = Keep[
+  SCsimp[nsimp[dc /. Mq|Mq2 -> 0 /. massrulz /.
     {o_OP -> o, S|T|U -> 0} /.
     {Finite -> 1, _Evan -> 0, _Evanescent -> 0}] (* /.
-  {MB2 Den[MB2, 0] -> 1, MB2 Den[0, MB2] -> -1} *)] /.
-    a_ CW2 + a_ SW2 -> a //nsimp;
-
-Put[dc, name <> ".dc2"];
+    {MB2 Den[MB2, 0] -> 1, MB2 Den[0, MB2] -> -1} *)
+  ] /. a_ CW2 + a_ SW2 :> a //nsimp,
+  ".dc2" ];
 
 
 OpName[V[L,5]] := "CAL";
@@ -284,14 +288,15 @@ OpName[S[L,5]] := "CPL";
 OpName[S[R,5]] := "CPR";
 
 
-ops = Union[Cases[dc, _OP, Infinity]];
+(*ops = Union[Cases[dc, _OP, Infinity]];*)
+ops = OP[ #[[1,1,1]] ]&/@ DownValues[OpName];
 
 fac = -2 GF/Sqrt[2] Alfa/(2 Pi SW2) CKM[3,3] CKMC[3,fs] /.
   GF -> Alfa Pi/(Sqrt[2] MW2 SW2);
 
-coeff = ((OpName@@ #) <> tag -> Coefficient[dc, #]/fac)&/@ ops;
-
-(*Put[coeff, name <> ".coeff.raw"];*)
+coeff = Keep[
+  ((OpName@@ #) <> tag -> Coefficient[dc, #]/fac)&/@ ops,
+  ".coeff.raw" ];
 
 chk = dc /. Thread[ops -> 0];
 If[ chk =!= 0,
@@ -301,11 +306,12 @@ If[ chk =!= 0,
 
 fin[var_ -> expr_] := (Print[var]; var -> fin[expr]);
 
-fin[expr_] := nsimp @ Collect[expr, {_SumOver, _Log}, fsimp];
+(*fin[expr_] := nsimp @ Collect[expr, {_SumOver, _Log}, fsimp];*)
 
-coeff = fin/@ coeff;
+fin[expr_] := nsimp @ Collect[expr,
+  {_SumOver, _Log, _A0, _C0z, _C00z, _D0z, _D00z}, fsimp];
 
-Put[coeff, name <> ".coeff"];
+coeff = Keep[fin/@ coeff, ".coeff"];
 
 If[ !FreeQ[coeff, Den[0, 0]],
   Print["WARNING: REMAINING Den[0, 0]"] ];
@@ -315,7 +321,9 @@ Mino3C = "M_3C";
 
 hh = OpenFortran[name <> ".F"];
 
-$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DCONST ", " ENDL"};
+$DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
+$DebugCmd[1] = "DCONST \"```` =\", `` ENDL\n";
+$DebugPost[1] = "#endif\n";
 
 WriteExpr[hh, coeff /. IndexDelta -> Delta /. Den[0, 0] -> Den00,
   (*HornerStyle -> False,*)
@@ -323,12 +331,14 @@ WriteExpr[hh, coeff /. IndexDelta -> Delta /. Den[0, 0] -> Den00,
   Expensive -> {_B0i, _C0z, _C00z, _D0z, _D00z},
   RealArgs -> {B0i, B0, B1, C0z, C00z, D0z, D00z},
   Optimize -> True,
-  DebugLines -> True,
+  DebugLines -> 1,
   FinalCollect -> True];
 
 Close[hh];
 _EOF_
 
-gzip -f $name*.ps
+shopt -s nullglob
+gzip -f $name*.{log,ps}
 
+test -f $name.F
 

@@ -1,7 +1,7 @@
 * SetSMPara.F
 * set the SM inputs for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 21 Jul 15 th
+* last modified 27 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -9,15 +9,15 @@
 
 
 	subroutine FHSetSMPara(error,
-     &    invAlfaMZ_, AlfasMZ_, GF_,
+     &    invAlfa0_, invAlfaMZ_, AlfasMZ_, GF_,
      &    ME_, MU_, MD_, MM_, MC_, MS_, ML_, MB_,
-     &    MW_, MZ_,
+     &    MW_, MZ_, GammaW_, GammaZ_,
      &    CKMlambda_, CKMA_, CKMrhobar_, CKMetabar_)
 	implicit none
 	integer error
-	RealType invAlfaMZ_, AlfasMZ_, GF_
+	RealType invAlfa0_, invAlfaMZ_, AlfasMZ_, GF_
 	RealType ME_, MU_, MD_, MM_, MC_, MS_, ML_, MB_
-	RealType MW_, MZ_
+	RealType MW_, MZ_, GammaW_, GammaZ_
 	RealType CKMlambda_, CKMA_, CKMrhobar_, CKMetabar_
 
 #include "FH.h"
@@ -44,6 +44,7 @@
 	  DPARA "============================"	ENDL
 	  DPARA "SetSMPara input parameters:"	ENDL
 	  DPARA "----------------------------"	ENDL
+	  DTAGm(iinvAlfa0, invAlfa0_)
 	  DTAGm(iinvAlfaMZ, invAlfaMZ_)
 	  DTAGm(iAlfasMZ, AlfasMZ_)
 	  DTAGm(iGF, GF_)
@@ -61,8 +62,10 @@
 	  DTAGm(iCKMA, CKMA_)
 	  DTAGm(iCKMrhobar, CKMrhobar_)
 	  DTAGm(iCKMetabar, CKMetabar_)
+	  call flush(paraunit)
 	endif
 
+	invAlfa0 = invAlfa0_
 	invAlfaMZ = invAlfaMZ_
 	AlfasMZ = AlfasMZ_
 	GF = GF_
@@ -77,32 +80,35 @@
 	MB = MB_
 
 	MZ = MZ_
-c FIXME: should really compute MW from MZ & Alfa here
 	MW = MW_
+	GammaW = GammaW_
+	GammaZ = GammaZ_
 
 	CKMlambda = CKMlambda_
 	CKMA = CKMA_
 	CKMrhobar = CKMrhobar_
 	CKMetabar = CKMetabar_
 
-	call SMDefaults(invAlfaMZ, AlfasMZ, GF,
+	call SMDefaults(invAlfa0, invAlfaMZ, AlfasMZ, GF,
      &    ME, MU, MD, MM, MC, MS, ML, MB,
-     &    MW, MZ,
+     &    MW, MZ, GammaW, GammaZ,
      &    CKMlambda, CKMA, CKMrhobar, CKMetabar)
 
 	MZ2 = MZ**2
 	MW2 = MW**2
 	CW = MW/MZ
 	CW2 = CW**2
-	SW2 = 1 - CW2
+	SW2 = (1 - CW)*(1 + CW)
 	SW = sqrt(SW2)
 
 	vev = 1/sqrt(sqrt2*GF)
 	AlfaGF = sqrt2/pi*GF*MW2*SW2
 	ELGF = sqrt(4*pi*AlfaGF)
+	Alfa0 = 1/invAlfa0
+	EL0 = sqrt(4*pi*Alfa0)
+	DeltaAlfa = 1 - Alfa0*invAlfaMZ
 	AlfaMZ = 1/invAlfaMZ
 	ELMZ = sqrt(4*pi*AlfaMZ)
-	EL0 = sqrt(4*pi*Alfa0)
 
 	ME2 = ME**2
 	MM2 = MM**2
@@ -143,7 +149,9 @@ c FIXME: should really compute MW from MZ & Alfa here
 	DPARA "============================="	ENDL
 	DPARA "parameters set by FHSetSMPara"	ENDL
 	DPARA "-----------------------------"	ENDL
+	DPARA "1/Alfa0  =", 1/Alfa0		ENDL
 	DPARA "1/AlfaMZ =", 1/AlfaMZ		ENDL
+	DPARA "DeltaAlfa =", DeltaAlfa		ENDL
 	DPARA "AlfasMZ =", AlfasMZ		ENDL
 	DPARA "vev =", vev			ENDL
 	DPARA "GF =", GF			ENDL
@@ -157,6 +165,8 @@ c FIXME: should really compute MW from MZ & Alfa here
 	DPARA "MB =", MB			ENDL
 	DPARA "MW =", MW			ENDL
 	DPARA "MZ =", MZ			ENDL
+	DPARA "GammaW =", GammaW		ENDL
+	DPARA "GammaZ =", GammaZ		ENDL
 	DPARA "CKM(1,1) =", CKMin(1,1)		ENDL
 	DPARA "CKM(1,2) =", CKMin(1,2)		ENDL
 	DPARA "CKM(1,3) =", CKMin(1,3)		ENDL
@@ -171,18 +181,19 @@ c FIXME: should really compute MW from MZ & Alfa here
 
 ************************************************************************
 
-	subroutine SMDefaults(invAlfaMZ_, AlfasMZ_, GF_,
+	subroutine SMDefaults(invAlfa0_, invAlfaMZ_, AlfasMZ_, GF_,
      &    ME_, MU_, MD_, MM_, MC_, MS_, ML_, MB_,
-     &    MW_, MZ_,
+     &    MW_, MZ_, GammaW_, GammaZ_,
      &    CKMlambda_, CKMA_, CKMrhobar_, CKMetabar_)
 	implicit none
-	RealType invAlfaMZ_, AlfasMZ_, GF_
+	RealType invAlfa0_, invAlfaMZ_, AlfasMZ_, GF_
 	RealType ME_, MU_, MD_, MM_, MC_, MS_, ML_, MB_
-	RealType MW_, MZ_
+	RealType MW_, MZ_, GammaW_, GammaZ_
 	RealType CKMlambda_, CKMA_, CKMrhobar_, CKMetabar_
 
 #include "const.h"
 
+	if( invAlfa0_ .le. 0 ) invAlfa0_ = invAlfa0_default
 	if( invAlfaMZ_ .le. 0 ) invAlfaMZ_ = invAlfaMZ_default
 	if( AlfasMZ_ .le. 0 ) AlfasMZ_ = AlfasMZ_default
 	if( GF_ .le. 0 ) GF_ = GF_default
@@ -198,6 +209,8 @@ c FIXME: should really compute MW from MZ & Alfa here
 
 	if( MZ_ .le. 0 ) MZ_ = MZ_default
 	if( MW_ .le. 0 ) MW_ = MW_default
+	if( GammaZ_ .le. 0 ) GammaZ_ = GammaZ_default
+	if( GammaW_ .le. 0 ) GammaW_ = GammaW_default
 
 	if( CKMlambda_ .lt. 0 ) CKMlambda_ = CKMlambda_default
 	if( CKMA_ .lt. 0 ) CKMA_ = CKMA_default

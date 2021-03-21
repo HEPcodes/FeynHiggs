@@ -1,4 +1,4 @@
-.TH FHGETPARA 1 "2-Oct-2013"
+.TH FHGETPARA 1 "26-Dec-2016"
 .SH NAME
 .PP
 FHGetPara \- retrieves (some of) the MSSM parameters computed from the  
@@ -18,12 +18,14 @@ double complex Deltab
 double precision MGl
 .br
 double precision MHtree(4), SAtree
+.br
+double precision AlfasMT
 .sp
 subroutine FHGetPara(error, nmfv, MSf, USf, MASf, UASf,
 .br
   MCha, UCha, VCha, MNeu, ZNeu, Deltab, MGl,
 .br
-  MHtree, SAtree)
+  MHtree, SAtree, AlfasMT)
 .SH SYNOPSIS (Mathematica version)
 .PP
 FHGetPara[]
@@ -113,6 +115,9 @@ the tree-level Higgs masses.
 .TP
 .B SAtree (output)
 the tree-level sin(alpha).
+.TP
+.B AlfasMT (output)
+the value of alpha_s at MT.
 .SH SEE ALSO
 .PP
 libFH(1)

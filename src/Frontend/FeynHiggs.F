@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 29 Jan 16 th
+* last modified 15 Feb 16 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -34,7 +34,7 @@
 	character*54 dmssmpart(-1:5), dfieldren(-1:5),
      &    dtanbren(-1:3), dhiggsmix(0:5), dp2approx(-1:5),
      &    dlooplevel(-1:3), dloglevel(-1:4), drunningMT(-1:4),
-     &    dbotResum(-1:3), dtlCplxApprox(-1:7)
+     &    dbotResum(-1:3), dtlCplxApprox(-1:4)
 
 	data flags /"4002420110"/
 
@@ -115,10 +115,7 @@
      &    "all corrections evaluated in the rMSSM",
      &    "asat,atat in cMSSM only",
      &    "asat,atat in cMSSM, rest in rMSSM",
-     &    "asat,atat in cMSSM, rest interpolated in At,Ab,M_3,MUE",
-     &    "asat,atat in cMSSM, rest interpolated in At,Xb,M_3,MUE",
-     &    "asat,atat in cMSSM, rest interpolated in Xt,Ab,M_3,MUE",
-     &    "asat,atat in cMSSM, rest interpolated in Xt,Xb,M_3,MUE",
+     &    "asat,atat in cMSSM, rest interpolated",
      &    "???" /
 
 	call pageron
@@ -147,7 +144,7 @@
      &    ShowFlag("loglevel",     loglevel,     0, 3),
      &    ShowFlag("runningMT",    runningMT,    0, 3),
      &    ShowFlag("botResum",     botResum,     0, 2),
-     &    ShowFlag("tlCplxApprox", tlCplxApprox, 0, 6)
+     &    ShowFlag("tlCplxApprox", tlCplxApprox, 0, 3)
 
 	if( error .ne. 0 ) stop
 
@@ -237,7 +234,7 @@ c	if( error .eq. -2 ) goto 2
      &    /"  #9 = botResum, MB resummation",
      &    3 DESC_FMT
      &    /"  #10 = tlCplxApprox, complex parameters in the 2L corrections",
-     &    7 DESC_FMT
+     &    4 DESC_FMT
      &    /)
 
 999	call getarg(0, argv)
@@ -251,7 +248,7 @@ c	if( error .eq. -2 ) goto 2
      &    (i, dloglevel(i),     i = 0, 3),
      &    (i, drunningMT(i),    i = 0, 3),
      &    (i, dbotResum(i),     i = 0, 2),
-     &    (i, dtlCplxApprox(i), i = 0, 6)
+     &    (i, dtlCplxApprox(i), i = 0, 3)
 
 1	call flush(6)
 	call pageroff

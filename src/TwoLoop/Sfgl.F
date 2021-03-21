@@ -1,7 +1,7 @@
 * Sfgl.F
 * sfermion masses in the gaugeless limit
 * this file is part of FeynHiggs
-* last modified 1 Aug 16 th
+* last modified 8 Feb 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -18,27 +18,35 @@
 #include "FH.h"
 #include "Sfgl.h"
 
-	RealType DSStop2(2), DSSbot2(2), d2
+	QuadType d2
 	integer fail
 
-	RealType delta
-	common /eigensfvars/ delta
-
 * use squark masses w/o D-terms & neglect MB
+#if 0
 	DSStop2(1) = DSS2(1,3,3) - (DSf(1,3) - DSf(2,3)) + shift
 	DSStop2(2) = DSS2(2,3,3) - DSf(2,3)
+#else
+        DSStop2(2) = Re(MSS2(3,3,tU(3)))
+        DSStop2(1) = Re(MSS2(3,3,tQ(3))) - DSStop2(2) + shift
+#endif
 	if( DSStop2(1)**2 + Sq(Xf(3,3)) .lt. .1D0 )
      &    DSStop2(1) = -.2D0*sqrt(DSStop2(2))
 	fail = 0
-	call EigenSf(fail, 1, MStop, MStop2, UStop,
+	call EigenSf(fail, MStop2, UStop,
      &    DSStop2, Mf(tS2,3), Xf(3,3), 0)
 	if( fail .ne. 0 ) then
 	  Error(error, "negative stop mass squares")
 	  return
 	endif
 
+#if 0
 	DSSbot2(1) = DSS2(1,4,3) - (DSf(1,4) - DSf(2,4))
 	DSSbot2(2) = DSS2(2,4,3) - DSf(2,4)
+#else
+	DSSbot2(2) = Re(MSS2(3,3,tU(4)))
+	DSSbot2(1) = Re(MSS2(3,3,tQ(4))) - DSSbot2(2)
+#endif
+
 	MSbot2(1) = DSSbot2(1) + DSSbot2(2)
 	MSbot2(2) = DSSbot2(2)
 	MSbot2(3) = -DSSbot2(1)	! MSbot2(2) - MSbot2(1)
@@ -59,15 +67,15 @@
 	endif
 
 	d2 = (DSSbot2(2) - DSStop2(2)) - Mf2(tS2,3)
-	MSq2Diff(1,1) = d2 - delta + (DSSbot2(1) - DSStop2(1))
-	MSq2Diff(2,1) = d2 - delta - DSStop2(1)
-	MSq2Diff(1,2) = d2 + delta + DSSbot2(1)
-	MSq2Diff(2,2) = d2 + delta
+	MSq2Diff(1,1) = Re(d2 - dm2) + (DSSbot2(1) - DSStop2(1))
+	MSq2Diff(2,1) = Re(d2 - dm2) - DSStop2(1)
+	MSq2Diff(1,2) = Re(d2 + dm2) + DSSbot2(1)
+	MSq2Diff(2,2) = Re(d2 + dm2)
 #if 0
 	PRINT *, "MSS2(1,3,3)=", MSS2(3,3,tQ(3)), DSStop2(1)+DSStop2(2)
 	PRINT *, "MSS2(1,4,3)=", MSS2(3,3,tQ(4)), DSSbot2(1)+DSSbot2(2)
 	PRINT *, "MSq2Diff(1,1)=", MSq2Diff(1,1), MSbot2(1) - MStop2(1)
-	PRINT *, "MSq2Diff(1,1)=", -delta
+	PRINT *, "MSq2Diff(1,1)=", -dm2
 	PRINT *, "MSq2Diff(1,2)=", MSq2Diff(1,2), MSbot2(1) - MStop2(2)
 	PRINT *, "MSq2Diff(2,1)=", MSq2Diff(2,1), MSbot2(2) - MStop2(1)
 	PRINT *, "MSq2Diff(2,2)=", MSq2Diff(2,2), MSbot2(2) - MStop2(2)

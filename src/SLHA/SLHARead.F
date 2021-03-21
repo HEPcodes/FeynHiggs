@@ -1,6 +1,6 @@
 * SLHARead.F
 * read a file in SUSY Les Houches Accord format (hep-ph/0311123, 0801.0045)
-* last modified 28 Jun 12 th
+* last modified 4 Jan 17 th
 
 #include "PDG.h"
 #include "SLHAIntern.h"
@@ -662,11 +662,12 @@ namix	Scan n1, n2, val
 	goto 500
 
 prcob	Scan n, val
-	if( n .eq. 1  ) PrecObs_DeltaRho = val
-	if( n .eq. 2  ) PrecObs_MWMSSM = val
-	if( n .eq. 3  ) PrecObs_MWSM = val
-	if( n .eq. 4  ) PrecObs_SW2effMSSM = val
-	if( n .eq. 5  ) PrecObs_SW2effSM = val
+	if( n .eq. 1  ) PrecObs_DeltaR = val
+	if( n .eq. 2  ) PrecObs_DeltaRho = val
+	if( n .eq. 3  ) PrecObs_MWMSSM = val
+	if( n .eq. 4  ) PrecObs_MWSM = val
+	if( n .eq. 5  ) PrecObs_SW2effMSSM = val
+	if( n .eq. 6  ) PrecObs_SW2effSM = val
 	if( n .eq. 11 ) PrecObs_gminus2mu = val
 	if( n .eq. 21 ) PrecObs_EDMeTh = val
 	if( n .eq. 22 ) PrecObs_EDMn = val

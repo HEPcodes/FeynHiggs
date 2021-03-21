@@ -1,7 +1,7 @@
 * GetPara.F
 * get the derived SUSY parameters from the internal arrays
 * this file is part of FeynHiggs
-* last modified 31 Jul 13 th
+* last modified 26 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -11,7 +11,7 @@
 	subroutine FHGetPara(error,
      &    fv_, MSf_, USf_, MASf_, UASf_,
      &    MCha_, UCha_, VCha_, MNeu_, ZNeu_,
-     &    Deltab_, MGl_, MHtree_, SAtree_)
+     &    Deltab_, MGl_, MHtree_, SAtree_, AlfasMT_)
 	implicit none
 	integer error
 	integer fv_
@@ -20,7 +20,7 @@
 	ComplexType USf_(2,2,5,3), UASf_(6*6,5)
 	ComplexType UCha_(2*2), VCha_(2*2)
 	ComplexType ZNeu_(4*4), Deltab_
-	RealType MHtree_(4), SAtree_
+	RealType MHtree_(4), SAtree_, AlfasMT_
 
 #include "FH.h"
 #define __SUBROUTINE__ "FHGetPara"
@@ -69,6 +69,7 @@
 	enddo
 
 	Deltab_ = Deltaf(bTR,3)
+
 	MGl_ = MGl
 
 	MHtree_(1) = MHtree(1)
@@ -76,5 +77,7 @@
 	MHtree_(3) = MHtree(3)
 	MHtree_(4) = MHtree(4)
 	SAtree_ = SA
+
+	AlfasMT_ = AlfasMT
 	end
 

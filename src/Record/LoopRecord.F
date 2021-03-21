@@ -1,7 +1,7 @@
 * LoopRecord.F
 * iterate the FH record
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 1 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -122,7 +122,7 @@
 	endif
 
 	if( record(iAdmin,iLower) .ne. unset ) then
-	  call Interpolate(error, record)
+	  call TableInterpolate(error, record)
 	  if( error .ne. 0 ) return
 	endif
 
@@ -303,7 +303,7 @@
 
 ************************************************************************
 
-	subroutine Interpolate(error, record)
+	subroutine TableInterpolate(error, record)
 	implicit none
 	integer error
 

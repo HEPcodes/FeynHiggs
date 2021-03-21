@@ -3,19 +3,19 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 30 Nov 11 th
+* last modified 29 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
 
 
-	ComplexType function A0(m)
+	RealType function A0(m)
 	implicit none
 	RealType m
 
 #include "lt.h"
 
-	ComplexType A0q
+	RealType A0q
 	external A0q
 
 	A0 = A0q(m, mudim)
@@ -23,7 +23,7 @@
 
 ************************************************************************
 
-	ComplexType function A0q(m, q)
+	RealType function A0q(m, q)
 	implicit none
 	RealType m, q
 

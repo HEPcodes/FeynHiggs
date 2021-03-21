@@ -1,6 +1,6 @@
 * DRbartoOS.F
 * this file is part of FeynHiggs
-* last modified 27 Jul 16 th
+* last modified 27 Jan 17 th
 
 * Code by Pietro Slavich
 * 10/04/2013: different Ab conversion according to hep-ph/0206101
@@ -282,11 +282,8 @@ c	do try = 1, 20
 
 #include "FH.h"
 
-	RealType dMT
+	RealType dMT, MTrun
 	integer nf
-
-	RealType Run
-	external Run
 
 	RealType Qcur
 	common /DRbarvars/ Qcur
@@ -302,18 +299,16 @@ c	do try = 1, 20
 	Mf(tH,3) = MT + dMT
 #else
 * MT(Q)_SM
-	Mf(tH,3) = Mf(tT,3)*Run(MT2, Q)
+	call RunQCD(Mf(tH,3),Q, Mf(tT,3),MT2)
 #endif
 	Mf2(tH,3) = Mf(tH,3)**2
 
-	call EigenSf(error, 1,
-     &    MSf(1,tH,3), MSf2(1,tH,3), USf(1,1,tH,3),
+	call EigenSf(error, MSf2(1,tH,3), USf(1,1,tH,3),
      &    DSS2(1,3,3), Mf(tH,3), Xf(3,3), 0)
 
-	Mf(bH,3) = MB*Run(MB, Q)
+	call RunQCD(Mf(bH,3),Q, MB,MB2)
 	Mf2(bH,3) = Mf(bH,3)**2
-	call EigenSf(error, 1,
-     &    MSf(1,bH,3), MSf2(1,bH,3), USf(1,1,bH,3),
+	call EigenSf(error, MSf2(1,bH,3), USf(1,1,bH,3),
      &    DSS2(1,4,3), Mf(bH,3), Xf(4,3), 0)
 
 	Qcur = Q
@@ -321,7 +316,8 @@ c	do try = 1, 20
 	if( debuglevel .lt. 4 ) return
 
 	DPARA "DRbar Q     =", sqrt(Q)			ENDL
-	DPARA "MT(Q)_SM    =", Mf(tT,3)*Run(MT2, Q)	ENDL
+	call RunQCD(MTrun,Q, Mf(tT,3),MT2)
+	DPARA "MT(Q)_SM    =", MTrun			ENDL
 	DPARA "MT(Q)_MSSM  =", Mf(tH,3)			ENDL
 	DPARA "MStop_DRbar =", MSf(1,tH,3), MSf(2,tH,3)	ENDL
 	DPARA "MSbot_DRbar =", MSf(1,bH,3), MSf(2,bH,3)	ENDL

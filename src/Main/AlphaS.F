@@ -1,20 +1,22 @@
 * AlphaS.F
-* AlphaS computes the strong coupling constant at a given scale.
+* FHAlphaS computes the strong coupling constant at a given scale.
 * Code is transcribed from I. Hinchliffe's Java applet at
 * http://www-theory.lbl.gov/~ianh/alpha/alpha.html.
 * this file is part of FeynHiggs
-* last modified 12 Jul 16 th
+* last modified 27 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
+#include "debug.h"
 
 
-	subroutine AlphaS(as, nf, Q)
+	subroutine FHAlphaS(error, as, nf, Q)
 	implicit none
+	integer error, nf
 	RealType as, Q
-	integer nf
 
 #include "FH.h"
+#define __SUBROUTINE__ "FHAlphaS"
 
 * the betas and deltas are calculated as follows:
 *
@@ -74,6 +76,12 @@
 	save lam5, asMZ
 	data lam5 /204D-3/, asMZ /.1176D0/
 * the 5-flavour scale lam5 reproduces alpha_s(MZ) = .1176
+
+	error = 0
+	CheckPara(error)
+	if( error .gt. 0 ) return
+
+	entry AlphaS(as, nf, Q)
 
 	do while( abs(asMZ - AlfasMZ) .gt. 1D-4 )
 	  t = 2*log(MZ/lam5)
@@ -135,16 +143,20 @@
 	as = 4*pi/(beta0*t)*(1 + l*(l - c - 1) + b)
 	end
 
+#undef __SUBROUTINE__
+
 
 ************************************************************************
 
-	RealType function Run(Q_from, Q_to)
+	subroutine FHRunQCD(error, m_to, Q_to, m_from, Q_from)
 	implicit none
-	RealType Q_from, Q_to
+	integer error
+	RealType m_to, Q_to, m_from, Q_from
 
 #include "FH.h"
+#define __SUBROUTINE__ "FHRunQCD"
 
-	RealType Q(3:5), as1, as2
+	RealType Q(3:5), as1, as2, fac
 	integer nf, nf_from, nf_to, nf1, nf2
 
 	RealType g0, eps
@@ -167,6 +179,12 @@
 	cfn(as, nf) = (beta0(nf)*as/(2*pi))**(-g0/(2*beta0(nf))) *
      &    (1 + as*(c1(nf) + as*c2(nf)))
 
+	error = 0
+	CheckPara(error)
+	if( error .gt. 0 ) return
+
+	entry RunQCD(m_to, Q_to, m_from, Q_from)
+
 	Q(3) = MC2
 	Q(4) = MB2
 	Q(5) = MT2
@@ -174,20 +192,22 @@
 	call AlphaS(as1, nf_to, Q_to)
 	call AlphaS(as2, nf_from, Q_from)
 * NB: 1/(3*pi)*Alfas is the MSbar -> DRbar correction
-	Run = cfn(as1, nf_to)/cfn(as2, nf_from)*(1 - 1/(3*pi)*as1)
+	fac = cfn(as1, nf_to)/cfn(as2, nf_from)*(1 - 1/(3*pi)*as1)
 
 * nf_to > nf_from
 	do nf = nf_from, nf_to - 1
 	  call AlphaS(as1, nf1, Q(nf))
 	  call AlphaS(as2, nf2, Q(nf) + eps)
-	  Run = cfn(as1, nf1)/cfn(as2, nf2)*Run
+	  fac = fac*cfn(as1, nf1)/cfn(as2, nf2)
 	enddo
 
 * nf_to < nf_from
 	do nf = nf_from - 1, nf_to, -1
 	  call AlphaS(as1, nf1, Q(nf))
 	  call AlphaS(as2, nf2, Q(nf) + eps)
-	  Run = cfn(as2, nf2)/cfn(as1, nf1)*Run
+	  fac = fac*cfn(as2, nf2)/cfn(as1, nf1)
 	enddo
+
+	m_to = m_from*fac
 	end
 

@@ -3,7 +3,7 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 1 Jan 15 th
+* last modified 10 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -29,7 +29,8 @@
 
 #include "lt.h"
 
-	ComplexType A0q, B0q, B1q
+	RealType A0q
+	ComplexType B0q, B1q
 	external A0q, B0q, B1q
 
 	if( abs(p) .gt. diffeps*(abs(p) + m1 + m2) ) then

@@ -1,4 +1,4 @@
-.TH FHCONSTRAINTS 1 "24-Sep-2012"
+.TH FHCONSTRAINTS 1 "9-Feb-2017"
 .SH NAME
 .PP
 FHConstraints \- evaluate electroweak precision observables
@@ -8,13 +8,9 @@ integer error, ccb
 .br
 double precision gm2
 .br
-double precision Deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM
-.br
 double precision edmeTh, edmn, edmHg
 .sp
 subroutine FHConstraints(error, gm2,
-.br
-  Deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM,
 .br
   edmeTh, edmn, edmHg,
 .br
@@ -23,8 +19,8 @@ subroutine FHConstraints(error, gm2,
 .PP
 FHConstraints[]
 .SH DESCRIPTION
-FHConstraints evaluates electroweak precision observables which are 
-used as further constraints on the MSSM parameter space.
+FHConstraints evaluates further constraints, currently g_mu - 2 and
+electric dipole moments.
 .SH ARGUMENTS
 .TP
 .B error (output)
@@ -33,12 +29,6 @@ which the error message was emitted.
 .TP
 .B gm2 (output)
 the anomalous magnetic moment of the muon, (g_mu - 2),
-.TP
-.B Deltarho (output)
-Delta rho,
-.TP
-.B MWMSSM, MWSM, SW2MSSM, SW2SM (output)
-the W mass and effective weak mixing angle in the MSSM and SM,
 .TP
 .B edmeTh, edmn, edmHg (output)
 the electric dipole moments of the electron (derived from Thorium, 

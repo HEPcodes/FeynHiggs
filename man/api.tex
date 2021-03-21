@@ -80,7 +80,7 @@
 
 \begin{document}
 
-\chapter*{FeynHiggs 2.12.1\\[2ex] Application Programming Interface}
+\chapter*{FeynHiggs 2.13.0\\[2ex] Application Programming Interface}
 
 \makeatletter
 \begin{multicols}{2}
@@ -500,24 +500,24 @@ Substituting $-1$ for any argument uses its default value.
 
 \begin{verbatim}
 integer error
-double precision invAlfa, AlfasMZ, GF
+double precision invAlfa0, invAlfaMZ, AlfasMZ, GF
 double precision ME, MU, MD, MM, MC, MS, ML, MB
-double precision MW, MZ
+double precision MW, MZ, GammaW, GammaZ
 double precision CKMlambda, CKMA, CKMrhobar, CKMetabar
 
 subroutine FHSetSMPara(error,
-  invAlfa, AlfasMZ, GF,
+  invAlfa0, invAlfaMZ, AlfasMZ, GF,
   ME, MU, MD, MM, MC, MS, ML, MB,
-  MW, MZ,
+  MW, MZ, GammaW, GammaZ,
   CKMlambda, CKMA, CKMrhobar, CKMetabar)
 \end{verbatim}
 
 \MSYNOPSIS
 
 \begin{verbatim}
-FHSetSMPara[invAlfa, AlfasMZ, GF,
+FHSetSMPara[invAlfa0, invAlfaMZ, AlfasMZ, GF,
   ME, MU, MD, MM, MC, MS, ML, MB,
-  MW, MZ,
+  MW, MZ, GammaW, GammaZ,
   CKMlambda, CKMA, CKMrhobar, CKMetabar]
 \end{verbatim}
 
@@ -527,9 +527,9 @@ FHSetSMPara[invAlfa, AlfasMZ, GF,
 zero if successful, otherwise the line number in \CODE{SetSMPara.F}
 from which the error message was emitted.
 
-\VARIN{double precision invAlfa}
-the value of electromagnetic coupling constant $\alpha^{-1}$, or $-1$ 
-for the default value.
+\VARIN{double precision invAlfa0, invAlfaMZ}
+the value of electromagnetic coupling constant $\alpha^{-1}(0)$,
+$\alpha^{-1}(M_Z)$, or $-1$ for the default value.
 
 \VARIN{double precision AlfasMZ}
 the value of the strong coupling constant $\alpha_s(M_Z)$, or $-1$ for 
@@ -551,6 +551,9 @@ default values.
 
 \VARIN{MW, MZ}
 the W and Z masses, or $-1$ for the default values.
+
+\VARIN{GammaW, GammaZ}
+the W and Z widths, or $-1$ for the default values.
 
 \VARIN{double precision CKMlambda, CKMA, CKMrhobar, CKMetabar}
 the CKM input parameters $\lambda$, $A$, $\bar\rho$, and $\bar\eta$ in 
@@ -590,15 +593,15 @@ FeynHiggs.
 
 \begin{verbatim}
 integer error
-double precision invAlfa, AlfasMZ, GF
+double precision invAlfa0, invAlfaMZ, AlfasMZ, GF
 double precision ME, MU, MD, MM, MC, MS, ML, MB
-double precision MW, MZ
+double precision MW, MZ, GammaW, GammaZ
 double precision CKMlambda, CKMA, CKMrhobar, CKMetabar
 
 subroutine FHRetrieveSMPara(error,
-  invAlfa, AlfasMZ, GF,
+  invAlfa0, invAlfaMZ, AlfasMZ, GF,
   ME, MU, MD, MM, MC, MS, ML, MB,
-  MW, MZ,
+  MW, MZ, GammaW, GammaZ,
   CKMlambda, CKMA, CKMrhobar, CKMetabar)
 \end{verbatim}
 
@@ -614,8 +617,9 @@ FHRetrieveSMPara[]
 zero if successful, otherwise the line number in \CODE{RetrieveSMPara.F}
 from which the error message was emitted.
 
-\VAROUT{double precision invAlfa}
-the value of electromagnetic coupling constant $\alpha^{-1}$.
+\VAROUT{double precision invAlfa0, invAlfaMZ}
+the value of electromagnetic coupling constant $\alpha^{-1}(0)$,
+$\alpha^{-1}(M_Z)$.
 
 \VAROUT{double precision AlfasMZ}
 the value of the strong coupling constant $\alpha_s(M_Z)$.
@@ -634,6 +638,9 @@ the charm mass at $m_c$ and bottom mass at $m_b$.
 
 \VAROUT{double precision MW, MZ}
 the W and Z masses.
+
+\VAROUT{double precision GammaW, GammaZ}
+the W and Z widths.
 
 \VAROUT{double precision CKMlambda, CKMA, CKMrhobar, CKMetabar}
 the CKM input parameters $\lambda$, $A$, $\bar\rho$, $\bar\eta$ in
@@ -656,8 +663,9 @@ been set before with \CODE{FHSetFlags} and \CODE{FHSetSMPara}.
 \begin{verbatim}
 integer error
 double complex CKM(3,3)
+double precision DeltaAlfa
 
-subroutine FHGetSMPara(error, CKM)
+subroutine FHGetSMPara(error, CKM, DeltaAlfa)
 \end{verbatim}
 
 \MSYNOPSIS
@@ -674,6 +682,9 @@ from which the error message was emitted.
 
 \VAROUT{double complex CKM($g_1$,$g_2$)}
 the CKM matrix.
+
+\VAROUT{double precision DeltaAlfa}
+the (leptonic plus five-flavor hadronic) $\Delta\alpha$.
 
 \ENDARGUMENTS
 
@@ -1246,10 +1257,11 @@ double complex UCha(2,2), VCha(2,2), ZNeu(4,4)
 double complex Deltab
 double precision MGl
 double precision MHtree(4), SAtree
+double precision AlfasMT
 
 subroutine FHGetPara(error, nmfv, MSf, USf, MASf, UASf,
   MCha, UCha, VCha, MNeu, ZNeu, Deltab, MGl,
-  MHtree, SAtree)
+  MHtree, SAtree, AlfasMT)
 \end{verbatim}
 
 \MSYNOPSIS
@@ -1338,6 +1350,9 @@ $m_{H^\pm}$.
 
 \VAROUT{double precision SAtree}
 the tree-level Higgs mixing parameter $\sin\alpha$.
+
+\VAROUT{double precision AlfasMT}
+the value of $\alpha_s$ at $m_t$.
 
 \ENDARGUMENTS
 
@@ -2018,6 +2033,46 @@ which effective bottom mass to use in the \CODE{H0FF}, \CODE{HpFF},
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
+\ROUTINE{FHSelectIpol}
+
+\DESCRIPTION
+
+\CODE{FHSelectIpol} selects the interpolation mode for the trilinear 
+coupling parameters.  Interpolation generally occurs when complex values 
+are chosen for $\mu$, $M_3$, $A_t$/$X_t$, or $A_b$/$X_b$, and 
+\CODE{FHSelectIpol} chooses between interpolation in $A_t$ vs $X_t$, and 
+$A_b$ vs $X_b$.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error, xt, xb
+
+subroutine FHSelectIpol(error, xt, xb)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHSelectIpol[xt, xb]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{SelectIpol.F} 
+from which the error message was emitted.
+
+\VARIN{integer xt}
+whether to interpolate in $A_t$ (0, default) or $X_t$ (1).
+
+\VARIN{integer xb}
+whether to interpolate in $A_b$ (0, default) or $X_b$ (1).
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
 \ROUTINE{FHHiggsProd}
 
 \DESCRIPTION
@@ -2210,33 +2265,28 @@ in Mathematica, while in Fortran the same is done with
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ROUTINE{FHConstraints}
+\ROUTINE{FHEWPO}
 
 \DESCRIPTION
 
-\CODE{FHConstraints} evaluates electroweak precision observables,
-currently $(g_\mu - 2)$ and $\Delta\rho$, which are used as further
-constraints on the MSSM parameter space.  Furthermore, the electric
-dipole moments (EDMs) of the electron (\ie thorium), the neutron, and
-mercury are evaluated to constrain the complex parameter space.
+\CODE{FHEWPO} evaluates electroweak precision observables which can be 
+used as constraints on the MSSM parameter space.
 
 \FSYNOPSIS
 
 \begin{verbatim}
 integer error
-double precision gm2
-double precision Deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM
-double precision edmeTh, edmn, edmHg
+double precision Deltar, Deltarho
+double precision MWMSSM, MWSM, SW2MSSM, SW2SM
 
-subroutine FHConstraints(error, gm2,
-  Deltarho, MWMSSM, MWSM, SW2MSSM, SW2SM,
-  edmeTh, edmn, edmHg)
+subroutine FHEWPO(error, Deltar, Deltarho,
+  MWMSSM, MWSM, SW2MSSM, SW2SM)
 \end{verbatim}
 
 \MSYNOPSIS
 
 \begin{verbatim}
-FHConstraints[]
+FHEWPO[]
 \end{verbatim}
 
 \ARGUMENTS
@@ -2245,18 +2295,14 @@ FHConstraints[]
 zero if successful, otherwise the line number in \CODE{Constraints.F}
 from which the error message was emitted.
 
-\VAROUT{double precision gm2}
-the anomalous magnetic moment of the muon, $(g_\mu - 2)$.
+\VAROUT{double precision Deltar}
+the electroweak precision observable $\Delta r$.
 
 \VAROUT{double precision Deltarho}
 the electroweak precision observable $\Delta\rho$.
 
 \VAROUT{double precision MWMSSM, MWSM, SW2MSSM, SW2SM}
-the W mass and effective weak mixing angle in the MSSM and SM,
-
-\VAROUT{double precision edmeTh, edmn, edmHg}
-electric dipole moments of the electron (derived from Thorium),
-the neutron, and mercury.
+the W mass and effective weak mixing angle in the MSSM and SM.
 
 \ENDARGUMENTS
 
@@ -2265,7 +2311,6 @@ the neutron, and mercury.
 \ROUTINE{FHFlavour}
 
 \DESCRIPTION
-
 
 \CODE{FHFlavour} evaluates flavour observables, currently $B\to 
 X_s\gamma$, $\Delta M_s$, and soon $B_s\to\mu^+\mu^-$, which are used as 
@@ -2305,6 +2350,48 @@ the value of $\Delta M_s$ in the MSSM and SM.
 
 \VAROUT{double precision bsmumuMSSM, bsmumuSM}
 the value of $B_s\to \mu^+\mu^-$ in the MSSM and SM.
+
+\ENDARGUMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\ROUTINE{FHConstraints}
+
+\DESCRIPTION
+
+\CODE{FHConstraints} evaluates further constraints, currently $(g_\mu - 
+2)$ and electric dipole moments.
+
+\FSYNOPSIS
+
+\begin{verbatim}
+integer error, ccb
+double precision gm2, edmeTh, edmn, edmHg
+
+subroutine FHConstraints(error, gm2, edmeTh, edmn, edmHg, ccb)
+\end{verbatim}
+
+\MSYNOPSIS
+
+\begin{verbatim}
+FHConstraints[]
+\end{verbatim}
+
+\ARGUMENTS
+
+\VAROUT{integer error}
+zero if successful, otherwise the line number in \CODE{Constraints.F}
+from which the error message was emitted.
+
+\VAROUT{double precision gm2}
+the anomalous magnetic moment of the muon, $(g_\mu - 2)$.
+
+\VAROUT{double precision edmeTh, edmn, edmHg}
+electric dipole moments of the electron (derived from Thorium),
+the neutron, and mercury.
+
+\VAROUT{integer ccb}
+whether a colour-breaking minimum was detected.
 
 \ENDARGUMENTS
 

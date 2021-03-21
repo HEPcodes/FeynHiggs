@@ -1,14 +1,12 @@
 * TLps.F
 * computes the two-loop corrections of P. Slavich et al.
 * this file is part of FeynHiggs
-* last modified 29 Jul 15 th
+* last modified 2 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
 #include "debug.h"
 
-
-************************************************************************
 
 	RealType function mld(m1, m2)
 	implicit none
@@ -36,15 +34,14 @@
 
 	error = 0
 
+	BSS2(1) = DSS2(1,4,3)
 	call TLps_normalTB(error, TLMBrun)
 	if( error .ne. 0 ) goto 999
 
-	Q = TLMBscale**2
-
 	call TLps_StrongShifts(db(1), dhbhb(1), dMSQ2(1))
 
-	eb(1) = C_F/(4*pi)*AlfasMT*2*MUEr*pMGl*TB*
-     &    (mld(MSb22, pMGl2) - mld(MSb12, pMGl2))/MSb2diff
+	eb(1) = C_F/(4*pi)*AlfasMT*2*MUEr*MGl*TB*
+     &    (mld(MSb22, MGl2) - mld(MSb12, MGl2))/MSb2diff
 
 	eb(2) = 1/(16*pi**2)*ht2*Atr*MUEr*TB*
      &    (mld(MSt22, MUEr2) - mld(MSt12, MUEr2))/MSt2diff
@@ -171,8 +168,6 @@
 	ht = sqrt2/vev*pMT
 	ht2 = ht**2
 
-c	DSS2large(1) = DSS2(1,3,3) - MZ2*C2B*(.5D0 - 2*Qu*SW2)
-c	DSS2large(2) = DSS2(2,3,3) - MZ2*C2B*Qu*SW2
 	DSS2large(2) = Re(MSS2(3,3,tU(3)))
 	DSS2large(1) = Re(MSS2(3,3,tQ(3))) - DSS2large(2)
 
@@ -220,67 +215,67 @@ c	DSS2large(2) = DSS2(2,3,3) - MZ2*C2B*Qu*SW2
 
 #include "TLps.h"
 
-	RealType logMT2, logMGl2
-	RealType logMSt12, logMSt22, logMSb12, logMSb22
+	RealType LT2, LGl2
+	RealType LSt12, LSt22, LSb12, LSb22
 	RealType b0MSt12, b0MSt22
 	RealType stop11, stop12, stop22
 	RealType sbot11, sbot12, sbot22, top
 
-	logMT2 = log(pMT2/Q)
-	logMGl2 = log(pMGl2/Q)
-	logMSt12 = log(MSt12/Q)
-	logMSt22 = log(MSt22/Q)
-	logMSb12 = log(MSb12/Q)
-	logMSb22 = log(MSb22/Q)
-	b0MSt12 = myB0(MSt12, pMT2, pMGl2, Q)
-	b0MSt22 = myB0(MSt22, pMT2, pMGl2, Q)
+	LT2 = log(pMT2/TLMBscale)
+	LGl2 = log(MGl2/TLMBscale)
+	LSt12 = log(MSt12/TLMBscale)
+	LSt22 = log(MSt22/TLMBscale)
+	LSb12 = log(MSb12/TLMBscale)
+	LSb22 = log(MSb22/TLMBscale)
+	b0MSt12 = myB0(MSt12, pMT2, MGl2, TLMBscale)
+	b0MSt22 = myB0(MSt22, pMT2, MGl2, TLMBscale)
 
-	db = C_F/(4*pi)*AlfasMT*(3/2D0 - logMGl2 + .5D0*(
-     &    MSb12/(pMGl2 - MSb12)*(1 - (logMGl2 - logMSb12)*
-     &      (1 + pMGl2/(pMGl2 - MSb12) + 4*pMGl*Abr/MSb2diff)) +
-     &    MSb22/(pMGl2 - MSb22)*(1 - (logMGl2 - logMSb22)*
-     &      (1 + pMGl2/(pMGl2 - MSb22) - 4*pMGl*Abr/MSb2diff)) ))
+	db = C_F/(4*pi)*AlfasMT*(3/2D0 - LGl2 + .5D0*(
+     &    MSb12/(MGl2 - MSb12)*(1 - (LGl2 - LSb12)*
+     &      (1 + MGl2/(MGl2 - MSb12) + 4*MGl*Abr/MSb2diff)) +
+     &    MSb22/(MGl2 - MSb22)*(1 - (LGl2 - LSb22)*
+     &      (1 + MGl2/(MGl2 - MSb22) - 4*MGl*Abr/MSb2diff)) ))
 
-	dhbhb = C_F/(4*pi)*AlfasMT*(-4 - 2*logMGl2 - 2/MSb2diff*(
-     &    MSb12*(2*logMSb12 -
-     &      (1 - pMGl2/MSb12)**2*log(abs(1 - MSb12/pMGl2))) -
-     &    MSb22*(2*logMSb22 -
-     &      (1 - pMGl2/MSb22)**2*log(abs(1 - MSb22/pMGl2))) ))
+	dhbhb = C_F/(4*pi)*AlfasMT*(-4 - 2*LGl2 - 2/MSb2diff*(
+     &    MSb12*(2*LSb12 -
+     &      (1 - MGl2/MSb12)**2*log(abs(1 - MSb12/MGl2))) -
+     &    MSb22*(2*LSb22 -
+     &      (1 - MGl2/MSb22)**2*log(abs(1 - MSb22/MGl2))) ))
 
-	top = pMT*(3*logMT2 + MSDR) +
-     &    .5D0/pMT*(2*pMGl2*(logMGl2 - 1) -
-     &      MSt12*(logMSt12 - 1) - MSt22*(logMSt22 - 1) +
-     &      (pMGl2 + pMT2 - MSt12 - 2*s2tt*pMT*pMGl)*
-     &        myB0(pMT2, pMGl2, MSt12, Q) +
-     &      (pMGl2 + pMT2 - MSt22 + 2*s2tt*pMT*pMGl)*
-     &        myB0(pMT2, pMGl2, MSt22, Q))
+	top = pMT*(3*LT2 + MSDR) +
+     &    .5D0/pMT*(2*MGl2*(LGl2 - 1) -
+     &      MSt12*(LSt12 - 1) - MSt22*(LSt22 - 1) +
+     &      (MGl2 + pMT2 - MSt12 - 2*s2tt*pMT*MGl)*
+     &        myB0(pMT2, MGl2, MSt12, TLMBscale) +
+     &      (MGl2 + pMT2 - MSt22 + 2*s2tt*pMT*MGl)*
+     &        myB0(pMT2, MGl2, MSt22, TLMBscale))
 
-	stop11 = MSt12*((2 + s2tt2)*(logMSt12 - 1) - 4) -
-     &    s2tt2*MSt22*(logMSt22 - 1) +
-     &    2*(pMGl2*(logMGl2 - 1) + pMT2*(logMT2 - 1) +
-     &      (MSt12 - pMGl2 - pMT2 + 2*s2tt*pMT*pMGl)*b0MSt12)
+	stop11 = MSt12*((2 + s2tt2)*(LSt12 - 1) - 4) -
+     &    s2tt2*MSt22*(LSt22 - 1) +
+     &    2*(MGl2*(LGl2 - 1) + pMT2*(LT2 - 1) +
+     &      (MSt12 - MGl2 - pMT2 + 2*s2tt*pMT*MGl)*b0MSt12)
 
-	stop22 = MSt22*((2 + s2tt2)*(logMSt22 - 1) - 4) -
-     &    s2tt2*MSt12*(logMSt12 - 1) +
-     &    2*(pMGl2*(logMGl2 - 1) + pMT2*(logMT2 - 1) +
-     &      (MSt22 - pMGl2 - pMT2 - 2*s2tt*pMT*pMGl)*b0MSt22)
+	stop22 = MSt22*((2 + s2tt2)*(LSt22 - 1) - 4) -
+     &    s2tt2*MSt12*(LSt12 - 1) +
+     &    2*(MGl2*(LGl2 - 1) + pMT2*(LT2 - 1) +
+     &      (MSt22 - MGl2 - pMT2 - 2*s2tt*pMT*MGl)*b0MSt22)
 
 	stop12 =
-     &    c2tt*s2tt*(MSt22*(1 - logMSt22) - MSt12*(1 - logMSt12)) +
-     &    2*pMT*pMGl*c2tt*(b0MSt12 + b0MSt22)
+     &    c2tt*s2tt*(MSt22*(1 - LSt22) - MSt12*(1 - LSt12)) +
+     &    2*pMT*MGl*c2tt*(b0MSt12 + b0MSt22)
 
-	sbot11 = (2 + s2tb2)*MSb12*(logMSb12 - 1) -
-     &    s2tb2*MSb22*(logMSb22 - 1) - 6*pMGl2 -
-     &    2*(MSb12 - 2*pMGl2)*logMGl2 -
-     &    2*(MSb12 - pMGl2)**2/MSb12*log(abs(1 - MSb12/pMGl2))
+	sbot11 = (2 + s2tb2)*MSb12*(LSb12 - 1) -
+     &    s2tb2*MSb22*(LSb22 - 1) - 6*MGl2 -
+     &    2*(MSb12 - 2*MGl2)*LGl2 -
+     &    2*(MSb12 - MGl2)**2/MSb12*log(abs(1 - MSb12/MGl2))
 
-	sbot22 = (2 + s2tb2)*MSb22*(logMSb22 - 1) -
-     &    s2tb2*MSb12*(logMSb12 - 1) - 6*pMGl2 -
-     &    2*(MSb22 - 2*pMGl2)*logMGl2 -
-     &    2*(MSb22 - pMGl2)**2/MSb22*log(abs(1 - MSb22/pMGl2))
+	sbot22 = (2 + s2tb2)*MSb22*(LSb22 - 1) -
+     &    s2tb2*MSb12*(LSb12 - 1) - 6*MGl2 -
+     &    2*(MSb22 - 2*MGl2)*LGl2 -
+     &    2*(MSb22 - MGl2)**2/MSb22*log(abs(1 - MSb22/MGl2))
 
 	sbot12 =
-     &    c2tb*s2tb*(MSb22*(1 - logMSb22) - MSb12*(1 - logMSb12))
+     &    c2tb*s2tb*(MSb22*(1 - LSb22) - MSb12*(1 - LSb12))
 
 	dMSQ2 = C_F/(4*pi)*AlfasMT*(
      &    (ctt2*stop11 + stt2*stop22 - s2tt*stop12) -
@@ -297,7 +292,7 @@ c	DSS2large(2) = DSS2(2,3,3) - MZ2*C2B*Qu*SW2
 
 #include "TLps.h"
 
-	RealType logMT2, logMA02, top, deltaM, t1, t2
+	RealType LT2, LA02, top, deltaM, t1, t2
 	RealType stop11, stop12, stop22
 	RealType sbot11, sbot12, sbot22
 
@@ -308,39 +303,41 @@ c	DSS2large(2) = DSS2(2,3,3) - MZ2*C2B*Qu*SW2
 	RealType x, y, fW
 	fW(x, y) = .25D0*(x + y) - .5D0*x*y/(x - y)*log(x/y)
 
-	logMT2 = log(pMT2/Q)
-	logMA02 = log(MA02/Q)
+	LT2 = log(pMT2/TLMBscale)
+	LA02 = log(MA02/TLMBscale)
 
-	top = Pitt(pMT2)
+	top = Pitt(pMT2, TLMBscale)
 
-	stop11 = Pi11t(MSt12)
-	stop22 = Pi22t(MSt22)
-	stop12 = .5D0*(Pi12t(MSt12) + Pi12t(MSt22))
+	stop11 = Pi11t(MSt12, TLMBscale)
+	stop22 = Pi22t(MSt22, TLMBscale)
+	stop12 = .5D0*(Pi12t(MSt12, TLMBscale) +
+     &                 Pi12t(MSt22, TLMBscale))
 
-	sbot11 = Pi11b(MSb12)
-	sbot22 = Pi22b(MSb22)
-	sbot12 = .5D0*(Pi12b(MSb12) + Pi12b(MSb22))
+	sbot11 = Pi11b(MSb12, TLMBscale)
+	sbot22 = Pi22b(MSb22, TLMBscale)
+	sbot12 = .5D0*(Pi12b(MSb12, TLMBscale) +
+     &                 Pi12b(MSb22, TLMBscale))
 
 	deltaM = pMT2 - MA02
 	if( abs(deltaM) .lt. 1D-13 ) then
-	  t1 = -logMT2
+	  t1 = -LT2
 	  t2 = -.5D0
 	else
-	  t1 = 1 - (pMT2*logMT2 - MA02*logMA02)/deltaM
-	  t2 = pMT2*(deltaM - pMT2*(logMT2 - logMA02))/deltaM**2
+	  t1 = 1 - (pMT2*LT2 - MA02*LA02)/deltaM
+	  t2 = pMT2*(deltaM - pMT2*(LT2 - LA02))/deltaM**2
 	endif
 
 	db = 1/(32*pi**2)*(
-     &    ht2*(6/4D0*logMT2 - 5/4D0 + 2*t1 +
-     &         2*MUEr2/MSt2diff*(myB0(0D0, MUEr2, MSt12, Q) -
-     &                           myB0(0D0, MUEr2, MSt22, Q))) +
-     &    hb2*(.5D0*t2 + 3/4D0 - 3/2D0*logMA02 +
-     &         myB1(0D0, MUEr2, MSb12, Q) +
-     &         myB1(0D0, MUEr2, MSb22, Q)) +
-     &    (hb2*ctt2 + ht2*stt2)*myB1(0D0, MUEr2, MSt12, Q) +
-     &    (hb2*stt2 + ht2*ctt2)*myB1(0D0, MUEr2, MSt22, Q) )
+     &    ht2*(6/4D0*LT2 - 5/4D0 + 2*t1 +
+     &         2*MUEr2/MSt2diff*(myB0(0D0, MUEr2, MSt12, TLMBscale) -
+     &                           myB0(0D0, MUEr2, MSt22, TLMBscale))) +
+     &    hb2*(.5D0*t2 + 3/4D0 - 3/2D0*LA02 +
+     &         myB1(0D0, MUEr2, MSb12, TLMBscale) +
+     &         myB1(0D0, MUEr2, MSb22, TLMBscale)) +
+     &    (hb2*ctt2 + ht2*stt2)*myB1(0D0, MUEr2, MSt12, TLMBscale) +
+     &    (hb2*stt2 + ht2*ctt2)*myB1(0D0, MUEr2, MSt22, TLMBscale) )
 
-	dvevvev = Nc/(16*pi**2)*ht2*(.5D0*logMT2 - .25D0 -
+	dvevvev = Nc/(16*pi**2)*ht2*(.5D0*LT2 - .25D0 -
      &    (ctt2*ctb2*fW(MSt12, MSb12) + 
      &     ctt2*stb2*fW(MSt12, MSb22) +
      &     stt2*ctb2*fW(MSt22, MSb12) +

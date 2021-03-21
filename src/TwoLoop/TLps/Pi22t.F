@@ -1,15 +1,15 @@
 * Pi22t.F
 * the stop2-stop2 self-energy
 * this file is part of FeynHiggs
-* last modified 11 Jun 15 th
+* last modified 1 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
 
 
-	RealType function Pi22t(p)
+	RealType function Pi22t(p, Q)
 	implicit none
-	RealType p
+	RealType p, Q
 
 #include "TLps.h"
 

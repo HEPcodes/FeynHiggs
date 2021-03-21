@@ -1,0 +1,16 @@
+<< FormCalc`
+
+$KeepDir = "m/bsll-SM"
+
+expr = Keep[1, ".raw"];
+amp1 = UnAbbr[Plus@@ expr]
+
+
+expr = << old/m/bsll-SM.raw;
+abbr = << old/m/bsll-SM.abbr;
+amp2 = Plus@@ expr //. abbr
+
+OLD/: OLD + NEW = 0
+
+test = NEW amp1 + OLD amp2
+

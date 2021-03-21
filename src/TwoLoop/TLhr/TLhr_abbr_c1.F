@@ -3614,7 +3614,7 @@
 	DTLHR "Cc(589)", Cc(589) ENDL
 #endif
 
-	Cc(590) = MGlmT2**2 - Cc(589)*MStop2(1)
+	Cc(590) = MGlpTmStxGlT4(1)
 
 #ifdef DETAILED_DEBUG
 	DTLHR "Cc(590)", Cc(590) ENDL
@@ -7260,7 +7260,7 @@
 	DTLHR "Cc(1153)", Cc(1153) ENDL
 #endif
 
-	Cc(1154) = Cc(1152)**2 - MGl2*Cc(1153)
+	Cc(1154) = MGlpTmStxGlT4(1)
 
 #ifdef DETAILED_DEBUG
 	DTLHR "Cc(1154)", Cc(1154) ENDL

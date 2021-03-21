@@ -1,7 +1,7 @@
 #! /bin/sh
 # configure script for FeynHiggs
 # note: has nothing to do with GNU autoconf
-# last modified 13 Dec 16 th
+# last modified 2 Feb 17 th
 
 
 exec 2> ${LOGFILE:-/dev/null} 3>&1
@@ -281,6 +281,33 @@ $CONF_STATIC"
 CONF_CXXFLAGS="$CXXFLAGS $CONF_M $CONF_STATIC ${CONF_STATIC_GCC:+-static-libstdc++ -static-libgcc}"
 
 
+## does f77 support REAL*16?
+
+echo $echo_n "does $CONF_FC support REAL*16... $echo_c" 1>&3
+
+rm -fr $test*
+
+cat > $test.f << _EOF_
+	program test
+	real*16 a, b
+	a = 2D0**(52/2+2)
+	b = a + 1/a
+	if( a .eq. b ) call exit(1)
+	end
+_EOF_
+eval ${LOGFILE:+cat $test.f 1>&2}
+
+$CONF_FC $CONF_FFLAGS $test.f -o $test$CONF_EXE 1>&2
+
+if ./$test$CONF_EXE 1>&2 ; then
+  echo "yes" 1>&3
+  CONF_HASQUAD=1
+else
+  echo "no" 1>&3
+  CONF_HASQUAD=0
+fi
+
+
 ## does Fortran need externals for U77 routines?
 
 echo $echo_n "does $CONF_FC need externals for U77 routines... $echo_c" 1>&3
@@ -446,6 +473,7 @@ CXX = $CONF_CXX
 CXXFLAGS = $CONF_CXXFLAGS $CONF_STDCPP
 
 QUAD = $CONF_QUAD
+HASQUAD = $CONF_HASQUAD
 ML = $CONF_ML
 MCC = $CONF_MCC
 MCFLAGS = $CONF_MCFLAGS

@@ -1,7 +1,7 @@
 * SLHARecord.F
 * initialize FeynHiggs record from an SLHA data structure
 * this file is part of FeynHiggs
-* last modified 6 Jan 16 th
+* last modified 25 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -72,11 +72,11 @@ c	if( extpar_Q .eq. invalid ) extpar_Q = 2D16
 	  R(iCKMetabar) = Re(VCKMIn_etabar)
 	endif
 
-	call SMDefaults(R(iinvAlfaMZ), R(iAlfasMZ), R(iGF),
+	call SMDefaults(R(iinvAlfa0), R(iinvAlfaMZ), R(iAlfasMZ), R(iGF),
      &    R(iME), R(iMU), R(iMD),
      &    R(iMM), R(iMC), R(iMS),
      &    R(iML),         R(iMB),
-     &    R(iMW), R(iMZ),
+     &    R(iMW), R(iMZ), R(iGammaW), R(iGammaZ),
      &    R(iCKMlambda), R(iCKMA), R(iCKMrhobar), R(iCKMetabar))
 
 	if( int(ModSel_Content) .gt. 0 )

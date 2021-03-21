@@ -1,0 +1,31 @@
+.TH FHSELECTIPOL "9-Feb-2017"
+.SH NAME
+.PP
+FHSelectIpol \- selects which variables to interpolate in
+.SH SYNOPSIS (Fortran version)
+.PP
+integer error, xt, xb
+.sp
+subroutine FHSelectIpol(error, xt, xb)
+.SH SYNOPSIS (Mathematica version)
+.PP
+FHSelectIpol[xt, xb]
+.SH DESCRIPTION
+FHSelectIpol selects the interpolation mode for the trilinear coupling
+parameters.  Interpolation generally occurs when complex values are
+chosen for MUE, M_3, At/Xt, or Ab/Xb, and FHSelectIpol chooses between
+interpolation in At vs Xt, and Ab vs Xb.
+.SH ARGUMENTS
+.TP
+.B error (output)
+zero if successful, otherwise the line number in SelectIpol.F from which
+the error message was emitted.
+.TP
+.B xt (input)
+whether to interpolate in At (0, default) or Xt (1).
+.TP
+.B xb (input)
+whether to interpolate in Ab (0, default) or Xb (1).
+.SH SEE ALSO
+.PP
+libFH(1)

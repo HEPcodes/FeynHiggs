@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 14 Dec 16 th
+* last modified 27 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -334,14 +334,11 @@ c	call SfUpdate(error, X4(0,bTR,4,4), 1)
 
 #include "FH.h"
 
-	call EigenSf(fail, 1,
-     &    MSdL(1,1), MSdL2(1,1), USdL(1,1,1),
+	call EigenSf(fail, MSdL2(1,1), USdL(1,1,1),
      &    DSS2(1,4,1), Mf(bTR,1), MUETB(4), SORT_SF)
-	call EigenSf(fail, 1,
-     &    MSdL(1,2), MSdL2(1,2), USdL(1,1,2),
+	call EigenSf(fail, MSdL2(1,2), USdL(1,1,2),
      &    DSS2(1,4,2), Mf(bTR,2), MUETB(4), SORT_SF)
-	call EigenSf(fail, 1,
-     &    MSdL(1,3), MSdL2(1,3), USdL(1,1,3),
+	call EigenSf(fail, MSdL2(1,3), USdL(1,1,3),
      &    DSS2(1,4,3), Mf(bTR,3), MUETB(4), SORT_SF)
 
 	if( debuglevel .lt. 2 ) return
@@ -386,14 +383,11 @@ c	call SfUpdate(error, X4(0,bTR,4,4), 1)
 	Mf2(ty,3) = Mf(ty,3)**2
 	Kf(3,3,ty) = Mf(ty,3)*Af(t,3)
 
-	call EigenSf(fail, 1,
-     &    MSf(1,ty,1), MSf2(1,ty,1), USf(1,1,ty,1),
+	call EigenSf(fail, MSf2(1,ty,1), USf(1,1,ty,1),
      &    DSS2(1,ts,1), Mf(ty,1), Xf(t,1), sort)
-	call EigenSf(fail, 1,
-     &    MSf(1,ty,2), MSf2(1,ty,2), USf(1,1,ty,2),
+	call EigenSf(fail, MSf2(1,ty,2), USf(1,1,ty,2),
      &    DSS2(1,ts,2), Mf(ty,2), Xf(t,2), sort)
-	call EigenSf(fail, 1,
-     &    MSf(1,ty,3), MSf2(1,ty,3), USf(1,1,ty,3),
+	call EigenSf(fail, MSf2(1,ty,3), USf(1,1,ty,3),
      &    DSS2(1,ts,3), Mf(ty,3), Xf(t,3), sort)
 	error = ior(error, fail)
 	if( fail .ne. 0 ) Error(error, msg(t))

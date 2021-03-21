@@ -40,7 +40,8 @@ static void setFlags()
 
 static void setPara()
 {
-  cRealType invAlfa = -1;
+  cRealType invAlfa0 = -1;
+  cRealType invAlfaMZ = -1;
   cRealType AlfasMZ = -1;
   cRealType GF = -1;
 
@@ -52,8 +53,11 @@ static void setPara()
   cRealType MS = -1;
   cRealType ML = -1;
   cRealType MB = -1;
+
   cRealType MW = -1;
   cRealType MZ = -1;
+  cRealType GammaW = -1;
+  cRealType GammaZ = -1;
 
   cRealType CKMlambda = -1;
   cRealType CKMA = -1;
@@ -91,9 +95,9 @@ static void setPara()
   int error;
 
   FHSetSMPara(&error,
-    invAlfa, AlfasMZ, GF,
+    invAlfa0, invAlfaMZ, AlfasMZ, GF,
     ME, MU, MD, MM, MC, MS, ML, MB,
-    MW, MZ,
+    MW, MZ, GammaW, GammaZ,
     CKMlambda, CKMA, CKMrhobar, CKMetabar);
   if( error ) exit(error);
 

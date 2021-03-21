@@ -1,6 +1,6 @@
 * SLHAWrite.F
 * write a file in SUSY Les Houches Accord format (hep-ph/0311123, 0801.0045)
-* last modified 28 Jun 12 th
+* last modified 4 Jan 17 th
 
 #include "PDG.h"
 #include "SLHAIntern.h"
@@ -948,11 +948,12 @@ if( val .ne. invalid ) write(unit,206) val, name
 
 	do im = 1, SLHAExist(BlockPrecObs(1), LengthPrecObs)
 	  Block(prcob)
-	  Var(1, PrecObs_DeltaRho, "DeltaRho")
-	  Var(2, PrecObs_MWMSSM, "MWMSSM")
-	  Var(3, PrecObs_MWSM, "MWSM")
-	  Var(4, PrecObs_SW2effMSSM, "SW2effMSSM")
-	  Var(5, PrecObs_SW2effSM, "SW2effSM")
+	  Var(1, PrecObs_DeltaR, "DeltaR")
+	  Var(2, PrecObs_DeltaRho, "DeltaRho")
+	  Var(3, PrecObs_MWMSSM, "MWMSSM")
+	  Var(4, PrecObs_MWSM, "MWSM")
+	  Var(5, PrecObs_SW2effMSSM, "SW2effMSSM")
+	  Var(6, PrecObs_SW2effSM, "SW2effSM")
 	  Var(11, PrecObs_gminus2mu, "gminus2mu")
 	  Var(21, PrecObs_EDMeTh, "EDMeTh")
 	  Var(22, PrecObs_EDMn, "EDMn")

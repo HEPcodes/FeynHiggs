@@ -18,12 +18,15 @@ MAIN = SetFlags.o RetrieveFlags.o \
   SetFV.o RetrieveFV.o GetFV.o SetSLHA.o \
   Para.o Sfermions.o SetDebug.o \
   SetExt.o GetSelf.o HiggsCorr.o Uncertainties.o \
-  Couplings.o SelectUZ.o Constraints.o Flavour.o \
+  Couplings.o SelectUZ.o SelectIpol.o \
+  Constraints.o EWPO.o Flavour.o \
   HiggsProd.o CalcSelf.o AddSelf.o AddExt.o Error.o \
   DRbartoOS.o DeltaMT.o AlphaS.o MDcorr.o Deltab2L.o \
   Output.o OutputSLHA.o
 #MAIN += gghNLO.o
 #MAIN += DRbar2OS_t.o
+
+DR = Deltar.o DrMSSM1LChaNeu.o DrhoMSSM1LSf.o DrhoSUSY2LGlu.o
 
 REC = RecordIndex.o ClearRecord.o \
   ReadRecord.o NextToken.o SLHARecord.o \
@@ -36,8 +39,8 @@ LT = cache.o ini.o auxB.o auxCD.o A0.o \
   A0del.o myG.o TF.o T134.o T134p.o Li2.o Dilog.o
 
 UTIL = Gauss.o ODESolve.o EigenSf.o SfEigensystem.o \
-  HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o LU.o \
-  FindMinimum.o extself.o
+  HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o \
+  LU.o FindMinimum.o Interpolate.o extself.o
 
 SLHA = SLHAClear.o SLHARead.o SLHAWrite.o \
   SLHAGetInfo.o SLHAPutInfo.o SLHACopyString.o \
@@ -72,12 +75,14 @@ TLSP = TLsp.o TLsp_atat_c1.o TLsp_atat_c2.o \
   TLsp_atat_o1.o TLsp_atat_o2.o
 
 TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
-  Resum4Ha.o Resum4H.o rgeloopfun.o beta4H.o \
   CalcRenSETL.o MTrepara.o InvTri.o Phi.o Sfgl.o
 
-Resum4H.o: Resum4H.F Resum4H.h FOSubtract.h
+EFT = Resum4H.o Resum4H1.o \
+  Resum4H23.o eftloopfun.o beta4H.o TLthresholds.o
 
-Resum4Ha.o: Resum4Ha.F Resum4H.h
+Resum4H1.o: Resum4H1.F Resum4H.h
+
+Resum4H23.o: Resum4H23.F Resum4H.h FOSubtract.h
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 
@@ -89,13 +94,9 @@ GM2_2L_1 = $(GM2_2L_0) $(GM2_2L_FULL)
 
 GM2 = gm2_1L_1.o $(GM2_2L_$(GM2FULL))
 
-CONSTRAINTS = $(GM2) EWPO.o DeltaRho_1L.o DeltaRho_2L.o EDM.o \
-  Bsgamma.o DeltaMs.o Bsll.o
+CONSTRAINTS = $(GM2) EDM.o Bsgamma.o DeltaMs.o Bsll.o
 
 Bsgamma.o DeltaMs.o Bsll.o: debug.h
-
-POBS =
-#POBS += drho.o
 
 HGAGA = hgaga-SquaredME.o \
   hgaga-abbr1s.o hgaga-abbr1h.o hgaga-v1.o \
@@ -215,7 +216,7 @@ DECAYS = VecSet.o \
   $(HDD) $(HDDSM) \
   $(HHH)
 
-MOST = $(MAIN) $(ONELOOP) $(TWOLOOP) $(DECAYS) $(CONSTRAINTS) $(POBS)
+MOST = $(MAIN) $(ONELOOP) $(TWOLOOP) $(EFT) $(DECAYS) $(CONSTRAINTS) $(DR)
 
 ALL = $(MOST) $(REC) $(LT) $(UTIL) $(SLHA)
 
@@ -256,7 +257,8 @@ SetFlags.o RetrieveFlags.o SetSMPara.o RetrieveSMPara.o \
   RetrievePara.o SetSLHA.o SetCKM.o RetrieveCKM.o SetNMFV.o \
   RetrieveNMFV.o Para.o GetPara.o GetSelf.o CalcSelf.o \
   HiggsCorr.o Uncertainties.o Couplings.o SelectUZ.o \
-  HiggsProd.o Constraints.o DRbartoOS.o Error.o: debug.h
+  HiggsProd.o Flavour.o EWPO.o Constraints.o \
+  DRbartoOS.o Error.o: debug.h
 
 CalcSelf.o: OneLoop.h
 
@@ -293,15 +295,19 @@ $(GM2_2L_0): gm2_2L.h
 
 $(GM2_2L_FULL): gm2_2L_full.h
 
-DeltaRho_1L.o $(GM2): looptools.h ltcache.h
-
-dr.o drho.o: pobs.h
+DeltaRho_1L.o $(GM2) $(DR): looptools.h ltcache.h
 
 Bsgamma.o: bsgamma.h bsglu.h looptools.h ltcache.h
 
 DeltaMs.o: deltaMs.h looptools.h ltcache.h
 
 Bsll.o: bsll.h looptools.h ltcache.h
+
+Deltar.o: Deltar.h DrSM1L.h DrMSSM1LVH.h DrMSSM1LSf.h
+
+DrMSSM1LChaNeu.o: Deltar.h DrMSSM1LChaNeu.h
+
+DrhoSUSY2LGlu.o: Deltar.h DrhoSUSY2LdMSb12.h DrhoSUSY2LGluino.h
 
 $(HGAGA): hgaga-vars.h
 

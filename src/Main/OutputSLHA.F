@@ -1,7 +1,7 @@
 * OutputSLHA.F
 * fill SLHA data structure from FeynHiggs inputs and outputs
 * this file is part of FeynHiggs
-* last modified 26 Jan 16 th
+* last modified 20 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -436,28 +436,36 @@ R1	  Af_Q(t) = QSf(t)
 	call SLHAAddDecay(slhadata, BR(tBF(2)),
      &    parent, 2, PDG_Hp, PDG_bottom)
 
-*** bit 6: Constraints
+*** bit 6: EW Precision Observables
 
 6	if( .not. btest(key, 6) ) goto 7
 
+	call FHEWPO(error,
+     &    PrecObs_DeltaR, PrecObs_DeltaRho,
+     &    PrecObs_MWMSSM, PrecObs_MWSM,
+     &    PrecObs_SW2effMSSM, PrecObs_SW2effSM)
+
+	if( error .ne. 0 ) return
+
+*** bit 7: Flavour
+
+7	if( .not. btest(key, 7) ) goto 8
+
+	call FHFlavour(error,
+     &    PrecObs_bsgammaMSSM, PrecObs_bsgammaSM,
+     &    PrecObs_DeltaMsMSSM, PrecObs_DeltaMsSM,
+     &    PrecObs_BsmumuMSSM, PrecObs_BsmumuSM)
+
+*** bit 8: Other Constraints
+
+8	if( .not. btest(key, 8) ) return
+
 	call FHConstraints(error,
-     &    Re(PrecObs_gminus2mu),
-     &    Re(PrecObs_DeltaRho),
-     &    Re(PrecObs_MWMSSM), Re(PrecObs_MWSM),
-     &    Re(PrecObs_SW2effMSSM), Re(PrecObs_SW2effSM),
-     &    Re(PrecObs_EDMeTh), Re(PrecObs_EDMn), Re(PrecObs_EDMHg),
+     &    PrecObs_gminus2mu,
+     &    PrecObs_EDMeTh, PrecObs_EDMn, PrecObs_EDMHg,
      &    ccb)
 	if( error .ne. 0 ) return
 
 	if( ccb .ne. 0 ) Warning("Colour-breaking minimum detected")
-
-*** bit 7: Flavour
-
-7	if( .not. btest(key, 7) ) return
-
-	call FHFlavour(error,
-     &    Re(PrecObs_bsgammaMSSM), Re(PrecObs_bsgammaSM),
-     &    Re(PrecObs_DeltaMsMSSM), Re(PrecObs_DeltaMsSM),
-     &    Re(PrecObs_BsmumuMSSM), Re(PrecObs_BsmumuSM))
 	end
 

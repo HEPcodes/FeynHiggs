@@ -64,7 +64,10 @@
 	"FHCouplings computes the Higgs couplings, widths, and branching ratios."
 
 :Evaluate: FHConstraints::usage =
-	"FHConstraints evaluates electroweak precision observables as further constraints on the MSSM parameter space."
+	"FHConstraints evaluates g-2 and EDMs as further constraints on the MSSM parameter space."
+
+:Evaluate: FHEWPO::usage =
+	"FHEWPO evaluates electroweak precision observables as further constraints on the MSSM parameter space."
 
 :Evaluate: FHFlavour::usage =
 	"FHFlavour evaluates flavour observables as further constraints on the MSSM parameter space."
@@ -120,12 +123,20 @@
 :Evaluate: FHSelectUZ::usage =
 	"FHSelectUZ chooses which of UHiggs (= 1) or ZHiggs (= 2) to use for internal and external Higgs bosons, i.e. in the couplings and the decays, respectively, and whether to use resummed masses in the couplings."
 
+:Evaluate: FHSelectIpol::usage =
+	"FHSelectIpol chooses between interpolation in At vs Xt, and Ab vs Xb."
+
+:Evaluate: FHAlphaS::usage =
+	"FHAlphaS computes the value of alpha_s at a given scale."
+
+:Evaluate: FHAlphaSNF::usage =
+	"FHAlphaSNF contains the number of flavors used in the last call to FHAlphaS."
+
+:Evaluate: FHRunQCD::usage =
+	"FHRunQCD runs a mass from scale 1 to scale 2."
+
 :Evaluate: FHError::usage =
 	"FHError is an error message returned by FeynHiggs."
-
-:Evaluate: FHAbort[f_Symbol] := (Message[f::badsyntax]; Abort[])
-
-:Evaluate: FHWrite[s_String] := WriteString[$Output, s]
 
 :Evaluate: General::badsyntax =
 	"Probably not all arguments have numerical values."
@@ -139,18 +150,18 @@
 
 :Evaluate: Module[ {offset = 1, indexdef},
 	Attributes[indexdef] = {HoldAll, Listable};
-	indexdef[stride_, i_] :=
-	  (i =.; ToString[i] -> (i = (offset += stride) - stride));
+	indexdef[stride_, ind_] := (ind =.;
+	  ToString[ind] -> (ind = (offset += stride) - stride));
 	FHRecordIndices = Flatten[{
 	  indexdef[1, {iVar, iLower, iUpper, iStep}],
 	  offset = 1;
 	  indexdef[1, iAdmin],
 	  indexdef[0, FHRecordR],
-	  indexdef[1, {iinvAlfaMZ, iAlfasMZ, iGF,
+	  indexdef[1, {iinvAlfa0, iinvAlfaMZ, iAlfasMZ, iGF,
 	    iME, iMU, iMD,
 	    iMM, iMC, iMS,
 	    iML, iMT, iMB,
-	    iMW, iMZ,
+	    iMW, iMZ, iGammaW, iGammaZ,
 	    iCKMlambda, iCKMA, iCKMrhobar, iCKMetabar,
 	    iTB, iMA0, iMHp,
 	    iMSusy,
@@ -188,6 +199,10 @@
 	  "\n#endif\n"]
 
 :Evaluate: Begin["`Private`"]
+
+:Evaluate: FeynHiggs`FHAbort[f_Symbol] := (Message[f::badsyntax]; Abort[])
+
+:Evaluate: FeynHiggs`FHWrite[s_String] := WriteString[$Output, s]
 
 :Begin:
 :Function: mFHSetFlags
@@ -243,19 +258,19 @@
 :Begin:
 :Function: mFHSetSMPara
 :Pattern:
-  FHSetSMPara[invAlfa_, AlfasMZ_, GF_,
+  FHSetSMPara[invAlfa0_, invAlfaMZ_, AlfasMZ_, GF_,
     ME_, MM_, ML_, MU_, MC_, MD_, MS_, MB_,
-    MW_, MZ_,
+    MW_, MZ_, GammaW_, GammaZ_,
     CKMlambda_, CKMA_, CKMrhobar_, CKMetabar_]
 :Arguments: {
-  N[invAlfa], N[AlfasMZ], N[GF],
+  N[invAlfa0], N[invAlfaMZ], N[AlfasMZ], N[GF],
   N[ME], N[MM], N[ML], N[MU], N[MC], N[MD], N[MS], N[MB],
-  N[MW], N[MZ],
+  N[MW], N[MZ], N[GammaW], N[GammaZ],
   N[CKMlambda], N[CKMA], N[CKMrhobar], N[CKMetabar]}
 :ArgumentTypes: {
-  Real, Real, Real,
+  Real, Real, Real, Real,
   Real, Real, Real, Real, Real, Real, Real, Real,
-  Real, Real,
+  Real, Real, Real, Real,
   Real, Real, Real, Real }
 :ReturnType: Manual
 :End:
@@ -491,6 +506,14 @@
 :End:
 
 :Begin:
+:Function: mFHEWPO
+:Pattern: FHEWPO[]
+:Arguments: {}
+:ArgumentTypes: {}
+:ReturnType: Manual
+:End:
+
+:Begin:
 :Function: mFHFlavour
 :Pattern: FHFlavour[]
 :Arguments: {}
@@ -628,6 +651,30 @@
 :ReturnType: Manual
 :End:
 
+:Begin:
+:Function: mFHSelectIpol
+:Pattern: FHSelectIpol[xt_, xb_]
+:Arguments: {xt, xb}
+:ArgumentTypes: {Integer, Integer}
+:ReturnType: Manual
+:End:
+
+:Begin:
+:Function: mFHAlphaS
+:Pattern: FHAlphaS[Q_]
+:Arguments: {Q}
+:ArgumentTypes: {Real}
+:ReturnType: Manual
+:End:
+
+:Begin:
+:Function: mFHRunQCD
+:Pattern: FHRunQCD[Qto_, mfrom_, Qfrom_]
+:Arguments: {Qto, mfrom, Qfrom}
+:ArgumentTypes: {Real, Real, Real}
+:ReturnType: Manual
+:End:
+
 :Evaluate: CTensor[a_, dims_] :=
   RTensor[Apply[Complex, Partition[a, 2], 1], dims]
 
@@ -652,7 +699,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 17 Jun 16 th
+		last modified 9 Feb 17 th
 */
 
 
@@ -952,9 +999,10 @@ static void mFHRetrieveSMPara(void)
 
   if( error ) MLPutStatus(stdlink, error);
   else {
-    MLPutFunction(stdlink, "List", 17);
+    MLPutFunction(stdlink, "List", 20);
 
-    MLPutRRule(stdlink, invAlfa);
+    MLPutRRule(stdlink, invAlfa0);
+    MLPutRRule(stdlink, invAlfaMZ);
     MLPutRRule(stdlink, AlfasMZ);
     MLPutRRule(stdlink, GF);
 
@@ -969,6 +1017,8 @@ static void mFHRetrieveSMPara(void)
 
     MLPutRRule(stdlink, MW);
     MLPutRRule(stdlink, MZ);
+    MLPutRRule(stdlink, GammaW);
+    MLPutRRule(stdlink, GammaZ);
 
     MLPutRRule(stdlink, CKMlambda);
     MLPutRRule(stdlink, CKMA);
@@ -994,10 +1044,12 @@ static void mFHGetSMPara(void)
 
   if( error ) MLPutStatus(stdlink, error);
   else {
-    MLPutFunction(stdlink, "List", 1);
+    MLPutFunction(stdlink, "List", 2);
 
     MLPutRule(stdlink, CKM);
     MLPutComplexTensor(stdlink, (ComplexType *)CKM, 3*3, (int[]){3, 3}, 2);
+
+    MLPutRRule(stdlink, DeltaAlfa);
   }
 
   MLEndPacket(stdlink);
@@ -1303,7 +1355,7 @@ static void mFHGetPara(void)
 
   if( error ) MLPutStatus(stdlink, error);
   else {
-    MLPutFunction(stdlink, "List", 5*(3*2 + 2) + 9);
+    MLPutFunction(stdlink, "List", 5*(3*2 + 2) + 10);
 
     for( t = 0; t < 5; ++t ) {
       for( g = 0; g < 3; ++g ) {
@@ -1347,6 +1399,8 @@ static void mFHGetPara(void)
 
     MLPutRLRule(stdlink, MHtree, 4);
     MLPutRRule(stdlink, SAtree);
+
+    MLPutRRule(stdlink, AlfasMT);
   }
 
   MLEndPacket(stdlink);
@@ -1613,18 +1667,41 @@ static void mFHConstraints(void)
 
   if( error ) MLPutStatus(stdlink, error);
   else {
-    MLPutFunction(stdlink, "List", 10);
+    MLPutFunction(stdlink, "List", 5);
 
     MLPutRRule(stdlink, gm2);
+    MLPutRRule(stdlink, EDMeTh);
+    MLPutRRule(stdlink, EDMn);
+    MLPutRRule(stdlink, EDMHg);
+    MLPutIRule(stdlink, ccb);
+  }
+
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHEWPO(void)
+{
+  int error;
+  _La_(argsEWPO);
+
+  BeginRedirect();
+
+  FHEWPO(&error, _Ra_(argsEWPO));
+
+  EndRedirect();
+
+  if( error ) MLPutStatus(stdlink, error);
+  else {
+    MLPutFunction(stdlink, "List", 6);
+
+    MLPutRRule(stdlink, DeltaR);
     MLPutRRule(stdlink, DeltaRho);
     MLPutRRule(stdlink, MWMSSM);
     MLPutRRule(stdlink, MWSM);
     MLPutRRule(stdlink, SW2MSSM);
     MLPutRRule(stdlink, SW2SM);
-    MLPutRRule(stdlink, EDMeTh);
-    MLPutRRule(stdlink, EDMn);
-    MLPutRRule(stdlink, EDMHg);
-    MLPutIRule(stdlink, ccb);
   }
 
   MLEndPacket(stdlink);
@@ -1645,7 +1722,7 @@ static void mFHFlavour(void)
 
   if( error ) MLPutStatus(stdlink, error);
   else {
-    MLPutFunction(stdlink, "List", 4);
+    MLPutFunction(stdlink, "List", 6);
 
     MLPutRRule(stdlink, BsgammaMSSM);
     MLPutRRule(stdlink, BsgammaSM);
@@ -1847,7 +1924,8 @@ static void mFHReadRecord(cchar *file)
 
   EndRedirect();
 
-  if( error ) MLPutStatus(stdlink, error);
+/* 0 = SLHA, 2 = FH file, all others are true errors */
+  if( error & ~2 ) MLPutStatus(stdlink, error);
   else {
     MLPutFunction(stdlink, "FeynHiggs`Private`ToRecord", 1);
     MLPutRealList(stdlink, record, nrecord);
@@ -2011,6 +2089,68 @@ static void mFHSelectUZ(cint uzint, cint uzext, cint mfeff)
   EndRedirect();
 
   MLPutStatus(stdlink, error);
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHSelectIpol(cint xt, cint xb)
+{
+  int error;
+
+  BeginRedirect();
+
+  FHSelectIpol(&error, xt, xb);
+
+  EndRedirect();
+
+  MLPutStatus(stdlink, error);
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHAlphaS(cRealType Q)
+{
+  int error, nf;
+  RealType AlphaS;
+
+  BeginRedirect();
+
+  FHAlphaS(&error, &AlphaS, &nf, Q);
+
+  EndRedirect();
+
+  if( error ) MLPutStatus(stdlink, error);
+  else {
+    MLPutFunction(stdlink, "CompoundExpression", 2);
+
+    MLPutFunction(stdlink, "Set", 2);
+    MLPutSymbol(stdlink, "FHAlphaSNF");
+    MLPutInteger(stdlink, nf);
+
+    MLPutReal(stdlink, AlphaS);
+  }
+
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHRunQCD(cRealType Qto, cRealType mfrom, cRealType Qfrom)
+{
+  int error;
+  RealType mto;
+
+  BeginRedirect();
+
+  FHRunQCD(&error, &mto, Qto, mfrom, Qfrom);
+
+  EndRedirect();
+
+  if( error ) MLPutStatus(stdlink, error);
+  else MLPutReal(stdlink, mto);
+
   MLEndPacket(stdlink);
 }
 

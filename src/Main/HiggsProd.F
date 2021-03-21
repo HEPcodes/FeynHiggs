@@ -5,7 +5,7 @@
 * charged-Higgs cross-section data are from Tilman Plehn
 *   http://www.ph.ed.ac.uk/~tplehn/charged_higgs
 * this file is part of FeynHiggs
-* last modified 22 Feb 16 th
+* last modified 10 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -197,6 +197,10 @@
 	    else if( abs(sqrts - 8) .lt. 1D-5 ) then
 
 #include "NHiggsProdFits-LHC8.f"
+
+	    else if( abs(sqrts - 13) .lt. 1D-5 ) then
+
+#include "NHiggsProdFits-LHC13.f"
 
 	    else if( abs(sqrts - 14) .lt. 1D-5 ) then
 

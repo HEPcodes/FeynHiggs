@@ -1,7 +1,7 @@
 * SetFV.F
 * set the flavour-violation parameters
 * this file is part of FeynHiggs
-* last modified 25 Apr 13 th
+* last modified 27 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -60,6 +60,8 @@
 	  DTAGimz(ideltaERR23, deltaERR23_)
 	  DTAGrez(ideltaERR13, deltaERR13_)
 	  DTAGimz(ideltaERR13, deltaERR13_)
+
+	  call flush(paraunit)
 	endif
 
 	sf_valid = 0
@@ -170,6 +172,8 @@
 	  DTAGimz(ideltaDRR23, deltaDRR23_)
 	  DTAGrez(ideltaDRR13, deltaDRR13_)
 	  DTAGimz(ideltaDRR13, deltaDRR13_)
+
+	  call flush(paraunit)
 	endif
 
 	sf_valid = 0

@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 9 Dec 16 th
+* last modified 27 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -507,7 +507,9 @@ c	  i = -iand(isB(t), isMFV(t))
 
 	DeltaHhh = .5D0*cI*EL0*MW/(CW2*SW)*
      &    3*SA*CA2/SB/MZ2*
-     &    (CA2*se2R(h0h0) + SA2*se2R(HHHH) + S2A*se2R(h0HH))
+     &    (CA2*(se2R(h0h0) + seEFT(h0h0)) +
+     &     SA2*(se2R(HHHH) + seEFT(HHHH)) +
+     &     S2A*(se2R(h0HH) + seEFT(h0HH)))
 
 	call hhh_CalcRenConst
 
@@ -1257,18 +1259,15 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	RealType mh2, qrun
 	integer nf
 
-	RealType Run
-	external Run
-
 	mh2 = mh**2
 
 	call AlphaS(AlfasMH, nf, mh2)
 
-	qrun = Run(4D0, mh2)
+	call RunQCD(qrun,mh2, 1D0,2D0**2)
 	Mf(tH,1) = MU*qrun
-	Mf(tH,2) = MC*Run(MC2, mh2)
+	call RunQCD(Mf(tH,2),mh2, MC,MC2)
 	Mf(tH,3) = mtr
-	if( Mf(tH,3) .lt. 0 ) Mf(tH,3) = Mf(tT,3)*Run(MT2, mh2)
+	if( Mf(tH,3) .lt. 0 ) call RunQCD(Mf(tH,3),mh2, Mf(tT,3),MT2)
 	if( debuglevel .ge. 5 ) then
 	  DCOUP "SetDecayScale Q =", mh ENDL
 	  DCOUP "Alfas(Q) =", AlfasMH	ENDL
@@ -1280,7 +1279,7 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 
 	Mf(bH,1) = MD*qrun
 	Mf(bH,2) = MS*qrun
-	Mf(bH,3) = MB*Run(MB2, mh2)
+	call RunQCD(Mf(bH,3),mh2, MB,MB2)
 	if( debuglevel .ge. 5 ) then
 	  DCOUP "Mf(bH,1) =", Mf(bH,1)	ENDL
 	  DCOUP "  (bH,2) =", Mf(bH,2)	ENDL

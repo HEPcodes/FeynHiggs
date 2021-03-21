@@ -2,7 +2,7 @@
 * Solution of the linear system A.x = B by LU decomposition
 * with partial pivoting
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 20 Jan 17 th
 
 * Author: Michael Rauch, 7 Dec 2004
 * Reference: Folkmar Bornemann, lecture notes to
@@ -92,7 +92,7 @@
 	  endif
 
 * division by the pivot element
-	  if( Element(A,j,j) .ne. 0 ) then
+	  if( abs(Element(A,j,j)) .gt. EPS ) then
 	    tmp = 1/Element(A,j,j)
 	    do i = j + 1, n
 	      Element(A,i,j) = Element(A,i,j)*tmp

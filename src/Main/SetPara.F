@@ -1,7 +1,7 @@
 * SetPara.F
 * set the input parameters for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 25 Jan 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -30,9 +30,9 @@
 #include "FH.h"
 
 	if( sm_valid .ne. valid ) call FHSetSMPara(error,
-     &    -1D0, -1D0, -1D0,
+     &    -1D0, -1D0, -1D0, -1D0,
      &    -1D0, -1D0, -1D0, -1D0, -1D0, -1D0, -1D0, -1D0,
-     &    -1D0, -1D0,
+     &    -1D0, -1D0, -1D0, -1D0,
      &    -1D0, -1D0, -1D0, -1D0)
 
 	call BeginPara(error, scalefactor_, MT_, TB_, M_3_)
