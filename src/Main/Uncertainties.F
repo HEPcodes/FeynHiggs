@@ -2,7 +2,7 @@
 * Compute (actually, not completely invent) an error estimate
 * for the Higgs masses and mixings
 * this file is part of FeynHiggs
-* last modified 30 Jan 18 th
+* last modified 16 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -130,19 +130,19 @@
 
 	tMsave = tM2
 
-	if( tM2 .eq. tT .and. loglevel .eq. 1 ) then
-* we re-do the computation with tT2 (i.e. MT(MT) incl EW corr),
+	if( tM2 .eq. tMT .and. loglevel .eq. 1 ) then
+* we re-do the computation with tMT1 (i.e. MT(MT) incl EW corr),
 * so that the error estimate for loglevel = 1 is not smaller than
 * for loglevel = 2
-	  tM2 = tT2
-	  tM1 = tT2
+	  tM2 = tMT1
+	  tM1 = tMT1
 	  tl_valid = 0
 	  eft_valid = 0
 	  call CalcHiggsCorr(err)
 	  Hix0 = Hi%x
 	endif
 
-	tM2 = tSelect(tT2,3,3,3, runningMT)
+	tM2 = tSelect(tMT1,tM3,tM3,tM3, runningMT)
 c	if( loglevel .eq. 0 ) tM1 = tM2
 	tM1 = tM2
 

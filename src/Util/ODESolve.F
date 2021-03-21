@@ -1,10 +1,11 @@
 * ODESolve.F
 * ODE solver a la Numerical Recipes
 * this file is part of FeynHiggs
-* last modified 22 Jan 16 th
+* last modified 27 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
+#include "debug.h"
 
 c#define VERBOSE
 c#define WARNINGS
@@ -15,6 +16,9 @@ c#define WARNINGS
 	integer nvar
 	external f, userarg
 	RealType ystart(*), x1, x2, eps, h1
+
+#include "FH.h"
+#define __SUBROUTINE__ "ODESolve"
 
 	RealType safety, pgrow, pshrink, errcon
 	parameter (safety = .9D0)
@@ -45,80 +49,77 @@ c#define WARNINGS
 	parameter (nvarmax = 16, maxstep = 10000)
 
 	RealType x0, y0(nvarmax), y(nvarmax), dydx(nvarmax,6)
-	RealType h, h0, yerr, yscal, errmax
-	integer i, step
+	RealType h, h0, errmax
+	integer step
 
 	h = sign(h1, x2 - x1)
 	x0 = x1
-	do i = 1, nvar
-	  y0(i) = ystart(i)
-	enddo
+	y0(1:nvar) = ystart(1:nvar)
 
 	do step = 1, maxstep
-#ifdef VERBOSE
-	  print *, "nvar =", nvar
-	  print *, "step,stepsize,x ", step, h, x0
-	  print *, "y =", y0(1:nvar)
+#ifdef DETAILED_DEBUG
+	  DPARA "nvar  =", nvar		ENDL
+	  DPARA "step  =", step		ENDL
+	  DPARA "h     =", h		ENDL
+	  DPARA "x0    =", x0		ENDL
+	  DPARA "y0(1) =", y0(1)	ENDL
 #endif
 	  call f(dydx(1,1), y0, x0, userarg)
 	  h0 = h
 	  if( (x0 + h - x2)*(x0 + h - x1) .gt. 0 ) h = x2 - x0
 
+1	  continue
+#ifdef DETAILED_DEBUG
+	  DPARA "h     =", h ENDL
+#endif
+
 * determine Cash-Karp step
-1	  do i = 1, nvar
-	    y(i) = y0(i) + B21*dydx(i,1)*h
-	  enddo
+	  y(1:nvar) = y0(1:nvar) + h*
+     &      B21*dydx(1:nvar,1)
 	  call f(dydx(1,2), y, x0 + A2*h, userarg)
 
-	  do i = 1, nvar
-	    y(i) = y0(i) + (B31*dydx(i,1) + B32*dydx(i,2))*h
-	  enddo
+	  y(1:nvar) = y0(1:nvar) + h*(
+     &      B31*dydx(1:nvar,1) + B32*dydx(1:nvar,2) )
 	  call f(dydx(1,3), y, x0 + A3*h, userarg)
 
-	  do i = 1, nvar
-	    y(i) = y0(i) + (B41*dydx(i,1) + B42*dydx(i,2) +
-     &                      B43*dydx(i,3))*h
-	  enddo
+	  y(1:nvar) = y0(1:nvar) + h*(
+     &      B41*dydx(1:nvar,1) + B42*dydx(1:nvar,2) +
+     &      B43*dydx(1:nvar,3) )
 	  call f(dydx(1,4), y, x0 + A4*h, userarg)
 
-	  do i = 1, nvar
-	    y(i) = y0(i) + (B51*dydx(i,1) + B52*dydx(i,2) +
-     &                      B53*dydx(i,3) + B54*dydx(i,4))*h
-	  enddo
+	  y(1:nvar) = y0(1:nvar) + h*(
+     &      B51*dydx(1:nvar,1) + B52*dydx(1:nvar,2) +
+     &      B53*dydx(1:nvar,3) + B54*dydx(1:nvar,4) )
 	  call f(dydx(1,5), y, x0 + A5*h, userarg)
 
-	  do i = 1, nvar
-	    y(i) = y0(i) + (B61*dydx(i,1) + B62*dydx(i,2) +
-     &                      B63*dydx(i,3) + B64*dydx(i,4) +
-     &                      B65*dydx(i,5))*h
-	  enddo
+	  y(1:nvar) = y0(1:nvar) + h*(
+     &      B61*dydx(1:nvar,1) + B62*dydx(1:nvar,2) +
+     &      B63*dydx(1:nvar,3) + B64*dydx(1:nvar,4) +
+     &      B65*dydx(1:nvar,5) )
 	  call f(dydx(1,6), y, x0 + A6*h, userarg)
 
-	  errmax = 0
-	  do i = 1, nvar
-	    yscal = abs(y0(i)) + abs(h0*dydx(i,1)) + 1D-30
-	    yerr = h*(DC1*dydx(i,1) + DC3*dydx(i,3) +
-     &                DC4*dydx(i,4) + DC5*dydx(i,5) + DC6*dydx(i,6))
-	    errmax = max(errmax, abs(yerr/yscal))
-	  enddo
-
-	  errmax = errmax/eps
+	  errmax = maxval(
+     &      abs(h*(DC1*dydx(1:nvar,1) + DC3*dydx(1:nvar,3) +
+     &             DC4*dydx(1:nvar,4) + DC5*dydx(1:nvar,5) +
+     &             DC6*dydx(1:nvar,6)))/
+     &      (abs(y0(1:nvar)) + abs(h0*dydx(1:nvar,1)) + 1D-30) )/eps
+#ifdef DETAILED_DEBUG
+	    DPARA "errmax =", errmax ENDL
+#endif
 	  if( errmax .gt. 1 ) then
 	    h = sign(max(abs(safety*h*errmax**pshrink), .1D0*abs(h)), h)
-	    if( x0 + h .eq. x0 ) then
-#ifdef WARNINGS
-	      print *, "stepsize underflow in ODESolve"
-#endif
+* dble, not DBLE here (intentional truncation to REAL*8)
+	    if( dble(x0 + h) .eq. dble(x0) ) then
+	      Warning("stepsize underflow in ODESolve")
 	    else
 	      goto 1
 	    endif
 	  endif
 
 	  x0 = x0 + h
-	  do i = 1, nvar
-	    y0(i) = y0(i) + h*(C1*dydx(i,1) + C3*dydx(i,3) +
-     &                         C4*dydx(i,4) + C6*dydx(i,6))
-	  enddo
+	  y0(1:nvar) = y0(1:nvar) + h*(
+     &      C1*dydx(1:nvar,1) + C3*dydx(1:nvar,3) +
+     &      C4*dydx(1:nvar,4) + C6*dydx(1:nvar,6) )
 
 	  if( errmax .gt. errcon ) then
 	    h = safety*h*errmax**pgrow
@@ -129,12 +130,8 @@ c#define WARNINGS
 	  if( (x0 - x2)*(x2 - x1) .ge. 0 ) goto 9
 	enddo
 
-#ifdef WARNINGS
-	print *, "RGE solution did not converge"
-#endif
+	Warning("RGE solution did not converge")
 
-9	do i = 1, nvar
-	  ystart(i) = y0(i)
-	enddo
+9	ystart(1:nvar) = y0(1:nvar)
 	end
 

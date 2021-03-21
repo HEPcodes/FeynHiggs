@@ -1,0 +1,31 @@
+(*
+	EnhHbb.mod
+		introduces the resummed MB into the Yukawa couplings
+		this file is part of FeynHiggs
+		last modified 18 Feb 18 th
+*)
+
+
+(IndexRange[Index[#]] = NoUnfold[IndexRange[Index[#]]])&/@
+  {Sfermion, Chargino, Neutralino}
+
+
+Conjugate[m_Mass] ^= m
+
+
+ResumCoup[ c_ == rhs_ ] :=
+  c == (rhs /. Mass[F[4, {g_, ___}]] -> Mdy[g]) /; FreeQ[c, S[4|6]]
+
+ResumCoup[ other_ ] = other
+
+
+TBt[_?OddQ] = 1/TB;
+_TBt = TB
+
+M$CouplingMatrices = ResumCoup/@ ( M$CouplingMatrices /.
+  { Af[t_, g1_, g2_] :>
+      mXf[g1, g2, t]/Mass[F[t, {g1}]] - MUEC TBt[t] IndexDelta[g1, g2],
+    AfC[t_, g1_, g2_] :>
+      mXfC[g1, g2, t]/Mass[F[t, {g1}]] - MUE TBt[t] IndexDelta[g1, g2]
+} //. a_/m_Mass + b_ -> (a + m b)/m)
+

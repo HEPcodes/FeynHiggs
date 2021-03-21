@@ -1,7 +1,7 @@
 * DeltaMT.F
 * various incarnations of MTrun/dMT
 * this file is part of FeynHiggs
-* last modified 20 Jan 18 th
+* last modified 16 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -85,7 +85,7 @@
 	      htMT = htMT + dht2_EW()
 	    endif
 	  endif
-	  Mf(tT2,3) = MTMT
+	  Mf(tMT1,3) = MTMT
 	endif
 
 	if( loglevelmt .le. 1 ) then
@@ -102,12 +102,14 @@
 	      MTMT = MT/(1 - dMTMT10())
 	    enddo
 	  endif
-	  if( loglevelmt .eq. 0 ) Mf(tT2,3) = MTMT
+	  if( loglevelmt .eq. 0 ) Mf(tMT1,3) = MTMT
 	endif
 
 	Mf(tT,3) = MTMT
-	Mf2(tT,3) = MTMT**2
-	Mf2(tT2,3) = Mf(tT2,3)**2
+	Mf(tMT,3) = Mf(tT,3)
+	Mf2(tT,3) = Mf(tT,3)**2
+	Mf2(tMT,3) = Mf2(tT,3)
+	Mf2(tMT1,3) = Mf(tMT1,3)**2
 	htMT2 = htMT**2
 	end
 

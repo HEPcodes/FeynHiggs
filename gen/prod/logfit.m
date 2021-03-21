@@ -1,13 +1,11 @@
 << FormCalc`
 
-debug = (*False*) True
+(* things we don't want to plot *)
+plot[tHm2lo|tHm2hi, ___] = Null;
+(*plot[___, {tb -> n_}] := Null /; n > 6;*)
 
 plotmin = 50;
-plotmax = (*600*) 3000;
-(*
-plotmin = 30;
-plotmax = 2000;
-*)
+plotmax = 1000 3;
 
 get[tag_, file_String] := Select[getf[tag, file],
   !MemberQ[ {0., Indeterminate}, #[[-1]] ] &]
@@ -85,80 +83,102 @@ warn[mst1] = MStop1
 warn[other_] = other
 
 
-poly[vars__, n_Integer, s_:"a"] := 
-  MapIndexed[#1 ToSymbol[s, #2]&,
-    Expand[Sum[Plus[vars]^i, {i, 0, n}]]]
+Attributes[fitpoly] = {HoldAll}
 
-(*fitfunc[tHm, _LHC] = poly[m, tb, 9]*)
-fitfunc[tHm, _LHC] = If@@ {
-  sqrtm < Sqrt[600.],    poly[sqrtm, tb, 9],
-                         poly[sqrtm, tb, 8] }
+fitpoly[a_] := Block[{polyc = 96}, a]
 
-(*fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = poly[sqrtm, tb, (*2*) 5]*)
+fitpoly[a__] := Block[{polyc = 96}, Which@@ {a}]
 
-fitfunc[tHm2|tHm2lo|tHm2hi, LHC[14]] = Which@@ {
-  tb < 6.,  poly[sqrtm, tb, 4] + poly[tb, 6, "b"],
-  tb < 20., poly[sqrtm, tb, 4, "c"],
-  tb < 30., poly[sqrtm, tb, 2, "d"],
-  True,     poly[sqrtm, tb, 2, "e"] }
 
-fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = Which@@ {
-  tb < 6.,  poly[sqrtm, tb, 8] + poly[tb, 6, "b"],
-  tb < 20., poly[sqrtm, tb, 8, "c"],
-  tb < 30., poly[sqrtm, tb, 5, "d"],
-  True,     poly[sqrtm, tb, (*2*) 4, "e"] }
+poly[v__] := polys[v, FromCharacterCode[++polyc]];
 
-fitfunc[_StSth, _LHC] = poly[sqrtm, mst1, 2]/poly[sqrtm, mst1, 2, "b"]
+polys[v_, n1_, n2_, c_] := polys[v, n1, c]  - polys[v, n2, c]
 
-fitfunc[_gghSMNLO, Tev] = Which@@ {
+polys[v_, n_, c_] :=
+  MapIndexed[#1 ToSymbol[c, #2]&, Expand[Sum[v^i, {i, 0, n}]]]
+
+
+fitfunc[tHm, _LHC] = fitpoly[
+  sqrtm < Sqrt[600.], poly[sqrtm + tb, 9],
+  True,               poly[sqrtm + tb, 8] ]
+
+fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = fitpoly[
+  (poly[sqrtm + tb, 3] + poly[tb, 8, 3])/poly[tb, 2] ]
+
+(*
+fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = fitpoly[
+  tb < 5., poly[sqrtm + tb, 8]/poly[tb, 3],
+  True,    poly[sqrtm + tb, 6] (*/poly[tb, 2]*) ]
+*)
+
+(*
+fitfunc[tHm2|tHm2lo|tHm2hi, LHC[14]] = fitpoly[
+  tb < 6.,  poly[sqrtm + tb, 4] + poly[tb, 6, 4],
+  tb < 20., poly[sqrtm + tb, 4],
+  tb < 30., poly[sqrtm + tb, 2],
+  True,     poly[sqrtm + tb, 2] ]
+
+fitfunc[tHm2|tHm2lo|tHm2hi, LHC[13]] = fitpoly[
+  tb < 1.,  poly[sqrtm + tb, 4],
+  tb < 2.,  poly[sqrtm + tb, 4],
+  tb < 3.,  poly[sqrtm + tb, 4],
+  tb < 4.,  poly[sqrtm + tb, 2],
+  tb < 6.,  poly[sqrtm + tb, 4],
+  tb < 20., poly[sqrtm + tb, 8],
+  tb < 30., poly[sqrtm + tb, 5],
+  True,     poly[sqrtm + tb, 4] ]
+
+fitfunc[tHm2|tHm2lo|tHm2hi, _LHC] = fitpoly[
+  tb < 6.,  poly[sqrtm + tb, 8],
+  tb < 20., poly[sqrtm + tb, 8],
+  tb < 30., poly[sqrtm + tb, 5],
+  True,     poly[sqrtm + tb, 4 (*2*)] ]
+*)
+
+fitfunc[_StSth, _LHC] = fitpoly[
+  poly[sqrtm + mst1, 2]/poly[sqrtm + mst1, 2] ]
+
+fitfunc[_gghSMNLO, Tev] = fitpoly[
   sqrtm < Sqrt[2 173.3], poly[sqrtm, 5],
-  sqrtm < Sqrt[800.],    poly[sqrtm, 7, "b"],
-  True,                  poly[sqrtm, 4, "c"] }
+  sqrtm < Sqrt[800.],    poly[sqrtm, 7],
+  True,                  poly[sqrtm, 4] ]
 
-(*fitfunc[_gghSMNLO, _LHC] = poly[sqrtm, logsqrts, 9]*)
-(*fitfunc[_gghSMNLO, _LHC] = If@@ { sqrtm < Sqrt[2 173.3],
-  poly[sqrtm, logsqrts, 7],
-  poly[sqrtm, logsqrts, 7, "b"] }*)
-fitfunc[_gghSMNLO, _LHC] = Which@@ {
-  sqrtm < Sqrt[2 173.3], poly[sqrtm, logsqrts, 7],
-  sqrtm < Sqrt[800.],    poly[sqrtm, logsqrts, 7, "b"],
-  True,                  poly[sqrtm, logsqrts, 4, "c"] }
+fitfunc[_gghSMNLO, _LHC] = fitpoly[
+  sqrtm < Sqrt[2 173.3], poly[sqrtm + logsqrts, 7],
+  sqrtm < Sqrt[800.],    poly[sqrtm + logsqrts, 7],
+  True,                  poly[sqrtm + logsqrts, 4] ]
 
-fitfunc[_gghSM, Tev] = If@@ { sqrtm < Sqrt[2 173.3],
-  poly[sqrtm, 5],
-  poly[sqrtm, 7, "b"] }
+fitfunc[_gghSM, Tev] = fitpoly[
+  sqrtm < Sqrt[2 173.3], poly[sqrtm, 5],
+  True,                  poly[sqrtm, 7] ]
 
-(*fitfunc[_gghSM, _LHC] = If@@ { sqrtm < Sqrt[2 173.3],
-  poly[sqrtm, logsqrts, 3],
-  poly[sqrtm, logsqrts, 5, "b"] }*)
-fitfunc[_gghSM, _LHC] = Which@@ {
-  sqrtm < Sqrt[2 173.3], poly[sqrtm, logsqrts, 3],
-  sqrtm < Sqrt[800.],    poly[sqrtm, logsqrts, 5, "b"],
-  True,                  poly[sqrtm, logsqrts, 2, "c"] }
+fitfunc[_gghSM, _LHC] = fitpoly[
+  sqrtm < Sqrt[2 173.3], poly[sqrtm + logsqrts, 3],
+  sqrtm < Sqrt[800.],    poly[sqrtm + logsqrts, 5],
+  True,                  poly[sqrtm + logsqrts, 2] ]
 
-fitfunc[_qqhSM, LHC[8]] = If@@ { sqrtm < Sqrt[290.],
-  poly[sqrtm, 2],
-  poly[sqrtm, 10, "b"] }
+fitfunc[_qqhSM, LHC[8]] = fitpoly[
+  sqrtm < Sqrt[290.], poly[sqrtm, 2],
+  True,               poly[sqrtm, 10] ]
 
-fitfunc[_qqhSM, LHC[14]] = poly[sqrtm, 4]
+fitfunc[_qqhSM, LHC[14]] = fitpoly[poly[sqrtm, 4]]
 
-fitfunc[_bbhSM, _LHC] = poly[sqrtm, sqrts, 2]
+fitfunc[_bbhSM, _LHC] = fitpoly[poly[sqrtm + sqrts, 2]]
 
-fitfunc[_bbhSM, _] = poly[sqrtm, 3]
+fitfunc[_bbhSM, _] = fitpoly[poly[sqrtm, 3]]
 
-fitfunc[_tthSM, LHC[13|14]] = poly[sqrtm, 4]
+fitfunc[_tthSM, LHC[13|14]] = fitpoly[poly[sqrtm, 4]]
 
-fitfunc[_ZhSM, LHC[8|13]] = poly[sqrtm, 4]
+fitfunc[_ZhSM, LHC[8|13]] = fitpoly[poly[sqrtm, 4]]
 
-fitfunc[_WhSM, LHC[8|13|14]] = poly[sqrtm, 4]
+fitfunc[_WhSM, LHC[8|13|14]] = fitpoly[poly[sqrtm, 4]]
 
-fitfunc[GammaSM[_H0VV], _] = If@@ {
-  m < 161., poly[m, 3] (*poly[m, 4]/poly[m, 4, "b"]*),
-            poly[m, 4, "c"]/poly[m, 4, "d"] }
+fitfunc[GammaSM[_H0VV], _] = fitpoly[
+  m < 161., poly[m, 3],
+  True,     poly[m, 4]/poly[m, 4] ]
 
-(*fitfunc[_hZZSM, _] = poly[m, 4]/poly[m, 4, "b"]*)
+_fitfunc = fitpoly[poly[sqrtm, 2]]
 
-_fitfunc = poly[sqrtm, 2]
 
 indeps = {m, sqrtm, sqrts, logsqrts, mst1, tb}
 
@@ -179,23 +199,17 @@ ran[i_, overlap_][a_, b_] =
   #[[i]]^2 >= a^2 - overlap &&
   #[[i]]^2 <= b^2 + overlap &;
 
-dofit[d_, If[x_ < y_, A_, B_] + r_.] :=
-IndexIf@@ {
-  x < y, dofit[Select[d, ran[x][-Infinity, y]], A + r],
-         dofit[Select[d, ran[x][y, +Infinity]], B + r]}
+hi[_ < y_] := y;
+_hi = Infinity
 
-dofit[d_, Which[x_ < y_, A_, x_ < z_, B_, True, C_] + r_.] :=
-IndexIf@@ {
-  x < y, dofit[Select[d, ran[x][-Infinity, y]], A + r],
-  x < z, dofit[Select[d, ran[x][y, z]], B + r],
-         dofit[Select[d, ran[x][z, Infinity]], C + r]}
+wfit[d_, f_, x_, l_, h_] := (lo = h; dofit[Select[d, ran[x][l, h]], f])
 
-dofit[d_, Which[x_ < y_, A_, x_ < z_, B_, x_ < w_, C_, True, D_] + r_.] :=
-IndexIf@@ {
-  x < y, dofit[Select[d, ran[x][-Infinity, y]], A + r],
-  x < z, dofit[Select[d, ran[x][y, z]], B + r],
-  x < w, dofit[Select[d, ran[x][z, w]], C + r],
-         dofit[Select[d, ran[x][w, Infinity]], D + r]}
+wcond[d_, x_, p_][cond_, f_] := {cond, wfit[d, f + p, x, lo, hi[cond]]}
+
+dofit[d_, Which[x_ < y_, r___] + p_.] :=
+Block[ {lo = -Infinity},
+  IndexIf@@ Flatten[wcond[d, x, p]@@@ Partition[{x < y, r}, 2]]
+]
 
 dofit[d_, fitfun_] := fitfun /. FindFit[d, fitfun,
   Complement[
@@ -220,7 +234,7 @@ FITVARS=
   cat/@ data;
   _thecat =.;
   Cases[ DownValues[thecat], _[_[_[r___]], d_] :> 
-    plot[debug, id, func, d, r] ];
+    plot[id, func, d, Thread[Rest[fitvars] -> {r}]] ];
 
   id -> {MapIf[fac # &, exp[func] /. 1. -> 1],
     Transpose[{fitvars, Min/@ #, Max/@ #}]& @
@@ -233,9 +247,8 @@ fit[tag_][other_] = other
 cat[{mh_, r___, xs_}] := thecat[r] = {thecat[r], {mh, xs}}
 
 
-plot[True, id_, f_, d_, r___] :=
-Block[ {dd = Level[d, {-2}], rul = Thread[Rest[fitvars] -> {r}],
-p1, p2, enh = 1},
+plot[id_, f_, d_, rul_] :=
+Block[ {dd = Level[d, {-2}], p1, p2, enh = 1},
   If[ !FreeQ[f, sqrtm], dd = {#1^2, #2}&@@@ dd ];
   Block[ {$DisplayFunction = Identity},
     p1 = ListPlot[Sort[dd], PlotStyle -> Red];
@@ -249,7 +262,7 @@ p1, p2, enh = 1},
     PlotLabel -> ToString[id] <>
       ({" ", ToString[#1], "=", ToString[#2]}&@@@ rul),
     PlotRange -> {All, All} ]
-] /; debug === True
+]
 
 
 normalize[expr_, vars_] :=
@@ -377,15 +390,4 @@ decayfitsLO := write["NHiggsDecayFitsLO", fit[Decay]/@ {
 decayfitsNLO := write["NHiggsDecayFitsNLO", fit[Decay]/@ {
   GammaSM[H0VV[h,3]] -> "hzz-nlo.dat",
   GammaSM[H0VV[h,4]] -> "hww-nlo.dat" }]
-
-t := write["test", fit[LHC[all]]/@ {
-  gghSM[h] -> "ggh-lhc.dat" }]
-
-tnlo := write["test", fit[LHC[all]]/@ {
-  gghSMNLO[h] -> "ggh-smnlo-lhc.dat" }]
-
-ccc := write["CHiggsProdFits-LHC8", fit[LHC[8]]/@ {
-  tHm2 -> "tHm2-lhc8.dat" (*,
-  tHm2lo -> "tHm2-lhc8lo.dat",
-  tHm2hi -> "tHm2-lhc8hi.dat"*) } /. tb -> TBeff]
 

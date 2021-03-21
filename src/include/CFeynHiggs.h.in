@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 30 Jan 18 th
+		last modified 13 Feb 18 th
 */
 
 
@@ -307,6 +307,17 @@ extern void FORTRAN(fhtablerecord)(INTEGER *error,
 
 
 extern void FORTRAN(fhsetdebug)(CINTEGER *debuglevel);
+
+extern void FORTRAN(fhsetdebugfile)(const char *debugfile,
+  const int debugfile_len);
+
+extern void FORTRAN(fhsetdebugunit)(CINTEGER *debugunit);
+
+extern void FORTRAN(fhsetparafile)(const char *parafile,
+  const int parafile_len);
+
+extern void FORTRAN(fhsetparaunit)(CINTEGER *paraunit);
+
 
 extern void FORTRAN(fhselectuz)(INTEGER *error,
   CINTEGER *uzint, CINTEGER *uzext, CINTEGER *mfeff);
@@ -674,6 +685,26 @@ static inline void FHTableRecord(int *error,
 static inline void FHSetDebug(const int debuglevel)
 {
   FORTRAN(fhsetdebug)(&debuglevel);
+}
+
+static inline void FHSetDebugFile(const char *debugfile)
+{
+  FORTRAN(fhsetdebugfile)(debugfile, strlen(debugfile));
+}
+
+static inline void FHSetDebugUnit(const int debugunit)
+{
+  FORTRAN(fhsetdebugunit)(&debugunit);
+}
+
+static inline void FHSetParaFile(const char *parafile)
+{
+  FORTRAN(fhsetparafile)(parafile, strlen(parafile));
+}
+
+static inline void FHSetParaUnit(const int paraunit)
+{
+  FORTRAN(fhsetparaunit)(&paraunit);
 }
 
 

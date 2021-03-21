@@ -120,6 +120,12 @@
 :Evaluate: FHSetDebug::usage =
 	"FHSetDebug sets the FeynHiggs debug level."
 
+:Evaluate: FHSetDebugFile::usage =
+	"FHSetDebugFile sets the FeynHiggs debug file."
+
+:Evaluate: FHSetParaFile::usage =
+	"FHSetParaFile sets the FeynHiggs parameter file (requires debug level >= 2)."
+
 :Evaluate: FHSelectUZ::usage =
 	"FHSelectUZ chooses which of UHiggs (= 1) or ZHiggs (= 2) to use for internal and external Higgs bosons, i.e. in the couplings and the decays, respectively, and whether to use resummed masses in the couplings."
 
@@ -134,6 +140,9 @@
 
 :Evaluate: FHRunQCD::usage =
 	"FHRunQCD runs a mass from scale 1 to scale 2."
+
+:Evaluate: FHSetEnv::usage =
+	"FHSetEnv sets a variable in the environment of the MFeynHiggs executable."
 
 :Evaluate: FHError::usage =
 	"FHError is an error message returned by FeynHiggs."
@@ -641,6 +650,22 @@
 :End:
 
 :Begin:
+:Function: mFHSetDebugFile
+:Pattern: FHSetDebugFile[debugfile_]
+:Arguments: {debugfile}
+:ArgumentTypes: {String}
+:ReturnType: Manual
+:End:
+
+:Begin:
+:Function: mFHSetParaFile
+:Pattern: FHSetParaFile[parafile_]
+:Arguments: {parafile}
+:ArgumentTypes: {String}
+:ReturnType: Manual
+:End:
+
+:Begin:
 :Function: mFHSelectUZ
 :Pattern: FHSelectUZ[uzint_, uzext_, mfeff_]
 :Arguments: {uzint, uzext, mfeff}
@@ -672,6 +697,14 @@
 :ReturnType: Manual
 :End:
 
+:Begin:
+:Function: mFHSetEnv
+:Pattern: FHSetEnv[var_, val_]
+:Arguments: {ToString[var], ToString[val]}
+:ArgumentTypes: {String, String}
+:ReturnType: Integer
+:End:
+
 :Evaluate: CTensor[a_, dims_] :=
   RTensor[Apply[Complex, Partition[a, 2], 1], dims]
 
@@ -696,7 +729,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 30 Jan 18 th
+		last modified 13 Feb 18 th
 */
 
 
@@ -2073,6 +2106,34 @@ static void mFHSetDebug(cint debuglevel)
 
 /******************************************************************/
 
+static void mFHSetDebugFile(cchar *debugfile)
+{
+  BeginRedirect();
+
+  FHSetDebugFile(debugfile);
+
+  EndRedirect();
+
+  MLPutSymbol(stdlink, "Null");
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHSetParaFile(cchar *parafile)
+{
+  BeginRedirect();
+
+  FHSetParaFile(parafile);
+
+  EndRedirect();
+
+  MLPutSymbol(stdlink, "Null");
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
 static void mFHSelectUZ(cint uzint, cint uzext, cint mfeff)
 {
   int error;
@@ -2147,6 +2208,12 @@ static void mFHRunQCD(cRealType Qto, cRealType mfrom, cRealType Qfrom)
   else MLPutReal(stdlink, mto);
 
   MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static int mFHSetEnv(cchar *var, cchar *val) {
+  return setenv(var, val, 1);
 }
 
 /******************************************************************/

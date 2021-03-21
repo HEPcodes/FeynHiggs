@@ -1,7 +1,7 @@
 * beta4H.F
 * the SM and SUSY beta functions
 * this file is part of FeynHiggs
-* last modified 8 Dec 16 th
+* last modified 26 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -16,6 +16,17 @@
 #include "Resum4H.h"
 
 	RealType yg2, ygy2, yg32, yht2, ytb2, ylam2
+
+#ifdef DETAILED_DEBUG
+	DEFT "betaSM2L:"		ENDL
+	DEFT "t       =", t		ENDL
+	DEFT "y(ig)   =", y(ig)		ENDL
+	DEFT "y(igy)  =", y(igy)	ENDL
+	DEFT "y(ig3)  =", y(ig3)	ENDL
+	DEFT "y(iht)  =", y(iht)	ENDL
+	DEFT "y(itb)  =", y(itb)	ENDL
+	DEFT "y(ilam) =", y(ilam)	ENDL
+#endif
 
 	yg2 = y(ig)**2
 	ygy2 = y(igy)**2
@@ -41,7 +52,7 @@
      &      )
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ilam) =", dy(ilam) ENDL
+	DEFT "dy(ilam) =", dy(ilam) ENDL
 #endif
 
         dy(iht) = -(k1L/2.D0*
@@ -54,7 +65,7 @@
      &      )
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(iht) =", dy(iht) ENDL
+	DEFT "dy(iht) =", dy(iht) ENDL
 #endif
 
         dy(ig3) = -(k1L/12.D0*
@@ -62,7 +73,7 @@
      &           (27*yg2 - 156*yg32 + 11*ygy2 - 12*yht2))*y(ig3)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig3) =", dy(ig3) ENDL
+	DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 
         dy(ig) = -(k1L/12.D0*
@@ -70,7 +81,7 @@
      &        y(ig)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig) =", dy(ig) ENDL
+	DEFT "dy(ig) =", dy(ig) ENDL
 #endif
 
         dy(igy) = k1L/36.D0*
@@ -78,13 +89,13 @@
      &           51*yht2))*y(igy))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(igy) =", dy(igy) ENDL
+	DEFT "dy(igy) =", dy(igy) ENDL
 #endif
 
 	dy(itb) = -((3*k1L)/2.D0*(yht2*(1 + ytb2))/y(itb))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(itb) =", dy(itb) ENDL
+	DEFT "dy(itb) =", dy(itb) ENDL
 #endif
 
 	if( loglevel .gt. 2 ) then
@@ -107,9 +118,9 @@
      &      (32.5D0*yg32**2 + yht2*(-40*yg32 + 15*yht2))
 
 #ifdef DETAILED_DEBUG
-	    DHIGGS "dy(ilam) =", dy(ilam) ENDL
-	    DHIGGS "dy(iht) =", dy(iht) ENDL
-	    DHIGGS "dy(ig3) =", dy(ig3) ENDL
+	    DEFT "dy(ilam) =", dy(ilam) ENDL
+	    DEFT "dy(iht) =", dy(iht) ENDL
+	    DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 	endif
 
@@ -118,8 +129,8 @@
 	  dy(ig3) = dy(ig3) + k1L*(yg32*(1 + 24*k1L*yg32)*y(ig3))
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "dy(iht) =", dy(iht) ENDL
-	  DHIGGS "dy(ig3) =", dy(ig3) ENDL
+	  DEFT "dy(iht) =", dy(iht) ENDL
+	  DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 	endif
 	end
@@ -136,6 +147,21 @@
 
 	RealType yg2, ygy2, yg32, yht2, ytb2, ylam2, yg1d2, yg1u2
 	RealType yg2d2, yg2u2, yg1ud2, yg2ud2
+
+#ifdef DETAILED_DEBUG
+	DEFT "betaSplit2L:"		ENDL
+	DEFT "t       =", t		ENDL
+	DEFT "y(ig)   =", y(ig)		ENDL
+	DEFT "y(igy)  =", y(igy)	ENDL
+	DEFT "y(ig3)  =", y(ig3)	ENDL
+	DEFT "y(iht)  =", y(iht)	ENDL
+	DEFT "y(itb)  =", y(itb)	ENDL
+	DEFT "y(ilam) =", y(ilam)	ENDL
+	DEFT "y(ig1d) =", y(ig1d)	ENDL
+	DEFT "y(ig1u) =", y(ig1u)	ENDL
+	DEFT "y(ig2d) =", y(ig2d)	ENDL
+	DEFT "y(ig2u) =", y(ig2u)	ENDL
+#endif
 
 	yg2 = y(ig)**2
 	ygy2 = y(igy)**2
@@ -191,7 +217,7 @@
      &       y(ig1d)*y(ig1u)*y(ig2d)*y(ig2u))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ilam) =", dy(ilam) ENDL
+	DEFT "dy(ilam) =", dy(ilam) ENDL
 #endif
 
         dy(iht) = k1L/864.D0*
@@ -212,7 +238,7 @@
      &              16*y(ilam))))*y(iht))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(iht) =", dy(iht) ENDL
+	DEFT "dy(iht) =", dy(iht) ENDL
 #endif
 
         dy(ig3) = -(k1L/12.D0*
@@ -220,7 +246,7 @@
      &           (27*yg2 - 156*yg32 + 11*ygy2 - 12*yht2))*y(ig3)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig3) =", dy(ig3) ENDL
+	DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 
         dy(ig) = -(k1L/24.D0*
@@ -229,7 +255,7 @@
      &                6*yht2)))*y(ig)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig) =", dy(ig) ENDL
+	DEFT "dy(ig) =", dy(ig) ENDL
 #endif
 
         dy(igy) = k1L/72.D0*
@@ -237,13 +263,13 @@
      &           528*yg32 - 416*ygy2 + 102*yht2))*y(igy))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(igy) =", dy(igy) ENDL
+	DEFT "dy(igy) =", dy(igy) ENDL
 #endif
 
 	dy(itb) = -((3*k1L)/2.D0*(yht2*(1 + ytb2))/y(itb))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(itb) =", dy(itb) ENDL
+	DEFT "dy(itb) =", dy(itb) ENDL
 #endif
 
         dy(ig1u) = k1L/192.D0*
@@ -267,7 +293,7 @@
      &       y(ig2d)*y(ig2u))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig1u) =", dy(ig1u) ENDL
+	DEFT "dy(ig1u) =", dy(ig1u) ENDL
 #endif
 
         dy(ig1d) = -(k1L/192.D0*
@@ -291,7 +317,7 @@
      &         y(ig1u)*y(ig2d)*y(ig2u)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig1d) =", dy(ig1d) ENDL
+	DEFT "dy(ig1d) =", dy(ig1d) ENDL
 #endif
 
         dy(ig2u) = k1L/192.D0*
@@ -317,7 +343,7 @@
      &            96*(yg1u2 + 4*yg2u2 + yg2ud2)*y(ilam)))*y(ig2u))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig2u) =", dy(ig2u) ENDL
+	DEFT "dy(ig2u) =", dy(ig2u) ENDL
 #endif
 
         dy(ig2d) = k1L/192.D0*
@@ -341,7 +367,7 @@
      &       y(ig1u)*y(ig2u))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig2d) =", dy(ig2d) ENDL
+	DEFT "dy(ig2d) =", dy(ig2d) ENDL
 #endif
 
 	if( loglevel .gt. 2 ) then
@@ -364,9 +390,9 @@
      &      (32.5D0*yg32**2 + yht2*(-40*yg32 + 15*yht2))
 
 #ifdef DETAILED_DEBUG
-	    DHIGGS "dy(ilam) =", dy(ilam) ENDL
-	    DHIGGS "dy(iht) =", dy(iht) ENDL
-	    DHIGGS "dy(ig3) =", dy(ig3) ENDL
+	    DEFT "dy(ilam) =", dy(ilam) ENDL
+	    DEFT "dy(iht) =", dy(iht) ENDL
+	    DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 	endif
 
@@ -375,8 +401,8 @@
 	  dy(ig3) = dy(ig3) + k1L*(yg32*(1 + 24*k1L*yg32)*y(ig3))
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "dy(iht) =", dy(iht) ENDL
-	  DHIGGS "dy(ig3) =", dy(ig3) ENDL
+	  DEFT "dy(iht) =", dy(iht) ENDL
+	  DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 	endif
 	end

@@ -1,12 +1,14 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 30 Jan 18 th
+* last modified 27 Feb 18 th
 
 #include "FHCouplings.h"
 #include "types.h"
 #include "debug.h"
 #include "version.h"
+
+#define defaultflags "42423110"
 
 
 	program FeynHiggs
@@ -34,7 +36,7 @@
      &    dlooplevel(-1:3), dloglevel(-1:4), drunningMT(-1:4),
      &    dbotResum(-1:3), dtlCplxApprox(-1:4)
 
-	data flags /"42423110"/
+	data flags /defaultflags/
 
 	data dmssmpart /
      &    "???",
@@ -173,9 +175,12 @@ c	if( error .eq. -2 ) goto 2
 
 	if( type .eq. 0 ) then
 	  call FHOutputSLHA(error, slhadata, keyslha)
-	  if( error .ne. 0 ) print *, "Error in FHOutputSLHA ", error
-	  if( i .gt. 0 ) write(argv(i:),'(".fh-",I3.3)') loop
-	  call SLHAWrite(error, slhadata, argv)
+	  if( error .ne. 0 ) then
+	    print *, "Error in FHOutputSLHA ", error
+	  else
+	    if( i .gt. 0 ) write(argv(i:),'(".fh-",I3.3)') loop
+	    call SLHAWrite(error, slhadata, argv)
+	  endif
 	else
 	  call FHOutput(error, "stdout", -1, record(iprodSqrts,iVar))
 	  if( error .ne. 0 ) print *, "Error in FHOutput ", error
@@ -191,7 +196,7 @@ c	if( error .eq. -2 ) goto 2
 
 100	format ("FeynHiggs ", FHVERSION
      &    /"built on ", FHBUILDDATE
-     &    //"USAGE:  ", A, " <inputfile> [<flags>]"
+     &    //"USAGE:  ", A, " <inputfile> [<flags>:", defaultflags, "]"
      &    //"<inputfile> is a file containing the parameters"
      &    //"<flags> is an 8-digit string with"
      &    /"  #1 = mssmpart = scope of the calculation",

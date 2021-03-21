@@ -1012,6 +1012,10 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	ComplexType m12a, m12b, m3, c
 	ComplexType hc(3,3)
 
+	SfIdType sfid(SfSlots)
+	common /sfids/ sfid
+	external sfidini
+
 	h = nib4(h_ty_t_g_uz)
 	ty = nib3(h_ty_t_g_uz)
 	t = nib2(h_ty_t_g_uz)
@@ -1082,7 +1086,7 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	if( DEBUGLEVEL .lt. 5 ) return
 
 	DCOUP "H0SfSfCouplings h,t,ty,g = ",
-     &    Digit(h), Digit(t), Hex(ty), Digit(g) ENDL
+     &    Digit(h), " ", Digit(t), " ", sfid(ty), " ", Digit(g) ENDL
 	DCOUP "H0SfSfCouplings Mf =", m ENDL
 	end
 

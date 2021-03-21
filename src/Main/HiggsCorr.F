@@ -3,7 +3,7 @@
 * to the MSSM Higgs sector
 * this file is part of FeynHiggs
 * V1.0 by Markus Frank 21/08/2002
-* last modified 30 Jan 18 th
+* last modified 23 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -545,7 +545,7 @@ c	      c = p2 + 1D-1
 
 	p2 = p2in
 	key = iand(not(SEKey(inputmass)), cpeven + cpodd)
-	call CalcSE(p2re, iand(key, needse), key)
+	call CalcSE(p2in, iand(key, needse), key)
 	if( needse .ne. 0 ) then
 	  if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
 	  seRx(:) = cI*p2im*dseR(:)

@@ -1,7 +1,7 @@
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 23 Jan 18 th
+* last modified 27 Feb 18 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -80,12 +80,8 @@
 
 	do ty = 5, SfSlots
 	  t = GetSfIni(ty)
-	  Mf(ty,1) = Mf(t,1)
-	  Mf(ty,2) = Mf(t,2)
-	  Mf(ty,3) = Mf(t,3)
-	  Mf2(ty,1) = Mf2(t,1)
-	  Mf2(ty,2) = Mf2(t,2)
-	  Mf2(ty,3) = Mf2(t,3)
+	  Mf(ty,:) = Mf(t,:)
+	  Mf2(ty,:) = Mf2(t,:)
 	enddo
 
 	call ltini
@@ -384,8 +380,8 @@ c	call AlphaS(AlfasMT, nf, MT2)
 #include "FH.h"
 #include "looptools.h"
 
-	RealType m1, m2, Q2default, ospara(3,3:4)
-	integer t, g, fail, drbar, nQ, nU
+	RealType m1, m2, Q2default, osshift(3,3:4)
+	integer t, g, fail, drbar
 
 	RealType Q2cur
 	common /DRbarscale/ Q2cur
@@ -393,6 +389,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	character*(*) cplxmsg
 	parameter (cplxmsg = " in the presence of complex parameters")
 
+	CKM = CKMin
 	call MTatMT_SM
 
 	MSS2 = 0
@@ -412,107 +409,111 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	  enddo
 	enddo
 
-	seDiv = log(.5D0*Re(MSS2(3,3,tQ(3)) + MSS2(3,3,tU(3)))/mudim) - 1
+* need this for TLps:
+	DSS2(1,tM3,3) = DSS2(1,3,3)
+	DSS2(2,tM3,3) = DSS2(2,3,3)
 
 	DSStgl2(2) = Re(MSS2(3,3,tU(3)))
 	DSStgl2(1) = Re(MSS2(3,3,tQ(3))) - DSStgl2(2)
+c tmp for TLps:
+c	DSS2(1,tMT,3) = DSStgl2(1)
+c	DSS2(2,tMT,3) = DSStgl2(2)
+	if( debuglevel .gt. 4 )
+     &    DPARA "DSStgl2 orig =", DSStgl2 ENDL
 	if( abs(DSStgl2(1)) .lt. 1D-6 )
      &    DSStgl2(1) = DSStgl2(1) - .001D0*DSStgl2(2)
 	if( DSStgl2(1)**2 + Sq(Xf(3,3)) .lt. .1D0 )
      &    DSStgl2(1) = -.2D0*sqrt(DSStgl2(2))
 
+	DSSbgl2(2) = Re(MSS2(3,3,tU(4)))
+	DSSbgl2(1) = Re(MSS2(3,3,tQ(4))) - DSSbgl2(2)
+     
 * DRbar -> OS transition
 	Q2cur = -1
 	drbar = 0
 	fail = 0
 	Q2default = abs(MSS(3,3)*MSS(4,3))
 
-	do t = 3, 4
-	  if( QSf(t) .lt. 0 ) then
-	    QSf2(t) = Q2default
-	  else
-	    QSf2(t) = QSf(t)**2
-	  endif
-	enddo
-
 	drbarvars = 0
-	if( drbarmode .ne. 0 .and. QSf2(3) .ne. 0 ) then
+	if( drbarmode .ne. 0 .and. QSf(3) .ne. 0 ) then
 	  drbarvars = 1
-	  if( abs(QSf2(3) - Q2default) .gt. 1 )
+	  if( QSf(3) .gt. 0 .and. abs(QSf(3)**2 - Q2default) .gt. 1 )
      &      Warning("Qt = sqrt(MStop1*MStop2) assumed in EFT calculation")
+	  call SfermionsDR(error)
 	endif
 
-	do t = 3 + drbarmode, 4
-	  if( QSf(t) .ne. 0 ) then
-	    call DRbartoOS(t, drbar, ospara(1,t))
+	do t = 3, 4
+	  QSf2(t) = merge(Q2default, QSf(t)**2, QSf(t) .lt. 0)
+	  if( QSf2(t) .ne. 0 ) then
+	    call DRbartoOS(t, drbar, osshift(1,t))
 	    if( .not. btest(drbar, t) )
      &        Error(error, "DRbartoOS transition failed")
 	  endif
 	enddo
 
+	if( btest(drbar, 3) ) then
+	  if( debuglevel .ge. 2 ) then
+	    DPARA "MSQ_DRbar    =", MSS(tQ(3),3)	ENDL
+	    DPARA "MSU_DRbar    =", MSS(tU(3),3)	ENDL
+	    DPARA "Xt_DRbar     =", Xf(3,3)		ENDL
+	  endif
+	  DSS2(1,3,3) = DSS2(1,3,3) + osshift(1,3)
+	  DSS2(2,3,3) = DSS2(2,3,3) + osshift(2,3)
+	  MSS2(3,3,tQ(3)) = MSS2(3,3,tQ(3)) + (osshift(1,3) + osshift(2,3))
+	  MSS(tQ(3),3) = sqrt(Re(MSS2(3,3,tQ(3))))
+	  MSS2(3,3,tU(3)) = MSS2(3,3,tU(3)) + osshift(2,3)
+	  MSS(tU(3),3) = sqrt(Re(MSS2(3,3,tU(3))))
+	  Xf(3,3) = Xf(3,3) + osshift(3,3)
+	  Af(3,3) = Af(3,3) + osshift(3,3)
+	  if( debuglevel .ge. 2 ) then
+	    DPARA "MSQ_OS       =", MSS(tQ(3),3)	ENDL
+	    DPARA "MSU_OS       =", MSS(tU(3),3)	ENDL
+	    DPARA "Xt_OS        =", Xf(3,3)		ENDL
+	  endif
+	endif
+
 	Ab_bad = 0
-	do t = 3 + drbarmode, 4
-	  if( btest(drbar, t) ) then
-	      
-	    if( t .eq. 4 .and.
-     &          abs(ospara(3,4) - Xf(4,3)) .gt. .3D0*abs(Af(4,3)) ) then
-	      Ab_bad = 1
-	      if( debuglevel .ge. 2 ) then
-	        DPARA "Ab_DRbar     =", Af(4,3) ENDL
-	        DPARA "Ab_shift     =", ospara(3,4) - Xf(4,3) ENDL
-	      endif
-	      Warning("Questionable Ab from DRbar-to-OS conversion")
+	if( btest(drbar, 4) ) then
+	  if( abs(osshift(3,4)) .gt. .3D0*abs(Af(4,3)) ) then
+	    Ab_bad = 1
+	    if( debuglevel .ge. 2 ) then
+	      DPARA "Ab_DRbar     =", Af(4,3) ENDL
+	      DPARA "Ab_shift     =", osshift(3,4) ENDL
+	    endif
+	    Warning("Questionable Ab from DRbar-to-OS conversion")
+	  else
+	    if( debuglevel .ge. 2 ) then
+	      DPARA "MSQ_DRbar    =", MSS(tQ(4),3)	ENDL
+	      DPARA "MSD_DRbar    =", MSS(tU(4),3)	ENDL
+	      DPARA "Xb_DRbar     =", Xf(4,3)		ENDL
+	    endif
+	    if( forceSU2 .ne. 0 ) then
+	      DSS2(1,4,3) = DSS2(1,3,3) + (DSS2(2,3,3) - DSS2(2,4,3)) -
+     &          osshift(2,4)
 	    else
-	      nQ = tQ(t)
-	      nU = tU(t)
-
-	      if( debuglevel .ge. 2 ) then 
-	        DPARA "MS"//cMSS(nQ)//"_DRbar    =", MSS(nQ,3) ENDL
-	        DPARA "MS"//cMSS(nU)//"_DRbar    =", MSS(nU,3) ENDL
-	        DPARA "A"//cAf(t)//"_DRbar     =", Af(t,3) ENDL
-	      endif
-
-	      if( btest(t, 0) ) then
-	        DSS2(1,t,3) = ospara(1,t)
-	      else if( forceSU2 .ne. 0 ) then
-	        DSS2(1,4,3) = DSS2(1,3,3) +
-     &            (DSS2(2,3,3) - ospara(2,t)) +
-     &            (MT2 - MB2)
-	      endif
-	      DSS2(2,t,3) = ospara(2,t)
-	      MSS2(3,3,nQ) = DSS2(1,t,3) + DSS2(2,t,3) - DSf(1,t)
-	      MSS(nQ,3) = sqrt(Re(MSS2(3,3,nQ)))
-	      MSS2(3,3,nU) = DSS2(2,t,3) - DSf(2,t)
-	      MSS(nU,3) = sqrt(Re(MSS2(3,3,nU)))
-
-	      Xf(t,3) = ospara(3,t)
-	      Af(t,3) = Xf(t,3) - MUETB(t)
-
-	      if( debuglevel .ge. 2 ) then 
-	        DPARA "MS"//cMSS(nQ)//"_OS       =", MSS(nQ,3) ENDL
-	        DPARA "MS"//cMSS(nU)//"_OS       =", MSS(nU,3) ENDL
-	        DPARA "A"//cAf(t)//"_OS        =", Af(t,3) ENDL
-	      endif
+	      DSS2(1,4,3) = DSS2(1,4,3) + osshift(1,4)
+	      DSSbgl2(1) = DSSbgl2(1) + osshift(1,4)
+	    endif
+	    DSS2(2,4,3) = DSS2(2,4,3) + osshift(2,4)
+	    DSSbgl2(2) = DSSbgl2(2) + osshift(2,4)
+	    MSS2(3,3,tQ(4)) = MSS2(3,3,tQ(4)) + (osshift(1,4) + osshift(2,4))
+	    MSS(tQ(4),3) = sqrt(Re(MSS2(3,3,tQ(4))))
+	    MSS2(3,3,tU(4)) = MSS2(3,3,tU(4)) + osshift(2,4)
+	    MSS(tU(4),3) = sqrt(Re(MSS2(3,3,tU(4))))
+	    Xf(4,3) = Xf(4,3) + osshift(3,4)
+	    Af(4,3) = Af(4,3) + osshift(3,4)
+	    if( debuglevel .ge. 2 ) then
+	      DPARA "MSQ_OS       =", MSS(tQ(4),3)	ENDL
+	      DPARA "MSD_OS       =", MSS(tU(4),3)	ENDL
+	      DPARA "Xb_OS        =", Xf(4,3)		ENDL
 	    endif
 	  endif
-	enddo
+	endif
+
+	if( drbarvars .eq. 0 ) call SfermionsDR(error)
+	call SfermionsOS(error)
 
 	call SetupInterpolation
-
-	DSSbgl2(2) = Re(MSS2(3,3,tU(4)))
-	DSSbgl2(1) = Re(MSS2(3,3,tQ(4))) - DSSbgl2(2)
-
-* MSb0gl = gaugeless sbottoms with MB = 0
-	MSb0gl2(1) = Re(MSS2(3,3,tQ(4)))
-	MSb0gl2(2) = Re(MSS2(3,3,tU(4)))
-	MSb0gl2(3) = MSb0gl2(2) - MSb0gl2(1)
-	MSb0gl2(4) = MSb0gl2(2) + MSb0gl2(1)
-	MSb0gl(1) = sqrt(MSb0gl2(1))
-	MSb0gl(2) = sqrt(MSb0gl2(2))
-
-	if( debuglevel .gt. 2 ) DPARA "MSb0gl =", MSb0gl(:) ENDL
-
-	call Sfermions(error)
 
 	if( sum(abs(Im(Af(2:4,1:3)))) +
      &      abs(Im(MUE)) +

@@ -1,0 +1,59 @@
+* TLthresholdatat.h
+* variable declarations and initialization for TLthresholdatat.F
+* this file is part of FeynHiggs
+* last modified 6 Feb 2018 th
+
+* conventions according to arXiv:1703.08166
+
+	RealType Q2, rQ2, rSQ2, rSU2, rMUE2, rA02
+	RealType xSQU2, xSQM2, xSUM2
+	integer try
+
+	RealType eps
+	parameter (eps = .04D0)
+
+	RealType den, a_, b_, c_
+	den(a_, b_, c_) =
+     &    a_*(a_ - b_ - c_) + b_*(b_ - a_ - c_) + c_*(c_ - a_ - b_)
+
+	Q2 = MUE2
+
+	rQ2 = Q**2/Q2
+	PRINT *, "XXX rQ2=", rQ2
+	PRINT *, "XXX mQ2=", Q2*rQ2
+
+	rSQ2 = MSS(3,3)**2/Q2
+	PRINT *, "XXX rSQ2=", rSQ2
+	PRINT *, "XXX mSQ2=", Q2*rSQ2
+
+* shift inputs to avoid singular points
+
+	rSU2 = MSS(4,3)**2/Q2
+	do try = 1, 10
+	  if( abs(1 - rSU2) .gt. eps ) exit
+	  rSU2 = rSU2*(1 + eps)
+	enddo
+	PRINT *, "XXX rSU2=", rSU2
+	PRINT *, "XXX mSU2=", Q2*rSU2
+	xSQU2 = rSQ2 - rSU2
+
+	rMUE2 = MUE2/Q2
+	do try = 1, 10
+	  if( abs(1 - rMUE2) .gt. eps .and.
+     &        abs(rSU2 - rMUE2) .gt. eps ) exit
+	  rMUE2 = rMUE2*(1 + 2*eps/(1 - eps))
+	enddo
+	PRINT *, "XXX rMUE2=", rMUE2
+	PRINT *, "XXX mMUE2=", Q2*rMUE2
+	xSQM2 = rSQ2 - rMUE2
+	xSUM2 = rSU2 - rMUE2
+
+	rA02 = MA02/Q2
+	do try = 1, 10
+	  if( abs(den(1D0, 1D0, rA02)) .gt. eps .and.
+     &        abs(den(1D0, rSU2, rA02)) .gt. eps .and.
+     &        abs(den(rSU2, rSU2, rA02)) .gt. eps ) exit
+	  rA02 = rA02*(1 + eps)
+	enddo
+	PRINT *, "XXX rA02=", rA02
+	PRINT *, "XXX mA02=", Q2*rA02

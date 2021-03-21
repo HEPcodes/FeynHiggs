@@ -1,6 +1,6 @@
 * Phi.F
 * this file is part of FeynHiggs
-* last modified 21 Feb 14 th
+* last modified 8 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -9,8 +9,6 @@
 	RealType function Phi(x, y, z)
 	implicit none
 	RealType x, y, z
-
-* from Davydychev and Tausk, Nucl. Phys. B397 (1993) 23
 
 	RealType myPhi
 	external myPhi
@@ -32,7 +30,7 @@
 	RealType x, y, z
 
 	RealType u, v, upv, umv
-	ComplexType clam, alt, cxp, cxm, ccphi
+	ComplexType clam, alt, cxp, cxm, cphi
 
 	ComplexType Dilog
 	external Dilog
@@ -58,10 +56,11 @@
 	alt = .5D0*(1 - upv*umv + clam)
 	if( abs(cxm) .lt. abs(alt) ) cxm = v**2/alt
 
-* phi function from Eq. (A4)
+* phi function from Eq. (4.10) of
+* Davydychev and Tausk, Nucl. Phys. B397 (1993) 23
 
-	ccphi = 2*(log(cxp)*log(cxm) - 2*log(u)*log(v) -
+	cphi = 2*(log(cxp)*log(cxm) - 2*log(u)*log(v) -
      &    (Dilog(cxp) + Dilog(cxm)) + Pi**2/6D0)/clam
-	myPhi = Re(ccphi)
+	myPhi = Re(cphi)
 	end
 

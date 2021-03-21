@@ -1420,10 +1420,13 @@
     Ccx[104]*U2s2[Ytgl], Ccx[552] -> 
    6*(-(CB2^2*Ccx[153]) - CB2*SB2*Ccx[161]) + 3*CB2*Ccx[381] + 
     2*CB2^2*Ccx[551], Ccx[622] -> CB2*Ccx[621] - Ccx[557]/DMSb0tgl2[1, 1] - 
-    Ccx[561]/DMSb0tgl2[1, 2], SEA0A02 -> -((ht^2*Ccx[147])/Pi^2) - 
-    (ht^4*Ccx[552])/(512*Pi^4), SEHmHp2 -> (3*ht^2*Ccx[622])/(16*Pi^2) - 
-    (3*ht^4*Ccx[865])/(512*Pi^4), SEHmHp2R -> -(inputMA0*SEA0A02) + SEHmHp2 - 
-    inputMHp*SEHmHp2, SEA0A02R -> inputMHp*(SEA0A02 - SEHmHp2)}, 
+    Ccx[561]/DMSb0tgl2[1, 2], SEA0A02 -> -(ht^4*Ccx[552]*TAG[0])/(512*Pi^4) - 
+    (ht^2*Ccx[147]*TAG[1])/Pi^2, 
+  SEHmHp2 -> (-3*ht^4*Ccx[865]*TAG[0])/(512*Pi^4) + 
+    (3*ht^2*Ccx[622]*TAG[1])/(16*Pi^2), 
+  SEHmHp2R -> SEHmHp2*TAG[2] + (-(inputMA0*SEA0A02) - inputMHp*SEHmHp2)*
+     TAG[3], SEA0A02R -> -(inputMHp*SEHmHp2*TAG[3]) + 
+    SEA0A02*(TAG[2] + (-1 + inputMHp)*TAG[3])}, 
  {Cex[1544] -> 2*MHin2*Ccx[395] - Ccx[97]*(MHin2 + MStgl2[3]), 
   Cex[460] -> (MTgl2 + MUE2)*MStgl2[2] + MTgl2*U2s1[Xtgl]^2, 
   Cex[499] -> (MTgl2 + MUE2)*MStgl2[1] + MTgl2*U2s1[Xtgl]^2, 
@@ -3592,8 +3595,8 @@
   Cex[174] -> Re[Ccl[10]]*(MTgl - U2s1[Ytgl]) + 
     Re[Ccl[9]]*(MTgl + U2s1[Ytgl]), Cex[24] -> -2*MTgl2*Cex[2] + Cex[23] + 
     (2*(Ccl[9] - Ccl[10])*Cex[3])/MStgl2[3], 
-  Tadh02 -> (-3*ht*SB*Cex[24])/(16*Sqrt[2]*Pi^2) - 
-    (3*ht^3*SB*Cex[100])/(256*Sqrt[2]*Pi^4), 
+  Tadh02 -> (-3*ht^3*SB*Cex[100]*TAG[0])/(256*Sqrt[2]*Pi^4) - 
+    (3*ht*SB*Cex[24]*TAG[1])/(16*Sqrt[2]*Pi^2), 
   dMA0sq1[1] -> (-3*CB2*ht^2*Cex[170]*U2s2[Ytgl]^2)/(8*Pi^2), 
   dTadh01[-1] -> (-3*ht*SB*(-2*MTgl*MTgl2 + Cex[171]))/(8*Sqrt[2]*Pi^2), 
   dTadh01[0] -> (-3*ht*SB*(Cex[172] - 2*MTgl*Re[Ccl[4]]))/(8*Sqrt[2]*Pi^2), 
@@ -4193,13 +4196,15 @@
   Cex[667] -> 2*Tadh02 + dMWsq1MW2[1]*dTadh01[-1] + dMWsq1MW2[0]*dTadh01[0], 
   Cex[732] -> 2*CB2*Cex[701] - 2*CB2*Cex[731] + (4*Cex[681])/MStgl2[3] - 
     2*Cex[687]*(MTgl + U2s1[Ytgl]) + (Cex[673]*(1 - U2s1[Ytgl]/MTgl))/SB2, 
-  TadHH2 -> (-3*ht*(8*CB*Cex[102] + Cex[127]))/(64*Sqrt[2]*Pi^2) + 
-    (3*CB*ht^3*Cex[169])/(256*Sqrt[2]*Pi^4), 
-  SEh0h02 -> (-3*ht^2*Cex[235])/(16*Pi^2) - (3*ht^4*Cex[666])/(512*Pi^4), 
-  SEh0h02R -> SEh0h02 - (ht*SB*Cex[667])/(2*Sqrt[2]*MTgl), 
-  SEHHHH2 -> (3*ht^2*Cex[732])/(32*Pi^2) + (3*ht^4*Cex[1018])/(512*Pi^4), 
-  SEHHHH2R -> -(inputMA0*SEA0A02) + SEHHHH2 - inputMHp*SEHmHp2, 
-  Cex[1464] -> Cex[1415]*Cex[1462] - Cex[1460]*Cex[1463] + 
+  TadHH2 -> (3*CB*ht^3*Cex[169]*TAG[0])/(256*Sqrt[2]*Pi^4) - 
+    (3*ht*(8*CB*Cex[102] + Cex[127])*TAG[1])/(64*Sqrt[2]*Pi^2), 
+  SEh0h02 -> (-3*ht^4*Cex[666]*TAG[0])/(512*Pi^4) - 
+    (3*ht^2*Cex[235]*TAG[1])/(16*Pi^2), 
+  SEh0h02R -> SEh0h02*TAG[2] - (ht*SB*Cex[667]*TAG[3])/(2*Sqrt[2]*MTgl), 
+  SEHHHH2 -> (3*ht^4*Cex[1018]*TAG[0])/(512*Pi^4) + 
+    (3*ht^2*Cex[732]*TAG[1])/(32*Pi^2), 
+  SEHHHH2R -> SEHHHH2*TAG[2] + (-(inputMA0*SEA0A02) - inputMHp*SEHmHp2)*
+     TAG[3], Cex[1464] -> Cex[1415]*Cex[1462] - Cex[1460]*Cex[1463] + 
     (Ccl[8]*(Ccl[9] - Ccl[10])*Cex[1439])/(MSb0gl2[1]*MStgl2[3]), 
   Cex[1465] -> -((2*MUE2*Cex[49] + Cex[1459])*Cex[1460]) + 
     Ccl[46]*Cex[1461] - Cex[1464]*MSb0gl2[1] + 
@@ -4218,9 +4223,9 @@
     (4*Cex[1465])/MStgl2[3] + 2*Cex[1411]*UStgl2[1, 1] + 
     2*(Cex[1442] + 8*Cex[1445]*UStgl2[1, 1])*UStgl2[1, 2], 
   Cex[1639] -> Sqrt[2]*ht*Cex[1638] + (4*I)*CB*inputMA0*MTgl*dMA0sq1[1]*
-     Im[dZH2[-1]], SEh0HH2 -> (-3*ht^2*Cex[1104])/(64*Pi^2) - 
-    (3*ht^4*SB*(CB*Cex[1619] - 2*CB*CB2*Cex[1637]))/(512*Pi^4), 
-  SEh0HH2R -> SEh0HH2 - (SB*Cex[1639])/(4*MTgl)}, 
+     Im[dZH2[-1]], SEh0HH2 -> (-3*ht^4*SB*(CB*Cex[1619] - 2*CB*CB2*Cex[1637])*
+      TAG[0])/(512*Pi^4) - (3*ht^2*Cex[1104]*TAG[1])/(64*Pi^2), 
+  SEh0HH2R -> SEh0HH2*TAG[2] - (SB*Cex[1639]*TAG[3])/(4*MTgl)}, 
  {Cox[242] -> MHin2^2 - MHin2*MStgl2[1] + 3*MStgl2[1]^2, 
   Cox[243] -> (Cox[242]*(MHin2 - MStgl2[1]))/MStgl2[2] + 
     (2*MHin2 - MStgl2[1])*MStgl2[2], 
@@ -5332,17 +5337,18 @@
      MStgl2[3], Cox[37] -> 2*CB2*Cox[26] - 2*Cox[34] + 
     2*(SB2*Cox[35] + CB2*Cox[36]) + SB2*(Cox[22] + (4*Cox[19])/MStgl2[3]) + 
     (2*Ccx[329]*Cox[28])/MStgl2[3] - 2*Cox[32]*U2s2[Ytgl], 
-  TadA02 -> (-3*ht*Cox[16])/(32*Sqrt[2]*Pi^2) + (3*CB*ht^3*Cox[37])/
-     (256*Sqrt[2]*Pi^4), dTadA01[-1] -> 
-   (-3*CB*ht*(MStgl2[1] - MStgl2[2])*U2s2[Ytgl])/(8*Sqrt[2]*Pi^2), 
-  dTadA01[0] -> (3*CB*ht*(-Re[Ccl[9]] + Re[Ccl[10]])*U2s2[Ytgl])/
-    (8*Sqrt[2]*Pi^2), Cox[257] -> MTgl*(MHin2 - MStgl2[3])*MStgl2[3] - 
-    Cox[256]*U2s1[Xtgl], Cox[264] -> Cox[261]*(MTgl - U2s1[Xtgl]) - 
-    Cox[263]*(MTgl + U2s1[Xtgl]), Cox[270] -> Cox[268]*(MTgl - U2s1[Xtgl]) - 
-    Cox[269]*(MTgl + U2s1[Xtgl]), Cox[258] -> Ccl[10]*Cox[255] + 
-    (Ccl[9]*Cox[257])/MStgl2[1], Cox[265] -> Ccx[395]*Cox[264] - 
-    Cox[260]*(MTgl + U2s1[Xtgl]), Cox[271] -> Ccx[412]*Cox[270] + 
-    Cox[266]*(MTgl - U2s1[Xtgl]) + 8*MStgl2[3]*(MTgl + U2s1[Xtgl]), 
+  TadA02 -> (3*CB*ht^3*Cox[37]*TAG[0])/(256*Sqrt[2]*Pi^4) - 
+    (3*ht*Cox[16]*TAG[1])/(32*Sqrt[2]*Pi^2), 
+  dTadA01[-1] -> (-3*CB*ht*(MStgl2[1] - MStgl2[2])*U2s2[Ytgl])/
+    (8*Sqrt[2]*Pi^2), dTadA01[0] -> (3*CB*ht*(-Re[Ccl[9]] + Re[Ccl[10]])*
+     U2s2[Ytgl])/(8*Sqrt[2]*Pi^2), 
+  Cox[257] -> MTgl*(MHin2 - MStgl2[3])*MStgl2[3] - Cox[256]*U2s1[Xtgl], 
+  Cox[264] -> Cox[261]*(MTgl - U2s1[Xtgl]) - Cox[263]*(MTgl + U2s1[Xtgl]), 
+  Cox[270] -> Cox[268]*(MTgl - U2s1[Xtgl]) - Cox[269]*(MTgl + U2s1[Xtgl]), 
+  Cox[258] -> Ccl[10]*Cox[255] + (Ccl[9]*Cox[257])/MStgl2[1], 
+  Cox[265] -> Ccx[395]*Cox[264] - Cox[260]*(MTgl + U2s1[Xtgl]), 
+  Cox[271] -> Ccx[412]*Cox[270] + Cox[266]*(MTgl - U2s1[Xtgl]) + 
+    8*MStgl2[3]*(MTgl + U2s1[Xtgl]), 
   Cox[275] -> -(Cox[272]*Cox[273]*(MHin2 - MStgl2[1])) - 
     (Ccl[9]*Cox[274]*MStgl2[2])/MStgl2[1] + (Ccl[2]*MStgl2[2]^2*U2s1[Xtgl])/
      MHin2, Cox[241] -> Cox[236]*(MTgl - U2s1[Xtgl]) + 
@@ -5495,7 +5501,8 @@
   Cox[483] -> -(Cox[404]/SB2) + 2*CB2*Cox[482] + (2*Cox[413])/MStgl2[3], 
   Cox[723] -> 4*CB2^2*Cox[568] + 3*CB2*Cox[706] + 
     (2*(CB2*SB2*Cox[714] + CB2^2*Cox[722]))/MStgl2[3] - 
-    4*Cox[492]*U2s2[Ytgl], SEh0A02 -> -((ht^2*Cox[130])/Pi^2) + 
-    (ht^4*Cox[395])/Pi^4, SEh0A02R -> 
-   SEh0A02 - (ht*SB*Cox[396])/(2*Sqrt[2]*MTgl), 
-  SEHHA02R -> (ht^2*Cox[483])/(64*Pi^2) + (ht^4*Cox[723])/(512*Pi^4)}}
+    4*Cox[492]*U2s2[Ytgl], SEh0A02 -> (ht^4*Cox[395]*TAG[0])/Pi^4 - 
+    (ht^2*Cox[130]*TAG[1])/Pi^2, SEh0A02R -> SEh0A02*TAG[2] - 
+    (ht*SB*Cox[396]*TAG[3])/(2*Sqrt[2]*MTgl), 
+  SEHHA02R -> (ht^4*Cox[723]*TAG[0])/(512*Pi^4) + (ht^2*Cox[483]*TAG[1])/
+     (64*Pi^2)}}

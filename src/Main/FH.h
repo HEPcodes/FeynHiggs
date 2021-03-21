@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 30 Jan 18 th
+* last modified 23 Feb 18 th
 
 
 #ifndef SignSq
@@ -30,9 +30,9 @@
 
 #define tQ(t) Ncolor(t)
 #define tU(t) (t + isQ(t))
-#define tS2 (tM2 + (3 - tM2)*Delta(tM2,tD))
+#define tS2 (tM2 + (tM3 - tM2)*Delta(tM2,tMD))
 
-#define SetSfIni(t,t0) t0*8**(t-5)
+#define SetSfIni(t,t0) t0*SfBase**(t-5)
 #define GetSfIni(t) int(ibits(SfIni,3*(t-5),3))
 
 #define tSelect(tOS,tSM2,tSM1,tMSSM, t) \
@@ -242,7 +242,7 @@
 	RealType MCha(2), MCha2(2), MNeu(4), MNeu2(4)
 	RealType MSS(5,3), MSS0(5,3)
 	RealType DSf(2,5), QSf(2:4), QSf2(2:4)
-        RealType MHtree(4), MHtree2(4)
+	RealType MHtree(4), MHtree2(4)
 	RealType MUE2, MMUE, MGl, MGl2
 	RealType CB, SB, TB, CB2, SB2, TB2, C2B, S2B
 	RealType CA, SA, CA2, SA2, C2A, S2A
@@ -292,32 +292,39 @@
 * sfermion parameters, but all variables which need to be
 * conserved during FHUncertainties.
 
-* Sf(*,1) = Sneutrino				- set in Para.F
-* Sf(*,2) = Slepton				- set in Para.F
+* Sf(*,1) = Sneutrino				- set in Sfermions.F
+* Sf(*,2) = Slepton				- set in Sfermions.F
 * Sf(*,3) = Sup with MT(pole)			- set in Sfermions.F
 * Sf(*,4) = Sdown with MB(MB)			- set in Sfermions.F
 *
-* Sf(*,5=tT) = Sup with MSbar MT(MT)		- set in Sfermions.F
-* Sf(*,6=tT2) = Sup with MSbar MT(MT)_1LEW	- set in Sfermions.F
-* Sf(*,7=tD) = Sup with DRbar MT(MT)		- set in Sfermions.F
+* Sf(*,5=tT) = Sup with MSbar MT(MT), OS para	- set in Sfermions.F
+* Sf(*,6=tM3) = Sup with MT(pole)		- set in Sfermions.F
+* Sf(*,7=tMT) = Sup with MSbar MT(MT)		- set in Sfermions.F
+* Sf(*,8=tMT1) = Sup with MSbar MT(MT)_1LEW	- set in Sfermions.F
+* Sf(*,9=tMD) = Sup with DRbar MT(MT)		- set in Sfermions.F
 *
-* Sf(*,8=bBR) = Sdown with MB(MB)/|1 + Db|	- set in Sfermions.F
-* Sf(*,9=bTR) = Sdown with MB(MT)/|1 + Db|	- set in Sfermions.F
-* Sf(*,10=bTR0) = ditto compatible with TLps	- set in CalcRenSETL.F
+* Sf(*,10=bBR) = Sdown with MB(MB)/|1 + Db|	- set in Sfermions.F
+* Sf(*,11=bTR) = Sdown with MB(MT)/|1 + Db|	- set in Sfermions.F
+* Sf(*,12=bTR0) = ditto compatible with TLps	- set in CalcRenSETL.F
 *   (latter used for cpe Higgs masses only)
 *
-* Sf(*,11=tH) = Sup with MT(Mh) for Decays	- set in Couplings.F
-* Sf(*,12=bH) = Sdown with MB(Mh) for Decays	- set in Couplings.F
-* Sf(*,13=bHR) = Sdown with MB(Mh)/|1 + Db|	- set in Couplings.F
+* tH & bH also used in DRbartoOS.F to store sfs @ DRbar scale
+* Sf(*,13=tH) = Sup with MT(Mh) for Decays	- set in Couplings.F
+* Sf(*,14=bH) = Sdown with MB(Mh) for Decays	- set in Couplings.F
+* Sf(*,15=bHR) = Sdown with MB(Mh)/|1 + Db|	- set in Couplings.F
 
-	integer tT, tT2, tD, bBR, bTR, bTR0, tH, bH, bHR
-	parameter (tT = 5, tT2 = 6, tD = 7)
-	parameter (bBR = 8, bTR = 9, bTR0 = 10)
-	parameter (tH = 11, bH = 12, bHR = 13)
+	integer tT, tM3, tMT, tMT1, tMD
+	integer bBR, bTR, bTR0
+	integer tH, bH, bHR
+	parameter (tT = 5, tM3 = 6, tMT = 7, tMT1 = 8, tMD = 9)
+	parameter (bBR = 10, bTR = 11, bTR0 = 12)
+	parameter (tH = 13, bH = 14, bHR = 15)
 
-	integer SfSlots, SfIni
-	parameter (SfSlots = 13, SfIni =
-     &    SetSfIni(tT,3) + SetSfIni(tT2,3) + SetSfIni(tD,3) +
+	integer SfSlots
+	integer*8 SfBase, SfIni
+	parameter (SfSlots = 15, SfBase = 8, SfIni =
+     &    SetSfIni(tT,3) + SetSfIni(tM3,3) + SetSfIni(tMT,3) +
+     &    SetSfIni(tMT1,3) + SetSfIni(tMD,3) +
      &    SetSfIni(bBR,4) + SetSfIni(bTR,4) + SetSfIni(bTR0,4) +
      &    SetSfIni(tH,3) + SetSfIni(bH,4) + SetSfIni(bHR,4))
 
@@ -493,7 +500,7 @@
 	integer mixmask, fv
 	integer debuglevel, debugunit, paraunit
 	integer uzint, uzext, mfeff, ipolXt, ipolXb
-	integer tlpsmask, tlzeromask(4), loglevelmt
+	integer tlpsmask, tlzeromask(4), loglevelmt, tldegatat
 	integer forceSU2, drbarmode, drbarvars, fopoleeq, dmtlimim
 	integer tM1, tM2, bM, bM0, bM1, gM
 	character*256 extSE
@@ -509,7 +516,7 @@
      &    mixmask, fv,
      &    debuglevel, debugunit, paraunit,
      &    uzint, uzext, mfeff, ipolXt, ipolXb,
-     &    tlpsmask, tlzeromask, loglevelmt,
+     &    tlpsmask, tlzeromask, loglevelmt, TLdegatat,
      &    forceSU2, drbarmode, drbarvars, fopoleeq, dmtlimim,
      &    tM1, tM2, bM, bM0, bM1, gM,
      &    extSE

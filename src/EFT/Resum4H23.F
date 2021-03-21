@@ -5,7 +5,7 @@
 *   medium scale 2 = MGlu
 *   high scale = MSUSY
 * this file is part of FeynHiggs
-* last modified 30 Jan 18 th
+* last modified 27 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -22,7 +22,7 @@
 #include "Resum4H.h"
 #define __SUBROUTINE__ "Resum4H23"
 
-	integer fail, i
+	integer fail
 	RealType x(nSM)
 	RealType yOS, msMS, logarg
 	RealType g1uC, g1uC2, g1dC, g1dC2
@@ -31,35 +31,39 @@
 	RealType gMs, gMs2, gyMs, gyMs2
 	RealType htMT2sub, sublog1L, sublog2L
 	RealType subnonlog1L, subnonlog2La, subnonlog2Lb
-	RealType dlam_asatOS, Mh2
+	RealType dlam_asatOS, dlam_atatOS
+	RealType Mh2, tSS(5)
+	RealType XtOS, YtOS
 	RealType dup1, dup2
 
 	external threshdiff
 
 	yOS = xOS + mueOS*(1/TB + TB)
+	XtOS = xOS*MSUSYOS
+	YtOS = yOS*MSUSYOS
 
-	dlam_asatMS = 0
-
-	if( (drbarmode .eq. 1) .AND. (QSf(3) .ne. 0) ) then
+	if( drbarvars .eq. 1 ) then
 	  xMS = xOS
 	  mueMS = mueOS
 	  if( loglevel .gt. 2 ) then
 	    call loopfun4H(lfmueMS, mueMS)
-	    call TLthresholdasat(dlam_asatMS, xMS*MSUSYOS/MGl)
+	    call TLthresholdasat(dlam_asatMS, xMS*MSUSYOS)
+	    call TLthresholdatatCoeff(clam_atat, MSUSYOS)
 	  endif
-        else
+	else
 	  if( loglevelXt .eq. 2 ) then
 	    xMS = .75D0*htMT2*xOS1
 	    xMS = xOS*(1 + k1L*(4*g3MT2 - xMS)*llog)
 	    mueMS = mueOS
 	    if( loglevel .gt. 2 ) then
 	      call loopfun4H(lfmueMS, mueMS)
-	      call TLthresholdasat(dlam_asatMS, xMS*MSUSYOS/MGl)
+	      call TLthresholdasat(dlam_asatMS, xMS*MSUSYOS)
+  	      call TLthresholdatatCoeff(clam_atat, MSUSYOS)
 	    endif
 	  else
 	    call loopfun4H(lfmueOS, mueOS)
 	    xMS = 32/3D0*g3MT2 + (6 - pi*sqrt3)*htMT2*yOS/TB2
-	    logarg = abs(xOS)*Mf(tT2,3)/MSUSYOS
+	    logarg = abs(xOS)*Mf(tMT1,3)/MSUSYOS
 	    if( logarg .gt. 1D-12 ) xMS = xMS + xOS*(
      &        4/3D0*g3MT2*(5 + 3*llog - xOS) -
      &        .75D0*htMT2/SB2*(
@@ -75,20 +79,29 @@
 	    tSUSYMS = tSUSYOS + log(msMS**2)
 	    mueMS = mueOS/msMS
 	    call loopfun4H(lfmueMS, mueMS)
-	    call TLthresholdasat(dlam_asatMS, xMS*msMS*MSUSYOS/MGl)
+	    call TLthresholdasat(dlam_asatMS, xMS*msMS*MSUSYOS)
+	    call TLthresholdatatCoeff(clam_atat, MSUSYOS)
 	  endif
         endif
 	xMS2 = xMS**2
 
+#ifdef DETAILED_DEBUG
+	DEFT "xOS =", xOS	ENDL
+	DEFT "xMS =", xMS	ENDL
+	DEFT "mueOS =", mueOS	ENDL
+	DEFT "mueMS =", mueMS	ENDL
+#endif
+
 * evaluate loopfunctions necessary for threshold corrections
-	call loopfunSf(lfSf, MSS(3,3)/MSS(4,3))
+	call loopfunSf(lfSf, MStQ/MStU)
 	call loopfunIno(lfM12, Re(M_1)/Re(MUEc), Re(M_2)/Re(MUEc))
 
-	do i = 1, 5
-	  tSS(i) = 2/3D0*log(abs(MSS(i,1)*MSS(i,2)*MSS(i,3)))
-	enddo
-	tSQ = 2*log(abs(MSS(3,3)))
-	tSU = 2*log(abs(MSS(4,3)))
+	tSS(:) = 2/3D0*log(abs(MSS0(:,1)*MSS0(:,2)*MSS0(:,3)))
+	tSS1 = 3*tSS(tQ(2)) + 6*tSS(tU(2)) +
+     &    tSS(tQ(3)) + 8*tSS(tU(3)) + 2*tSS(tU(4))
+	tSS2 = tSS(tQ(2)) + 3*tSS(tQ(3))
+	tSQ = 2*log(abs(MStQ))
+	tSU = 2*log(abs(MStU))
 	tA0 = log(MA02)
 	tMUE = log(Sq(MUEc))
 	tM_2 = log(Sq(M_2))
@@ -132,13 +145,13 @@
 	endif
 
 	if( debuglevel .gt. 4 ) then
-	  DHIGGS "EFT final:"				ENDL
-	  DHIGGS "lam(MT)      =", vev**2*x(ilam)	ENDL
-	  DHIGGS "subnonlog1L  =", vev**2*subnonlog1L	ENDL
-	  DHIGGS "sublog1L     =", vev**2*sublog1L	ENDL
-	  DHIGGS "subnonlog2La =", vev**2*subnonlog2La	ENDL
-	  DHIGGS "subnonlog2Lb =", vev**2*subnonlog2Lb	ENDL
-	  DHIGGS "sublog2L     =", vev**2*sublog2L	ENDL
+	  DEFT "EFT final:"				ENDL
+	  DEFT "lam(MT)      =", vev**2*x(ilam)	ENDL
+	  DEFT "subnonlog1L  =", vev**2*subnonlog1L	ENDL
+	  DEFT "sublog1L     =", vev**2*sublog1L	ENDL
+	  DEFT "subnonlog2La =", vev**2*subnonlog2La	ENDL
+	  DEFT "subnonlog2Lb =", vev**2*subnonlog2Lb	ENDL
+	  DEFT "sublog2L     =", vev**2*sublog2L	ENDL
 	endif
 	end
 
@@ -160,10 +173,11 @@
 #include "Resum4H.h"
 
 	RealType y(nSplit)
-	RealType ySB, ySB2, yCB, yCB2, yC2B, yS2B
+	RealType yTB2, ySB, ySB2, yCB, yCB2, yC2B, yS2B
 	RealType yg2, ygy2, yht2
 	RealType yg1d2, yg2d2, yg1u2, yg2u2
 	RealType dx2, yMS
+	RealType dlam_atatMS
 
 	external betaSM2L, betaSplit2L
 
@@ -177,6 +191,7 @@
 	yht2 = y(iht)**2
 	y(itb) = x(itb)
 
+	yTB2 = y(itb)**2
 	yCB2 = 1/(1 + y(itb)**2)
 	yCB = sqrt(yCB2)
 	ySB = y(itb)*yCB
@@ -186,44 +201,54 @@
 
 * threshold corrections at Q = MSUSY
 
-	y(ig1d) = 1/48.D0*(yCB*(48 - k1L*(12*xMS2*yht2 +
-     &           9*yg2*(2 - (7 - 6*tA0 + 6*tSUSYMS)*ySB2) +
-     &           ygy2*(4*(33 - 2*tA0 + 42*tSUSYMS) -
-     &              3*(7 - 6*tA0 + 6*tSUSYMS)*ySB2 -
-     &              8*(3*tSS(1) + 6*tSS(2) + tSS(3) + 8*tSS(4) +
-     &                 2*tSS(5)))))*y(igy))
+	y(ig1d) = y(igy)*yCB*(1 - k1L/48D0*(
+     &    12*xMS2*yht2 +
+     &    9*yg2*(2 - (7 - 6*tA0 + 6*tSUSYMS)*ySB2) +
+     &    ygy2*(4*(33 - 2*tA0 + 42*tSUSYMS) -
+     &      3*(7 - 6*tA0 + 6*tSUSYMS)*ySB2 - 8*tSS1) ))
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(ig1d) =", y(ig1d) ENDL
+#endif
 
-	y(ig2d) = 1/48.D0*(yCB*(48 - k1L*(6*(ygy2 + 2*xMS2*yht2) -
-     &           3*(7 - 6*tA0 + 6*tSUSYMS)*ygy2*ySB2 +
-     &           yg2*(32 - 8*tA0 + 104*tSUSYMS +
-     &              (33 - 42*tA0 + 42*tSUSYMS)*ySB2 - 24*tSS(1) -
-     &              72*tSS(3))))*y(ig))
+	y(ig2d) = y(ig)*yCB*(1 - k1L/48D0*(
+     &    6*(ygy2 + 2*xMS2*yht2) -
+     &    3*(7 - 6*tA0 + 6*tSUSYMS)*ygy2*ySB2 +
+     &    yg2*(32 - 8*tA0 + 104*tSUSYMS +
+     &      (33 - 42*tA0 + 42*tSUSYMS)*ySB2 - 24*tSS2) ))
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(ig2d) =", y(ig2d) ENDL
+#endif
 
-	y(ig1u) = 1/48.D0*((48*ySB**2 + k1L*
-     &          (12*yht2*(9 + 7*tSQ - 13*tSU + 6*tSUSYMS -
-     &               xMS2*ySB**2) -
-     &            ySB**2*(9*(2 - (7 - 6*tA0 + 6*tSUSYMS)*yCB2)*
-     &                yg2 +
-     &               ygy2*(132 - tA0*(8 - 18*yCB2) +
-     &                  6*tSUSYMS*(28 - 3*yCB2) - 21*yCB2 -
-     &                  8*(3*tSS(1) + 6*tSS(2) + tSS(3) +
-     &                     8*tSS(4) + 2*tSS(5))))))*y(igy))/ySB
+	y(ig1u) = y(igy)*(ySB + k1L/48D0/ySB*(
+     &    12*yht2*(9 + 7*tSQ - 13*tSU + 6*tSUSYMS - xMS2*ySB**2) -
+     &    ySB**2*(9*(2 - (7 - 6*tA0 + 6*tSUSYMS)*yCB2)*yg2 +
+     &      ygy2*(132 - tA0*(8 - 18*yCB2) +
+     &      6*tSUSYMS*(28 - 3*yCB2) - 21*yCB2 - 8*tSS1)) ))
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(ig1u) =", y(ig1u) ENDL
+#endif
 
-	y(ig2u) = 1/48.D0*((48*ySB**2 + k1L*
-     &          (12*yht2*(9 - 9*tSQ + 3*tSU + 6*tSUSYMS -
-     &               xMS2*ySB**2) -
-     &            ySB**2*(3*(2 - (7 - 6*tA0 + 6*tSUSYMS)*yCB2)*
-     &                ygy2 +
-     &               yg2*(32 - 8*tA0 + 104*tSUSYMS +
-     &                  (33 - 42*tA0 + 42*tSUSYMS)*yCB2 -
-     &                  24*tSS(1) - 72*tSS(3)))))*y(ig))/ySB
+	y(ig2u) = y(ig)*(ySB + k1L/48D0/ySB*(
+     &    12*yht2*(9 - 9*tSQ + 3*tSU + 6*tSUSYMS - xMS2*ySB**2) -
+     &    ySB**2*(3*(2 - (7 - 6*tA0 + 6*tSUSYMS)*yCB2)*ygy2 +
+     &      yg2*(32 - 8*tA0 + 104*tSUSYMS +
+     &        (33 - 42*tA0 + 42*tSUSYMS)*yCB2 - 24*tSS2)) ))
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(ig2u) =", y(ig2u) ENDL
+#endif
 
 * lambda(MSUSY): tree-level
-	y(ilam) = 1/4.D0*(yC2B**2*(yg2 + ygy2))
+	y(ilam) = 1/4D0*yC2B**2*(yg2 + ygy2)
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(ilam) 0   =", y(ilam) ENDL
+#endif
 
 * lambda(MSUSY): 1L DRbar -> MSbar
 	y(ilam) = y(ilam) -
-     &    k1L/12.D0*((9 - 2*yC2B**2)*yg2**2 + 6*yg2*ygy2 + 3*ygy2**2)
+     &    k1L/12D0*((9 - 2*yC2B**2)*yg2**2 + 6*yg2*ygy2 + 3*ygy2**2)
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff:        +1MS =", y(ilam) ENDL
+#endif
 
 * lambda(MSUSY): 1L heavy Higgs
 	y(ilam) = y(ilam) -
@@ -234,6 +259,9 @@
      &             (yC2B + yS2B) -
      &            9*(yg2 + ygy2)**2*
      &             (yS2B**4 + yC2B**2*(yC2B**2 - 6*yS2B**2)))))
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff:        +1HH =", y(ilam) ENDL
+#endif
 
 * lambda(MSUSY): 1L sfermions
 	y(ilam) = y(ilam) -
@@ -245,36 +273,38 @@
      &             yC2B*(3*(ygy2*lfSf(3) + yg2*lfSf(4)) -
      &                yC2B*(yg2 + ygy2)*lfSf(5)))) +
      &       yC2B**2*(4*tSUSYMS*(3*yg2**2 + 5*ygy2**2) -
-     &          3*yg2**2*(tSS(1) + 3*tSS(3)) -
-     &          ygy2**2*(3*tSS(1) + 6*tSS(2) + tSS(3) + 8*tSS(4) +
-     &             2*tSS(5))))
+     &          3*yg2**2*tSS2 - ygy2**2*tSS1))
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff:        +1sf =", y(ilam) ENDL
+#endif
 
 * 2L correction to lambda(MSUSY)
 	if( loglevel .gt. 2 ) then
-* asat threshold
-	  y(ilam) = y(ilam) + 4*k2L*yht2**2*y(ig3)**2*dlam_asatMS
-* atat threshold
 	  yMS = xMS + mueMS*(1/y(itb) + y(itb))
-	  y(ilam) = y(ilam) - k2L/12.D0*(yht2**2*
-     &        (3*yht2*(6*xMS2**3*ySB2 +
-     &             12*(3 + 16*Kfac)*(yCB2*yMS*(4*xMS + yMS)) +
-     &             xMS2**2*
-     &              (yCB2*(75 + (19 + 96*Kfac)*yMS**2) -
-     &                6*(11 - lfmueMS(1) + lfmueMS(2))) -
-     &             4*xMS2*(yCB2*
-     &                 (45 + 12*xMS*yMS + 14*yMS**2 -
-     &                   Kfac*(72 - 48*xMS*yMS - 72*yMS**2)) -
-     &                3*(7 - 4*lfmueMS(1) + 4*lfmueMS(2))) -
-     &             6*(1 - (13 - 120*Kfac - 2*pi**2)*yCB2 -
-     &                16*lfmueMS(1) +
-     &                mueMS**2*
-     &                 (2*(6 - 2*lfmueMS(1) -
-     &                      xMS2*
-     &                       (6 + 6*lfmueMS(1) -
-     &                       xMS2*(1 + lfmueMS(1)))) +
-     &                   (6 - (12 - xMS2)*xMS2)*lfmueMS(2)) +
-     &                8*lfmueMS(3)))))/ySB2
-     &
+	  if( tldegatat .ne. 0 ) then
+	    dlam_atatMS = -1/4D0*(6*xMS2**3*ySB2 +
+     &        12*(3 + 16*Kfac)*yCB2*yMS*(4*xMS + yMS) +
+     &        xMS2**2*(yCB2*(75 + (19 + 96*Kfac)*yMS**2) -
+     &          6*(11 - lfmueMS(1) + lfmueMS(2))) -
+     &        4*xMS2*(yCB2*(45 + 12*xMS*yMS + 14*yMS**2 -
+     &            Kfac*(72 - 48*xMS*yMS - 72*yMS**2)) -
+     &          3*(7 - 4*lfmueMS(1) + 4*lfmueMS(2))) -
+     &        6*(1 - (13 - 120*Kfac - 2*pi**2)*yCB2 - 16*lfmueMS(1) +
+     &          mueMS**2*(2*(6 - 2*lfmueMS(1) -
+     &              xMS2*(6 + 6*lfmueMS(1) - xMS2*(1 + lfmueMS(1)))) +
+     &            (6 - (12 - xMS2)*xMS2)*lfmueMS(2)) +
+     &          8*lfmueMS(3)))/ySB2
+	  else
+	    call TLthresholdatat(dlam_atatMS, clam_atat,
+     &        xMS*MSUSYOS, yMS*MSUSYOS, yTB2, ySB2)
+	  endif
+	  y(ilam) = y(ilam) + k2L*yht2**2*
+     &      (4*y(ig3)**2*dlam_asatMS + yht2*dlam_atatMS)
+#ifdef DETAILED_DEBUG
+	  DEFT "threshdiff:        +2L  =", y(ilam) ENDL
+	  DEFT "threshdiff: dlam_asatMS =", dlam_asatMS ENDL
+	  DEFT "threshdiff: dlam_atatMS =", dlam_atatMS ENDL
+#endif
 	endif
 
 * run from Q = MSUSY to Q = MCha with Split RGEs
@@ -286,9 +316,15 @@
 
 	y(ig) = y(ig)*(1 - k1L/3.D0*(3*tCha - tMUE - 2*tM_2)*yg2)
 	yg2 = y(ig)**2
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(ig) =", y(ig) ENDL
+#endif
 
 	y(igy) = y(igy)*(1 - k1L/3.D0*(tCha - tMUE)*ygy2)
 	ygy2 = y(igy)**2
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(igy) =", y(igy) ENDL
+#endif
 
 	yg1u2 = y(ig1u)**2
 	yg1d2 = y(ig1d)**2
@@ -302,6 +338,9 @@
      &         3*(yg2d2 + yg2u2)*lfM12(6,2) -
      &         2*lfM12(5,1)*y(ig1d)*y(ig1u) -
      &         6*lfM12(5,2)*y(ig2d)*y(ig2u)))*y(iht)
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(iht) =", y(iht) ENDL
+#endif
 
 	y(ilam) = y(ilam) -
      &    k1L/12.D0*(7*(yg1d2**2 + yg1u2**2)*lfM12(1,1) +
@@ -319,12 +358,15 @@
      &        (2*(yg2d2 + yg2u2) - y(ilam)) -
      &       12*((1/3.D0*((yg1d2 + yg1u2)*lfM12(6,1)) +
      &             (yg2d2 + yg2u2)*lfM12(6,2))*y(ilam) +
-     &          (tCha - tMUE)*
+     &          .5D0*(tCha - tMUE)*
      &           (yg1d2**2 + yg1u2**2 +
      &             2*(yg1u2 + yg2d2)*(yg1d2 + yg2u2) +
      &             5*(yg2d2**2 + yg2u2**2) +
      &             4*y(ig1d)*y(ig1u)*y(ig2d)*y(ig2u) -
-     &             (yg1d2 + yg1u2 + 3*(yg2d2 + yg2u2))*y(ilam))))
+     &             2*(yg1d2 + yg1u2 + 3*(yg2d2 + yg2u2))*y(ilam))))
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: y(ilam) =", y(ilam) ENDL
+#endif
 
 * run from Q = MCha to Q = MT with SM RGEs
 
@@ -340,18 +382,36 @@
 
 	dx(ig3) = y(ig3) - g3MT
 	dx2 = dx(ig3)**2
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: dx(ig3) =", dx(ig3) ENDL
+#endif
 
 	dx(iht) = y(iht) - htMT
 	dx2 = dx2 + dx(iht)**2
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: dx(iht) =", dx(iht) ENDL
+#endif
 
 	dx(ig) = y(ig) - gMT
 	dx2 = dx2 + dx(ig)**2
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: dx(ig) =", dx(ig) ENDL
+#endif
 
 	dx(igy) = y(igy) - gyMT
 	dx2 = dx2 + dx(igy)**2
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: dx(igy) =", dx(igy) ENDL
+#endif
 
 	dx(itb) = y(itb) - TB
 	dx2 = dx2 + dx(itb)**2
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: dx(itb) =", dx(itb) ENDL
+#endif
 
 	dxmin = dx2
+#ifdef DETAILED_DEBUG
+	DEFT "threshdiff: dxmin =", dxmin ENDL
+#endif
 	end

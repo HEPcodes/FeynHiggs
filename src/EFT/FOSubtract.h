@@ -1,7 +1,7 @@
 * FOSubtract.h
 * the fixed-order subtraction terms
 * this file is part of FeynHiggs
-* last modified 12 Dec 17 th
+* last modified 26 Feb 18 th
 
 	htMT2sub = 2*Mf2(tM2,3)/vev**2
 
@@ -25,7 +25,7 @@
 	  g1dC2 = g1dC**2
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "g1dC =", g1dC ENDL
+	  DEFT "g1dC =", g1dC ENDL
 #endif
 
 	  g2dC = 1/48.D0*
@@ -38,7 +38,7 @@
 	  g2dC2 = g2dC**2
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "g2dC =", g2dC ENDL
+	  DEFT "g2dC =", g2dC ENDL
 #endif
 
 	  g1uC = 1/192.D0*
@@ -55,7 +55,7 @@
 	  g1uC2 = g1uC**2
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "g1uC =", g1uC ENDL
+	  DEFT "g1uC =", g1uC ENDL
 #endif
 
 	  g2uC = 1/192.D0*
@@ -71,7 +71,7 @@
 	  g2uC2 = g2uC**2
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "g2uC =", g2uC ENDL
+	  DEFT "g2uC =", g2uC ENDL
 #endif
 
 	  htC = htMT*(1 -
@@ -112,15 +112,15 @@
      &                tSS(3) - 8*tSS(4) - 2*tSS(5)))))
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "lC =", lC ENDL
+	  DEFT "lC =", lC ENDL
 #endif
 
 	  subnonlog1L = lC + k1L/12.D0*(12*(g1dC2**2 + g1uC2**2 +
      &          4*g1dC*g1uC*g2dC*g2uC +
      &          2*(g1uC2 + g2dC2)*(g1dC2 + g2uC2) +
      &          5*(g2dC2**2 + g2uC2**2) -
-     &          (g1dC2 + g1uC2 + 3*(g2dC2 + g2uC2))*lC)*
-     &        (tCha - tMUE) - 7*(g1dC2**2 + g1uC2**2)*lfM12(1,1) -
+     &          2*(g1dC2 + g1uC2 + 3*(g2dC2 + g2uC2))*lC)*
+     &        .5D0*(tCha - tMUE) - 7*(g1dC2**2 + g1uC2**2)*lfM12(1,1) -
      &       27*(g2dC2**2 + g2uC2**2)*lfM12(2,2) -
      &       14*(g1dC2*g2dC2 + g1uC2*g2uC2)*lfM12(2,3) -
      &       18*g1dC2*g1uC2*lfM12(3,1) -
@@ -135,7 +135,7 @@
      &          3*(g2dC2 + g2uC2)*lfM12(6,2)))
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "subnonlog1L =", subnonlog1L ENDL
+	  DEFT "subnonlog1L =", subnonlog1L ENDL
 #endif
 
 	  sublog1L = 1/(24.D0*MW2*Pi*SW2)*
@@ -149,7 +149,7 @@
      &            36*Mf2(tM2,3)**2)))/vev**2
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "sublog1L =", sublog1L ENDL
+	  DEFT "sublog1L =", sublog1L ENDL
 #endif
 	endif
 
@@ -170,7 +170,7 @@
      &         htMT2sub*(3*(1 - lfSf(1))*(1 + xOS2) -
      &           .5D0*xOS2**2*(1 - lfSf(2)))))
 
-	  if( tM2 .eq. 3 ) then
+	  if( tM2 .eq. tM3 ) then
 	    sublog2L = sublog2L +
      &        k2L*llog*htMT2sub**2*(-128*gsMT2 + 48*htMT2sub)
 	  else
@@ -189,32 +189,41 @@
 	  endif
 
 #ifdef DETAILED_DEBUG
-	  DHIGGS "sublog2L =", sublog2L ENDL
+	  DEFT "sublog2L =", sublog2L ENDL
 #endif
 	endif
 
 ************************************************************************
 
-	call loopfun4H(lfmueOS, mueOS)
-	call TLthresholdasat(dlam_asatOS, xOS*MSUSYOS/MGl)
+	call TLthresholdasat(dlam_asatOS, xOS*MSUSYOS)
 
 * subtraction of 2L thresholds
-	subnonlog2La = 1/4.D0*(htMT2**2*k2L*
-     &       (16*dlam_asatOS*g3MT2*SB2 +
-     &         htMT2*(CB2*(3*
-     &                (9 + 4*pi**2 - xOS1*(10 + 25*xOS1) +
-     &                  Kfac*(144 + 96*xOS1)) -
-     &               48*xOS*(2 + xOS1 + Kfac*(12 + 4*xOS1))*yOS +
-     &               (1 + xOS1)*(1 - (19 + 96*Kfac)*xOS1)*yOS**2)+
-     &              6*(1 - 16*lfmueOS(1) +
-     &               mueOS2*
-     &                (2*(6 - 2*lfmueOS(1) -
-     &                     xOS2*(5 + xOS1)*(1 + lfmueOS(1))) +
-     &                  (6 - (11 + xOS1)*xOS2)*lfmueOS(2)) -
-     &               xOS2*(14 - 8*lfmueOS(1) + 8*lfmueOS(2) -
-     &                  xOS2*
-     &                   (11 - SB2*xOS2 - lfmueOS(1) + lfmueOS(2)))
-     &                 + 8*lfmueOS(3)))))/SB2
+	if( tldegatat .ne. 0 ) then
+	  call loopfun4H(lfmueOS, mueOS)
+	  dlam_atatOS = 1/4D0*(CB2*(3*
+     &       (9 + 4*pi**2 - xOS1*(10 + 25*xOS1) +
+     &         Kfac*(144 + 96*xOS1)) -
+     &       48*xOS*(2 + xOS1 + Kfac*(12 + 4*xOS1))*yOS +
+     &       (1 + xOS1)*(1 - (19 + 96*Kfac)*xOS1)*yOS**2) +
+     &       6*(1 - 16*lfmueOS(1) + mueOS2*(
+     &         2*(6 - 2*lfmueOS(1) - xOS2*(5 + xOS1)*(1 + lfmueOS(1))) +
+     &         (6 - (11 + xOS1)*xOS2)*lfmueOS(2) ) -
+     &       xOS2*(14 - 8*lfmueOS(1) + 8*lfmueOS(2) -
+     &         xOS2*(11 - SB2*xOS2 - lfmueOS(1) + lfmueOS(2))) +
+     &       8*lfmueOS(3)))/SB2
+	else
+	  call TLthresholdatat(dlam_atatOS, clam_atat,
+     &      XtOS, YtOS, TB2, SB2)
+	endif
+
+	subnonlog2La = k2L*htMT2**2*
+     &    (4*g3MT2*dlam_asatOS + htMT2*dlam_atatOS)
+
+#ifdef DETAILED_DEBUG
+	DEFT "dlam_asatOS =", dlam_asatOS ENDL
+	DEFT "dlam_atatOS =", dlam_atatOS ENDL
+	DEFT "subnonlog2La =", subnonlog2La ENDL
+#endif
 
 ************************************************************************
 
@@ -300,3 +309,7 @@
 
 	  endif
 	endif
+
+#ifdef DETAILED_DEBUG
+	DEFT "subnonlog2Lb =", subnonlog2Lb ENDL
+#endif

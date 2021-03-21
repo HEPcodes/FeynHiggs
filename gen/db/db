@@ -43,8 +43,8 @@ If[ debug === 1, MkDir[$PaintSE = "d/"] ];
 
 
 se[a__, q_] := SelfEnergy[a] /. {
-  B0i[bb0, args__] -> B0q[args, q],
-  B0i[bb1, args__] -> B1q[args, q] };
+  B0i[bb0, args__] :> B0q[args, q],
+  B0i[bb1, args__] :> B1q[args, q] };
 
 se[proc:(F[t_, {g1_}] -> F[t_, {g2_}]), p_] :=
   asdb/Alfas se[proc, p, LastSelections -> F[15], Qqcd] +
@@ -82,18 +82,18 @@ Block[ {expr, hh},
       VCha -> VChaL, VChaC -> VChaLC,
       MNeu -> MNeuL, MNeu2 -> (MNeuL[##]^2 &),
       ZNeu -> ZNeuL, ZNeuC -> ZNeuLC,
-      Mf[3,g_] -> Mf[tT,g],
-      Mf2[3,g_] -> Mf2[tT,g],
-      MSf[s_,3,g__] -> MSf[s,tT,g],
-      MSf2[s_,3,g__] -> MSf2[s,tT,g],
-      USf[s1_,s2_,3,g__] -> USf[s1,s2,tT,g],
-      USfC[s1_,s2_,3,g__] -> USfC[s1,s2,tT,g],
-      Mf[4,g_] -> Mf[bTR,g],
-      Mf2[4,g_] -> Mf2[bTR,g],
-      MSf[s_,4,g__] -> MSdL[s,g],
-      MSf2[s_,4,g__] -> MSdL2[s,g],
-      USf[s1_,s2_,4,g__] -> USdL[s1,s2,g],
-      USfC[s1_,s2_,4,g__] -> USdLC[s1,s2,g]
+      Mf[3,g_] :> Mf[tT,g],
+      Mf2[3,g_] :> Mf2[tT,g],
+      MSf[s_,3,g__] :> MSf[s,tT,g],
+      MSf2[s_,3,g__] :> MSf2[s,tT,g],
+      USf[s1_,s2_,3,g__] :> USf[s1,s2,tT,g],
+      USfC[s1_,s2_,3,g__] :> USfC[s1,s2,tT,g],
+      Mf[4,g_] :> Mf[bTR,g],
+      Mf2[4,g_] :> Mf2[bTR,g],
+      MSf[s_,4,g__] :> MSdL[s,g],
+      MSf2[s_,4,g__] :> MSdL2[s,g],
+      USf[s1_,s2_,4,g__] :> USdL[s1,s2,g],
+      USfC[s1_,s2_,4,g__] :> USdLC[s1,s2,g]
     } /. ToOldBRules;
 
   hh = OpenFortran[ToFileName[MkDir["f"], tag <> ".F"]];

@@ -1,7 +1,7 @@
 * Resum4H.F
 * resum the 4H coupling
 * this file is part of FeynHiggs
-* last modified 30 Jan 16 th
+* last modified 20 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -21,7 +21,7 @@
 	RealType res(ipslots), ipres, Mh02_, dPhi22
 
 	tTop = log(MT2)
-	MSUSYOS = MSf(1,3,3)*MSf(2,3,3)
+	MSUSYOS = MSf(1,tM3,3)*MSf(2,tM3,3)
 	tSUSYOS = log(MSUSYOS)
 	tSUSYMS = tSUSYOS
 	llog = tSUSYOS - tTop
@@ -69,17 +69,17 @@
      &      g3MT2*(-23.88D0 + .12D0*dMh0RGE - .64D0*(MT - 173)) +
      &      (-9.45D0 - .12D0*dMh0RGE - .21D0*(MT - 173)) )
 	  if( debuglevel .gt. 2 )
-     &      DHIGGS "Mh2poleEFT =", Mh02EFT	ENDL
+     &      DEFT "Mh2poleEFT =", Mh02EFT	ENDL
 	else
 	  dPhi22 = -ipres/SB2
 	  seEFT(h0h0) = CA2*dPhi22
 	  seEFT(HHHH) = SA2*dPhi22
 	  seEFT(h0HH) = .5D0*S2A*dPhi22
 	  if( debuglevel .gt. 2 ) then
-	    DHIGGS "dPhi22 =", dPhi22			ENDL
-	    DHIGGS "resum4H h0h0 =", seEFT(h0h0)	ENDL
-	    DHIGGS "resum4H HHHH =", seEFT(h0HH)	ENDL
-	    DHIGGS "resum4H h0HH =", seEFT(h0HH)	ENDL
+	    DEFT "dPhi22 =", dPhi22			ENDL
+	    DEFT "resum4H h0h0 =", seEFT(h0h0)	ENDL
+	    DEFT "resum4H HHHH =", seEFT(h0HH)	ENDL
+	    DEFT "resum4H h0HH =", seEFT(h0HH)	ENDL
 	  endif
 	endif
 

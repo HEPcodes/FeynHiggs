@@ -1,7 +1,7 @@
 * Interpolate.F
 * interpolation routines for complex parameters
 * this file is part of FeynHiggs
-* last modified 9 Feb 17 th
+* last modified 21 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -23,17 +23,17 @@
 	var(1) = M_3
 	var(2) = MUE
 	if( ipolXt .eq. 0 ) then
-	  var(3) = Af(3,3)
+	  var(3) = Atgl
 	  name(3) = "At"
 	else
-	  var(3) = Xf(3,3)
+	  var(3) = Xtgl
 	  name(3) = "Xt"
 	endif
 	if( ipolXb .eq. 0 ) then
-	  var(4) = Af(4,3)
+	  var(4) = Abgl
 	  name(4) = "Ab"
 	else
-	  var(4) = Xf(4,3)
+	  var(4) = Xbgl
 	  name(4) = "Xb"
 	endif
 
@@ -105,8 +105,8 @@
 #include "FH.h"
 #define __SUBROUTINE__ "CplxInterpolate"
 
-	RealType val(ipslots), c
-	integer n, i, j, k, p, ivdm(2,ipslots,ipslots)
+	RealType val(ipslots)
+	integer n, i, j, p, ivdm(2,ipslots,ipslots)
 
 	if( ipn .eq. 1 ) then
 	  res = data(1,1)
@@ -145,45 +145,19 @@
 	do i = n - 1, 1, -1
 	  do j = n, i + 1, -1
 	    p = ivdm(1,j,i)
-	    if( p .ne. 0 ) then
-	      do k = 1, n
-	        ivdm(1,k,i) = ivdm(1,k,i) - p*ivdm(1,k,j)
-	        ivdm(2,k,i) = ivdm(2,k,i) - p*ivdm(2,k,j)
-	      enddo
-	    endif
+	    if( p .ne. 0 ) ivdm(:,1:n,i) = ivdm(:,1:n,i) - p*ivdm(:,1:n,j)
 	  enddo
-	  if( ivdm(1,i,i) .ne. 1 ) then
-	    do k = 1, n
-	      ivdm(1,k,i) = -ivdm(1,k,i)
-	      ivdm(2,k,i) = -ivdm(2,k,i)
-	    enddo
-	  endif
+	  if( ivdm(1,i,i) .ne. 1 ) ivdm(:,1:n,i) = -ivdm(:,1:n,i)
 	enddo
 
 	res = 0
-
 	do i = 1, n
 	  do j = 1, i - 1
 	    p = ivdm(1,j,i)
-	    if( p .ne. 0 ) then
-	      do k = 1, n
-	        ivdm(1,k,i) = ivdm(1,k,i) - p*ivdm(1,k,j)
-	        ivdm(2,k,i) = ivdm(2,k,i) - p*ivdm(2,k,j)
-	      enddo
-	    endif
+	    if( p .ne. 0 ) ivdm(:,1:n,i) = ivdm(:,1:n,i) - p*ivdm(:,1:n,j)
 	  enddo
-	  if( ivdm(1,i,i) .ne. 1 ) then
-	    do k = 1, n
-	      ivdm(1,k,i) = -ivdm(1,k,i)
-	      ivdm(2,k,i) = -ivdm(2,k,i)
-	    enddo
-	  endif
-
-	  c = 0
-	  do j = 1, n
-	    c = c + ivdm(2,j,i)*val(j)
-	  enddo
-	  res = res + c*ipmonomial(i)
+	  if( ivdm(1,i,i) .ne. 1 ) ivdm(:,1:n,i) = -ivdm(:,1:n,i)
+	  res = res + sum(ivdm(2,1:n,i)*val(1:n))*ipmonomial(i)
 	enddo
 
 	if( debuglevel .ge. 3 ) DPARA "  result =", res ENDL

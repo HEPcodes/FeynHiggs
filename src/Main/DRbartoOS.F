@@ -1,6 +1,6 @@
 * DRbartoOS.F
 * this file is part of FeynHiggs
-* last modified 30 Jan 18 th
+* last modified 25 Feb 18 th
 
 * Code by Pietro Slavich
 * 28/05/2004: error in charg12 corrected
@@ -204,15 +204,16 @@
 
 ************************************************************************
 
-	subroutine DRbartoOS(t, i, ospara)
+	subroutine DRbartoOS(t, i, osshift)
 	implicit none
 	integer t, i
-	RealType ospara(3)
+	RealType osshift(3)
 
 #include "FH.h"
 #define __SUBROUTINE__ "DRbartoOS"
 
-	RealType Q2, dMT, MTrun, MSt12, MSt22, stt, ctt
+	RealType Q2, dMT, MTrun
+	RealType MSt12, MSt22, dMSt2, xtt, stt, ctt, c2tt
 	RealType dM11, dM22, dM12
 	integer fail, nf, tQ, bQ
 
@@ -263,25 +264,28 @@
 
 	MSt12 = MSf2(1,tQ,3) - dM11
 	MSt22 = MSf2(2,tQ,3) - dM22
-	stt = Re(USf(1,2,tQ,3))
-	stt = sin(asin(stt) - .5D0/(MSf2(1,tQ,3) - MSf2(2,tQ,3))*dM12)
+	dMSt2 = dM22 - dM11 - MSf2(3,tQ,3)
+	xtt = asin(Re(USf(1,2,tQ,3))) + .5D0/MSf2(3,tQ,3)*dM12
+	stt = sin(xtt)
 	ctt = sqrt((1 - stt)*(1 + stt))
+c	c2tt = (ctt - stt)*(ctt + stt)
+	c2tt = (1 - sqrt2*stt)*(1 + sqrt2*stt)
 
 * From M = USf^+ diag(MSf) USf we get
 *   DSS2_1 = M11 - M22
 *   DSS2_2 = M22 - Mf^2
 *   Xf = Conjugate(M12)/Mf
 
-	ospara(1) = (MSt12 - MSt22)*(ctt - stt)*(ctt + stt)
-	ospara(2) = MSt12*stt**2 + MSt22*ctt**2 - Mf2(t,3)
+	osshift(1) = dMSt2*c2tt - DSS2(1,t,3)
+	osshift(2) = MSt12*stt**2 + MSt22*ctt**2 - Mf2(t,3) - DSS2(2,t,3)
 	if( t .eq. 4 ) then
 * hep-ph/0206101 Eq. (19)
-	  ospara(3) = Re(Af0(t,3) + MUETB(t)) +
-     &      C_F/(2*pi)*AlfasMH*MGl*( 4 - 2*log(MGl2/Q2) -
-     &        (1 - MGl2/MSt12)*log(abs(1 - MSt12/MGl2)) -
-     &        (1 - MGl2/MSt22)*log(abs(1 - MSt22/MGl2)) )
+	  osshift(3) = C_F/(2*pi)*AlfasMH*MGl*(
+     &      4 - 2*log(MGl2/Q2) -
+     &      (1 - MGl2/MSt12)*log(abs(1 - MSt12/MGl2)) -
+     &      (1 - MGl2/MSt22)*log(abs(1 - MSt22/MGl2)) )
 	else
-	  ospara(3) = (MSt12 - MSt22)*ctt*stt/Mf(t,3)
+	  osshift(3) = dMSt2*ctt*stt/Mf(t,3) - Re(Xf(3,3))
 	endif
 	i = ibset(i, t)
 

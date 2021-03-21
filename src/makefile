@@ -101,11 +101,14 @@ TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
   CalcRenSETL.o DRbar2LShifts.o MTrepara.o InvTri.o Phi.o
 
 EFT = Resum4H.o Resum4H1.o \
-  Resum4H23.o eftloopfun.o beta4H.o TLthresholds.o
+  Resum4H23.o eftloopfun.o beta4H.o \
+  TLthresholdasat.o TLthresholdatat.o
 
-Resum4H1.o: Resum4H1.F Resum4H.h
+Resum4H.o Resum4H1.o Resum4H23.o beta4H.o TLthresholdasat.o TLthresholdatat.o: Resum4H.h
 
-Resum4H23.o: Resum4H23.F Resum4H.h FOSubtract.h
+Resum4H23.o: FOSubtract.h
+
+TLthresholdatat.o: TLthresholdatat.h
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 

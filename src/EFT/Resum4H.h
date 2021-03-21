@@ -1,7 +1,7 @@
 * Resum4H.h
 * declarations for resummation of 4H coupling
 * this file is part of FeynHiggs
-* last modified 5 Feb 17 th
+* last modified 27 Feb 18 th
 
 
 #include "TLps.h"
@@ -31,22 +31,25 @@
 	RealType Kfac
 	parameter (Kfac = -.1953256D0)
 
+	RealType MStQ, MStU
+	equivalence (MSS0(tQ(3),3), MStQ)
+	equivalence (MSS0(tU(3),3), MStU)
+
 	RealType MSUSYOS, MSUSYMS, tSUSYOS, tSUSYMS
 	RealType llog, tTop, tCha, tGlu
-	RealType tSS(5), tSQ, tSU
+	RealType tSS1, tSS2, tSQ, tSU
 	RealType tA0, tMUE, tM_2
 	RealType xOS, xOS2, xOS1, xMS, xMS2, vMS2
 	RealType mueOS, mueOS2, mueOS1, mueMS
 	RealType lfmueOS(5), lfmueMS(5), lfM12(6,3), lfSf(7)
-	RealType dlam_asatMS
+	RealType dlam_asatMS, clam_atat(15)
 
 	common /resum4Hvars/
      &    MSUSYOS, MSUSYMS, tSUSYOS, tSUSYMS,
      &    llog, tTop, tCha, tGlu,
-     &    tSS, tSQ, tSU,
+     &    tSS1, tSS2, tSQ, tSU,
      &    tA0, tMUE, tM_2,
      &    xOS, xOS2, xOS1, xMS, xMS2, vMS2,
      &    mueOS, mueOS2, mueOS1, mueMS,
      &    lfmueOS, lfmueMS, lfM12, lfSf,
-     &    dlam_asatMS
-
+     &    dlam_asatMS, clam_atat

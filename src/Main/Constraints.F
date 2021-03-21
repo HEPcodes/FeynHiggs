@@ -2,7 +2,7 @@
 * evaluation of electroweak precision observables
 * used as further constraints for the MSSM parameter space
 * this file is part of FeynHiggs
-* last modified 4 Jan 17 th
+* last modified 14 Feb 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -92,12 +92,12 @@
 	cu = (MA02 + MZ2)*CB2 + cd
 	cd = (MA02 + MZ2)*SB2 + cd
 	ccb = 0
-	if( Sq(Af(2,3)) .gt. 3*(Re(MSS2(3,3,1)) +
-     &                          Re(MSS2(3,3,2)) + cd) .or.
-     &      Sq(Af(3,3)) .gt. 3*(Re(MSS2(3,3,3)) +
-     &                          Re(MSS2(3,3,4)) + cu) .or.
-     &      Sq(Af(4,3)) .gt. 3*(Re(MSS2(3,3,3)) +
-     &                          Re(MSS2(3,3,5)) + cd) )
+	if( Sq(Af(2,3)) .gt. 3*(Re(MSS2(3,3,tQ(2))) +
+     &                          Re(MSS2(3,3,tU(2))) + cd) .or.
+     &      Sq(Af(3,3)) .gt. 3*(Re(MSS2(3,3,tQ(3))) +
+     &                          Re(MSS2(3,3,tU(3))) + cu) .or.
+     &      Sq(Af(4,3)) .gt. 3*(Re(MSS2(3,3,tQ(4))) +
+     &                          Re(MSS2(3,3,tU(4))) + cd) )
      &    ccb = 1
 	end
 

@@ -1,7 +1,7 @@
 * TLps.F
 * computes the two-loop corrections of P. Slavich et al.
 * this file is part of FeynHiggs
-* last modified 2 Jan 17 th
+* last modified 25 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -101,8 +101,8 @@
 	ht2 = ht**2
 
 	call TLps_Sf(error, StopPara(1),
-     &    DSS2(1,3,3), Mf(tS2,3), Xtc,
-     &    "normal TB: Mstop^2 negative")
+     &    DSS2(1,tM3,3), Mf(tS2,3), Xtc,
+     &    "normal TB: MStop^2 negative")
 
 	Xtr = -.5D0*MSt2diff*s2tt/Mf(tM2,3)
 	Atr = Xtr + MUEr/TB
@@ -119,17 +119,17 @@
      &    "normal TB: Msbot^2 negative")
 
 	if( debuglevel .ge. 4 ) then
-	  DSELF "normalTB:"			ENDL
-	  DSELF "MT     =", pMT			ENDL
-	  DSELF "MStop1 =", SignSqrt(MSt12)	ENDL
-	  DSELF "MStop2 =", SignSqrt(MSt22)	ENDL
-	  DSELF "ctt    =", ctt			ENDL
-	  DSELF "stt    =", stt			ENDL
-	  DSELF "MB     =", pMB			ENDL
-	  DSELF "MSbot1 =", SignSqrt(MSb12)	ENDL
-	  DSELF "MSbot2 =", SignSqrt(MSb22)	ENDL
-	  DSELF "ctb    =", ctb			ENDL
-	  DSELF "stb    =", stb			ENDL
+	  DSELF "normalTB:"		ENDL
+	  DSELF "MT     =", pMT		ENDL
+	  DSELF "MStop1 =", sqrt(MSt12)	ENDL
+	  DSELF "MStop2 =", sqrt(MSt22)	ENDL
+	  DSELF "ctt    =", ctt		ENDL
+	  DSELF "stt    =", stt		ENDL
+	  DSELF "MB     =", pMB		ENDL
+	  DSELF "MSbot1 =", sqrt(MSb12)	ENDL
+	  DSELF "MSbot2 =", sqrt(MSb22)	ENDL
+	  DSELF "ctb    =", ctb		ENDL
+	  DSELF "stb    =", stb		ENDL
 	endif
 	end
 
@@ -149,12 +149,18 @@
 	parameter (TBlarge = 1000)
 
 	RealType DSS2large(2)
-	logical zden
-	RealType MbSL2, den, eps, m1, m2, m3
+	RealType MbSL2
+c	integer try
 
-	den(m1, m2, m3) = m1**2 + (m2 - m3)**2 - 2*m1*(m2 + m3)
-	eps(m1, m2, m3) = 1D-10*(m1**2 + m2**2 + m3**2)
-	zden(m1, m2, m3) = abs(den(m1, m2, m3)) .lt. eps(m1, m2, m3)
+	RealType eps
+	parameter (eps = 1D-5)
+
+	logical ok
+	RealType den, a_, b_, c_
+	den(a_, b_, c_) =
+     &    a_*(a_ - b_ - c_) + b_*(b_ - a_ - c_) + c_*(c_ - a_ - b_)
+	ok(a_, b_, c_) =
+     &    abs(den(a_, b_, c_)) .gt. eps**2*(a_**2 + b_**2 + c_**2)
 
 	pCB2 = 1/(1 + TBlarge**2)
 	pSB2 = 1
@@ -168,39 +174,56 @@
 	ht = sqrt2/vev*pMT
 	ht2 = ht**2
 
-	DSS2large(2) = Re(MSS2(3,3,tU(3)))
-	DSS2large(1) = Re(MSS2(3,3,tQ(3))) - DSS2large(2)
-
 	MbSL2 = BSS2(2) + BSS2(1) - DSf(1,4)
-1	call TLps_Sf(error, StopPara(1),
-     &    DSS2large, Mf(tS2,3), Atc,
-     &    "large TB: Mstop^2 negative")
-	if( zden(MSt12,pMT2,MUEr2) .or.
-     &      zden(MSt22,pMT2,MUEr2) .or.
-     &      zden(MSt12,MbSL2,MA02) .or.
-     &      zden(MSt22,MbSL2,MA02) .or.
-     &      zden(MSt12,MSt22,MA02) ) then
-	  DSS2large(1) = DSS2large(1) + .1D0
-	  goto 1
-	endif
 
-	DSS2large(1) = BSS2(1) - MZ2*C2B*(-.5D0 - 2*Qd*SW2)
-	DSS2large(2) = BSS2(2) - MZ2*C2B*Qd*SW2 - pMB2
+#if 1
+* StglUpdate already makes sure denominators are ok
+c	call TLps_Sf(error, StopPara(1),
+c     &    DSS2(1,tMT,3), Mf(tS2,3), Atc,
+c     &    "large TB: MStop^2 negative")
+	call TLps_Sf(error, StopPara(1),
+     &    DSStgl2, Mf(tS2,3), Atc,
+     &    "large TB: MStop^2 negative")
+#else
+c	DSS2large(2) = Re(MSS2(3,3,tU(3)))
+c	DSS2large(1) = Re(MSS2(3,3,tQ(3))) - DSS2large(2)
+c	DSS2large(1) = DSS2(1,tMT,3)
+c	DSS2large(2) = DSS2(1,tMT,3)
+	DSS2large(1) = DSStgl2(1)
+	DSS2large(2) = DSStgl2(2)
+
+	do try = 1, 10
+	  call TLps_Sf(error, StopPara(1),
+     &      DSS2large, Mf(tS2,3), Atc,
+     &      "large TB: MStop^2 negative")
+	  if( ok(MSt12, pMT2, MUEr2) .and.
+     &        ok(MSt22, pMT2, MUEr2) .and.
+     &        ok(MSt12, MbSL2, MA02) .and.
+     &        ok(MSt22, MbSL2, MA02) .and.
+     &        ok(MSt12, MSt22, MA02) ) exit
+	  DSS2large(1) = DSS2large(1) + .1D0
+	enddo
+#endif
+
+c	DSS2large(1) = BSS2(1) - MZ2*C2B*(-.5D0 - 2*Qd*SW2)
+c	DSS2large(2) = BSS2(2) - MZ2*C2B*Qd*SW2 - pMB2
+	DSS2large(1) = BSS2(1) - (DSf(1,4) - DSf(2,4))
+	DSS2large(2) = BSS2(2) - DSf(2,4) - pMB2
 
 	call TLps_Sf(error, SbotPara(1),
      &    DSS2large, pMB, -MUEc/CB,
-     &    "large TB: Msbot^2 negative")
+     &    "large TB: MSbot^2 negative")
 
 	if( debuglevel .ge. 4 ) then
-	  DSELF "largeTB:"			ENDL
-	  DSELF "MStop1 =", SignSqrt(MSt12)	ENDL
-	  DSELF "MStop2 =", SignSqrt(MSt22)	ENDL
-	  DSELF "ctt    =", ctt			ENDL
-	  DSELF "stt    =", stt			ENDL
-	  DSELF "MSbot1 =", SignSqrt(MSb12)	ENDL
-	  DSELF "MSbot2 =", SignSqrt(MSb22)	ENDL
-	  DSELF "ctb    =", ctb			ENDL
-	  DSELF "stb    =", stb			ENDL
+	  DSELF "largeTB:"		ENDL
+	  DSELF "MStop1 =", sqrt(MSt12)	ENDL
+	  DSELF "MStop2 =", sqrt(MSt22)	ENDL
+	  DSELF "ctt    =", ctt		ENDL
+	  DSELF "stt    =", stt		ENDL
+	  DSELF "MSbot1 =", sqrt(MSb12)	ENDL
+	  DSELF "MSbot2 =", sqrt(MSb22)	ENDL
+	  DSELF "ctb    =", ctb		ENDL
+	  DSELF "stb    =", stb		ENDL
 	endif
 	end
 

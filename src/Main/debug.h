@@ -1,7 +1,7 @@
 * debug.h
 * definitions for error handling and debugging
 * this file is part of FeynHiggs
-* last modified 23 Jan 18 th
+* last modified 6 Feb 18 th
 
 
 #ifndef DEBUG_H
@@ -72,6 +72,7 @@ c#define SORT_SF 1
 #define DSLHA DCOLOR(PURPLE)
 #define DSELF DCOLOR(GREEN)
 #define DHIGGS DCOLOR(PURPLE)
+#define DEFT DCOLOR(RED)
 #define DCOUP DCOLOR(CYAN)
 #define DHEAD DCOLOR(BLUE)
 #define DPROD DCOLOR(PURPLE)

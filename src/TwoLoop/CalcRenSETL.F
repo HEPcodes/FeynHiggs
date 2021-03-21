@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 22 Jan 18 th
+* last modified 18 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -65,7 +65,7 @@
 	  blurb = .FALSE.
 	endif
 
-	dMT1OS = 1 - Delta(tM2, tD)
+	dMT1OS = 1 - Delta(tM2, tMD)
 
 	tlx = ior(tlxbits(tlCplxApprox), tlpsmask)
 
@@ -181,7 +181,7 @@
 	call TLhrSE(btest(tlx, asat))
 	call TLspSE(btest(tlx, atat))
 
-	if( tM2 .eq. tT .or. tM2 .eq. tT2 ) then
+	if( tM2 .eq. tMT .or. tM2 .eq. tMT1 ) then
 	  dMT = 0
 	  if( tlzeromask(asat) .eq. 0 )
      &      dMT = dMT + 4/(3*pi)*Alfas2L

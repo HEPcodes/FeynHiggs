@@ -1,7 +1,7 @@
 * Resum4H1.F
 * resum the quartic Higgs coupling
 * this file is part of FeynHiggs
-* last modified 19 Jan 17 th
+* last modified 20 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -38,24 +38,24 @@
 	y(jlam) = 6*k1L*y(jht2)**2*x
 
 	if( debuglevel .gt. 5 ) then
-	  DHIGGS "running from tSUSY =", tSUSYMS ENDL
-	  DHIGGS "          to tTop  =", tTop	ENDL
-	  DHIGGS "inputs:"			ENDL
-	  DHIGGS "gs2(MT) =", gsMT2		ENDL
-	  DHIGGS "ht2(MT) =", htMT2		ENDL
-	  DHIGGS "rough values @ MSUSY:"	ENDL
-	  DHIGGS "gs2(MSUSY) =", y(jgs2)	ENDL
-	  DHIGGS "ht2(MSUSY) =", y(jht2)	ENDL
-	  DHIGGS "lam(MSUSY) =", y(jlam)	ENDL
+	  DEFT "running from tSUSY =", tSUSYMS ENDL
+	  DEFT "          to tTop  =", tTop	ENDL
+	  DEFT "inputs:"			ENDL
+	  DEFT "gs2(MT) =", gsMT2		ENDL
+	  DEFT "ht2(MT) =", htMT2		ENDL
+	  DEFT "rough values @ MSUSY:"	ENDL
+	  DEFT "gs2(MSUSY) =", y(jgs2)	ENDL
+	  DEFT "ht2(MSUSY) =", y(jht2)	ENDL
+	  DEFT "lam(MSUSY) =", y(jlam)	ENDL
 	endif
 
 	call ODESolve(3, rge, y, tSUSYMS, tTop, 1D-5, -2D0, 0)
 
 	if( debuglevel .gt. 5 ) then
-	  DHIGGS "rough values @ MT:"	ENDL
-	  DHIGGS "[tmp] gs2(MT) =", y(jgs2)	ENDL
-	  DHIGGS "[tmp] ht2(MT) =", y(jht2)	ENDL
-	  DHIGGS "lam(MT) =", y(jlam)	ENDL
+	  DEFT "rough values @ MT:"	ENDL
+	  DEFT "[tmp] gs2(MT) =", y(jgs2)	ENDL
+	  DEFT "[tmp] ht2(MT) =", y(jht2)	ENDL
+	  DEFT "lam(MT) =", y(jlam)	ENDL
 	endif
 
 	y(jgs2) = gsMT2
@@ -63,10 +63,10 @@
 	call ODESolve(3, rge, y, tTop, tSUSYMS, 1D-5, +2D0, 0)
 
 	if( debuglevel .gt. 5 ) then
-	  DHIGGS "refined values @ MSUSY:"	ENDL
-	  DHIGGS "gs2(MSUSY) =", y(jgs2)	ENDL
-	  DHIGGS "ht2(MSUSY) =", y(jht2)	ENDL
-	  DHIGGS "[tmp] lam(MSUSY) =", y(jlam)	ENDL
+	  DEFT "refined values @ MSUSY:"	ENDL
+	  DEFT "gs2(MSUSY) =", y(jgs2)	ENDL
+	  DEFT "ht2(MSUSY) =", y(jht2)	ENDL
+	  DEFT "[tmp] lam(MSUSY) =", y(jlam)	ENDL
 	endif
 
 	y(jlam) = 6*k1L*y(jht2)**2*x
@@ -90,20 +90,20 @@
      &        .5D0*k1L*htMT2sub*
      &          (3*(llog + xOS2*(xOS2*(1 - xOS2/6D0) + 1)) - 7) -
      &        8/3D0*k1L*gsMT2*(3*(llog + xOS2) - 2) )
-	    if( tM2 .eq. 3 ) sublog = sublog +
+	    if( tM2 .eq. tM3 ) sublog = sublog +
      &        k2L*llog*htMT2sub**2*(-128*gsMT2 + 48*htMT2sub)
 	  endif
 	  res = vev**2*(y(jlam) - subnonlog - sublog)
 	endif
 
 	if( debuglevel .gt. 5 ) then
-	  DHIGGS "final values @ MT:"		ENDL
-	  DHIGGS "gs2(MT)   =", y(jgs2)		ENDL
-	  DHIGGS "ht2(MT)   =", y(jht2)		ENDL
-	  DHIGGS "lam(MT)   =", y(jlam)		ENDL
-	  DHIGGS "subnonlog =", subnonlog	ENDL
-	  DHIGGS "sublog    =", sublog		ENDL
-	  DHIGGS "Mh2       =", Mh2		ENDL
+	  DEFT "final values @ MT:"		ENDL
+	  DEFT "gs2(MT)   =", y(jgs2)		ENDL
+	  DEFT "ht2(MT)   =", y(jht2)		ENDL
+	  DEFT "lam(MT)   =", y(jlam)		ENDL
+	  DEFT "subnonlog =", subnonlog	ENDL
+	  DEFT "sublog    =", sublog		ENDL
+	  DEFT "Mh2       =", Mh2		ENDL
 	endif
 	end
 

@@ -1,7 +1,7 @@
 * EigenSf.F
 * diagonalization of the Hermitian 2-by-2 sfermion mass matrix
 * this file is part of FeynHiggs
-* last modified 29 Nov 17 th
+* last modified 14 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -70,7 +70,8 @@
 	  DPARA "EigenSf: Sm =", MSx2(4)	ENDL
 	endif
 
-	if( sort .ne. 0 .and. m1 .gt. m2 ) then
+c	if( sort .ne. 0 .and. m1 .gt. m2 ) then
+	if( sort*(m1 - m2) .gt. 0 ) then
 	  MSx2(1) = DBLE(m2)
 	  MSx2(2) = DBLE(m1)
 	  USx(2,2) = s

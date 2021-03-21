@@ -1,4 +1,4 @@
-FHVERSION = 2.14.0
+FHVERSION = 2.14.1
 
 LIBDIR = $(PREFIX)/lib$(LIBDIRSUFFIX)
 INCLUDEDIR = $(PREFIX)/include
@@ -68,4 +68,3 @@ clean:
 	rm -fr $(BLD) $(FHTAR)
 
 .PHONY: default all install force clean dist
-

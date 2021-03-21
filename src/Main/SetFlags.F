@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 30 Jan 18 th
+* last modified 16 Feb 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -78,7 +78,7 @@ c	  call setfpu
 	runningMT = runningMT_
 	Check(runningMT, 0, 3, "runningMT")
 
-	tM1 = tSelect(3,tT,tT,tD, runningMT)
+	tM1 = tSelect(tM3,tMT,tMT,tMD, runningMT)
 	tM2 = tM1
 
 	botResum = botResum_
@@ -111,22 +111,17 @@ c	  call setfpu
 	call getenv("FHDEBUGFILE", env)
 	l = len_trim(env)
 	if( l .gt. 0 ) then
-	  open(66, file=env, status="unknown", err=11)
-	  debugunit = 66
-	  paraunit = debugunit
+	  call FHSetDebugFile(env)
 	  print *, "env FHDEBUGFILE ", env(1:l)
 	endif
-11	continue
 
 	paraunit = 6
 	call getenv("FHPARAFILE", env)
 	l = len_trim(env)
 	if( l .gt. 0 ) then
-	  open(67, file=env, status="unknown", err=12)
-	  paraunit = 67
+	  call FHSetParaFile(env)
 	  print *, "env FHPARAFILE ", env(1:l)
 	endif
-12	continue
 
 	uzint = 1
 	uzext = 3
@@ -186,11 +181,17 @@ c	  call setfpu
 	print *, "env FHFOPOLEEQ ", fopoleeq
 70	continue
 
+	tldegatat = 0
+	call getenv("FHDEGATAT", env)
+	read(env, *, end=80, err=80) tldegatat
+	print *, "env FHDEGATAT ", tldegatat
+80	continue
+
 	dmtlimim = 1
 	call getenv("FHDMTLIMIM", env)
-	read(env, *, end=80, err=80) dmtlimim
+	read(env, *, end=90, err=90) dmtlimim
 	print *, "env FHDMTLIMIM ", dmtlimim
-80	continue
+90	continue
 
 	call getenv("FHEXTSE", extSE)
 	l = len_trim(extSE)
@@ -210,6 +211,10 @@ c	  call setfpu
 	DFLAGS "runningMT    =", runningMT	ENDL
 	DFLAGS "botResum     =", botResum	ENDL
 	DFLAGS "tlCplxApprox =", tlCplxApprox	ENDL
+	DFLAGS "----------------------------"	ENDL
+	DFLAGS "debuglevel   =", debuglevel	ENDL
+	DFLAGS "debugunit    =", debugunit	ENDL
+	DFLAGS "paraunit     =", paraunit	ENDL
 	end
 
 #undef __SUBROUTINE__
