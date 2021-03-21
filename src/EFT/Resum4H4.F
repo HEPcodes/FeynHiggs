@@ -86,11 +86,9 @@ c variables for calculating subtraction terms
      &    MSS0(3,3)/MGl, MSS0(4,3)/MGl)
 
 * calculate coefficients for O(asat) threshold correction
-	if( THDMTLasat .eq. 1) then
-	  MSusy = sqrt(MSS0(3,3)*MSS0(4,3))
-	  call TLthresholdasat4(dlam_asat4MS, MGl/MSusy,
-     &                          2*log(MSusy/MSUSYOS), mueMS, at)
-	endif
+	MSusy = sqrt(MSS0(3,3)*MSS0(4,3))
+	call TLthresholdasat4(dlam_asat4MS, Re(m_3OS)/MSusy,
+     &                        2*log(MSusy/MSUSYOS), mueMS, at)
 
 * guess initial values at MSUSY
 	x(iht) = htMT
@@ -321,15 +319,13 @@ c variables for calculating subtraction terms
      &    (3/8.D0*((yg2 + ygy2)*yht2) - (3 - 1/2.D0*at2)*y(iht)**4)
 
 * TL O(asat) corrections
-	if( THDMTLasat .eq. 1) then
-	  y(il1) = y(il1) + k2L*yg32*y(iht)**4*dlam_asat4MS(1)
-	  y(il2) = y(il2) + k2L*yg32*y(iht)**4*dlam_asat4MS(2)
-	  y(il3) = y(il3) + k2L*yg32*y(iht)**4*dlam_asat4MS(3)
-	  y(il4) = y(il4) + k2L*yg32*y(iht)**4*dlam_asat4MS(4)
-	  y(il5) = y(il5) + k2L*yg32*y(iht)**4*dlam_asat4MS(5)
-	  y(il6) = y(il6) + k2L*yg32*y(iht)**4*dlam_asat4MS(6)
-	  y(il7) = y(il7) + k2L*yg32*y(iht)**4*dlam_asat4MS(7)
-	endif
+	y(il1) = y(il1) + k2L*yg32*y(iht)**4*dlam_asat4MS(1)
+	y(il2) = y(il2) + k2L*yg32*y(iht)**4*dlam_asat4MS(2)
+	y(il3) = y(il3) + k2L*yg32*y(iht)**4*dlam_asat4MS(3)
+	y(il4) = y(il4) + k2L*yg32*y(iht)**4*dlam_asat4MS(4)
+	y(il5) = y(il5) + k2L*yg32*y(iht)**4*dlam_asat4MS(5)
+	y(il6) = y(il6) + k2L*yg32*y(iht)**4*dlam_asat4MS(6)
+	y(il7) = y(il7) + k2L*yg32*y(iht)**4*dlam_asat4MS(7)
 
 * Sfermion contribution
 	y(ig1dd) = y(igy)*(1+k1L*(-5/2D0*ygy2-.25D0*yht2*mueMS2))
@@ -356,12 +352,12 @@ c variables for calculating subtraction terms
 
 * top Yukawa threshold correction
 	y(ihtp) = k1L*y(iht)*(
-     &               4/3D0*yg32*mueMS*MSUSYOS/MGl*lfSf89_mQ3M3_mU3M3(2)
+     &               4/3D0*yg32*mueMS*MSUSYOS/Re(m_3OS)*lfSf89_mQ3M3_mU3M3(2)
      &               + 1/4D0*yht2*at*mueMS
      &               + yg2*lfht(2)+ygy2*lfht(4))
 	y(iht) =y(iht)*(1+k1L*(
      &             4/3D0*yg32*(1+(tGlu-tSUSYMS)+lfSf6_mQ3M3+lfSf6_mU3M3
-     &                         -at*MSUSYOS/MGl*lfSf89_mQ3M3_mU3M3(2))
+     &                         -at*MSUSYOS/Re(m_3OS)*lfSf89_mQ3M3_mU3M3(2))
      &                  -1/4D0*yht2*at2
      &                  +yht2*lfht(5)+yg2*lfht(1)+ygy2*lfht(3)
      &                  -3/8D0*yg2-1/72D0*ygy2))

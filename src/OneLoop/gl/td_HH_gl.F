@@ -1,5 +1,5 @@
 * td_HH_gl.F
-* generated 23-Jul-2018 15:16
+* generated 25-Sep-2020 15:34
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -16,7 +16,7 @@
 #include "looptools.h"
 
 
-        se = 3/(32.D0*Pi**2)*
+	se = 3/(32.D0*Pi**2)*
      &    (CB*EL1L*(4*A0(Mf2(tM1,3))*Mf2(tM1,3) - 
      &         Mf(tM1,3)*(A0(MStgl2(2))*
      &             (2*Mf(tM1,3) - YtglC*UCStgl(1,3) - 
@@ -31,7 +31,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        se = se - 3/(32.D0*Pi**2)*
+	se = se - 3/(32.D0*Pi**2)*
      &     (EL1L*TB*(4*A0(Mf2(bM1,3))*Mf2(bM1,3) - 
      &          Mf(bM1,3)*(A0(MSbgl2(2))*
      &              (2*Mf(bM1,3) - YbglC*UCSbgl(1,3) - 

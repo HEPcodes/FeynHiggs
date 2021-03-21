@@ -348,6 +348,98 @@ c             x != 1, y != 1
 	end
 
 ************************************************************************
+* loop functions depending on 1 parameter for the
+*  gaugino-Higgsino contribution to lambda in case of complex parameters
+
+	subroutine loopfunInoC(h, x, y)
+	implicit none
+	RealType h(3,3), x, y
+
+#include "FH.h"
+
+	RealType x1, x2, Lx2
+	RealType y1, y2, Ly2
+
+c h-function depending on M1/MUE
+	x1 = (1 - x)*(1 + x)
+	x2 = x**2
+	Lx2 = log(x2)
+	if( abs(x1) .lt. 1D-5 ) then
+	  h(1,1) = 1D0
+	  h(2,1) = 1D0
+	  h(3,1) = 1D0
+	else
+	  h(1,1) = - 12*x2*(x1 + .5D0*(1 + x2)*Lx2)/x1**3
+	  h(2,1) = - 6/11D0*(- 2 - 3*x2 + 4*x**4 + x**6
+     &                       + x2*(- 4 - 5*x2 + x**4)*Lx2)/x1**3
+	  h(3,1) = - 2/9D0*(- 6 - 7*x2 + 8*x**4 + 5*x**6
+     &                      + x2*(- 12 - 13*x2 + x**4)*Lx2)/x1**3
+	endif
+
+c h-function depending on M2/MUE
+	y1 = (1 - y)*(1 + y)
+	y2 = y**2
+	Ly2 = log(y2)
+	if( abs(y1) .lt. 1D-5 ) then
+	  h(1,2) = 1D0
+	  h(2,2) = 1D0
+	  h(3,2) = 1D0
+	else
+	  h(1,2) = - 12*y2*(y1 + .5D0*(1 + y2)*Ly2)/y1**3
+	  h(2,2) = - 6/11D0*(- 2 - 3*y2 + 4*y**4 + y**6
+     &                       + y2*(- 4 - 5*y2 + y**4)*Ly2)/y1**3
+	  h(3,2) = - 2/9D0*(- 6 - 7*y2 + 8*y**4 + 5*y**6
+     &                      + y2*(- 12 - 13*y2 + y**4)*Ly2)/y1**3
+	endif
+
+c h-function depending on M1/MUE and M2/MUE
+	if( abs(x1) .lt. 1D-5 ) then
+	  if( abs(y1) .lt. 1D-5 ) then
+c x == y == 1
+	    h(1,3) = 1D0
+	    h(2,3) = 1D0
+	    h(3,3) = 1D0
+	  else
+c x == 1 && y != 1
+	    h(1,3) = 3*y*(1 + 2*y2*Ly2 - y**4)/y1**3
+	    h(2,3) = - 6/7D0*(- 1 + 3*y2 - y**4*(1 - Ly2)
+     &                        - y**6*(1 - Ly2))/y1**3
+	    h(3,3) = - 3/5D0*(- 1 + 2*y2 + y**4
+     &                        - 2*y**6*(1 - Ly2))/y1**3
+	  endif
+	else
+	  if( abs(y1) .lt. 1D-5 ) then
+c x != 1 && y == 1
+	    h(1,3) = 3*x*(1 + 2*x2*Lx2 - x**4)/x1**3
+	    h(2,3) = - 6/7D0*(- 1 + 3*x2 - x**4*(1 - Lx2)
+     &                        - x**6*(1 - Lx2))/x1**3
+	    h(3,3) = - 3/5D0*(- 1 + 2*x2 + x**4
+     &                        - 2*x**6*(1 - Lx2))/x1**3
+	  elseif( abs(x - y) .lt. 1D-1 ) then
+c x == y != 1
+	    h(1,3) = - 6*x2*(2 + Lx2 - 2*x2 + x2*Lx2)/x1**3
+	    h(2,3) = 1/7D0*(6 + 12*x2*(1 + Lx2) - 18*x**4*(1 - Lx2)
+     &                        - 6*x**6*Lx2)/x1**3
+	    h(3,3) = 6/5D0*x2*(2*x1 + x2*Lx2*(3 - x2))/x1**3
+	  else
+c x != 1 && y != 1 && x != y
+	    h(1,3) = (6*x*y*(Ly2*x1**2*y2 + x1*y2*y1 - x2*y1*(x1 +
+     &                      Lx2*y1)))/(x1**2*(x - y)*(x + y)*y1**2)
+	    h(2,3) = (6*((-1 + Lx2)*x**6*y1**2
+     &                  - y2*(1 + y2)*(1 + (-1 + Ly2)*y2)
+     &                  + x2*(1 + (1 + 2*Ly2)*y**4
+     &                  + 2*(-1 + Ly2)*y**6) + x**4*(Lx2*y1**2
+     &                  - y2*(1 + y2)*(1 + (-1 + Ly2)*y2))))
+     &                   /(7.*x1**2*(x - y)*(x + y)*y1**2)
+	    h(3,3) = 6*(-Ly2*x1**2*y**6 + y1*((-1 + x**2)*x1*y**4
+     &                 + Lx2*x**6*y1 + x**4*x1*y1))
+     &                 /(5*x1**2*(x - y)*(x + y)*y1**2)
+	  endif
+	endif
+
+	end
+	
+************************************************************************
 * loop functions lf(1,2,3) for top Yukawa threshold (EFT->MSSM) from
 * helper functions lf(4,5) for Xt conversion from hep-ph/0003246v2
 

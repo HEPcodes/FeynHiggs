@@ -59,7 +59,7 @@
 	dBc1(zM) = dBn1(zM)
 
 * set gaugeless mixing angle CTs
-	dA1gl = CB2*dTB1fingl(zM)
+	dA1gl(zM) = CB2*dTB1fingl(zM)
 	dBn1gl(zM) = dA1gl(zM)
 	dBc1gl(zM) = dBn1gl(zM)
 

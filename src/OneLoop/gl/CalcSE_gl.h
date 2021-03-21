@@ -1,5 +1,5 @@
 * CalcSE_gl.h
-* generated 23-Jul-2018 16:12
+* generated 29-Sep-2020 11:11
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -20,7 +20,9 @@
 	if( SETest(key,h0h0) ) then
 	call se_h0h0_gl(se,p2)
 	SEu(h0h0,se)
+	SE1u(h0h0,se)
 	SEr(h0h0,se)
+	SE1r(h0h0,se)
 	endif
 
 	if( SETest(dkey,h0h0) ) then
@@ -34,7 +36,9 @@
 	if( SETest(key,HHHH) ) then
 	call se_HHHH_gl(se,p2)
 	SEu(HHHH,se)
+	SE1u(HHHH,se)
 	SEr(HHHH,se)
+	SE1r(HHHH,se)
 	endif
 
 	if( SETest(dkey,HHHH) ) then
@@ -48,7 +52,9 @@
 	if( SETest(key,h0HH) ) then
 	call se_h0HH_gl(se,p2)
 	SEu(h0HH,se)
+	SE1u(h0HH,se)
 	SEr(h0HH,se)
+	SE1r(h0HH,se)
 	endif
 
 	if( SETest(dkey,h0HH) ) then
@@ -64,7 +70,9 @@
 	if( SETest(key,A0A0) ) then
 	call se_A0A0_gl(se,p2)
 	SEu(A0A0,se)
+	SE1u(A0A0,se)
 	SEr(A0A0,se)
+	SE1r(A0A0,se)
 	endif
 
 	if( SETest(dkey,A0A0) ) then
@@ -78,7 +86,9 @@
 	if( SETest(key,HmHp) ) then
 	call se_HmHp_gl(se,p2)
 	SEu(HmHp,se)
+	SE1u(HmHp,se)
 	SEr(HmHp,se)
+	SE1r(HmHp,se)
 	endif
 
 	if( SETest(dkey,HmHp) ) then
@@ -92,7 +102,9 @@
 	if( SETest(key,h0A0) ) then
 	call se_h0A0_gl(se,p2)
 	SEu(h0A0,se)
+	SE1u(h0A0,se)
 	SEr(h0A0,se)
+	SE1r(h0A0,se)
 	endif
 
 	if( SETest(dkey,h0A0) ) then
@@ -106,7 +118,9 @@
 	if( SETest(key,HHA0) ) then
 	call se_HHA0_gl(se,p2)
 	SEu(HHA0,se)
+	SE1u(HHA0,se)
 	SEr(HHA0,se)
+	SE1r(HHA0,se)
 	endif
 
 	if( SETest(dkey,HHA0) ) then
@@ -120,7 +134,9 @@
 	if( SETest(key,G0G0) ) then
 	call se_G0G0_gl(se,p2)
 	SEu(G0G0,se)
+	SE1u(G0G0,se)
 	SEr(G0G0,se)
+	SE1r(G0G0,se)
 	endif
 
 	if( SETest(dkey,G0G0) ) then
@@ -134,7 +150,9 @@
 	if( SETest(key,h0G0) ) then
 	call se_h0G0_gl(se,p2)
 	SEu(h0G0,se)
+	SE1u(h0G0,se)
 	SEr(h0G0,se)
+	SE1r(h0G0,se)
 	endif
 
 	if( SETest(dkey,h0G0) ) then
@@ -148,7 +166,9 @@
 	if( SETest(key,HHG0) ) then
 	call se_HHG0_gl(se,p2)
 	SEu(HHG0,se)
+	SE1u(HHG0,se)
 	SEr(HHG0,se)
+	SE1r(HHG0,se)
 	endif
 
 	if( SETest(dkey,HHG0) ) then
@@ -162,7 +182,9 @@
 	if( SETest(key,A0G0) ) then
 	call se_A0G0_gl(se,p2)
 	SEu(A0G0,se)
+	SE1u(A0G0,se)
 	SEr(A0G0,se)
+	SE1r(A0G0,se)
 	endif
 
 	if( SETest(dkey,A0G0) ) then
@@ -176,7 +198,9 @@
 	if( SETest(key,GmGp) ) then
 	call se_GmGp_gl(se,p2)
 	SEu(GmGp,se)
+	SE1u(GmGp,se)
 	SEr(GmGp,se)
+	SE1r(GmGp,se)
 	endif
 
 	if( SETest(dkey,GmGp) ) then
@@ -190,7 +214,9 @@
 	if( SETest(key,HmGp) ) then
 	call se_HmGp_gl(se,p2)
 	SEu(HmGp,se)
+	SE1u(HmGp,se)
 	SEr(HmGp,se)
+	SE1r(HmGp,se)
 	endif
 
 	if( SETest(dkey,HmGp) ) then
@@ -222,26 +248,25 @@
 
 	call td_HH_gl(tdHH)
 
-	dMsq1_(h0h0) = 1/2.D0*EL1L/(MW*SW)*Re(tdh0)
+	dMsq1_(h0h0) = tdh0*(1/2.D0*EL1L/(MW*SW))
 
-        dMsq1_(h0HH) = 
-     &   -(MHin2*(dA1gl - CB2*
-     &          (dTB1fingl + 1/2.D0*((1 - TB2)*Re(dZ12H1fingl)) - 
-     &            1/2.D0*(TB*
-     &               (Re(dZ11H1fingl) - Re(dZ22H1fingl) - 
-     &                 Re(dZh0h0) + Re(dZHHHH)))))) + 
-     &    1/2.D0*EL1L/(MW*SW)*Re(tdHH)
+	dMsq1_(h0HH) = 
+     &   tdHH*(1/2.D0*EL1L/(MW*SW)) - 
+     &    MHin2*(dA1gl - CB2*
+     &        (dTB1fingl + 1/2.D0*((1 - TB2)*Re(dZ12H1fingl)) - 
+     &          1/2.D0*(TB*(Re(dZ11H1fingl) - Re(dZ22H1fingl) - 
+     &               Re(dZh0h0) + Re(dZHHHH)))))
 
-        dZ1_(h0h0) = 
+	dZ1_(h0h0) = 
      &   S2B*Re(dZ12H1fingl) + 
      &    SB2*(Re(dZ22H1fingl) + Re(dZh0h0)) + 
      &    CB2*(Re(dZ11H1fingl) + Re(dZHHHH))
 
-        dZ1_(h0HH) = 
+	dZ1_(h0HH) = 
      &   1/2.D0*(S2B*(Re(dZ11H1fingl) - Re(dZ22H1fingl) - 
      &         Re(dZh0h0) + Re(dZHHHH))) - C2B*Re(dZ12H1fingl)
 
-        dZ1_(HHHH) = 
+	dZ1_(HHHH) = 
      &   -(S2B*Re(dZ12H1fingl)) + 
      &    CB2*(Re(dZ22H1fingl) + Re(dZh0h0)) + 
      &    SB2*(Re(dZ11H1fingl) + Re(dZHHHH))
@@ -270,19 +295,25 @@
 
 	call td_HH_gl(tdHH)
 
-	dMsq1_(A0G0) = dBn1gl*MHin2 - dMsq1_(h0HH)
+	dMsq1_(A0G0) = 
+     &   -(tdHH*(1/2.D0*EL1L/(MW*SW))) + 
+     &    MHin2*(dBn1gl - 1/2.D0*
+     &        (CB2*(2*dTB1fingl + Re(dZ12H1fingl) - 
+     &            TB2*Re(dZ12H1fingl) - 
+     &            TB*(Re(dZ11H1fingl) - Re(dZ22H1fingl) - 
+     &               Re(dZh0h0) + Re(dZHHHH)))))
 
 	dMsq1_(G0G0) = 0
 
 	dMsq1_(GmGp) = 0
 
-	dMsq1_(h0A0) = 1/2.D0*EL1L/(MW*SW)*Re(tdA0)
+	dMsq1_(h0A0) = tdA0*(1/2.D0*EL1L/(MW*SW))
 
 	dMsq1_(h0G0) = 0
 
 	dMsq1_(HHA0) = 0
 
-	dMsq1_(HHG0) = 1/2.D0*EL1L/(MW*SW)*Re(tdA0)
+	dMsq1_(HHG0) = tdA0*(1/2.D0*EL1L/(MW*SW))
 
 	dZ1_(A0A0) = dZ1_(HHHH)
 
@@ -300,18 +331,18 @@
 
 	dZ1_(HHG0) = -Im(dZ12H1fingl)
 
-	dZ1_(HmGp) = dZ1_(A0G0) + cI*Im(dZ12H1fingl)
+	dZ1_(HmGp) = dZ1_(A0G0) - cI*Im(dZ12H1fingl)
 
 	dZ1_(HmHp) = dZ1_(A0A0)
 
-        dMsq1_(HmGp) = 
-     &   1/4.D0*(-(MHin2*(4*cI*Im(dZ12H1fingl) - 
-     &           2*SB2*Re(dZ12H1fingl) + 
-     &           CB2*(4*Conjugate(dTB1fingl) + 
-     &              2*Re(dZ12H1fingl)) - 
-     &           S2B*(Re(dZ11H1fingl) - Re(dZ22H1fingl) - 
-     &              Re(dZh0h0) + Re(dZHHHH)))) - 
-     &      4*(1/2.D0*EL1L/(MW*SW))*(cI*Re(tdA0) + Re(tdHH)))
+	dMsq1_(HmGp) = 
+     &   1/4.D0*(1/2.D0*EL1L/(MW*SW)*
+     &       (-4*Conjugate(tdHH) + 4*cI*Conjugate(tdA0)) + 
+     &      MHin2*(4*(Conjugate(dBc1gl) + cI*Im(dZ12H1fingl)) + 
+     &         2*SB2*Re(dZ12H1fingl) - 
+     &         CB2*(4*Conjugate(dTB1fingl) + 2*Re(dZ12H1fingl)) + 
+     &         S2B*(Re(dZ11H1fingl) - Re(dZ22H1fingl) - 
+     &            Re(dZh0h0) + Re(dZHHHH))))
 
 	if( inputmass.eq.A0A0 ) then
 

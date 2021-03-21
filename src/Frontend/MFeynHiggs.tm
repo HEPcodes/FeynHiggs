@@ -51,6 +51,9 @@
 :Evaluate: FHGetTLPara::usage =
 	"FHGetTLPara returns parameters used in the internal computation of the neutral Higgs masses in FeynHiggs."
 
+:Evaluate: FHGetQuarkMasses::usage =
+	"FHGetQuarkMasses returns the top and bottom quark masses used in the fixed-order calculation."
+
 :Evaluate: FHGetFV::usage =
 	"FHGetFV returns the parameters computed by FHSetNMFV and FHSetLFV."
 
@@ -77,6 +80,15 @@
 
 :Evaluate: FHGetSelf::usage =
 	"FHGetSelf computes various Higgs self-energies plus their derivatives."
+
+:Evaluate: FHGetSelfOL::usage =
+	"FHGetSelfOL computes various 1L Higgs self-energies plus their derivatives."
+
+:Evaluate: FHGetSelfTL::usage =
+	"FHGetSelfTL computes various 2L Higgs self-energies (derivatives are set to zero)."
+
+:Evaluate: FHGetSelfEFT::usage =
+	"FHGetSelfEFT computes EFT contribution to Higgs self-energies (including derivatives; derivatives are set to zero)."
 
 :Evaluate: FHGetSelfgl::usage =
 	"FHGetSelfgl computes various Higgs self-energies plus their derivatives in the gaugeless limit."
@@ -475,6 +487,14 @@
 :End:
 
 :Begin:
+:Function: mFHGetQuarkMasses
+:Pattern: FHGetQuarkMasses[]
+:Arguments: {}
+:ArgumentTypes: {}
+:ReturnType: Manual
+:End:
+
+:Begin:
 :Function: mFHGetFV
 :Pattern: FHGetFV[]
 :Arguments: {}
@@ -541,6 +561,30 @@
 :Begin:
 :Function: mFHGetSelf
 :Pattern: FHGetSelf[p2_, key_, dkey_, ren_]
+:Arguments: {N[Re[p2]], N[Im[p2]], key, dkey, ren}
+:ArgumentTypes: {Real, Real, Integer, Integer, Integer}
+:ReturnType: Manual
+:End:
+
+:Begin:
+:Function: mFHGetSelfOL
+:Pattern: FHGetSelfOL[p2_, key_, dkey_, ren_]
+:Arguments: {N[Re[p2]], N[Im[p2]], key, dkey, ren}
+:ArgumentTypes: {Real, Real, Integer, Integer, Integer}
+:ReturnType: Manual
+:End:
+
+:Begin:
+:Function: mFHGetSelfTL
+:Pattern: FHGetSelfTL[p2_, key_, dkey_, ren_]
+:Arguments: {N[Re[p2]], N[Im[p2]], key, dkey, ren}
+:ArgumentTypes: {Real, Real, Integer, Integer, Integer}
+:ReturnType: Manual
+:End:
+
+:Begin:
+:Function: mFHGetSelfEFT
+:Pattern: FHGetSelfEFT[p2_, key_, dkey_, ren_]
 :Arguments: {N[Re[p2]], N[Im[p2]], key, dkey, ren}
 :ArgumentTypes: {Real, Real, Integer, Integer, Integer}
 :ReturnType: Manual
@@ -1462,6 +1506,32 @@ static void mFHGetTLPara(void) {
 
 /******************************************************************/
 
+static void mFHGetQuarkMasses(void) {
+  int error;
+  _La_(argsGetQuarkMasses);
+
+  CaptureStdout();
+
+  FHGetQuarkMasses(&error, _Ra_(argsGetQuarkMasses));
+
+  MLPutStdout(stdlink);
+
+  if( error ) MLPutStatus(stdlink, error);
+  else {
+    MLPutFunction(stdlink, "List", 2);
+
+    MLPutRule(stdlink, mt);
+    MLPutReal(stdlink, MT);
+
+    MLPutRule(stdlink, mb);
+    MLPutReal(stdlink, MB);
+  }
+
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
 static void mFHGetFV(void) {
   int error, t, n;
   _La_(argsGetFV);
@@ -1841,6 +1911,60 @@ static void mFHGetSelf(_Mc_(k2,[1]), cint key, cint dkey, cint ren) {
   CaptureStdout();
 
   FHGetSelf(&error, _Vc_(k2,[1]), key, sig, dkey, dsig, ren);
+
+  MLPutStdout(stdlink);
+
+  if( error ) MLPutStatus(stdlink, error);
+  else MLPutSelf(stdlink, key, sig, dkey, dsig);
+
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHGetSelfOL(_Mc_(k2,[1]), cint key, cint dkey, cint ren) {
+  int error;
+  ComplexType sig[nsig], dsig[nsig];
+
+  CaptureStdout();
+
+  FHGetSelfOL(&error, _Vc_(k2,[1]), key, sig, dkey, dsig, ren);
+
+  MLPutStdout(stdlink);
+
+  if( error ) MLPutStatus(stdlink, error);
+  else MLPutSelf(stdlink, key, sig, dkey, dsig);
+
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHGetSelfTL(_Mc_(k2,[1]), cint key, cint dkey, cint ren) {
+  int error;
+  ComplexType sig[nsig], dsig[nsig];
+
+  CaptureStdout();
+
+  FHGetSelfTL(&error, _Vc_(k2,[1]), key, sig, dkey, dsig, ren);
+
+  MLPutStdout(stdlink);
+
+  if( error ) MLPutStatus(stdlink, error);
+  else MLPutSelf(stdlink, key, sig, dkey, dsig);
+
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHGetSelfEFT(_Mc_(k2,[1]), cint key, cint dkey, cint ren) {
+  int error;
+  ComplexType sig[nsig], dsig[nsig];
+
+  CaptureStdout();
+
+  FHGetSelfEFT(&error, _Vc_(k2,[1]), key, sig, dkey, dsig, ren);
 
   MLPutStdout(stdlink);
 

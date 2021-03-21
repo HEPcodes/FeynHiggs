@@ -1,5 +1,5 @@
 * dse_HHG0_gl.F
-* generated 23-Jul-2018 15:17
+* generated 25-Sep-2020 15:35
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -21,7 +21,7 @@
 	DHIGGS "dse_HHG0_gl k2 =", k2 ENDL
 #endif
 
-        se = -((3*cI)/(16.D0*Pi)*
+	se = -((3*cI)/(16.D0*Pi)*
      &      (Alfa1L*CB*Mf2(tM1,3)*
      &         ((XtglC*UCStgl(1,3) - Xtgl*UCStglC(1,3))*
      &            (DB0(k2,MStgl2(2),MStgl2(2))*
@@ -43,7 +43,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        se = se - (3*cI)/(16.D0*Pi)*
+	se = se - (3*cI)/(16.D0*Pi)*
      &     (Alfa1L*TB*Mf2(bM1,3)*
      &        ((XbglC*UCSbgl(1,3) - Xbgl*UCSbglC(1,3))*
      &           (DB0(k2,MSbgl2(2),MSbgl2(2))*

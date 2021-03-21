@@ -118,6 +118,18 @@
 	  dy(ig3) = dy(ig3) + .5D0*k3L*y(ig3)**3*
      &      (32.5D0*yg32**2 + yht2*(-40*yg32 + 15*yht2))
 
+* 4L RGEs for lambda, ht, g3
+	  dy(ilam) = dy(ilam) + 16616.34D0*k4L*y(ig3)**6*yht2
+
+	  dy(iht) = dy(iht) + k4L*y(iht)*2308.18*.5D0*y(ig3)**8
+
+	  dy(ig3) = dy(ig3) - 2472.28374257*.5D0*k4L*y(ig3)**3*(y(ig3)**6
+     &               + 0.045691495*y(iht)**6
+     &               + 0.006067264*.5D0*y(ilam)*y(iht)**4
+     &               - 0.1260383393*y(iht)**4*y(ig3)**2
+     &               + 0.1692706057*y(iht)**2*y(ig3)**4
+     &               - 0.0036403588*.25D0*y(ilam)**2*y(iht)**2)
+
 #ifdef DETAILED_DEBUG
 	    DEFT "dy(ilam) =", dy(ilam) ENDL
 	    DEFT "dy(iht) =", dy(iht) ENDL
@@ -397,6 +409,18 @@
 
 	  dy(ig3) = dy(ig3) + .5D0*k3L*y(ig3)**3*
      &      (32.5D0*yg32**2 + yht2*(-40*yg32 + 15*yht2))
+
+* 4L RGEs for lambda, ht, g3
+	  dy(ilam) = dy(ilam) + 16616.34D0*k4L*y(ig3)**6*yht2
+
+	  dy(iht) = dy(iht) + k4L*y(iht)*2308.18*.5D0*y(ig3)**8
+
+	  dy(ig3) = dy(ig3) - 2472.28374257*.5D0*k4L*y(ig3)**3*(y(ig3)**6
+     &               + 0.045691495*y(iht)**6
+     &               + 0.006067264*.5D0*y(ilam)*y(iht)**4
+     &               - 0.1260383393*y(iht)**4*y(ig3)**2
+     &               + 0.1692706057*y(iht)**2*y(ig3)**4
+     &               - 0.0036403588*.25D0*y(ilam)**2*y(iht)**2)
 
 #ifdef DETAILED_DEBUG
 	    DEFT "dy(ilam) =", dy(ilam) ENDL

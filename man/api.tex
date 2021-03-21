@@ -1414,13 +1414,16 @@ fermion mass, \ie $K_f = m_f A_f$, where the last index $t$ runs over
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ROUTINE{FHGetSelf, FHGetSelfgl}
+\ROUTINE{FHGetSelf, FHGetSelfOL, FHGetSelfTL, FHGetSelfEFT, FHGetSelfgl}
 
 \DESCRIPTION
 
 \CODE{FHGetSelf} returns the renormalized Higgs self-energies at a given
-$k^2$.  \CODE{FHGetSelfgl} does the same but with results in the
-gaugeless limit.  The flags and parameters must have been set before
+$k^2$.  \CODE{FHGetSelfOL} (\CODE{FHGetSelfTL}) returns the one-loop
+(two-loop) self-energies. \CODE{FHGetSelfEFT} return the corresponding
+EFT correction. \CODE{FHGetSelfgl} does the same as \CODE{FHGetSelf}
+but with results in the gaugeless limit.
+The flags and parameters must have been set before
 with \CODE{FHSetFlags} and \CODE{FHSetPara}.
 
 \FSYNOPSIS
@@ -1442,6 +1445,9 @@ parameter (GmGp = 12, HmGp = 13)
 #define Key(se) 2**(se-1)
 
 subroutine FHGetSelf(error, k2, key, sig, dkey, dsig, ren)
+subroutine FHGetSelfOL(error, k2, key, sig, dkey, dsig, ren)
+subroutine FHGetSelfTL(error, k2, key, sig, dkey, dsig, ren)
+subroutine FHGetSelfEFT(error, k2, key, sig, dkey, dsig, ren)
 subroutine FHGetSelfgl(error, k2, key, sig, dkey, dsig, ren)
 \end{verbatim}
 
@@ -1449,6 +1455,9 @@ subroutine FHGetSelfgl(error, k2, key, sig, dkey, dsig, ren)
 
 \begin{verbatim}
 FHGetSelf[k2, key, dkey, ren]
+FHGetSelfOL[k2, key, dkey, ren]
+FHGetSelfTL[k2, key, dkey, ren]
+FHGetSelfEFT[k2, key, dkey, ren]
 FHGetSelfgl[k2, key, dkey, ren]
 \end{verbatim}
 

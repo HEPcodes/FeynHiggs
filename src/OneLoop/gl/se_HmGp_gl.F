@@ -1,5 +1,5 @@
 * se_HmGp_gl.F
-* generated 23-Jul-2018 15:17
+* generated 25-Sep-2020 15:35
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -31,7 +31,7 @@
 
 	dup4 = Mf2(tM1,3)*UStglC(2,1) + YtglC*Mf(tM1,3)*UStglC(2,2)
 
-        se = 3/(8.D0*Pi)*
+	se = 3/(8.D0*Pi)*
      &    (Alfa1L*((dup1*dup3*B0(k2,MSbgl2(1),MStgl2(1)) + 
      &            dup2*dup4*B0(k2,MSbgl2(1),MStgl2(2)))*USbgl(1,1)*
      &          USbglC(1,1) + 
@@ -52,7 +52,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        se = se - 3/(32.D0*Pi)*
+	se = se - 3/(32.D0*Pi)*
      &     (Alfa1L*(4*SB2**2*TB*Mf2(bM1,3)*
      &           (A0(MSbgl2(2))*USbgl2(1,1) + 
      &             A0(MSbgl2(1))*USbgl2(1,2) + 

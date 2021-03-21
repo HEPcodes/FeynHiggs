@@ -1,5 +1,5 @@
 * se_GmGp_exp.F
-* generated 6-Aug-2018 11:20
+* generated 28-Sep-2020 18:24
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -29,7 +29,7 @@
 
 	xt = Re(Xtgl)/MSusy
 
-        se = 1/(64.D0*MW2*Pi*SW2)*
+	se = 1/(64.D0*MW2*Pi*SW2)*
      &    (Alfa1L*(4*xt**4*Mf2(tM1,3)**2*
      &         (USf(1,1,bM1,3)**2 + USf(2,1,bM1,3)**2) + 
      &        xt**2*((-12*Mf2(tM1,3)**2 + 
@@ -51,7 +51,7 @@
      &                       2)/CB2)*sign(1D0,MSf2(3,bM1,3))))*
      &            USf(2,1,bM1,3)**2)))
 
-        se = se + 3/(8.D0*MW2*Pi*SW2)*
+	se = se + 3/(8.D0*MW2*Pi*SW2)*
      &     (Alfa1L*(2*Log(1/MSusy) - Log(1/Mudim))*
      &        (SB2*(MW2*C2B + Mf2(tM1,3))**2*
      &           (USf(1,1,bM1,3)**2 + USf(2,1,bM1,3)**2) + 
@@ -70,7 +70,7 @@
      &                (SB*Kf(2,2,tM1) - CB*MUE*Mf(tM1,2))*
      &                 USf(2,2,tM1,2))**2)))/SB2
 
-        se = se + 3/(4.D0*MW2*Pi*SW2)*
+	se = se + 3/(4.D0*MW2*Pi*SW2)*
      &     (Alfa1L*((k2*B1(k2,0.D0,Mf2(tM1,1)) + 
      &            B0(k2,0.D0,Mf2(tM1,1))*(k2 - Mf2(tM1,1)))*
      &          Mf2(tM1,1) - B0(k2,0.D0,Mf2(tM1,2))*Mf2(tM1,2)**2 - 
@@ -80,7 +80,7 @@
      &            (B0(k2,0.D0,Mf2(tM1,3)) + B1(k2,0.D0,Mf2(tM1,3)))*
      &             Mf2(tM1,3))))
 
-        tmp1 = -((MW2*(1 + 2*CW2 - 4*SW2)*C2B - 
+	tmp1 = -((MW2*(1 + 2*CW2 - 4*SW2)*C2B - 
      &         6*CW2*Mf2(tM1,3))*
      &       (3*MZ2*(C2B*(2*Log(1/MSusy) - Log(1/Mudim))) + 
      &         (24*Log(1/MSusy) - 12*Log(1/Mudim))*Mf2(tM1,3))) - 
@@ -117,7 +117,7 @@
      &          2*(2*MW2*SW2*C2B + 3*CW2*Mf2(tM1,1))*
      &           USf(1,2,tM1,1)**2))
 
-        tmp1 = tmp1 - (2*Log(1/MSusy) - Log(1/Mudim))*
+	tmp1 = tmp1 - (2*Log(1/MSusy) - Log(1/Mudim))*
      &     ((MZ2*(3*CB2 - 3*SB2) + 12*Mf2(tM1,2) - 
      &          6*Sqrt((MZ2**2*(3 - 8*SW2)**2)/36.D0*C2B**2 + 
      &             (4*(SB*Kf(2,2,tM1) - CB*MUE*Mf(tM1,2))**2)/SB2)*
@@ -154,7 +154,7 @@
      &          2*(2*MW2*SW2*C2B + 3*CW2*Mf2(tM1,1))*
      &           USf(2,2,tM1,1)**2))
 
-        tmp1 = tmp1 - (2*Log(1/MSusy) - Log(1/Mudim))*
+	tmp1 = tmp1 - (2*Log(1/MSusy) - Log(1/Mudim))*
      &     (MZ2*(3*CB2 - 3*SB2) + 12*Mf2(tM1,2) + 
      &       6*Sqrt((MZ2**2*(3 - 8*SW2)**2)/36.D0*C2B**2 + 
      &          (4*(SB*Kf(2,2,tM1) - CB*MUE*Mf(tM1,2))**2)/SB2)*
@@ -163,7 +163,7 @@
      &       2*(2*MW2*SW2*C2B + 3*CW2*Mf2(tM1,2))*USf(2,2,tM1,2)**2
      &       )
 
-        se = se + 1/(CW2*MW2*Pi*SW2)*
+	se = se + 1/(CW2*MW2*Pi*SW2)*
      &     (Alfa1L*(1/192.D0*tmp1 + 
      &         1/32.D0*(xt**2*
      &            (MW2*(1 + 2*CW2 - 4*SW2)*C2B - 6*CW2*Mf2(tM1,3))*
@@ -171,7 +171,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        tmp2 = (2*Log(1/MSusy) - Log(1/Mudim))*
+	tmp2 = (2*Log(1/MSusy) - Log(1/Mudim))*
      &    (SB*(CB2*Mf2(bM1,3)**2*USf(1,1,bM1,3)**2 - 
      &         Mf2(bM1,3)*(2*CB2*(MW2*C2B + Mf2(tM1,3))*
      &             USf(1,1,bM1,3)**2 - 
@@ -217,7 +217,7 @@
      &               (CB*Kf(1,1,bM1) - MUE*SB*Mf(bM1,1))*
      &                USf(2,2,bM1,1)))))
 
-        tmp2 = tmp2 - (2*Log(1/MSusy) - Log(1/Mudim))*
+	tmp2 = tmp2 - (2*Log(1/MSusy) - Log(1/Mudim))*
      &     (USf(1,1,tM1,2)*
      &        (CB*Mf2(bM1,2)*USf(2,1,bM1,2) + 
      &          (CB*Kf(2,2,bM1) - MUE*SB*Mf(bM1,2))*USf(2,2,bM1,2))
@@ -263,7 +263,7 @@
      &                2*(SB*Kf(1,1,tM1) - CB*MUE*Mf(tM1,1))*
      &                 USf(2,2,tM1,1)))))
 
-        tmp2 = tmp2 + (2*Log(1/MSusy) - Log(1/Mudim))*
+	tmp2 = tmp2 + (2*Log(1/MSusy) - Log(1/Mudim))*
      &     USf(2,1,tM1,2)*((CB*Mf2(bM1,2)*USf(1,1,bM1,2) + 
      &          (CB*Kf(2,2,bM1) - MUE*SB*Mf(bM1,2))*USf(1,2,bM1,2))
      &         *(SB*(CB*Kf(2,2,bM1) - MUE*SB*Mf(bM1,2))*
@@ -283,7 +283,7 @@
      &             2*(SB*Kf(2,2,tM1) - CB*MUE*Mf(tM1,2))*
      &              USf(2,2,tM1,2))))
 
-        se = se + 3/(8.D0*MW2*Pi*SW2)*
+	se = se + 3/(8.D0*MW2*Pi*SW2)*
      &     (Alfa1L*(tmp2 + 
      &          1/2.D0*(S2B*xt**2*Mf2(tM1,3)*
      &             (USf(1,1,bM1,3)*
@@ -295,7 +295,7 @@
      &                  (CB*Kf(3,3,bM1) - MUE*SB*Mf(bM1,3))*
      &                   USf(2,2,bM1,3))))))/(CB2*SB)
 
-        se = se - 3/(4.D0*MW2*Pi*SW2)*
+	se = se - 3/(4.D0*MW2*Pi*SW2)*
      &     (Alfa1L*((k2*B1(k2,0.D0,Mf2(tM1,1)) + 
      &            B0(k2,0.D0,Mf2(tM1,1))*(k2 - Mf2(tM1,1)))*
      &          Mf2(tM1,1) + 
@@ -321,7 +321,7 @@
      &          ((k2 - Mf2(tM1,3))*Mf2(tM1,3) + 
      &            Mf2(bM1,3)*(k2 + Mf2(tM1,3)))))
 
-        tmp3 = 12*Mf2(bM1,1)**2*
+	tmp3 = 12*Mf2(bM1,1)**2*
      &     (USf(1,2,bM1,1)**2 + USf(2,2,bM1,1)**2) + 
      &    Mf2(bM1,1)*((MZ2*(3*CB2 - 3*SB2) + 12*Mf2(tM1,1) - 
      &          Sqrt((SB2*(MZ2**2*(3 - 8*SW2)**2*C2B**2 + 
@@ -348,7 +348,7 @@
      &               144*MUE**2*SB2*Mf2(bM1,1))/CB2)*
      &           sign(1D0,MSf2(3,bM1,1)))*USf(2,2,bM1,1)**2)
 
-        tmp3 = tmp3 + Mf2(bM1,2)*
+	tmp3 = tmp3 + Mf2(bM1,2)*
      &     ((MZ2*(3*CB2 - 3*SB2) + 12*Mf2(tM1,2) - 
      &          Sqrt((SB2*(MZ2**2*(3 - 8*SW2)**2*C2B**2 + 
      &                  144*Kf(2,2,tM1)**2) - 
@@ -374,7 +374,7 @@
      &               144*MUE**2*SB2*Mf2(bM1,2))/CB2)*
      &           sign(1D0,MSf2(3,bM1,2)))*USf(2,2,bM1,2)**2)
 
-        se = se - 1/(MW2*Pi*SW2)*
+	se = se - 1/(MW2*Pi*SW2)*
      &     (Alfa1L*(3/16.D0*(xt**2*Mf2(bM1,3)*Mf2(tM1,3)) + 
      &         1/32.D0*(-((tmp3 + MZ2*(3 - 8*SW2)*(C2B*Mf2(bM1,3)))*
      &               (2*Log(1/MSusy) - Log(1/Mudim))) - 
@@ -404,7 +404,7 @@
 
 	if( mssmpart .le. 2 ) return
 
-        tmp4 = 8*CW2*((CB*(ME2 - MW2*C2B)*USf(1,1,2,1) - 
+	tmp4 = 8*CW2*((CB*(ME2 - MW2*C2B)*USf(1,1,2,1) - 
      &          (ME*(MUE*SB) - CB*Kf(1,1,2))*USf(1,2,2,1))**2 + 
      &       (CB*(MM2 - MW2*C2B)*USf(1,1,2,2) - 
      &          (MM*(MUE*SB) - CB*Kf(2,2,2))*USf(1,2,2,2))**2 + 
@@ -439,26 +439,28 @@
      &             (4*(ML*(MUE*SB) - CB*Kf(3,3,2))**2)/CB2)*
      &           sign(1D0,MSf2(3,2,3))))
 
-        tmp4 = tmp4 + 8*CW2*
-     &     (CB*(ML2 - MW2*C2B)*USf(2,1,2,3) - 
-     &        (ML*(MUE*SB) - CB*Kf(3,3,2))*USf(2,2,2,3))**2 + 
-     &    CB2*((MW2*(C2B*(-(2*SW2*USf(2,2,2,2)**2) + 
-     &               USf(2,1,2,2)**2)) + 2*CW2*MM2*USf(2,2,2,2)**2)
-     &         *(4*MM2 - MZ2*C2B + 
-     &          2*Sqrt(MZ2**2*(1/2.D0 - 2*SW2)**2*C2B**2 + 
-     &             (4*(MM*(MUE*SB) - CB*Kf(2,2,2))**2)/CB2)*
-     &           sign(1D0,MSf2(3,2,2))) + 
-     &       (MW2*(C2B*(-(2*SW2*USf(2,2,2,3)**2) + 
-     &               USf(2,1,2,3)**2)) + 2*CW2*ML2*USf(2,2,2,3)**2)
-     &         *(4*ML2 - MZ2*C2B + 
-     &          2*Sqrt(MZ2**2*(1/2.D0 - 2*SW2)**2*C2B**2 + 
-     &             (4*(ML*(MUE*SB) - CB*Kf(3,3,2))**2)/CB2)*
-     &           sign(1D0,MSf2(3,2,3))))
+	tmp4 = tmp4 + (8*CW2*
+     &       (CB*(ML2 - MW2*C2B)*USf(2,1,2,3) - 
+     &          (ML*(MUE*SB) - CB*Kf(3,3,2))*USf(2,2,2,3))**2 + 
+     &      CB2*((MW2*(C2B*
+     &               (-(2*SW2*USf(2,2,2,2)**2) + USf(2,1,2,2)**2))+
+     &              2*CW2*MM2*USf(2,2,2,2)**2)*
+     &          (4*MM2 - MZ2*C2B + 
+     &            2*Sqrt(MZ2**2*(1/2.D0 - 2*SW2)**2*C2B**2 + 
+     &               (4*(MM*(MUE*SB) - CB*Kf(2,2,2))**2)/CB2)*
+     &             sign(1D0,MSf2(3,2,2))) + 
+     &         (MW2*(C2B*(-(2*SW2*USf(2,2,2,3)**2) + 
+     &                 USf(2,1,2,3)**2)) + 
+     &            2*CW2*ML2*USf(2,2,2,3)**2)*
+     &          (4*ML2 - MZ2*C2B + 
+     &            2*Sqrt(MZ2**2*(1/2.D0 - 2*SW2)**2*C2B**2 + 
+     &               (4*(ML*(MUE*SB) - CB*Kf(3,3,2))**2)/CB2)*
+     &             sign(1D0,MSf2(3,2,3)))))
 
-        se = se + 1/(64.D0*CW2*MW2*Pi*SW2)*
+	se = se + 1/(64.D0*CW2*MW2*Pi*SW2)*
      &     (Alfa1L*tmp4*(2*Log(1/MSusy) - Log(1/Mudim)))/CB2
 
-        se = se - 1/(32.D0*CW2*MW2*Pi*SW2)*
+	se = se - 1/(32.D0*CW2*MW2*Pi*SW2)*
      &     (Alfa1L*(8*CW2*(ME2*A0(ME2) + ML2*A0(ML2) + 
      &            MM2*A0(MM2) + 
      &            k2*(ME2*B1(k2,0.D0,ME2) + ML2*B1(k2,0.D0,ML2) + 
@@ -472,7 +474,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se + 1/(32.D0*CW2**2*Pi*SW2)*
+	se = se + 1/(32.D0*CW2**2*Pi*SW2)*
      &     (Alfa1L*(2*(-(B0(k2,MHH2,MW2)*
      &               (-(MW2*(C2B**2*CAB**2)) + 
      &                 CW2**2*(CBA2*(k2 + MHH2)))) + 
@@ -505,7 +507,7 @@
 	LOOP(Cha3, 1,2,1)
 	LOOP(Neu3, 1,4,1)
 
-        se = se - 1/(16.D0*CW2*Pi*SW2)*
+	se = se - 1/(16.D0*CW2*Pi*SW2)*
      &     (Alfa1L*(8*CW2*((A0(MCha2(Cha3)) - 
      &              k2*B1(k2,MCha2(Cha3),MNeu2(Neu3)))*
      &            (CB2*(1/CW*

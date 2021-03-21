@@ -14,7 +14,8 @@ mma1: lib MFeynHiggs$(EXE)
 
 MAIN = SetFlags.o RetrieveFlags.o \
   SetSMPara.o RetrieveSMPara.o GetSMPara.o \
-  SetPara.o RetrievePara.o RetrieveOSPara.o GetPara.o GetTLPara.o \
+  SetPara.o RetrievePara.o RetrieveOSPara.o \
+	GetPara.o GetTLPara.o GetQuarkMasses.o \
   SetFV.o RetrieveFV.o GetFV.o SetSLHA.o \
   Para.o Sfermions.o dZHfin.o TBconv.o TBrepara.o SetDebug.o \
   SetExt.o GetSelf.o GetSelfgl.o HiggsCorr.o Uncertainties.o \
@@ -138,7 +139,7 @@ spenceQuad.o: spence.F
 
 $(EFT): Resum4H.h
 
-Resum4H23.o: FOSubtract.h
+Resum4H23.o: FOSubtract.h para23.h
 Resum4H4.o: FOSubtract4.h
 
 TLthresholdasat.o: Resum4H.h
@@ -449,4 +450,3 @@ fcc: fcc.in makefile
 
 table$(EXE): table.c
 	$(CC) $(CFLAGS) -o table$(EXE) table.c
-

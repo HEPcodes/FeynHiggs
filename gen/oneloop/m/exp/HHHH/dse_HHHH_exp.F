@@ -1,5 +1,5 @@
 * dse_HHHH_exp.F
-* generated 6-Aug-2018 10:35
+* generated 28-Sep-2020 17:55
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -29,7 +29,7 @@
 
 	se = 1/(16.D0*MW2*Pi*SW2)*(Alfa1L*SA2*xt**2*Mf2(tM1,3))/SB2
 
-        se = se - 3/(4.D0*MW2*Pi*SW2)*
+	se = se - 3/(4.D0*MW2*Pi*SW2)*
      &     (Alfa1L*SA2*(Mf2(tM1,1)*
      &           (B1(k2,Mf2(tM1,1),Mf2(tM1,1)) + 
      &             k2*DB1(k2,Mf2(tM1,1),Mf2(tM1,1)) + 
@@ -44,7 +44,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        se = se - 3/(4.D0*MW2*Pi*SW2)*
+	se = se - 3/(4.D0*MW2*Pi*SW2)*
      &     (Alfa1L*CA2*(Mf2(bM1,1)*
      &           (B1(k2,Mf2(bM1,1),Mf2(bM1,1)) + 
      &             k2*DB1(k2,Mf2(bM1,1),Mf2(bM1,1)) + 
@@ -59,7 +59,7 @@
 
 	if( mssmpart .le. 2 ) return
 
-        se = se - 1/(4.D0*MW2*Pi*SW2)*
+	se = se - 1/(4.D0*MW2*Pi*SW2)*
      &     (Alfa1L*CA2*(ME2*
      &           (B1(k2,ME2,ME2) + k2*DB1(k2,ME2,ME2) + 
      &             2*ME2*DB0(k2,ME2,ME2)) + 
@@ -70,7 +70,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se - 1/(32.D0*CW2**2*Pi*SW2)*
+	se = se - 1/(32.D0*CW2**2*Pi*SW2)*
      &     (Alfa1L*(-(DB0(k2,MZ2,MZ2)*
      &            (MW2*(C2B**2*CAB**2 + 14*CBA2) - 
      &              2*CW2*(CBA2*(k2 + MZ2)))) + 
@@ -114,7 +114,7 @@
 	LOOP(Cha3, 1,2,1)
 	LOOP(Cha4, 1,2,1)
 
-        se = se - 1/(4.D0*Pi*SW2)*
+	se = se - 1/(4.D0*Pi*SW2)*
      &     (Alfa1L*((B1(k2,MCha2(Cha3),MCha2(Cha4)) + 
      &            k2*DB1(k2,MCha2(Cha3),MCha2(Cha4)))*
      &          ((CA*UCha(Cha4,2)*VCha(Cha3,1) + 
@@ -139,7 +139,7 @@
 	LOOP(Neu3, 1,4,1)
 	LOOP(Neu4, 1,4,1)
 
-        se = se - 1/(16.D0*CW2*Pi*SW2)*
+	se = se - 1/(16.D0*CW2*Pi*SW2)*
      &     (Alfa1L*(2*(B1(k2,MNeu2(Neu3),MNeu2(Neu4)) + 
      &            k2*DB1(k2,MNeu2(Neu3),MNeu2(Neu4)))*
      &          ((CA*ZNeu(Neu3,3) - SA*ZNeu(Neu3,4))*

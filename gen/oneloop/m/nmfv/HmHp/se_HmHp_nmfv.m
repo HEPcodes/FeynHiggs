@@ -134,9 +134,9 @@
      (C2B*UASf[All3, Ind1, 2]*UASfC[All3, Ind1, 2] - 
       (2*(C2B*CB2*MW2*SW2 + CW2*SB2*Mf2[2, Ind1])*UASf[All3, 3 + Ind1, 2]*
         UASfC[All3, 3 + Ind1, 2])/(CB2*MW2)))/(16*CW2*Pi*SW2), 
-  (Alfa1L*A0[MASf2[Gen3, 1]]*(C2B*(2 - CW2^(-1)) + (2*SB2*Mf2[2, Ind1])/
-      (CB2*MW2))*SumOver[Gen3, 3]*SumOver[Ind1, 3]*UASf[Gen3, Ind1, 1]*
-    UASfC[Gen3, Ind1, 1])/(16*Pi*SW2), 
+  (Alfa1L*A0[MASf2[Gen3, 1]]*(C2B*CB2*(-1 + 2*CW2)*MW2 + 
+     2*CW2*SB2*Mf2[2, Ind1])*SumOver[Gen3, 3]*SumOver[Ind1, 3]*
+    UASf[Gen3, Ind1, 1]*UASfC[Gen3, Ind1, 1])/(16*CB2*CW2*MW2*Pi*SW2), 
   -(Alfa1L*TB2*(A0[Mf2[2, Gen3]] + k2*B0i[bb1, k2, 0, Mf2[2, Gen3]])*
      Mf2[2, Gen3]*SumOver[Gen3, 3])/(4*MW2*Pi*SW2)}, 
  {(Alfa1L*SumOver[Cha3, 2]*SumOver[Neu3, 4]*

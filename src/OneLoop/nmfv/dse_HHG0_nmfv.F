@@ -1,5 +1,5 @@
 * dse_HHG0_nmfv.F
-* generated 13-Jul-2018 17:00
+* generated 28-Sep-2020 20:45
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -39,7 +39,7 @@
 	LOOP(Ind3, 1,3,1)
 	LOOP(Ind4, 1,3,1)
 
-        se = se - cI/(16.D0*Pi)*
+	se = se - cI/(16.D0*Pi)*
      &     (Alfa1L*DB0tmp1*
      &        ((Delta(Ind3,Ind4)*
      &              (CAB*(1 - 4*CW2)*MW*MZ*SB - 
@@ -86,7 +86,7 @@
 	LOOP(Ind3, 1,3,1)
 	LOOP(Ind4, 1,3,1)
 
-        se = se + cI/(16.D0*Pi)*
+	se = se + cI/(16.D0*Pi)*
      &     (Alfa1L*DB0tmp2*
      &        ((Delta(Ind3,Ind4)*
      &              (CAB*CB*(1 + 2*CW2)*MW*MZ - 
@@ -133,7 +133,7 @@
 	LOOP(Ind3, 1,3,1)
 	LOOP(Ind4, 1,3,1)
 
-        se = se - cI/(16.D0*Pi)*
+	se = se - cI/(16.D0*Pi)*
      &     (Alfa1L*DB0tmp3*
      &        ((Delta(Ind3,Ind4)*
      &              (CAB*CB*(1 - 2*CW2)*MW*MZ + 
@@ -172,19 +172,19 @@
 	LOOP(Cha3, 1,2,1)
 	LOOP(Cha4, 1,2,1)
 
-        dup1 = CA*UCha(Cha4,2)*VCha(Cha3,1) + 
+	dup1 = CA*UCha(Cha4,2)*VCha(Cha3,1) + 
      &    SA*UCha(Cha4,1)*VCha(Cha3,2)
 
-        dup2 = CB*UCha(Cha3,2)*VCha(Cha4,1) - 
+	dup2 = CB*UCha(Cha3,2)*VCha(Cha4,1) - 
      &    SB*UCha(Cha3,1)*VCha(Cha4,2)
 
-        dup3 = CB*UChaC(Cha4,2)*VChaC(Cha3,1) - 
+	dup3 = CB*UChaC(Cha4,2)*VChaC(Cha3,1) - 
      &    SB*UChaC(Cha4,1)*VChaC(Cha3,2)
 
-        dup4 = CA*UChaC(Cha3,2)*VChaC(Cha4,1) + 
+	dup4 = CA*UChaC(Cha3,2)*VChaC(Cha4,1) + 
      &    SA*UChaC(Cha3,1)*VChaC(Cha4,2)
 
-        se = se - cI/(4.D0*Pi)*
+	se = se - cI/(4.D0*Pi)*
      &     (Alfa1L*((dup1*dup3 - dup2*dup4)*
      &           (B1(k2,MCha2(Cha3),MCha2(Cha4)) + 
      &             k2*DB1(k2,MCha2(Cha3),MCha2(Cha4))) + 
@@ -224,12 +224,12 @@
 
 	dup16 = CB*ZNeuC(Neu4,3) + SB*ZNeuC(Neu4,4)
 
-        dup17 = dup10*(dup12*dup14 + dup11*dup15)*dup5 - 
+	dup17 = dup10*(dup12*dup14 + dup11*dup15)*dup5 - 
      &    dup11*((dup16*dup6 - dup15*dup7)*dup8 + 
      &       dup16*dup5*dup9) + 
      &    dup14*(dup12*dup7*dup8 - dup13*(dup6*dup8 + dup5*dup9))
 
-        se = se + cI/(16.D0*Pi)*
+	se = se + cI/(16.D0*Pi)*
      &     (Alfa1L*(dup17*(B1(k2,MNeu2(Neu3),MNeu2(Neu4)) + 
      &             k2*DB1(k2,MNeu2(Neu3),MNeu2(Neu4))) - 
      &          DB0(k2,MNeu2(Neu3),MNeu2(Neu4))*

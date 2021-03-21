@@ -1,5 +1,5 @@
 * se_GmGp_mfv.F
-* generated 13-Jul-2018 17:03
+* generated 25-Sep-2020 15:38
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -30,7 +30,7 @@
 	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(A0(MSf2(Sfe3,bM1,Gen3))*
      &           ((C2B*(1 - 4*CW2)*MW2 - 
      &                6*CW2*
@@ -55,7 +55,7 @@
 
 	LOOP(Gen4, gM,3,1)
 
-        se = se + 3/(4.D0*Pi)*
+	se = se + 3/(4.D0*Pi)*
      &     (Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        (B1tmp1*k2 + B0tmp1*(k2 - Mf2(tM1,Gen3)))*
      &        Mf2(tM1,Gen3))/(MW2*SW2)
@@ -69,7 +69,7 @@
 	LOOP(Gen3, gM,3,1)
 	LOOP(Gen4, gM,3,1)
 
-        se = se + 3/(8.D0*Pi)*
+	se = se + 3/(8.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,tM1,Gen3),MSf2(Sfe4,bM1,Gen4))*
      &        CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        (S2B*(C2B*MW2 + Mf2(tM1,Gen3))*
@@ -96,7 +96,7 @@
 	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, gM,3,1)
 
-        se = se + 3/(8.D0*Pi)*
+	se = se + 3/(8.D0*Pi)*
      &     (Alfa1L*(A0(MSf2(Sfe3,tM1,Gen3))*
      &           (CKMin(Gen3,1)*CKMinC(Gen3,1)*Mf2(bM1,1) + 
      &             CKMin(Gen3,2)*CKMinC(Gen3,2)*Mf2(bM1,2) + 
@@ -116,7 +116,7 @@
 
 	LOOP(Gen4, gM,3,1)
 
-        se = se - 3/(4.D0*Pi)*
+	se = se - 3/(4.D0*Pi)*
      &     (Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        ((B1tmp2*k2 + B0tmp2*(k2 - Mf2(tM1,Gen3)))*
      &           Mf2(tM1,Gen3) + 
@@ -142,7 +142,7 @@
 
 	dup3 = C2B*MW2 - Mf2(bM1,Gen4) + Mf2(tM1,Gen3)
 
-        se = se - 3/(8.D0*Pi)*
+	se = se - 3/(8.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,tM1,Gen3),MSf2(Sfe4,bM1,Gen4))*
      &        CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        ((S2B*(C2B*MW2 + Mf2(tM1,Gen3))*
@@ -178,7 +178,7 @@
 
 	LOOP(Gen3, 1,3,1)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(4*CW2*(A0(Mf2(2,Gen3)) + 
      &             k2*B1(k2,0.D0,Mf2(2,Gen3)))*Mf2(2,Gen3) - 
      &          A0(MSf2(1,1,Gen3))*
@@ -190,7 +190,7 @@
 	LOOP(Gen3, 1,3,1)
 	LOOP(Sfe3, 1,2,1)
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*(CB2*A0(MSf2(Sfe3,2,Gen3))*
      &           (C2B*MW2*USf2(Sfe3,1,2,Gen3) - 
      &             2*(C2B*MW2*SW2 - CW2*Mf2(2,Gen3))*
@@ -212,7 +212,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se + 1/(32.D0*Pi)*
+	se = se + 1/(32.D0*Pi)*
      &     (Alfa1L*(2*((C2B**2*MW2*SAB**2 - 
      &                CW2**2*(k2 + Mh02)*SBA2)*B0(k2,Mh02,MW2) + 
      &             MW2*((C2B*CAB*CW2 - S2B*SAB*SW2)**2*
@@ -253,7 +253,7 @@
 
 	dup7 = SW*ZNeuC(Neu3,1) + CW*ZNeuC(Neu3,2)
 
-        se = se - 1/(16.D0*Pi*sqrt2**2)*
+	se = se - 1/(16.D0*Pi*sqrt2**2)*
      &     (Alfa1L*(-(sqrt2**2*
      &             (B0(k2,MCha2(Cha3),MNeu2(Neu3))*
      &               (2*(k2 - MNeu2(Neu3))*

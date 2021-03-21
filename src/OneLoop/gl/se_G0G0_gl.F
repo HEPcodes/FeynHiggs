@@ -1,5 +1,5 @@
 * se_G0G0_gl.F
-* generated 23-Jul-2018 15:17
+* generated 25-Sep-2020 15:35
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -21,7 +21,7 @@
 	DHIGGS "se_G0G0_gl k2 =", k2 ENDL
 #endif
 
-        se = 3/(16.D0*Pi)*
+	se = 3/(16.D0*Pi)*
      &    (Alfa1L*Mf2(tM1,3)*
      &       (-4*(A0(Mf2(tM1,3)) + 
      &            k2*B1(k2,Mf2(tM1,3),Mf2(tM1,3))) - 
@@ -40,7 +40,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        se = se + 3/(16.D0*Pi)*
+	se = se + 3/(16.D0*Pi)*
      &     (Alfa1L*Mf2(bM1,3)*
      &        (-4*(A0(Mf2(bM1,3)) + 
      &             k2*B1(k2,Mf2(bM1,3),Mf2(bM1,3))) - 

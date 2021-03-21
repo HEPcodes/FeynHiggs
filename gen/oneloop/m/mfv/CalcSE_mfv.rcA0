@@ -1,6 +1,6 @@
-{dMWsq1 -> Re[seWW], dMZsq1 -> Re[seZZ], dTA01 -> -Re[tdA0], 
+{dMWsq1 -> Re[seWW], dMZsq1 -> Re[seZZ], dTA01 -> -tdA0, 
  dTB1 -> dTB1div + dTB1fin, dTB1div -> ((1 - TB2)*Re[dZ12H1fin])/2 + 
-   (TB*(-Re[dZ11H1] + Re[dZ22H1]))/2, dTh01 -> -Re[tdh0], dTHH1 -> -Re[tdHH], 
+   (TB*(-Re[dZ11H1] + Re[dZ22H1]))/2, dTh01 -> -tdh0, dTHH1 -> -tdHH, 
  dZ11H1 -> dZ11H1fin + Re[dZHHHH], dZ22H1 -> dZ22H1fin + Re[dZh0h0], 
  dMHiggs1[1, 1] -> dMZsq1*SAB^2 + 2*CB2*dTB1*(CAB*MZ2*SAB - CBA*MA02*SBA) + 
    2*dA1*(CAB*MZ2*SAB + CBA*MA02*SBA) + CBA2*dMsq1["A0A0"] + 
@@ -22,10 +22,10 @@
     HoldCode[EL1L/(2*MW*SW)], dMHiggs1[4, 4] -> 
   -((CBA*dTHH1 + dTh01*SBA)*HoldCode[EL1L/(2*MW*SW)]), 
  dMHiggs1[5, 5] -> dMWsq1 + dMsq1["A0A0"], 
- dMHiggs1[5, 6] -> -(CB2*dTB1*MHp2) + (I*dTA01 - CBA*dTh01 + dTHH1*SBA)*
-    HoldCode[EL1L/(2*MW*SW)], dMHiggs1[6, 6] -> dMHiggs1[4, 4], 
- dZbarHiggs1[5, 5] -> dZ1["A0A0"], dZHiggs1[1, 1] -> 
-  SA2*Re[dZ11H1] - S2A*Re[dZ12H1fin] + CA2*Re[dZ22H1], 
+ dMHiggs1[5, 6] -> dBc1*MHp2 - CB2*dTB1*MHp2 + 
+   (I*dTA01 - CBA*dTh01 + dTHH1*SBA)*HoldCode[EL1L/(2*MW*SW)], 
+ dMHiggs1[6, 6] -> dMHiggs1[4, 4], dZbarHiggs1[5, 5] -> dZ1["A0A0"], 
+ dZHiggs1[1, 1] -> SA2*Re[dZ11H1] - S2A*Re[dZ12H1fin] + CA2*Re[dZ22H1], 
  dZHiggs1[1, 2] -> C2A*Re[dZ12H1fin] + (S2A*(-Re[dZ11H1] + Re[dZ22H1]))/2, 
  dZHiggs1[1, 3] -> -(SBA*Im[dZ12H1fin]), dZHiggs1[1, 4] -> CBA*Im[dZ12H1fin], 
  dZHiggs1[2, 2] -> CA2*Re[dZ11H1] + S2A*Re[dZ12H1fin] + SA2*Re[dZ22H1], 
@@ -35,5 +35,5 @@
   C2B*Re[dZ12H1fin] + (S2B*(-Re[dZ11H1] + Re[dZ22H1]))/2, 
  dZHiggs1[4, 4] -> CB2*Re[dZ11H1] + S2B*Re[dZ12H1fin] + SB2*Re[dZ22H1], 
  dZHiggs1[5, 5] -> dZ1["A0A0"], dZHiggs1[5, 6] -> 
-  dZ1["A0G0"] - I*Im[dZ12H1fin], dZHiggs1[6, 5] -> 
-  dZ1["A0G0"] + I*Im[dZ12H1fin], dZHiggs1[6, 6] -> dZ1["G0G0"]}
+  dZ1["A0G0"] + I*Im[dZ12H1fin], dZHiggs1[6, 5] -> 
+  dZ1["A0G0"] - I*Im[dZ12H1fin], dZHiggs1[6, 6] -> dZ1["G0G0"]}

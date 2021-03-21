@@ -255,7 +255,9 @@ c#define FinCheck(div) div
 #define dZH1fin_(i) dZH1fin(zRan,i)
 
 #define SEu(i,se1) seU(i) = se1+se2U(i)
+#define SE1u(i,se1) se1U(i) = se1
 #define SEr(i,se1) seR(zRan,i) = se1+dZ1_(i)*(p2-Msq(i))-dMsq1_(i)+se2R(zRan,i)+seEFT(i)+seX(i,hX)
+#define SE1r(i,se1) se1R(zRan,i) = se1+dZ1_(i)*(p2-Msq(i))-dMsq1_(i)
 
 #define DSEu(i,dse1) dseU(i) = dse1
 #define DSEr(i,dse1) dseR(zRan,i) = dse1+dZ1_(i)

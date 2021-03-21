@@ -174,6 +174,12 @@ extern void FORTRAN(fhgetpara)(INTEGER *error,
 extern void FORTRAN(fhgettlpara)(INTEGER *error,
   _fh_Fa_(argsGetTLPara));
 
+#define argsGetQuarkMasses(x,r,c,ra,ca) \
+  r(MT,[1]) x r(MB,[1])
+
+extern void FORTRAN(fhgetquarkmasses)(INTEGER *error,
+  _fh_Fa_(argsGetQuarkMasses));
+
 
 #define argsSetLFV(x,r,c,ra,ca) \
   c(deltaLLL12,[1]) x c(deltaLLL23,[1]) x c(deltaLLL13,[1]) x \
@@ -261,6 +267,18 @@ extern void FORTRAN(fhhiggsprod)(INTEGER *error,
   _fh_Fcr_(sqrts,[1]), _fh_Fr_(prodxs,[nprodxs]));
 
 extern void FORTRAN(fhgetself)(INTEGER *error, _fh_Fcc_(k2,[1]),
+  CINTEGER *key, _fh_Fc_(sig,[nsig]),
+  CINTEGER *dkey, _fh_Fc_(dsig,[nsig]), CINTEGER *ren);
+
+extern void FORTRAN(fhgetselfol)(INTEGER *error, _fh_Fcc_(k2,[1]),
+  CINTEGER *key, _fh_Fc_(sig,[nsig]),
+  CINTEGER *dkey, _fh_Fc_(dsig,[nsig]), CINTEGER *ren);
+
+extern void FORTRAN(fhgetselftl)(INTEGER *error, _fh_Fcc_(k2,[1]),
+  CINTEGER *key, _fh_Fc_(sig,[nsig]),
+  CINTEGER *dkey, _fh_Fc_(dsig,[nsig]), CINTEGER *ren);
+
+extern void FORTRAN(fhgetselfeft)(INTEGER *error, _fh_Fcc_(k2,[1]),
   CINTEGER *key, _fh_Fc_(sig,[nsig]),
   CINTEGER *dkey, _fh_Fc_(dsig,[nsig]), CINTEGER *ren);
 
@@ -493,6 +511,15 @@ static inline void FHGetTLPara(int *error,
 }
 
 
+static inline void FHGetQuarkMasses(int *error,
+  _fh_Ca_(argsGetQuarkMasses))
+{
+  _fh_Da_(argsGetQuarkMasses);
+  FORTRAN(fhgetquarkmasses)(error, _fh_Pa_(argsGetQuarkMasses));
+  _fh_Oa_(argsGetQuarkMasses);
+}
+
+
 static inline void FHGetFV(int *error,
   _fh_Ca_(argsGetFV))
 {
@@ -576,6 +603,51 @@ static inline void FHGetSelf(int *error, _fh_Ccc_(k2,[1]),
   _fh_Dc_(dsig,[nsig]);
   _fh_Ir_(k2,[1]);
   FORTRAN(fhgetself)(error, _fh_Pcc_(k2,[1]),
+    &key, _fh_Pc_(sig,[nsig]), &dkey, _fh_Pc_(dsig,[nsig]), &ren);
+  _fh_Oc_(sig,[nsig]);
+  _fh_Oc_(dsig,[nsig]);
+}
+
+
+static inline void FHGetSelfOL(int *error, _fh_Ccc_(k2,[1]),
+  const int key, _fh_Cac_(sig,[nsig]),
+  const int dkey, _fh_Cac_(dsig,[nsig]), const int ren)
+{
+  _fh_Dc_(k2,[1]);
+  _fh_Dc_(sig,[nsig]);
+  _fh_Dc_(dsig,[nsig]);
+  _fh_Ir_(k2,[1]);
+  FORTRAN(fhgetselfol)(error, _fh_Pcc_(k2,[1]),
+    &key, _fh_Pc_(sig,[nsig]), &dkey, _fh_Pc_(dsig,[nsig]), &ren);
+  _fh_Oc_(sig,[nsig]);
+  _fh_Oc_(dsig,[nsig]);
+}
+
+
+static inline void FHGetSelfTL(int *error, _fh_Ccc_(k2,[1]),
+  const int key, _fh_Cac_(sig,[nsig]),
+  const int dkey, _fh_Cac_(dsig,[nsig]), const int ren)
+{
+  _fh_Dc_(k2,[1]);
+  _fh_Dc_(sig,[nsig]);
+  _fh_Dc_(dsig,[nsig]);
+  _fh_Ir_(k2,[1]);
+  FORTRAN(fhgetselftl)(error, _fh_Pcc_(k2,[1]),
+    &key, _fh_Pc_(sig,[nsig]), &dkey, _fh_Pc_(dsig,[nsig]), &ren);
+  _fh_Oc_(sig,[nsig]);
+  _fh_Oc_(dsig,[nsig]);
+}
+
+
+static inline void FHGetSelfEFT(int *error, _fh_Ccc_(k2,[1]),
+  const int key, _fh_Cac_(sig,[nsig]),
+  const int dkey, _fh_Cac_(dsig,[nsig]), const int ren)
+{
+  _fh_Dc_(k2,[1]);
+  _fh_Dc_(sig,[nsig]);
+  _fh_Dc_(dsig,[nsig]);
+  _fh_Ir_(k2,[1]);
+  FORTRAN(fhgetselfeft)(error, _fh_Pcc_(k2,[1]),
     &key, _fh_Pc_(sig,[nsig]), &dkey, _fh_Pc_(dsig,[nsig]), &ren);
   _fh_Oc_(sig,[nsig]);
   _fh_Oc_(dsig,[nsig]);
@@ -768,4 +840,3 @@ static inline void FHRunQCD(int *error,
 }
 
 #endif
-

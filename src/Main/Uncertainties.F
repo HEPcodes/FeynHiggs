@@ -274,7 +274,12 @@ c	  if( loglevel .eq. 0 ) tM1 = tM2
 	  if( debuglevel .ge. 2 )
      &      DHIGGS "Uncertainties: 3L htMT instead of 2L htMT" ENDL
 
-	  htMT3L = 1
+	  if( htMT3L .eq. 0 ) then
+	    htMT3L = 1
+	  else
+	    htMT3L = 0
+	  endif
+
 	  dZHfin_valid = 0
 	  tl_valid = 0
 	  eft_valid = 0
@@ -286,7 +291,11 @@ c	  if( loglevel .eq. 0 ) tM1 = tM2
 	    goto 999
 	  endif
 
-	  htMT3L = 0
+	  if( htMT3L .eq. 0 ) then
+	    htMT3L = 1
+	  else
+	    htMT3L = 0
+	  endif
 
 	  dHia = dHia + abs(Hia - Hia0)
 

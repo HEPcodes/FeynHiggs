@@ -19,6 +19,7 @@ file="m/$mod/$proc/$name"
 mkdir -p "${file%/*}" || exit 1
 rm -f "$file"*
 
+# the expansion does not run with newer Mathematica versions
 math10.4 -run "
 	var = \"$var\";
 	proc = \"$proc\";

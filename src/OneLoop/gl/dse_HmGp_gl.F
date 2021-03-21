@@ -1,5 +1,5 @@
 * dse_HmGp_gl.F
-* generated 23-Jul-2018 15:18
+* generated 25-Sep-2020 15:35
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -31,7 +31,7 @@
 
 	dup5 = Mf2(tM1,3)*UStglC(2,1) + YtglC*Mf(tM1,3)*UStglC(2,2)
 
-        se = 3/(8.D0*Pi)*
+	se = 3/(8.D0*Pi)*
      &    (Alfa1L*(2*(B0(k2,0.D0,Mf2(tM1,3)) + 
      &            B1(k2,0.D0,Mf2(tM1,3)) + 
      &            k2*DB1(k2,0.D0,Mf2(tM1,3)) + 
@@ -52,7 +52,7 @@
 
 	dup1 = TB2*Mf2(bM1,3) - Mf2(tM1,3)
 
-        se = se - 3/(32.D0*Pi)*
+	se = se - 3/(32.D0*Pi)*
      &     (Alfa1L*(4*S2B*(dup1*
      &              (B0(k2,Mf2(bM1,3),Mf2(tM1,3)) + 
      &                B1(k2,Mf2(bM1,3),Mf2(tM1,3)) + 

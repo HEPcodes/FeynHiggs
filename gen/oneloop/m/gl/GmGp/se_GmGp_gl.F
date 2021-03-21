@@ -1,5 +1,5 @@
 * se_GmGp_gl.F
-* generated 23-Jul-2018 15:17
+* generated 25-Sep-2020 15:35
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -32,10 +32,10 @@
 
 	dup4 = Mf2(tM1,3)*UStglC(2,1) + XtglC*Mf(tM1,3)*UStglC(2,2)
 
-        dup5 = k2*B1(k2,0.D0,Mf2(tM1,3)) + 
+	dup5 = k2*B1(k2,0.D0,Mf2(tM1,3)) + 
      &    B0(k2,0.D0,Mf2(tM1,3))*(k2 - Mf2(tM1,3))
 
-        se = 3/(8.D0*Pi)*
+	se = 3/(8.D0*Pi)*
      &    (Alfa1L*((dup1*dup3*B0(k2,MSbgl2(1),MStgl2(1)) + 
      &            dup2*dup4*B0(k2,MSbgl2(1),MStgl2(2)))*USbgl(1,1)*
      &          USbglC(1,1) + 
@@ -53,19 +53,19 @@
 
 	if( mssmpart .le. 1 ) return
 
-        dup6 = (Mf2(bM1,3) - Mf2(tM1,3))*USbgl(1,1) + 
+	dup6 = (Mf2(bM1,3) - Mf2(tM1,3))*USbgl(1,1) + 
      &    Xbgl*Mf(bM1,3)*USbgl(1,2)
 
-        dup7 = (Mf2(bM1,3) - Mf2(tM1,3))*USbgl(2,1) + 
+	dup7 = (Mf2(bM1,3) - Mf2(tM1,3))*USbgl(2,1) + 
      &    Xbgl*Mf(bM1,3)*USbgl(2,2)
 
-        dup8 = (Mf2(bM1,3) - Mf2(tM1,3))*USbglC(1,1) + 
+	dup8 = (Mf2(bM1,3) - Mf2(tM1,3))*USbglC(1,1) + 
      &    XbglC*Mf(bM1,3)*USbglC(1,2)
 
-        dup9 = (Mf2(bM1,3) - Mf2(tM1,3))*USbglC(2,1) + 
+	dup9 = (Mf2(bM1,3) - Mf2(tM1,3))*USbglC(2,1) + 
      &    XbglC*Mf(bM1,3)*USbglC(2,2)
 
-        se = se - 1/(8.D0*Pi)*
+	se = se - 1/(8.D0*Pi)*
      &     (Alfa1L*(6*(dup5*Mf2(tM1,3) + 
      &             A0(Mf2(bM1,3))*(Mf2(bM1,3) + Mf2(tM1,3))) - 
      &          6*(k2*B1(k2,Mf2(bM1,3),Mf2(tM1,3))*

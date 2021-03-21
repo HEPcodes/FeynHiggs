@@ -488,19 +488,23 @@
 
 ************************************************************************
 
-	subroutine TLthresholdatat(dlam, clam, Xt_, Yt_, TB2_, SB2_)
+	subroutine TLthresholdatat(dlam, clam, Xt_, Yt_, TB2_, SB2_, i)
 	implicit none
 	RealType dlam, Xt_, Yt_, TB2_, SB2_
 	RealPrec clam(*)
+	integer i
 
-#include "Resum4H.h"
+* i = 1: FO phases
+* i = 2: EFT phases
+
+#include "Resum4H.h"	
 
         dlam = (TB2_*
      &       (Xt_**2*(Xt_**2*clam(4) + clam(9)) + clam(14)) +
      &      SB2_*(Xt_*(Xt_*
      &             (Xt_*(Xt_*(Yt_**2*clam(2) + clam(5)) +
-     &                  Yt_*clam(6)) + Yt_**2*clam(7) +
-     &               clam(10)) + Yt_*clam(11)) +
+     &           cospdiffXtYt(i)*Yt_*clam(6)) + Yt_**2*clam(7) +
+     &               clam(10)) + cospdiffXtYt(i)*Yt_*clam(11)) +
      &         Yt_**2*clam(12) +
      &         TB2_*(Xt_**2*
      &             (Xt_**2*(Xt_**2*clam(1) + clam(3)) +

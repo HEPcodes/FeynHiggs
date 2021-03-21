@@ -210,9 +210,9 @@
 	sehhMTnonlog = vev2*lOL
 
 * add two-loop non-logarithmic terms if FO TL is switched on
-	if( (looplevel .gt. 1) .AND. (THDMTLasat .eq. 1) ) then
+	if( looplevel .gt. 1 ) then
 
-	  call TLthresholdasat4(dlam_asat4OS, MGl/MSusy,
+	  call TLthresholdasat4(dlam_asat4OS, Re(m_3OS)/MSusy,
      &                          2*log(MSusy/MSUSYOS), mueMS, atOS)
 
 	  l1TL = k2L*GSMT2*htOS**4*dlam_asat4OS(1)
@@ -225,7 +225,7 @@
 
 	  htShift = -4/3D0*GSMT2*(1 + (tGlu-tSUSYMS)
      &                              + lfSf6_mQ3M3 + lfSf6_mU3M3
-     &                              - xOS*MSUSYOS/MGl
+     &                              - xOS*MSUSYOS/Re(m_3OS)
      &                                   *lfSf89_mQ3M3_mU3M3(2))
 
 	  l1TL = l1TL - 2*k2L*htOS**4*htShift*mueMS**4

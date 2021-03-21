@@ -1,5 +1,5 @@
 * se_HHHH_gl.F
-* generated 23-Jul-2018 16:12
+* generated 25-Sep-2020 15:34
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -21,7 +21,7 @@
 	DHIGGS "se_HHHH_gl k2 =", k2 ENDL
 #endif
 
-        se = -(3/(64.D0*Pi)*
+	se = -(3/(64.D0*Pi)*
      &      (Alfa1L*S2B**2*Mf2(tM1,3)*
      &         (4*(A0(Mf2(tM1,3)) + 
      &              k2*B1(k2,Mf2(tM1,3),Mf2(tM1,3))) + 
@@ -44,7 +44,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        se = se - 3/(16.D0*Pi)*
+	se = se - 3/(16.D0*Pi)*
      &     (Alfa1L*SB2*Mf2(bM1,3)*
      &        (4*(A0(Mf2(bM1,3)) + 
      &             k2*B1(k2,Mf2(bM1,3),Mf2(bM1,3))) + 

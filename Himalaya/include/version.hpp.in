@@ -1,0 +1,10 @@
+// ====================================================================
+// This file is part of Himalaya.
+//
+// Himalaya is licenced under the GNU General Public License (GNU GPL)
+// version 3.
+// ====================================================================
+
+#define Himalaya_VERSION_MAJOR @PROJECT_VERSION_MAJOR@
+#define Himalaya_VERSION_MINOR @PROJECT_VERSION_MINOR@
+#define Himalaya_VERSION_RELEASE @PROJECT_VERSION_PATCH@

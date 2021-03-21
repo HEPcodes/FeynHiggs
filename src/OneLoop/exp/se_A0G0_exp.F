@@ -1,5 +1,5 @@
 * se_A0G0_exp.F
-* generated 6-Aug-2018 11:10
+* generated 28-Sep-2020 18:17
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -27,7 +27,7 @@
 
 	xt = Re(Xtgl)/MSusy
 
-        se = 1/(32.D0*MW2*Pi*SW2)*
+	se = 1/(32.D0*MW2*Pi*SW2)*
      &    (Alfa1L*(S2B*(xt**4*Mf2(tM1,3)**2 + 
      &            xt**2*((k2 - (3*MZ2)/2.D0*C2B)*Mf2(tM1,3) - 
      &               6*Mf2(tM1,3)**2)) + 
@@ -41,7 +41,7 @@
      &             (USf(1,2,tM1,2)*USf(2,1,tM1,2) - 
      &                USf(1,1,tM1,2)*USf(2,2,tM1,2))**2)))/SB2
 
-        se = se - 1/(CW2*MW2*Pi*SW2)*
+	se = se - 1/(CW2*MW2*Pi*SW2)*
      &     (Alfa1L*CB*(1/16.D0*
      &           (xt**2*(MW2*(1 - 4*SW2)*SB2 - 
      &               CW2*(4*MW2*SB2 - 6*Mf2(tM1,3)))*Mf2(tM1,3)) + 
@@ -101,7 +101,7 @@
      &                   (4*MW2*SW2*SB2 - 3*CW2*Mf2(tM1,2))*
      &                    USf(2,2,tM1,2)**2)))))/SB
 
-        se = se - 3/(4.D0*MW2*Pi*SW2)*
+	se = se - 3/(4.D0*MW2*Pi*SW2)*
      &     (Alfa1L*CB*((A0(Mf2(tM1,1)) + 
      &             k2*B1(k2,Mf2(tM1,1),Mf2(tM1,1)))*Mf2(tM1,1) + 
      &          A0(Mf2(tM1,2))*Mf2(tM1,2) + 
@@ -111,7 +111,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        se = se - 3/(8.D0*MW2*Pi*SW2)*
+	se = se - 3/(8.D0*MW2*Pi*SW2)*
      &     (Alfa1L*(2*Log(1/MSusy) - Log(1/Mudim))*
      &        ((SB*Kf(1,1,bM1) + CB*MUE*Mf(bM1,1))*
      &           (CB*Kf(1,1,bM1) - MUE*SB*Mf(bM1,1))*
@@ -126,7 +126,7 @@
      &           (USf(1,2,bM1,3)*USf(2,1,bM1,3) - 
      &              USf(1,1,bM1,3)*USf(2,2,bM1,3))**2))/CB2
 
-        se = se - 1/(96.D0*CW2*MW2*Pi*SW2)*
+	se = se - 1/(96.D0*CW2*MW2*Pi*SW2)*
      &     (Alfa1L*SB*(2*Log(1/MSusy) - Log(1/Mudim))*
      &        ((MZ2*(3*CB2 - 3*SB2) - 12*Mf2(bM1,1) + 
      &             6*Sqrt((MZ2**2*(3 - 4*SW2)**2)/36.D0*C2B**2 + 
@@ -177,7 +177,7 @@
      &             (2*MW2*SW2*CB2 - 3*CW2*Mf2(bM1,3))*
      &              USf(2,2,bM1,3)**2)))/CB
 
-        se = se + 3/(4.D0*MW2*Pi*SW2)*
+	se = se + 3/(4.D0*MW2*Pi*SW2)*
      &     (Alfa1L*SB*((A0(Mf2(bM1,1)) + 
      &             k2*B1(k2,Mf2(bM1,1),Mf2(bM1,1)))*Mf2(bM1,1) + 
      &          A0(Mf2(bM1,2))*Mf2(bM1,2) + 
@@ -187,7 +187,7 @@
 
 	if( mssmpart .le. 2 ) return
 
-        se = se + 1/(8.D0*MW2*Pi*SW2)*
+	se = se + 1/(8.D0*MW2*Pi*SW2)*
      &     (Alfa1L*(2*Log(1/MSusy) - Log(1/Mudim))*
      &        ((ME*(MUE*SB) - CB*Kf(1,1,2))*
      &           (ME*(CB*MUE) + SB*Kf(1,1,2))*
@@ -202,7 +202,7 @@
      &           (USf(1,2,2,3)*USf(2,1,2,3) - 
      &              USf(1,1,2,3)*USf(2,2,2,3))**2))/CB2
 
-        se = se - 1/(32.D0*CW2*MW2*Pi*SW2)*
+	se = se - 1/(32.D0*CW2*MW2*Pi*SW2)*
      &     (Alfa1L*SB*(2*Log(1/MSusy) - Log(1/Mudim))*
      &        ((-(CW2*(2*MW2*(CB2*USf(1,1,2,1)**2) - 
      &                  ME2*(USf(1,1,2,1)**2 + USf(1,2,2,1)**2)))+
@@ -253,7 +253,7 @@
      &                (4*(ML*(MUE*SB) - CB*Kf(3,3,2))**2)/CB2)*
      &              sign(1D0,MSf2(3,2,3)))))/CB
 
-        se = se + 1/(16.D0*CW2*MW2*Pi*SW2)*
+	se = se + 1/(16.D0*CW2*MW2*Pi*SW2)*
      &     (Alfa1L*SB*(4*CW2*
      &           (ME2*A0(ME2) + ML2*A0(ML2) + MM2*A0(MM2) + 
      &             k2*(ME2*B1(k2,ME2,ME2) + ML2*B1(k2,ML2,ML2) + 
@@ -264,7 +264,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se + 1/(32.D0*CW2**2*Pi*SW2)*
+	se = se + 1/(32.D0*CW2**2*Pi*SW2)*
      &     (Alfa1L*(-2*(B0(k2,Mh02,MZ2)*
      &             (MW2*(C2B*S2B*SAB**2) + 
      &               CW2*(CBA*(3*k2 + Mh02)*SBA)) + 
@@ -283,7 +283,7 @@
 	LOOP(Cha3, 1,2,1)
 	LOOP(Cha4, 1,2,1)
 
-        se = se + 1/(4.D0*Pi*SW2)*
+	se = se + 1/(4.D0*Pi*SW2)*
      &     (Alfa1L*((A0(MCha2(Cha4)) + 
      &            k2*B1(k2,MCha2(Cha3),MCha2(Cha4)))*
      &          ((SB*UCha(Cha4,2)*VCha(Cha3,1) + 
@@ -320,7 +320,7 @@
 	LOOP(Neu3, 1,4,1)
 	LOOP(Neu4, 1,4,1)
 
-        se = se + 1/(16.D0*CW2*Pi*SW2)*
+	se = se + 1/(16.D0*CW2*Pi*SW2)*
      &     (Alfa1L*((A0(MNeu2(Neu4)) + 
      &            k2*B1(k2,MNeu2(Neu3),MNeu2(Neu4)))*
      &          (((CB*ZNeu(Neu3,3) + SB*ZNeu(Neu3,4))*

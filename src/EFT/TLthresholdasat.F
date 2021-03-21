@@ -10,9 +10,12 @@
 
 * conventions according to arXiv:1407.4081v2
 
-	subroutine TLthresholdasat(dlam_asat, MSQ_, MSU_, Xt_, Q)
+	subroutine TLthresholdasat(dlam_asat, MSQ_, MSU_, Xt_, Q, i)
 	implicit none
 	RealType dlam_asat, MSQ_, MSU_, Xt_, Q
+	integer i
+* i = 1: FO phases
+* i = 2: EFT phases
 
 #include "Resum4H.h"
 
@@ -24,8 +27,7 @@
 
 	LGlq2 = tGlu - 2*log(Q)
 
-	sg = 1/Re(m_3OS)
-c	sg = 1/abs(m_3OS)
+	sg = 1/abs(m_3OS)
 	xg = Xt_*sg
 	rSQ = MSQ_*sg
 	xSQ = rSQ**2
@@ -38,21 +40,24 @@ c	sg = 1/abs(m_3OS)
 	if( abs(xSQU2) .lt. eps ) then
 	  if( abs(xSQ1) .lt. eps ) then
 * x1 == 1 && x2 == 1
-	    dlam_asat = 1/3.D0*(-36*LGlq2**2 - xg*
-     &       (24 + xg*(12 - xg*(28 + (1 - 2*xg)*xg)) -
-     &         2*LGlq2*(24 - xg*(24 + (4 - xg)*xg))))
+	    dlam_asat = 1/3.D0*(-36*LGlq2**2 -
+     &       (24*cospdiffXtM3(i)*xg + (12*xg**2
+     &        - (28*cospdiffXtM3(i)*xg**3
+     &           + (xg**4 - 2*cospdiffXtM3(i)*xg**5))) -
+     &        2*LGlq2*(24*cospdiffXtM3(i)*xg - (24*xg**2
+     &        + (4*cospdiffXtM3(i)*xg**3 - xg**4)))))
 	  else
 * x1 == x2
 	    dlam_asat = 1/3.D0*
      &      (xg**4*(2*LSQ*xSQ*(3 - (8 - 3*xSQ)*xSQ) - 4*xSQ1 +
      &          (7 - LGlq2*(4 - 6*xSQ))*xSQ1**2 + xSQ1**3) +
-     &       xSQ*(4*xg**5*(LSQ + xSQ1) -
+     &       xSQ*(4*cospdiffXtM3(i)*xg**5*(LSQ + xSQ1) -
      &          12*xg**2*(2*LSQ*(1 - 3*xSQ)*(2 - xSQ)*xSQ -
      &             4*xSQ1 + (5 - LGlq2*(2 - 6*xSQ))*xSQ1**2 +
      &             xSQ1**3) -
-     &          8*xg**3*(xSQ*(LSQ*(6 + xSQ) + 8*xSQ1) -
+     &          8*cospdiffXtM3(i)*xg**3*(xSQ*(LSQ*(6 + xSQ) + 8*xSQ1) -
      &             xSQ1*(1 - LGlq2*xSQ1))) +
-     &       xSQ**2*(48*xg*
+     &       xSQ**2*(48*cospdiffXtM3(i)*xg*
      &           ((2*Li2SQ - LSQ*(3 - xSQ))*xSQ -
      &             (1 - LGlq2)*xSQ1**2) +
      &          6*(4*xSQ1 - 4*LGlq2*xSQ1**3 -
@@ -72,16 +77,17 @@ c	sg = 1/abs(m_3OS)
 	if( abs(xSU1) .lt. eps ) then
 * x1 != 1 and x2 == 1
 	  dlam_asat = (xSQ*
-     &       (8*xg**5*(LSQ*xSQ + xSQ1)*(LSQ*(1 + xSQ) + 2*xSQ1) -
-     &         8*xg*xSQ1**3*
+     &       (8*cospdiffXtM3(i)*xg**5*(LSQ*xSQ + xSQ1)*(LSQ*(1 + xSQ) + 2*xSQ1) -
+     &         8*cospdiffXtM3(i)*xg*xSQ1**3*
      &          (4*Li2SQ + LSQ**2 +
      &            (4 - (3 - 2*LGlq2 - LSQ)*LSQ)*xSQ1)) -
      &      2*xg**2*xSQ1**2*
      &       ((4 + (5 - 12*LGlq2)*LSQ*xSQ)*xSQ1**2 -
      &         4*LGlq2*xSQ1**3 +
-     &         2*xSQ*(LSQ*(4*(2 - LGlq2)*xg*(1 + xSQ) +
-     &               LSQ*(5 - 4*xSQ**2 + xg*(2 + 2*xSQ))) +
-     &            ((3 - 6*LSQ)*LSQ + (16 - 8*LGlq2 + 4*Li2SQ)*xg)*
+     &         2*xSQ*(LSQ*(4*(2 - LGlq2)*cospdiffXtM3(i)*xg*(1 + xSQ) +
+     &               LSQ*(5 - 4*xSQ**2 + cospdiffXtM3(i)*xg*(2 + 2*xSQ))) +
+     &            ((3 - 6*LSQ)*LSQ
+     &             + (16 - 8*LGlq2 + 4*Li2SQ)*cospdiffXtM3(i)*xg)*
      &             xSQ1)) +
      &      xSQ1**3*(4*xSQ1 - 4*LGlq2*xSQ1**3 -
      &         xSQ*(8*Li2SQ - 2*(3 - LSQ)*(LSQ - xSQ1) +
@@ -104,16 +110,17 @@ c	sg = 1/abs(m_3OS)
 	if( abs(xSQ1) .lt. eps ) then
 * x1 == 1 and x2 != 1
 	  dlam_asat = (xSU*
-     &       (8*xg**5*(LSU*xSU + xSU1)*(LSU*(1 + xSU) + 2*xSU1) -
-     &         8*xg*xSU1**3*
+     &       (8*cospdiffXtM3(i)*xg**5*(LSU*xSU + xSU1)*(LSU*(1 + xSU) + 2*xSU1) -
+     &         8*cospdiffXtM3(i)*xg*xSU1**3*
      &          (4*Li2SU + LSU**2 +
      &            (4 - (3 - 2*LGlq2 - LSU)*LSU)*xSU1)) -
      &      2*xg**2*xSU1**2*
      &       ((4 + (5 - 12*LGlq2)*LSU*xSU)*xSU1**2 -
      &         4*LGlq2*xSU1**3 +
-     &         2*xSU*(LSU*(4*(2 - LGlq2)*xg*(1 + xSU) +
-     &               LSU*(5 - 4*xSU**2 + xg*(2 + 2*xSU))) +
-     &            ((3 - 6*LSU)*LSU + (16 - 8*LGlq2 + 4*Li2SU)*xg)*
+     &         2*xSU*(LSU*(4*(2 - LGlq2)*cospdiffXtM3(i)*xg*(1 + xSU) +
+     &               LSU*(5 - 4*xSU**2 + cospdiffXtM3(i)*xg*(2 + 2*xSU))) +
+     &            ((3 - 6*LSU)*LSU
+     &             + (16 - 8*LGlq2 + 4*Li2SU)*cospdiffXtM3(i)*xg)*
      &             xSU1)) +
      &      xSU1**3*(4*xSU1 - 4*LGlq2*xSU1**3 -
      &         xSU*(8*Li2SU - 2*(3 - LSU)*(LSU - xSU1) +
@@ -153,11 +160,11 @@ c	sg = 1/abs(m_3OS)
      &                 (-((3 - 6*LGlq2 - 2*LSU)*xSQU2) +
      &                   2*LSQ*(xSQ + xSQU2))*xSU1**2)))) +
      &    4*xSQ*xSQ1*xSU*xSU1*
-     &     (xg*xSQU2**3*(4*Li2SU*xSQ1 - 4*Li2SQ*xSU1 -
+     &     (cospdiffXtM3(i)*xg*xSQU2**3*(4*Li2SU*xSQ1 - 4*Li2SQ*xSU1 -
      &          (LSQ - LSU)*
      &           (LSU*xSQ1 -
      &             ((2 - 2*LGlq2 - LSU)*xSQ1 - LSQ*(1 + xSQ1))*xSU1
-     &             )) - xg**3*
+     &             )) - cospdiffXtM3(i)*xg**3*
      &        (xg**2*(2*xSQU2 + (-LSQ + LSU)*(xSQ + xSU))*
      &           (LSU*xSQ1*xSU - LSQ*xSQ*xSU1) -
      &          xSQU2*(LSU**2*xSQ1*

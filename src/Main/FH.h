@@ -494,10 +494,12 @@
 	common /userdata/ seX, hX
 
 	ComplexType seU(semax), dseU(semax), se2U(semax)
+	ComplexType se1U(semax), se1R(zRan,semax)
 	RealType seEFT(semax), Mh02EFT
 	RealType seDiv
 	common /higgsunren/
      &    seU, dseU, se2U,
+     &    se1U, se1R,
      &    seEFT, Mh02EFT,
      &    seDiv
 
@@ -605,13 +607,12 @@
 	integer uzint, uzext, mfeff, ipolXt, ipolXb
 	integer tlpsmask, tlzeromask(se2Rc), loglevelmt, tldegatat
 	integer forceSU2, drbarmode, drbarvars, fopoleeq
-	integer interpolateEFT, dmtlimim
-	integer finfieldren, tbrepara
-	integer THDMTLasat, stiffodesolver, seexp, decczero
+	integer dmtlimim, finfieldren, tbrepara
+	integer stiffodesolver, seexp, decczero, htMT3L
 	integer uncmask(8), drbartopmass
 	integer tM1, tM2, bM, bMps, bM1, gM
 	RealType MUEscale
-	character*256 extSE
+	character*256 HimExe, extSE
 
 * debuglevel = 0: no debug messages
 *              1: dump setflags and setpara values
@@ -627,21 +628,20 @@
      &    uzint, uzext, mfeff, ipolXt, ipolXb,
      &    tlpsmask, tlzeromask, loglevelmt, TLdegatat,
      &    forceSU2, drbarmode, drbarvars, fopoleeq,
-     &    interpolateEFT, dmtlimim,
-     &    finfieldren, tbrepara,
-     &    THDMTLasat, stiffodesolver, seexp, decczero,
+     &    dmtlimim, finfieldren, tbrepara,
+     &    stiffodesolver, seexp, decczero, htMT3L,
      &    uncmask, drbartopmass,
      &    tM1, tM2, bM, bMps, bM1, gM,
-     &    extSE
+     &    HimExe, extSE
 
 * variables for controlling new uncertainty determination
 	RealType pdscale, matchsf
-	integer htMT3L, gMSSMthresholds, suppressedterms, tlalfas
+	integer gMSSMthresholds, suppressedterms, tlalfas
 	integer HScouplings_valid
 
 	common /uncertainty/
      &    pdscale, matchsf,
-     &    htMT3L, gMSSMthresholds, suppressedterms, tlalfas,
+     &    gMSSMthresholds, suppressedterms, tlalfas,
      &    HScouplings_valid
 
 

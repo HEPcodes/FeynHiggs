@@ -37,7 +37,8 @@
 	  print *, "------------------------------------------------------------------------------"
 	  print *, "FeynHiggs "//FHVERSION
 	  print *, "built on "//FHBUILDDATE
-	  print *, "H. Bahl, T. Hahn, S. Heinemeyer, W. Hollik, S. Passehr, H. Rzehak, G. Weiglein"
+	  print *, "H. Bahl, T. Hahn, S. Heinemeyer, W. Hollik, "
+	  print *, "S. Passehr, H. Rzehak, I. Sobolev, G. Weiglein"
 	  print *, "http://feynhiggs.de"
 	  print *, "------------------------------------------------------------------------------"
 	  blurb = .FALSE.
@@ -188,62 +189,50 @@ c	  call setfpu
 	print *, "env FHDMTLIMIM ", dmtlimim
 90	continue
 
-	interpolateEFT = 1
-	call getenv("FHINTERPOLATEEFT", env)
-	read(env, *, end=100, err=100) interpolateEFT
-	print *, "env FHINTERPOLATEEFT ", interpolateEFT
-100	continue
-
 	finfieldren = 1
 	call getenv("FHFINFIELDREN", env)
-	read(env, *, end=110, err=110) finfieldren
+	read(env, *, end=100, err=100) finfieldren
 	print *, "env FHFINFIELDREN ", finfieldren
-110	continue
+100	continue
 
 	tbrepara = 1
 	call getenv("FHTBREPARA", env)
-	read(env, *, end=120, err=120) tbrepara
+	read(env, *, end=110, err=110) tbrepara
 	print *, "env FHTBREPARA ", tbrepara
-120	continue
+110	continue
 
 	tanbdefInput = 0
 	call getenv("FHTBDEF", env)
-	read(env, *, end=130, err=130) tanbdefInput
+	read(env, *, end=120, err=120) tanbdefInput
 	print *, "env FHTBDEF ", tanbdefInput
-130	continue
+120	continue
 
 	tanbscaleInput = -100D0
 	call getenv("FHTBSCALE", env)
-	read(env, *, end=140, err=140) tanbscaleInput
+	read(env, *, end=130, err=130) tanbscaleInput
 	print *, "env FHTBSCALE ", tanbscaleInput
 	if( tanbscaleInput .ge. 0D0 ) then
 	  tanbscaleInput = tanbscaleInput**2
 	endif
-140	continue
-
-	THDMTLasat = 1
-	call getenv("FHTLTHDMASAT", env)
-	read(env, *, end=150, err=150) THDMTLasat
-	print *, "env FHTLTHDMASAT ", THDMTLasat
-150	continue
+130	continue
 
 	stiffodesolver = 0
 	call getenv("FHSTIFFODESOLVER", env)
-	read(env, *, end=160, err=160) stiffodesolver
+	read(env, *, end=140, err=140) stiffodesolver
 	print *, "env FHSTIFFODESOLVER ", stiffodesolver
-160	continue
+140	continue
 
 	seexp = 0
 	call getenv("FHSEEXP", env)
-	read(env, *, end=170, err=170) seexp
+	read(env, *, end=150, err=150) seexp
 	print *, "env FHSEEXP ", seexp
-170	continue
+150	continue
 
 	decczero = 1
 	call getenv("FHDECCZERO", env)
-	read(env, *, end=180, err=180) decczero
+	read(env, *, end=160, err=160) decczero
 	print *, "env FHDECCZERO ", decczero
-180	continue
+160	continue
 	if( decczero .ne. 1 ) then
 	  decczero = 0
 	  Warning("FHDECCZERO != 1 only consistent if A_f, MUE << MSusy")
@@ -266,23 +255,33 @@ c	  call setfpu
 * h) uncertainty from suppressed term if looplevel = 0
 	uncmask(8) = 1
 	call getenv("FHUNCMASK", env)
-	read(env, *, end=190, err=190) uncmask
+	read(env, *, end=170, err=170) uncmask
 	print *, "env FHUNCMASK ", uncmask
-190	continue
+170	continue
 
 	drbartopmass = 0
 	call getenv("FHDRTOPMASS", env)
-	read(env, *, end=200, err=200) drbartopmass
+	read(env, *, end=180, err=180) drbartopmass
 	print *, "env FHDRTOPMASS ", drbartopmass
-200	continue
+180	continue
 
 	MUEscale = -1D0
 	call getenv("FHMUESCALE", env)
-	read(env, *, end=210, err=210) MUEscale
+	read(env, *, end=190, err=190) MUEscale
 	print *, "env FHMUESCALE ", MUEscale
 	if( ( MUEscale .gt. 0D0 ) .and. ( loglevel .eq. 4 ) )
      &    Warning("loglevel = 4 assumes MUE to be renormalized at the scale MSusy")
-210	continue
+190	continue
+
+	htMT3L = 1
+	call getenv("FHHTMT3L", env)
+	read(env, *, end=200, err=200) htMT3L
+	print *, "env FHHTMT3L ", htMT3L
+200	continue
+
+	call getenv("FHHIMEXC", HimExe)
+	if( HimExe(1:1) .ne. ' ' )
+     &    print *, "env FHHIMEXC ", HimExe(1:len_trim(HimExe))
 
 	call getenv("FHEXTSE", extSE)
 	if( extSE(1:1) .ne. ' ' )

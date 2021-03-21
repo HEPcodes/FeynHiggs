@@ -25,7 +25,7 @@ RenConst[dMHiggs1gl[2,4]] := -ivev dTA01
 
 RenConst[dMHiggs1gl[3,3]] := dMHinsq1
 
-RenConst[dMHiggs1gl[3,4]] := -dMHiggs1gl[1,2]
+RenConst[dMHiggs1gl[3,4]] := - (-ivev dTHH1 + MHin2 CB2 dTB1gl)
 
 RenConst[dMHiggs1gl[5,5]] := dMHinsq1
 

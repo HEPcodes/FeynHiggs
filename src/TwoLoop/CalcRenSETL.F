@@ -264,19 +264,31 @@
 
 * add Im(se1L)*Im(dse1L) to dMA02/dMHmHp2 CT
 * NB: seRgl = seUgl here since RC not computed yet but need Im only
-	if( dmtlimim .eq. 1 ) then
+	if( dmtlimim .ne. 0 ) then
 	  call CalcSEgl(Msqgl(inputmass), SEKey(inputmass),
      &                                    SEKey(inputmass))
+	  if( debuglevel .gt. 4 ) then
+	    DSELF "dMA02/dMHmHp2 Im(se)*Im(dse) =", dM2imxim(zO) ENDL
+	  endif
 	  dM2imxim = Im(seRgl(zRan,inputmass))*Im(dseRgl(zRan,inputmass))
+	  if( dmtlimim .eq. 2 ) then
+	    call CalcRCgl()
+	    if( inputmass .eq. A0A0 ) then
+	      call CalcSEgl(Msqgl(inputmass), SEKey(A0G0), 0)
+	      dM2imxim = dM2imxim - Re(seRgl(zRan,A0G0)**2)/Msqgl(inputmass)
+	    else if( inputmass .eq. HmHp ) then
+	      call CalcSEgl(Msqgl(inputmass), SEKey(HmGp), 0)
+	      dM2imxim = dM2imxim - Re(seRgl(zRan,HmGp)**2)/Msqgl(inputmass)
+	    endif
+	    if( debuglevel .gt. 4 ) then
+	      DSELF "+ dMA02/dMHmHp2 Re(seA0G0)^2/MA02, Re(seHmGp)^2/MHp2 =", dM2imxim(zO) ENDL
+	    endif
+	  endif
 	  se2R(zRan,h0h0) = se2R(zRan,h0h0) - CBA2*dM2imxim
 	  se2R(zRan,h0HH) = se2R(zRan,h0HH) + CBA*SBA*dM2imxim
 	  se2R(zRan,HHHH) = se2R(zRan,HHHH) - SBA2*dM2imxim
 	  se2R(zRan,A0A0) = se2R(zRan,A0A0) - dM2imxim
 	  se2R(zRan,HmHp) = se2R(zRan,HmHp) - dM2imxim
-
-	  if( debuglevel .gt. 4 ) then
-	    DSELF "dMA02/dMHmHp2 Im(se)*Im(dse) =", dM2imxim(zO) ENDL
-	  endif
 	endif
 
 	if( error .eq. 0 ) tl_valid = valid

@@ -81,17 +81,18 @@
      &    (4/3D0 - CW2/SW2)*A0q(MZ2, Q2) +
      &    (11/3D0 + CW2/SW2 - Mh02_/(Mh02_ - MW2))*A0q(MW2, Q2) )
 
-	if( interpolateEFT .eq. 0 ) then
-	  call Resum4Hcplx(ipres, Re(M_3), Re(MUE), Re(Xtgl))
-	else if( interpolateEFT .eq. 2 ) then
-	  call Resum4Hcplx(ipres, abs(M_3), abs(MUE), abs(Xtgl))
-	else
+	if( loglevel .eq. 4 ) then
 	  do ipi = 1, ipn
-	    call Resum4Hcplx(res(ipi,:), M_3c, MUEc, Xtc)
+	    call Resum4Hcplx(res(ipi,:),
+     &                       ToComplex(M_3c,0D0),
+     &                       ToComplex(MUEc,0D0),
+     &                       ToComplex(Xtc,0D0))
 	  enddo
 	  do i = 1, 4
 	    call CplxInterpolate(error, ipres(i), res(:,i),1)
 	  enddo
+	else
+	  call Resum4Hcplx(ipres, M_3, MUE, Xtgl)
 	endif
 
 	if( looplevel .eq. 0 ) then
@@ -125,7 +126,7 @@
 	  endif
 	endif
 
-* exclude 3L corrections for htMT
+* subtract 3L corrections for htMT since these should be used only in EFT calculation
 	if( htMT3L .ne. 0 ) then
 	  htMT = htMT + 0.00328D0
 	  htMT2 = htMT**2
@@ -141,21 +142,32 @@
 	subroutine Resum4Hcplx(res, M_3_, MUE_, Xt_)
 	implicit none
 	RealType res(4)
-	RealType M_3_, MUE_, Xt_, XtMS
+	ComplexType M_3_, MUE_, Xt_, XtMS
 
 #include "Resum4H.h"
 
 	RealType logarg, msMS, htMT2sub
 
-	xOS = Xt_/MSUSYOS
+	RealType phase, abs4
+	ComplexType c
+
+	phase(c) = atan2(Im(c), Re(c))
+	abs4(c) = merge(Re(c), abs(c), loglevel .eq. 4)
+
+	xOS = abs4(Xt_)/MSUSYOS
 	xOS2 = xOS**2
 	xOS1 = (1 - xOS)*(1 + xOS)
 
-	mueOS = MUE_/MSUSYOS
+	mueOS = abs4(MUE_)/MSUSYOS
 	mueOS2 = mueOS**2
 	mueOS1 = (1 - mueOS)*(1 + mueOS)
 
-	yOS = xOS + mueOS*(1/TB + TB)
+	yOS = abs4(Xt_ + Conjugate(MUE_)*(1/TB + TB))/MSUSYOS
+
+	pXt(iOS) = phase(Xt_)
+	pYt(iOS) = phase(Xt_ + Conjugate(MUE_)*(1/TB + TB))
+	pMUE(iOS) = phase(MUE_)
+	pM3(iOS) = phase(M_3_)
 
 	call SetTLalfas()
 
@@ -192,12 +204,24 @@
 	if( HScouplings_valid .ne. 1 ) then
 	  HScouplings = 1D0
 	endif
-	call runStopPara(M_3_, mueOS/msMS*MSUSYOS, XtMS)
+c	call runStopPara(M_3_, MUE_/msMS, XtMS)
+	call runStopPara(M_3_, MUE_, XtMS)
 
-	mueMS = MUEq/sqrt(MSQq*MSUq)
+	mueMS = abs4(MUEq)/sqrt(MSQq*MSUq)
 
-	xMS = Xtq/sqrt(MSQq*MSUq)
+	xMS = abs4(Xtq)/sqrt(MSQq*MSUq)
 	xMS2 = xMS**2
+
+	pXt(iDR)  = phase(Xtq)
+c pYt(iDR) is calculated on the fly if needed (pYt(iOS) is just used as a placeholder)
+	pYt(iDR)  = pYt(iOS)
+	pMUE(iDR) = phase(MUEq)
+	pM3(iDR)  = phase(m_3OS)
+
+	pM1  = phase(M_1)
+	pM2  = phase(M_2)
+
+	cospdiffM1M2 = cos(pM1 - pM2)
 
 	if( debuglevel .gt. 4 ) then
 	  DEFT "EFT input:"	ENDL
@@ -207,6 +231,9 @@
 	  DEFT "mueOS =", mueOS	ENDL
 	  DEFT "mueMS =", mueMS	ENDL
 	  DEFT "M_3   =", m_3OS	ENDL
+	  DEFT "phases in EFT (in units of Pi)" ENDL
+	  DEFT "pM1  =", pM1/Pi	 ENDL
+	  DEFT "pM2  =", pM2/Pi	 ENDL
 	endif
 
 	if( loglevel .eq. 1 ) then

@@ -1,5 +1,5 @@
 * dse_HHHH_nmfv.F
-* generated 13-Jul-2018 16:58
+* generated 28-Sep-2020 20:44
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -31,7 +31,7 @@
 
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 3/(4.D0*Pi)*
+	se = se - 3/(4.D0*Pi)*
      &     (Alfa1L*SA2*Mf2(tM1,Gen3)*
      &        (B1(k2,Mf2(tM1,Gen3),Mf2(tM1,Gen3)) + 
      &          k2*DB1(k2,Mf2(tM1,Gen3),Mf2(tM1,Gen3)) + 
@@ -50,7 +50,7 @@
 	LOOP(Ind3, 1,3,1)
 	LOOP(Ind4, 1,3,1)
 
-        se = se + 1/(48.D0*Pi)*
+	se = se + 1/(48.D0*Pi)*
      &     (Alfa1L*DB0tmp1*
      &        ((Delta(Ind3,Ind4)*
      &              (CAB*(1 - 4*CW2)*MW*MZ*SB - 
@@ -95,7 +95,7 @@
 
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 3/(4.D0*Pi)*
+	se = se - 3/(4.D0*Pi)*
      &     (Alfa1L*CA2*Mf2(bM1,Gen3)*
      &        (B1(k2,Mf2(bM1,Gen3),Mf2(bM1,Gen3)) + 
      &          k2*DB1(k2,Mf2(bM1,Gen3),Mf2(bM1,Gen3)) + 
@@ -114,7 +114,7 @@
 	LOOP(Ind3, 1,3,1)
 	LOOP(Ind4, 1,3,1)
 
-        se = se + 1/(48.D0*Pi)*
+	se = se + 1/(48.D0*Pi)*
      &     (Alfa1L*DB0tmp2*
      &        ((Delta(Ind3,Ind4)*
      &              (CAB*CB*(1 + 2*CW2)*MW*MZ - 
@@ -159,7 +159,7 @@
 
 	LOOP(Gen3, 1,3,1)
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*(CAB**2*CB2*MW2*MZ2*
      &           DB0(k2,MASf2(Gen3,1),MASf2(Gen3,1)) - 
      &          4*CA2*CW2*Mf2(2,Gen3)*
@@ -180,7 +180,7 @@
 	LOOP(Ind3, 1,3,1)
 	LOOP(Ind4, 1,3,1)
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*DB0tmp3*
      &        ((Delta(Ind3,Ind4)*
      &              (CAB*CB*(1 - 2*CW2)*MW*MZ + 
@@ -222,7 +222,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se + 1/(32.D0*Pi)*
+	se = se + 1/(32.D0*Pi)*
      &     (Alfa1L*(MW2*(C2B**2*CAB**2*DB0(k2,MA02,MA02) + 
      &             (C2A*CAB - 2*S2A*SAB)**2*DB0(k2,Mh02,Mh02) + 
      &             9*C2A**2*CAB**2*DB0(k2,MHH2,MHH2) + 
@@ -261,19 +261,19 @@
 	LOOP(Cha3, 1,2,1)
 	LOOP(Cha4, 1,2,1)
 
-        dup1 = CA*UCha(Cha4,2)*VCha(Cha3,1) + 
+	dup1 = CA*UCha(Cha4,2)*VCha(Cha3,1) + 
      &    SA*UCha(Cha4,1)*VCha(Cha3,2)
 
-        dup2 = CA*UCha(Cha3,2)*VCha(Cha4,1) + 
+	dup2 = CA*UCha(Cha3,2)*VCha(Cha4,1) + 
      &    SA*UCha(Cha3,1)*VCha(Cha4,2)
 
-        dup3 = CA*UChaC(Cha4,2)*VChaC(Cha3,1) + 
+	dup3 = CA*UChaC(Cha4,2)*VChaC(Cha3,1) + 
      &    SA*UChaC(Cha4,1)*VChaC(Cha3,2)
 
-        dup4 = CA*UChaC(Cha3,2)*VChaC(Cha4,1) + 
+	dup4 = CA*UChaC(Cha3,2)*VChaC(Cha4,1) + 
      &    SA*UChaC(Cha3,1)*VChaC(Cha4,2)
 
-        se = se - 1/(4.D0*Pi)*
+	se = se - 1/(4.D0*Pi)*
      &     (Alfa1L*((dup1*dup3 + dup2*dup4)*
      &           (B1(k2,MCha2(Cha3),MCha2(Cha4)) + 
      &             k2*DB1(k2,MCha2(Cha3),MCha2(Cha4))) + 
@@ -305,7 +305,7 @@
 
 	dup12 = CA*ZNeuC(Neu4,3) - SA*ZNeuC(Neu4,4)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(2*(dup6*dup7 + dup5*dup8)*
      &           (dup10*dup11 + dup12*dup9)*
      &           (B1(k2,MNeu2(Neu3),MNeu2(Neu4)) + 

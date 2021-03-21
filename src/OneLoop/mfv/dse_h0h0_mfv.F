@@ -1,5 +1,5 @@
 * dse_h0h0_mfv.F
-* generated 13-Jul-2018 16:55
+* generated 25-Sep-2020 15:37
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -31,7 +31,7 @@
 
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 3/(4.D0*Pi)*
+	se = se - 3/(4.D0*Pi)*
      &     (Alfa1L*CA2*Mf2(tM1,Gen3)*
      &        (B1(k2,Mf2(tM1,Gen3),Mf2(tM1,Gen3)) + 
      &          k2*DB1(k2,Mf2(tM1,Gen3),Mf2(tM1,Gen3)) + 
@@ -52,7 +52,7 @@
 
 	dup4 = (1 - 4*CW2)*MW*MZ*SAB*SB + 6*CA*CW*Mf2(tM1,Gen3)
 
-        se = se + 1/(48.D0*Pi)*
+	se = se + 1/(48.D0*Pi)*
      &     (Alfa1L*DB0(k2,MSf2(Sfe3,tM1,Gen3),MSf2(Sfe4,tM1,Gen3))*
      &        (USf(Sfe4,1,tM1,Gen3)*
      &           (dup4*USfC(Sfe3,1,tM1,Gen3) + 
@@ -80,7 +80,7 @@
 
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 3/(4.D0*Pi)*
+	se = se - 3/(4.D0*Pi)*
      &     (Alfa1L*SA2*Mf2(bM1,Gen3)*
      &        (B1(k2,Mf2(bM1,Gen3),Mf2(bM1,Gen3)) + 
      &          k2*DB1(k2,Mf2(bM1,Gen3),Mf2(bM1,Gen3)) + 
@@ -101,7 +101,7 @@
 
 	dup8 = CB*(1 + 2*CW2)*MW*MZ*SAB - 6*CW*SA*Mf2(bM1,Gen3)
 
-        se = se + 1/(48.D0*Pi)*
+	se = se + 1/(48.D0*Pi)*
      &     (Alfa1L*DB0(k2,MSf2(Sfe3,bM1,Gen3),MSf2(Sfe4,bM1,Gen3))*
      &        (USf(Sfe4,1,bM1,Gen3)*
      &           (dup8*USfC(Sfe3,1,bM1,Gen3) - 
@@ -129,7 +129,7 @@
 
 	LOOP(Gen3, 1,3,1)
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*(CB2*MW2*MZ2*SAB**2*
      &           DB0(k2,MSf2(1,1,Gen3),MSf2(1,1,Gen3)) - 
      &          4*CW2*SA2*Mf2(2,Gen3)*
@@ -152,7 +152,7 @@
 
 	dup12 = CB*(1 - 2*CW2)*MW*MZ*SAB + 2*CW*SA*Mf2(2,Gen3)
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*DB0(k2,MSf2(Sfe3,2,Gen3),MSf2(Sfe4,2,Gen3))*
      &        (USf(Sfe4,2,2,Gen3)*
      &           (CW*dup10*USfC(Sfe3,1,2,Gen3) + 
@@ -177,7 +177,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se + 1/(32.D0*Pi)*
+	se = se + 1/(32.D0*Pi)*
      &     (Alfa1L*(MW2*(SAB**2*
      &              (C2B**2*DB0(k2,MA02,MA02) + 
      &                9*C2A**2*DB0(k2,Mh02,Mh02)) + 
@@ -214,19 +214,19 @@
 	LOOP(Cha3, 1,2,1)
 	LOOP(Cha4, 1,2,1)
 
-        dup13 = SA*UCha(Cha4,2)*VCha(Cha3,1) - 
+	dup13 = SA*UCha(Cha4,2)*VCha(Cha3,1) - 
      &    CA*UCha(Cha4,1)*VCha(Cha3,2)
 
-        dup14 = SA*UCha(Cha3,2)*VCha(Cha4,1) - 
+	dup14 = SA*UCha(Cha3,2)*VCha(Cha4,1) - 
      &    CA*UCha(Cha3,1)*VCha(Cha4,2)
 
-        dup15 = SA*UChaC(Cha4,2)*VChaC(Cha3,1) - 
+	dup15 = SA*UChaC(Cha4,2)*VChaC(Cha3,1) - 
      &    CA*UChaC(Cha4,1)*VChaC(Cha3,2)
 
-        dup16 = SA*UChaC(Cha3,2)*VChaC(Cha4,1) - 
+	dup16 = SA*UChaC(Cha3,2)*VChaC(Cha4,1) - 
      &    CA*UChaC(Cha3,1)*VChaC(Cha4,2)
 
-        se = se - 1/(4.D0*Pi)*
+	se = se - 1/(4.D0*Pi)*
      &     (Alfa1L*((dup13*dup15 + dup14*dup16)*
      &           (B1(k2,MCha2(Cha3),MCha2(Cha4)) + 
      &             k2*DB1(k2,MCha2(Cha3),MCha2(Cha4))) + 
@@ -258,7 +258,7 @@
 
 	dup24 = SA*ZNeuC(Neu4,3) + CA*ZNeuC(Neu4,4)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(2*(dup18*dup19 + dup17*dup20)*
      &           (dup22*dup23 + dup21*dup24)*
      &           (B1(k2,MNeu2(Neu3),MNeu2(Neu4)) + 

@@ -28,8 +28,8 @@
 	elseif( x1**2 .lt. 1D-8 ) then
 	  lf(1) = .5D0
 	  lf(2) = .5D0 - sclog
-	  lf(3) = lf(2)
-	  lf(4) = lf(3)
+	  lf(3) = sign(lf(2), x)
+	  lf(4) = sign(lf(3), x)
 	  lf(5) = 6*sclog**2
 	else
 	  lnx2 = log(x2)

@@ -28,8 +28,13 @@ c#define FinCheck(div) div
 	seUgl = 0
 	dseUgl = 0
 
-	key = SEMask(key_)
-	dkey = SEMask(dkey_)
+	if( dmtlimim .le. 1 ) then
+	  key = SEMask(key_)
+	  dkey = SEMask(dkey_)
+	else
+	  key = key_
+	  dkey = dkey_
+	endif
 
 	Divergence = FinCheck(seDiv)
 
@@ -131,10 +136,11 @@ c#define FinCheck(div) div
 #define dZH1fingl_(i) dZH1fingl(zRan,i)
 
 #define SEu(i,se1) seUgl(i) = se1
+#define SE1u(i,se1)
 #define SEr(i,se1) seRgl(zRan,i) = se1+dZ1_(i)*(p2-Msqgl(i))-dMsq1_(i)
+#define SE1r(i,se1)
 
 #define DSEu(i,dse1) dseUgl(i) = dse1
 #define DSEr(i,dse1) dseRgl(zRan,i) = dse1+dZ1_(i)
 
 #include "CalcSE_gl.h"
-

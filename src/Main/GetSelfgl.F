@@ -35,10 +35,10 @@
 	call CalcSEgl(k2, key, dk)
 
 	if( ren .eq. 0 ) then
-	  sig(1:semax) = seU(1:semax) + cI*Im(k2)*dseU(1:semax)
-	  dsig(1:semax) = dseU(1:semax)
+	  sig(1:semax) = seUgl(1:semax) + cI*Im(k2)*dseUgl(1:semax)
+	  dsig(1:semax) = dseUgl(1:semax)
 	else
-	  sig(1:semax) = seR(z0,1:semax) + cI*Im(k2)*dseR(z0,1:semax)
-	  dsig(1:semax) = dseR(z0,1:semax)
+	  sig(1:semax) = seRgl(z0,1:semax) + cI*Im(k2)*dseRgl(z0,1:semax)
+	  dsig(1:semax) = dseRgl(z0,1:semax)
 	endif
 	end

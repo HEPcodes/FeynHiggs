@@ -61,7 +61,7 @@ Using the FeynHiggs functions in a program is quite simple
   <fhlib-path> specifies the location of libFH.a, typically
   something like $HOME/FeynHiggs-2.9.0/x86_64-linux.
 
-- You MUST call FHSetFlags and one of FHSetPara, FHSetSLHA, FHSetRecord 
+- You MUST call FHSetFlags and one of FHSetPara, FHSetSLHA, FHSetRecord
   before calling FHGetPara, FHHiggsCorr, FHCouplings, or FHHiggsProd to
   set the flags and parameters.
 
@@ -80,5 +80,19 @@ add-on package, the following steps are necessary:
 - run FeynHiggs as usual.
 
 
-Enjoy!
+To enable the O(at as^2) threshold correction calculated using
+Himalaya, the following steps are necessary:
 
+- change into the Himalaya directory and execute
+  "make" there, which compiles the "RunHimalaya" executable.
+
+- set the environment variable FHHIMEXC to the location of the
+  RunHimalaya executable using the full path, e.g.
+	export FHHIMEXC=/path/to/FeynHiggs/Himalaya/RunHimalaya (sh, bash)
+	setenv FHHIMEXC /path/to/FeynHiggs/Himalaya/RunHimalaya (csh, tcsh)
+
+- run FeynHiggs (note that the link to Himalaya is not working
+  using the Mathematica interface).
+
+
+Enjoy!

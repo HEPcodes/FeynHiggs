@@ -1,5 +1,5 @@
 * dZ_HHHH_gl.F
-* generated 23-Jul-2018 16:12
+* generated 25-Sep-2020 15:35
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -16,7 +16,7 @@
 #include "looptools.h"
 
 
-        se = -(3/(32.D0*Pi)*
+	se = -(3/(32.D0*Pi)*
      &      (Alfa1L*Divergence*S2B**2*Mf2(tM1,3))/(MW2*SB2**2*SW2))
 
 #ifdef DETAILED_DEBUG
@@ -25,7 +25,7 @@
 
 	if( mssmpart .le. 1 ) return
 
-        se = se - 3/(8.D0*Pi)*
+	se = se - 3/(8.D0*Pi)*
      &     (Alfa1L*Divergence*SB2*Mf2(bM1,3))/(CB2*MW2*SW2)
 
 #ifdef DETAILED_DEBUG

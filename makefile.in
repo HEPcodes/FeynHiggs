@@ -1,4 +1,4 @@
-FHVERSION = 2.16.1
+FHVERSION = 2.17.0
 
 BLD = build$(QUADSUFFIX)
 VERSION = $(BLD)/version.h
@@ -69,7 +69,7 @@ dist:
 	  $(FH)/README $(FH)/configure $(FH)/makefile.in \
 	  $(FH)/src $(FH)/extse $(FH)/gen \
 	  $(FH)/man $(FH)/example $(FH)/web \
-	  $(FH)/COPYING
+		$(FH)/Himalaya $(FH)/COPYING
 	rm $(FH)
 
 clean:

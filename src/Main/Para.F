@@ -396,10 +396,13 @@
 	character*(*) cplxmsg
 	parameter (cplxmsg = " in the presence of complex parameters")
 
+c whether threshold corrections should be defined in terms of MSSM parameters by default
 	gMSSMthresholds = 0
+c whether 1L threshold corrections should be multiplied by v/Ms by default
 	suppressedterms = 0
-	htMT3L = 0
+c default EFT matching scale (matchsf = Q/MSusy)
 	matchsf = 1D0
+c whether couplings at MSusy have already been calculated
 	HScouplings_valid = 0
 
 	pdscale = Mf2(3,3)
@@ -560,6 +563,12 @@ c for very large MSusy DRbartoOS transition may fail -> switched of for seexp > 
 
 	dZHfin = 0
 	dTBfin = 0
+	dA1(:) = 0D0
+	dBn1(:) = 0D0
+	dBc1(:) = 0D0
+	dA1gl(:) = 0D0
+	dBn1gl(:) = 0D0
+	dBc1gl(:) = 0D0
 	if( finfieldren .ne. 0 ) then
 	  call CalcdZHfin
 	  if( tbrepara .ne. 0 ) then

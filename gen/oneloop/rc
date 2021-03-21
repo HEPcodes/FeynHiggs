@@ -57,6 +57,7 @@ calcRC[rc_, ct_] :=
 Block[ {ReTilde = Re, UVDivergentPart = uvPart, SEHook = seCall, call, defs, ctr},
   ctr = Reverse/@ ct;
   defs = (#1 -> (#2 /. ctr))&@@@ Flatten[List@@@ CalcRenConst[rc]];
+  defs = defs /. {Re[tdh0] -> tdh0, Re[tdHH] -> tdHH, Re[tdA0] -> tdA0};
   Put[defs, file <> ".rc" <> If[TrueQ[$MHpInput], "Hp", "A0"]];
   { (#[[1,1,1]] -> #[[2]])&/@ DownValues[call],
     Block[#, Set@@@ defs; ct]& @ Union[Replace[First/@ defs, h_[___] :> h, 1]] }
@@ -101,7 +102,9 @@ xcall[i_ -> full_] := {
   IndexIf[SETest["key", i], {
     se -> Call[full[AddrOf[se], p2]],
     "SEu"[i, se],
-    "SEr"[i, se] }],
+    "SE1u"[i, se],
+    "SEr"[i, se],
+    "SE1r"[i, se] }],
   IndexIf[SETest["dkey", i], {
     se -> Call[("d" <> full)[AddrOf[se], p2]],
     "DSEu"[i, se],
@@ -159,4 +162,3 @@ _EOF_
 gzip "$file.log"
 
 test -f "$file.h"
-

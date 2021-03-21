@@ -1,5 +1,5 @@
 * dse_WW_nmfv.F
-* generated 13-Jul-2018 17:01
+* generated 28-Sep-2020 20:46
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -43,7 +43,7 @@
 
 	LOOP(Gen4, gM,3,1)
 
-        se = se + 3/(4.D0*Pi)*
+	se = se + 3/(4.D0*Pi)*
      &     (Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        (B0tmp1 + B1tmp1 + 2*DB00tmp1 + DB1tmp1*k2 + 
      &          DB0tmp1*(k2 - Mf2(tM1,Gen3))))/SW2
@@ -62,7 +62,7 @@
 	LOOP(Ind3, 1,3,1)
 	LOOP(Ind4, 1,3,1)
 
-        se = se - 3/(2.D0*Pi)*
+	se = se - 3/(2.D0*Pi)*
      &     (Alfa1L*DB00tmp2*CKMin(Ind1,Ind2)*CKMinC(Ind3,Ind4)*
      &        UASf(All3,Ind1,tM1)*UASf(All4,Ind4,bM1)*
      &        UASfC(All3,Ind3,tM1)*UASfC(All4,Ind2,bM1))/SW2
@@ -95,7 +95,7 @@
 
 	LOOP(Gen4, gM,3,1)
 
-        se = se - 3/(4.D0*Pi)*
+	se = se - 3/(4.D0*Pi)*
      &     (Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        (B0tmp2 + B1tmp2 + 2*DB00tmp3 - 
      &          B0(k2,Mf2(bM1,Gen4),Mf2(tM1,Gen3)) - 
@@ -118,7 +118,7 @@
 
 	LOOP(Gen3, 1,3,1)
 
-        se = se - 1/(4.D0*Pi)*
+	se = se - 1/(4.D0*Pi)*
      &     (Alfa1L*(B1(k2,0.D0,Mf2(2,Gen3)) - 
      &          2*DB00(k2,0.D0,Mf2(2,Gen3)) + 
      &          k2*DB1(k2,0.D0,Mf2(2,Gen3))))/SW2
@@ -133,7 +133,7 @@
 	LOOP(Ind1, 1,3,1)
 	LOOP(Ind2, 1,3,1)
 
-        se = se - 1/(2.D0*Pi)*
+	se = se - 1/(2.D0*Pi)*
      &     (Alfa1L*DB00tmp4*UASf(All3,Ind1,2)*UASf(Gen3,Ind2,1)*
      &        UASfC(All3,Ind2,2)*UASfC(Gen3,Ind1,1))/SW2
 
@@ -149,7 +149,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se - 1/(4.D0*Pi)*
+	se = se - 1/(4.D0*Pi)*
      &     (Alfa1L*(3*(SW2*B0(k2,0.D0,MW2) + CW2*B0(k2,MW2,MZ2)) + 
      &          (3*k2 - MW2)*SW2*DB0(k2,0.D0,MW2) - 
      &          MW2*(SBA2*DB0(k2,Mh02,MW2) + 
@@ -167,23 +167,23 @@
 	LOOP(Cha3, 1,2,1)
 	LOOP(Neu3, 1,4,1)
 
-        dup1 = 1/sqrt2*
+	dup1 = 1/sqrt2*
      &    (sqrt2*(UChaC(Cha3,1)*ZNeu(Neu3,2)) + 
      &      UChaC(Cha3,2)*ZNeu(Neu3,3))
 
-        dup2 = 1/sqrt2*
+	dup2 = 1/sqrt2*
      &    (sqrt2*(VChaC(Cha3,1)*ZNeu(Neu3,2)) - 
      &      VChaC(Cha3,2)*ZNeu(Neu3,4))
 
-        dup3 = 1/sqrt2*
+	dup3 = 1/sqrt2*
      &    (sqrt2*(UCha(Cha3,1)*ZNeuC(Neu3,2)) + 
      &      UCha(Cha3,2)*ZNeuC(Neu3,3))
 
-        dup4 = 1/sqrt2*
+	dup4 = 1/sqrt2*
      &    (sqrt2*(VCha(Cha3,1)*ZNeuC(Neu3,2)) - 
      &      VCha(Cha3,2)*ZNeuC(Neu3,4))
 
-        se = se + 1/(2.D0*Pi)*
+	se = se + 1/(2.D0*Pi)*
      &     (Alfa1L*((dup1*dup3 + dup2*dup4)*
      &           (B0(k2,MCha2(Cha3),MNeu2(Neu3)) + 
      &             B1(k2,MCha2(Cha3),MNeu2(Neu3)) + 

@@ -1,5 +1,5 @@
 * se_h0HH_mfv.F
-* generated 13-Jul-2018 16:56
+* generated 25-Sep-2020 15:37
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -30,7 +30,7 @@
 
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 3/(8.D0*Pi)*
+	se = se - 3/(8.D0*Pi)*
      &     (Alfa1L*S2A*Mf2(tM1,Gen3)*
      &        (A0(Mf2(tM1,Gen3)) + 
      &          k2*B1(k2,Mf2(tM1,Gen3),Mf2(tM1,Gen3)) + 
@@ -42,7 +42,7 @@
 	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, gM,3,1)
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*S2A*A0(MSf2(Sfe3,tM1,Gen3))*
      &        ((MW2*SB2 - CW2*(4*MW2*SB2 - 3*Mf2(tM1,Gen3)))*
      &           USf2(Sfe3,1,tM1,Gen3) - 
@@ -56,7 +56,7 @@
 	LOOP(Sfe4, 1,2,1)
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 1/(48.D0*Pi)*
+	se = se - 1/(48.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,tM1,Gen3),MSf2(Sfe4,tM1,Gen3))*
      &        (USf(Sfe4,1,tM1,Gen3)*
      &           (((1 - 4*CW2)*MW*MZ*SAB*SB + 
@@ -94,7 +94,7 @@
 
 	LOOP(Gen3, gM,3,1)
 
-        se = se + 3/(8.D0*Pi)*
+	se = se + 3/(8.D0*Pi)*
      &     (Alfa1L*S2A*Mf2(bM1,Gen3)*
      &        (A0(Mf2(bM1,Gen3)) + 
      &          k2*B1(k2,Mf2(bM1,Gen3),Mf2(bM1,Gen3)) + 
@@ -106,7 +106,7 @@
 	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, gM,3,1)
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*S2A*A0(MSf2(Sfe3,bM1,Gen3))*
      &        ((CB2*(1 + 2*CW2)*MW2 - 3*CW2*Mf2(bM1,Gen3))*
      &           USf2(Sfe3,1,bM1,Gen3) + 
@@ -120,7 +120,7 @@
 	LOOP(Sfe4, 1,2,1)
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 1/(48.D0*Pi)*
+	se = se - 1/(48.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,bM1,Gen3),MSf2(Sfe4,bM1,Gen3))*
      &        (USf(Sfe4,1,bM1,Gen3)*
      &           ((CB*(1 + 2*CW2)*MW*MZ*SAB - 
@@ -158,7 +158,7 @@
 
 	LOOP(Gen3, 1,3,1)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(CB2*MW2*
      &           (S2A*A0(MSf2(1,1,Gen3)) + 
      &             CAB*MZ2*SAB*B0(k2,MSf2(1,1,Gen3),MSf2(1,1,Gen3))
@@ -173,7 +173,7 @@
 	LOOP(Gen3, 1,3,1)
 	LOOP(Sfe3, 1,2,1)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*S2A*A0(MSf2(Sfe3,2,Gen3))*
      &        ((CB2*(1 - 2*CW2)*MW2 + CW2*Mf2(2,Gen3))*
      &           USf2(Sfe3,1,2,Gen3) - 
@@ -187,7 +187,7 @@
 	LOOP(Sfe3, 1,2,1)
 	LOOP(Sfe4, 1,2,1)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,2,Gen3),MSf2(Sfe4,2,Gen3))*
      &        (USf(Sfe4,1,2,Gen3)*
      &           ((CB*(1 - 2*CW2)*MW*MZ*SAB + 2*CW*SA*Mf2(2,Gen3))*
@@ -220,7 +220,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se - 1/(32.D0*Pi)*
+	se = se - 1/(32.D0*Pi)*
      &     (Alfa1L*(MW2*(SAB*
      &              (-6*C2A*S2A*SAB*B0(k2,Mh02,Mh02) + 
      &                CAB*(C2B**2*B0(k2,MA02,MA02) + 
@@ -266,19 +266,19 @@
 
 	LOOP(Cha3, 1,2,1)
 
-        dup1 = SA*UCha(Cha4,2)*VCha(Cha3,1) - 
+	dup1 = SA*UCha(Cha4,2)*VCha(Cha3,1) - 
      &    CA*UCha(Cha4,1)*VCha(Cha3,2)
 
-        dup2 = CA*UCha(Cha3,2)*VCha(Cha4,1) + 
+	dup2 = CA*UCha(Cha3,2)*VCha(Cha4,1) + 
      &    SA*UCha(Cha3,1)*VCha(Cha4,2)
 
-        dup3 = CA*UChaC(Cha4,2)*VChaC(Cha3,1) + 
+	dup3 = CA*UChaC(Cha4,2)*VChaC(Cha3,1) + 
      &    SA*UChaC(Cha4,1)*VChaC(Cha3,2)
 
-        dup4 = SA*UChaC(Cha3,2)*VChaC(Cha4,1) - 
+	dup4 = SA*UChaC(Cha3,2)*VChaC(Cha4,1) - 
      &    CA*UChaC(Cha3,1)*VChaC(Cha4,2)
 
-        se = se + 1/(4.D0*Pi)*
+	se = se + 1/(4.D0*Pi)*
      &     (Alfa1L*((dup1*dup3 + dup2*dup4)*
      &           (A0tmp1 + k2*B1(k2,MCha2(Cha3),MCha2(Cha4))) + 
      &          B0(k2,MCha2(Cha3),MCha2(Cha4))*
@@ -321,12 +321,12 @@
 
 	dup16 = CA*ZNeuC(Neu4,3) - SA*ZNeuC(Neu4,4)
 
-        dup17 = dup10*(dup12*dup14 + dup11*dup15)*dup5 + 
+	dup17 = dup10*(dup12*dup14 + dup11*dup15)*dup5 + 
      &    dup11*((dup16*dup6 + dup15*dup7)*dup8 + 
      &       dup16*dup5*dup9) + 
      &    dup14*(dup12*dup7*dup8 + dup13*(dup6*dup8 + dup5*dup9))
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*(dup17*(A0tmp2 + 
      &             k2*B1(k2,MNeu2(Neu3),MNeu2(Neu4))) + 
      &          B0(k2,MNeu2(Neu3),MNeu2(Neu4))*

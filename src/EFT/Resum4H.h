@@ -59,6 +59,10 @@
 #define fvMA 16
 #define flMA 17
 
+* indices to indentify renormalization scheme
+#define iOS 1
+#define iDR 2
+
 #endif
 
 
@@ -80,10 +84,12 @@ c	equivalence (MSS0(tU(3),3), MStU)
 	RealType tSS1, tSS2, tSQ, tSU
 	RealType tA0, tMUE, tM_2
 	RealType xOS, xOS2, xOS1, xMS, xMS2, yOS
+	RealType pXt(2), pYt(2), pMUE(2), pM3(2)
 	RealType vMS2, supfac
-	RealType mueOS, mueOS2, mueOS1, mueMS, mueMS2, m_3OS
+	RealType mueOS, mueOS2, mueOS1, mueMS, mueMS2
+	RealType r1, r2, r1q, r2q
 	RealType atOS, atOS2, at, at2, lfht(5)
-	RealType lfmueOS(5), lfmueMS(5), lfM12(6,3), lfSf(7)
+	RealType lfmueOS(5), lfmueMS(5), lfM12(6,3), lhM12(3,3), lfSf(7)
 	RealType lfSf6_mQ3M3, lfSf6_mU3M3, lfSf6_mQ3M2
 	RealType lfSf6_mQ3M1, lfSf6_mU3M1
 	RealType lfSf6_mQ3Mue, lfSf6_mU3Mue
@@ -91,12 +97,19 @@ c	equivalence (MSS0(tU(3),3), MStU)
 	RealType lfSf89_mQ3Mue_M1Mue(2), lfSf89_mU3Mue_M1Mue(2)
 	RealType lfSf89_mQ3M1_mU3M1(2)
 	RealType db0msqmsu, db0m1mue, db0m2mue
-	RealType MSQq, MSUq, MSDq, MUEq, Xtq, MA02q
+	RealType db0msqmsuq, db0m1mueq, db0m2mueq
+	RealType MSQq, MSUq, MSDq, MA02q
+	ComplexType MUEq, Xtq, m_3OS
 	RealType tMUEq, tChaq, tA0q
 	RealType tSS1q, tSS2q, tSQq, tSUq
-	RealType lfM12q(6,3), lfSfq(7), htlfSf(6)
+	RealType lfM12q(6,3), lhM12q(3,3), lfSfq(7), htlfSf(6)
 	RealType dlam_asatMS, dlam_asat4MS(7), clam_atat(15), clam_atatq(15)
+	RealType pM1, pM2
+	RealType cospdiffXtYt(2), cospdiffXtM3(2)
+	RealType cospsumM1MUE(2), cospsumM2MUE(2), cospsumM1M2MUE(2)
+	RealType cospsum2M1MUE(2), cospsum2M2MUE(2), cospdiffM1M2(2)
 	RealType HScouplings(nSM)
+	RealType dlam3Ltop, dlam3Ltopunc
 
 	common /resum4Hvars/
      &    MSUSYOS, MSUSYMS, tSUSYOS, tSUSYMS,
@@ -104,10 +117,12 @@ c	equivalence (MSS0(tU(3),3), MStU)
      &    tSS1, tSS2, tSQ, tSU,
      &    tA0, tMUE, tM_2,
      &    xOS, xOS2, xOS1, xMS, xMS2, yOS,
+     &    pXt, pYt, pMUE, pM3,
      &    vMS2, supfac,
      &    mueOS, mueOS2, mueOS1, mueMS, mueMS2, m_3OS,
+     &    r1, r2, r1q, r2q,
      &    atOS, atOS2, at, at2, lfht,
-     &    lfmueOS, lfmueMS, lfM12, lfSf,
+     &    lfmueOS, lfmueMS, lfM12, lhM12, lfSf,
      &    lfSf6_mQ3M3, lfSf6_mU3M3, lfSf6_mQ3M2,
      &    lfSf6_mQ3M1, lfSf6_mU3M1,
      &    lfSf6_mQ3Mue, lfSf6_mU3Mue,
@@ -115,9 +130,15 @@ c	equivalence (MSS0(tU(3),3), MStU)
      &    lfSf89_mQ3Mue_M1Mue, lfSf89_mU3Mue_M1Mue,
      &    lfSf89_mQ3M1_mU3M1,
      &    db0msqmsu, db0m1mue, db0m2mue,
+     &    db0msqmsuq, db0m1mueq, db0m2mueq,
      &    MSQq, MSUq, MSDq, MUEq, Xtq, MA02q,
      &    tMUEq, tChaq, tA0q,
      &    tSS1q, tSS2q, tSQq, tSUq,
-     &    lfM12q, lfSfq, htlfSf,
+     &    lfM12q, lhM12q, lfSfq, htlfSf,
      &    dlam_asatMS, dlam_asat4MS, clam_atat, clam_atatq,
-     &    HScouplings
+     &    HScouplings,
+     &    pM1, pM2,
+     &    cospdiffXtYt, cospdiffXtM3,
+     &    cospsumM1MUE, cospsumM2MUE, cospsumM1M2MUE,
+     &    cospsum2M1MUE, cospsum2M2MUE, cospdiffM1M2,
+     &    dlam3Ltop, dlam3Ltopunc

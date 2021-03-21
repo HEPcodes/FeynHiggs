@@ -1,5 +1,5 @@
 * dZ_HHHH_mfv.F
-* generated 13-Jul-2018 16:57
+* generated 25-Sep-2020 15:38
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -27,7 +27,7 @@
 
 	LOOP(Gen3, gM,3,1)
 
-        se = se - 3/(8.D0*Pi)*
+	se = se - 3/(8.D0*Pi)*
      &     (Alfa1L*Divergence*Mf2(bM1,Gen3))/(CB2*MW2*SW2)
 
 	ENDLOOP(Gen3)
@@ -40,7 +40,7 @@
 
 	LOOP(Gen3, 1,3,1)
 
-        se = se - 1/(8.D0*Pi)*
+	se = se - 1/(8.D0*Pi)*
      &     (Alfa1L*Divergence*Mf2(2,Gen3))/(CB2*MW2*SW2)
 
 	ENDLOOP(Gen3)
@@ -51,13 +51,13 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se + 1/(8.D0*Pi)*
+	se = se + 1/(8.D0*Pi)*
      &     (Alfa1L*(1 + 2*CW2)*Divergence)/(CW2*SW2)
 
 	LOOP(Cha3, 1,2,1)
 	LOOP(Cha4, 1,2,1)
 
-        se = se - 1/(8.D0*Pi)*
+	se = se - 1/(8.D0*Pi)*
      &     (Alfa1L*Divergence*
      &        (UCha(Cha4,2)*UChaC(Cha4,2)*VCha(Cha3,1)*
      &           VChaC(Cha3,1) + 
@@ -70,7 +70,7 @@
 	LOOP(Neu3, 1,4,1)
 	LOOP(Neu4, 1,4,1)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*Divergence*
      &        (ZNeu(Neu3,3)*(SW*ZNeu(Neu4,1) - CW*ZNeu(Neu4,2)) + 
      &          (SW*ZNeu(Neu3,1) - CW*ZNeu(Neu3,2))*ZNeu(Neu4,3))*

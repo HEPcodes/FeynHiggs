@@ -1,5 +1,5 @@
 * se_HmHp_mfv.F
-* generated 13-Jul-2018 16:55
+* generated 25-Sep-2020 15:37
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -30,7 +30,7 @@
 	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, gM,3,1)
 
-        se = se + 1/(16.D0*Pi)*
+	se = se + 1/(16.D0*Pi)*
      &     (Alfa1L*(S2B**2*A0(MSf2(Sfe3,bM1,Gen3))*
      &           (((C2B*(1 - 4*CW2)*MW2*SB2 + 
      &                  6*CB2*CW2*
@@ -59,7 +59,7 @@
 
 	LOOP(Gen4, gM,3,1)
 
-        se = se + 3/(4.D0*Pi)*
+	se = se + 3/(4.D0*Pi)*
      &     (Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        (B1tmp1*k2 + B0tmp1*(k2 - Mf2(tM1,Gen3)))*
      &        Mf2(tM1,Gen3))/(MW2*SW2*TB2)
@@ -75,7 +75,7 @@
 
 	dup1 = MW2*S2B**2 - 2*CB2*Mf2(tM1,Gen3)
 
-        se = se + 3/(8.D0*Pi)*
+	se = se + 3/(8.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,tM1,Gen3),MSf2(Sfe4,bM1,Gen4))*
      &        CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        (dup1*USf(Sfe3,1,tM1,Gen3) - 
@@ -100,7 +100,7 @@
 	LOOP(Sfe3, 1,2,1)
 	LOOP(Gen3, gM,3,1)
 
-        se = se + 3/(8.D0*Pi)*
+	se = se + 3/(8.D0*Pi)*
      &     (Alfa1L*SB2*(A0(MSf2(Sfe3,tM1,Gen3))*
      &           (CKMin(Gen3,1)*CKMinC(Gen3,1)*Mf2(bM1,1) + 
      &             CKMin(Gen3,2)*CKMinC(Gen3,2)*Mf2(bM1,2) + 
@@ -120,7 +120,7 @@
 
 	LOOP(Gen4, gM,3,1)
 
-        se = se - 3/(4.D0*Pi)*
+	se = se - 3/(4.D0*Pi)*
      &     (Alfa1L*CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        ((B1tmp2*k2 + B0tmp2*(k2 - Mf2(tM1,Gen3)))*
      &           Mf2(tM1,Gen3) + 
@@ -148,7 +148,7 @@
 
 	dup4 = SB2*Mf2(bM1,Gen4) + CB2*Mf2(tM1,Gen3)
 
-        se = se - 3/(8.D0*Pi)*
+	se = se - 3/(8.D0*Pi)*
      &     (Alfa1L*B0(k2,MSf2(Sfe3,tM1,Gen3),MSf2(Sfe4,bM1,Gen4))*
      &        CKMin(Gen3,Gen4)*CKMinC(Gen3,Gen4)*
      &        ((dup3*USf(Sfe3,1,tM1,Gen3) - 
@@ -193,7 +193,7 @@
 
 	LOOP(Gen3, 1,3,1)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(4*CW2*SB2*
      &           (A0(Mf2(2,Gen3)) + k2*B1(k2,0.D0,Mf2(2,Gen3)))*
      &           Mf2(2,Gen3) + 
@@ -208,7 +208,7 @@
 
 	dup5 = CB*MW2*S2B - SB*Mf2(2,Gen3)
 
-        se = se - 1/(16.D0*Pi)*
+	se = se - 1/(16.D0*Pi)*
      &     (Alfa1L*(CB2*MW2*A0(MSf2(Sfe3,2,Gen3))*
      &           (C2B*USf2(Sfe3,1,2,Gen3) - 
      &             (2*(C2B*CB2*MW2*SW2 + CW2*SB2*Mf2(2,Gen3))*
@@ -230,7 +230,7 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se + 1/(32.D0*Pi)*
+	se = se + 1/(32.D0*Pi)*
      &     (Alfa1L*(MW2*(((C2B*CA2*(2*C2B + 8*CW2) + 
      &                   2*CW2**2*(4*CA2 - 2*S2A*S2B + S2B**2*SA2))
      &                  *SB2 - 
@@ -284,7 +284,7 @@
 
 	dup9 = SW*ZNeuC(Neu3,1) + CW*ZNeuC(Neu3,2)
 
-        se = se - 1/(16.D0*Pi*sqrt2**2)*
+	se = se - 1/(16.D0*Pi*sqrt2**2)*
      &     (Alfa1L*(-(sqrt2**2*
      &             (B0(k2,MCha2(Cha3),MNeu2(Neu3))*
      &               (2*(k2 - MNeu2(Neu3))*
