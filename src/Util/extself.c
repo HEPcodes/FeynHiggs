@@ -3,7 +3,7 @@
 		call external program with preset environment
 		for the computation of the Higgs SE
 		this file is part of FeynHiggs
-		last modified 4 Aug 14 th
+		last modified 31 Jan 16 th
 */
 
 #define _XOPEN_SOURCE 700
@@ -53,7 +53,7 @@ typedef struct {
   int off;
 } hid_t;
 
-enum { semax = 13, seXmax = 4 };
+enum { semax = 16, seXmax = 4 };
 
 static char tmpdir_template[PATH_MAX];
 static char tmpdir[sizeof tmpdir_template];
@@ -65,7 +65,7 @@ static void cleanup(int sig) {
   if( keep == 0 ) nftw(tmpdir, (ftwfun)remove, 64, FTW_DEPTH | FTW_PHYS);
 }
 
-void extself_(int *flags, int *n, cplx *se, const char *cmd, ...) {
+void extself_(int *flags, int *n, cplx *se, const int *ldsig, const char *cmd, ...) {
   int fd[2];
   char buf[256], val[32], *s;
   RealType *r;
@@ -87,6 +87,9 @@ void extself_(int *flags, int *n, cplx *se, const char *cmd, ...) {
   {"A0G0" tag, off+0x0a}, \
   {"GmGp" tag, off+0x0b}, \
   {"HmGp" tag, off+0x0c}, \
+  {"h0td" tag, off+0x0d}, \
+  {"HHtd" tag, off+0x0e}, \
+  {"A0td" tag, off+0x0f}, \
   {"F1F1" tag, off+0x80}, \
   {"F2F2" tag, off+0x81}, \
   {"F1F2" tag, off+0x84}
@@ -97,6 +100,11 @@ void extself_(int *flags, int *n, cplx *se, const char *cmd, ...) {
     higgs_se("@MHH", 2*semax),
     higgs_se("@MA0", 3*semax),
     higgs_se("@MHp", 4*semax) };
+
+  if( *ldsig != semax ) {
+    printf("incongruent array sizes ldsig=%d semax=%d\n", *ldsig, semax);
+    exit(1);
+  }
 
   if( *tmpdir_template == 0 ) {
     char *env = getenv("FHEXTSE_TMPDIR");

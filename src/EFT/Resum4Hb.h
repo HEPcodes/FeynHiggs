@@ -1,7 +1,7 @@
-* Resum4H.h
+* Resum4Hb.h
 * declarations for resummation of 4H coupling
 * this file is part of FeynHiggs
-* last modified 13 Sep 15 th
+* last modified 23 Jun 16 th
 
 
 #include "TLps.h"
@@ -24,18 +24,15 @@
 #endif
 
 
-	RealType cL
-	parameter (cL = 1/(16*pi**2))
-
-c	couplings
-	RealType gMT, gyMT, g3MT, htMT
-	RealType tTop, tCha, tGlu, tSUSY
-	RealType xOS, xMS
-	common /resum4H/ gMT, gyMT, g3MT, htMT,
-     &    tTop, tCha, tGlu, tSUSY,
-     &    xOS, xMS
-
 	RealType odeeps, odeh1
 	parameter (odeeps = 1D-10)
 	parameter (odeh1 = 1D-8)
+
+	RealType Kfac
+	parameter (Kfac = -.1953256D0)
+
+	RealType tTop, tCha, tGlu, tSUSY, tSUSYMS
+	RealType xOS, xMS, mueMS, lfOS(5), lfMS(5)
+	common /resum4H/ tTop, tCha, tGlu, tSUSY, tSUSYMS,
+     &    xOS, xMS, mueMS, lfOS, lfMS
 

@@ -1,7 +1,7 @@
 * AddExt.F
 * Call external program to provide corrections to the Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 15 May 14 th
+* last modified 31 Jan 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -22,7 +22,7 @@
 
 	call flush(6)
 
-	call extself(rotate, n, sig, cmd,
+	call extself(rotate, n, sig,semax, cmd,
      &    "FHscalefactor", scalefactor,
      &    "FHAlfasMT", AlfasMT,
      &    "FHTB", TB,

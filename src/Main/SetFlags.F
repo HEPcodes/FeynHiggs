@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 15 Jan 16 th
+* last modified 4 May 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -11,12 +11,12 @@
 
 	subroutine FHSetFlags(error,
      &    mssmpart_, fieldren_, tanbren_,
-     &    higgsmix_, p2approx_, looplevel_,
+     &    higgsmix_, p2approx_, looplevel_, loglevel_,
      &    runningMT_, botResum_, tlCplxApprox_)
 	implicit none
 	integer error
 	integer mssmpart_, fieldren_, tanbren_
-	integer higgsmix_, p2approx_, looplevel_
+	integer higgsmix_, p2approx_, looplevel_, loglevel_
 	integer runningMT_, botResum_, tlCplxApprox_
 
 #include "FH.h"
@@ -35,12 +35,12 @@
 	data blurb /.TRUE./
 
 	if( blurb ) then
-	  print *, "----------------------------------------------------------------------"
+	  print *, "------------------------------------------------------------------------------"
 	  print *, "FeynHiggs "//FHVERSION
 	  print *, "built on "//FHBUILDDATE
-	  print *, "T. Hahn, S. Heinemeyer, W. Hollik, H. Rzehak, G. Weiglein, K. Williams"
+	  print *, "H. Bahl, T. Hahn, S. Heinemeyer, W. Hollik, S. Passehr, H. Rzehak, G. Weiglein"
 	  print *, "http://feynhiggs.de"
-	  print *, "----------------------------------------------------------------------"
+	  print *, "------------------------------------------------------------------------------"
 	  blurb = .FALSE.
 c	  call setfpu
 	endif
@@ -51,6 +51,70 @@ c	  call setfpu
 	tl_valid = 0
 	higgs_valid = 0
 	coup_valid = 0
+
+	error = 0
+
+	mssmpart = mssmpart_
+	Check(mssmpart, 0, 4, "mssmpart")
+	gM = 2*ibits(mssmpart - 3, 3, 1) + 1
+
+	fieldren = fieldren_
+	Check(fieldren, 0, 4, "fieldren")
+
+	tanbren = tanbren_
+	Check(tanbren, 0, 2, "tanbren")
+
+	higgsmix = higgsmix_
+	Check(higgsmix, 1, 4, "higgsmix")
+
+	p2approx = p2approx_
+	Check(p2approx, 0, 4, "p2approx")
+
+	looplevel = looplevel_
+	Check(looplevel, 0, 2, "looplevel")
+
+	loglevel = loglevel_
+	Check(loglevel, 0, 3, "loglevel")
+
+	runningMT = runningMT_
+	Check(runningMT, 0, 3, "runningMT")
+
+* for safety:
+	if( tT - 3 .ne. tD - tT ) stop "bad tT, tD in FH.h"
+
+	tM1 = MTindex(runningMT)
+	tM2 = tM1
+
+	botResum = botResum_
+	Check(botResum, 0, 2, "botResum")
+	b = ibits(-botResum, 3, 1)
+	bM = 4 + (bTR - 4)*b
+	bM0 = 4 + (bTR0 - 4)*b
+
+	tlCplxApprox = tlCplxApprox_
+	Check(tlCplxApprox, 0, 6, "tlCplxApprox")
+
+	if( mssmpart .eq. 0 ) then
+	  p2approx = 1
+	  if( higgsmix .gt. 2 )
+     &      Error(error, "mssmpart = 0 with higgsmix > 2 not allowed")
+	endif
+
+	if( fieldren .eq. 4 .and. tanbren .eq. 1 )
+     &    Error(error, "fieldren = 4 not compatible with tanbren = 1")
+
+
+	if( loglevel .gt. 0 ) then
+	  if( loglevel .eq. 3 ) then
+	    if( runningMT .ne. 1 )
+     &        Error(error, "loglevel 3 only with runningMT = 1")
+	  else
+	    if( iand(runningMT - 1, -2) .ne. 0 )
+     &        Error(error, "loglevel > 0 only with runningMT = 1,2")
+	  endif
+	endif
+
+	if( error .eq. 0 ) flags_valid = valid
 
 	debuglevel = 0
 	debugunit = 6
@@ -96,63 +160,16 @@ c	  call setfpu
 	print *, "tlzeromask ", tlzeromask
 14	continue
 
+	loglevelmt = loglevel
+	call getenv("FHLOGLEVELMT", env)
+	read(env, *, end=15, err=15) loglevelmt
+	print *, "loglevelmt ", loglevelmt
+15	continue
+
 	call getenv("FHEXTSE", extSE)
 	l = len_trim(extSE)
 	if( extSE(1:1) .ne. ' ' )
      &    print *, "extSE ", extSE(1:len_trim(extSE))
-
-	error = 0
-
-	mssmpart = mssmpart_
-	Check(mssmpart, 0, 4, "mssmpart")
-	gM = 2*ibits(mssmpart - 3, 3, 1) + 1
-
-	fieldren = fieldren_
-	Check(fieldren, 0, 4, "fieldren")
-
-	tanbren = tanbren_
-	Check(tanbren, 0, 2, "tanbren")
-
-	higgsmix = higgsmix_
-	Check(higgsmix, 1, 4, "higgsmix")
-
-	p2approx = p2approx_
-	Check(p2approx, 0, 4, "p2approx")
-
-	looplevel = looplevel_
-	Check(looplevel, 0, 4, "looplevel")
-
-	runningMT = runningMT_
-	Check(runningMT, 0, 3, "runningMT")
-
-* for safety:
-	if( tT - 3 .ne. tD - tT ) stop "bad tT, tD in FH.h"
-
-	tM1 = MTindex(runningMT)
-	tM2 = tM1
-
-	botResum = botResum_
-	Check(botResum, 0, 2, "botResum")
-	b = ibits(-botResum, 3, 1)
-	bM = 4 + (bTR - 4)*b
-	bM0 = 4 + (bTR0 - 4)*b
-
-	tlCplxApprox = tlCplxApprox_
-	Check(tlCplxApprox, 0, 6, "tlCplxApprox")
-
-	if( mssmpart .eq. 0 ) then
-	  p2approx = 1
-	  if( higgsmix .gt. 2 )
-     &      Error(error, "mssmpart = 0 with higgsmix > 2 not allowed")
-	endif
-
-	if( fieldren .eq. 4 .and. tanbren .eq. 1 )
-     &    Error(error, "fieldren = 4 not compatible with tanbren = 1")
-
-	if( looplevel .ge. 3 .and. iand(runningMT - 1, -2) .ne. 0 )
-     &    Error(error, "looplevel = 3,4 only with runningMT = 1,2")
-
-	if( error .eq. 0 ) flags_valid = valid
 
 	if( debuglevel .lt. 1 ) return
 
@@ -165,6 +182,7 @@ c	  call setfpu
 	DFLAGS "higgsmix     =", higgsmix	ENDL
 	DFLAGS "p2approx     =", p2approx	ENDL
 	DFLAGS "looplevel    =", looplevel	ENDL
+	DFLAGS "loglevel     =", loglevel	ENDL
 	DFLAGS "runningMT    =", runningMT	ENDL
 	DFLAGS "botResum     =", botResum	ENDL
 	DFLAGS "tlCplxApprox =", tlCplxApprox	ENDL
@@ -187,7 +205,7 @@ c	  call setfpu
 	external lnblnk
 #endif
 
-	if( len_trim(flags) .ne. 9 ) then
+	if( len_trim(flags) .ne. 10 ) then
 	  Error(error, "wrong number of flags")
 	  return
 	endif
@@ -196,7 +214,7 @@ c	  call setfpu
 
 	call FHSetFlags(error,
      &    Flag(1), Flag(2), Flag(3),
-     &    Flag(4), Flag(5), Flag(6),
-     &    Flag(7), Flag(8), Flag(9))
+     &    Flag(4), Flag(5), Flag(6), Flag(7),
+     &    Flag(8), Flag(9), Flag(10))
 	end
 

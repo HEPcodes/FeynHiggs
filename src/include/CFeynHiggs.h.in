@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 8 Jun 15 th
+		last modified 29 Jan 16 th
 */
 
 
@@ -93,8 +93,8 @@ extern "C" {
 extern void FORTRAN(fhsetflags)(INTEGER *error,
   CINTEGER *mssmpart, CINTEGER *fieldren, CINTEGER *tanbren,
   CINTEGER *higgsmix, CINTEGER *p2approx, CINTEGER *looplevel,
-  CINTEGER *tl_running_mt, CINTEGER *tl_bot_resum,
-  CINTEGER *tl_cplx_approx);
+  CINTEGER *loglevel, CINTEGER *tl_running_mt,
+  CINTEGER *tl_bot_resum, CINTEGER *tl_cplx_approx);
 
 extern void FORTRAN(fhsetflagsstring)(INTEGER *error,
   const char *flags, const int flags_len);
@@ -102,8 +102,8 @@ extern void FORTRAN(fhsetflagsstring)(INTEGER *error,
 extern void FORTRAN(fhretrieveflags)(INTEGER *error,
   INTEGER *mssmpart, INTEGER *fieldren, INTEGER *tanbren,
   INTEGER *higgsmix, INTEGER *p2approx, INTEGER *looplevel,
-  INTEGER *tl_running_mt, INTEGER *tl_bot_resum,
-  INTEGER *tl_cplx_approx);
+  INTEGER *loglevel, INTEGER *tl_running_mt,
+  INTEGER *tl_bot_resum, INTEGER *tl_cplx_approx);
 
 extern void FORTRAN(fhretrieveflagsstring)(INTEGER *error,
   char *flags, const int flags_len);
@@ -315,11 +315,11 @@ extern void FORTRAN(fhselectuz)(INTEGER *error,
 static inline void FHSetFlags(int *error,
   const int mssmpart, const int fieldren, const int tanbren,
   const int higgsmix, const int p2approx, const int looplevel,
-  const int tl_running_mt, const int tl_bot_resum,
-  const int tl_cplx_approx)
+  const int loglevel, const int tl_running_mt,
+  const int tl_bot_resum, const int tl_cplx_approx)
 {
   FORTRAN(fhsetflags)(error, &mssmpart, &fieldren, &tanbren,
-    &higgsmix, &p2approx, &looplevel,
+    &higgsmix, &p2approx, &looplevel, &loglevel,
     &tl_running_mt, &tl_bot_resum, &tl_cplx_approx);
 }
 
@@ -332,11 +332,11 @@ static inline void FHSetFlagsString(int *error, const char *flags)
 
 static inline void FHRetrieveFlags(int *error,
   int *mssmpart, int *fieldren, int *tanbren,
-  int *higgsmix, int *p2approx, int *looplevel,
+  int *higgsmix, int *p2approx, int *looplevel, int *loglevel,
   int *runningMT, int *botResum, int *tlCplxApprox)
 {
   FORTRAN(fhretrieveflags)(error, mssmpart, fieldren, tanbren,
-    higgsmix, p2approx, looplevel,
+    higgsmix, p2approx, looplevel, loglevel,
     runningMT, botResum, tlCplxApprox);
 }
 

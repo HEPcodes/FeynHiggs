@@ -1,7 +1,7 @@
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 18 Sep 15 th
+* last modified 24 Jun 16 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -31,7 +31,7 @@
 	external recordnamesini
 
 	integer i, t, ty
-	RealType i3part, qpart, tmp
+	RealType i3part, qpart
 
 	RealType Run
 	external Run
@@ -105,20 +105,6 @@
 c	call AlphaS(AlfasMT, nf, MT)
 	GSMT = sqrt(4*pi*AlfasMT)
 
-	tmp = 0
-	do while( abs(Mf(tT,3) - tmp) .gt. 1D-5 )
-	  tmp = Mf(tT,3)
-	  HTSMMT = Mf(tT,3)/(vev/sqrt2)
-	  AlfatSMMT = HTSMMT**2/(4*pi)
-	  Mf(tT,3) = MT/(1 - AlfatSMMT/(2*pi) + 4/(3*pi)*AlfasMT)
-	enddo
-
-* 2L QCD corrections according to L. Mihaila:
-	if( runningMT .ne. 2 )
-     &    Mf(tT,3) = Mf(tT,3) - 1.86638D0/172.9D0*MT
-
-	Mf2(tT,3) = Mf(tT,3)**2
-
 	MB_MT = MB*Run(MB, MT)
 
 	M_3 = M_3_
@@ -133,7 +119,7 @@ c	call AlphaS(AlfasMT, nf, MT)
 	CB = sqrt(CB2)
 	SB = CB*TB
 	S2B = 2*TB*CB2
-	C2B = (CB - SB)*(CB + SB)
+	C2B = CB2*(1 - TB)*(1 + TB)
 
 	SCB(2) = CB
 	SCB(3) = SB
@@ -379,14 +365,100 @@ c	call AlphaS(AlfasMT, nf, MT)
 #include "looptools.h"
 
 	RealType m1, m2, Qcur, Qdefault, ospara(3,3:4)
+	RealType htMT0, a_h, a_w, a_z, a_b, a_t
+	RealType b_0w, b_bw, b_ht, b_tz
 	integer t, g, fail, drbar, nQ, nU
 
 	RealType Run
 	external Run
 
 	character*(*) cplxmsg
-	parameter (cplxmsg =
-     &    " in the presence of complex parameters")
+	parameter (cplxmsg = " in the presence of complex parameters")
+
+* Mh0_ used in Buttazzo formula, to avoid self-consistency iteration
+	RealType Mh0_, Mh02_
+	parameter (Mh0_ = 125, Mh02_ = Mh0_**2)
+
+	RealType dMTMT2_QCD, dMTMT2_EW
+* 2L QCD corrections according to L. Mihaila:
+	parameter (dMTMT2_QCD = -1.86638D0/172.9D0)
+* 2L EW corrections according to L. Mihaila:
+	parameter (dMTMT2_EW = -.102884D0/172.9D0)
+
+	RealType dMTMT10, dMTMT1, dhtht10, dhtht1, dht2_QCD, dht2_EW
+
+	dMTMT10() = -4/(3*pi)*AlfasMT + 1/(2*pi)/(4*pi)*htMT0**2
+
+	dMTMT1() = -AlfasMT/Pi*(1/3D0 + a_t/MT2) -
+     &    Alfa1L/(32*Pi*SW2*MW2*MT2)*(
+     &      (MB2 + MT2 + 2*MW2)*(a_b - a_w) -
+     &      ((MT2 - MB2)**2 + MW2*(MT2 + MB2 - 2*MW2))*b_bw +
+     &      (2*MT2 + MZ2*(1 + 8/9D0*(9 - 8*SW2)*SW2))*a_t -
+     &      (MT2 + MZ2*(1 - 8/9D0*(3 - 4*SW2)*SW2))*a_z +
+     &      MZ2*(MT2*(3 + SW2*(38/9D0 - 64/9D0*SW2)) - (MT2 - MZ2 +
+     &        8/9D0*(2*MT2 + MZ2)*(3 - 4*SW2)*SW2)*b_tz) -
+     &      MT2*(a_h + (4*MT2 - Mh02_)*b_ht) )
+
+	dhtht10() = -k1L*(16/3D0*4*pi*AlfasMT - 11/4D0*htMT0**2)
+
+	dhtht1() = -k1L/MT2*(
+     &    4/3D0*g3MT2*(MT2 + 3*a_t) -
+     &    .25D0*htMT0**2*(
+     &      .5D0*Mh02_ - 3*MT2 - 1/9D0*(17 + 64*SW2)*MW2 + 7/18D0*MZ2 -
+     &      (7 - 3*Mh02_/(Mh02_ - MW2) + 3/SW2 - 2*MW2/MT2)*a_w +
+     &      (MT2 + MW2 - 2*MW2**2/MT2)*b_0w +
+     &      (4 - 3*Mh02_/(Mh02_ - MW2))*a_h +
+     &      (4*MT2 - Mh02_)*b_ht +
+     &      ( (36*MT2 - 17*MZ2 + 8*(1 - 8*SW2)*MW2)*a_t -
+     &        (9*(6 - 3/SW2)*MT2 - 17*MZ2 + 8*(1 + 4*SW2)*MW2)*a_z -
+     &        ((7*MT2 + 17*MZ2)*MZ2 -
+     &          8*(1 + 4*SW2)*(2*MT2 + MZ2)*MW2)*b_tz )/(9*MT2) ))
+
+	dht2_QCD() = -g3MT2**2*k2L*(145.08D0 + .84D0*(MT - 173))
+
+	dht2_EW() = k2L*(
+     &    (6.48D0 - 7.53D0*g3MT2) +
+     &    (-.01D0 + .09D0*g3MT2)*(Mh0_ - 125) +
+     &    (.18D0 - .23*g3MT2)*(MT - 173) )
+
+	htMT0 = MT/(vev/sqrt2)
+	if( loglevelmt .le. 1 ) then
+	  htMT = htMT0*(1 + dhtht10())
+	  if( runningMT .ne. 2 ) then
+	    Mf(tT,3) = MT*(1 + dMTMT10() + dMTMT2_QCD)
+	    htMT = htMT + dht2_QCD()
+	  else
+	    m1 = 0
+	    do while( abs(Mf(tT,3) - m1) .gt. 1D-5 )
+	      m1 = Mf(tT,3)
+	      htMT0 = m1/(vev/sqrt2)
+	      Mf(tT,3) = MT/(1 - dMTMT10())
+	    enddo
+	  endif
+	else
+	  a_h = Re(A0(Mh02_))
+	  a_w = Re(A0(MW2))
+	  a_z = Re(A0(MZ2))
+	  a_b = Re(A0(MB2))
+	  a_t = Re(A0(MT2))
+	  b_0w = Re(B0(MT2, 0D0, MW2))
+	  b_bw = Re(B0(MT2, MB2, MW2))
+	  b_ht = Re(B0(MT2, Mh02_, MT2))
+	  b_tz = Re(B0(MT2, MT2, MZ2))
+
+	  Mf(tT,3) = MT*(1 + dMTMT1())
+	  htMT = htMT0*(1 + dhtht1())
+	  if( runningMT .ne. 2 ) then
+	    Mf(tT,3) = Mf(tT,3) + MT*dMTMT2_QCD
+	    htMT = htMT + dht2_QCD()
+	    if( loglevelmt .gt. 2 ) then
+	      Mf(tT,3) = Mf(tT,3) + MT*dMTMT2_EW
+	      htMT = htMT + dht2_EW()
+	    endif
+	  endif
+	endif
+	Mf2(tT,3) = Mf(tT,3)**2
+	htMT2 = htMT**2
 
 	do g = 1, 3*3*5
 	  MSS2_flat(g) = 0
@@ -489,7 +561,7 @@ c	call AlphaS(AlfasMT, nf, MT)
 	DPARA "MTrun =", Mf(tT,3)		ENDL
 	DPARA "1/Alfa(MZ) =", 1/AlfaMZ		ENDL
 	DPARA "AlfasMT =", AlfasMT		ENDL
-	DPARA "AlfatSMMT =", AlfatSMMT		ENDL
+	DPARA "htMT =", htMT			ENDL
 	DPARA "TB =", TB			ENDL
 	DPARA "M_1 =", M_1			ENDL
 	DPARA "M_2 =", M_2			ENDL
@@ -522,6 +594,8 @@ c	call AlphaS(AlfasMT, nf, MT)
 	DPARA "Atau =", Af(2,3)			ENDL
 	DPARA "At   =", Af(3,3)			ENDL
 	DPARA "Ab   =", Af(4,3)			ENDL
+	DPARA "Xt   =", Xf(3,3)			ENDL
+	DPARA "Xb   =", Xf(4,3)			ENDL
 	DPARA "----------------------------"	ENDL
 	DPARA "Higgs masses (tree-level):"	ENDL
 	DPARA "Mh0 =", Mh0			ENDL

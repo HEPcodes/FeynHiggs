@@ -83,7 +83,7 @@ UCSf[2,1, r___] := UCSf[1,2, r]
 UCSf[2,2, r___] := UCSf[1,1, r]
 
 (* 1a *)
-UCSf/: UCSf[1,j1:1|2, r___] + n_. UCSf[1,j2:1|2, r___] :=
+UCSf/: UCSf[1,j1:1|2, r___] + (n_Integer:1) UCSf[1,j2:1|2, r___] :=
   1 + (n - 1) UCSf[1,j2, r] /; j1 != j2 && n > 0;
 UCSf/: UCSf[1,j:1|2, r___] - 1 := -UCSf[1,3-j, r];
 

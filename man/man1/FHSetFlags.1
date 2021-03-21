@@ -1,4 +1,4 @@
-.TH FHSETFLAGS 1 "17-Dec-2015"
+.TH FHSETFLAGS 1 "1-Feb-2016"
 .SH NAME
 .PP
 FHSetFlags \- set the FeynHiggs flags
@@ -8,18 +8,18 @@ integer error
 .br
 integer mssmpart, fieldren, tanbren, higgsmix, p2approx
 .br
-integer looplevel, runningMT, botResum, tlCplxApprox
+integer looplevel, loglevel, runningMT, botResum, tlCplxApprox
 .sp
 subroutine FHSetFlags(error,
 .br
   mssmpart, fieldren, tanbren, higgsmix, p2approx,
 .br
-  looplevel, runningMT, botResum, tlCplxApprox)
+  looplevel, loglevel, runningMT, botResum, tlCplxApprox)
 .SH SYNOPSIS (Mathematica version)
 .PP
 FHSetFlags[mssmpart, fieldren, tanbren, higgsmix, p2approx,
 .br
-  looplevel, runningMT, botResum, tlCplxApprox]
+  looplevel, loglevel, runningMT, botResum, tlCplxApprox]
 .SH DESCRIPTION
 FHSetFlags sets the flags for FeynHiggs.  It must be called before
 any other FeynHiggs function.
@@ -101,7 +101,7 @@ determines the approximation for the 1-loop result:
 .br
 .B recommended: 4
 .TP
-.B looplevel = 0..3 (input)
+.B looplevel = 0..2 (input)
 determines the inclusion of higher-order corrections:
 .br
 0: tree level
@@ -110,9 +110,20 @@ determines the inclusion of higher-order corrections:
 .br
 2: include various two-loop contributions
 .br
-3: include resummation of large logs (for large SUSY mass scales)
+.B recommended: 2
+.TP
+.B loglevel = 0..3 (input)
+determines the inclusion of log resummations:
 .br
-.B recommended: 2 or 3
+0: no log resummation
+.br
+1: NLL resummation (for large MSUSY)
+.br
+2: NLL resummation (for large MCha,MNeu,MGlu,MSUSY)
+.br
+3: NNLL resummation (for large MCha,MNeu,MGlu,MSUSY)
+.br
+.B recommended: 1, 2
 .TP
 .B runningMT = 0..3 (input)
 determines which top mass shall be used in the 1-/2-loop corrections:

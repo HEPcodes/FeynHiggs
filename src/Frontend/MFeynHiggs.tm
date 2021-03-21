@@ -193,15 +193,15 @@
 :Function: mFHSetFlags
 :Pattern:
   FHSetFlags[mssmpart_, fieldren_, tanbren_,
-    higgsmix_, p2approx_, looplevel_,
+    higgsmix_, p2approx_, looplevel_, loglevel_,
     runningMT_, botResum_, tlCplxApprox_]
 :Arguments: {
   mssmpart, fieldren, tanbren,
-  higgsmix, p2approx, looplevel,
+  higgsmix, p2approx, looplevel, loglevel,
   runningMT, botResum, tlCplxApprox }
 :ArgumentTypes: {
   Integer, Integer, Integer,
-  Integer, Integer, Integer,
+  Integer, Integer, Integer, Integer,
   Integer, Integer, Integer }
 :ReturnType: Manual
 :End:
@@ -514,7 +514,7 @@
 :ReturnType: Manual
 :End:
 
-:Evaluate: mSElist[sig_] := Transpose[Through[{Re, Im}[PadRight[sig, 13]]]]
+:Evaluate: mSElist[sig_] := Transpose[Through[{Re, Im}[PadRight[sig, 16]]]]
 
 :Begin:
 :Function: mFHAddSelf
@@ -652,7 +652,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 8 Jun 15 th
+		last modified 17 Jun 16 th
 */
 
 
@@ -834,7 +834,7 @@ static void MLPutComplexTensor(MLINK mlp, ComplexType *a, cint len,
 /******************************************************************/
 
 static void mFHSetFlags(cint mssmpart, cint fieldren, cint tanbren,
-  cint higgsmix, cint p2approx, cint looplevel,
+  cint higgsmix, cint p2approx, cint looplevel, cint loglevel,
   cint runningMT, cint botResum, cint tlCplxApprox)
 {
   int error;
@@ -842,7 +842,7 @@ static void mFHSetFlags(cint mssmpart, cint fieldren, cint tanbren,
   BeginRedirect();
 
   FHSetFlags(&error, mssmpart, fieldren, tanbren,
-    higgsmix, p2approx, looplevel,
+    higgsmix, p2approx, looplevel, loglevel,
     runningMT, botResum, tlCplxApprox);
 
   EndRedirect();
@@ -872,13 +872,13 @@ static void mFHSetFlagsString(cchar *flags)
 static void mFHRetrieveFlags(void)
 {
   int error, mssmpart, fieldren, tanbren;
-  int higgsmix, p2approx, looplevel;
+  int higgsmix, p2approx, looplevel, loglevel;
   int runningMT, botResum, tlCplxApprox;
 
   BeginRedirect();
 
   FHRetrieveFlags(&error, &mssmpart, &fieldren, &tanbren,
-    &higgsmix, &p2approx, &looplevel,
+    &higgsmix, &p2approx, &looplevel, &loglevel,
     &runningMT, &botResum, &tlCplxApprox);
 
   EndRedirect();
@@ -893,6 +893,7 @@ static void mFHRetrieveFlags(void)
     MLPutIRule(stdlink, higgsmix);
     MLPutIRule(stdlink, p2approx);
     MLPutIRule(stdlink, looplevel);
+    MLPutIRule(stdlink, loglevel);
     MLPutIRule(stdlink, runningMT);
     MLPutIRule(stdlink, botResum);
     MLPutIRule(stdlink, tlCplxApprox);

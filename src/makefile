@@ -71,10 +71,10 @@ TLSP = TLsp.o TLsp_atat_c1.o TLsp_atat_c2.o \
   TLsp_atat_o1.o TLsp_atat_o2.o
 
 TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
-  Resum4H.o beta4H.o \
+  Resum4Ha.o Resum4Hb.o rgeloopfun.o beta4H.o \
   CalcRenSETL.o MTrepara.o InvTri.o Phi.o TLSfgl.o
 
-Resum4H.o: Resum4H.F Resum4H.h FOSubtract.h
+Resum4Hb.o: Resum4Hb.F Resum4Hb.h FOSubtract.h
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 

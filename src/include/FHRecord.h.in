@@ -1,7 +1,7 @@
 * FHRecord.h.in
 * the data structures for a FH record
 * this file is part of FeynHiggs
-* last modified 20 Feb 15 th
+* last modified 26 Jan 16 th
 
 
 #ifndef FHRangeR
@@ -22,10 +22,10 @@
 #define FHNameR(i) FHName(i)(1:len_trim(FHName(i)))
 #define FHNameC(i) FHName(i)(4:index(FHName(i),")")-1)
 
-#define RecordDecl(rec) double precision rec(FHRecordN,4)
+#define RecordDecl(rec) RealType rec(FHRecordN,4)
 #endif
 
-	double precision unset, default, bytable
+	RealType unset, default, bytable
 	parameter (unset = -999)
 	parameter (default = -888)
 	parameter (bytable = 777)
@@ -36,7 +36,7 @@
 	integer maxcols, maxrows
 	parameter (maxcols = FHRecordN, maxrows = 10000)
 
-	double precision tabledata(maxcols,maxrows)
+	RealType tabledata(maxcols,maxrows)
 	integer tableflag(0:maxcols), tablerows
 	common /fhtable/ tabledata, tableflag, tablerows
 

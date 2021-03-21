@@ -1,4 +1,4 @@
-.TH FEYNHIGGS 1 "17-Dec-2015"
+.TH FEYNHIGGS 1 "1-Feb-2016"
 .SH NAME
 .PP
 FeynHiggs \- the FeynHiggs command-line frontend
@@ -195,8 +195,8 @@ through Abs and Arg OR through Re and Im.  In conflicting
 cases a warning is issued and the Abs/Arg value takes
 precedence.
 .SH FLAGS
-The flags are given as an optional 9-digit string on the command line,
-where the default is 400202110.  The positions in the string are as
+The flags are given as an optional 10-digit string on the command line,
+where the default is 4002020110.  The positions in the string are as
 follows:
 .TP
 #1: mssmpart = 0..4
@@ -271,20 +271,31 @@ determines the approximation for the 1-loop result:
 .br
 .B recommended: 4
 .TP
-#6: looplevel = 0..3
+#6: looplevel = 0..2
 determines the inclusion of higher-order corrections:
 .br
 0: tree level
 .br
 1: one-loop contributions only
 .br
-2: also include various two-loop contributions
-.br
-3: also include resummation of large logs
+2: include various two-loop contributions
 .br
 .B recommended: 2
 .TP
-#7: runningMT = 0..3
+#7: loglevel = 0..3
+determines the inclusion of log resummations:
+.br
+0: no log resummation
+.br
+1: NLL resummation (for large MSUSY)
+.br
+2: NLL resummation (for large MCha,MNeu,MGlu,MSUSY)
+.br
+3: NNLL resummation (for large MCha,MNeu,MGlu,MSUSY)
+.br
+.B recommended: 1, 2
+.TP
+#8: runningMT = 0..3
 determines which top mass shall be used in the 1-/2-loop corrections:
 .br
 0: pole MT
@@ -297,7 +308,7 @@ determines which top mass shall be used in the 1-/2-loop corrections:
 .br
 .B recommended: 1
 .TP
-#8: botResum = 0..1
+#9: botResum = 0..1
 determines whether the O(tan beta^n) corrections shall be resummed:
 .br
 0: no resummation
@@ -306,7 +317,7 @@ determines whether the O(tan beta^n) corrections shall be resummed:
 .br
 .B recommended: 1
 .TP
-#9: tlCplxApprox = 0..6
+#10: tlCplxApprox = 0..6
 determines how the two-loop corrections are treated in the presence of
 complex parameters (cMSSM):
 .br

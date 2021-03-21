@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 11 Dec 15 th
+* last modified 29 Jan 16 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -18,7 +18,8 @@
 	character*128 argv
 	integer argc, type, error, loop, keyslha, i
 	integer mssmpart, fieldren, tanbren, higgsmix, p2approx
-	integer looplevel, runningMT, botResum, tlCplxApprox
+	integer looplevel, loglevel
+	integer runningMT, botResum, tlCplxApprox
 	RecordDecl(record)
 	ComplexType slhadata(nslhadata)
 
@@ -32,10 +33,10 @@
 
 	character*54 dmssmpart(-1:5), dfieldren(-1:5),
      &    dtanbren(-1:3), dhiggsmix(0:5), dp2approx(-1:5),
-     &    dlooplevel(-1:4), drunningMT(-1:4),
+     &    dlooplevel(-1:3), dloglevel(-1:4), drunningMT(-1:4),
      &    dbotResum(-1:3), dtlCplxApprox(-1:7)
 
-	data flags /"400242110"/
+	data flags /"4002420110"/
 
 	data dmssmpart /
      &    "???",
@@ -82,9 +83,16 @@
 	data dlooplevel /
      &    "???",
      &    "tree level only",
-     &    "include 1-loop corrections",
-     &    "also include 2-loop corrections",
-     &    "also include resummation of large logs",
+     &    "include 1L corrections",
+     &    "include 2L corrections",
+     &    "???" /
+
+	data dloglevel /
+     &    "???",
+     &    "no log resummation",
+     &    "NLL resummation (for large MSUSY)",
+     &    "NLL resummation (for large MCha,MNeu,MGlu,MSUSY)",
+     &    "NNLL resummation (for large MCha,MNeu,MGlu,MSUSY)",
      &    "???" /
 
 	data drunningMT /
@@ -122,8 +130,9 @@
 	call FHSetFlagsString(error, flags)
 
 	call FHRetrieveFlags(error,
-     &    mssmpart, fieldren, tanbren, higgsmix, p2approx,
-     &    looplevel, runningMT, botResum, tlCplxApprox)
+     &    mssmpart, fieldren, tanbren,
+     &    higgsmix, p2approx, looplevel, loglevel,
+     &    runningMT, botResum, tlCplxApprox)
 
 #define ShowFlag(t,f,lo,hi) t, f, d f(min(max(f,lo-1),hi+1))
 
@@ -134,7 +143,8 @@
      &    ShowFlag("tanbren",      tanbren,      0, 2),
      &    ShowFlag("higgsmix",     higgsmix,     1, 4),
      &    ShowFlag("p2approx",     p2approx,     0, 4),
-     &    ShowFlag("looplevel",    looplevel,    0, 3),
+     &    ShowFlag("looplevel",    looplevel,    0, 2),
+     &    ShowFlag("loglevel",     loglevel,     0, 3),
      &    ShowFlag("runningMT",    runningMT,    0, 3),
      &    ShowFlag("botResum",     botResum,     0, 2),
      &    ShowFlag("tlCplxApprox", tlCplxApprox, 0, 6)
@@ -210,21 +220,23 @@ c	if( error .eq. -2 ) goto 2
      &    //"<flags> is a string of 9 digits with"
      &    /"  #1 = mssmpart = scope of the calculation",
      &    5 DESC_FMT
-     &    /"  #2 = fieldren = 1-loop field renormalization",
+     &    /"  #2 = fieldren = 1L field renormalization",
      &    5 DESC_FMT
-     &    /"  #3 = tanbren = 1-loop tan(beta) renormalization",
+     &    /"  #3 = tanbren = 1L tan(beta) renormalization",
      &    3 DESC_FMT
      &    /"  #4 = higgsmix = mixing in the neutral Higgs sector",
      &    4 DESC_FMT
-     &    /"  #5 = p2approx = approximation for the 1-loop result",
+     &    /"  #5 = p2approx = approximation for the 1L result",
      &    5 DESC_FMT
      &    /"  #6 = looplevel, inclusion of higher-order corrections",
-     &    4 DESC_FMT
-     &    /"  #7 = runningMT, pole vs. running MT",
-     &    4 DESC_FMT
-     &    /"  #8 = botResum, MB resummation",
      &    3 DESC_FMT
-     &    /"  #9 = tlCplxApprox, complex parameters in the 2-loop corrections",
+     &    /"  #7 = loglevel, inclusion of log resummations",
+     &    4 DESC_FMT
+     &    /"  #8 = runningMT, pole vs. running MT",
+     &    4 DESC_FMT
+     &    /"  #9 = botResum, MB resummation",
+     &    3 DESC_FMT
+     &    /"  #10 = tlCplxApprox, complex parameters in the 2L corrections",
      &    7 DESC_FMT
      &    /)
 
@@ -235,7 +247,8 @@ c	if( error .eq. -2 ) goto 2
      &    (i, dtanbren(i),      i = 0, 2),
      &    (i, dhiggsmix(i),     i = 1, 4),
      &    (i, dp2approx(i),     i = 0, 4),
-     &    (i, dlooplevel(i),    i = 0, 3),
+     &    (i, dlooplevel(i),    i = 0, 2),
+     &    (i, dloglevel(i),     i = 0, 3),
      &    (i, drunningMT(i),    i = 0, 3),
      &    (i, dbotResum(i),     i = 0, 2),
      &    (i, dtlCplxApprox(i), i = 0, 6)

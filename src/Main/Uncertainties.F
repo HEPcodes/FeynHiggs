@@ -2,7 +2,7 @@
 * Compute (actually, not completely invent) an error estimate
 * for the Higgs masses and mixings
 * this file is part of FeynHiggs
-* last modified 17 Sep 15 th
+* last modified 3 Jun 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -163,7 +163,7 @@
      &    DHIGGS "Uncertainties: MTpole in 2L corrections" ENDL
 
 	tM2 = MTindex(signbit(runningMT - 1))
-	if( looplevel .lt. 3 ) tM1 = tM2
+	if( loglevel .eq. 0 ) tM1 = tM2
 	tl_valid = 0
 	call CalcHiggsCorr(err)
 	tM1 = MTindex(runningMT)

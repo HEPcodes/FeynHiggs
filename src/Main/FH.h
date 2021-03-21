@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 11 Dec 15 th
+* last modified 1 Jul 16 th
 
 
 #ifndef SignSq
@@ -10,6 +10,8 @@
 #define signbit(i) ibits(i,31,1)
 #define Delta(i,j) signbit(ieor(i,j)-1)
 #define SEKey(se) 2**(se-1)
+
+#define Li2omx(x) Re(spence(1, ToComplex(x), 0D0))
 
 #define LOOP(var,from,to,step) do var = from, to, step
 #define ENDLOOP(var) enddo
@@ -107,8 +109,8 @@
 	RealType SW, SW2, CW, CW2
 	RealType invAlfaMZ, GF, vev
 	RealType ELGF, AlfaGF, EL0, ELMZ, AlfaMZ
-	RealType HTSMMT, AlfatSMMT
-	RealType GSMT, AlfasMT, AlfasMZ, AlfasDb
+	RealType GSMT, AlfasMT, AlfasMZ, AlfasDb, AlfasMH
+	RealType htMT, htMT2
 
 	common /smpara/
      &    CKMin, CKMlambda, CKMA, CKMrhobar, CKMetabar,
@@ -116,8 +118,8 @@
      &    MW, MW2, MZ, MZ2, CW, CW2, SW, SW2,
      &    invAlfaMZ, GF, vev,
      &    ELGF, AlfaGF, EL0, ELMZ, AlfaMZ,
-     &    HTSMMT, AlfatSMMT,
-     &    GSMT, AlfasMT, AlfasMZ, AlfasDb
+     &    GSMT, AlfasMT, AlfasMZ, AlfasDb, AlfasMH,
+     &    htMT, htMT2
 
 	RealType Alfa1L, Alfa2L, EL1L, EL2L
 	equivalence (AlfaGF, Alfa1L, Alfa2L)
@@ -357,10 +359,11 @@
 * flags
 
 	integer mssmpart, fieldren, tanbren
-	integer higgsmix, p2approx, looplevel
+	integer higgsmix, p2approx, looplevel, loglevel
 	integer runningMT, botResum, tlCplxApprox
 	integer debuglevel, debugunit, fv
-	integer uzint, uzext, mfeff, tlpsmask, tlzeromask(4)
+	integer uzint, uzext, mfeff
+	integer tlpsmask, tlzeromask(4), loglevelmt
 	integer tM1, tM2, bM, bM0, gM
 	character*256 extSE
 
@@ -371,10 +374,11 @@
 
 	common /flags/
      &    mssmpart, fieldren, tanbren,
-     &    higgsmix, p2approx, looplevel,
+     &    higgsmix, p2approx, looplevel, loglevel,
      &    runningMT, botResum, tlCplxApprox,
      &    debuglevel, debugunit, fv,
-     &    uzint, uzext, mfeff, tlpsmask, tlzeromask,
+     &    uzint, uzext, mfeff,
+     &    tlpsmask, tlzeromask, loglevelmt,
      &    tM1, tM2, bM, bM0, gM,
      &    extSE
 

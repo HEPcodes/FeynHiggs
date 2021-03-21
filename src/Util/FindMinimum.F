@@ -1,7 +1,7 @@
 * FindMinimum.F
 * find minimum of function
 * this file is part of FeynHiggs
-* last modified 14 Sep 15 th
+* last modified 14 Jan 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -27,7 +27,7 @@
 	RealType tolx, tolf, tolmin
 	RealType deriv_eps, maxstep0
 	integer maxiter
-	parameter (tolx = 1D-7, tolf = 1D-4, tolmin = 1D-6)
+	parameter (tolx = 1D-7, tolf = 1D-5, tolmin = 1D-6)
 	parameter (deriv_eps = 1D-4)
 	parameter (maxstep0 = 100, maxiter = 200)
 

@@ -1,7 +1,7 @@
 * TLps.h
 * declarations for the two-loop routines
 * this file is part of FeynHiggs
-* last modified 20 May 15 th
+* last modified 27 Jan 16 th
 
 #include "TL.h"
 
@@ -34,8 +34,6 @@
 #define stb2 SbotPara(10)
 #define s2tb SbotPara(11)
 #define s2tb2 SbotPara(12)
-
-#define Li2omx(x) Re(spence(1, ToComplex(x), 0D0))
 #endif
 
 	integer Nc, MSDR

@@ -1,7 +1,7 @@
 #! /bin/sh
 # configure script for FeynHiggs
 # note: has nothing to do with GNU autoconf
-# last modified 11 Dec 15 th
+# last modified 26 Jan 16 th
 
 
 exec 2> ${LOGFILE:-/dev/null} 3>&1
@@ -135,7 +135,7 @@ for arg in "$@" ; do
   --quad)
 	CONF_QUAD=1 ;;
   --debug)
-	CONF_DEBUG="-O0 -g" ;;
+	CONF_DEBUG="-O0" ;;
   --32)
 	CONF_BITS=32 ;;
   --64)
@@ -204,34 +204,42 @@ CONF_DLLTOOL=`findprog dlltool $DLLTOOL dlltool`
 
 CONF_DEF="-D"
 
-case "`$CONF_FC --version -c 2>&1`" in
-*G95*)
-  CONF_FFLAGS="$FFLAGS -O0 -g -ffixed-line-length-132 -freal-loops $CONF_M $CONF_STATIC ${CONF_DEBUG:+-Wall}" ;;
-*GNU*)
-  CONF_FFLAGS="$FFLAGS ${CONF_DEBUG:--O1 -g} -ffixed-line-length-none $CONF_M $CONF_STATIC ${CONF_DEBUG:+-Wall}"
-  case "$CONF_FC" in
-  *gfortran*)
-	CONF_FFLAGS="$CONF_FFLAGS ${CONF_DEBUG:+-Wno-tabs -ffpe-trap=invalid,overflow,zero} ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc} ${CONF_QUAD:+-fdefault-real-8 -DDBLE=REAL -DDIMAG=IMAG -DDCONJG=CONJG}" ;;
-  esac ;;
+set -- `$CONF_FC --version -c | sed '/^$/d;s/(.*)//;q' 2>&1`
+case "$1,$2,$3" in
+GNU,Fortran,[123].*)
+  CONF_FFLAGS="\
+${FFLAGS-${CONF_DEBUG:--O1} ${CONF_DEBUG:+-g -Wall}} \
+$CONF_M -ffixed-line-length-none \
+$CONF_STATIC"
+  ;;
+GNU,Fortran,4.*)
+  CONF_FFLAGS="\
+${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-g -Wall -Wtabs -ffpe-trap=invalid,overflow,zero}} \
+$CONF_M -ffixed-line-length-none ${CONF_QUAD:+-fdefault-real-8} \
+$CONF_STATIC ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc}"
+  ;;
+GNU,Fortran,*)
+  CONF_FFLAGS="\
+${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-g -Wall -Wno-tabs -ffpe-trap=invalid,overflow,zero}} \
+$CONF_M -ffixed-line-length-none ${CONF_QUAD:+-fdefault-real-8} \
+$CONF_STATIC ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc}"
+  ;;
+pgf*)
+  CONF_FFLAGS="\
+${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-g -Minform=inform -Ktrap=fp}} \
+$CONF_M -Mextend -g77libs \
+${CONF_STATIC:+-Bstatic}"
+  ;;
+ifort*)
+  CONF_FFLAGS="\
+${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-debug}} \
+$CONF_M -extend_source -warn truncated_source -warn nouncalled -assume bscc \
+${CONF_QUAD:+-r16 -DDBLE=QEXT -DDIMAG=QIMAG -DDCONJG=QCONJG -DDCMPLX=QCMPLX} \
+$CONF_STATIC ${CONF_STATIC_EXT:+-static-intel}"
+  ;;
 *)
-  CONF_FFLAGS="${FFLAGS-default}"
-  test "$CONF_FFLAGS" = default && case "$CONF_FC$CONF_MACH" in
-  *pgf*)
-	CONF_FFLAGS="${CONF_DEBUG:--O3 -g} ${CONF_DEBUG:+-Ktrap=fp} -Mextend -Minform=inform -g77libs ${CONF_STATIC:+-Bstatic} $CONF_M" ;;
-  *ifort*)
-	CONF_FFLAGS="${CONF_DEBUG:--O3 -g} ${CONF_DEBUG:+-warn unused} -extend_source -warn nouncalled -warn truncated_source -assume bscc $CONF_STATIC ${CONF_STATIC_EXT:+-static-intel} ${CONF_QUAD:+-r16 -DDBLE=QEXT -DDIMAG=QIMAG -DDCONJG=QCONJG -DDCMPLX=QCMPLX} $CONF_M" ;;
-  *alpha)
-	CONF_FFLAGS="-old_f77 ${CONF_DEBUG:--O3 -g3} ${CONF_DEBUG:+-fpe0} -extend_source -warn nouncalled -warn truncated_source ${CONF_STATIC:+-non_shared}" ;;
-  *sun* | *sparc*)
-	CONF_FFLAGS="${CONF_DEBUG:--O3 -g} ${CONF_DEBUG:+-ftrap=common} -e ${CONF_STATIC:+-Bstatic}" ;;
-  *hp*)
-	CONF_FFLAGS="${CONF_DEBUG:--O2 -g} ${CONF_DEBUG:++FPVZO} +es +U77 ${CONF_STATIC:+-Wl,-noshared}" ;;
-  *xlf*)
-	CONF_FFLAGS="${CONF_DEBUG:--O2 -g} ${CONF_DEBUG:+-qflttrap=enable:invalid:overflow:zerodivide} -qfixed=132 -qmaxmem=-1 -qextname ${CONF_QUAD:+-qautodbl=dbl}"
-	CONF_DEF="-WF,-D" ;;
-  *)
-	CONF_FFLAGS="${CONF_DEBUG:--O -g}" ;;
-  esac ;;
+  CONF_FFLAGS="${CONF_DEBUG:--O} ${CONF_DEBUG:+-g}"
+  ;;
 esac
 
 
@@ -265,7 +273,10 @@ case "`$CONF_CC --version -c 2>&1`" in
 *gcc*) CONF_STATIC_GCC="$CONF_STATIC_EXT" ;;
 esac
 
-CONF_CFLAGS="${CFLAGS-${CONF_DEBUG:--O3 -g} -fomit-frame-pointer -ffast-math -Wall} $CONF_M $CONF_STATIC ${CONF_STATIC_GCC:+-static-libgcc} ${CONF_QUAD:+-DREALSIZE=16}"
+CONF_CFLAGS="\
+${CFLAGS-${CONF_DEBUG:--O3 -fomit-frame-pointer -ffast-math}} \
+$CONF_M -g ${CONF_QUAD:+-DREALSIZE=16} \
+$CONF_STATIC ${CONF_STATIC_EXT:+-static-libgcc}"
 
 CONF_CXXFLAGS="$CXXFLAGS $CONF_M $CONF_STATIC ${CONF_STATIC_GCC:+-static-libstdc++ -static-libgcc}"
 
@@ -406,7 +417,7 @@ test "${cpus:-1}" -gt 1 && CONF_PARALLEL="-j $cpus"
 
 echo "creating makefile" 1>&3
 
-cat - `dirname $0`/makefile.in > makefile << _EOF_
+(sed 's/  */ /g' ; cat `dirname $0`/makefile.in) > makefile << _EOF_
 # --- variables defined by configure ---
 
 SRC = $CONF_SRC

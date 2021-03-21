@@ -1,7 +1,7 @@
 * ODESolve.F
 * ODE solver a la Numerical Recipes
 * this file is part of FeynHiggs
-* last modified 7 Sep 15 th
+* last modified 22 Jan 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -10,10 +10,10 @@ c#define VERBOSE
 c#define WARNINGS
 
 
-	subroutine ODESolve(nvar, f, ystart, x1, x2, eps, h1)
+	subroutine ODESolve(nvar, f, ystart, x1, x2, eps, h1, userarg)
 	implicit none
 	integer nvar
-	external f
+	external f, userarg
 	RealType ystart(*), x1, x2, eps, h1
 
 	RealType safety, pgrow, pshrink, errcon
@@ -56,10 +56,11 @@ c#define WARNINGS
 
 	do step = 1, maxstep
 #ifdef VERBOSE
+	  print *, "nvar =", nvar
 	  print *, "step,stepsize,x ", step, h, x0
-	  print *, "y =", (y0(i), i = 1,nvar)
+	  print *, "y =", y0(1:nvar)
 #endif
-	  call f(x0, y0, dydx(1,1))
+	  call f(dydx(1,1), y0, x0, userarg)
 	  h0 = h
 	  if( (x0 + h - x2)*(x0 + h - x1) .gt. 0 ) h = x2 - x0
 
@@ -67,31 +68,31 @@ c#define WARNINGS
 1	  do i = 1, nvar
 	    y(i) = y0(i) + B21*dydx(i,1)*h
 	  enddo
-	  call f(x0 + A2*h, y, dydx(1,2))
+	  call f(dydx(1,2), y, x0 + A2*h, userarg)
 
 	  do i = 1, nvar
 	    y(i) = y0(i) + (B31*dydx(i,1) + B32*dydx(i,2))*h
 	  enddo
-	  call f(x0 + A3*h, y, dydx(1,3))
+	  call f(dydx(1,3), y, x0 + A3*h, userarg)
 
 	  do i = 1, nvar
 	    y(i) = y0(i) + (B41*dydx(i,1) + B42*dydx(i,2) +
      &                      B43*dydx(i,3))*h
 	  enddo
-	  call f(x0 + A4*h, y, dydx(1,4))
+	  call f(dydx(1,4), y, x0 + A4*h, userarg)
 
 	  do i = 1, nvar
 	    y(i) = y0(i) + (B51*dydx(i,1) + B52*dydx(i,2) +
      &                      B53*dydx(i,3) + B54*dydx(i,4))*h
 	  enddo
-	  call f(x0 + A5*h, y, dydx(1,5))
+	  call f(dydx(1,5), y, x0 + A5*h, userarg)
 
 	  do i = 1, nvar
 	    y(i) = y0(i) + (B61*dydx(i,1) + B62*dydx(i,2) +
      &                      B63*dydx(i,3) + B64*dydx(i,4) +
      &                      B65*dydx(i,5))*h
 	  enddo
-	  call f(x0 + A6*h, y, dydx(1,6))
+	  call f(dydx(1,6), y, x0 + A6*h, userarg)
 
 	  errmax = 0
 	  do i = 1, nvar

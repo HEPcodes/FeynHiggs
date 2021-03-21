@@ -1,6 +1,6 @@
 << FormCalc`
 
-debug = True
+debug = False (*True*)
 
 plotmin = 50;
 plotmax = 600 (*1000*);
@@ -208,7 +208,7 @@ dofit[d_, fitfun_] := fitfun /. FindFit[d, fitfun,
 
 exp[i_IndexIf] := MapIf[exp, i]
 
-fit[tag_][id_ -> file_] :=
+fit[tag_, fac_:1][id_ -> file_] :=
 Block[ {data, func, fitvars, thecat},
 DATA=
   data = get[tag, file];
@@ -224,7 +224,7 @@ FITVARS=
   Cases[ DownValues[thecat], _[_[_[r___]], d_] :> 
     plot[debug, id, func, d, r] ];
 
-  id -> {exp[func] /. 1. -> 1,
+  id -> {MapIf[fac # &, exp[func] /. 1. -> 1],
     Transpose[{fitvars, Min/@ #, Max/@ #}]& @
       Drop[Transpose[data], -1] }
 ]
@@ -236,7 +236,8 @@ cat[{mh_, r___, xs_}] := thecat[r] = {thecat[r], {mh, xs}}
 
 
 plot[True, id_, f_, d_, r___] :=
-Block[ {dd = Level[d, {-2}], rul = Thread[Rest[fitvars] -> {r}], p1, p2},
+Block[ {dd = Level[d, {-2}], rul = Thread[Rest[fitvars] -> {r}],
+p1, p2, enh = 1},
   If[ !FreeQ[f, sqrtm], dd = {#1^2, #2}&@@@ dd ];
   Block[ {$DisplayFunction = Identity},
     p1 = ListPlot[Sort[dd], PlotStyle -> Red];
@@ -266,8 +267,10 @@ Block[ {num, den, d0},
 MkDir["f"];
 MkDir["m"];
 
-$DebugCmd = {"#ifdef DETAILED_DEBUG\n", "#endif\n", "DPROD ", " ENDL"};
-SetOptions[PrepareExpr, DebugLines -> True];
+$DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
+$DebugCmd[1] = "DPROD \"```` =\", `` ENDL\n";
+$DebugPost[1] = "#endif\n";
+SetOptions[PrepareExpr, DebugLines -> 1];
 
 write[file_, fits_] :=
 Block[ {out},
@@ -289,7 +292,7 @@ writefit[out_][id_ -> r_] := (
   WriteExpr[out, id -> r[[1]]]
 )
 
-writefit[out_][other_String] := WriteString[out, other]
+writefit[out_, _][other_String] := WriteString[out, other]
 
 
 rangecheck[lhs_][var_Symbol, lo_, hi_] :=
@@ -348,17 +351,17 @@ nfitsLHC14 := write["NHiggsProdFits-LHC14", fit[LHC[14]]/@ {
   ZhSM[h] -> "zh-lhc14.dat",
   StSth[h] -> "ststh-lhc14.dat" }]
 
-cfitsLHC14 := write["CHiggsProdFits-LHC14", fit[LHC[14]]/@ {
+cfitsLHC14 := write["CHiggsProdFits-LHC14", fit[LHC[14], enh]/@ {
   tHm2 -> "tHm2-lhc14.dat",
   tHm2lo -> "tHm2-lhc14lo.dat",
   tHm2hi -> "tHm2-lhc14hi.dat" } /. tb -> TBeff]
 
-cfitsLHC13 := write["CHiggsProdFits-LHC13", fit[LHC[13]]/@ {
+cfitsLHC13 := write["CHiggsProdFits-LHC13", fit[LHC[13], enh]/@ {
   tHm2 -> "tHm2-lhc13.dat",
   tHm2lo -> "tHm2-lhc13lo.dat",
   tHm2hi -> "tHm2-lhc13hi.dat" } /. tb -> TBeff]
 
-cfitsLHC8 := write["CHiggsProdFits-LHC8", fit[LHC[8]]/@ {
+cfitsLHC8 := write["CHiggsProdFits-LHC8", fit[LHC[8], enh]/@ {
   tHm2 -> "tHm2-lhc8.dat",
   tHm2lo -> "tHm2-lhc8lo.dat",
   tHm2hi -> "tHm2-lhc8hi.dat" } /. tb -> TBeff]

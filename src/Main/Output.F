@@ -1,7 +1,7 @@
 * Output.F
 * run FH functions encoded in key and write output to unit
 * this file is part of FeynHiggs
-* last modified 1 Jun 15 th
+* last modified 25 May 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -174,6 +174,8 @@
 	write(unit,101) "Atau", Af(2,3)
 	write(unit,101) "At", Af(3,3)
 	write(unit,101) "Ab", Af(4,3)
+	write(unit,101) "Xt", Xf(3,3)
+	write(unit,101) "Xb", Xf(4,3)
 
 	write(unit,101) "deltaQLL12", deltaSf_LL(1,2,3)
 	write(unit,101) "deltaQLL23", deltaSf_LL(2,3,3)

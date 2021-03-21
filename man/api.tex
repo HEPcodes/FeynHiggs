@@ -80,7 +80,7 @@
 
 \begin{document}
 
-\chapter*{FeynHiggs 2.11.3\\[2ex] Application Programming Interface}
+\chapter*{FeynHiggs 2.12.0\\[2ex] Application Programming Interface}
 
 \makeatletter
 \begin{multicols}{2}
@@ -102,18 +102,18 @@ before any other FeynHiggs function.
 \begin{verbatim}
 integer error
 integer mssmpart, fieldren, tanbren, higgsmix, p2approx
-integer looplevel, runningMT, botResum, tlCplxApprox
+integer looplevel, loglevel, runningMT, botResum, tlCplxApprox
 
 subroutine FHSetFlags(error,
   mssmpart, fieldren, tanbren, higgsmix, p2approx,
-  looplevel, runningMT, botResum, tlCplxApprox)
+  looplevel, loglevel, runningMT, botResum, tlCplxApprox)
 \end{verbatim}
 
 \MSYNOPSIS
 
 \begin{verbatim}
 FHSetFlags[mssmpart, fieldren, tanbren, higgsmix, p2approx,
-  looplevel, runningMT, botResum, tlCplxApprox]
+  looplevel, loglevel, runningMT, botResum, tlCplxApprox]
 \end{verbatim}
 
 \ARGUMENTS
@@ -174,14 +174,25 @@ determines the approximation for the one-loop result:
   \textit{(recommended)}.
 \end{itemize}
 
-\FLAGIN{integer looplevel}{0}{3}
+\FLAGIN{integer looplevel}{0}{2}
 determines the inclusion of higher-order corrections:
 \begin{itemize}
 \item[0:] tree level,
 \item[1:] one-loop contributions only,
-\item[2:] also include various two-loop contributions
+\item[2:] include various two-loop contributions
+  \textit{(recommended)}.
+\end{itemize}
+
+\FLAGIN{integer loglevel}{0}{3}
+determines the inclusion of log resummations:
+\begin{itemize}
+\item[0:] no log resummation,
+\item[1:] NLL resummation (for large $M_{\text{SUSY}}$),
+\item[2:] NLL resummation (for large $M_{\tilde\chi^{0,\pm}}$,
+  $M_{\tilde g}$, $M_{\text{SUSY}}$)
   \textit{(recommended)},
-\item[3:] also include resummation of large logs.
+\item[3:] NNLL resummation (for large $M_{\tilde\chi^{0,\pm}}$,
+  $M_{\tilde g}$, $M_{\text{SUSY}}$).
 \end{itemize}
 
 \FLAGIN{integer runningMT}{0}{3}
@@ -230,14 +241,14 @@ complex parameters (cMSSM):
 \DESCRIPTION
 
 \CODE{FHSetFlagsString} sets the flags for FeynHiggs.  It works just like
-\CODE{FHSetFlags} except that it takes a 9-character string as argument
-rather than 9 integers.
+\CODE{FHSetFlags} except that it takes a 10-character string as argument
+rather than 10 integers.
 
 \FSYNOPSIS
 
 \begin{verbatim}
 integer error
-character*9 flags
+character*10 flags
 
 subroutine FHSetFlagsString(error, flags)
 \end{verbatim}
@@ -254,7 +265,7 @@ FHSetFlagsString[flags]
 zero if successful, otherwise the line number in \CODE{SetFlags.F} 
 from which the error message was emitted.
 
-\VARIN{character*9 flags}
+\VARIN{character*10 flags}
 the flags in the same order and with the same values as in
 \CODE{FHSetFlags}.
 
@@ -273,11 +284,11 @@ the flags in the same order and with the same values as in
 \begin{verbatim}
 integer error
 integer mssmpart, fieldren, tanbren, higgsmix, p2approx
-integer looplevel, runningMT, botResum, tlCplxApprox
+integer looplevel, loglevel, runningMT, botResum, tlCplxApprox
 
 subroutine FHRetrieveFlags(error,
   mssmpart, fieldren, tanbren, higgsmix, p2approx,
-  looplevel, runningMT, botResum, tlCplxApprox)
+  looplevel, loglevel, runningMT, botResum, tlCplxApprox)
 \end{verbatim}
 
 \MSYNOPSIS
@@ -351,6 +362,17 @@ determines the inclusion of higher-order corrections:
 \item[2:] include various two-loop contributions.
 \end{itemize}
 
+\FLAGOUT{integer loglevel}{0}{3}
+determines the inclusion of log resummations:
+\begin{itemize}
+\item[0:] no log resummation,
+\item[1:] NLL resummation (for large $M_{\text{SUSY}}$),
+\item[2:] NLL resummation (for large $M_{\tilde\chi^{0,\pm}}$,
+  $M_{\tilde g}$, $M_{\text{SUSY}}$),
+\item[3:] NNLL resummation (for large $M_{\tilde\chi^{0,\pm}}$,
+  $M_{\tilde g}$, $M_{\text{SUSY}}$).
+\end{itemize}
+
 \FLAGOUT{integer runningMT}{0}{1}
 determines which top mass shall be used in the 1-/2-loop corrections
 \begin{itemize}
@@ -396,13 +418,13 @@ complex parameters (cMSSM):
 
 \CODE{FHRetrieveFlagsString} retrieves the flags from FeynHiggs.  It 
 works just like \CODE{FHRetrieveFlags} except that it takes a 
-9-character string as argument rather than 9 integers.
+10-character string as argument rather than 10 integers.
 
 \FSYNOPSIS
 
 \begin{verbatim}
 integer error
-character*9 flags
+character*10 flags
 
 subroutine FHRetrieveFlagsString(error, flags)
 \end{verbatim}
@@ -419,7 +441,7 @@ FHRetrieveFlagsString[]
 zero if successful, otherwise the line number in \CODE{RetrieveFlags.F} 
 from which the error message was emitted.
 
-\VAROUT{character*9 flags}
+\VAROUT{character*10 flags}
 the flags in the same order and with the same values as in
 \CODE{FHRetrieveFlags}.
 

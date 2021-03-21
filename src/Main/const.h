@@ -1,20 +1,21 @@
 * const.h
 * some constants
 * this file is part of FeynHiggs
-* last modified 29 Jan 14 th
+* last modified 23 Jun 16 th
 
 
-	RealType pi, degree, sqrt2, hbar_c2, GeV_cm, bogus
+	RealType pi, degree, sqrt2, sqrt3, log2
 	parameter (pi = 3.1415926535897932384626433832795029D0)
 	parameter (degree = pi/180D0)
 	parameter (sqrt2 = 1.41421356237309504880168872421D0)
+	parameter (sqrt3 = 1.73205080756887729352744634151D0)
+	parameter (log2 = .693147180559945309417232121458D0)
 
+	RealType hbar_c2, GeV_cm, bogus
 	parameter (hbar_c2 = 3.8937966D8)
 *	  = hbar c^2 in picobarn
-
 	parameter (GeV_cm = 1.98D-14)
 *	  = GeV^-1 in cm
-
 	parameter (bogus = -1D123)
 *	  some weird number likely to noticeably distort the final result;
 *	  used for initializing arrays to check that all components
@@ -23,8 +24,17 @@
 	ComplexType cI
 	parameter (cI = (0D0, 1D0))
 
+	RealType k1L, k2L, k3L
+	parameter (k1L = 1/(16*pi**2), k2L = k1L**2, k3L = k1L**3)
+
 	RealType Qe, Qu, Qd
 	parameter (Qe = -1, Qu = 2/3D0, Qd = -1/3D0)
+
+	RealType g3MT, g3MT2, gMT, gMT2, gyMT, gyMT2
+* numbers from Buttazzo et al.
+	parameter (g3MT = 1.1666D0, g3MT2 = g3MT**2)
+	parameter (gMT = .64779D0, gMT2 = gMT**2)
+	parameter (gyMT = .35830D0, gyMT2 = gyMT**2)
 
 	RealType Alfa0, DeltaAlfaLept, DeltaAlfaHad5, DeltaAlfa
 	parameter (Alfa0 = 1/137.0359895D0)

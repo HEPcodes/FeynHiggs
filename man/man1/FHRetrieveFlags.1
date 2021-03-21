@@ -1,4 +1,4 @@
-.TH FHRETRIEVEFLAGS 1 "17-Dec-2015"
+.TH FHRETRIEVEFLAGS 1 "1-Feb-2016"
 .SH NAME
 .PP
 FHRetrieveFlags \- retrieve the FeynHiggs flags
@@ -8,13 +8,13 @@ integer error
 .br
 integer mssmpart, fieldren, tanbren, higgsmix, p2approx
 .br
-integer looplevel, runningMT, botResum, tlCplxApprox
+integer looplevel, loglevel, runningMT, botResum, tlCplxApprox
 .sp
 subroutine FHRetrieveFlags(error,
 .br
   mssmpart, fieldren, tanbren, higgsmix, p2approx,
 .br
-  looplevel, runningMT, botResum, tlCplxApprox)
+  looplevel, loglevel, runningMT, botResum, tlCplxApprox)
 .SH SYNOPSIS (Mathematica version)
 .PP
 FHRetrieveFlags[]
@@ -99,6 +99,17 @@ determines the inclusion of higher-order corrections:
 .br
 2: include various two-loop contributions
 .TP
+.B loglevel = 0..3 (output)
+determines the inclusion of log resummations:
+.br
+0: no log resummation
+.br
+1: NLL resummation (for large MSUSY)
+.br
+2: NLL resummation (for large MCha,MNeu,MGlu,MSUSY)
+.br
+3: NNLL resummation (for large MCha,MNeu,MGlu,MSUSY)
+.TP
 .B runningMT = 0..3 (input)
 determines which top mass shall be used in the 1-/2-loop corrections:
 .br
@@ -109,8 +120,6 @@ determines which top mass shall be used in the 1-/2-loop corrections:
 2: running MT (SM MSbar 1L)
 .br
 3: running MT (MSSM DRbar)
-.br
-.B recommended: 1
 .TP
 .B botResum = 0..1 (output)
 determines whether the O(tan beta^n) corrections shall be resummed:

@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 8 Jun 15 th
+* last modified 23 Jun 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -19,7 +19,7 @@
 #include "TLps.h"
 #define __SUBROUTINE__ "CalcRenSETL"
 
-	RealType dMT(0:1), dPhi22
+	RealType dMT(0:1), dPhi22, alfat
 	RealType dPhi(se2Rn,se2Rc,MaxSlots)
 	integer i, fail, tlx
 
@@ -86,7 +86,8 @@
 	  dMT(i) = 4/(3*pi)*Alfas2L*Mf(tM2,3)
 	  i = ibits(tlx, atat, 1)
 	  tlx = ior(tlx, ishft(i, dMTH))
-	  dMT(i) = dMT(i) - 1/(2*pi)*AlfatSMMT*Mf(tM2,3)
+	  alfat = 1/(4*pi)*2*Mf2(tT,3)/vev**2
+	  dMT(i) = dMT(i) - 1/(2*pi)*alfat*Mf(tM2,3)
 	endif
 	tlx = ior(tlx, iand(2 - looplevel, ibset(0, dMTH)))
 
@@ -144,8 +145,12 @@
      &        dMT(1), MUEc, Xtc, 3)
 	  endif
 
-	  if( looplevel .ge. 3 ) then 
-	    call Resum4H(dPhi22)
+	  if( loglevel .gt. 0 ) then 
+	    if( loglevel .eq. 1 ) then
+	      call Resum4Ha(dPhi22, Xtc)
+	    else
+	      call Resum4Hb(dPhi22, Xtc, MUEc)
+	    endif
 	    dPhi(se22,dMTH,vs) = dPhi(se22,dMTH,vs) - dPhi22
 	  endif
 

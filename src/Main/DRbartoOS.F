@@ -1,6 +1,6 @@
 * DRbartoOS.F
 * this file is part of FeynHiggs
-* last modified 11 May 15 th
+* last modified 19 Apr 16 th
 
 * Code by Pietro Slavich
 * 10/04/2013: different Ab conversion according to hep-ph/0206101
@@ -247,8 +247,8 @@ c	do try = 1, 20
 1	continue
 
 * From X = USf^+ diag(MSf) USf we get
-*   DSS2 = X11 - X22
-*   DSS2 = X22 - Mf^2
+*   DSS2_1 = X11 - X22
+*   DSS2_2 = X22 - Mf^2
 *   Xf = Conjugate(X12)/Mf
 
 	ctt = sqrt((1 - stt)*(1 + stt))

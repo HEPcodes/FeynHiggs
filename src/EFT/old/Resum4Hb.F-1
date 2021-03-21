@@ -1,11 +1,11 @@
-* Resum4H.F
+* Resum4Hb.F
 * resums the 4H coupling taking into account four scales:
 *   low scale = MT
 *   medium scale 1 = MCha
 *   medium scale 2 = MGlu
 *   high scale = MSUSY
 * this file is part of FeynHiggs
-* last modified 14 Sep 15 th
+* last modified 29 Jan 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -13,45 +13,77 @@
 
 * Main function calculating the correction to Mh due to resummation
 
-	subroutine Resum4H(dPhi22)
+	subroutine Resum4Hb(dPhi22, rMUE, XtOS)
 	implicit none
-	RealType dPhi22
+	RealType dPhi22, rMUE, XtOS
 
-#include "Resum4H.h"
+#include "Resum4Hb.h"
+#define __SUBROUTINE__ "Resum4Hb"
 
 	integer fail
 	RealType x(nSM:nSplit)
-	RealType MTy2, MSUSY2, gMT2, gyMT2, htMT2
+	RealType MSUSYOS2, MSUSYOS, MSUSYMS, htMT2, llog
+	RealType mueOS, mueMS, mueMS2
+	RealType YtOS, XtMS, xOS, xMS
 	RealType g1uC, g1dC, g1udC, g2uC, g2dC, g2udC, htC, lC
 	RealType subnonlog, sublog2L, sublog1L
 	external threshdiff
 
-	RealType z, Mh2al
+	RealType ggyMT2
+	parameter (ggyMT2 = 1/24D0*gMT2*gyMT2*
+     &    (gyMT2 - 25*gMT2)/(gMT2 + gyMT2)**2)
 
-	htMT = .955693D0
-	g3MT = 1.1666D0
-	gMT  = .6482D0
-	gyMT = .3576D0
-
-	gMT2 = gMT**2
-	gyMT2 = gyMT**2
 	htMT2 = htMT**2
 
-	MTy2 = Mf2(tT,3)
 	tTop = log(MTy2)
 	tCha = log(MCha(1)*MCha(2))
 	tGlu = log(MGl2)
-	MSUSY2 = MSf(1,3,3)*MSf(2,3,3)
-	tSUSY = log(MSUSY2)
+	MSUSYOS2 = MSf(1,3,3)*MSf(2,3,3)
+	MSUSYOS = sqrt(MSUSYOS2)
+	tSUSY = log(MSUSYOS2)
+	if( tCha .gt. tSUSY ) then
+	  Warning("Resum4H: MCha > MSUSY, setting MCha = MSUSY")
+	  tCha = tSUSY
+	endif
+	if( MA02 .lt. 1D-4*MSUSYOS2 ) Warning("Resum4H: MA << MSUSY")
+	if( MSUSYOS2 .lt. 1D-4*MA02 ) Warning("Resum4H: MSUSY << MA")
 
-#define XtOS Re(Xtc)
-	xOS = XtOS**2/MSUSY2
-	xMS = xOS*(1 + cL*( 4*g3MT**2 +
-     &    1/6D0*(26*CW2 - 1)*SW2*MW2/vev**2 +
-     &    .75D0*htMT2*(xOS - 1) )*(tSUSY - tTop))**2
+	xOS = XtOS/MSUSYOS
+	mueOS = rMUE/MSUSYOS
+	yOS = xOS + mueOS*(1/TB + TB)
+	llog = tSUSY - tTop
+
+	if( looplevel .eq. 4 ) then
+	  xMS = xOS*(1 + cL*(4*g3MT2 -
+     &      llog*(ggyMT2 + .75D0*htMT2*(1 - xOS)*(1 + xOS))))
+	  mueMS = mueOS
+	else
+	  call rgeloopfun(lf, mueOS)
+	  if( abs(xOS) .gt. 1 ) then
+	    xMS = 4/3D0*g3MT2*(8 + (5 + 3*llog - xOS)*xOS) -
+     &        ggyMT2*llog*xOS -
+     &        1/24D0*htMT2/SB2*(
+     &          (18*(2*lf(4) - mueOS**2*lf(2) - 3) +
+     &            (18*llog - 105)*SB2)*xOS -
+     &          24*(6 - pi*sqrt3)*CB2*yOS +
+     &          4*xOS*(
+     &            (6*log2 + 9*log(abs(XtOS)*MTy/MSUSYOS2))*SB2*xOS**2 +
+     &            (9 - 2*pi*sqrt3)*CB2*yOS**2 )
+     &        )
+	  else
+	    xMS = 32/3D0*g3MT2 + (6 - pi*sqrt3)*htMT2*yOS/TB2
+	  endif
+	  msMS = (1 + cL*(-16/3D0*g3MT2 +
+     &      .75D0*htMT2*(lf(5) + CB2 +
+     &        (2*SB2*xOS**2 - (pi/sqrt2 - 2)*CB2*yOS**2))/SB2))
+	  xMS = (xOS + cL*xMS)/msMS
+	  mueMS = mueOS/msMS
+	endif
+	xMS = XtMS/MSUSYMS
+	xMS2 = xMS**2
 
 * initial values from tree-level relations
-	x(ilam) = .25D0
+	x(ilam) = .15D0
 	x(ig1u) = gyMT*SB
 	x(ig1d) = gyMT*CB
 	x(ig2u) = gMT*SB
@@ -63,7 +95,7 @@
 #include "FOSubtract.h"
 
 * calc Mh^RGE, combine with subtraction terms
-	dPhi22 = vev**2*x(ilam) - subnonlog - sublog2L - sublog1L
+	dPhi22 = (vev**2*x(ilam) - subnonlog - sublog2L - sublog1L)/SB2
 
 	if( debuglevel .gt. 4 ) then
 	  DHIGGS "final values:"
@@ -73,22 +105,6 @@
 	  DHIGGS "sublog1L  =", sublog1L	ENDL
 	  DHIGGS "dPhi22    =", dPhi22		ENDL
 	endif
-
-	z = MT2/MSUSY2
-	PRINT *, "XtOS=", XtOS
-	PRINT *, "xOS=", xOS
-	PRINT *, "MSUSY=", sqrt(MSUSY2)
-	PRINT *, "z=", z
-	Mh2al = 1.5D0*sqrt2/Pi**2*GF*MT2**2 * (
-     &    -log(z) +
-     &    xOS*(1 - xOS/12D0 - z*(.5D0 - xOS/3D0 + .25D0*z*xOS)) )
-	PRINT *, "Mh2al=", Mh2al
-	PRINT *, "Mh=", sqrt(Mh02 + Mh2al)
-	Mh2al = 1.5D0*sqrt2/Pi**2*GF*MT2**2 * (
-     &    -log(z) +
-     &    xOS*(1 - xOS/12D0 - 0*z*(.5D0 - xOS/3D0 + .25D0*z*xOS)) )
-	PRINT *, "Mh2al=", Mh2al
-	PRINT *, "Mh=", sqrt(Mh02 + Mh2al)
 	end
 
 
@@ -106,7 +122,7 @@
 	integer n
 	RealType x(nSM:nSplit), dx(nSM:nSplit), dxmin
 
-#include "Resum4H.h"
+#include "Resum4Hb.h"
 
 	RealType y(nSplit)
 	RealType yg1ud, yg2ud, y13
@@ -124,7 +140,8 @@
 	y(ilam) = x(ilam)
 
 * run from Q = MT to Q = MCha with SM RGEs
-	call ODESolve(nSM, betaSM2L, y, tTop, tCha, odeeps, odeh1)
+	call ODESolve(nSM, betaSM2L, y,
+     &    tTop, tCha, odeeps, odeh1, 0)
 
 	y(ig1d) = x(ig1d)
 	y(ig1u) = x(ig1u)
@@ -147,7 +164,8 @@
      &  ))/(1 + cL/3D0*y13)
 
 * run from Q = MCha to Q = MSUSY with Split RGEs
-	call ODESolve(nSplit, betaSplit2L, y, tCha, tSUSY, odeeps, odeh1)
+	call ODESolve(nSplit, betaSplit2L, y,
+     &    tCha, tSUSY, odeeps, odeh1, 0)
 
 * threshold conditions @ MSUSY
 	yCB2 = 1/(1 + y(itb)**2)
@@ -160,8 +178,30 @@
 	dx(ilam) = y(ilam) - .25D0*(yggy*yTB1**2 - cL*(
      &    2/3D0*y(ig)**4*(3 - yTB1**2) +
      &    yggy**2*(1 + 12*yCB2**2*y(itb)**2*yTB1**2) +
-     &    y(iht)**2*xMS*(2*y(iht)**2*(xMS - 12) +
+     &    y(iht)**2*xMS2*(2*y(iht)**2*(xMS2 - 12) +
      &      yggy*yTB1*(yTB1 - 3))))
+	if( looplevel .gt. 3 ) then
+	  call rgeloopfun(lf, mueMS)
+<<<
+	dx(ilam) = dx(ilam) - 8/3D0*cL**2*y(iht)**4*y(ig3)**2*
+     &    xMS*(-12-6*xMS+14*xMS2+.5D0*xMS**3-xMS2**2) -
+     &    (3*cL**2*(0.5D0 + 6*mueMS2 - (13*yCB2)/2D0 + yCB2*pi**2 
+     &    + 60*Kfac*yCB2 - 4*(3 + 16*Kfac)*xMS*yCB*(xMS*yCB 
+     &    + mueMS/ySB) + 4*(1 + 4*Kfac)*xMS**3*yCB*(xMS*yCB 
+     &    + mueMS/ySB)  
+     &    - (3 + 16*Kfac)*(xMS*yCB + mueMS/ySB)**2 
+     &    - (xMS2**3*ySB2)/2D0 
+     &    - 8*lfr1 - 2*mueMS2*lfr1 + 3*mueMS2*lfr2  
+     &    + xMS2*(-7 - 6*mueMS2 + 15*yCB2 - 24*Kfac*yCB2 + (2*(7 + 
+     &    36*Kfac)
+     &    * (xMS*yCB + mueMS/ySB)**2)/3D0 + 4*lfr1 - 6*mueMS2*lfr1 
+     &    - 4*lfr2 
+     &    - 6*mueMS2*lfr2) + (xMS2**2*(22 + 4*mueMS2 - 25*yCB2 - ((19 
+     &    + 96*Kfac)
+     &    * (xMS*yCB + mueMS/ySB)**2)/3D0 - 2*lfr1 + 4*mueMS2*lfr1 
+     &    + 2*lfr2 
+     &    + 2*mueMS2*lfr2))/4D0 + 4*lfr3)*y(iht)**6)/ySB2
+	endif
 	dx2 = dx(ilam)**2
 
 	dx(ig1d) = y(ig1d) - y(igy)*yCB*(1 + cL*
