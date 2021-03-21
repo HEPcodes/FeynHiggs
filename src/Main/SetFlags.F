@@ -279,6 +279,12 @@ c	  call setfpu
 	print *, "env FHHTMT3L ", htMT3L
 200	continue
 
+	thdmeft = -1
+	call getenv("FHTHDMEFT", env)
+	read(env, *, end=210, err=210) thdmeft
+	print *, "env FHTHDMEFT ", thdmeft
+210	continue
+
 	call getenv("FHHIMEXC", HimExe)
 	if( HimExe(1:1) .ne. ' ' )
      &    print *, "env FHHIMEXC ", HimExe(1:len_trim(HimExe))

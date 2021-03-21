@@ -183,7 +183,7 @@ GNU,Fortran,*)
   test "${3%%.*}" -ge 10 && extra="-fallow-argument-mismatch"
   eval setflags FFLAGS "\
 ${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-Wall -Wno-unused-dummy-argument -Wno-tabs -Wno-integer-division -Wno-real-q-constant -ffpe-trap=invalid,overflow,zero}} \
-$CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none \
+$CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none -std=legacy \
 ${CONF_QUAD:+-freal-8-real-$CONF_QUADSIZE} $extra \
 ${CONF_STATIC:-$CONF_STATIC_GFORTRAN} ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc} \
 $CONF_LDFLAGS"

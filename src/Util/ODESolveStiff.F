@@ -18,7 +18,7 @@ c#define VERBOSE
 	RealType ystart(nvar), x1, x2, eps, h1
 
 	integer nvarmax, maxstep, maxtry
-	parameter (nvarmax = 22, maxstep = 1000, maxtry = 4)
+	parameter (nvarmax = 27, maxstep = 1000, maxtry = 4)
 
 	RealType hnext, yscal(nvarmax),
      &    safety, grow, pgrow, shrnk, pshrnk, errcon, gam

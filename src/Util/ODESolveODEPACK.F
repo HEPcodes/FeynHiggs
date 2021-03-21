@@ -15,7 +15,7 @@ c#define VERBOSE
 	external jacdum
 
 	integer nvarmax, itol, itask, istate, iopt, lrw, liw, jt
-	parameter ( nvarmax = 22 )
+	parameter ( nvarmax = 27 )
 	parameter ( lrw = 22 + nvarmax*max(16, nvarmax + 9),
      &              liw = 20 + nvarmax )
 

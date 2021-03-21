@@ -19,116 +19,8 @@
 
 	Mh0tree2 = MZ2*C2B**2
 
-	dmz2 = 1/(48.D0*MW2*MZ2*Pi*SW2)*
-     &    (AlfaGF*(6*(MW2*(12*MW2 - 4*MZ2) + MZ2**2)*
-     &         Re(A0q(MW2,Mf2(tM2,3))) -
-     &        12*MW2*(9*MW2 - 2*MZ2)*MZ2*
-     &         Re(B0q(MZ2,MW2,MW2,Mf2(tM2,3))) +
-     &        3*MZ2**2*(Re(A0q(Mh0tree2,Mf2(tM2,3))) +
-     &           Re(A0q(MZ2,Mf2(tM2,3))) -
-     &           2*(ME2*Re(B0q(MZ2,ME2,ME2,Mf2(tM2,3))) +
-     &              3*(MC2*Re(B0q(MZ2,MC2,MC2,Mf2(tM2,3))) +
-     &                 MD2*Re(B0q(MZ2,MD2,MD2,Mf2(tM2,3))) +
-     &                 Mf2(bM,3)*
-     &                  Re(B0q(MZ2,Mf2(bM,3),Mf2(bM,3),Mf2(tM2,3)))
-     &                 ))) -
-     &        2*(MZ2*(3*(MW2*(8*MW2 - 12*MZ2) + 5*MZ2**2)*
-     &               (Re(B1q(MZ2,ME2,ME2,Mf2(tM2,3))) +
-     &                 Re(B1q(MZ2,ML2,ML2,Mf2(tM2,3))) +
-     &                 Re(B1q(MZ2,MM2,MM2,Mf2(tM2,3)))) +
-     &              MW2**2*
-     &               (4 + 12*Re(B1q(MZ2,MW2,MW2,Mf2(tM2,3)))) +
-     &              (MW2*(8*MW2 - 4*MZ2) + 5*MZ2**2)*
-     &               (Re(B1q(MZ2,MD2,MD2,Mf2(tM2,3))) +
-     &                 Re(B1q(MZ2,MS2,MS2,Mf2(tM2,3))) +
-     &                 Re(B1q(MZ2,Mf2(bM,3),Mf2(bM,3),Mf2(tM2,3))))
-     &                + (MW2*(32*MW2 - 40*MZ2) + 17*MZ2**2)*
-     &               (Re(B1q(MZ2,MC2,MC2,Mf2(tM2,3))) +
-     &                 Re(B1q(MZ2,MU2,MU2,Mf2(tM2,3))) +
-     &                 Re(B1q(MZ2,Mf2(tM2,3),Mf2(tM2,3),
-     &                   Mf2(tM2,3))))) +
-     &           (MW2*(8*MW2 - 4*MZ2) + 5*MZ2**2)*
-     &            (Re(A0q(MD2,Mf2(tM2,3))) +
-     &              Re(A0q(MS2,Mf2(tM2,3))) +
-     &              Re(A0q(Mf2(bM,3),Mf2(tM2,3)))) +
-     &           (MW2*(32*MW2 - 40*MZ2) + 17*MZ2**2)*
-     &            (Re(A0q(MC2,Mf2(tM2,3))) +
-     &              Re(A0q(MU2,Mf2(tM2,3))) +
-     &              Re(A0q(Mf2(tM2,3),Mf2(tM2,3)))) +
-     &           6*(MW2*(12*MW2 - 4*MZ2) + MZ2**2)*
-     &            Re(B00q(MZ2,MW2,MW2,Mf2(tM2,3))) -
-     &           2*((MW2*(8*MW2 - 4*MZ2) + 5*MZ2**2)*
-     &               (Re(B00q(MZ2,MD2,MD2,Mf2(tM2,3))) +
-     &                 Re(B00q(MZ2,MS2,MS2,Mf2(tM2,3))) +
-     &                 Re(B00q(MZ2,Mf2(bM,3),Mf2(bM,3),Mf2(tM2,3)))
-     &                 ) +
-     &              (MW2*(32*MW2 - 40*MZ2) + 17*MZ2**2)*
-     &               (Re(B00q(MZ2,MC2,MC2,Mf2(tM2,3))) +
-     &                 Re(B00q(MZ2,MU2,MU2,Mf2(tM2,3))) +
-     &                 Re(B00q(MZ2,Mf2(tM2,3),Mf2(tM2,3),
-     &                   Mf2(tM2,3))))) -
-     &           6*(MZ2**2*
-     &               (3*Re(B00q(MZ2,0D0,0D0,Mf2(tM2,3))) -
-     &                 Re(B00q(MZ2,Mh0tree2,MZ2,Mf2(tM2,3)))) +
-     &              MZ2**3*Re(B0q(MZ2,Mh0tree2,MZ2,Mf2(tM2,3)))) +
-     &           3*((MW2*(8*MW2 - 12*MZ2) + 5*MZ2**2)*
-     &               (Re(A0q(ME2,Mf2(tM2,3))) +
-     &                 Re(A0q(ML2,Mf2(tM2,3))) +
-     &                 Re(A0q(MM2,Mf2(tM2,3))) -
-     &                 2*(Re(B00q(MZ2,ME2,ME2,Mf2(tM2,3))) +
-     &                    Re(B00q(MZ2,ML2,ML2,Mf2(tM2,3))) +
-     &                    Re(B00q(MZ2,MM2,MM2,Mf2(tM2,3))))) +
-     &              MZ2**2*
-     &               (ML2*Re(B0q(MZ2,ML2,ML2,Mf2(tM2,3))) +
-     &                 MM2*Re(B0q(MZ2,MM2,MM2,Mf2(tM2,3))) +
-     &                 3*(MS2*Re(B0q(MZ2,MS2,MS2,Mf2(tM2,3))) +
-     &                    MU2*Re(B0q(MZ2,MU2,MU2,Mf2(tM2,3))) +
-     &                    Mf2(tM2,3)*
-     &                     Re(B0q(MZ2,Mf2(tM2,3),Mf2(tM2,3),
-     &                       Mf2(tM2,3)))))) +
-     &           9*MZ2**3*Re(B1q(MZ2,0D0,0D0,Mf2(tM2,3))))))
-
-	dmw2 = -(1/(48.D0*MZ2*Pi*SW2)*
-     &      (AlfaGF*(-3*(MZ2*Re(A0q(Mh0tree2,Mf2(tM2,3))) +
-     &             (12*MW2 + MZ2)*Re(A0q(MZ2,Mf2(tM2,3)))) +
-     &          12*((8*MW2 + MZ2)*
-     &              Re(B00q(MW2,MW2,MZ2,Mf2(tM2,3))) +
-     &             MZ2*(Re(A0q(ME2,Mf2(tM2,3))) +
-     &                Re(A0q(ML2,Mf2(tM2,3))) +
-     &                Re(A0q(MM2,Mf2(tM2,3))) +
-     &                Re(B00q(MW2,Mh0tree2,MW2,Mf2(tM2,3))) -
-     &                6*(Re(B00q(MW2,MC2,MS2,Mf2(tM2,3))) +
-     &                   Re(B00q(MW2,MD2,MU2,Mf2(tM2,3))) +
-     &                   Re(B00q(MW2,Mf2(bM,3),Mf2(tM2,3),
-     &                     Mf2(tM2,3))))) +
-     &             (-MZ2**2 + MW2*(2*MW2 + 4*MZ2))*
-     &              Re(B0q(MW2,MW2,MZ2,Mf2(tM2,3)))) +
-     &          MZ2*(96*SW2*Re(B00q(MW2,0D0,MW2,Mf2(tM2,3))) +
-     &             MW2*(8 +
-     &                SW2*(48*Re(B0q(MW2,0D0,MW2,Mf2(tM2,3))) +
-     &                   24*Re(B1q(MW2,0D0,MW2,Mf2(tM2,3)))) -
-     &                12*Re(B0q(MW2,Mh0tree2,MW2,Mf2(tM2,3))) +
-     &                12*(Re(B1q(MW2,0D0,ME2,Mf2(tM2,3))) +
-     &                   Re(B1q(MW2,0D0,ML2,Mf2(tM2,3))) +
-     &                   Re(B1q(MW2,0D0,MM2,Mf2(tM2,3))))) -
-     &             18*Re(A0q(MW2,Mf2(tM2,3))) -
-     &             24*(Re(B00q(MW2,0D0,ME2,Mf2(tM2,3))) +
-     &                Re(B00q(MW2,0D0,ML2,Mf2(tM2,3))) +
-     &                Re(B00q(MW2,0D0,MM2,Mf2(tM2,3)))) +
-     &             36*(MC2*Re(B0q(MW2,MC2,MS2,Mf2(tM2,3))) +
-     &                (MU2 - MW2)*
-     &                 Re(B0q(MW2,MD2,MU2,Mf2(tM2,3))) +
-     &                MW2*(Re(B1q(MW2,MC2,MS2,Mf2(tM2,3))) -
-     &                   Re(B1q(MW2,MD2,MU2,Mf2(tM2,3))) -
-     &                   Re(B1q(MW2,Mf2(bM,3),Mf2(tM2,3),
-     &                     Mf2(tM2,3)))) +
-     &                Re(A0q(MD2,Mf2(tM2,3))) +
-     &                Re(A0q(MS2,Mf2(tM2,3))) +
-     &                Re(A0q(Mf2(bM,3),Mf2(tM2,3))) -
-     &                (MW2 - Mf2(tM2,3))*
-     &                 Re(B0q(MW2,Mf2(bM,3),Mf2(tM2,3),Mf2(tM2,3)))
-     &                )) -
-     &          24*MW2**2*Re(B1q(MW2,MW2,MZ2,Mf2(tM2,3))))))
+#include "dmz2.h"
+#include "dmw2.h"
 
 	gOS2 = 4*MW2/vev2
 	gOS = sqrt(gOS2)
@@ -139,8 +31,8 @@
 
 * tree-level + sfermion + DRbar<->MSbar + tree-level MSbar<->OS  contribution
 	l1OL = 1/4.D0*(gOS2 + gyOS2) +
-     &    k1L*(1/2.D0*(mueMS2*(gOS2 + gyOS2)*htOS2) -
-     &       1/2.D0*(mueMS**4*htOS**4)) -
+     &    k1L*(1/2.D0*(mueDR2*(gOS2 + gyOS2)*htOS2) -
+     &       1/2.D0*(mueDR**4*htOS**4)) -
      &    k1L/12D0*(7*gOS**4+6*gOS2*gyOS2+3*gyOS**4)
      &    + dmz2/vev2
 	l2OL = 1/4.D0*(gOS2 + gyOS2) -
@@ -149,23 +41,23 @@
      &    k1L/12D0*(7*gOS**4+6*gOS2*gyOS2+3*gyOS**4)
      &    + dmz2/vev2
 	l3OL = 1/4.D0*gOS2 - 1/4.D0*gyOS2 +
-     &    k1L*(htOS2*(mueMS2*(1/4.D0*gOS2 - 1/4.D0*gyOS2) -
+     &    k1L*(htOS2*(mueDR2*(1/4.D0*gOS2 - 1/4.D0*gyOS2) -
      &          atOS2*(1/2.D0*gOS2 - 1/2.D0*gyOS2)) +
-     &       1/2.D0*((3 - atOS2)*mueMS2*htOS**4)) -
+     &       1/2.D0*((3 - atOS2)*mueDR2*htOS**4)) -
      &    k1L/12D0*(7*gOS**4-6*gOS2*gyOS2+3*gyOS**4)
-     &    + (2*dmw2 - dmz2)/vev**2
+     &    + (2*dmw2 - dmz2)/vev2
 	l4OL = -(1/2.D0*gOS2) -
-     &    k1L*(mueMS2*(1/2.D0*(gOS2*htOS2) - 3/2.D0*htOS**4) -
-     &       atOS2*(gOS2*htOS2 - 1/2.D0*(mueMS2*htOS**4)))-
+     &    k1L*(mueDR2*(1/2.D0*(gOS2*htOS2) - 3/2.D0*htOS**4) -
+     &       atOS2*(gOS2*htOS2 - 1/2.D0*(mueDR2*htOS**4)))-
      &    k1L/3D0*gOS2*(gOS2+3*gyOS2)
-     &    - 2*dmw2/vev**2
-	l5OL = -(1/2.D0*(atOS2*k1L*mueMS2*htOS**4))
-	l6OL = -(atOS*k1L*mueMS*
-     &      (3/8.D0*((gOS2 + gyOS2)*htOS2) - 1/2.D0*(mueMS**2*htOS**4)))
-	l7OL = atOS*k1L*mueMS*
+     &    - 2*dmw2/vev2
+	l5OL = -(1/2.D0*(atOS2*k1L*mueDR2*htOS**4))
+	l6OL = -(atOS*k1L*mueDR*
+     &      (3/8.D0*((gOS2 + gyOS2)*htOS2) - 1/2.D0*(mueDR**2*htOS**4)))
+	l7OL = atOS*k1L*mueDR*
      &    (3/8.D0*((gOS2 + gyOS2)*htOS2) - (3 - 1/2.D0*atOS2)*htOS**4)
 
-	if ( tA0 .le. tCha) then
+	if ( tMHin .le. tCha) then
 
 * EWino contribution
 	l1OL = l1OL - 1/6D0*k1L*(12*gOS**4 + 5*gOS2*gyOS2 + 3*gyOS**4)
@@ -182,7 +74,7 @@
 * heavy Higgs contribution
      &        - 3/4.D0*k1L*C2B**2*(gOS2 + gyOS2)**2*S2B**2
 
-* tA0 .gt. tCha
+* tMHin .gt. tCha
 	else
 
 	lOL = l1OL*CB**4 + l2OL*SB**4
@@ -198,43 +90,58 @@
 
 	endif
 
-	se11nonlog = MA02*SB2 +
+	se11nonlog = MHin2*SB2 +
      &    vev2*(l1OL*CB2 + 2*l6OL*CB*SB + l5OL*SB2)
-	se12nonlog = -MA02*SB*CB +
+	se12nonlog = -MHin2*SB*CB +
      &    vev2*((l3OL + l4OL)*CB*SB + l6OL*CB2 + l7OL*SB2)
-	se22nonlog = MA02*CB2 +
+	se22nonlog = MHin2*CB2 +
      &    vev2*(l2OL*SB2 + 2*l7OL*CB*SB + l5OL*CB2)
 
-	seHmHpnonlog = 0.5D0*vev2*(l5OL - l4OL)
+	seHmHpnonlog = MHin2 + 0.5D0*vev2*(l5OL - l4OL)
 
 	sehhMTnonlog = vev2*lOL
 
 * add two-loop non-logarithmic terms if FO TL is switched on
 	if( looplevel .gt. 1 ) then
 
-	  call TLthresholdasat4(dlam_asat4OS, Re(m_3OS)/MSusy,
-     &                          2*log(MSusy/MSUSYOS), mueMS, atOS)
+* terms originating from TL asat+atat thresholds
+	  call TLthresholdasat4(dlam_asat4OS, MGl/MSusy, mueOS, atOS)
+	  call TLthresholdatat4(dlam_atat4OS,
+     &                          MSusy, mueOS, atOS, 0D0, 0D0)
+	  l1TL = k2L*htOS**4*(GSMT2*dlam_asat4OS(1) +
+     &                        htOS2*Re(dlam_atat4OS(1)))
+	  l2TL = k2L*htOS**4*(GSMT2*dlam_asat4OS(2) +
+     &                        htOS2*Re(dlam_atat4OS(2)))
+	  l3TL = k2L*htOS**4*(GSMT2*dlam_asat4OS(3) +
+     &                        htOS2*Re(dlam_atat4OS(3)))
+	  l4TL = k2L*htOS**4*(GSMT2*dlam_asat4OS(4) +
+     &                        htOS2*Re(dlam_atat4OS(4)))
+	  l5TL = k2L*htOS**4*(GSMT2*dlam_asat4OS(5) +
+     &                        htOS2*Re(dlam_atat4OS(5)))
+	  l6TL = k2L*htOS**4*(GSMT2*dlam_asat4OS(6) +
+     &                        htOS2*Re(dlam_atat4OS(6)))
+	  l7TL = k2L*htOS**4*(GSMT2*dlam_asat4OS(7) +
+     &                        htOS2*Re(dlam_atat4OS(7)))
 
-	  l1TL = k2L*GSMT2*htOS**4*dlam_asat4OS(1)
-	  l2TL = k2L*GSMT2*htOS**4*dlam_asat4OS(2)
-	  l3TL = k2L*GSMT2*htOS**4*dlam_asat4OS(3)
-	  l4TL = k2L*GSMT2*htOS**4*dlam_asat4OS(4)
-	  l5TL = k2L*GSMT2*htOS**4*dlam_asat4OS(5)
-	  l6TL = k2L*GSMT2*htOS**4*dlam_asat4OS(6)
-	  l7TL = k2L*GSMT2*htOS**4*dlam_asat4OS(7)
+* contribution from ht threshold
+* (don't use the full top-Yukawa SM-MSSM threshold here since tanb is defined in the THDM)
+	  htShift = - 4/3D0*GSMT2*(1 + (tGlu-tSUSYMS)
+     &                               + lfSf6_mQ3M3 + lfSf6_mU3M3
+     &                               - xOS*MSUSYOS/Re(m_3OS)
+     &                                    *lfSf89_mQ3M3_mU3M3(2))
+     &              - htOS2*(- 1/4D0*(atOS2 - atOS*mueDR/TB)
+     &                               + lfht(5) - 3/8D0*CB2)
+* contribution from vMS2 -> vOS2 in 1L correction
+	  htShift = htShift + 3/4D0*htOS2*SB2
+     &                         *(1 - 2*log(Mf2(tM2,3)/Mf2(3,3)))
 
-	  htShift = -4/3D0*GSMT2*(1 + (tGlu-tSUSYMS)
-     &                              + lfSf6_mQ3M3 + lfSf6_mU3M3
-     &                              - xOS*MSUSYOS/Re(m_3OS)
-     &                                   *lfSf89_mQ3M3_mU3M3(2))
-
-	  l1TL = l1TL - 2*k2L*htOS**4*htShift*mueMS**4
+	  l1TL = l1TL - 2*k2L*htOS**4*htShift*mueDR**4
 	  l2TL = l2TL - 2*k2L*htOS**4*htShift*atOS2*(atOS2-12)
-	  l3TL = l3TL - 2*k2L*htOS**4*htShift*mueMS2*(atOS2-3)
-	  l4TL = l4TL - 2*k2L*htOS**4*htShift*mueMS2*(atOS2-3)
-	  l5TL = l5TL - 2*k2L*htOS**4*htShift*mueMS2*atOS2
-	  l6TL = l6TL + 2*k2L*htOS**4*htShift*mueMS**3*atOS
-	  l7TL = l7TL - 2*k2L*htOS**4*htShift*mueMS*atOS*(6-atOS2)
+	  l3TL = l3TL - 2*k2L*htOS**4*htShift*mueDR2*(atOS2-3)
+	  l4TL = l4TL - 2*k2L*htOS**4*htShift*mueDR2*(atOS2-3)
+	  l5TL = l5TL - 2*k2L*htOS**4*htShift*mueDR2*atOS2
+	  l6TL = l6TL + 2*k2L*htOS**4*htShift*mueDR**3*atOS
+	  l7TL = l7TL - 2*k2L*htOS**4*htShift*mueDR*atOS*(6-atOS2)
 
 	  se11nonlog = se11nonlog +
      &      vev2*(l1TL*CB2 + 2*l6TL*CB*SB + l5TL*SB2)
@@ -246,26 +153,33 @@
 	  seHmHpnonlog = seHmHpnonlog + 0.5D0*vev2*(l5TL - l4TL)
 
 	  sehhMTnonlog = sehhMTnonlog
-     &                   + vev2*(l1TL*CB**4+l2TL*SB**4
+     &                   + vev2*(l1TL*CB**4 + l2TL*SB**4
      &                             + 2*(l3TL + l4TL + l5TL)*CB2*SB2
      &                             + 4*l6TL*SB*CB**3
      &                             + 4*l7TL*CB*SB**3)
 
-* subtract SUSY O(at^2) h0h0 fixed-order correction to avoid constant
-* terms in MSusy -> infinity limit (implying yt -> 0)
-	  call loopfun4H(lfmueOS, mueOS)
-	  sehhMTnonlog = sehhMTnonlog +
-     &       vev2*k2L*htMT2sub**3*1/4D0*(CB2*(3*
-     &       (9 + 4*pi**2 - xOS1*(10 + 25*xOS1) +
-     &         Kfac*(144 + 96*xOS1)) -
-     &       48*xOS*(2 + xOS1 + Kfac*(12 + 4*xOS1))*yOS +
-     &       (1 + xOS1)*(1 - (19 + 96*Kfac)*xOS1)*yOS**2) +
-     &       6*(1 - 16*lfmueOS(1) + mueOS2*(
-     &         2*(6 - 2*lfmueOS(1) - xOS2*(5 + xOS1)*(1 + lfmueOS(1))) +
-     &         (6 - (11 + xOS1)*xOS2)*lfmueOS(2) ) -
-     &       xOS2*(14 - 8*lfmueOS(1) + 8*lfmueOS(2) -
-     &         xOS2*(11 - SB2*xOS2 - lfmueOS(1) + lfmueOS(2))) +
-     &       8*lfmueOS(3)))/SB2
+* SM <-> THDM matching contribution
+	  sehhMTnonlog = sehhMTnonlog + 3/2D0*k2L*htOS**6*vev2
+     &                                       *(2*Pi**2 - 7)*SB**4*CB2
+
+* terms induced by mtMS -> mtOS conversion of 1L nonlog terms
+* (~= Karina terms)
+	  call loopfunSf(lfSf, MSS0(3,3)/MSS0(4,3))
+	  tSQ = 2*log(abs(MSS0(3,3)))
+	  tSU = 2*log(abs(MSS0(4,3)))
+	  if( tM2 .eq. tM3 ) then
+	    sehhMTnonlog = sehhMTnonlog
+     &                     + vev2*1/12D0*k2L*htMT2sub**2
+     &                       *(57*htMT2sub - 0*gs2L2)
+     &                       *(6*(tSQ + tSU - 2*tSUSYOS)
+     &                         + 12*lfSf(1)*xOS2 - lfSf(2)*xOS2**2)
+	  else
+* terms generate by vMS2 -> vOS2 in 1L correction
+	    sehhMTnonlog = sehhMTnonlog + 3/4D0*k2L*vev2*htMT2sub**3
+     &                       *(1 - 2*log(Mf2(tM2,3)/Mf2(3,3)))
+     &                       *(6*(tSQ + tSU - 2*tSUSYOS)
+     &                         + 12*lfSf(1)*xOS2 - lfSf(2)*xOS2**2)
+	  endif
 	endif
 
 #ifdef DETAILED_DEBUG
@@ -295,23 +209,23 @@
 	endif
 
 	se11TL = 1/16.D0*
-     &    (k2L*vev2*(GSMT2*htMT4sub*mueMS2*TB*xOS2*
+     &    (k2L*vev2*(GSMT2*htMT4sub*mueDR2*TB*xOS2*
      &          (SB2*((tSUSYOS - tTop)*(96 - 48*xtconv) +
      &               TB2*(-tSUSYOS + tTop)*(32 - 16*xtconv)) +
      &            TB2*(-tSUSYOS + tTop)*(96 - 48*xtconv)) +
-     &         htMT6sub*(mueMS**3*TB2*(24*tA0 - 24*tSUSYOS)*xOS +
-     &            mueMS2*TB*
+     &         htMT6sub*(mueDR**3*TB2*(24*tMHin - 24*tSUSYOS)*xOS +
+     &            mueDR2*TB*
      &             (TB2*(-(tTop*
      &                     (xOS2*(54 - 9*xtconv) + 9*xOS**4*xtconv)
      &                     ) +
      &                  tSUSYOS*
      &                   (9*xOS**4*xtconv +
      &                     xOS2*(48 - xtconv*(12 - 3*ytOS2))) +
-     &                  tA0*xOS2*(6 + xtconv*(3 - 3*ytOS2))) -
+     &                  tMHin*xOS2*(6 + xtconv*(3 - 3*ytOS2))) -
      &               SB2*(-(tTop*
      &                     (xOS2*(54 - 9*xtconv) + 9*xOS**4*xtconv)
      &                     ) +
-     &                  tA0*xOS2*
+     &                  tMHin*xOS2*
      &                   (54 - TB2*(18 - xtconv*(3 - 3*ytOS2)) -
      &                     xtconv*(9 - 9*ytOS2)) +
      &                  tSUSYOS*xtconv*(9*xOS**4 - 9*xOS2*ytOS2) +
@@ -328,23 +242,23 @@
 
 	se22TL = k2L*vev2*
      &    (GSMT2*htMT4sub*(((-20/SB2 +
-     &              (mueMS*(3/SB2**2 + 10/SB2))/TB)*(tA0 - tTop))/
-     &          TB2 - (30*(tA0 - tTop)**2)/SB2**3) +
-     &      ((20*GSMT2*htMT4sub + htMT6sub*(-63/4.D0 - 3*mueMS2))/
+     &              (mueDR*(3/SB2**2 + 10/SB2))/TB)*(tMHin - tTop))/
+     &          TB2 - (30*(tMHin - tTop)**2)/SB2**3) +
+     &      ((20*GSMT2*htMT4sub + htMT6sub*(-63/4.D0 - 3*mueDR2))/
      &          SB2**3 + (10*GSMT2*htMT4sub +
      &            htMT6sub*
-     &             (-21/4.D0 + 3*mueMS2 + (63/4.D0 - 9*mueMS2)/TB2))/
+     &             (-21/4.D0 + 3*mueDR2 + (63/4.D0 - 9*mueDR2)/TB2))/
      &          SB2**2 + GSMT2*htMT4sub*
-     &          ((mueMS*(-2/SB2**3 - 9/SB2**2 - 5/SB2))/TB +
-     &            (2 + (10 - mueMS/TB)/TB2**2)/SB2 -
-     &            30/(SB2**2*TB2)))*(tA0 - tTop) +
-     &      ((-20*GSMT2*htMT4sub + htMT6sub*(63/4.D0 + 3*mueMS2))/
+     &          ((mueDR*(-2/SB2**3 - 9/SB2**2 - 5/SB2))/TB +
+     &            (2 + (10 - mueDR/TB)/TB2**2)/SB2 -
+     &            30/(SB2**2*TB2)))*(tMHin - tTop) +
+     &      ((-20*GSMT2*htMT4sub + htMT6sub*(63/4.D0 + 3*mueDR2))/
      &          SB2**3 + (-10*GSMT2*htMT4sub +
-     &            htMT6sub*(21/4.D0 - 3*mueMS2))/SB2**2 +
+     &            htMT6sub*(21/4.D0 - 3*mueDR2))/SB2**2 +
      &         GSMT2*htMT4sub*
-     &          ((mueMS*(2/SB2**3 + 9/SB2**2 + 5/SB2))/TB +
+     &          ((mueDR*(2/SB2**3 + 9/SB2**2 + 5/SB2))/TB +
      &            (-2 - 10/TB2**2)/SB2))*(tSUSYOS - tTop) +
-     &      (tA0 - tTop)**2*
+     &      (tMHin - tTop)**2*
      &       ((27*htMT6sub)/SB2**3 +
      &         (-15*GSMT2*htMT4sub + 117/8.D0*htMT6sub)/SB2**2 +
      &         (-3*GSMT2*htMT4sub + 27/8.D0*htMT6sub +
@@ -362,24 +276,24 @@
      &          ((-30*GSMT2*htMT4sub)/SB2 + 27/4.D0*htMT6sub/SB2**2)/
      &           TB2) + (tSUSYOS - tTop)*
      &        (GSMT2*htMT4sub*
-     &           (mueMS/(SB2*TB*TB2**2) + 30/(SB2**2*TB2)) +
-     &          ((htMT6sub*(-63/4.D0 + 9*mueMS2))/SB2**2 +
+     &           (mueDR/(SB2*TB*TB2**2) + 30/(SB2**2*TB2)) +
+     &          ((htMT6sub*(-63/4.D0 + 9*mueDR2))/SB2**2 +
      &             GSMT2*htMT4sub*
-     &              (20/SB2 + (mueMS*(-3/SB2**2 - 10/SB2))/TB))/TB2
-     &            + htMT6sub*(tA0 - tTop)*
+     &              (20/SB2 + (mueDR*(-3/SB2**2 - 10/SB2))/TB))/TB2
+     &            + htMT6sub*(tMHin - tTop)*
      &           (-(81/4.D0/SB2**3) - 99/8.D0/SB2**2 +
      &             (297/8.D0/SB2**2 + 135/4.D0/SB2)/TB2 +
      &             (-27/8.D0 - 135/8.D0/TB2**2)/SB2)) +
      &       (xOS*((tSUSYOS - tTop)*
-     &             ((54*GSMT2*htMT4sub*mueMS)/SB2**2 +
-     &               (mueMS*(12*GSMT2*htMT4sub - 3/2.D0*htMT6sub) -
-     &                  9/8.D0*(htMT6sub*mueMS**3))/SB2**3) +
-     &            htMT6sub*(tA0 - tTop)*
-     &             ((-(207/8.D0*mueMS) - 9/8.D0*mueMS**3)/SB2**2 +
-     &               (-(21/4.D0*mueMS) + 9/8.D0*mueMS**3)/SB2**3 +
-     &               (3/8.D0*mueMS**3/SB2**2 + 135/4.D0*mueMS/SB2)/
+     &             ((54*GSMT2*htMT4sub*mueDR)/SB2**2 +
+     &               (mueDR*(12*GSMT2*htMT4sub - 3/2.D0*htMT6sub) -
+     &                  9/8.D0*(htMT6sub*mueDR**3))/SB2**3) +
+     &            htMT6sub*(tMHin - tTop)*
+     &             ((-(207/8.D0*mueDR) - 9/8.D0*mueDR**3)/SB2**2 +
+     &               (-(21/4.D0*mueDR) + 9/8.D0*mueDR**3)/SB2**3 +
+     &               (3/8.D0*mueDR**3/SB2**2 + 135/4.D0*mueDR/SB2)/
      &                TB2 +
-     &               mueMS*
+     &               mueDR*
      &                ((-135/8.D0 - 27/8.D0/TB2**2)/SB2 +
      &                  69/8.D0*1/(SB2**2*TB2)))))/TB)
 
@@ -388,7 +302,7 @@
      &             (TB*TB2**2*
      &                (160*tSUSYOS + SB2*(80*tSUSYOS - 80*tTop) -
      &                  160*tTop)*xOS**4 +
-     &               mueMS*
+     &               mueDR*
      &                (TB2**2*(64*tSUSYOS - 64*tTop)*xOS**3 -
      &                  SB2*
      &                   (TB2*
@@ -404,20 +318,20 @@
      &                       TB2*(tSUSYOS - tTop)*
      &                       (960 - 160*xOS**2))))))) +
      &          htMT6sub*(TB*
-     &              (TB2**2*(54*tA0 + 36*tSUSYOS - 90*tTop) -
+     &              (TB2**2*(54*tMHin + 36*tSUSYOS - 90*tTop) -
      &                SB2*((99 - 33*TB2)*TB2 -
-     &                   SB2*(45 - (90 - 9*TB2)*TB2))*(tA0 - tTop))
+     &                   SB2*(45 - (90 - 9*TB2)*TB2))*(tMHin - tTop))
      &               *xOS**4 +
-     &             mueMS*(TB2**2*(24*tA0 + 12*tSUSYOS - 36*tTop)*
+     &             mueDR*(TB2**2*(24*tMHin + 12*tSUSYOS - 36*tTop)*
      &                 xOS**3 -
      &                SB2*(SB2*
-     &                    (-(tA0*(18 - (180 - 90*TB2)*TB2)) +
+     &                    (-(tMHin*(18 - (180 - 90*TB2)*TB2)) +
      &                      18*tTop - (180 - 90*TB2)*TB2*tTop)*
      &                    xOS**3 +
      &                   TB2*
-     &                    (tA0*(42 - 126*TB2)*xOS**3 +
+     &                    (tMHin*(42 - 126*TB2)*xOS**3 +
      &                      xOS*
-     &                       (mueMS**2*
+     &                       (mueDR**2*
      &                       (12*tSUSYOS -
      &                       TB2*(36*tSUSYOS - 36*tTop) - 12*tTop)+
      &                        tTop*(48 - 54*xOS**2) -
@@ -429,7 +343,7 @@
 
 	se22TL = se22TL +
      &    1/32.D0*(k2L*vev2*(GSMT2*htMT4sub*TB*
-     &           ((-(mueMS2*
+     &           ((-(mueDR2*
      &                   (SB2*
      &                      (-(SB2*
      &                       (80*tSUSYOS -
@@ -454,32 +368,32 @@
      &                    (240*xOS**4 - 2880*xOS2) +
      &                   TB2*(960*tSUSYOS - 960*tTop)*xOS2))) -
      &          htMT6sub*(TB*
-     &              ((TB2**2*(648*tA0 + 432*tSUSYOS - 1080*tTop) -
-     &                   mueMS2*
+     &              ((TB2**2*(648*tMHin + 432*tSUSYOS - 1080*tTop) -
+     &                   mueDR2*
      &                    (TB2**2*
-     &                      (30*tA0 - 12*tSUSYOS - 18*tTop) +
+     &                      (30*tMHin - 12*tSUSYOS - 18*tTop) +
      &                      SB2*
      &                       (-(SB2*(45 - (90 - 9*TB2)*TB2)*
-     &                       (tA0 - tTop)) +
+     &                       (tMHin - tTop)) +
      &                       TB2*
-     &                       (tA0*(63 - 21*TB2) - 36*tSUSYOS -
+     &                       (tMHin*(63 - 21*TB2) - 36*tSUSYOS -
      &                       27*tTop + TB2*(12*tSUSYOS + 9*tTop))))
      &                   )*xOS2 -
      &                SB2*(-(SB2*(540 - (1080 - 108*TB2)*TB2)*
-     &                      (tA0 - tTop)*xOS2) +
+     &                      (tMHin - tTop)*xOS2) +
      &                   TB2*
      &                    (TB2*
      &                       (-(tTop*(12*xOS**4 - 540*xOS2)) +
      &                       tSUSYOS*(12*xOS**4 - 144*xOS2)) +
      &                      tTop*(36*xOS**4 - 1620*xOS2) -
      &                      tSUSYOS*(36*xOS**4 - 432*xOS2) +
-     &                      tA0*(1188 - 396*TB2)*xOS2))) +
-     &             mueMS*TB2**2*
-     &              (18*tA0 + SB2*(27*tA0 - 27*tTop) - 18*tTop)*
+     &                      tMHin*(1188 - 396*TB2)*xOS2))) +
+     &             mueDR*TB2**2*
+     &              (18*tMHin + SB2*(27*tMHin - 27*tTop) - 18*tTop)*
      &              xOS*xtconv)))/(SB2**3*TB*TB2**2)
 
 	se22TL = se22TL +
-     &    1/64.D0*(k2L*mueMS*vev2*
+     &    1/64.D0*(k2L*mueDR*vev2*
      &        (GSMT2*htMT4sub*xOS*
      &           (TB2**2*(-tSUSYOS + tTop)*(192 - 96*xOS**2) +
      &             SB2*(TB2*
@@ -491,11 +405,11 @@
      &                      TB2*(-tSUSYOS + tTop)*
      &                       (480 - 240*xOS**2))))) +
      &          htMT6sub*(TB2**2*
-     &              (18*tA0*xOS**3 +
+     &              (18*tMHin*xOS**3 +
      &                xOS*(tSUSYOS*(72 - 72*xOS**2) -
      &                   tTop*(72 - 54*xOS**2))) +
      &             SB2*(TB2*
-     &                 (tA0*
+     &                 (tMHin*
      &                    (27*TB2*xOS**3 + xOS*(18 - 9*xOS**2)) +
      &                   xOS*
      &                    (-(tSUSYOS*(72 - 90*xOS**2)) +
@@ -511,7 +425,7 @@
      &                       tTop*xOS*(90 - 135*xOS**2))) +
      &                   xOS*
      &                    (tTop*(18 - 27*xOS**2) -
-     &                      tA0*
+     &                      tMHin*
      &                       (18 - 9*xOS**2 +
      &                       TB2*
      &                       (-180 + 90*xOS**2 +
@@ -520,7 +434,7 @@
 
 	se22TL = se22TL -
      &    1/64.D0*(k2L*vev2*(GSMT2*htMT4sub*
-     &           (mueMS*SB2**2*TB2*(480*tSUSYOS - 480*tTop)*
+     &           (mueDR*SB2**2*TB2*(480*tSUSYOS - 480*tTop)*
      &              xOS**3 +
      &             TB*(SB2*
      &                 (TB2*
@@ -536,17 +450,17 @@
      &                TB2**2*(320*tSUSYOS - 320*tTop))*xOS**4) -
      &          htMT6sub*(TB*
      &              (SB2*(TB2*
-     &                    (tA0*(18 - 6*TB2) + 612*tSUSYOS -
+     &                    (tMHin*(18 - 6*TB2) + 612*tSUSYOS -
      &                      TB2*(204*tSUSYOS - 210*tTop) - 630*tTop
      &                      ) -
      &                   SB2*
-     &                    (tA0*(30 - (60 - 6*TB2)*TB2) +
+     &                    (tMHin*(30 - (60 - 6*TB2)*TB2) +
      &                      180*tSUSYOS -
      &                      TB2*
      &                       (360*tSUSYOS -
      &                       TB2*(36*tSUSYOS - 42*tTop) - 420*tTop)
      &                        - 210*tTop)) +
-     &                mueMS2*
+     &                mueDR2*
      &                 (SB2*
      &                    (-(SB2*
      &                       (15*tSUSYOS -
@@ -558,9 +472,9 @@
      &                       (9*tSUSYOS -
      &                       TB2*(3*tSUSYOS - 3*tTop) - 9*tTop)) +
      &                   TB2**2*(6*tSUSYOS - 6*tTop)) +
-     &                TB2**2*(12*tA0 - 432*tSUSYOS + 420*tTop))*
+     &                TB2**2*(12*tMHin - 432*tSUSYOS + 420*tTop))*
      &              xOS**4 +
-     &             mueMS*(TB2**2*(18*tSUSYOS - 18*tTop)*xOS**5 -
+     &             mueDR*(TB2**2*(18*tSUSYOS - 18*tTop)*xOS**5 -
      &                SB2*(TB2*
      &                    (27*tSUSYOS -
      &                      TB2*(81*tSUSYOS - 81*tTop) - 27*tTop)*
@@ -584,7 +498,7 @@
      &                      (1920*tSUSYOS -
      &                       TB2*(192*tSUSYOS - 192*tTop) -
      &                       1920*tTop) - 960*tTop))) -
-     &             mueMS2*(SB2*
+     &             mueDR2*(SB2*
      &                 (-(SB2*
      &                      (80*tSUSYOS +
      &                       TB2**2*(16*tSUSYOS - 16*tTop) -
@@ -594,23 +508,23 @@
      &                      TB2*(16*tSUSYOS - 16*tTop) - 48*tTop))+
      &                  TB2**2*(32*tSUSYOS - 32*tTop)) +
      &             TB2**2*(1920*tSUSYOS - 1920*tTop))*xOS2 +
-     &          htMT6sub*(mueMS*SB2**2*TB2*(90*tSUSYOS - 90*tTop)*
+     &          htMT6sub*(mueDR*SB2**2*TB2*(90*tSUSYOS - 90*tTop)*
      &              xOS**5 +
-     &             TB*((72*tA0*TB2**2 -
-     &                   mueMS2*
-     &                    (TB2**2*(-12*tSUSYOS + 6*(tA0 + tTop)) +
+     &             TB*((72*tMHin*TB2**2 -
+     &                   mueDR2*
+     &                    (TB2**2*(-12*tSUSYOS + 6*(tMHin + tTop)) +
      &                      SB2*
      &                       (SB2*(15 - (30 - 3*TB2)*TB2)*
-     &                       (tA0 - tTop) +
+     &                       (tMHin - tTop) +
      &                       TB2*
-     &                       (tA0*(27 - 9*TB2) - 36*tSUSYOS +
+     &                       (tMHin*(27 - 9*TB2) - 36*tSUSYOS +
      &                       TB2*(12*tSUSYOS - 3*tTop) + 9*tTop))))
      &                  *xOS2 +
      &                TB2**2*
      &                 (tTop*(60*xOS**6 + 360*xOS2) -
      &                   tSUSYOS*(60*xOS**6 + 432*xOS2)) +
      &                SB2*(TB2*
-     &                    (tA0*(108 - 36*TB2)*xOS2 +
+     &                    (tMHin*(108 - 36*TB2)*xOS2 +
      &                      tSUSYOS*(90*xOS**6 + 432*xOS2) -
      &                      tTop*(90*xOS**6 + 540*xOS2) +
      &                      TB2*
@@ -618,7 +532,7 @@
      &                       tTop*(30*xOS**6 + 180*xOS2))) -
      &                   SB2*
      &                    (30*tSUSYOS*xOS**6 +
-     &                      tA0*(180 - (360 - 36*TB2)*TB2)*xOS2 -
+     &                      tMHin*(180 - (360 - 36*TB2)*TB2)*xOS2 -
      &                      tTop*(30*xOS**6 + 180*xOS2) -
      &                      TB2*
      &                       (60*tSUSYOS*xOS**6 -
@@ -630,23 +544,23 @@
 
 	se22TL = se22TL +
      &    1/64.D0*(k2L*vev2*xtconv*
-     &        (GSMT2*htMT4sub*mueMS2*SB2**2*TB*TB2*
+     &        (GSMT2*htMT4sub*mueDR2*SB2**2*TB*TB2*
      &           (160*tSUSYOS - 160*tTop)*xOS2 -
      &          htMT6sub*(TB*
      &              (-(SB2*
-     &                   (TB2**2*(6*tA0 - 6*tTop) +
-     &                     SB2*(30 + 6*TB2**2)*(tA0 - tTop))) +
-     &                TB2**2*(12*tA0 - 12*tTop))*xOS**4 -
-     &             mueMS*xOS*
-     &              (TB2**2*(tA0 - tSUSYOS)*(36 - 18*xOS**2) +
+     &                   (TB2**2*(6*tMHin - 6*tTop) +
+     &                     SB2*(30 + 6*TB2**2)*(tMHin - tTop))) +
+     &                TB2**2*(12*tMHin - 12*tTop))*xOS**4 -
+     &             mueDR*xOS*
+     &              (TB2**2*(tMHin - tSUSYOS)*(36 - 18*xOS**2) +
      &                SB2*(TB2*
      &                    (tSUSYOS*
      &                       (18 - 9*xOS**2 - TB2*(54 - 27*xOS**2))
-     &                        + tA0*
+     &                        + tMHin*
      &                       (-18 + 9*xOS**2 +
      &                       TB2*(54 - 27*xOS**2))) +
      &                   SB2*
-     &                    (-(tA0*
+     &                    (-(tMHin*
      &                       (18 - 9*xOS**2 -
      &                       TB2*
      &                       (180 - 90*xOS**2 -
@@ -660,26 +574,26 @@
 
 	se22TL = se22TL +
      &    1/64.D0*(htMT6sub*k2L*vev2*
-     &        (-(mueMS2*(TB2**2*(6*tA0 - 6*tSUSYOS) +
-     &               SB2*((27 - 9*TB2)*TB2*(tA0 - tSUSYOS) -
+     &        (-(mueDR2*(TB2**2*(6*tMHin - 6*tSUSYOS) +
+     &               SB2*((27 - 9*TB2)*TB2*(tMHin - tSUSYOS) -
      &                  SB2*
-     &                   (-(tA0*(15 - (30 - 3*TB2)*TB2)) +
+     &                   (-(tMHin*(15 - (30 - 3*TB2)*TB2)) +
      &                     15*tSUSYOS - (30 - 3*TB2)*TB2*tSUSYOS)))
      &              *xOS2) +
      &          TB2**2*(-12*tTop*xOS**4 +
-     &             tSUSYOS*(12*xOS**4 - 72*xOS2) + 72*tA0*xOS2) -
+     &             tSUSYOS*(12*xOS**4 - 72*xOS2) + 72*tMHin*xOS2) -
      &          SB2*(TB2*(-(TB2*
      &                   (6*tTop*xOS**4 -
      &                     tSUSYOS*(6*xOS**4 - 36*xOS2))) -
      &                tSUSYOS*(18*xOS**4 - 108*xOS2) +
-     &                tA0*(18*xOS**4 - 108*xOS2 + 36*TB2*xOS2)) -
+     &                tMHin*(18*xOS**4 - 108*xOS2 + 36*TB2*xOS2)) -
      &             SB2*(30*tTop*xOS**4 +
      &                TB2*(TB2*
      &                    (6*tTop*xOS**4 -
      &                      tSUSYOS*(6*xOS**4 - 36*xOS2)) +
      &                   tSUSYOS*(60*xOS**4 - 360*xOS2)) -
      &                tSUSYOS*(30*xOS**4 - 180*xOS2) -
-     &                tA0*(180*xOS2 +
+     &                tMHin*(180*xOS2 +
      &                   TB2*(60*xOS**4 - 360*xOS2 + 36*TB2*xOS2)))
      &             ))*xtconv*ytOS2)/(SB2**3*TB2**2)
 
@@ -688,68 +602,68 @@
 #endif
 
 	se12TL = 1/16.D0*
-     &    (k2L*vev2*(GSMT2*htMT4sub*mueMS*TB*
-     &          (TB2**2*(48*tA0 + 288*tTop*xOS -
+     &    (k2L*vev2*(GSMT2*htMT4sub*mueDR*TB*
+     &          (TB2**2*(48*tMHin + 288*tTop*xOS -
      &               tSUSYOS*(48 + 288*xOS)) -
      &            SB2*(TB2*
-     &                (tA0*(64 - 64*TB2) + 384*tTop*xOS -
+     &                (tMHin*(64 - 64*TB2) + 384*tTop*xOS -
      &                  tSUSYOS*(64 + 384*xOS) +
      &                  TB2*
      &                   (-384*tTop*xOS + tSUSYOS*(64 + 384*xOS)))-
      &                 SB2*
-     &                (tA0*(16 - (96 - 16*TB2)*TB2) +
+     &                (tMHin*(16 - (96 - 16*TB2)*TB2) +
      &                  96*tTop*xOS - tSUSYOS*(16 + 96*xOS) -
      &                  TB2*
      &                   (576*tTop*xOS - tSUSYOS*(96 + 576*xOS) +
      &                     TB2*
      &                      (-96*tTop*xOS + tSUSYOS*(16 + 96*xOS)))
      &                  ))) +
-     &         htMT6sub*(mueMS2*SB2*TB2**2*(96*tA0 - 96*tSUSYOS) +
-     &            mueMS*TB*xOS*
-     &             (-(mueMS**2*
-     &                  (TB2**2*(12*tA0 - 12*tSUSYOS) +
-     &                    SB2*(12 - 12*TB2)*TB2*(tA0 - tSUSYOS)))+
+     &         htMT6sub*(mueDR2*SB2*TB2**2*(96*tMHin - 96*tSUSYOS) +
+     &            mueDR*TB*xOS*
+     &             (-(mueDR**2*
+     &                  (TB2**2*(12*tMHin - 12*tSUSYOS) +
+     &                    SB2*(12 - 12*TB2)*TB2*(tMHin - tSUSYOS)))+
      &                 TB2**2*
-     &                (96*tSUSYOS + tA0*(66 - 9*xOS**2) -
+     &                (96*tSUSYOS + tMHin*(66 - 9*xOS**2) -
      &                  tTop*(162 - 9*xOS**2)) -
      &               SB2*(TB2*
      &                   (96*tSUSYOS - 216*tTop +
-     &                     tA0*(120 - TB2*(120 - 18*xOS**2)) -
+     &                     tMHin*(120 - TB2*(120 - 18*xOS**2)) -
      &                     TB2*
      &                      (96*tSUSYOS - tTop*(216 - 18*xOS**2)))-
-     &                    SB2*(tA0 - tTop)*
+     &                    SB2*(tMHin - tTop)*
      &                   (54 - 9*xOS**2 -
      &                     TB2*(324 - TB2*(54 - 9*xOS**2))))))))/
      &     (SB2**3*TB*TB2**2)
 
 	se12TL = se12TL +
      &    1/64.D0*(k2L*vev2*(-(htMT6sub*
-     &             (mueMS2*SB2*
-     &                (TB2**2*(96*tA0 + 48*tSUSYOS - 144*tTop) -
-     &                  SB2*(144 - 144*TB2)*TB2*(tA0 - tTop))*xOS2-
-     &                 mueMS*TB*
+     &             (mueDR2*SB2*
+     &                (TB2**2*(96*tMHin + 48*tSUSYOS - 144*tTop) -
+     &                  SB2*(144 - 144*TB2)*TB2*(tMHin - tTop))*xOS2-
+     &                 mueDR*TB*
      &                (TB2**2*xOS*
-     &                   (tA0*(18 - 9*xOS**2)*xtconv -
+     &                   (tMHin*(18 - 9*xOS**2)*xtconv -
      &                     72*tSUSYOS*(xOS**2 + xtconv) +
      &                     tTop*
      &                      (54*xtconv + xOS**2*(72 + 9*xtconv)))+
      &                    SB2*
-     &                   (SB2*(-tA0 + tTop)*xOS*
+     &                   (SB2*(-tMHin + tTop)*xOS*
      &                      ((18 - 9*xOS**2)*xtconv -
      &                       TB2*
      &                       (216*xOS**2 +
      &                       (108 - TB2*(18 - 9*xOS**2))*xtconv))+
      &                       TB2*
-     &                      (72*tA0*xOS**3 -
+     &                      (72*tMHin*xOS**3 -
      &                       xOS*
      &                       ((-72*tSUSYOS +
      &                       72*TB2*(tSUSYOS - tTop))*
      &                       (xOS**2 + xtconv) +
      &                       tTop*(144*xOS**2 + 72*xtconv))))))) +
      &          GSMT2*htMT4sub*
-     &           (mueMS2*SB2*(-(SB2*(1 - TB2)*TB2) + TB2**2)*
+     &           (mueDR2*SB2*(-(SB2*(1 - TB2)*TB2) + TB2**2)*
      &              (256*tSUSYOS - 256*tTop)*xOS2 -
-     &             mueMS*TB*xOS*
+     &             mueDR*TB*xOS*
      &              (TB2**2*(-tSUSYOS + tTop)*
      &                 (192*xOS**2 + 288*xtconv) +
      &                SB2*(TB2*
@@ -768,7 +682,7 @@
 	se12TL = se12TL -
      &    1/64.D0*(k2L*vev2*xtconv*
      &        (GSMT2*htMT4sub*
-     &           (mueMS*TB*
+     &           (mueDR*TB*
      &              (-(SB2*
      &                   ((1 - TB2)*TB2*(192*tSUSYOS - 192*tTop) -
      &                     SB2*
@@ -778,26 +692,26 @@
      &                       TB2*(48*tSUSYOS - 48*tTop) - 288*tTop)
      &                        - 48*tTop))) +
      &                TB2**2*(144*tSUSYOS - 144*tTop))*xOS**3 +
-     &             mueMS2*SB2*(-(SB2*(1 - TB2)*TB2) + TB2**2)*
+     &             mueDR2*SB2*(-(SB2*(1 - TB2)*TB2) + TB2**2)*
      &              (128*tSUSYOS - 128*tTop)*xOS2) +
-     &          htMT6sub*(mueMS2*SB2*
+     &          htMT6sub*(mueDR2*SB2*
      &              (TB2**2*
      &                 (tSUSYOS*(24*xOS**4 - 48*xOS2) -
-     &                   tTop*(24*xOS**4 - 24*xOS2) + 24*tA0*xOS2)+
+     &                   tTop*(24*xOS**4 - 24*xOS2) + 24*tMHin*xOS2)+
      &                  SB2*TB2*
      &                 (-24*tSUSYOS*xOS**4 +
      &                   TB2*
      &                    (24*tSUSYOS*xOS**4 -
      &                      tTop*(24*xOS**4 - 24*xOS2)) +
      &                   tTop*(24*xOS**4 - 24*xOS2) +
-     &                   tA0*(24 - 24*TB2)*xOS2)) +
-     &             mueMS*TB*
+     &                   tMHin*(24 - 24*TB2)*xOS2)) +
+     &             mueDR*TB*
      &              (TB2**2*
      &                 (-(tSUSYOS*xOS**3*(90 - 27*xOS**2)) +
      &                   xOS*
      &                    (tTop*
      &                       (xOS**2*(90 - 27*xOS**2) - 18*ytOS2)+
-     &                        18*tA0*ytOS2)) -
+     &                        18*tMHin*ytOS2)) -
      &                SB2*(TB2*
      &                    (-tSUSYOS + TB2*(tSUSYOS - tTop) + tTop)*
      &                    xOS**3*(108 - 36*xOS**2) +
@@ -805,7 +719,7 @@
      &                    (tSUSYOS*xOS**3*(18 - 9*xOS**2) -
      &                      tTop*xOS*
      &                       (xOS**2*(18 - 9*xOS**2) + 18*ytOS2) +
-     &                      tA0*
+     &                      tMHin*
      &                       (18*xOS*ytOS2 -
      &                       TB2*(54*xOS**3 - 18*TB2*xOS*ytOS2)) +
      &                      TB2*
@@ -820,10 +734,10 @@
 
 	se12TL = se12TL +
      &    1/64.D0*(htMT6sub*k2L*vev2*
-     &        (mueMS*TB*(TB2**2*
-     &              (9*tA0*xOS**3 -
+     &        (mueDR*TB*(TB2**2*
+     &              (9*tMHin*xOS**3 -
      &                xOS*(18*tTop - tSUSYOS*(18 - 9*xOS**2))) -
-     &             SB2**2*(tA0*
+     &             SB2**2*(tMHin*
      &                 (9*xOS**3 +
      &                   TB2*(9*TB2*xOS**3 + xOS*(108 - 54*xOS**2))
      &                   ) -
@@ -832,9 +746,9 @@
      &                    (tSUSYOS*(108 - 54*xOS**2) +
      &                      TB2*(18*tTop - tSUSYOS*(18 - 9*xOS**2))
      &                      )))) +
-     &          mueMS2*SB2*
-     &           (TB2**2*(24*tA0 - 24*tSUSYOS) +
-     &             SB2*(24 - 24*TB2)*TB2*(tA0 - tSUSYOS))*xOS2)*
+     &          mueDR2*SB2*
+     &           (TB2**2*(24*tMHin - 24*tSUSYOS) +
+     &             SB2*(24 - 24*TB2)*TB2*(tMHin - tSUSYOS))*xOS2)*
      &        xtconv*ytOS2)/(SB2**3*TB*TB2**2)
 
 #ifdef DEBUG
@@ -842,10 +756,10 @@
 #endif
 
 	seHmHpTL = -(1/8.D0*
-     &      (k2L*mueMS2*(GSMT2*htMT4sub*(-(SB2*(1 - TB2)) + TB2)*
+     &      (k2L*mueDR2*(GSMT2*htMT4sub*(-(SB2*(1 - TB2)) + TB2)*
      &            (48*tSUSYOS - 48*tTop) +
-     &           htMT6sub*(-(SB2*(27 - 27*TB2)*(-tA0 + tTop)) +
-     &              TB2*(9*tA0 - 36*tSUSYOS + 27*tTop)))*vev2)/
+     &           htMT6sub*(-(SB2*(27 - 27*TB2)*(-tMHin + tTop)) +
+     &              TB2*(9*tMHin - 36*tSUSYOS + 27*tTop)))*vev2)/
      &       (SB2**3*TB2))
 
 #ifdef DEBUG
@@ -859,25 +773,28 @@
      &      xOS**4*xtconv*((tSUSYOS - tTop)*
      &          (GSMT2*htMT4sub*(2 - 6/TB2) - 9/4.D0*htMT6sub +
      &            (6*GSMT2*htMT4sub - 33/4.D0*htMT6sub)/SB2) +
-     &         htMT6sub*(tA0 - tTop)*(-3/8.D0 + 3/8.D0/SB2 + 9/8.D0/TB2))
+     &         htMT6sub*(tMHin - tTop)*(-3/8.D0 + 3/8.D0/SB2
+     &                                + 9/8.D0/TB2))
      &        + xOS2*(((-18*htMT6sub)/SB2 +
      &            GSMT2*htMT4sub*(24 + 72/SB2 - 72/TB2))*
      &          (tSUSYOS - tTop) +
-     &         htMT6sub*(tA0 - tTop)*(-9/2.D0 + 9/2.D0/SB2 + 27/2.D0/TB2)
+     &         htMT6sub*(tMHin - tTop)*(-9/2.D0 + 9/2.D0/SB2
+     &                                + 27/2.D0/TB2)
      &         ) + (tSUSYOS - tTop)*
      &       (GSMT2*htMT4sub*(-8 - 24/SB2 + 24/TB2) +
      &         xOS**4*(GSMT2*htMT4sub*(-2 - 6/SB2 + 6/TB2) +
      &            3/2.D0*htMT6sub/SB2) +
      &         htMT6sub*(21/SB2 +
-     &            (tA0 - tTop)*(-9/2.D0 + 9/2.D0/SB2 + 27/2.D0/TB2))) +
-     &      htMT6sub*((mueMS*
-     &            ((-18*(tA0 - tTop) + 18*(tSUSYOS - tTop))*xOS +
-     &              (3*(tA0 - tTop) - 3*(tSUSYOS - tTop))*xOS**3))/
+     &            (tMHin - tTop)*(-9/2.D0 + 9/2.D0/SB2 + 27/2.D0/TB2))) +
+     &      htMT6sub*((mueDR*
+     &            ((-18*(tMHin - tTop) + 18*(tSUSYOS - tTop))*xOS +
+     &              (3*(tMHin - tTop) - 3*(tSUSYOS - tTop))*xOS**3))/
      &          (SB2*TB) +
-     &         (tA0 - tTop)**2*(9/4.D0 - 9/4.D0/SB2 - 27/4.D0/TB2) +
-     &         (tA0 - tTop)*
+     &         (tMHin - tTop)**2*(9/4.D0 - 9/4.D0/SB2 - 27/4.D0/TB2) +
+     &         (tMHin - tTop)*
      &          (21/4.D0 - 21/4.D0/SB2 +
-     &            xOS**4*(3/8.D0 - 3/8.D0/SB2 - 9/8.D0/TB2) - 63/4.D0/TB2))
+     &            xOS**4*(3/8.D0 - 3/8.D0/SB2 - 9/8.D0/TB2)
+     &                    - 63/4.D0/TB2))
      &      )
 
 	sehhMtTL = sehhMtTL -
@@ -888,7 +805,7 @@
      &                288*tTop))*xOS2 +
      &          htMT6sub*(TB2*
      &              (tTop*(9*xOS**6 + 54*xOS2) +
-     &                tA0*
+     &                tMHin*
      &                 (xOS2*(18 - 18*ytOS2) + 3*xOS**4*ytOS2) -
      &                tSUSYOS*
      &                 (xOS2*(72 - 18*ytOS2) +
@@ -898,7 +815,7 @@
      &                tSUSYOS*
      &                 (xOS**4*(-54 + 9*xOS**2 - 9*ytOS2) +
      &                   54*xOS2*ytOS2) +
-     &                tA0*(-(xOS2*(54 - 54*ytOS2)) -
+     &                tMHin*(-(xOS2*(54 - 54*ytOS2)) -
      &                   9*xOS**4*ytOS2 +
      &                   TB2*
      &                    (xOS2*(18 - 18*ytOS2) + 3*xOS**4*ytOS2))-
@@ -917,7 +834,7 @@
 	  sehhMtTL = sehhMtTL + 16*k2L*htMT4sub*(8*GSMT2-3*htMT2sub)
      &                            *(tSUSYOS - tTop)
 	  se22TL   = se22TL   + 16*k2L*htMT4sub*(8*GSMT2-3*htMT2sub)
-     &                            *(tSUSYOS - tA0)
+     &                            *(tSUSYOS - tMHin)
 
 	endif
 
@@ -933,10 +850,10 @@
 
 	if( looplevel .gt. 0 ) then
 
-	if (tA0 .ge. tCha) then
+	if (tMHin .ge. tCha) then
 
 	se11OL = (k1L*CB2*
-     &        (((62*MW2**2)/3.D0 - (5*(4*MW2 - 4*MZ2)**2)/24.D0)*tA0 +
+     &        (((62*MW2**2)/3.D0 - (5*(4*MW2 - 4*MZ2)**2)/24.D0)*tMHin +
      &          (8*MW2**2 + (4*MW2 - 4*MZ2)**2/6.D0)*tCha +
      &          (-16*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/3.D0)*tSUSYOS +
      &         ((-38*MW2**2)/3.D0 + (41*(4*MW2 - 4*MZ2)**2)/24.D0)*tTop)
@@ -947,37 +864,37 @@
 #endif
 
 	se22OL = (k1L*
-     &        (((31*MW2**2)/3.D0 - (5*(4*MW2 - 4*MZ2)**2)/48.D0)*tA0 +
+     &        (((31*MW2**2)/3.D0 - (5*(4*MW2 - 4*MZ2)**2)/48.D0)*tMHin +
      &        (4*MW2**2 + (4*MW2 - 4*MZ2)**2/12.D0)*tCha +
      &        (-8*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/6.D0)*tSUSYOS +
      &        CB2*(((-31*MW2**2)/2.D0 + (5*(4*MW2 - 4*MZ2)**2)/32.D0)*
-     &            tA0 + (-6*MW2**2 - (4*MW2 - 4*MZ2)**2/8.D0)*tCha +
+     &            tMHin + (-6*MW2**2 - (4*MW2 - 4*MZ2)**2/8.D0)*tCha +
      &           (12*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/4.D0)*tSUSYOS +
      &           ((19*MW2**2)/2.D0 - (41*(4*MW2 - 4*MZ2)**2)/32.D0)*
      &            tTop) + SB2*
      &         (((31*MW2**2)/12.D0 - (5*(4*MW2 - 4*MZ2)**2)/192.D0)*
-     &            tA0 + (MW2**2 + (4*MW2 - 4*MZ2)**2/48.D0)*tCha +
+     &            tMHin + (MW2**2 + (4*MW2 - 4*MZ2)**2/48.D0)*tCha +
      &           (-2*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/24.D0)*tSUSYOS +
      &           ((-19*MW2**2)/12.D0 + (41*(4*MW2 - 4*MZ2)**2)/192.D0)*
      &            tTop) + (((31*MW2**2)/4.D0 -
-     &              (5*(4*MW2 - 4*MZ2)**2)/64.D0)*tA0 +
+     &              (5*(4*MW2 - 4*MZ2)**2)/64.D0)*tMHin +
      &           (3*MW2**2 + (4*MW2 - 4*MZ2)**2/16.D0)*tCha +
      &           (-6*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/8.D0)*tSUSYOS +
      &           ((-19*MW2**2)/4.D0 + (41*(4*MW2 - 4*MZ2)**2)/64.D0)*
      &            tTop)/SB**2 +
      &        ((-19*MW2**2)/3.D0 + (41*(4*MW2 - 4*MZ2)**2)/48.D0)*
      &         tTop + (((-31*MW2**2)/3.D0 +
-     &              (5*(4*MW2 - 4*MZ2)**2)/48.D0)*tA0 +
+     &              (5*(4*MW2 - 4*MZ2)**2)/48.D0)*tMHin +
      &           MW2**2*(-4*tCha + 8*tSUSYOS + 19/3.D0*tTop))/TB**2))/
      &         vev2
 
 	se22OL = se22OL -
-     &        (k1L*(((-24*tA0 + 24*tSUSYOS)*Mf2(tM1,3)**2)/SB**2 +
-     &         ((6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &        (k1L*(((-24*tMHin + 24*tSUSYOS)*Mf2(tM1,3)**2)/SB**2 +
+     &         ((6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &            (-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tSUSYOS)*
      &          (Mf2(tM1,3) + Mf2(tM1,3)/SB**2) +
      &         (CB2*(((-31*MW2**2)/12.D0 +
-     &                  (5*(4*MW2 - 4*MZ2)**2)/192.D0)*tA0 +
+     &                  (5*(4*MW2 - 4*MZ2)**2)/192.D0)*tMHin +
      &               (-MW2**2 - (4*MW2 - 4*MZ2)**2/48.D0)*tCha +
      &               (2*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/24.D0)*
      &                tSUSYOS +
@@ -985,7 +902,7 @@
      &                  (41*(4*MW2 - 4*MZ2)**2)/192.D0)*tTop) +
      &            (4*MW2 - 4*MZ2)**2*
      &             (1/12.D0*tCha - 5/6.D0*tSUSYOS + 41/48.D0*tTop) +
-     &            ((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &            ((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &               (6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tSUSYOS)*
      &             Mf2(tM1,3))/TB**2))/vev2
 
@@ -995,13 +912,13 @@
 
 	se12OL = -((k1L*
      &        (CB*SB*(((62*MW2**2)/3.D0 -
-     &                (5*(4*MW2 - 4*MZ2)**2)/24.D0)*tA0 +
+     &                (5*(4*MW2 - 4*MZ2)**2)/24.D0)*tMHin +
      &             (8*MW2**2 + (4*MW2 - 4*MZ2)**2/6.D0)*tCha +
      &             (-16*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/3.D0)*
      &              tSUSYOS +
      &             ((-38*MW2**2)/3.D0 + (41*(4*MW2 - 4*MZ2)**2)/24.D0)*
      &              tTop) +
-     &          (((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &          (((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &               (6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tSUSYOS)*
      &             Mf2(tM1,3))/TB))/vev2)
 
@@ -1010,8 +927,8 @@
 #endif
 
 	seHmHpOL = MW2/3.D0*
-     &    (k1L*(MW2*((62*tA0 + 24*tCha - 48*tSUSYOS - 38*tTop)*
-     &            SB2) + (-18*tA0 + 18*tSUSYOS)*Mf2(tM1,3)))/
+     &    (k1L*(MW2*((62*tMHin + 24*tCha - 48*tSUSYOS - 38*tTop)*
+     &            SB2) + (-18*tMHin + 18*tSUSYOS)*Mf2(tM1,3)))/
      &     (vev2*SB2)
 
 #ifdef DETAILED_DEBUG
@@ -1021,7 +938,7 @@
 	else
 
 	se11OL = -((k1L*CB2*
-     &        (((22*MW2**2)/3.D0 + (11*(4*MW2 - 4*MZ2)**2)/24.D0)*tA0 +
+     &        (((22*MW2**2)/3.D0 + (11*(4*MW2 - 4*MZ2)**2)/24.D0)*tMHin +
      &          (-36*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/12.D0)*tCha +
      &          (16*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/3.D0)*tSUSYOS +
      &          ((38*MW2**2)/3.D0 - (41*(4*MW2 - 4*MZ2)**2)/24.D0)*tTop
@@ -1032,42 +949,42 @@
 #endif
 
 	se22OL = -((k1L*
-     &        (((11*MW2**2)/3.D0 + (11*(4*MW2 - 4*MZ2)**2)/48.D0)*tA0 +
+     &        (((11*MW2**2)/3.D0 + (11*(4*MW2 - 4*MZ2)**2)/48.D0)*tMHin +
      &          (-18*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/24.D0)*tCha +
      &          (8*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/6.D0)*tSUSYOS +
      &          ((19*MW2**2)/3.D0 - (41*(4*MW2 - 4*MZ2)**2)/48.D0)*
      &           tTop + (((11*MW2**2)/4.D0 +
-     &                (11*(4*MW2 - 4*MZ2)**2)/64.D0)*tA0 +
+     &                (11*(4*MW2 - 4*MZ2)**2)/64.D0)*tMHin +
      &             ((-27*MW2**2)/2.D0 - (5*(4*MW2 - 4*MZ2)**2)/32.D0)*
      &              tCha +
      &             (6*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/8.D0)*tSUSYOS +
      &             ((19*MW2**2)/4.D0 - (41*(4*MW2 - 4*MZ2)**2)/64.D0)*
      &              tTop)/SB**2 +
      &          SB2*(((11*MW2**2)/12.D0 +
-     &                (11*(4*MW2 - 4*MZ2)**2)/192.D0)*tA0 +
+     &                (11*(4*MW2 - 4*MZ2)**2)/192.D0)*tMHin +
      &             ((-9*MW2**2)/2.D0 - (5*(4*MW2 - 4*MZ2)**2)/96.D0)*
      &              tCha +
      &             (2*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/24.D0)*tSUSYOS +
      &             ((19*MW2**2)/12.D0 -
      &                (41*(4*MW2 - 4*MZ2)**2)/192.D0)*tTop) +
      &          CB2*(((-11*MW2**2)/2.D0 -
-     &                (11*(4*MW2 - 4*MZ2)**2)/32.D0)*tA0 +
+     &                (11*(4*MW2 - 4*MZ2)**2)/32.D0)*tMHin +
      &             (27*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/16.D0)*tCha +
      &             (-12*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/4.D0)*
      &              tSUSYOS +
      &             ((-19*MW2**2)/2.D0 + (41*(4*MW2 - 4*MZ2)**2)/32.D0)*
      &              tTop) +
      &          (((-11*MW2**2)/3.D0 - (11*(4*MW2 - 4*MZ2)**2)/48.D0)*
-     &              tA0 + MW2**2*(18*tCha - 8*tSUSYOS - 19/3.D0*tTop))/
+     &              tMHin + MW2**2*(18*tCha - 8*tSUSYOS - 19/3.D0*tTop))/
      &           TB**2))/vev2)
 
 	se22OL = se22OL -
-     &    (k1L*(((-24*tA0 + 24*tSUSYOS)*Mf2(tM1,3)**2)/SB**2 +
-     &         ((6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &    (k1L*(((-24*tMHin + 24*tSUSYOS)*Mf2(tM1,3)**2)/SB**2 +
+     &         ((6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &            (-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tSUSYOS)*
      &          (Mf2(tM1,3) + Mf2(tM1,3)/SB**2) +
      &         (CB2*(((11*MW2**2)/12.D0 +
-     &                  (11*(4*MW2 - 4*MZ2)**2)/192.D0)*tA0 +
+     &                  (11*(4*MW2 - 4*MZ2)**2)/192.D0)*tMHin +
      &               ((-9*MW2**2)/2.D0 - (5*(4*MW2 - 4*MZ2)**2)/96.D0)*
      &                tCha +
      &               (2*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/24.D0)*
@@ -1076,7 +993,7 @@
      &                  (41*(4*MW2 - 4*MZ2)**2)/192.D0)*tTop) +
      &            (4*MW2 - 4*MZ2)**2*
      &             (5/24.D0*tCha - 5/6.D0*tSUSYOS + 41/48.D0*tTop) +
-     &            ((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &            ((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &               (6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tSUSYOS)*
      &             Mf2(tM1,3))/TB**2))/vev2
 
@@ -1087,14 +1004,14 @@
 
 	se12OL = -((k1L*
      &        (CB*SB*(((122*MW2**2)/3.D0 - 8*MW2*(4*MW2 - 4*MZ2) +
-     &                (13*(4*MW2 - 4*MZ2)**2)/24.D0)*tA0 +
+     &                (13*(4*MW2 - 4*MZ2)**2)/24.D0)*tMHin +
      &             (-12*MW2**2 + 8*MW2*(4*MW2 - 4*MZ2) -
      &                (7*(4*MW2 - 4*MZ2)**2)/12.D0)*tCha +
      &             (-16*MW2**2 - (5*(4*MW2 - 4*MZ2)**2)/3.D0)*
      &              tSUSYOS +
      &             ((-38*MW2**2)/3.D0 + (41*(4*MW2 - 4*MZ2)**2)/24.D0)*
      &              tTop) +
-     &          (((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &          (((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &               (6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tSUSYOS)*
      &             Mf2(tM1,3))/TB))/vev2)
 
@@ -1103,10 +1020,10 @@
 #endif
 
 	seHmHpOL = (k1L*
-     &      (((50*MW2**2)/3.D0 - 5*MW2*(4*MW2 - 4*MZ2))*tA0 +
+     &      (((50*MW2**2)/3.D0 - 5*MW2*(4*MW2 - 4*MZ2))*tMHin +
      &        (12*MW2**2 + 5*MW2*(4*MW2 - 4*MZ2))*tCha +
      &        MW2**2*(-16*tSUSYOS - 38/3.D0*tTop) +
-     &        MW2*((-6*tA0 + 6*tSUSYOS)*Mf2(tM1,3))/SB2))/vev2
+     &        MW2*((-6*tMHin + 6*tSUSYOS)*Mf2(tM1,3))/SB2))/vev2
 
 #ifdef DETAILED_DEBUG
 	DEFT "seHmHpMcMa =", seHmHpOL ENDL
@@ -1116,13 +1033,13 @@
 
 	sehhMtOL = -((k1L*
      &        (((53*MW2**2)/12.D0 - (7*MW2*(4*MW2 - 4*MZ2))/8.D0 +
-     &             (29*(4*MW2 - 4*MZ2)**2)/192.D0)*tA0 +
+     &             (29*(4*MW2 - 4*MZ2)**2)/192.D0)*tMHin +
      &          (-30*MW2**2 + 2*MW2*(4*MW2 - 4*MZ2) -
      &             (11*(4*MW2 - 4*MZ2)**2)/24.D0)*tCha +
      &          (8*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/6.D0)*tSUSYOS +
      &          CB**4*(((-7*MW2**2)/3.D0 +
      &                (MW2*(4*MW2 - 4*MZ2))/2.D0 -
-     &                (4*MW2 - 4*MZ2)**2/48.D0)*tA0 +
+     &                (4*MW2 - 4*MZ2)**2/48.D0)*tMHin +
      &             (-6*MW2**2 - 2*MW2*(4*MW2 - 4*MZ2) +
      &                (4*MW2 - 4*MZ2)**2/24.D0)*tCha +
      &             (8*MW2**2 + (5*(4*MW2 - 4*MZ2)**2)/6.D0)*
@@ -1133,11 +1050,11 @@
      &             (101*(4*MW2 - 4*MZ2)**2)/192.D0)*tTop +
      &          CB**8*(((-3*MW2**2)/4.D0 +
      &                (3*MW2*(4*MW2 - 4*MZ2))/8.D0 -
-     &                (3*(4*MW2 - 4*MZ2)**2)/64.D0)*tA0 +
+     &                (3*(4*MW2 - 4*MZ2)**2)/64.D0)*tMHin +
      &             ((3*MW2**2)/4.D0 - (3*MW2*(4*MW2 - 4*MZ2))/8.D0 +
      &                (3*(4*MW2 - 4*MZ2)**2)/64.D0)*tTop) +
      &          SB**4*(((-7*MW2**2)/3.D0 +
-     &                (MW2*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &                (MW2*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &             (-6*MW2**2 - 2*MW2*(4*MW2 - 4*MZ2))*tCha +
      &             (3*MW2*(4*MW2 - 4*MZ2))/2.D0*tTop +
      &             MW2**2*(8*tSUSYOS + 1/3.D0*tTop))))/vev2)
@@ -1145,49 +1062,49 @@
 	sehhMtOL = sehhMtOL +
      &    (k1L*(SB**8*(((3*MW2**2)/4.D0 -
      &               (3*MW2*(4*MW2 - 4*MZ2))/8.D0 +
-     &               (3*(4*MW2 - 4*MZ2)**2)/64.D0)*tA0 +
+     &               (3*(4*MW2 - 4*MZ2)**2)/64.D0)*tMHin +
      &            ((-3*MW2**2)/4.D0 + (3*MW2*(4*MW2 - 4*MZ2))/8.D0 -
      &               (3*(4*MW2 - 4*MZ2)**2)/64.D0)*tTop) +
      &         CB2*SB**6*
      &          ((-21*MW2**2 + (21*MW2*(4*MW2 - 4*MZ2))/2.D0 -
-     &               (21*(4*MW2 - 4*MZ2)**2)/16.D0)*tA0 +
+     &               (21*(4*MW2 - 4*MZ2)**2)/16.D0)*tMHin +
      &            (21*MW2**2 - (21*MW2*(4*MW2 - 4*MZ2))/2.D0 +
      &               (21*(4*MW2 - 4*MZ2)**2)/16.D0)*tTop) +
      &         SB2*(CB**6*
      &             ((-21*MW2**2 + (21*MW2*(4*MW2 - 4*MZ2))/2.D0 -
-     &                  (21*(4*MW2 - 4*MZ2)**2)/16.D0)*tA0 +
+     &                  (21*(4*MW2 - 4*MZ2)**2)/16.D0)*tMHin +
      &               (21*MW2**2 - (21*MW2*(4*MW2 - 4*MZ2))/2.D0 +
      &                  (21*(4*MW2 - 4*MZ2)**2)/16.D0)*tTop) +
-     &            MW2*(4*MW2 - 4*MZ2)*((3*tA0 - 12*tCha)*CB2)) +
+     &            MW2*(4*MW2 - 4*MZ2)*((3*tMHin - 12*tCha)*CB2)) +
      &         SB**4*(CB**4*
      &             (((105*MW2**2)/2.D0 -
      &                  (105*MW2*(4*MW2 - 4*MZ2))/4.D0 +
-     &                  (105*(4*MW2 - 4*MZ2)**2)/32.D0)*tA0 +
+     &                  (105*(4*MW2 - 4*MZ2)**2)/32.D0)*tMHin +
      &               ((-105*MW2**2)/2.D0 +
      &                  (105*MW2*(4*MW2 - 4*MZ2))/4.D0 -
      &                  (105*(4*MW2 - 4*MZ2)**2)/32.D0)*tTop) +
      &            (4*MW2 - 4*MZ2)**2*
-     &             (1/48.D0*tA0 - 1/24.D0*tCha - 5/6.D0*tSUSYOS +
+     &             (1/48.D0*tMHin - 1/24.D0*tCha - 5/6.D0*tSUSYOS +
      &               41/48.D0*tTop))))/vev2
 
 	sehhMtOL = sehhMtOL -
      &    (k1L*(CB2*SB2*((14*MW2**2 + (4*MW2 - 4*MZ2)**2/8.D0)*
-     &             tA0 + (36*MW2**2 - (4*MW2 - 4*MZ2)**2/4.D0)*
+     &             tMHin + (36*MW2**2 - (4*MW2 - 4*MZ2)**2/4.D0)*
      &             tCha + (-48*MW2**2 - 5*(4*MW2 - 4*MZ2)**2)*
      &             tSUSYOS +
      &            (-2*MW2**2 - 9*MW2*(4*MW2 - 4*MZ2) +
      &               (41*(4*MW2 - 4*MZ2)**2)/8.D0)*tTop) +
-     &         (CB2*((-12*MW2 + 3*(4*MW2 - 4*MZ2))*tA0 +
+     &         (CB2*((-12*MW2 + 3*(4*MW2 - 4*MZ2))*tMHin +
      &               (12*MW2 - 3*(4*MW2 - 4*MZ2))*tSUSYOS) +
-     &            SB**4*((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &            SB**4*((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &               (6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tTop) +
-     &            SB2*((12*MW2 - 3*(4*MW2 - 4*MZ2))*tA0 +
+     &            SB2*((12*MW2 - 3*(4*MW2 - 4*MZ2))*tMHin +
      &               (-12*MW2 + 3*(4*MW2 - 4*MZ2))*tSUSYOS +
-     &               CB2*((36*MW2 - 9*(4*MW2 - 4*MZ2))*tA0 +
+     &               CB2*((36*MW2 - 9*(4*MW2 - 4*MZ2))*tMHin +
      &                  (-36*MW2 + 9*(4*MW2 - 4*MZ2))*tTop)))*
      &          Mf2(tM1,3) +
      &         (24*tSUSYOS - 24*tTop)*Mf2(tM1,3)**2 +
-     &         ((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tA0 +
+     &         ((-6*MW2 + (3*(4*MW2 - 4*MZ2))/2.D0)*tMHin +
      &            (6*MW2 - (3*(4*MW2 - 4*MZ2))/2.D0)*tTop)*
      &          (Mf2(tM1,3) + CB**4*Mf2(tM1,3))))/vev2
 

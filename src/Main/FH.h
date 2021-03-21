@@ -608,7 +608,7 @@
 	integer tlpsmask, tlzeromask(se2Rc), loglevelmt, tldegatat
 	integer forceSU2, drbarmode, drbarvars, fopoleeq
 	integer dmtlimim, finfieldren, tbrepara
-	integer stiffodesolver, seexp, decczero, htMT3L
+	integer stiffodesolver, seexp, decczero, htMT3L, thdmeft
 	integer uncmask(8), drbartopmass
 	integer tM1, tM2, bM, bMps, bM1, gM
 	RealType MUEscale
@@ -629,7 +629,7 @@
      &    tlpsmask, tlzeromask, loglevelmt, TLdegatat,
      &    forceSU2, drbarmode, drbarvars, fopoleeq,
      &    dmtlimim, finfieldren, tbrepara,
-     &    stiffodesolver, seexp, decczero, htMT3L,
+     &    stiffodesolver, seexp, decczero, htMT3L, thdmeft,
      &    uncmask, drbartopmass,
      &    tM1, tM2, bM, bMps, bM1, gM,
      &    HimExe, extSE

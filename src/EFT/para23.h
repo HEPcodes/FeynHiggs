@@ -2,17 +2,6 @@
 * calculate loopfunctions and parameters used Resum4H23.F
 * this file is part of FeynHiggs
 
-* calculate trigonometric functions of phases
-	do i = iOS, iDR
-	  cospdiffXtYt(i)   = cos(pXt(i) - pYt(i))
-	  cospsumM1MUE(i)   = cos(pM1 + pMUE(i))
-	  cospsumM2MUE(i)   = cos(pM2 + pMUE(i))
-	  cospsumM1M2MUE(i) = cos(pM1 + pM2 + 2*pMUE(i))
-	  cospsum2M1MUE(i)  = cos(2*(pM1 + pMUE(i)))
-	  cospsum2M2MUE(i)  = cos(2*(pM2 + pMUE(i)))
-	  cospdiffXtM3(i) = cos(pM3(i) - pXt(i))
-	enddo
-
 * evaluate loopfunctions necessary for 1L threshold corrections
 	XtOS = xOS*MSUSYOS
 	YtOS = yOS*MSUSYOS
@@ -21,18 +10,18 @@
 	call loopfunSf(lfSfq, MSQq/MSUq)
 
 	if( gMSSMthresholds .eq. 1 ) then
-          call loopfunSf6(htlfSf(1), abs(MSS0(3,3)/m_3OS))
-          call loopfunSf6(htlfSf(2), abs(MSS0(4,3)/m_3OS))
+	  call loopfunSf6(htlfSf(1), abs(MSS0(3,3)/m_3OS))
+	  call loopfunSf6(htlfSf(2), abs(MSS0(4,3)/m_3OS))
 	  call loopfunSf9(htlfSf(3), abs(MSS0(3,3)/m_3OS), abs(MSS0(4,3)/m_3OS))
 	  htlfSf(4) = lfSf(5)
-          call loopfunSf6(htlfSf(5), abs(MSS0(3,3)/(mueOS*MSUSYOS)))
+	  call loopfunSf6(htlfSf(5), abs(MSS0(3,3)/(mueOS*MSUSYOS)))
 	  call loopfunSf6(htlfSf(6), abs(MSS0(4,3)/(mueOS*MSUSYOS)))
 	endif
 
 	r1 = abs(M_1)/abs(mueOS*MSUSYOS)
 	r2 = abs(M_2)/abs(mueOS*MSUSYOS)
-        r1q = abs(M_1/MUEq)
-        r2q = abs(M_2/MUEq)
+	r1q = abs(M_1/MUEq)
+	r2q = abs(M_2/MUEq)
 
 	call loopfunIno(lfM12, r1, r2)
 	call loopfunIno(lfM12q, r1q, r2q)
@@ -54,16 +43,15 @@
 	tSQq = 2*log(MSQq)
 	tSU = 2*log(abs(MSS0(4,3)))
 	tSUq = 2*log(MSUq)
-	tA0 = log(MA02)
-	tA0q = log(MA02q)
+	tMHinq = log(MHin2q)
 	tMUE = 2*log(abs(mueOS*MSUSYOS))
-        tMUEq = 2*log(abs(MUEq))
+	tMUEq = 2*log(abs(MUEq))
 	tM_2 = log(Sq(M_2))
 
-        db0msqmsu = Re(DB0(0D0,MSS2(3,3,3)/MSUSYOS**2,
-     &                           MSS2(3,3,4)/MSUSYOS**2))
+	db0msqmsu = Re(DB0(0D0,Re(MSS2(3,3,3))/MSUSYOS**2,
+     &                         Re(MSS2(3,3,4))/MSUSYOS**2))
 
-        db0msqmsuq = Re(DB0(0D0,(MSQq/MSUq)**2,
+	db0msqmsuq = Re(DB0(0D0,(MSQq/MSUq)**2,
      &                         (MSUq/MSQq)**2))
 
 	if( tanbdef .eq. tanbTHDM ) then
@@ -74,10 +62,10 @@
 	endif
 
 * evaluate loopfunctions necessary for 2L threshold corrections
-	call loopfun4H(lfmueMS, mueMS)
+	call loopfun4H(lfmueDR, mueDR)
 	if( loglevel .gt. 2 ) then
-	  call TLthresholdasat(dlam_asatMS, MSQq, MSUq,
-     &                       xMS*sqrt(MSQq*MSUq), matchsf*MSUSYOS, iDR)
+	  call TLthresholdasat(dlam_asatDR, MSQq, MSUq,
+     &                       xDR*sqrt(MSQq*MSUq), matchsf*MSUSYOS, iDR)
 	  call TLthresholdatatCoeff(clam_atatq, MSQq, MSUq, MUEq,
      &                              matchsf*MSUSYOS)
 	endif
@@ -96,7 +84,7 @@
      &            Re(MUEq), MA0,
      &            Re(Af0(3,1)), Re(Af0(4,1)), Re(Af0(2,1)),
      &            Re(Af0(3,2)), Re(Af0(4,2)), Re(Af0(2,2)),
-     &            xMS*sqrt(MSQq*MSUq) + Re(MUEq)/TB,
+     &            xDR*sqrt(MSQq*MSUq) + Re(MUEq)/TB,
      &            Re(Xbgl) + Re(MUEq)*TB, Re(Af0(2,3)),
      &            Re(M_1), Re(M_2), Re(m_3OS)
 	  call system(HimCmd)

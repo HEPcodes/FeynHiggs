@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 1 Apr 20 th
+* last modified 8 Jan 21 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -31,8 +31,8 @@
 
 	character*16 flags
 
-	character*54
-     &    dmssmpart(mssmpart_min-1:mssmpart_max+1), 
+	character*72
+     &    dmssmpart(mssmpart_min-1:mssmpart_max+1),
      &    dhiggsmix(higgsmix_min-1:higgsmix_max+1),
      &    dp2approx(p2approx_min-1:p2approx_max+1),
      &    dlooplevel(looplevel_min-1:looplevel_max+1),

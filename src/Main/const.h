@@ -4,9 +4,10 @@
 * last modified 25 Jan 17 th
 
 
-	RealType pi, zeta2, degree, sqrt2, sqrt3, log2
+        RealType pi, zeta2, zeta3, degree, sqrt2, sqrt3, log2
 	parameter (pi = 3.1415926535897932384626433832795029D0)
 	parameter (zeta2 = pi**2/6D0)
+	parameter (zeta3 = 1.20205690315959428539973816151D0)
 	parameter (degree = pi/180D0)
 	parameter (sqrt2 = 1.41421356237309504880168872421D0)
 	parameter (sqrt3 = 1.73205080756887729352744634151D0)

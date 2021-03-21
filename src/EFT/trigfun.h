@@ -1,0 +1,37 @@
+* trigfun.h
+* calculate trigonometric functions of phases
+* this file is part of FeynHiggs
+
+	do i = iOS, iDR
+	  cospdiffXtYt(i)    = cos(pXt(i) - pYt(i))
+	  cospsumM1MUE(i)    = cos(pM1 + pMUE(i))
+	  sinpsumM1MUE(i)    = sin(pM1 + pMUE(i))
+	  cosp2sumM1MUE(i)   = cos(2*(pM1 + pMUE(i)))
+	  sinp2sumM1MUE(i)   = sin(2*(pM1 + pMUE(i)))
+	  cospsumM2MUE(i)    = cos(pM2 + pMUE(i))
+	  sinpsumM2MUE(i)    = sin(pM2 + pMUE(i))
+	  cosp2sumM2MUE(i)   = cos(2*(pM2 + pMUE(i)))
+	  sinp2sumM2MUE(i)   = sin(2*(pM2 + pMUE(i)))
+	  cospdiffM1M2(i)    = cos(pM1 - pM2)
+	  cospsum2M1MUE(i)   = cos(2*(pM1 + pMUE(i)))
+	  cospsum2M2MUE(i)   = cos(2*(pM2 + pMUE(i)))
+	  cospsumM3MUE(i)    = cos(pM3(i) + pMUE(i))
+	  sinpsumM3MUE(i)    = sin(pM3(i) + pMUE(i))
+	  cospdiffAtM3(i)    = cos(pAt(i) - pM3(i))
+	  sinpdiffAtM3(i)    = sin(pAt(i) - pM3(i))
+	  cospsumXtM3(i)     = cos(pM3(i) - pXt(i))
+	  cospsumXtMUE(i)    = cos(pXt(i) + pMUE(i))
+	  cospsumAtMUE(i)    = cos(pAt(i) + pMUE(i))
+	  sinpsumAtMUE(i)    = sin(pAt(i) + pMUE(i))
+	  cospdiffAtM1(i)    = cos(pAt(i) - pM1)
+	  sinpdiffAtM1(i)    = sin(pAt(i) - pM1)
+	  cosp2sumAtMUE(i)   = cos(2*(pAt(i) + pMUE(i)))
+	  sinp2sumAtMUE(i)   = sin(2*(pAt(i) + pMUE(i)))
+	  cospsumM1M2MUE(i)  = cos(pM1 + pM2 + 2*pMUE(i))
+	  sinpsumM1M2MUE(i)  = sin(pM1 + pM2 + 2*pMUE(i))
+	  cospsumAtM3MUEa(i) = cos(pAt(i) + pM3(i) + 2*pMUE(i))
+	  sinpsumAtM3MUEa(i) = sin(pAt(i) + pM3(i) + 2*pMUE(i))
+	  cospsumAtM3MUEb(i) = cos(2*pAt(i) - pM3(i) + pMUE(i))
+	  sinpsumAtM3MUEb(i) = sin(2*pAt(i) - pM3(i) + pMUE(i))
+	  cospdiffXtM3(i)    = cos(pM3(i) - pXt(i))
+	enddo

@@ -48,7 +48,7 @@
      &        + (4*cospdiffXtM3(i)*xg**3 - xg**4)))))
 	  else
 * x1 == x2
-	    dlam_asat = 1/3.D0*
+	    dlam_asat = 1/3D0*
      &      (xg**4*(2*LSQ*xSQ*(3 - (8 - 3*xSQ)*xSQ) - 4*xSQ1 +
      &          (7 - LGlq2*(4 - 6*xSQ))*xSQ1**2 + xSQ1**3) +
      &       xSQ*(4*cospdiffXtM3(i)*xg**5*(LSQ + xSQ1) -

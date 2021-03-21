@@ -20,7 +20,7 @@
 	   MUEq = MUE_
 	   Xtq  = Xt_
 	   m_3OS = M_3_
-	   MA02q = MA02
+	   MHin2q = MHin2
 	else
 	  tmatchsf = log(matchsf**2)
 
@@ -32,13 +32,13 @@
      &         + k1L*(- 32/6D0*g3MSSM**2*abs(M_3_)**2
      &                + (abs(Xt_+MUE_/tbMSSM)**2
      &                   + MSS0(tQ(3),3)**2 + MSS0(tU(3),3)**2
-     &                   + MA02/(1+tbMSSM**2)
+     &                   + MHin2/(1+tbMSSM**2)
      &                   - abs(MUE_)**2)*htMSSM**2)*tmatchsf)
 	  MSUq = sqrt(MSS0(tU(3),3)**2
      &         + k1L*(- 32/6D0*g3MSSM**2*abs(M_3_)**2
      &                + 2*(abs(Xt_+MUE_/tbMSSM)**2
      &                     + MSS0(tQ(3),3)**2 + MSS0(tU(3),3)**2
-     &                     + MA02/(1+tbMSSM**2)
+     &                     + MHin2/(1+tbMSSM**2)
      &                     - abs(MUE_)**2)*htMSSM**2)*tmatchsf)
 	  MSDq = sqrt(MSS0(5,3)**2
      &         + k1L*(- 32/6D0*g3MSSM**2*abs(M_3_)**2)*tmatchsf)
@@ -47,18 +47,18 @@
      &          + k1L*(32/6D0*g3MSSM**2*M_3_
      &          + 3*(2*Xt_+Conjugate(MUE_)/tbMSSM)*htMSSM**2)*tmatchsf
 	  m_3OS = M_3_
-	  MA02q = MA02
+	  MHin2q = MHin2
 	endif
 
 #ifdef DETAILED_DEBUG
 	DEFT "runStopPara output:"	ENDL
-	DEFT "MSQq =", MSQq	ENDL
-	DEFT "MSUq =", MSUq	ENDL
-	DEFT "MSDq =", MSDq	ENDL
-	DEFT "MUEq =", MUEq	ENDL
-	DEFT "Xtq  =", Xtq	ENDL
-	DEFT "M3q  =", m_3OS	ENDL
-	DEFT "MA02q =", MA02q	ENDL
+	DEFT "MSQq   =", MSQq	ENDL
+	DEFT "MSUq   =", MSUq	ENDL
+	DEFT "MSDq   =", MSDq	ENDL
+	DEFT "MUEq   =", MUEq	ENDL
+	DEFT "Xtq    =", Xtq	ENDL
+	DEFT "M3q    =", m_3OS	ENDL
+	DEFT "MHin2q =", MHin2	ENDL
 #endif
 
 	end

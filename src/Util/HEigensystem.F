@@ -162,4 +162,3 @@
 	print 101, (p, d(p), p = 1, n)
 #endif
 	end
-

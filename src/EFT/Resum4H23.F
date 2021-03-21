@@ -17,7 +17,7 @@
 #include "Resum4H.h"
 #define __SUBROUTINE__ "Resum4H23"
 
-	integer fail, u, i
+	integer fail, u
 	RealType x(nSM)
 	RealType lamTree, lamOL, Mh0tree2
 	RealType dmz2, gOS, gyOS, gOS2, gyOS2
@@ -103,7 +103,7 @@
 	RealType yg2, ygy2, yht2
 	RealType yg1d2, yg2d2, yg1u2, yg2u2
 	RealType dx2, yMS, yMS2
-	RealType dlam_atatMS
+	RealType dlam_atatDR
 	RealType tmp
 
 	RealType phase
@@ -135,10 +135,10 @@
 	  yht2 = y(iht)**2*ySB2
 	endif
 
-	pYt(iDR) = phase(xMS*exp(cI*pXt(2)) +
-     &	  mueMS*exp(-cI*pMUE(2))*(1/y(itb) + y(itb)))
-	yMS = abs(xMS*exp(cI*pXt(2)) +
-     &	  mueMS*exp(-cI*pMUE(2))*(1/y(itb) + y(itb)))
+	pYt(iDR) = phase(xDR*exp(cI*pXt(2)) +
+     &	  mueDR*exp(-cI*pMUE(2))*(1/y(itb) + y(itb)))
+	yMS = abs(xDR*exp(cI*pXt(2)) +
+     &	  mueDR*exp(-cI*pMUE(2))*(1/y(itb) + y(itb)))
 	yMS2 = yMS**2
 
 	cospdiffXtYt(iDR)   = cos(pXt(iDR) - pYt(iDR))
@@ -146,28 +146,28 @@
 * threshold corrections at Q = MSUSY
 
 	y(ig1d) = y(igy)*yCB*(1 - k1L/48D0*(
-     &    72*xMS2*yht2*db0msqmsuq +
-     &    9*yg2*(2 - (7 - 6*tA0q + 6*tMatch)*ySB2) +
-     &    ygy2*(4*(33 - 2*tA0q + 42*tMatch) -
-     &      3*(7 - 6*tA0q + 6*tMatch)*ySB2 - 8*tSS1q) ))
+     &    72*xDR2*yht2*db0msqmsuq +
+     &    9*yg2*(2 - (7 - 6*tMHinq + 6*tMatch)*ySB2) +
+     &    ygy2*(4*(33 - 2*tMHinq + 42*tMatch) -
+     &      3*(7 - 6*tMHinq + 6*tMatch)*ySB2 - 8*tSS1q) ))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig1d) =", y(ig1d) ENDL
 #endif
 
 	y(ig2d) = y(ig)*yCB*(1 - k1L/48D0*(
-     &    6*(ygy2 + 12*xMS2*yht2*db0msqmsuq) -
-     &    3*(7 - 6*tA0q + 6*tMatch)*ygy2*ySB2 +
-     &    yg2*(32 - 8*tA0q + 104*tMatch +
-     &      (33 - 42*tA0q + 42*tMatch)*ySB2 - 24*tSS2q) ))
+     &    6*(ygy2 + 12*xDR2*yht2*db0msqmsuq) -
+     &    3*(7 - 6*tMHinq + 6*tMatch)*ygy2*ySB2 +
+     &    yg2*(32 - 8*tMHinq + 104*tMatch +
+     &      (33 - 42*tMHinq + 42*tMatch)*ySB2 - 24*tSS2q) ))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig2d) =", y(ig2d) ENDL
 #endif
 
 	y(ig1u) = y(igy)*(ySB + k1L/48D0/ySB*(
      &    12*yht2*(9 + 7*tSQq - 13*tSUq + 6*tMatch
-     &             - 6*xMS2*ySB**2*db0msqmsuq) -
-     &    ySB**2*(9*(2 - (7 - 6*tA0q + 6*tMatch)*yCB2)*yg2 +
-     &      ygy2*(132 - tA0q*(8 - 18*yCB2) +
+     &             - 6*xDR2*ySB**2*db0msqmsuq) -
+     &    ySB**2*(9*(2 - (7 - 6*tMHinq + 6*tMatch)*yCB2)*yg2 +
+     &      ygy2*(132 - tMHinq*(8 - 18*yCB2) +
      &      6*tMatch*(28 - 3*yCB2) - 21*yCB2 - 8*tSS1q)) ))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig1u) =", y(ig1u) ENDL
@@ -175,10 +175,10 @@
 
 	y(ig2u) = y(ig)*(ySB + k1L/48D0/ySB*(
      &    12*yht2*(9 - 9*tSQq + 3*tSUq + 6*tMatch
-     &             - 6*xMS2*ySB**2*db0msqmsuq) -
-     &    ySB**2*(3*(2 - (7 - 6*tA0q + 6*tMatch)*yCB2)*ygy2 +
-     &      yg2*(32 - 8*tA0q + 104*tMatch +
-     &        (33 - 42*tA0q + 42*tMatch)*yCB2 - 24*tSS2q)) ))
+     &             - 6*xDR2*ySB**2*db0msqmsuq) -
+     &    ySB**2*(3*(2 - (7 - 6*tMHinq + 6*tMatch)*yCB2)*ygy2 +
+     &      yg2*(32 - 8*tMHinq + 104*tMatch +
+     &        (33 - 42*tMHinq + 42*tMatch)*yCB2 - 24*tSS2q)) ))
 #ifdef DETAILED_DEBUG
 	DEFT "threshdiff: y(ig2u) =", y(ig2u) ENDL
 #endif
@@ -199,7 +199,7 @@
 * lambda(MSUSY): 1L heavy Higgs
 	y(ilam) = y(ilam) - supfac*
      &    k1L*(3/4.D0*(yC2B**2*(yg2 + ygy2)**2*yS2B**2) -
-     &       1/192.D0*((tA0q - tMatch)*
+     &       1/192.D0*((tMHinq - tMatch)*
      &          (53*yg2**2 + 42*yg2*ygy2 + 29*ygy2**2 -
      &            4*(ygy2**2 + yg2*(7*yg2 + 6*ygy2))*(yC2B - yS2B)*
      &             (yC2B + yS2B) -
@@ -215,7 +215,7 @@
      &           (yC2B*(3*tMatch*yg2 - tSQq*(3*yg2 - ygy2) +
      &                (-4*tSUq + 3*tMatch)*ygy2) -
      &             6*(tSQq + tSUq - 2*tMatch)*yht2) -
-     &          3*xMS2*(yht2*(24*lfSfq(1) - 2*xMS2*lfSfq(2)) +
+     &          3*xDR2*(yht2*(24*lfSfq(1) - 2*xDR2*lfSfq(2)) +
      &             yC2B*(3*(ygy2*lfSfq(3) + yg2*lfSfq(4)) -
      &                yC2B*(yg2 + ygy2)*lfSfq(5)))) +
      &       yC2B**2*(4*tMatch*(3*yg2**2 + 5*ygy2**2) -
@@ -227,31 +227,31 @@
 * 2L correction to lambda(MSUSY)
 	if( loglevel .gt. 2 ) then
 	  if( tldegatat .ne. 0 ) then
-	    dlam_atatMS = 1/4.D0*(6 +
-     &       cospdiffXtYt(iDR)*(-48*(3 + 16*Kfac)*xMS
-     &                     + 48*(1 + 4*Kfac)*xMS**3)*
-     &        yCB2*yMS - 96*lfmueMS(1) -
-     &       xMS**4*(yCB2*(75 + (19 + 96*Kfac)*yMS**2) -
-     &          6*(11 - lfmueMS(1) + lfmueMS(2))) +
-     &       4*xMS**2*(yCB2*
+	    dlam_atatDR = 1/4.D0*(6 +
+     &       cospdiffXtYt(iDR)*(-48*(3 + 16*Kfac)*xDR
+     &                     + 48*(1 + 4*Kfac)*xDR**3)*
+     &        yCB2*yMS - 96*lfmueDR(1) -
+     &       xDR**4*(yCB2*(75 + (19 + 96*Kfac)*yMS**2) -
+     &          6*(11 - lfmueDR(1) + lfmueDR(2))) +
+     &       4*xDR**2*(yCB2*
      &           (45 + 14*yMS**2 - Kfac*(72 - 72*yMS**2)) -
-     &          3*(7 - 4*lfmueMS(1) + 4*lfmueMS(2))) -
+     &          3*(7 - 4*lfmueDR(1) + 4*lfmueDR(2))) -
      &       6*(yCB2*(13 - 2*pi**2 + 6*yMS**2 -
-     &             8*Kfac*(15 - 4*yMS**2)) + xMS**6*ySB2 +
-     &          mueMS**2*(4*lfmueMS(1) - 6*(2 + lfmueMS(2)) +
-     &             12*xMS**2*(1 + lfmueMS(1) + lfmueMS(2)) -
-     &             xMS**4*(2*(1 + lfmueMS(1)) + lfmueMS(2)))) +
-     &       48*lfmueMS(3))/ySB2
+     &             8*Kfac*(15 - 4*yMS**2)) + xDR**6*ySB2 +
+     &          mueDR**2*(4*lfmueDR(1) - 6*(2 + lfmueDR(2)) +
+     &             12*xDR**2*(1 + lfmueDR(1) + lfmueDR(2)) -
+     &             xDR**4*(2*(1 + lfmueDR(1)) + lfmueDR(2)))) +
+     &       48*lfmueDR(3))/ySB2
 	  else
-	    call TLthresholdatat(dlam_atatMS, clam_atatq,
-     &        xMS*sqrt(MSQq*MSUq), yMS*sqrt(MSQq*MSUq), yTB2, ySB2, iDR)
+	    call TLthresholdatat(dlam_atatDR, clam_atatq,
+     &        xDR*sqrt(MSQq*MSUq), yMS*sqrt(MSQq*MSUq), yTB2, ySB2, iDR)
 	  endif
 	  y(ilam) = y(ilam) + k2L*yht2**2*
-     &      (4*y(ig3)**2*dlam_asatMS + yht2*dlam_atatMS)
+     &      (4*y(ig3)**2*dlam_asatDR + yht2*dlam_atatDR)
 #ifdef DETAILED_DEBUG
 	  DEFT "threshdiff:        +2L  =", y(ilam) ENDL
-	  DEFT "threshdiff: dlam_asatMS =", dlam_asatMS ENDL
-	  DEFT "threshdiff: dlam_atatMS =", dlam_atatMS ENDL
+	  DEFT "threshdiff: dlam_asatDR =", dlam_asatDR ENDL
+	  DEFT "threshdiff: dlam_atatDR =", dlam_atatDR ENDL
 #endif
 	endif
 
@@ -268,8 +268,8 @@
      &                     + htlfSf(1) + htlfSf(2)
      &                     - abs(Xtq/m_3OS)*cospdiffXtM3(iDR)*htlfSf(3))
      &              + yht2*(  3/4D0*(tMUEq - tMatch)/ySB2
-     &                      + 3/8D0*(2*(tA0q - tMatch) - 1)/yTB2
-     &                      - xMS2/4D0*htlfSf(4) + htlfSf(5)/ySB2
+     &                      + 3/8D0*(2*(tMHinq - tMatch) - 1)/yTB2
+     &                      - xDR2/4D0*htlfSf(4) + htlfSf(5)/ySB2
      &                      + htlfSf(6)/(2*ySB2))
 
 	  y(iht) = y(iht)*ySB*(1 + k1L*tmp)
@@ -277,7 +277,7 @@
 	  if( loglevel .gt. 2 ) then
 	    y(ilam) = y(ilam) + supfac*4*k2L*tmp*yht2**2
      &                      *(  3*(tSQq + tSUq - 2*tMatch)
-     &                        + 6*xMS2*(lfSfq(1) - xMS2/12D0*lfSfq(2)))
+     &                        + 6*xDR2*(lfSfq(1) - xDR2/12D0*lfSfq(2)))
 	  endif
 
 	  y(ig3) = y(ig3) - k1L*y(ig3)**3*(1/2D0 - tGlu + tMatch
@@ -291,7 +291,7 @@
 	if( tanbdef .eq. tanbTHDM ) then
 	  y(itb) = y(itb)*(1
      &             + 3/2D0*k1L*x(iht)**2*(1+y(itb)**2)/y(itb)**2
-     &                           *xMS*yMS*cospdiffXtYt(iDR)*db0msqmsuq
+     &                           *xDR*yMS*cospdiffXtYt(iDR)*db0msqmsuq
      &		- 1/8D0*k1L*(3*yg2*db0m2mueq*cospsumM2MUE(iDR)
      &		+ ygy2*db0m1mueq*cospsumM1MUE(iDR))*(y(itb)-1/y(itb)))
 	endif

@@ -1,4 +1,4 @@
-LoadModel[{"MSSMCTgl", "dMHiggs2gl", "dZHiggs2gl", "MixCTgl"}]
+LoadModel[{"MSSMCTgl", "dMHiggs2gl", "dZHiggs2gl", "MixCTgl", "CPdZHgl"}]
 
 RenConst[dAf1[3,3,3]] := -MUEC dTB1/TB2
 

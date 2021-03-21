@@ -38,7 +38,7 @@
      &        (3*(1 - 2*LA02 + 2*LQ2)*rSQ2*rSU2*xSQU2 -
      &          (1 - LA02 + LQ2)*rA02*
      &           (rSQ2*(6*rSQ2 - 3*xSQU2) - xSQU2**2)) +
-     &       3/2.D0*((LSQ2 - LSU2)*rSQ2*rSU2*
+     &       3/2D0*((LSQ2 - LSU2)*rSQ2*rSU2*
      &          (xSQU2**2 + (-2*LA02 + 2*LQ2)*xSQU2**2 +
      &            rSQ2*((4 - 4*LA02 + 4*LQ2)*rA02 -
      &               (2 - 4*LA02 + 4*LQ2)*xSQU2))))/
@@ -113,7 +113,7 @@
      &                (rSQ2*rSU2)))/xSUM2**2)/xSQM2**2 +
      &      ((LQ2*(2*xSQM2*xSQU2 - xSQU2**2 +
      &              rSQ2*(LSU2*rSU2 - 6*xSQM2 + 3*xSQU2)))/rSQ2 -
-     &         1/2.D0*((LSU2*rSU2*
+     &         1/2D0*((LSU2*rSU2*
      &                 (rMUE2**3*(15*rSQ2 - 2*xSQU2) +
      &                   rSU2*(3*rSQ2 - 2*xSQU2)*
      &                    (rSQ2*(4*rSQ2 - 5*xSQM2) + xSQM2*xSQU2)-
@@ -271,10 +271,10 @@
      &                ((LSQ2 - LSU2)*rSQ2 +
      &                  (-1 - LQ2 + LSU2)*xSQU2)))))
 
-        clam(4) = -(Nc/2.D0*
+        clam(4) = -(Nc/2D0*
      &      tmp1/(rSQ2*rSU2*refscale2**2*xSQM2**2*xSQU2**4*xSUM2**2))
 
-        clam(12) = Nc/2.D0*
+        clam(12) = Nc/2D0*
      &    ((Phi1*((rA02*(rA02 - 2*rSQ2) + xSQU2**2)*
      &             (xSQU2**2 + rA02*(rA02 - 6*rSQ2 + 4*xSQU2)) -
      &            3*(xSQU2**2 + rA02*(rA02 - 4*rSQ2 + 2*xSQU2))*
@@ -309,7 +309,7 @@
      &      3*(LA02**2 + LSQ2**2) - (3*LA02 + LQ2)*LSU2 +
      &      2*LSU2**2 + Pi**2 -
      &      ((1 - LA02 + LQ2)*rA02*(2*rSQ2 + rSU2))/(rSQ2*rSU2) +
-     &      1/2.D0*(3 + 4*LQ2**2 - 9*LSQ2 - 5*LSU2) +
+     &      1/2D0*(3 + 4*LQ2**2 - 9*LSQ2 - 5*LSU2) +
      &      (Phi3*(rA02*(rA02 - 7*rSQ2) - rDen(rA0,rSQ,rSQ)))/
      &       rSQ2**2 + (Phi4*
      &         (rA02*(rA02 - 6*rSU2) - rDen(rA0,rSU,rSU)))/rSU2**2)
@@ -396,7 +396,7 @@
      &            (rA02*(rA02 - 6*rSU2) - rDen(rA0,rSU,rSU)))/
      &          rSU2**2)/(refscale2*xSQU2))
 
-        clam(2) = Nc*(1/2.D0*
+        clam(2) = Nc*(1/2D0*
      &        (-((Phi1*(xSQU2**2*
      &                   (2*rSQ2*xSQU2 - 3*xSQU2**2 -
      &                     rA02*(rA02 - 4*rSQ2 + 2*xSQU2))*

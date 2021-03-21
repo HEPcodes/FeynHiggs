@@ -21,8 +21,8 @@ If[ TrueQ[$MHpInput],
   RenConst[dMHinsq1] := MassRC[S[5] @ 0] - MHin2 dZHiggs1gl[5,5];
   RenConst[dMHinsq2] := MassRC[S[5] @ 0, CTOrder -> 1] -
     MHin2 (dZHiggs2gl[5,5] + 1/4 dZHiggs1gl[5,5]^2) -
-    (dZHiggs1gl[6,5] dMHiggs1gl[5,6] + dZHiggs1gl[5,6] dMHiggs1gl[6,5])/2 -
-    (*(dZHiggs1gl[5,6] + dZHiggs1gl[6,5]) (dMHiggs1gl[5,6] + dMHiggs1gl[6,5])/4 -*)
+    (dZHiggs1gl[5,6] dMHiggs1gl[6,5] + dZHiggs1gl[6,5] dMHiggs1gl[5,6])/2 -
+  (*  (dZHiggs1gl[5,6] + dZHiggs1gl[6,5]) (dMHiggs1gl[5,6] + dMHiggs1gl[6,5])/4 - *)
     dZHiggs1gl[5,5] dMHinsq1,
 (* else *)
   RenConst[dMHinsq1] := MassRC[S[3] @ 0] - MHin2 dZHiggs1gl[3,3];
@@ -105,15 +105,21 @@ RenConst[dMHiggsZ2gl[3,3]] := dMHiggs2gl[3, 3] +
 RenConst[dMHiggsZ2gl[5,5]] := dMHiggs2gl[5,5] +
   MHin2 (dZHiggs2gl[5,5] + 1/4 dZHiggs1gl[5,5]^2) +
   dZHiggs1gl[5,5] dMHiggs1gl[5,5] +
-  (dZHiggs1gl[6,5] dMHiggs1gl[5,6] + dZHiggs1gl[5,6] dMHiggs1gl[6,5])/2
-  (*1/4 (dZHiggs1gl[5,6] + dZHiggs1gl[6,5]) (dMHiggs1gl[5,6] + dMHiggs1gl[6,5])*)
+    (dZHiggs1gl[5,6] dMHiggs1gl[6,5] + dZHiggs1gl[6,5] dMHiggs1gl[5,6])/2
+  (* 1/4 (dZHiggs1gl[5,6] + dZHiggs1gl[6,5]) (dMHiggs1gl[5,6] + dMHiggs1gl[6,5]) *)
 
 RenConst[_dMHiggsZ2gl] := 0
 
-
+dTB2gl = dTB2
+			       
 (* set field-renormalization-independent part of dTB to zero since this part
    eventually drops out in the 2L renormalization if combined with mixing CTs *)
 
+(*
 dTB1gl = dTB1div
 
 dTB2gl = dTB2div
+ *)
+dTB1fingl = 0
+
+dTB2fingl = 0

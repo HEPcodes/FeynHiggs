@@ -33,7 +33,7 @@
 	RealType xtf, mf
 	RealType tmp
 	RealType db0msqmsu, db0m1mue, db0m2mue
-	RealType MA02tmp
+	RealType MA02tmp, MHp2tmp
 
 * calculate parameters
 	ytSM2 = 2*MT_**2/vev2
@@ -62,21 +62,31 @@
 * set defintion of tanbEFT
 	if( MA0_ .ge. 0 ) then
 	  MA02tmp = MA0_**2
+	  MHp2tmp = MA02tmp + MW2
 	else
 	  MA02tmp = (MHp_ - MW)*(MHp_ + MW)
+	  MHp2tmp = MHp_**2
 	endif
 
 * set tanb input scale if not set by user
 	if ( tanbscaleInput .le. -100D0 ) then
 	  tanbscaleInput = MSUSY2
 	elseif ( tanbscaleInput .le. 0D0 ) then
-	  tanbscaleInput = MA02tmp
+	  if( MA0_ .ge. 0 ) then
+	    tanbscaleInput = MA02tmp
+	  else if( MHp_ .gt. MW ) then
+	    tanbscaleInput = MHp2tmp
+	  endif
 	endif
 
 * set defintion of tanb
 	if( loglevel .eq. 4 ) then
 	  tanbdef = tanbTHDM
-	  tanbscale = MA02tmp
+	  if( MA0_ .ge. 0 ) then
+	    tanbscale = MA02tmp
+	  else if( MHp_ .gt. MW ) then
+	    tanbscale = MHp2tmp
+	  endif
 	else
 	  if( finfieldren .eq. 0 ) then
 	    tanbdef = tanbMSSM

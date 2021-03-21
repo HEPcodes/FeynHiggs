@@ -79,6 +79,7 @@
 	if( looplevel .eq. 0 ) then
 	  MHiggs2(1) = Mh02EFT
 	else
+
 	  call CalcUHiggs
 	  if( extSE(1:1) .ne. ' ' .and. notInUncertainties ) then
 	    call CalcMHiggs

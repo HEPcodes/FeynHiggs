@@ -27,14 +27,14 @@
 	RealType CNf
 	parameter (CNf = 2/3D0*Nf - 11)
 
-	xMS2 = xOS2*(1 + llog*(AlfasMT/pi - .75D0*k1L*htMT2*xOS1))**2
+	xDR2 = xOS2*(1 + llog*(AlfasMT/pi - .75D0*k1L*htMT2*xOS1))**2
 
 * initial values @ MX using analytically integrated 1L RGEs
 	x = 1 - CNf*k1L*gsMT2*llog
 	y(jgs2) = gsMT2/x
 	y(jht2) = 2*(8 + CNf)*gsMT2*htMT2/
      &    ((2*(8 + CNf)*gsMT2 - 9*htMT2)*x**(-8/CNf) + 9*htMT2*x)
-	x = xMS2*(1 - xMS2/12D0)
+	x = xDR2*(1 - xDR2/12D0)
 	y(jlam) = 6*k1L*y(jht2)**2*x
 
 	if( debuglevel .gt. 5 ) then

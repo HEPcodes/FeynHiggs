@@ -55,7 +55,7 @@ c	parameter (eps = .00001D0)
 	rMUE2 = rMUE**2
 	LMUE2 = log(rMUE2)
 
-	rA0 = sqrt(MA02q)/refscale
+	rA0 = sqrt(MHin2q)/refscale
 	do try = 1, 10
 	  if( abs(rDen(rSQ, rSQ, rA0)) .gt. eps .and.
      &        abs(rDen(rSQ, rSU, rA0)) .gt. eps .and.
@@ -66,10 +66,10 @@ c	parameter (eps = .00001D0)
 	LA02 = log(rA02)
 
 	if( debuglevel .gt. 5 ) then
-	  DEFT "nondegenerate atat thresholds"	ENDL
-	  DEFT "shifted input, orig:"		ENDL
-	  DEFT "MSQ =", rSQ*refscale		ENDL
-	  DEFT "MSU =", rSU*refscale, MSU_	ENDL
-	  DEFT "MUE =", rMUE*refscale, MMUE	ENDL
-	  DEFT "MA0 =", rA0*refscale, sqrt(MA02q)	ENDL
+	  DEFT "nondegenerate atat thresholds"		ENDL
+	  DEFT "shifted input, orig:"			ENDL
+	  DEFT "MSQ =", rSQ*refscale			ENDL
+	  DEFT "MSU =", rSU*refscale, MSU_		ENDL
+	  DEFT "MUE =", rMUE*refscale, MMUE		ENDL
+	  DEFT "MA0 =", rA0*refscale, sqrt(MHin2q)	ENDL
 	endif

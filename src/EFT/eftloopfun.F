@@ -449,10 +449,9 @@ c x != 1 && y != 1 && x != y
 
 #include "FH.h"
 
-	RealType x, x1
+	RealType x, x1, lx
 
 	x = mf**2
-	x1 = 1/(1-x)**2
 	if( abs(x) .lt. 1D-5 ) then
 	  lf(1) = 1.3125D0
 	  lf(2) = 0D0
@@ -466,16 +465,45 @@ c x != 1 && y != 1 && x != y
 	  lf(4) = -5/36D0
 	  lf(5) = 0D0
 	else
+	  x1 = 1/(1-x)**2
+	  lx = log(x)
 c         ht threshold g^2 coeff
-	  lf(1) = -3*(-7+4*x+3*x**2-2*x*(8-3*x)*log(x))*x1/16D0
+	  lf(1) = - 3*(- 7 + 4*x + 3*x**2 - 2*x*(8 - 3*x)*lx)*x1/16D0
 c         htp threshold g^2 coeff
-	  lf(2) =  -3*x*(-1+x-log(x))*x1/2D0
+	  lf(2) = - 3*x*(- 1 + x - lx)*x1/2D0
 c         ht threshold gy^2 coeff
-	  lf(3) = ((-55+32*at*mf-51*x)*(-1+x)
-     &      -2*x*(-72+16*at*mf+19*x)*log(x))*x1/144D0
+	  lf(3) = (( - 55 + 32*at*mf - 51*x)*(x - 1)
+     &             - 2*x*( - 72 + 16*at*mf + 19*x)*lx)*x1/144D0
 c         htp threshold gy^2 coeff
-	  lf(4) = x*(13*(1-x)+(9+4*x)*log(x))*x1/18D0
+	  lf(4) = x*(13*(1 - x) + (9 + 4*x)*lx)*x1/18D0
 c         ht threshold ht^2 coeff
-	  lf(5) = 3*(-1+4*x-3*x**2+2*x**2*log(x))*x1/8D0
+	  lf(5) = 3*(- 1 + 4*x - 3*x**2 + 2*x**2*lx)*x1/8D0
+	endif
+	end
+
+************************************************************************
+* loop functions G(1,2) for top Yukawa threshold (cTHDM->MSSM)
+
+	subroutine htloopfun_G(lf, mf)
+	implicit none
+	RealType lf(5), mf
+
+#include "FH.h"
+
+	RealType x, x1, lx
+
+	x = mf**2
+	if( abs(x) .lt. 1D-5 ) then
+	  lf(1) = 2D0
+	  lf(2) = - 2D0
+	elseif( abs(1-x) .lt. 1D-5 ) then
+	  lf(1) = 1D0
+	  lf(2) = 1D0
+	else
+	  x1 = 1/(1-x)**2
+	  lx = log(x)
+
+	  lf(1) = 2*x1*(1 - x + x*lx)
+	  lf(2) = 2*x1*(- 1 + x - x*(2 - x)*lx)
 	endif
 	end

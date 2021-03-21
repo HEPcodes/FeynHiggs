@@ -35,7 +35,7 @@
 	ytb2 = y(itb)**2
 	ylam2 = y(ilam)**2
 
-        dy(ilam) = k1L/48.D0*
+        dy(ilam) = k1L/48D0*
      &    (288*ylam2 - k1L*(-(ygy2*
      &            (432*ylam2 -
      &              ygy2*(379*ygy2 + 228*yht2 - 629*y(ilam)) -
@@ -55,20 +55,20 @@
 	DEFT "dy(ilam) =", dy(ilam) ENDL
 #endif
 
-        dy(iht) = -(k1L/2.D0*
-     &      ((8*yg32 + 9/4.D0*yg2 + 17/12.D0*ygy2 - 9/2.D0*yht2 +
-     &          k1L*(yg32*(108*yg32 - 36*yht2 - 19/9.D0*ygy2) +
-     &             1/16.D0*(yg2*
+        dy(iht) = -(k1L/2D0*
+     &      ((8*yg32 + 9/4D0*yg2 + 17/12D0*ygy2 - 9/2D0*yht2 +
+     &          k1L*(yg32*(108*yg32 - 36*yht2 - 19/9D0*ygy2) +
+     &             1/16D0*(yg2*
      &                (92*yg2 - 144*yg32 + 12*ygy2 - 225*yht2)) -
-     &             1/432.D0*(ygy2*(2374*ygy2 + 3537*yht2)) -
-     &             3/2.D0*ylam2 + 6*yht2*(2*yht2 + y(ilam))))*y(iht))
+     &             1/432D0*(ygy2*(2374*ygy2 + 3537*yht2)) -
+     &             3/2D0*ylam2 + 6*yht2*(2*yht2 + y(ilam))))*y(iht))
      &      )
 
 #ifdef DETAILED_DEBUG
 	DEFT "dy(iht) =", dy(iht) ENDL
 #endif
 
-        dy(ig3) = -(k1L/12.D0*
+        dy(ig3) = -(k1L/12D0*
      &      (yg32*(42 - k1L*
      &           (27*yg2 - 156*yg32 + 11*ygy2 - 12*yht2))*y(ig3)))
 
@@ -76,7 +76,7 @@
 	DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 
-        dy(ig) = -(k1L/12.D0*
+        dy(ig) = -(k1L/12D0*
      &      (yg2*(19 - k1L*(35*yg2 + 72*yg32 + 9*ygy2 - 9*yht2))*
      &        y(ig)))
 
@@ -84,7 +84,7 @@
 	DEFT "dy(ig) =", dy(ig) ENDL
 #endif
 
-        dy(igy) = k1L/36.D0*
+        dy(igy) = k1L/36D0*
      &    (ygy2*(123 + k1L*(81*yg2 + 264*yg32 + 199*ygy2 -
      &           51*yht2))*y(igy))
 
@@ -138,7 +138,7 @@
 	endif
 
 	if( t .gt. tGlu ) then
-	  dy(iht) = dy(iht) + 20*k2L/3.D0*(yg32**2*y(iht))
+	  dy(iht) = dy(iht) + 20*k2L/3D0*(yg32**2*y(iht))
 	  dy(ig3) = dy(ig3) + k1L*(yg32*(1 + 24*k1L*yg32)*y(ig3))
 
 #ifdef DETAILED_DEBUG
@@ -196,8 +196,8 @@
 	yg1ud2 = yg1d2 + yg1u2
 	yg2ud2 = yg2d2 + yg2u2
 
-        dy(ilam) = k1L/2.D0*
-     &    (1/24.D0*(54*yg2**2 -
+        dy(ilam) = k1L/2D0*
+     &    (1/24D0*(54*yg2**2 -
      &         6*(4*(yg1d2*(yg1u2 + yg1ud2 + 2*yg2d2) +
      &               5*yg2u2**2 + yg1u2*(yg1u2 + 2*yg2u2) +
      &               yg2d2*(5*yg2d2 + 2*yg2u2)) -
@@ -240,7 +240,7 @@
 	DEFT "dy(ilam) =", dy(ilam) ENDL
 #endif
 
-        dy(iht) = k1L/864.D0*
+        dy(iht) = k1L/864D0*
      &    ((216*yg1ud2 - 972*yg2 + 648*yg2ud2 - 3456*yg32 -
      &        612*ygy2 + 1944*yht2 -
      &        k1L*(81*yg2d2*(15*yg2d2 + 4*yg2u2 - 5*ygy2) +
@@ -261,7 +261,7 @@
 	DEFT "dy(iht) =", dy(iht) ENDL
 #endif
 
-        dy(ig3) = -(k1L/12.D0*
+        dy(ig3) = -(k1L/12D0*
      &      (yg32*(42 - k1L*
      &           (27*yg2 - 156*yg32 + 11*ygy2 - 12*yht2))*y(ig3)))
 
@@ -269,7 +269,7 @@
 	DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 
-        dy(ig) = -(k1L/24.D0*
+        dy(ig) = -(k1L/24D0*
      &      (yg2*(14 + k1L*(-424*yg2 +
      &             3*(yg1ud2 + 11*yg2ud2 - 48*yg32 - 8*ygy2 +
      &                6*yht2)))*y(ig)))
@@ -278,7 +278,7 @@
 	DEFT "dy(ig) =", dy(ig) ENDL
 #endif
 
-        dy(igy) = k1L/72.D0*
+        dy(igy) = k1L/72D0*
      &    (ygy2*(270 - k1L*(9*yg1ud2 - 216*yg2 + 27*yg2ud2 -
      &           528*yg32 - 416*ygy2 + 102*yht2))*y(igy))
 
@@ -293,7 +293,7 @@
 	DEFT "dy(itb) =", dy(itb) ENDL
 #endif
 
-        dy(ig1u) = k1L/192.D0*
+        dy(ig1u) = k1L/192D0*
      &    ((24*(5*yg1u2 - 9*yg2 + 6*yg2d2 + 9*yg2u2 - 3*ygy2 +
      &            12*yht2) +
      &         6*yg1d2*(32 -
@@ -317,7 +317,7 @@
 	DEFT "dy(ig1u) =", dy(ig1u) ENDL
 #endif
 
-        dy(ig1d) = -(k1L/192.D0*
+        dy(ig1d) = -(k1L/192D0*
      &      ((-24*(8*yg1u2 - 9*yg2 + 9*yg2d2 + 6*yg2u2 - 3*ygy2 +
      &              12*yht2) -
      &           3*yg1d2*(40 -
@@ -341,7 +341,7 @@
 	DEFT "dy(ig1d) =", dy(ig1d) ENDL
 #endif
 
-        dy(ig2u) = k1L/192.D0*
+        dy(ig2u) = k1L/192D0*
      &    (24*(4 - k1L*(5*yg1d2 + 6*yg1u2 - 9*yg2 + 9*yg2d2 +
      &            16*yg2u2 - ygy2 + 12*yht2 + 4*y(ilam)))*y(ig1d)*
      &       y(ig1u)*y(ig2d) +
@@ -367,7 +367,7 @@
 	DEFT "dy(ig2u) =", dy(ig2u) ENDL
 #endif
 
-        dy(ig2d) = k1L/192.D0*
+        dy(ig2d) = k1L/192D0*
      &    ((24*(2*yg1u2 - 33*yg2 + 7*yg2d2 + 4*yg2ud2 - 3*ygy2 +
      &            12*yht2) +
      &         3*yg1d2*(24 -
@@ -430,7 +430,7 @@
 	endif
 
 	if( t .gt. tGlu ) then
-	  dy(iht) = dy(iht) + 20*k2L/3.D0*(yg32**2*y(iht))
+	  dy(iht) = dy(iht) + 20*k2L/3D0*(yg32**2*y(iht))
 	  dy(ig3) = dy(ig3) + k1L*(yg32*(1 + 24*k1L*yg32)*y(ig3))
 
 #ifdef DETAILED_DEBUG

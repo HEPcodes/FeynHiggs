@@ -128,9 +128,11 @@ TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
   DRbar2LShifts.o dZHfin2LShifts.o MTrepara.o
 
 EFT = Resum4H.o Resum4H1.o \
-  Resum4H23.o Resum4H4.o \
-  beta4H.o beta4H4.o eftloopfun.o runStopPara.o \
-  TLthresholdasat.o TLthresholdatat.o TLthresholds4.o \
+  Resum4H23.o Resum4H4r.o Resum4H4c.o \
+  beta4H.o beta4H4r.o beta4H4c.o \
+  eftloopfun.o runStopPara.o \
+  TLthresholdasat.o TLthresholdatat.o \
+  TLthresholds4asat.o TLthresholds4atat.o \
   PhiQuad.o spenceQuad.o
 
 PhiQuad.o: Phi.F
@@ -139,15 +141,17 @@ spenceQuad.o: spence.F
 
 $(EFT): Resum4H.h
 
-Resum4H23.o: FOSubtract.h para23.h
-Resum4H4.o: FOSubtract4.h
-
 TLthresholdasat.o: Resum4H.h
 TLthresholdatat.o: TLthresholdatat.h Resum4H.h
 
-Resum4H.o: Resum4H.h
+Resum4H.o: Resum4H.h trigfun.h
 Resum4H1.o: Resum4H.h
-Resum4H23.o: FOSubtract.h Resum4H.h TLthresholdasat.o TLthresholdatat.o
+Resum4H23.o: FOSubtract.h  para23.h Resum4H.h \
+  TLthresholdasat.o TLthresholdatat.o dmz2.h trigfun.h
+Resum4H4r.o: FOSubtract4r.h  para4r.h Resum4H.h \
+  TLthresholds4asat.o TLthresholds4atat.o dmw2.h dmz2.h
+Resum4H4c.o: FOSubtract4c.h  para4c.h Resum4H.h \
+  TLthresholds4asat.o TLthresholds4atat.o dmw2.h dmz2.h trigfun.h
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 

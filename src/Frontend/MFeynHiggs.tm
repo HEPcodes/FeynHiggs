@@ -784,7 +784,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 18 Jul 18 th
+		last modified 7 Jan 21 th
 */
 
 
@@ -799,7 +799,7 @@
 
 #include "mathlink.h"
 #ifndef MLCONST
-#define MLCONST
+#define MLCONST const
 #endif
 
 #define CQUADSIZE 10

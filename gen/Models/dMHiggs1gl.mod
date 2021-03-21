@@ -17,21 +17,29 @@ RenConst[dMHiggs1gl[1,1]] := -ivev dTh01
 
 RenConst[dMHiggs1gl[1,2]] := -ivev dTHH1 + MHin2 CB2 dTB1gl
 
+RenConst[dMHiggs1gl[2,1]] := dMHiggs1gl[1,2]
+						 
 RenConst[dMHiggs1gl[1,3]] := -ivev dTA01
 
+RenConst[dMHiggs1gl[3,1]] := dMHiggs1gl[1,3]
+				   
 RenConst[dMHiggs1gl[2,2]] := dMHinsq1
 
 RenConst[dMHiggs1gl[2,4]] := -ivev dTA01
 
+RenConst[dMHiggs1gl[4,2]] := dMHiggs1gl[2,4]
+				   
 RenConst[dMHiggs1gl[3,3]] := dMHinsq1
 
 RenConst[dMHiggs1gl[3,4]] := - (-ivev dTHH1 + MHin2 CB2 dTB1gl)
+
+RenConst[dMHiggs1gl[4,3]] := dMHiggs1gl[3,4]
 
 RenConst[dMHiggs1gl[5,5]] := dMHinsq1
 
 RenConst[dMHiggs1gl[5,6]] := ivev (dTHH1 + I dTA01) - MHin2 CB2 dTB1gl
 
-dMHiggs1gl[6,5] := Conjugate[dMHiggs1gl[5,6]]
+RenConst[dMHiggs1gl[6,5]] := Conjugate[dMHiggs1gl[5,6]]
 
 RenConst[_dMHiggs1gl] := 0
 
