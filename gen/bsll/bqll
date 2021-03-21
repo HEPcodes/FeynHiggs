@@ -126,7 +126,7 @@ If[ tag === "Cha", amp = TagDiagrams[amp] ];
       C0i[Except[LoopTools`cc0 | LoopTools`cc00], __] -> 0 /.
       D0i[Except[LoopTools`dd0 | LoopTools`dd00], __] -> 0 /.
       (* (#1 -> 0 &)@@@ Select[Abbr[], !FreeQ[#, DiracChain[__, _k, __]] &] /. *)
-      FormCalc`S23 | FormCalc`T12 | T (*13*) -> 0,
+      FormCalc`S23 | FormCalc`T12 | T -> 0,
     ".raw2" ];
 
   amp = Keep[

@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 15 Feb 16 th
+* last modified 30 Jan 18 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -17,8 +17,7 @@
 
 	character*128 argv
 	integer argc, type, error, loop, keyslha, i
-	integer mssmpart, fieldren, tanbren, higgsmix, p2approx
-	integer looplevel, loglevel
+	integer mssmpart, higgsmix, p2approx, looplevel, loglevel
 	integer runningMT, botResum, tlCplxApprox
 	RecordDecl(record)
 	ComplexType slhadata(nslhadata)
@@ -31,12 +30,11 @@
 
 	character*16 flags
 
-	character*54 dmssmpart(-1:5), dfieldren(-1:5),
-     &    dtanbren(-1:3), dhiggsmix(0:5), dp2approx(-1:5),
+	character*54 dmssmpart(-1:5), dhiggsmix(0:5), dp2approx(-1:5),
      &    dlooplevel(-1:3), dloglevel(-1:4), drunningMT(-1:4),
      &    dbotResum(-1:3), dtlCplxApprox(-1:4)
 
-	data flags /"4002420110"/
+	data flags /"42423110"/
 
 	data dmssmpart /
      &    "???",
@@ -45,22 +43,6 @@
      &    "top/stop + bottom/sbottom sector",
      &    "full (s)quark/(s)lepton sector",
      &    "full MSSM [recommended]",
-     &    "???" /
-
-	data dfieldren /
-     &    "???",
-     &    "DRbar field ren. [strongly recommended]",
-     &    "on-shell field ren., Dabelstein convention",
-     &    "on-shell field ren., `Goldstone-pole' version",
-     &    "on-shell field ren., MF I",
-     &    "on-shell field ren., MF II",
-     &    "???" /
-
-	data dtanbren /
-     &    "???",
-     &    "DRbar TB-ren. [strongly recommended]",
-     &    "field renormalization part only for TB (Dabelstein)",
-     &    "mixed field/on-shell renormalization for TB",
      &    "???" /
 
 	data dhiggsmix /
@@ -127,8 +109,7 @@
 	call FHSetFlagsString(error, flags)
 
 	call FHRetrieveFlags(error,
-     &    mssmpart, fieldren, tanbren,
-     &    higgsmix, p2approx, looplevel, loglevel,
+     &    mssmpart, higgsmix, p2approx, looplevel, loglevel,
      &    runningMT, botResum, tlCplxApprox)
 
 #define ShowFlag(t,f,lo,hi) t, f, d f(min(max(f,lo-1),hi+1))
@@ -136,8 +117,6 @@
 101	format(A, " = ", I1, T20, "# ", A)
 	print 101,
      &    ShowFlag("mssmpart",     mssmpart,     0, 4),
-     &    ShowFlag("fieldren",     fieldren,     0, 4),
-     &    ShowFlag("tanbren",      tanbren,      0, 2),
      &    ShowFlag("higgsmix",     higgsmix,     1, 4),
      &    ShowFlag("p2approx",     p2approx,     0, 4),
      &    ShowFlag("looplevel",    looplevel,    0, 2),
@@ -214,34 +193,28 @@ c	if( error .eq. -2 ) goto 2
      &    /"built on ", FHBUILDDATE
      &    //"USAGE:  ", A, " <inputfile> [<flags>]"
      &    //"<inputfile> is a file containing the parameters"
-     &    //"<flags> is a string of 9 digits with"
+     &    //"<flags> is an 8-digit string with"
      &    /"  #1 = mssmpart = scope of the calculation",
      &    5 DESC_FMT
-     &    /"  #2 = fieldren = 1L field renormalization",
+     &    /"  #2 = higgsmix = mixing in the neutral Higgs sector",
+     &    4 DESC_FMT
+     &    /"  #3 = p2approx = approximation for the 1L result",
      &    5 DESC_FMT
-     &    /"  #3 = tanbren = 1L tan(beta) renormalization",
+     &    /"  #4 = looplevel, inclusion of higher-order corrections",
      &    3 DESC_FMT
-     &    /"  #4 = higgsmix = mixing in the neutral Higgs sector",
+     &    /"  #5 = loglevel, inclusion of log resummations",
      &    4 DESC_FMT
-     &    /"  #5 = p2approx = approximation for the 1L result",
-     &    5 DESC_FMT
-     &    /"  #6 = looplevel, inclusion of higher-order corrections",
+     &    /"  #6 = runningMT, pole vs. running MT",
+     &    4 DESC_FMT
+     &    /"  #7 = botResum, MB resummation",
      &    3 DESC_FMT
-     &    /"  #7 = loglevel, inclusion of log resummations",
-     &    4 DESC_FMT
-     &    /"  #8 = runningMT, pole vs. running MT",
-     &    4 DESC_FMT
-     &    /"  #9 = botResum, MB resummation",
-     &    3 DESC_FMT
-     &    /"  #10 = tlCplxApprox, complex parameters in the 2L corrections",
+     &    /"  #8 = tlCplxApprox, complex parameters in the 2L corrections",
      &    4 DESC_FMT
      &    /)
 
 999	call getarg(0, argv)
 	print 100, Strip(argv),
      &    (i, dmssmpart(i),     i = 0, 4),
-     &    (i, dfieldren(i),     i = 0, 4),
-     &    (i, dtanbren(i),      i = 0, 2),
      &    (i, dhiggsmix(i),     i = 1, 4),
      &    (i, dp2approx(i),     i = 0, 4),
      &    (i, dlooplevel(i),    i = 0, 2),

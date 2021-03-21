@@ -1,7 +1,7 @@
 * Resum4H.F
 * resum the 4H coupling
 * this file is part of FeynHiggs
-* last modified 19 Jan 16 th
+* last modified 30 Jan 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -18,7 +18,7 @@
 #include "Resum4H.h"
 #define __SUBROUTINE__ "Resum4H"
 
-	RealType res(ipslots), ipres, dPhi22
+	RealType res(ipslots), ipres, Mh02_, dPhi22
 
 	tTop = log(MT2)
 	MSUSYOS = MSf(1,3,3)*MSf(2,3,3)
@@ -36,6 +36,16 @@
 	  tCha = tSUSYOS
 	endif
 
+* calc MSbar vev
+        Mh02_ = Mh02
+! 	vMS2 = vev**2
+#define a0(m) A0q(m,MT2)
+	vMS2 = vev**2 + k1L*3*(
+     &    MT2 - 2*a0(MT2) - 1/6D0*(2*MW2 + MZ2 + Mh02_) +
+     &    MW2/(Mh02_ - MW2)*a0(Mh02_) +
+     &    (4/3D0 - CW2/SW2)*a0(MZ2) +
+     &    (11/3D0 + CW2/SW2 - Mh02_/(Mh02_ - MW2))*a0(MW2) )
+
 	do ipi = 1, ipn
 	  xOS = Re(Xtc)/MSUSYOS
 	  xOS2 = xOS**2
@@ -44,7 +54,7 @@
 	  mueOS = Re(MUEc)/MSUSYOS
 	  mueOS2 = mueOS**2
 	  mueOS1 = (1 - mueOS)*(1 + mueOS)
-	  
+
 	  if( loglevel .eq. 1 ) then
 	    call Resum4H1(res(ipi))
 	  else
@@ -61,7 +71,7 @@
 	  if( debuglevel .gt. 2 )
      &      DHIGGS "Mh2poleEFT =", Mh02EFT	ENDL
 	else
-	  dPhi22 = -vev**2/SB2*ipres
+	  dPhi22 = -ipres/SB2
 	  seEFT(h0h0) = CA2*dPhi22
 	  seEFT(HHHH) = SA2*dPhi22
 	  seEFT(h0HH) = .5D0*S2A*dPhi22
@@ -75,4 +85,3 @@
 
 	if( error .eq. 0 ) eft_valid = valid
 	end
-

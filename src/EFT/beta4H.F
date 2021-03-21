@@ -111,16 +111,16 @@
 	    DHIGGS "dy(iht) =", dy(iht) ENDL
 	    DHIGGS "dy(ig3) =", dy(ig3) ENDL
 #endif
-	else
-	  if( t .gt. tGlu ) then
-	    dy(iht) = dy(iht) + 20*k2L/3.D0*(yg32**2*y(iht))
-	    dy(ig3) = dy(ig3) + k1L*(yg32*(1 + 24*k1L*yg32)*y(ig3))
+	endif
+
+	if( t .gt. tGlu ) then
+	  dy(iht) = dy(iht) + 20*k2L/3.D0*(yg32**2*y(iht))
+	  dy(ig3) = dy(ig3) + k1L*(yg32*(1 + 24*k1L*yg32)*y(ig3))
 
 #ifdef DETAILED_DEBUG
-	    DHIGGS "dy(iht) =", dy(iht) ENDL
-	    DHIGGS "dy(ig3) =", dy(ig3) ENDL
+	  DHIGGS "dy(iht) =", dy(iht) ENDL
+	  DHIGGS "dy(ig3) =", dy(ig3) ENDL
 #endif
-	  endif
 	endif
 	end
 
@@ -368,16 +368,16 @@
 	    DHIGGS "dy(iht) =", dy(iht) ENDL
 	    DHIGGS "dy(ig3) =", dy(ig3) ENDL
 #endif
-	else
-	  if( t .gt. tGlu ) then
-	    dy(iht) = dy(iht) + 20*k2L/3.D0*(yg32**2*y(iht))
-	    dy(ig3) = dy(ig3) + k1L*(yg32*(1 + 24*k1L*yg32)*y(ig3))
+	endif
+
+	if( t .gt. tGlu ) then
+	  dy(iht) = dy(iht) + 20*k2L/3.D0*(yg32**2*y(iht))
+	  dy(ig3) = dy(ig3) + k1L*(yg32*(1 + 24*k1L*yg32)*y(ig3))
 
 #ifdef DETAILED_DEBUG
-	    DHIGGS "dy(iht) =", dy(iht) ENDL
-	    DHIGGS "dy(ig3) =", dy(ig3) ENDL
+	  DHIGGS "dy(iht) =", dy(iht) ENDL
+	  DHIGGS "dy(ig3) =", dy(ig3) ENDL
 #endif
-	  endif
 	endif
 	end
 

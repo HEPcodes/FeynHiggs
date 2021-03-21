@@ -1,0 +1,1 @@
+../../../../FeynArts/Models/MSSMCT.mod

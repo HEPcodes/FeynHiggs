@@ -1,4 +1,4 @@
-FHVERSION = 2.13.0
+FHVERSION = 2.14.0
 
 LIBDIR = $(PREFIX)/lib$(LIBDIRSUFFIX)
 INCLUDEDIR = $(PREFIX)/include
@@ -20,7 +20,6 @@ ARGS = $(PARALLEL) \
   ML="$(ML)" \
   MCC="$(MCC)" \
   MCFLAGS="$(MCFLAGS)" \
-  MCLIBS="$(MCLIBS)" \
   LDFLAGS="$(LDFLAGS)" \
   AR="$(AR)" \
   RANLIB="$(RANLIB)" \

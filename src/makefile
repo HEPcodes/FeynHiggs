@@ -20,7 +20,7 @@ MAIN = SetFlags.o RetrieveFlags.o \
   SetExt.o GetSelf.o HiggsCorr.o Uncertainties.o \
   Couplings.o SelectUZ.o SelectIpol.o \
   Constraints.o EWPO.o Flavour.o \
-  HiggsProd.o CalcSelf.o AddSelf.o AddExt.o Error.o \
+  HiggsProd.o CalcSE.o CalcSEgl.o AddSelf.o AddExt.o Error.o \
   DRbartoOS.o DeltaMT.o AlphaS.o MDcorr.o Deltab2L.o \
   Output.o OutputSLHA.o
 #MAIN += gghNLO.o
@@ -47,16 +47,39 @@ SLHA = SLHAClear.o SLHARead.o SLHAWrite.o \
   SLHANewDecay.o SLHAFindDecay.o SLHAAddDecay.o SLHAGetDecay.o \
   SLHADecayTable.o SLHAValid.o SLHAExist.o SLHAPDGName.o
 
-ONELOOP = se_h0h0.o se_HHHH.o se_A0A0.o se_HmHp.o \
-  se_h0HH.o se_h0A0.o se_HHA0.o \
-  se_G0G0.o se_h0G0.o se_HHG0.o se_A0G0.o \
-  se_GmGp.o se_HmGp.o \
-  se_A0Z.o se_ZZ.o se_WW.o td_h0.o td_HH.o td_A0.o \
-  dse_h0h0.o dse_HHHH.o dse_A0A0.o dse_HmHp.o \
-  dse_h0HH.o dse_h0A0.o dse_HHA0.o \
-  dse_G0G0.o dse_h0G0.o dse_HHG0.o dse_A0G0.o \
-  dse_GmGp.o dse_HmGp.o \
-  dse_ZZ.o dse_WW.o
+ONELOOP = \
+  se_h0h0_mfv.o se_HHHH_mfv.o se_A0A0_mfv.o se_HmHp_mfv.o \
+  se_h0HH_mfv.o se_h0A0_mfv.o se_HHA0_mfv.o \
+  se_G0G0_mfv.o se_h0G0_mfv.o se_HHG0_mfv.o se_A0G0_mfv.o \
+  se_GmGp_mfv.o se_HmGp_mfv.o se_ZZ_mfv.o se_WW_mfv.o \
+  td_h0_mfv.o td_HH_mfv.o td_A0_mfv.o \
+  dse_h0h0_mfv.o dse_HHHH_mfv.o dse_A0A0_mfv.o dse_HmHp_mfv.o \
+  dse_h0HH_mfv.o dse_h0A0_mfv.o dse_HHA0_mfv.o \
+  dse_G0G0_mfv.o dse_h0G0_mfv.o dse_HHG0_mfv.o dse_A0G0_mfv.o \
+  dse_GmGp_mfv.o dse_HmGp_mfv.o \
+  dse_ZZ_mfv.o dse_WW_mfv.o \
+  dZ_h0h0_mfv.o dZ_HHHH_mfv.o \
+  se_h0h0_nmfv.o se_HHHH_nmfv.o se_A0A0_nmfv.o se_HmHp_nmfv.o \
+  se_h0HH_nmfv.o se_h0A0_nmfv.o se_HHA0_nmfv.o \
+  se_G0G0_nmfv.o se_h0G0_nmfv.o se_HHG0_nmfv.o se_A0G0_nmfv.o \
+  se_GmGp_nmfv.o se_HmGp_nmfv.o se_ZZ_nmfv.o se_WW_nmfv.o \
+  td_h0_nmfv.o td_HH_nmfv.o td_A0_nmfv.o \
+  dse_h0h0_nmfv.o dse_HHHH_nmfv.o dse_A0A0_nmfv.o dse_HmHp_nmfv.o \
+  dse_h0HH_nmfv.o dse_h0A0_nmfv.o dse_HHA0_nmfv.o \
+  dse_G0G0_nmfv.o dse_h0G0_nmfv.o dse_HHG0_nmfv.o dse_A0G0_nmfv.o \
+  dse_GmGp_nmfv.o dse_HmGp_nmfv.o \
+  dse_ZZ_nmfv.o dse_WW_nmfv.o \
+  dZ_h0h0_nmfv.o dZ_HHHH_nmfv.o \
+  se_h0h0_gl.o se_HHHH_gl.o se_A0A0_gl.o se_HmHp_gl.o \
+  se_h0HH_gl.o se_h0A0_gl.o se_HHA0_gl.o \
+  td_h0_gl.o td_HH_gl.o td_A0_gl.o \
+  dse_h0h0_gl.o dse_HHHH_gl.o dse_A0A0_gl.o dse_HmHp_gl.o \
+  dse_h0HH_gl.o dse_h0A0_gl.o dse_HHA0_gl.o \
+  dZ_h0h0_gl.o dZ_HHHH_gl.o dZ_h0HH_gl.o
+
+CalcSE.o: CalcSE_mfv.h CalcSE_nmfv.h
+
+CalcSEgl.o: CalcSE_gl.h
 
 TLPS = TLps.o TLps_asat.o TLps_asab.o TLps_atab.o TLps_atat.o \
   Pi11t.o Pi12t.o Pi22t.o Pi11b.o Pi12b.o Pi22b.o Pitt.o \
@@ -75,7 +98,7 @@ TLSP = TLsp.o TLsp_atat_c1.o TLsp_atat_c2.o \
   TLsp_atat_o1.o TLsp_atat_o2.o
 
 TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
-  CalcRenSETL.o MTrepara.o InvTri.o Phi.o Sfgl.o
+  CalcRenSETL.o DRbar2LShifts.o MTrepara.o InvTri.o Phi.o
 
 EFT = Resum4H.o Resum4H1.o \
   Resum4H23.o eftloopfun.o beta4H.o TLthresholds.o
@@ -255,12 +278,10 @@ SetFlags.o OutputSLHA.o: version.h
 
 SetFlags.o RetrieveFlags.o SetSMPara.o RetrieveSMPara.o \
   RetrievePara.o SetSLHA.o SetCKM.o RetrieveCKM.o SetNMFV.o \
-  RetrieveNMFV.o Para.o GetPara.o GetSelf.o CalcSelf.o \
+  RetrieveNMFV.o Para.o GetPara.o GetSelf.o CalcSE.o \
   HiggsCorr.o Uncertainties.o Couplings.o SelectUZ.o \
   HiggsProd.o Flavour.o EWPO.o Constraints.o \
   DRbartoOS.o Error.o: debug.h
-
-CalcSelf.o: OneLoop.h
 
 Couplings.o HiggsProd.o: FHCouplings.h
 
@@ -286,6 +307,8 @@ $(TLHR) MTrepara.o: TLhr.h TLhrvars.h TL.h FH.h looptools.h ltcache.h debug.h
 $(TLPS) CalcRenSETL.o: TLps.h TLpsvars.h TL.h FH.h looptools.h ltcache.h debug.h
 
 $(TLSP): TLsp.h TLspvars.h TL.h FH.h looptools.h ltcache.h debug.h
+
+HiggsCorr.o AddSelf.o CalcRenSETL.o TLsp.o: HiggsRot.h
 
 MTrepara.o: MTrepara.h
 
@@ -362,7 +385,7 @@ MFeynHiggs$(EXE): MFeynHiggs$(QUAD).tm CFeynHiggs.h CSLHA.h fcc fortranflush.o l
 	CXX="./f++" REALCXX="$(CXX) $(CXXFLAGS)" \
 	PATH="$$PATH:." \
 	  $(MCC) -o MFeynHiggs$(EXE) $(MCFLAGS) -DQUAD=0$(QUAD) MFeynHiggs$(QUAD).tm \
-	    fortranflush.o libFH.a $(MCLIBS)
+	    fortranflush.o libFH.a
 	rm -f MFeynHiggs$(QUAD).tm.*
 
 MFeynHiggs1.tm: MFeynHiggs.tm
@@ -373,7 +396,7 @@ FeynHiggs.o: version.h FHRecord.h SLHA.h
 
 
 fcc: fcc.in makefile
-	sed "s:^fldflags=.*:fldflags=\"$(LDFLAGS)\":" fcc.in > fcc
+	sed "s|^fldflags=[\"']*\([^\"']*\).*$$|fldflags='$(LDFLAGS) \1'|" fcc.in > fcc
 	chmod 755 fcc
 	rm -f f++
 	ln -s fcc f++

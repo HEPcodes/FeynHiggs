@@ -93,7 +93,7 @@
 	    if( tM2 .eq. 3 ) sublog = sublog +
      &        k2L*llog*htMT2sub**2*(-128*gsMT2 + 48*htMT2sub)
 	  endif
-	  res = y(jlam) - subnonlog - sublog
+	  res = vev**2*(y(jlam) - subnonlog - sublog)
 	endif
 
 	if( debuglevel .gt. 5 ) then

@@ -1,7 +1,7 @@
 * debug.h
 * definitions for error handling and debugging
 * this file is part of FeynHiggs
-* last modified 6 Jan 17 th
+* last modified 23 Jan 18 th
 
 
 #ifndef DEBUG_H
@@ -44,10 +44,11 @@ if( loglevel .gt. 0 .and. eft_valid .ne. valid ) call Resum4H(err)
 c#define SORT_SF 1
 
 
-#define Digit(n) char(48+n)
-#define Letter(n) char(96+n)
-#define Hex(n) char(48+mod(n,10)+(n)/10*17)
+#define Digit(n) char(n+48)
+#define Letter(n) char(n+96)
+#define Hex(n) char(n+(n)/10*7+48)
 
+#define SfIdType character*6
 
 #if VT100
 #define RESET char(27)//"[0m"

@@ -2,7 +2,7 @@
 * Compute (actually, not completely invent) an error estimate
 * for the Higgs masses and mixings
 * this file is part of FeynHiggs
-* last modified 2 Feb 17 th
+* last modified 30 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -23,38 +23,23 @@
 	ComplexType DeltaUHiggs_(NNeutral,NNeutral)
 	ComplexType DeltaZHiggs_(NNeutral,NNeutral)
 
-	RealType HiggsErr(NHiggsErr)
-	RealType HiggsSave(NHiggsData)
-	RealType HiggsBase(NHiggsErr)
-	RealType oldmudim
-	integer i, j, err, tMsave
+	type(HExtType) dHix, Hix0
+	type(HiggsType) Hisave
+	type(SfType) Sfsave
+	RealType mudimsave
+	integer err, tMsave
 
-	integer NSfData
-	parameter (NSfData = NSf - 9)
-* Sf(*,bTR0) minus the CKM copy in bTR0
+	integer nHia
+	parameter (nHia = sizeof(Hi%x)/8)
+	RealType Hia(nHia), Hia0(nHia), dHia(nHia)
+	equivalence (Hi, Hia)
+	equivalence (Hix0, Hia0)
+	equivalence (dHix, dHia)
 
-	RealType SfSave(NSfData)
-
-	RealType SfData(NSfData)
-	equivalence (Sf(1,bTR0), SfData)
-
-	RealType DeltaMHiggs(NHiggs)
-	ComplexType DeltaSAeff
-	ComplexType DeltaXHiggs(0:NNeutral,0:NNeutral,2)
-	equivalence (HiggsErr(1), DeltaMHiggs)
-	equivalence (HiggsErr(1+NHiggs), DeltaSAeff)
-	equivalence (HiggsErr(1+NHiggs+2), DeltaXHiggs)
-
-	do i = 1, NHiggs
-	  DeltaMHiggs_(i) = 100000
-	enddo
+	DeltaMHiggs_ = 100000
 	DeltaSAeff_ = uncomputable
-	do i = 1, NNeutral
-	  do j = 1, NNeutral
-	    DeltaUHiggs_(j,i) = uncomputable
-	    DeltaZHiggs_(j,i) = uncomputable
-	  enddo
-	enddo
+	DeltaUHiggs_ = uncomputable
+	DeltaZHiggs_ = uncomputable
 
 	if( looplevel .lt. 2 ) return
 
@@ -64,15 +49,9 @@
 
 * store the central value
 
-	do i = 1, NHiggsData
-	  HiggsSave(i) = HiggsData(i)
-	enddo
-	do i = 1, NHiggsErr
-	  HiggsBase(i) = HiggsData(i)
-	enddo
-	do i = 1, NHiggsErr
-	  HiggsErr(i) = uncomputable
-	enddo
+	dHia = uncomputable
+	Hix0 = Hi%x
+	Hisave = Hi
 
 	err = 0
 
@@ -81,7 +60,7 @@
 	if( debuglevel .ge. 2 )
      &    DHIGGS "Uncertainties: mudim = 1/2 MT" ENDL
 
-	oldmudim = mudim
+	mudimsave = mudim
 
 	mudim = .25D0*MT2
 	tl_valid = 0
@@ -90,15 +69,11 @@
 
 	if( err .ne. 0 ) then
 	  Warning("Could not evaluate corrections at mudim = MT/2")
-	  mudim = oldmudim
+	  mudim = mudimsave
 	  goto 999
 	endif
 
-	do i = 1, NHiggsErr
-	  if( HiggsData(i) .ne. uncomputable .and.
-     &        HiggsBase(i) .ne. uncomputable )
-     &      HiggsErr(i) = abs(HiggsData(i) - HiggsBase(i))
-	enddo
+	dHia = abs(Hia - Hia0)
 
 	if( debuglevel .ge. 2 )
      &    DHIGGS "Uncertainties: mudim = 2 MT" ENDL
@@ -108,23 +83,16 @@
 	eft_valid = 0
 	call CalcHiggsCorr(err)
 
-	mudim = oldmudim
+	mudim = mudimsave
 
 	if( err .ne. 0 ) then
 	  Warning("Could not evaluate corrections at mudim = 2 MT")
 	  goto 999
 	endif
 
-	do i = 1, NHiggsErr
-	  if( HiggsData(i) .ne. uncomputable .and.
-     &        HiggsErr(i) .ne. uncomputable )
-     &      HiggsErr(i) = max(HiggsErr(i),
-     &        abs(HiggsData(i) - HiggsBase(i)))
-	enddo
+	dHia = max(dHia, abs(Hia - Hia0))
 
-	do i = 1, NSfData
-	  SfSave(i) = SfData(i)
-	enddo
+	Sfsave = Sf(bTR0)
 
 * b) exclude higher-order MB resummation effects
 
@@ -139,9 +107,7 @@
 	  call CalcHiggsCorr(err)
 	  bM = 4
 	  bM0 = 4
-	  do i = 1, NHiggsErr
-	    HiggsBase(i) = HiggsData(i)
-	  enddo
+	  Hix0 = Hi%x
 	endif
 
 	botResum = ibset(botResum, 8)
@@ -155,12 +121,7 @@
 	  goto 998
 	endif
 
-	do i = 1, NHiggsErr
-	  if( HiggsData(i) .ne. uncomputable .and.
-     &        HiggsErr(i) .ne. uncomputable )
-     &      HiggsErr(i) = HiggsErr(i) +
-     &        abs(HiggsData(i) - HiggsBase(i))
-	enddo
+	dHia = dHia + abs(Hia - Hia0)
 
 * c) use MTpole instead of MTrun in the two-loop corrections
 
@@ -178,9 +139,7 @@
 	  tl_valid = 0
 	  eft_valid = 0
 	  call CalcHiggsCorr(err)
-	  do i = 1, NHiggsErr
-	    HiggsBase(i) = HiggsData(i)
-	  enddo
+	  Hix0 = Hi%x
 	endif
 
 	tM2 = tSelect(tT2,3,3,3, runningMT)
@@ -199,34 +158,19 @@ c	if( loglevel .eq. 0 ) tM1 = tM2
 	  goto 998
 	endif
 
-	do i = 1, NHiggsErr
-	  if( HiggsData(i) .ne. uncomputable .and.
-     &        HiggsErr(i) .ne. uncomputable )
-     &      HiggsErr(i) = HiggsErr(i) +
-     &        abs(HiggsData(i) - HiggsBase(i))
-	enddo
+	dHia = dHia + abs(Hia - Hia0)
 
-998	do i = 1, NSfData
-	  SfData(i) = SfSave(i)
-	enddo
+998	Sf(bTR0) = Sfsave
 
-999	do i = 1, NHiggsData
-	  HiggsData(i) = HiggsSave(i)
-	enddo
+999	Hi = Hisave
 	tl_valid = valid
 	eft_valid = valid
 	higgs_valid = valid
 
 	if( err .eq. 0 ) then
-	  do i = 1, NHiggs
-	    DeltaMHiggs_(i) = DeltaMHiggs(i)
-	  enddo
-	  DeltaSAeff_ = DeltaSAeff
-	  do i = 1, NNeutral
-	    do j = 1, NNeutral
-	      DeltaUHiggs_(j,i) = DeltaXHiggs(j,i,1)
-	      DeltaZHiggs_(j,i) = DeltaXHiggs(j,i,2)
-	    enddo
-	  enddo
+	  DeltaMHiggs_ = dHix%mhiggs
+	  DeltaSAeff_ = dHix%saeff
+	  DeltaUHiggs_ = dHix%xhiggs(1:NNeutral,1:NNeutral,1)
+	  DeltaZHiggs_ = dHix%xHiggs(1:NNeutral,1:NNeutral,2)
 	endif
 	end

@@ -1,7 +1,7 @@
 * EigenSf.F
 * diagonalization of the Hermitian 2-by-2 sfermion mass matrix
 * this file is part of FeynHiggs
-* last modified 8 Feb 17 th
+* last modified 29 Nov 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -56,10 +56,10 @@
 	if( h .ne. 0 ) h = 2/h
 	dm2 = h*M12sq
 	c = 1/sqrt(dm2*h + 1)
-	s = Re(h*c)*M12
+	s = DBLE(h*c)*M12
 
-	MSx2(3) = M11(1) + Re(2*dm2) - 1D-15
-	MSx2(4) = Re(m1 + m2)
+	MSx2(3) = M11(1) + DBLE(2*dm2) - 1D-15
+	MSx2(4) = DBLE(m1 + m2)
 	m1 = m1 + dm2
 	m2 = m2 - dm2
 
@@ -71,17 +71,17 @@
 	endif
 
 	if( sort .ne. 0 .and. m1 .gt. m2 ) then
-	  MSx2(1) = Re(m2)
-	  MSx2(2) = Re(m1)
+	  MSx2(1) = DBLE(m2)
+	  MSx2(2) = DBLE(m1)
 	  USx(2,2) = s
 	  USx(1,1) = -Conjugate(USx(2,2))
-	  USx(1,2) = Re(c)
+	  USx(1,2) = DBLE(c)
 	  USx(2,1) = USx(1,2)
 	else
-	  MSx2(1) = Re(m1)
-	  MSx2(2) = Re(m2)
+	  MSx2(1) = DBLE(m1)
+	  MSx2(2) = DBLE(m2)
 	  MSx2(3) = -MSx2(3)
-	  USx(1,1) = Re(c)
+	  USx(1,1) = DBLE(c)
 	  USx(2,2) = USx(1,1)
 	  USx(1,2) = s
 	  USx(2,1) = -Conjugate(USx(1,2))

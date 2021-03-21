@@ -2,10 +2,20 @@
 * 2-loop parts of Delta b
 * code adapted from HDecay
 * this file is part of FeynHiggs
-* last modified 8 Jul 16 th
+* last modified 13 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
+
+#define MSu12 MSf2(1,3,2)
+#define MSu22 MSf2(2,3,2)
+#define MSt12 MSf2(1,3,3)
+#define MSt22 MSf2(2,3,3)
+
+#define MSd12 MSdL2(1,2)
+#define MSd22 MSdL2(1,3)
+#define MSb12 MSdL2(2,2)
+#define MSb22 MSdL2(2,3)
 
 
 	RealType function Deltab2L_ew(scale)
@@ -16,13 +26,6 @@
 
 	ComplexType Ieps
 	parameter (Ieps = (1D0, 1D-15))
-
-	RealType MSu12, MSu22, MSd12, MSd22
-	RealType MSt12, MSt22, MSb12, MSb22
-	equivalence (MSu12, MSf2(1,3,2)), (MSu22, MSf2(2,3,2))
-	equivalence (MSt12, MSf2(1,3,3)), (MSt22, MSf2(2,3,3))
-	equivalence (MSd12, MSdL2(1,2)), (MSd22, MSdL2(2,2))
-	equivalence (MSb12, MSdL2(1,3)), (MSb22, MSdL2(2,3))
 
 	RealType fnorm, anomalous, finscale
 	ComplexType d, yt1, yt2, XGl2, XT2
@@ -493,13 +496,6 @@ c??? should be MUE2???
 
 	ComplexType Ieps
 	parameter (Ieps = (1D0, 1D-15))
-
-	RealType MSu12, MSu22, MSd12, MSd22
-	RealType MSt12, MSt22, MSb12, MSb22
-	equivalence (MSu12, MSf2(1,3,2)), (MSu22, MSf2(2,3,2))
-	equivalence (MSt12, MSf2(1,3,3)), (MSt22, MSf2(2,3,3))
-	equivalence (MSd12, MSdL2(1,2)), (MSd22, MSdL2(2,2))
-	equivalence (MSb12, MSdL2(1,3)), (MSb22, MSdL2(2,3))
 
 	RealType fnorm, bo, anomalous, finscale
 	ComplexType d, r, XGl2, XT2

@@ -1,7 +1,7 @@
 * GetTLPara.F
 * get parameters used in the two-loop neutral Higgs-mass calculation
 * this file is part of FeynHiggs
-* last modified 16 Jun 15 th
+* last modified 31 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -24,23 +24,13 @@
 	CheckTL(error)
 	if( error .gt. 0 ) return
 
-	MSt_(1) = MSf(1,tT,3)
-	MSt_(2) = MSf(2,tT,3)
-
-	USt_(1,1) = USf(1,1,tT,3)
-	USt_(2,1) = USf(2,1,tT,3)
-	USt_(1,2) = USf(1,2,tT,3)
-	USt_(2,2) = USf(2,2,tT,3)
+	MSt_ = MSf(:,tT,3)
+	USt_ = USf(:,:,tT,3)
 
 	MTrun_ = Mf(tT,3)
 
-	MSb_(1) = MSf(1,bM0,3)
-	MSb_(2) = MSf(2,bM0,3)
-
-	USb_(1,1) = USf(1,1,bM0,3)
-	USb_(2,1) = USf(2,1,bM0,3)
-	USb_(1,2) = USf(1,2,bM0,3)
-	USb_(2,2) = USf(2,2,bM0,3)
+	MSb_ = MSf(:,bM0,3)
+	USb_ = USf(:,:,bM0,3)
 
 	MbSL2_ = DSS2(2,bM0,3) + DSS2(1,bM0,3) - DSf(1,4)
 	Deltab_ = Deltaf(bM0,3)

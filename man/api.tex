@@ -80,7 +80,7 @@
 
 \begin{document}
 
-\chapter*{FeynHiggs 2.13.0\\[2ex] Application Programming Interface}
+\chapter*{FeynHiggs 2.14.0\\[2ex] Application Programming Interface}
 
 \makeatletter
 \begin{multicols}{2}
@@ -101,19 +101,19 @@ before any other FeynHiggs function.
 
 \begin{verbatim}
 integer error
-integer mssmpart, fieldren, tanbren, higgsmix, p2approx
-integer looplevel, loglevel, runningMT, botResum, tlCplxApprox
+integer mssmpart, higgsmix, p2approx, looplevel, loglevel
+integer runningMT, botResum, tlCplxApprox
 
 subroutine FHSetFlags(error,
-  mssmpart, fieldren, tanbren, higgsmix, p2approx,
-  looplevel, loglevel, runningMT, botResum, tlCplxApprox)
+  mssmpart, higgsmix, p2approx, looplevel, loglevel,
+  runningMT, botResum, tlCplxApprox)
 \end{verbatim}
 
 \MSYNOPSIS
 
 \begin{verbatim}
-FHSetFlags[mssmpart, fieldren, tanbren, higgsmix, p2approx,
-  looplevel, loglevel, runningMT, botResum, tlCplxApprox]
+FHSetFlags[mssmpart, higgsmix, p2approx, looplevel, loglevel,
+  runningMT, botResum, tlCplxApprox]
 \end{verbatim}
 
 \ARGUMENTS
@@ -130,24 +130,6 @@ specifies the scope of the calculation:
 \item[2:] top/stop- + bottom/sbottom-sector,
 \item[3:] full (s)quark/(s)lepton-sector,
 \item[4:] full MSSM \textit{(recommended)}.
-\end{itemize}
-
-\FLAGIN{integer fieldren}{0}{4}
-determines the one-loop field-renormalization constants:
-\begin{itemize}
-\item[0:] \overbar{DR}\ \textit{(strongly recommended)},
-\item[1:] on-shell, Dabelstein's convention,
-\item[2:] on-shell, `Goldstone-pole' version,
-\item[3:] on-shell, MF I,
-\item[4:] on-shell, MF II.
-\end{itemize}
-
-\FLAGIN{integer tanbren}{0}{2}
-determines the one-loop $\tan\beta$ counter term:
-\begin{itemize}
-\item[0:] \overbar{DR}\ \textit{(strongly recommended)},
-\item[1:] field renormalization part only (Dabelstein),
-\item[2:] mixed field/on-shell-renormalization.
 \end{itemize}
 
 \FLAGIN{integer higgsmix}{1}{3}
@@ -213,7 +195,7 @@ shall be resummed:
 \item[1:] resummation \textit{(recommended)}.
 \end{itemize}
 
-\FLAGIN{integer tlCplxApprox}{0}{6}
+\FLAGIN{integer tlCplxApprox}{0}{3}
 determines how the two-loop corrections are treated in the presence of
 complex parameters (cMSSM):
 \begin{itemize}
@@ -225,11 +207,8 @@ complex parameters (cMSSM):
 \item[2:] the cMSSM $\alpha_s\alpha_t$ and $\alpha_t^2$ corrections are 
   combined with the remaining corrections in the rMSSM,
 \item[3:] the cMSSM $\alpha_s\alpha_t$ and $\alpha_t^2$ corrections are 
-  combined with the remaining corrections, whose complex phases are 
-  interpolated in $A_t$, $A_b$, $M_3$, $\mu$,
-\item[4:] ditto, with interpolation in $X_t$, $A_b$, $M_3$, $\mu$,
-\item[5:] ditto, with interpolation in $A_t$, $X_b$, $M_3$, $\mu$,
-\item[6:] ditto, with interpolation in $X_t$, $X_b$, $M_3$, $\mu$.
+  combined with the remaining corrections, interpolated in the complex
+  phases (cf.\ \CODE{FHSelectIPol}).
 \end{itemize}
 
 \ENDARGUMENTS
@@ -248,7 +227,7 @@ rather than 10 integers.
 
 \begin{verbatim}
 integer error
-character*10 flags
+character*8 flags
 
 subroutine FHSetFlagsString(error, flags)
 \end{verbatim}
@@ -265,7 +244,7 @@ FHSetFlagsString[flags]
 zero if successful, otherwise the line number in \CODE{SetFlags.F} 
 from which the error message was emitted.
 
-\VARIN{character*10 flags}
+\VARIN{character*8 flags}
 the flags in the same order and with the same values as in
 \CODE{FHSetFlags}.
 
@@ -283,12 +262,12 @@ the flags in the same order and with the same values as in
 
 \begin{verbatim}
 integer error
-integer mssmpart, fieldren, tanbren, higgsmix, p2approx
-integer looplevel, loglevel, runningMT, botResum, tlCplxApprox
+integer mssmpart, higgsmix, p2approx, looplevel, loglevel
+integer runningMT, botResum, tlCplxApprox
 
 subroutine FHRetrieveFlags(error,
-  mssmpart, fieldren, tanbren, higgsmix, p2approx,
-  looplevel, loglevel, runningMT, botResum, tlCplxApprox)
+  mssmpart, higgsmix, p2approx, looplevel, loglevel,
+  runningMT, botResum, tlCplxApprox)
 \end{verbatim}
 
 \MSYNOPSIS
@@ -311,24 +290,6 @@ specifies the scope of the calculation:
 \item[2:] top/stop- + bottom/sbottom-sector,
 \item[3:] full (s)quark/(s)lepton-sector,
 \item[4:] full MSSM.
-\end{itemize}
-
-\FLAGOUT{integer fieldren}{0}{4}
-determines the one-loop field-renormalization constants:
-\begin{itemize}
-\item[0:] \overbar{DR},
-\item[1:] on-shell, Dabelstein's convention,
-\item[2:] on-shell, `Goldstone-pole' version,
-\item[3:] on-shell, MF I,
-\item[4:] on-shell, MF II.
-\end{itemize}
-
-\FLAGOUT{integer tanbren}{0}{2}
-determines the one-loop $\tan\beta$ counter term:
-\begin{itemize}
-\item[0:] \overbar{DR},
-\item[1:] field renormalization part only (Dabelstein),
-\item[2:] mixed field/on-shell-renormalization.
 \end{itemize}
 
 \FLAGOUT{integer higgsmix}{1}{3}
@@ -391,21 +352,19 @@ shall be resummed:
 \item[1:] resummation.
 \end{itemize}
 
-\FLAGOUT{integer tlCplxApprox}{0}{6}
+\FLAGOUT{integer tlCplxApprox}{0}{3}
 determines how the two-loop corrections are treated in the presence of
 complex parameters (cMSSM):
 \begin{itemize}
 \item[0:] all corrections ($\alpha_s\alpha_t$, $\alpha_s\alpha_b$,
   $\alpha_t\alpha_t$, $\alpha_t\alpha_b$) are computed in the rMSSM,
-\item[1:] only the cMSSM $\alpha_s\alpha_t$ corrections are used,
-\item[2:] the cMSSM $\alpha_s\alpha_t$ corrections are combined with
-  the remaining corrections in the rMSSM,
-\item[3:] the cMSSM $\alpha_s\alpha_t$ corrections are combined with
-  the remaining corrections, whose complex phases are interpolated in
-  $A_t$, $A_b$, $M_3$, $\mu$,
-\item[4:] ditto, with interpolation in $X_t$, $A_b$, $M_3$, $\mu$,
-\item[5:] ditto, with interpolation in $A_t$, $X_b$, $M_3$, $\mu$,
-\item[6:] ditto, with interpolation in $X_t$, $X_b$, $M_3$, $\mu$.
+\item[1:] only the cMSSM $\alpha_s\alpha_t$ and $\alpha_t^2$ corrections
+  are used,
+\item[2:] the cMSSM $\alpha_s\alpha_t$ and $\alpha_t^2$ corrections are
+  combined with the remaining corrections in the rMSSM,
+\item[3:] the cMSSM $\alpha_s\alpha_t$ and $\alpha_t^2$ corrections are
+  combined with the remaining corrections, interpolated in the complex
+  phases (cf.\ \CODE{FHSelectIPol}).
 \end{itemize}
 
 \ENDARGUMENTS
@@ -424,7 +383,7 @@ works just like \CODE{FHRetrieveFlags} except that it takes a
 
 \begin{verbatim}
 integer error
-character*10 flags
+character*8 flags
 
 subroutine FHRetrieveFlagsString(error, flags)
 \end{verbatim}
@@ -441,7 +400,7 @@ FHRetrieveFlagsString[]
 zero if successful, otherwise the line number in \CODE{RetrieveFlags.F} 
 from which the error message was emitted.
 
-\VAROUT{character*10 flags}
+\VAROUT{character*8 flags}
 the flags in the same order and with the same values as in
 \CODE{FHRetrieveFlags}.
 
@@ -1572,7 +1531,7 @@ from which the error message was emitted.
 the $h^0$, $H^0$, $A^0$, and $H^+$ self-energy shifts.
 
 \VARIN{sig(h0HH), sig(h0A0), sig(HHA0)}
-the $h^0$-$H^0$, $h^0$-$A^0$, and $H^0$-$A^0$ mixing self-energy shifts.
+the $h^0$--$H^0$, $h^0$--$A^0$, and $H^0$--$A^0$ mixing self-energy shifts.
 
 \VARIN{sig(G0G0), sig(h0G0), sig(HHG0), sig(A0G0)}
 the neutral Goldstone self-energy shifts.
@@ -1584,8 +1543,8 @@ the charged Goldstone self-energy shifts.
 a flag determining whether to rotate the CP-even self-energies with
 the (tree-level) angle $\alpha$, \ie if \CODE{rotate} $\neq 0$, the 
 \CODE{h0h0}, \CODE{HHHH}, and \CODE{h0HH} elements of the input array 
-\CODE{sig} are respectively assumed to contain the $\Phi_1$-$\Phi_1$, 
-$\Phi_2$-$\Phi_2$, and $\Phi_1$-$\Phi_2$ shifts.
+\CODE{sig} are respectively assumed to contain the $\Phi_1$--$\Phi_1$, 
+$\Phi_2$--$\Phi_2$, and $\Phi_1$--$\Phi_2$ shifts.
 
 \ENDARGUMENTS
 
@@ -1763,7 +1722,7 @@ the decay widths and branching ratios of a Standard Model Higgs with the
 same mass as the respective MSSM Higgs.  This array is indexed with
 preprocessor macros (see below).
 
-\VAROUT{integer fast}
+\VARIN{integer fast}
 a flag indicating whether the off-diagonal fermion decays shall be
 computed.  Unless the decays $h_i\to f_j f_k$ ($j \neq k$) are explicitly
 needed, they may safely be ignored, as they hardly contribute to the
@@ -2292,7 +2251,7 @@ FHEWPO[]
 \ARGUMENTS
 
 \VAROUT{integer error}
-zero if successful, otherwise the line number in \CODE{Constraints.F}
+zero if successful, otherwise the line number in \CODE{EWPO.F}
 from which the error message was emitted.
 
 \VAROUT{double precision Deltar}
@@ -2339,7 +2298,7 @@ FHFlavour[]
 \ARGUMENTS
 
 \VAROUT{integer error}
-zero if successful, otherwise the line number in \CODE{Constraints.F}
+zero if successful, otherwise the line number in \CODE{Flavour.F}
 from which the error message was emitted.
 
 \VAROUT{double precision bsgammaMSSM, bsgammaSM}
@@ -2481,7 +2440,7 @@ accessed directly, but only through the preprocessor macros defined in
 \CODE{SLHADefs.h}.
 
 \VARIN{String slhafile}
-the name of the file from which to read the SLHA data.
+the name of the file to which to write the SLHA data.
 
 \VARIN{integer key}
 a bit-wise encoding of which parts to fill: \\

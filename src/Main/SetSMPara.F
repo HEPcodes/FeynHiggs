@@ -1,7 +1,7 @@
 * SetSMPara.F
 * set the SM inputs for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 27 Jan 17 th
+* last modified 23 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -29,16 +29,16 @@
 	RealType s12, s23, s13
 	RealType c12, c23, c13
 	ComplexType s13c
-	integer i
+
+	integer*8 Sf_flat(sizeof(Sf)/8)
+	equivalence (Sf, Sf_flat)
 
 	sm_valid = 0
 	para_valid = 0
 
 	error = 0
 
-	do i = 1, NSf*SfSlots
-	  Sf_flat(i) = 0
-	enddo
+	Sf_flat = 0
 
 	if( debuglevel .ge. 2 ) then
 	  DPARA "============================"	ENDL

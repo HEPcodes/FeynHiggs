@@ -1,7 +1,7 @@
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 27 Jan 17 th
+* last modified 23 Jan 18 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -30,7 +30,7 @@
 
 	external recordnamesini
 
-	integer i, t, ty
+	integer t, ty
 	RealType i3part, qpart
 
 	para_valid = 0
@@ -55,34 +55,24 @@
 	  call flush(paraunit)
 	endif
 
-	fv = 0
+	QSf = 0
 
-	do i = 1, semax
-	  se2U(i) = 0
-	enddo
-	do i = 1, semax
-	  seEFT(i) = 0
-	enddo
-	do i = 1, semax
-	  se2R(i) = 0
-	enddo
-	do i = 1, se2Rn*se2Rc
-	  se2Rcat_flat(i) = 0
-	enddo
-	do i = 1, semax*(seXmax + 1)
-	  seX_flat(i) = 0
-	enddo
+	se2U = 0
+	seEFT = 0
+
+	se2R(:) = 0
+	se2Rcat(:,:) = 0
+
+	seX = 0
 	hX = 0
 	seXflags = 0
+
+	fv = 0
 
 	Qf(1) = 0
 	Qf(2) = Qe
 	Qf(3) = Qu
 	Qf(4) = Qd
-
-	QSf(2) = 0
-	QSf(3) = 0
-	QSf(4) = 0
 
 	MT = MT_
 	if( MT .lt. 0 ) Error(error, "invalid MT")
@@ -172,13 +162,13 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	  MA02 = MA0**2
 	  MHp2 = MA02 + MW2
 	  MHp = sqrt(MHp2)
-	  inputmass = 3
+	  inputmass = A0A0
 	else if( MHp_ .gt. MW ) then
 	  MHp = MHp_
 	  MHp2 = MHp**2
 	  MA02 = (MHp - MW)*(MHp + MW)
 	  MA0 = sqrt(MA02)
-	  inputmass = 4
+	  inputmass = HmHp
 	else
 	  Error(error, "neither MA0 nor MHp given")
 	  return
@@ -196,6 +186,28 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	if( Mh02 .ge. 0 ) Mh0 = sqrt(Mh02)
 	MHH = -1
 	if( MHH2 .ge. 0 ) MHH = sqrt(MHH2)
+
+	Msq(h0h0) = Mh02
+	Msq(HHHH) = MHH2
+	Msq(A0A0) = MA02
+	Msq(HmHp) = MHp2
+	Msq(h0HH) = .5D0*(Msq(h0h0) + Msq(HHHH))
+	Msq(h0A0) = .5D0*(Msq(h0h0) + Msq(A0A0))
+	Msq(HHA0) = .5D0*(Msq(HHHH) + Msq(A0A0))
+	Msq(G0G0) = 0
+	Msq(h0G0) = .5D0*(Msq(h0h0) + Msq(G0G0))
+	Msq(HHG0) = .5D0*(Msq(HHHH) + Msq(G0G0))
+	Msq(A0G0) = .5D0*(Msq(A0A0) + Msq(G0G0))
+	Msq(GmGp) = 0
+	Msq(HmGp) = .5D0*(Msq(HmHp) + Msq(GmGp))
+
+	Msqgl(h0h0) = 0
+	Msqgl(HHHH) = Msq(inputmass)
+	Msqgl(A0A0) = Msq(inputmass)
+	Msqgl(HmHp) = Msq(inputmass)
+	Msqgl(h0HH) = .5D0*(Msqgl(h0h0) + Msqgl(HHHH))
+	Msqgl(h0A0) = .5D0*(Msqgl(h0h0) + Msqgl(A0A0))
+	Msqgl(HHA0) = .5D0*(Msqgl(HHHH) + Msqgl(A0A0))
 
 	CA2 = .5D0*(SB2*MA02 + CB2*MZ2 - Mh02)/deltaMH2
 	CA  = sqrt(CA2)
@@ -237,6 +249,9 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	M_2 = M_2_
 	MUE = MUE_
 	MUE2 = Sq(MUE)
+	MMUE = sqrt(MUE2)
+	EMUE = 1
+	if( MMUE .ne. 0 ) EMUE = MUE/MMUE
 
 	X(1,1) = M_2
 	X(1,2) = sqrt2*MW*SB
@@ -245,8 +260,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 
 	call SVD(2, 2, X,2, MCha, UCha,2, VCha,2, 1)
 
-	MCha2(1) = MCha(1)**2
-	MCha2(2) = MCha(2)**2
+	MCha2 = MCha**2
 
 	MUETB(3) = -Conjugate(MUE)/TB
 	MUETB(2) = -Conjugate(MUE)*TB
@@ -292,10 +306,7 @@ c	call AlphaS(AlfasMT, nf, MT2)
 
 	call TakagiFactor(4, Y,4, MNeu, ZNeu,4, 1)
 
-	MNeu2(1) = MNeu(1)**2
-	MNeu2(2) = MNeu(2)**2
-	MNeu2(3) = MNeu(3)**2
-	MNeu2(4) = MNeu(4)**2
+	MNeu2 = MNeu**2
 	end
 
 
@@ -373,20 +384,18 @@ c	call AlphaS(AlfasMT, nf, MT2)
 #include "FH.h"
 #include "looptools.h"
 
-	RealType m1, m2, Qdefault, ospara(3,3:4)
+	RealType m1, m2, Q2default, ospara(3,3:4)
 	integer t, g, fail, drbar, nQ, nU
 
-	RealType Qcur
-	common /DRbarvars/ Qcur
+	RealType Q2cur
+	common /DRbarscale/ Q2cur
 
 	character*(*) cplxmsg
 	parameter (cplxmsg = " in the presence of complex parameters")
 
 	call MTatMT_SM
 
-	do g = 1, 3*3*5
-	  MSS2_flat(g) = 0
-	enddo
+	MSS2 = 0
 	do g = 1, 3
 	  MSS2(g,g,1) = SignSq(MSS(1,g))
 	  MSS2(g,g,2) = SignSq(MSS(2,g))
@@ -403,24 +412,48 @@ c	call AlphaS(AlfasMT, nf, MT2)
 	  enddo
 	enddo
 
+	seDiv = log(.5D0*Re(MSS2(3,3,tQ(3)) + MSS2(3,3,tU(3)))/mudim) - 1
+
+	DSStgl2(2) = Re(MSS2(3,3,tU(3)))
+	DSStgl2(1) = Re(MSS2(3,3,tQ(3))) - DSStgl2(2)
+	if( abs(DSStgl2(1)) .lt. 1D-6 )
+     &    DSStgl2(1) = DSStgl2(1) - .001D0*DSStgl2(2)
+	if( DSStgl2(1)**2 + Sq(Xf(3,3)) .lt. .1D0 )
+     &    DSStgl2(1) = -.2D0*sqrt(DSStgl2(2))
+
 * DRbar -> OS transition
-	Qdefault = sqrt(abs(MSS(3,3)*MSS(4,3)))
-	Qcur = -1
+	Q2cur = -1
 	drbar = 0
 	fail = 0
+	Q2default = abs(MSS(3,3)*MSS(4,3))
+
 	do t = 3, 4
-	  if( QSf(t) .lt. 0 ) QSf(t) = Qdefault
-	  if( QSf(t) .gt. 0 ) then
-	    call SetDRbarScale(fail, QSf(t)**2)
-	    if( fail .eq. 0 ) call DRbartoOS(t, drbar, ospara(1,t))
+	  if( QSf(t) .lt. 0 ) then
+	    QSf2(t) = Q2default
+	  else
+	    QSf2(t) = QSf(t)**2
+	  endif
+	enddo
+
+	drbarvars = 0
+	if( drbarmode .ne. 0 .and. QSf2(3) .ne. 0 ) then
+	  drbarvars = 1
+	  if( abs(QSf2(3) - Q2default) .gt. 1 )
+     &      Warning("Qt = sqrt(MStop1*MStop2) assumed in EFT calculation")
+	endif
+
+	do t = 3 + drbarmode, 4
+	  if( QSf(t) .ne. 0 ) then
+	    call DRbartoOS(t, drbar, ospara(1,t))
 	    if( .not. btest(drbar, t) )
      &        Error(error, "DRbartoOS transition failed")
 	  endif
 	enddo
 
 	Ab_bad = 0
-	do t = 3, 4
+	do t = 3 + drbarmode, 4
 	  if( btest(drbar, t) ) then
+	      
 	    if( t .eq. 4 .and.
      &          abs(ospara(3,4) - Xf(4,3)) .gt. .3D0*abs(Af(4,3)) ) then
 	      Ab_bad = 1
@@ -466,11 +499,22 @@ c	call AlphaS(AlfasMT, nf, MT2)
 
 	call SetupInterpolation
 
+	DSSbgl2(2) = Re(MSS2(3,3,tU(4)))
+	DSSbgl2(1) = Re(MSS2(3,3,tQ(4))) - DSSbgl2(2)
+
+* MSb0gl = gaugeless sbottoms with MB = 0
+	MSb0gl2(1) = Re(MSS2(3,3,tQ(4)))
+	MSb0gl2(2) = Re(MSS2(3,3,tU(4)))
+	MSb0gl2(3) = MSb0gl2(2) - MSb0gl2(1)
+	MSb0gl2(4) = MSb0gl2(2) + MSb0gl2(1)
+	MSb0gl(1) = sqrt(MSb0gl2(1))
+	MSb0gl(2) = sqrt(MSb0gl2(2))
+
+	if( debuglevel .gt. 2 ) DPARA "MSb0gl =", MSb0gl(:) ENDL
+
 	call Sfermions(error)
 
-	if( abs(Im(Af(2,1))) + abs(Im(Af(3,1))) + abs(Im(Af(4,1))) +
-     &      abs(Im(Af(2,2))) + abs(Im(Af(3,2))) + abs(Im(Af(4,2))) +
-     &      abs(Im(Af(2,3))) + abs(Im(Af(3,3))) + abs(Im(Af(4,3))) +
+	if( sum(abs(Im(Af(2:4,1:3)))) +
      &      abs(Im(MUE)) +
      &      abs(Im(M_1)) + abs(Im(M_2)) + abs(Im(M_3)) .ne. 0 ) then
 	  if( higgsmix .lt. 3 )

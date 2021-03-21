@@ -1,7 +1,7 @@
 * Deltar.F
 * compute Delta r in the SM and MSSM
 * this file is part of FeynHiggs
-* last modified 6 Feb 17 th
+* last modified 21 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -61,54 +61,6 @@
 	error = 0
 
 	CTWr2 = CWr2/SWr2
-
-#if 0
-	CKM(1,1) = 0.9742067871494118D0
-	CKM(1,2) = 0.22562984969664335D0
-	CKM(1,3) = 0.0035081046008797025D0
-	CKM(2,1) = -0.22557852954782523D0
-	CKM(2,2) = 0.9733395427651105D0
-	CKM(2,3) = 0.04152663599241339D0
-	CKM(3,1) = 0.005955071709183024D0
-	CKM(3,2) = -0.04124688370865858D0
-	CKM(3,3) = 0.9991312384793415D0
-	DeltaAlfa = 0.059067686D0
-#endif
-
-#if 0
-123	format(A,2F22.15)
-124	format(A,F17.10,SP,F17.10," I")
-	PRINT 123, "GF=", GF
-	PRINT 123, "Alfa=1/", 1/(aDr*pi)
-	PRINT 123, "Alfa=", aDr*pi
-	PRINT 123, "Alfas=", asDr*pi
-	PRINT 123, "MWr=", MWr, MWr2
-	PRINT 123, "CWr=", CWr, CWr2
-	PRINT 123, "SWr=", SWr, SWr2
-	PRINT 123, "MZ=", MZ
-	PRINT 123, "MZr=", MZr
-	PRINT 123, "CTWr2=", CTWr2
-	PRINT 123, "MHr=", MHr, MHr2
-	PRINT 123, "ME=", ME, ME2
-	PRINT 123, "MM=", MM, MM2
-	PRINT 123, "ML=", ML, ML2
-	PRINT 123, "MU=", MU, MU2
-	PRINT 123, "MD=", MD, MD2
-	PRINT 123, "MS=", MS, MS2
-	PRINT 123, "MC=", MC, MC2
-	PRINT 123, "MBr=", MBr, MBr2
-	PRINT 123, "MTr=", MTr, MTr2
-	PRINT 123, "DeltaAlfa=", DeltaAlfa
-	PRINT 124, "CKM11=", CKM(1,1)
-	PRINT 124, "CKM12=", CKM(1,2)
-	PRINT 124, "CKM13=", CKM(1,3)
-	PRINT 124, "CKM21=", CKM(2,1)
-	PRINT 124, "CKM22=", CKM(2,2)
-	PRINT 124, "CKM23=", CKM(2,3)
-	PRINT 124, "CKM31=", CKM(3,1)
-	PRINT 124, "CKM32=", CKM(3,2)
-	PRINT 124, "CKM33=", CKM(3,3)
-#endif
 
 #include "DrSM1L.h"
 
@@ -206,21 +158,6 @@
 * note: Drho is intentionally unset here as we don't need it
 * for the SM calculation
 	if( mssmflag .eq. 0 ) return
-
-#if 0
-	PRINT 123, "MSt1=", MSf(1,tR,3)
-	PRINT 123, "MSt2=", MSf(2,tR,3)
-	PRINT 123, "MSb1=", MSf(1,bR,3)
-	PRINT 123, "MSb2=", MSf(2,bR,3)
-	PRINT 124, "USt11=", USf(1,1,tR,3)
-	PRINT 124, "USt12=", USf(1,2,tR,3)
-	PRINT 124, "USt21=", USf(2,1,tR,3)
-	PRINT 124, "USt22=", USf(2,2,tR,3)
-	PRINT 124, "USb11=", USf(1,1,bR,3)
-	PRINT 124, "USb12=", USf(1,2,bR,3)
-	PRINT 124, "USb21=", USf(2,1,bR,3)
-	PRINT 124, "USb22=", USf(2,2,bR,3)
-#endif
 
 #include "DrMSSM1LVH.h"
 

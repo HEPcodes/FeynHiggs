@@ -1,7 +1,7 @@
 * DeltaMT.F
 * various incarnations of MTrun/dMT
 * this file is part of FeynHiggs
-* last modified 9 Jan 17 th
+* last modified 20 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -113,41 +113,39 @@
 
 ************************************************************************
 
-	subroutine DeltaMT_MSSM(error, dMT, as, Q)
+	subroutine DeltaMT_MSSM(dMT, as, Q2)
 	implicit none
-	integer error
-	RealType dMT, as, Q
+	RealType dMT, as, Q2
 
 #include "FH.h"
-#include "Sfgl.h"
 #include "looptools.h"
 
 	RealType mx, a0t, Alfat, dMTs, dMTy
 
-	tS2 = 3
-	call Sfgl(error, 0D0)
-
-	mx = 4*MT*Re(Conjugate(UCStop(1,3))*M_3)
-	a0t = Re(A0q(MT2, Q))
+	mx = 4*MT*Re(UStglC(1,1)*UStgl(1,2)*M_3)
+	a0t = Re(A0q(MT2, Q2))
 
 	dMTs = as/(6*pi*MT)*(
-     &    Re(A0q(MStop2(1), Q)) + Re(A0q(MStop2(2), Q)) +
-     &    (MGl2 + MT2 - MStop2(1) - mx)*
-     &      Re(B0q(MT2, MGl2, MStop2(1), Q)) +
-     &    (MGl2 + MT2 - MStop2(2) + mx)*
-     &      Re(B0q(MT2, MGl2, MStop2(2), Q)) -
-     &    2*Re(A0q(MGl2, Q)) - 6*a0t - 4*MT2 )
+     &    Re(A0q(MStgl2(1), Q2)) + Re(A0q(MStgl2(2), Q2)) +
+     &    (MGl2 + MT2 - MStgl2(1) - mx)*
+     &      Re(B0q(MT2, MGl2, MStgl2(1), Q2)) +
+     &    (MGl2 + MT2 - MStgl2(2) + mx)*
+     &      Re(B0q(MT2, MGl2, MStgl2(2), Q2)) -
+     &    2*Re(A0q(MGl2, Q2)) - 6*a0t - 4*MT2 )
 
 * use same Alfat as in TLsp:
 	Alfat = (sqrt2/vev*MT/SB)**2/(4*pi)
 
+* MSb0gl2(1) is in general not available at the time of invocation
+#define MSb0gl2_1 Re(MSS2(3,3,tQ(4)))
+
 	dMTy = Alfat*MT/(8*pi)*(
-     &    SB2*(2 + a0t/MT2 + .5D0*Re(B0q(MT2, 0D0, 0D0, Q))) -
-     &    CB2*(Re(B1q(MT2, 0D0, MHp2, Q)) +
-     &      2*Re(B1q(MT2, MT2, MHp2, Q))) -
-     &    Re(B1q(MT2, MUE2, MStop2(1), Q)) -
-     &    Re(B1q(MT2, MUE2, MStop2(2), Q)) -
-     &    Re(B1q(MT2, MUE2, MSbot2(1), Q)) )
+     &    SB2*(2 + a0t/MT2 + .5D0*Re(B0q(MT2, 0D0, 0D0, Q2))) -
+     &    CB2*(Re(B1q(MT2, 0D0, MHp2, Q2)) +
+     &      2*Re(B1q(MT2, MT2, MHp2, Q2))) -
+     &    Re(B1q(MT2, MUE2, MStgl2(1), Q2)) -
+     &    Re(B1q(MT2, MUE2, MStgl2(2), Q2)) -
+     &    Re(B1q(MT2, MUE2, MSb0gl2_1, Q2)) )
 
 	dMT = dMTs + dMTy
 

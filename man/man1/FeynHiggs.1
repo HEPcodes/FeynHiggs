@@ -1,4 +1,4 @@
-.TH FEYNHIGGS 1 "25-Jan-2017"
+.TH FEYNHIGGS 1 "30-Jan-2018"
 .SH NAME
 .PP
 FeynHiggs \- the FeynHiggs command-line frontend
@@ -195,8 +195,8 @@ through Abs and Arg OR through Re and Im.  In conflicting
 cases a warning is issued and the Abs/Arg value takes
 precedence.
 .SH FLAGS
-The flags are given as an optional 10-digit string on the command line,
-where the default is 4002020110.  The positions in the string are as
+The flags are given as an optional 8-digit string on the command line,
+where the default is 42020110.  The positions in the string are as
 follows:
 .TP
 #1: mssmpart = 0..4
@@ -214,33 +214,7 @@ specifies the scope of the 1-loop part:
 .br
 .B recommended: 4
 .TP
-#2: fieldren = 0..4
-determines the 1-loop field-renormalization constants:
-.br
-0: DRbar
-.br
-1: On-Shell, Dabelstein's convention
-.br
-2: On-Shell, 'Goldstone-pole' version
-.br
-3: On-Shell, MF I
-.br
-4: On-Shell, MF II
-.br
-.B strongly recommended: 0
-.TP
-#3: tanbren = 0..2
-determines the 1-loop tan(beta) counter term:
-.br
-0: DRbar
-.br
-1: field renormalization part only (Dabelstein)
-.br
-2: mixed field/On-Shell-renormalization
-.br
-.B strongly recommended: 0
-.TP
-#4: higgsmix = 1..3
+#2: higgsmix = 1..3
 determines the mixing in the Higgs sector:
 .br
 1: All non-diagonal (ND) Self Energies = 0
@@ -255,7 +229,7 @@ determines the mixing in the Higgs sector:
 .br
 .B 3: evaluation in the cMSSM
 .TP
-#5: p2approx = 0..4
+#3: p2approx = 0..4
 determines the approximation for the 1-loop result:
 .br
 0: None, i.e. full determination of the propagator matrices's poles,
@@ -271,7 +245,7 @@ determines the approximation for the 1-loop result:
 .br
 .B recommended: 4
 .TP
-#6: looplevel = 0..2
+#4: looplevel = 0..2
 determines the inclusion of higher-order corrections:
 .br
 0: tree level
@@ -282,7 +256,7 @@ determines the inclusion of higher-order corrections:
 .br
 .B recommended: 2
 .TP
-#7: loglevel = 0..3
+#5: loglevel = 0..3
 determines the inclusion of log resummations:
 .br
 0: no log resummation
@@ -293,9 +267,9 @@ determines the inclusion of log resummations:
 .br
 3: NNLL resummation (for large MCha,MNeu,MGlu,MSUSY)
 .br
-.B recommended: 1, 2
+.B recommended: 3
 .TP
-#8: runningMT = 0..3
+#6: runningMT = 0..3
 determines which top mass shall be used in the 1-/2-loop corrections:
 .br
 0: pole MT
@@ -308,7 +282,7 @@ determines which top mass shall be used in the 1-/2-loop corrections:
 .br
 .B recommended: 1
 .TP
-#9: botResum = 0..1
+#7: botResum = 0..1
 determines whether the O(tan beta^n) corrections shall be resummed:
 .br
 0: no resummation
@@ -317,7 +291,7 @@ determines whether the O(tan beta^n) corrections shall be resummed:
 .br
 .B recommended: 1
 .TP
-#10: tlCplxApprox = 0..6
+#8: tlCplxApprox = 0..3
 determines how the two-loop corrections are treated in the presence of
 complex parameters (cMSSM):
 .br
@@ -330,14 +304,7 @@ complex parameters (cMSSM):
    corrections in the rMSSM
 .br
 3: the cMSSM a_s a_t corrections are combined with the remaining
-   corrections, whose complex phases are interpolated in
-   At, Ab, M_3, MUE
-.br
-4: ditto, with interpolation in At, Xb, M_3, MUE
-.br
-5: ditto, with interpolation in Xt, Ab, M_3, MUE
-.br
-6: ditto, with interpolation in Xt, Xb, M_3, MUE
+   corrections, interpolated in the complex phases (cf. FHSelectIPol)
 .SH EXAMPLE
 Using the example parameter file that comes with FeynHiggs, the
 command

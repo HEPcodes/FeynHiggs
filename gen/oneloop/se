@@ -1,1 +1,176 @@
-se-ty
+#! /bin/bash -x
+shopt -s nullglob
+
+IFS='_.' eval 'set -- $1'
+test $# -lt 3 && {
+  cat << _EOF_
+Usage:  $0 se
+generates the renormalized 'se' 1L self-energy, where se is one of
+{{se,dse,dsediv}_{h0h0,HHHH,A0A0,HmHp,h0HH,h0A0,HHA0,G0G0,h0G0,HHG0,A0G0,GmGp,HmGp,WW,ZZ},td_{h0,HH,A0}}_{mfv,nmfv,gl}
+_EOF_
+  exit 1
+}
+
+var="$1" proc="$2" mod="$3"
+name="$1_$2_$3"
+file="m/$mod/$proc/$name"
+mkdir -p "${file%/*}" || exit 1
+rm -f "$file"*
+
+math -run "
+	var = \"$var\";
+	proc = \"$proc\";
+	mod = \"$mod\";
+	name = \"$name\";
+	file = \"$file\";
+	deb = ${DEBUG:-0};
+" << \_EOF_ > "$file.log"
+AppendTo[$Echo, "stdout"];
+
+<< packages/fafc.m;
+
+$DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
+$DebugCmd[1] := "DHIGGS \"" <> name <> " " <> debtag <> " =\", `3` ENDL\n";
+$DebugPost[1] = "#endif\n";
+
+
+Attributes[paint] = {HoldFirst};
+
+paint[ins_, 1] := Paint[ ins,
+  PaintLevel -> Take[ResolveLevel[InsertionLevel /. List@@ Head[ins]], -1],
+  ColumnsXRows -> {3, 4},
+  DisplayFunction -> (Export[
+    file <> "-" <> Block[{ins}, ToString[ins]] <> ".ps",
+    #, "PS", ImageSize -> 144 {3, 4} ]&)
+];
+
+
+tops[_ -> {}] := {CreateTopologies[1, 1 -> 0], TopologyList[]};
+
+_tops := {
+  CreateTopologies[1, 1 -> 1, ExcludeTopologies -> Tadpoles],
+  CreateCTTopologies[1, 1 -> 1, ExcludeTopologies -> TadpoleCTs]
+};
+
+
+gen3only = {
+  SumOver[i_, 3] :> SumOver[i, gM, 3] /; !StringMatchQ[ToString[i], "Ind*"],
+  SumOver[i_, 6] :> SumOver[i, 1, 6, gM] };
+
+
+calcproc[args___, deriv_] :=
+Block[ {process, top, cttop, charged, tst, bsb, lsl, all, rem, res, hh, dZ, dMsq},
+  process = fields[proc];
+  {top, cttop} = tops[process];
+
+  ct = InsertFields[cttop, process];
+  paint[ct, deb];
+
+  charged = !SelfConjugate[ process[[1]] ];
+  If[ charged,
+    bsb = InsertFields[top, process,
+      LastSelections -> F[3|4] | S[13|14]];
+    paint[bsb, deb];
+    tst = Head[bsb][],
+  (* else *)
+    tst = InsertFields[top, process, 
+      LastSelections -> F[3] | S[13],
+      ExcludeParticles -> {F[4], S[14]}];
+    paint[tst, deb];
+    bsb = InsertFields[top, process,
+      LastSelections -> F[4] | S[14]];
+    paint[bsb, deb]
+  ];
+
+  lsl = InsertFields[top, process,
+    LastSelections -> F[1|2] | S[11|12]];
+  paint[lsl, deb];
+
+  all = InsertFields[top, process];
+  paint[all, deb];
+
+  rem = DiagramComplement[all, tst, bsb, lsl];
+  paint[rem, deb];
+
+  amps = CreateFeynAmp/@ {ct, tst, bsb, lsl, rem};
+  Put[amps, file <> ".amp"];
+
+  res = CalcFeynAmp[amps, Transverse -> False,
+    OnShell -> False, Dimension -> 4];
+  res = Unabbr[List@@@ res] /. {
+    Pair[_k, _k] -> k2,
+    Pair[_e | _ec, _k] -> If[MatchQ[process, _V -> _V], 0, 1],
+    Pair[_e, _ec] -> -1 };
+  res = sfsimp[mod][res];
+  res = res /. {CKM[a__] :> CKMin[a], CKMC[a__] :> CKMinC[a]};
+
+  If[ charged,
+    res[[2]] = res[[3]] /. {(Mf|Mf2)[bM1, _] -> 0, (Kf|KfC)[__, bM1] -> 0};
+    res[[3]] = Simplify[ res[[3]] - res[[2]] ] ];
+
+  res = deriv[simp/@ res];
+  Put[res, file <> ".m"];
+
+  If[ res[[1,1]] =!= 0,
+    dZ = Coefficient[res[[1,1]], k2];
+    dMsq = -res[[1,1]] /. k2 -> (Plus@@ (TheMass[#]^2 &)/@ process)/2;
+    Put[sfsimp[mod][{dMsq1[proc] -> dMsq, dZ1[proc] -> dZ}], file <> ".ct"] ];
+
+  res = res /. ToOldBRules /. {
+    Mino3 -> "M_3", Mino3C -> "M_3C",
+    IndexDelta -> Delta,
+    Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2 };
+
+  hh = OpenFortran[file <> ".F"];
+
+  WriteString[hh, "\
+* " <> name <> ".F\n\
+* generated " <> TimeStamp[] <> "\n\
+* this file is part of FeynHiggs\n\
+* please do not edit directly\n\n\
+#include \"externals.h\"\n\
+#include \"types.h\"\n\
+#include \"debug.h\"\n\n\n\
+\tsubroutine " <> ToFortran[name["se", args]] <> "\n\
+\timplicit none\n\
+\tComplexType se\n" <>
+    VarDecl[{args}, "RealType"] <> "\n\
+#include \"FH.h\"\n\
+#include \"looptools.h\"\n\n" <>
+    VarDecl[
+      Cases[res, SumOver[i_, _] :> i, Infinity] //Union,
+      "integer"] <> "\n"];
+
+  WriteExpr[hh, {
+    Hold[debtag = "k2"],
+    DebugLine[1, args],
+    Hold[debtag = " t/st"],
+    "se" -> res[[2]] /. gen3only,
+    "\tif( mssmpart .le. 1 ) return\n\n",
+    Hold[debtag = "+b/sb"],
+    RuleAdd["se", res[[3]]] /. gen3only,
+    "\tif( mssmpart .le. 2 ) return\n\n",
+    Hold[debtag = "+l/sl"],
+    RuleAdd["se", res[[4]]],
+    "\tif( mssmpart .le. 3 ) return\n\n",
+    Hold[debtag = " all "],
+    RuleAdd["se", res[[5]]]
+  } //. {x__, _String, _Hold, RuleAdd[_, {0}]} :> {x}];
+
+  WriteString[hh, "\tend\n"];
+  Close[hh]
+]
+
+calc["se"]  := calcproc[k2, Identity];
+calc["dse"] := calcproc[k2, D[#, k2] &];
+calc["dZ"] := calcproc[-UVDivergentPart[D[#, k2]] /. k2 -> 0 /. ABRules &];
+calc["td"]  := calcproc[Identity];
+_calc := Abort[];
+calc[var]
+
+_EOF_
+
+gzip "$file"{.log,.amp,*.ps}
+
+test -f "$file.F"
+

@@ -1,7 +1,7 @@
 * TLps.h
 * declarations for the two-loop routines
 * this file is part of FeynHiggs
-* last modified 1 Jan 17 th
+* last modified 14 Jan 18 th
 
 #include "TL.h"
 
@@ -31,15 +31,14 @@
 #define stb2 SbotPara(10)
 #define s2tb SbotPara(11)
 #define s2tb2 SbotPara(12)
+
+#define TLMBscale MT2
+#define TLMBrun MB_MT
 #endif
 
 	integer Nc, MSDR
 	parameter (Nc = 3)
 	parameter (MSDR = -5)
-
-	RealType TLMBscale, TLMBrun
-	equivalence (TLMBscale, MT2)
-	equivalence (TLMBrun, MB_MT)
 
 * the ren. scheme: .FALSE. = DRbar, .TRUE. = on-shell
 	logical onshell

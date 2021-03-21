@@ -1,0 +1,801 @@
+{dMf1[3, 3] -> 
+  -(((gsMT2*(Re[B0[Mf2[tM1, 3], MGl2, MSfgl2[1, tM1]]] - 
+        Re[B0[Mf2[tM1, 3], MGl2, MSfgl2[2, tM1]]])*U2s1[tM1, "M_3"])/(6*Pi) - 
+     Mf[tM1, 3]*((gsMT2*(1 - Re[B1[Mf2[tM1, 3], MGl2, MSfgl2[1, tM1]]] - 
+          Re[B1[Mf2[tM1, 3], MGl2, MSfgl2[2, tM1]]]))/(12*Pi) - 
+       ((((4*gsMT2*MW2*SW2)/Pi - 3*Alfa1L*Mf2[tM1, 3])*
+           (2 + Re[B0[0, Mf2[tM1, 3], Mf2[tM1, 3]]]))/24 - 
+         (((4*gsMT2*MW2*SW2)/Pi + 3*Alfa1L*Mf2[tM1, 3])*
+           Re[B1[Mf2[tM1, 3], 0, Mf2[tM1, 3]]])/24 + 
+         (Alfa1L*((Mf2[bM1, 3] - Mf2[tM1, 3])*Re[B0[Mf2[tM1, 3], 0, Mf2[bM1, 
+                3]]] - (Mf2[bM1, 3] + Mf2[tM1, 3])*Re[B1[Mf2[tM1, 3], 0, Mf2[
+                bM1, 3]]] - ((TB2*(2 + TB2)*Mf2[bM1, 3] + Mf2[tM1, 3])*Re[
+                B0[Mf2[tM1, 3], MHin2, Mf2[bM1, 3]]] + (TB2^2*Mf2[bM1, 3] + 
+                Mf2[tM1, 3])*Re[B1[Mf2[tM1, 3], MHin2, Mf2[bM1, 3]]])/TB2 - 
+            (4*MMUE*Mf[bM1, 3]*(Re[B0[Mf2[tM1, 3], MUE2, MSfgl2[1, bM1]]] - 
+               Re[B0[Mf2[tM1, 3], MUE2, MSfgl2[2, bM1]]])*U2s1[bM1, EMUEC])/
+             S2B + (4*(SB2*Mf2[bM1, 3]*(Re[B1[Mf2[tM1, 3], MUE2, MSfgl2[2, 
+                     bM1]]]*USfgl2[1, 1, bM1] + Re[B1[Mf2[tM1, 3], MUE2, 
+                    MSfgl2[1, bM1]]]*USfgl2[1, 2, bM1]) - CB2*Mf2[tM1, 3]*
+                (2*CB2*(Re[B0[Mf2[tM1, 3], MHin2, Mf2[tM1, 3]]] + 
+                   Re[B1[Mf2[tM1, 3], MHin2, Mf2[tM1, 3]]]) - 
+                 Re[B1[Mf2[tM1, 3], MUE2, MSfgl2[1, tM1]]] - 
+                 Re[B1[Mf2[tM1, 3], MUE2, MSfgl2[2, tM1]]] - 
+                 Re[B1[Mf2[tM1, 3], MUE2, MSfgl2[1, bM1]]]*USfgl2[1, 1, 
+                   bM1] - Re[B1[Mf2[tM1, 3], MUE2, MSfgl2[2, bM1]]]*
+                  USfgl2[1, 2, bM1])))/S2B^2))/16)/(MW2*SW2)))/Pi), 
+ dMSfsq1[1, 1, 3, 3] -> 
+  -(((gsMT2*(MSfgl2[1, tM1]*(Re[B1[MSfgl2[1, tM1], 0, MSfgl2[1, tM1]]] - 
+          2*Re[B1[MSfgl2[1, tM1], MGl2, Mf2[tM1, 3]]]) + 
+        2*(Re[A0[MGl2]] + Re[B0[MSfgl2[1, tM1], MGl2, Mf2[tM1, 3]]]*
+           (Mf2[tM1, 3] - MSfgl2[1, tM1] - 2*Mf[tM1, 3]*U2s1[tM1, "M_3"]))))/
+      (6*Pi) - (Re[A0[MSfgl2[1, tM1]]]*
+       ((gsMT2*(USfgl2[1, 1, tM1] - USfgl2[1, 2, tM1])^2)/(4*Pi) + 
+        (3*Alfa1L*Mf2[tM1, 3]*USfgl2[1, 1, tM1]*USfgl2[1, 2, tM1])/
+         (MW2*SB2*SW2)))/3 - (Re[A0[MSfgl2[2, tM1]]]*
+       ((8*gsMT2*USfgl2[1, 1, tM1]*USfgl2[1, 2, tM1])/Pi + 
+        (3*Alfa1L*Mf2[tM1, 3]*(USfgl2[1, 1, tM1]^2 - 6*USfgl2[1, 1, tM1]*
+            USfgl2[1, 2, tM1] + USfgl2[1, 2, tM1]^2))/(MW2*SB2*SW2)))/24 + 
+     (((2 + Re[B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]])*
+         ((16*gsMT2*MW2*SW2*MSfgl2[1, tM1])/Pi - 12*Alfa1L*Mf2[tM1, 3]*
+           ((Mf[tM1, 3] + U2s1[tM1, Xtgl])^2 + U2s2[tM1, Xtgl]^2)))/48 - 
+       Alfa1L*((Re[A0[MHin2]]*((SB2*Mf2[bM1, 3]*USfgl2[1, 1, tM1])/CB2 + 
+             (CB2*Mf2[tM1, 3]*(1 + USfgl2[1, 2, tM1]))/SB2) - 
+           Re[B0[MSfgl2[1, tM1], 0, MSfgl2[1, bM1]]]*
+            (Mf2[tM1, 3]*USfgl[1, 1, tM1]*USfglC[1, 1, bM1] + 
+             Xtgl*Mf[tM1, 3]*USfgl[1, 2, tM1]*USfglC[1, 1, bM1] - 
+             Mf[bM1, 3]*(Mf[bM1, 3]*USfgl[1, 1, tM1]*USfglC[1, 1, bM1] + 
+               XbglC*USfgl[1, 1, tM1]*USfglC[1, 2, bM1]))*
+            ((Mf2[bM1, 3] - Mf2[tM1, 3])*USfgl[1, 1, bM1]*USfglC[1, 1, tM1] + 
+             Xbgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[1, 1, tM1] - 
+             XtglC*Mf[tM1, 3]*USfgl[1, 1, bM1]*USfglC[1, 2, tM1]) - 
+           Re[B0[MSfgl2[1, tM1], 0, MSfgl2[2, bM1]]]*
+            ((Mf2[bM1, 3] - Mf2[tM1, 3])*USfgl[2, 1, bM1]*USfglC[1, 1, tM1] + 
+             Xbgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[1, 1, tM1] - 
+             XtglC*Mf[tM1, 3]*USfgl[2, 1, bM1]*USfglC[1, 2, tM1])*
+            (Mf2[tM1, 3]*USfgl[1, 1, tM1]*USfglC[2, 1, bM1] + 
+             Xtgl*Mf[tM1, 3]*USfgl[1, 2, tM1]*USfglC[2, 1, bM1] - 
+             Mf[bM1, 3]*(Mf[bM1, 3]*USfgl[1, 1, tM1]*USfglC[2, 1, bM1] + 
+               XbglC*USfgl[1, 1, tM1]*USfglC[2, 2, bM1])))/8 - 
+         ((Mf2[tM1, 3]*((Mf2[tM1, 3] - MSfgl2[1, tM1])*Re[B0[MSfgl2[1, tM1], 
+                 MUE2, Mf2[tM1, 3]]] - MSfgl2[1, tM1]*Re[B1[MSfgl2[1, tM1], 
+                 MUE2, Mf2[tM1, 3]]] - SB2*Re[B0[MSfgl2[1, tM1], 0, 
+                 MSfgl2[2, tM1]]]*(U2c1[tM1, Xtgl]*U2c1C[tM1, Xtgl] + 
+                U2c2[tM1, Xtgl]*U2c2C[tM1, Xtgl]) - 
+              CB2*(Re[B0[MSfgl2[1, tM1], MHin2, MSfgl2[2, tM1]]]*
+                 (U2c1[tM1, Ytgl]*U2c1C[tM1, Ytgl] + U2c2[tM1, Ytgl]*
+                   U2c2C[tM1, Ytgl]) + Re[B0[MSfgl2[1, tM1], MHin2, 
+                   MSfgl2[1, tM1]]]*(Mf[tM1, 3] + YtglC*UCSfgl[1, 3, tM1])*
+                 (Mf[tM1, 3] + Ytgl*UCSfglC[1, 3, tM1]))))/4 - 
+           (MSfgl2[1, tM1]*Re[B1[MSfgl2[1, tM1], MUE2, Mf2[bM1, 3]]]*
+              (SB2*Mf2[bM1, 3]*USfgl2[1, 1, tM1] + CB2*Mf2[tM1, 3]*
+                USfgl2[1, 2, tM1]) - Re[A0[MUE2]]*(SB2*Mf2[bM1, 3]*
+                USfgl2[1, 1, tM1] + CB2*Mf2[tM1, 3]*(1 + USfgl2[1, 2, 
+                  tM1])) + (Re[A0[MSfgl2[1, bM1]]]*(SB2*Mf2[bM1, 3]*
+                  USfgl2[1, 1, tM1]*USfgl2[1, 2, bM1] + CB2*Mf2[tM1, 3]*
+                  USfgl2[1, 1, bM1]*USfgl2[1, 2, tM1]) + 
+               Re[A0[MSfgl2[2, bM1]]]*(SB2*Mf2[bM1, 3]*USfgl2[1, 1, bM1]*
+                  USfgl2[1, 1, tM1] + CB2*Mf2[tM1, 3]*USfgl2[1, 2, bM1]*
+                  USfgl2[1, 2, tM1]) - 2*Re[B0[MSfgl2[1, tM1], MUE2, 
+                  Mf2[bM1, 3]]]*(MMUE*S2B*Mf[tM1, 3]*Mf2[bM1, 3]*U2s1[tM1, 
+                   EMUEC] + (Mf2[bM1, 3] - MSfgl2[1, tM1])*(SB2*Mf2[bM1, 3]*
+                    USfgl2[1, 1, tM1] + CB2*Mf2[tM1, 3]*USfgl2[1, 2, tM1])) + 
+               Re[B0[MSfgl2[1, tM1], MHin2, MSfgl2[1, bM1]]]*
+                ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, tM1]*
+                  USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[1, 1, tM1]*
+                  USfglC[1, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[1, 2, tM1]*
+                    USfglC[1, 1, bM1] + Mf[bM1, 3]*USfgl[1, 2, tM1]*
+                    USfglC[1, 2, bM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+                  USfgl[1, 1, bM1]*USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*
+                  USfgl[1, 2, bM1]*USfglC[1, 1, tM1] + Mf[tM1, 3]*
+                  (CB2*YtglC*USfgl[1, 1, bM1]*USfglC[1, 2, tM1] + Mf[bM1, 3]*
+                    USfgl[1, 2, bM1]*USfglC[1, 2, tM1])) + 
+               Re[B0[MSfgl2[1, tM1], MHin2, MSfgl2[2, bM1]]]*
+                ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, bM1]*
+                  USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*
+                  USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[2, 1, bM1]*
+                    USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[2, 2, bM1]*
+                    USfglC[1, 2, tM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+                  USfgl[1, 1, tM1]*USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+                  USfgl[1, 1, tM1]*USfglC[2, 2, bM1] + Mf[tM1, 3]*
+                  (CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[2, 1, bM1] + Mf[bM1, 3]*
+                    USfgl[1, 2, tM1]*USfglC[2, 2, bM1])))/2)/(4*CB2))/SB2))/
+      (MW2*SW2))/Pi), dMSfsq1[1, 2, 3, 3] -> 
+  ((2*gsMT2*Mf[tM1, 3]*(Re[B0[MSfgl2[1, tM1], MGl2, Mf2[tM1, 3]]] + 
+       Re[B0[MSfgl2[2, tM1], MGl2, Mf2[tM1, 3]]])*U2c1[tM1, "M_3"])/(3*Pi) - 
+    UCSfgl[3, 1, tM1]*
+     (-((Alfa1L*(SB2*Mf2[bM1, 3]*(SB2*Re[A0[MHin2]] - 2*Re[A0[MUE2]] + 
+            MSfgl2[1, tM1]*Re[B1[MSfgl2[1, tM1], MUE2, Mf2[bM1, 3]]] + 
+            MSfgl2[2, tM1]*Re[B1[MSfgl2[2, tM1], MUE2, Mf2[bM1, 3]]] + 
+            Re[A0[MSfgl2[2, bM1]]]*USfgl2[1, 1, bM1] + Re[A0[MSfgl2[1, bM1]]]*
+             USfgl2[1, 2, bM1]) - CB2*Mf2[tM1, 3]*(CB2*Re[A0[MHin2]] - 
+            2*Re[A0[MUE2]] + MSfgl2[1, tM1]*Re[B1[MSfgl2[1, tM1], MUE2, Mf2[
+                bM1, 3]]] + MSfgl2[2, tM1]*Re[B1[MSfgl2[2, tM1], MUE2, Mf2[
+                bM1, 3]]] + Re[A0[MSfgl2[1, bM1]]]*USfgl2[1, 1, bM1] + 
+            Re[A0[MSfgl2[2, bM1]]]*USfgl2[1, 2, bM1])))/(MW2*S2B^2*SW2)) + 
+      ((gsMT2/Pi - (3*Alfa1L*Mf2[tM1, 3])/(MW2*SB2*SW2))*MSfgl2[3, tM1]*
+        Re[B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]]*(USfgl2[1, 1, tM1] - 
+         USfgl2[1, 2, tM1]))/3) + 
+    (Alfa1L*((Mf2[tM1, 3]*((2 + Re[B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]] + 
+            Re[B0[MSfgl2[2, tM1], 0, MSfgl2[1, tM1]]])*
+           (4*U2c1[tM1, Xtgl]*(Mf[tM1, 3] + U2s1[tM1, Xtgl]) - 
+            (4*I)*U2c2[tM1, Xtgl]*U2s2[tM1, Xtgl]) + 
+          (2 + Re[B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]] + 
+            Re[B0[MSfgl2[1, tM1], 0, MSfgl2[2, tM1]]])*
+           (4*U2c1[tM1, Xtgl]*(Mf[tM1, 3] - U2s1[tM1, Xtgl]) + 
+            (4*I)*U2c2[tM1, Xtgl]*U2s2[tM1, Xtgl]) + 
+          (CB2*(4*(Re[B0[MSfgl2[1, tM1], MHin2, MSfgl2[2, tM1]]] + Re[
+                B0[MSfgl2[2, tM1], MHin2, MSfgl2[2, tM1]]])*(U2c1[tM1, Ytgl]*
+                (Mf[tM1, 3] - U2s1[tM1, Ytgl]) + I*U2c2[tM1, Ytgl]*
+                U2s2[tM1, Ytgl]) + (Re[B0[MSfgl2[1, tM1], MHin2, MSfgl2[1, 
+                  tM1]]] + Re[B0[MSfgl2[2, tM1], MHin2, MSfgl2[1, tM1]]])*
+              (4*U2c1[tM1, Ytgl]*(Mf[tM1, 3] + U2s1[tM1, Ytgl]) - (4*I)*
+                U2c2[tM1, Ytgl]*U2s2[tM1, Ytgl])))/SB2))/16 + 
+       (-((Re[B0[MSfgl2[1, tM1], 0, MSfgl2[1, bM1]]] + 
+            Re[B0[MSfgl2[2, tM1], 0, MSfgl2[1, bM1]]])*
+           (Mf2[tM1, 3]*USfgl[1, 1, tM1]*USfglC[1, 1, bM1] + 
+            Xtgl*Mf[tM1, 3]*USfgl[1, 2, tM1]*USfglC[1, 1, bM1] - 
+            Mf[bM1, 3]*(Mf[bM1, 3]*USfgl[1, 1, tM1]*USfglC[1, 1, bM1] + 
+              XbglC*USfgl[1, 1, tM1]*USfglC[1, 2, bM1]))*
+           ((Mf2[bM1, 3] - Mf2[tM1, 3])*USfgl[1, 1, bM1]*USfglC[2, 1, tM1] + 
+            Xbgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[2, 1, tM1] - 
+            XtglC*Mf[tM1, 3]*USfgl[1, 1, bM1]*USfglC[2, 2, tM1])) - 
+         (Re[B0[MSfgl2[1, tM1], 0, MSfgl2[2, bM1]]] + 
+           Re[B0[MSfgl2[2, tM1], 0, MSfgl2[2, bM1]]])*
+          (Mf2[tM1, 3]*USfgl[1, 1, tM1]*USfglC[2, 1, bM1] + 
+           Xtgl*Mf[tM1, 3]*USfgl[1, 2, tM1]*USfglC[2, 1, bM1] - 
+           Mf[bM1, 3]*(Mf[bM1, 3]*USfgl[1, 1, tM1]*USfglC[2, 1, bM1] + 
+             XbglC*USfgl[1, 1, tM1]*USfglC[2, 2, bM1]))*
+          ((Mf2[bM1, 3] - Mf2[tM1, 3])*USfgl[2, 1, bM1]*USfglC[2, 1, tM1] + 
+           Xbgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[2, 1, tM1] - 
+           XtglC*Mf[tM1, 3]*USfgl[2, 1, bM1]*USfglC[2, 2, tM1]) - 
+         (4*(2*(Re[B0[MSfgl2[1, tM1], MUE2, Mf2[bM1, 3]]]*(MMUE*S2B*
+                 Mf[tM1, 3]*Mf2[bM1, 3]*U2c1[tM1, EMUEC] + (SB2*Mf2[bM1, 3] - 
+                  CB2*Mf2[tM1, 3])*(Mf2[bM1, 3] - MSfgl2[1, tM1])*
+                 UCSfgl[3, 1, tM1]) + Re[B0[MSfgl2[2, tM1], MUE2, 
+                 Mf2[bM1, 3]]]*(MMUE*S2B*Mf[tM1, 3]*Mf2[bM1, 3]*U2c1[tM1, 
+                  EMUEC] + (SB2*Mf2[bM1, 3] - CB2*Mf2[tM1, 3])*(Mf2[bM1, 3] - 
+                  MSfgl2[2, tM1])*UCSfgl[3, 1, tM1])) - 
+            (Re[B0[MSfgl2[1, tM1], MHin2, MSfgl2[1, bM1]]] + 
+              Re[B0[MSfgl2[2, tM1], MHin2, MSfgl2[1, bM1]]])*
+             ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, tM1]*USfglC[1, 
+                1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[1, 1, tM1]*USfglC[1, 2, 
+                bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[1, 1, 
+                  bM1] + Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[1, 2, bM1]))*
+             ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*USfglC[2, 
+                1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[2, 1, 
+                tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*USfglC[2, 2, 
+                  tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[2, 2, tM1])) - 
+            (Re[B0[MSfgl2[1, tM1], MHin2, MSfgl2[2, bM1]]] + 
+              Re[B0[MSfgl2[2, tM1], MHin2, MSfgl2[2, bM1]]])*
+             ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, tM1]*USfglC[2, 
+                1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[1, 1, tM1]*USfglC[2, 2, 
+                bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[2, 1, 
+                  bM1] + Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[2, 2, bM1]))*
+             ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, bM1]*USfglC[2, 
+                1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[2, 1, 
+                tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[2, 1, bM1]*USfglC[2, 2, 
+                  tM1] + Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[2, 2, tM1]))))/
+          S2B^2)/8))/(MW2*SW2))/(2*Pi), dMSfsq1[2, 2, 3, 3] -> 
+  -(((gsMT2*(MSfgl2[2, tM1]*(Re[B1[MSfgl2[2, tM1], 0, MSfgl2[2, tM1]]] - 
+          2*Re[B1[MSfgl2[2, tM1], MGl2, Mf2[tM1, 3]]]) + 
+        2*(Re[A0[MGl2]] + Re[B0[MSfgl2[2, tM1], MGl2, Mf2[tM1, 3]]]*
+           (Mf2[tM1, 3] - MSfgl2[2, tM1] + 2*Mf[tM1, 3]*U2s1[tM1, "M_3"]))))/
+      (6*Pi) - (Re[A0[MSfgl2[2, tM1]]]*
+       ((gsMT2*(USfgl2[1, 1, tM1] - USfgl2[1, 2, tM1])^2)/(4*Pi) + 
+        (3*Alfa1L*Mf2[tM1, 3]*USfgl2[1, 1, tM1]*USfgl2[1, 2, tM1])/
+         (MW2*SB2*SW2)))/3 - (Re[A0[MSfgl2[1, tM1]]]*
+       ((8*gsMT2*USfgl2[1, 1, tM1]*USfgl2[1, 2, tM1])/Pi + 
+        (3*Alfa1L*Mf2[tM1, 3]*(USfgl2[1, 1, tM1]^2 - 6*USfgl2[1, 1, tM1]*
+            USfgl2[1, 2, tM1] + USfgl2[1, 2, tM1]^2))/(MW2*SB2*SW2)))/24 + 
+     (((2 + Re[B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]])*
+         ((16*gsMT2*MW2*SW2*MSfgl2[2, tM1])/Pi - 12*Alfa1L*Mf2[tM1, 3]*
+           (Mf2[tM1, 3] - 2*Mf[tM1, 3]*U2s1[tM1, Xtgl] + U2s1[tM1, Xtgl]^2 + 
+            U2s2[tM1, Xtgl]^2)))/48 - 
+       Alfa1L*((Re[A0[MHin2]]*((CB2*Mf2[tM1, 3]*(1 + USfgl2[1, 1, tM1]))/
+              SB2 + (SB2*Mf2[bM1, 3]*USfgl2[1, 2, tM1])/CB2) - 
+           Re[B0[MSfgl2[2, tM1], 0, MSfgl2[1, bM1]]]*
+            (Mf2[tM1, 3]*USfgl[2, 1, tM1]*USfglC[1, 1, bM1] + 
+             Xtgl*Mf[tM1, 3]*USfgl[2, 2, tM1]*USfglC[1, 1, bM1] - 
+             Mf[bM1, 3]*(Mf[bM1, 3]*USfgl[2, 1, tM1]*USfglC[1, 1, bM1] + 
+               XbglC*USfgl[2, 1, tM1]*USfglC[1, 2, bM1]))*
+            ((Mf2[bM1, 3] - Mf2[tM1, 3])*USfgl[1, 1, bM1]*USfglC[2, 1, tM1] + 
+             Xbgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[2, 1, tM1] - 
+             XtglC*Mf[tM1, 3]*USfgl[1, 1, bM1]*USfglC[2, 2, tM1]) - 
+           Re[B0[MSfgl2[2, tM1], 0, MSfgl2[2, bM1]]]*
+            (Mf2[tM1, 3]*USfgl[2, 1, tM1]*USfglC[2, 1, bM1] + 
+             Xtgl*Mf[tM1, 3]*USfgl[2, 2, tM1]*USfglC[2, 1, bM1] - 
+             Mf[bM1, 3]*(Mf[bM1, 3]*USfgl[2, 1, tM1]*USfglC[2, 1, bM1] + 
+               XbglC*USfgl[2, 1, tM1]*USfglC[2, 2, bM1]))*
+            ((Mf2[bM1, 3] - Mf2[tM1, 3])*USfgl[2, 1, bM1]*USfglC[2, 1, tM1] + 
+             Xbgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[2, 1, tM1] - 
+             XtglC*Mf[tM1, 3]*USfgl[2, 1, bM1]*USfglC[2, 2, tM1]))/8 - 
+         ((Mf2[tM1, 3]*((Mf2[tM1, 3] - MSfgl2[2, tM1])*Re[B0[MSfgl2[2, tM1], 
+                 MUE2, Mf2[tM1, 3]]] - MSfgl2[2, tM1]*Re[B1[MSfgl2[2, tM1], 
+                 MUE2, Mf2[tM1, 3]]] - SB2*Re[B0[MSfgl2[2, tM1], 0, 
+                 MSfgl2[1, tM1]]]*(U2c1[tM1, Xtgl]*U2c1C[tM1, Xtgl] + 
+                U2c2[tM1, Xtgl]*U2c2C[tM1, Xtgl]) - 
+              CB2*(Re[B0[MSfgl2[2, tM1], MHin2, MSfgl2[1, tM1]]]*
+                 (U2c1[tM1, Ytgl]*U2c1C[tM1, Ytgl] + U2c2[tM1, Ytgl]*
+                   U2c2C[tM1, Ytgl]) + Re[B0[MSfgl2[2, tM1], MHin2, 
+                   MSfgl2[2, tM1]]]*(Mf[tM1, 3] - YtglC*UCSfgl[1, 3, tM1])*
+                 (Mf[tM1, 3] - Ytgl*UCSfglC[1, 3, tM1]))))/4 - 
+           (MSfgl2[2, tM1]*Re[B1[MSfgl2[2, tM1], MUE2, Mf2[bM1, 3]]]*
+              (CB2*Mf2[tM1, 3]*USfgl2[1, 1, tM1] + SB2*Mf2[bM1, 3]*
+                USfgl2[1, 2, tM1]) - Re[A0[MUE2]]*(CB2*Mf2[tM1, 3]*
+                (1 + USfgl2[1, 1, tM1]) + SB2*Mf2[bM1, 3]*USfgl2[1, 2, 
+                 tM1]) + (Re[A0[MSfgl2[2, bM1]]]*(CB2*Mf2[tM1, 3]*USfgl2[1, 
+                   1, tM1]*USfgl2[1, 2, bM1] + SB2*Mf2[bM1, 3]*USfgl2[1, 1, 
+                   bM1]*USfgl2[1, 2, tM1]) + Re[A0[MSfgl2[1, bM1]]]*
+                (CB2*Mf2[tM1, 3]*USfgl2[1, 1, bM1]*USfgl2[1, 1, tM1] + 
+                 SB2*Mf2[bM1, 3]*USfgl2[1, 2, bM1]*USfgl2[1, 2, tM1]) + 
+               Re[B0[MSfgl2[2, tM1], MUE2, Mf2[bM1, 3]]]*(2*MMUE*S2B*
+                  Mf[tM1, 3]*Mf2[bM1, 3]*U2s1[tM1, EMUEC] - 2*(Mf2[bM1, 3] - 
+                   MSfgl2[2, tM1])*(CB2*Mf2[tM1, 3]*USfgl2[1, 1, tM1] + 
+                   SB2*Mf2[bM1, 3]*USfgl2[1, 2, tM1])) + 
+               Re[B0[MSfgl2[2, tM1], MHin2, MSfgl2[1, bM1]]]*
+                ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, tM1]*
+                  USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[2, 1, tM1]*
+                  USfglC[1, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[2, 2, tM1]*
+                    USfglC[1, 1, bM1] + Mf[bM1, 3]*USfgl[2, 2, tM1]*
+                    USfglC[1, 2, bM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+                  USfgl[1, 1, bM1]*USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*
+                  USfgl[1, 2, bM1]*USfglC[2, 1, tM1] + Mf[tM1, 3]*
+                  (CB2*YtglC*USfgl[1, 1, bM1]*USfglC[2, 2, tM1] + Mf[bM1, 3]*
+                    USfgl[1, 2, bM1]*USfglC[2, 2, tM1])) + 
+               Re[B0[MSfgl2[2, tM1], MHin2, MSfgl2[2, bM1]]]*
+                ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, tM1]*
+                  USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[2, 1, tM1]*
+                  USfglC[2, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[2, 2, tM1]*
+                    USfglC[2, 1, bM1] + Mf[bM1, 3]*USfgl[2, 2, tM1]*
+                    USfglC[2, 2, bM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+                  USfgl[2, 1, bM1]*USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*
+                  USfgl[2, 2, bM1]*USfglC[2, 1, tM1] + Mf[tM1, 3]*
+                  (CB2*YtglC*USfgl[2, 1, bM1]*USfglC[2, 2, tM1] + Mf[bM1, 3]*
+                    USfgl[2, 2, bM1]*USfglC[2, 2, tM1])))/2)/(4*CB2))/SB2))/
+      (MW2*SW2))/Pi), 
+ dXt1 -> -((Xtgl*dMf1[3, 3] - (dMSfsq1[1, 1, 3, 3] - dMSfsq1[2, 2, 3, 3])*
+      UCSfgl[1, 3, tM1] - Conjugate[dMSfsq1[1, 2, 3, 3]]*UCSfgl[3, 3, tM1] - 
+     dMSfsq1[1, 2, 3, 3]*UCSfglC[3, 4, tM1])/Mf[tM1, 3]), 
+ dMSfsq1z[1, 2, 3, 3] -> dMSfsq1[1, 2, 3, 3] - (2*U2c2[tM1, Xtgl*dMf1[3, 3]])/
+    (USfgl2[1, 1, tM1] - USfgl2[1, 2, tM1]), 
+ dMsq11Sf1[4, 3] -> -2*dMf1[3, 3]*Mf[tM1, 3] + 
+   2*Re[dMSfsq1[1, 2, 3, 3]*UCSfglC[3, 1, tM1]] + 
+   dMSfsq1[1, 1, 3, 3]*USfgl2[1, 1, tM1] + dMSfsq1[2, 2, 3, 3]*
+    USfgl2[1, 2, tM1], dMSfsq1[1, 1, 4, 3] -> 
+  (dMsq11Sf1[4, 3]*(USfgl2[1, 1, bM1] - USfgl2[1, 2, bM1]))/
+   USfgl2[1, 1, bM1], dMSfsq1[1, 2, 4, 3] -> 
+  (dMsq11Sf1[4, 3]*UCSfgl[3, 1, bM1])/USfgl2[1, 1, bM1], 
+ dMSfsq1z[1, 1, 4, 3] -> dMSfsq1[1, 1, 4, 3] + 
+   (2*(dMf1[3, 3]*Mf[tM1, 3] + 
+      Re[(XtglC*Conjugate[dMf1[3, 3]]*UCSfgl[1, 3, tM1]*USfgl2[1, 1, tM1] + 
+         Xtgl*dMf1[3, 3]*UCSfglC[1, 3, tM1]*USfgl2[1, 2, tM1])/
+        (USfgl2[1, 1, tM1] - USfgl2[1, 2, tM1])])*(USfgl2[1, 1, bM1] - 
+      USfgl2[1, 2, bM1]))/USfgl2[1, 1, bM1], dMSfsq1z[1, 2, 4, 3] -> 
+  dMSfsq1[1, 2, 4, 3] + 
+   (2*(dMf1[3, 3]*Mf[tM1, 3] + 
+      Re[(XtglC*Conjugate[dMf1[3, 3]]*UCSfgl[1, 3, tM1]*USfgl2[1, 1, tM1] + 
+         Xtgl*dMf1[3, 3]*UCSfglC[1, 3, tM1]*USfgl2[1, 2, tM1])/
+        (USfgl2[1, 1, tM1] - USfgl2[1, 2, tM1])])*UCSfgl[3, 1, bM1])/
+    USfgl2[1, 1, bM1], se["h0h0"] -> 
+  -((Alfa1L*((Mf2[bM1, 3]*((3*(B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]] - 
+            B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]])*dMSfsq1z[1, 1, 4, 3]*
+           U2c1[bM1, Xbgl]*U2c1C[bM1, Xbgl])/2 - 
+         3*Re[Conjugate[dMSfsq1z[1, 2, 4, 3]]*U2c1[bM1, Xbgl]]*
+          (B0[0, MSfgl2[2, bM1], MSfgl2[2, bM1]]*(Mf[bM1, 3] - 
+             U2s1[bM1, Xbgl]) + 2*B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]]*
+            U2s1[bM1, Xbgl] - B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]*
+            (Mf[bM1, 3] + U2s1[bM1, Xbgl]))))/MSfgl2[3, bM1] + 
+      (3*Mf2[tM1, 3]*((2*dMSfsq1[2, 2, 3, 3]*(Mf[tM1, 3] - U2s1[tM1, Xtgl])^
+            2)/MSfgl2[2, tM1] - 
+         ((4*Re[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c1[tM1, Xtgl]])/
+            MSfgl2[3, tM1] - 2*U2s1[tM1, dXt1])*
+          (2*B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*(Mf[tM1, 3] - 
+             U2s1[tM1, Xtgl]) - 2*B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*
+            (Mf[tM1, 3] + U2s1[tM1, Xtgl])) + 
+         (4*((B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*dMSfsq1[1, 1, 3, 3] - 
+              B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*dMSfsq1[2, 2, 3, 3])*
+             U2c1[tM1, Xtgl]*U2c1C[tM1, Xtgl] - B0[0, MSfgl2[1, tM1], 
+              MSfgl2[2, tM1]]*(2*MSfgl2[3, tM1]*Re[U2c1[tM1, Xtgl]*
+                 U2c1C[tM1, dXt1]] + (dMSfsq1[1, 1, 3, 3] - dMSfsq1[2, 2, 3, 
+                 3])*U2c1[tM1, Xtgl]*U2c1C[tM1, Xtgl] + 
+              4*Re[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c1[tM1, Xtgl]]*U2s1[tM1, 
+                Xtgl])))/MSfgl2[3, tM1]))/8 - 
+      (3*(dMSfsq1z[1, 1, 4, 3]*Mf2[bM1, 3]*(B0[0, MSfgl2[1, bM1], 
+            MSfgl2[1, bM1]] - (2*(Mf[bM1, 3] + U2s1[bM1, Xbgl])^2)/
+            MSfgl2[1, bM1]) + Mf2[tM1, 3]*
+          (B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*dMSfsq1[2, 2, 3, 3] + 
+           dMSfsq1[1, 1, 3, 3]*(B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]] - 
+             (2*(Mf[tM1, 3] + U2s1[tM1, Xtgl])^2)/MSfgl2[1, tM1]))))/8))/
+    (MW2*Pi*SW2)), se["HHHH"] -> 
+  (Alfa1L*(Mf2[bM1, 3]*((3*dMSfsq1z[1, 1, 4, 3]*
+         ((SB2*B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]])/CB2 - 
+          (2*TB2*(Mf[bM1, 3] + U2s1[bM1, Ybgl])^2)/MSfgl2[1, bM1]))/8 - 
+       (TB2*((3*(B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]] - 
+             B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]])*dMSfsq1z[1, 1, 4, 3]*
+            U2c1[bM1, Ybgl]*U2c1C[bM1, Ybgl])/2 - 
+          3*Re[Conjugate[dMSfsq1z[1, 2, 4, 3]]*U2c1[bM1, Ybgl]]*
+           (B0[0, MSfgl2[2, bM1], MSfgl2[2, bM1]]*(Mf[bM1, 3] - 
+              U2s1[bM1, Ybgl]) + 2*B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]]*
+             U2s1[bM1, Ybgl] - B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]*
+             (Mf[bM1, 3] + U2s1[bM1, Ybgl]))))/MSfgl2[3, bM1]) + 
+     (3*CB2*Mf2[tM1, 3]*(dMSfsq1[2, 2, 3, 3]*(B0[0, MSfgl2[2, tM1], 
+           MSfgl2[2, tM1]] - (2*(Mf[tM1, 3] - U2s1[tM1, Ytgl])^2)/
+           MSfgl2[2, tM1]) + 
+        ((8*Re[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c1[tM1, Ytgl]])/
+           MSfgl2[3, tM1] - 4*U2s1[tM1, dXt1])*
+         (B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*(Mf[tM1, 3] - 
+            U2s1[tM1, Ytgl]) - B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*
+           (Mf[tM1, 3] + U2s1[tM1, Ytgl])) + dMSfsq1[1, 1, 3, 3]*
+         (B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]] - 
+          (2*(Mf[tM1, 3] + U2s1[tM1, Ytgl])^2)/MSfgl2[1, tM1]) - 
+        (4*((B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*dMSfsq1[1, 1, 3, 3] - 
+             B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*dMSfsq1[2, 2, 3, 3])*
+            U2c1[tM1, Ytgl]*U2c1C[tM1, Ytgl] - B0[0, MSfgl2[1, tM1], 
+             MSfgl2[2, tM1]]*(2*MSfgl2[3, tM1]*Re[U2c1[tM1, Ytgl]*
+                U2c1C[tM1, dXt1]] + (dMSfsq1[1, 1, 3, 3] - dMSfsq1[2, 2, 3, 
+                3])*U2c1[tM1, Ytgl]*U2c1C[tM1, Ytgl] + 
+             4*Re[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c1[tM1, Ytgl]]*
+              U2s1[tM1, Ytgl])))/MSfgl2[3, tM1]))/(8*SB2)))/(MW2*Pi*SW2), 
+ se["A0A0"] -> 
+  (Alfa1L*
+    ((-3*Mf2[bM1, 3]*((TB2*(4*(B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]] - 
+             B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]])*dMSfsq1z[1, 1, 4, 3]*
+            U2c2[bM1, Ybgl]*U2c2C[bM1, Ybgl] + 
+           8*(B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]] - 
+             2*B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]] + B0[0, MSfgl2[2, bM1], 
+              MSfgl2[2, bM1]])*Im[Conjugate[dMSfsq1z[1, 2, 4, 3]]*
+              U2c2[bM1, Ybgl]]*U2s2[bM1, Ybgl]))/MSfgl2[3, bM1] - 
+        dMSfsq1z[1, 1, 4, 3]*((SB2*B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]])/
+           CB2 - (2*TB2*U2s2[bM1, Ybgl]^2)/MSfgl2[1, bM1])))/8 + 
+     (CB2*Mf2[tM1, 3]*(3*(dMSfsq1[1, 1, 3, 3]*(B0[0, MSfgl2[1, tM1], 
+             MSfgl2[1, tM1]] - (2*U2s2[tM1, Ytgl]^2)/MSfgl2[1, tM1]) + 
+          dMSfsq1[2, 2, 3, 3]*(B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]] - 
+            (2*U2s2[tM1, Ytgl]^2)/MSfgl2[2, tM1])) - 
+        (12*(B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*dMSfsq1[1, 1, 3, 3] - 
+            B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]*(dMSfsq1[1, 1, 3, 3] - 
+              dMSfsq1[2, 2, 3, 3]) - B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*
+             dMSfsq1[2, 2, 3, 3])*U2c2[tM1, Ytgl]*U2c2C[tM1, Ytgl] + 
+          4*(3*(B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]] + B0[0, MSfgl2[2, tM1], 
+               MSfgl2[2, tM1]])*(2*Im[Conjugate[dMSfsq1z[1, 2, 3, 3]]*
+                 U2c2[tM1, Ytgl]] - MSfgl2[3, tM1]*U2s2[tM1, dXt1])*
+             U2s2[tM1, Ytgl] - 6*B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]*
+             (MSfgl2[3, tM1]*Re[U2c2[tM1, Ytgl]*U2c2C[tM1, dXt1]] + 
+              2*Im[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c2[tM1, Ytgl]]*U2s2[tM1, 
+                Ytgl])))/MSfgl2[3, tM1]))/(8*SB2)))/(MW2*Pi*SW2), 
+ se["HmHp"] -> (3*Alfa1L*((SB2^2*Mf2[bM1, 3] - CB2^2*Mf2[tM1, 3])*
+      (-(B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]]*
+         (Conjugate[dMSfsq1z[1, 2, 4, 3]]*UCSfgl[3, 1, bM1] + 
+          dMSfsq1z[1, 2, 4, 3]*UCSfglC[3, 1, bM1])) + 
+       B0[0, MSfgl2[2, tM1], MSfgl2[1, tM1]]*(Conjugate[dMSfsq1z[1, 2, 3, 3]]*
+          UCSfgl[3, 1, tM1] + dMSfsq1z[1, 2, 3, 3]*UCSfglC[3, 1, tM1])) + 
+     B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]*dMSfsq1z[1, 1, 4, 3]*
+      (CB2^2*Mf2[tM1, 3]*USfgl2[1, 1, bM1] + SB2^2*Mf2[bM1, 3]*
+        USfgl2[1, 2, bM1]) + 
+     ((B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*dMSfsq1[1, 1, 3, 3] - 
+        B0[0, MSfgl2[1, tM1], MSfgl2[1, bM1]]*(dMSfsq1[1, 1, 3, 3] - 
+          dMSfsq1z[1, 1, 4, 3]) - B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]*
+         dMSfsq1z[1, 1, 4, 3])*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+         USfgl[1, 1, tM1]*USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+         USfgl[1, 1, tM1]*USfglC[1, 2, bM1] + Mf[tM1, 3]*
+         (CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[1, 1, bM1] + 
+          Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[1, 2, bM1]))*
+       ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*
+         USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*
+         USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*
+           USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*
+           USfglC[1, 2, tM1])))/(-MSfgl2[1, bM1] + MSfgl2[1, tM1]) + 
+     dMSfsq1[1, 1, 3, 3]*(B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*
+        (SB2^2*Mf2[bM1, 3]*USfgl2[1, 1, tM1] + CB2^2*Mf2[tM1, 3]*
+          USfgl2[1, 2, tM1]) + ((B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]] - 
+          B0[0, MSfgl2[1, tM1], MSfgl2[2, bM1]])*
+         ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, bM1]*
+           USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*
+           USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[2, 1, bM1]*
+             USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[2, 2, bM1]*
+             USfglC[1, 2, tM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+           USfgl[1, 1, tM1]*USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+           USfgl[1, 1, tM1]*USfglC[2, 2, bM1] + Mf[tM1, 3]*
+           (CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[2, 1, bM1] + 
+            Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[2, 2, bM1])))/
+        (MSfgl2[1, tM1] - MSfgl2[2, bM1])) - 
+     ((B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*dMSfsq1[2, 2, 3, 3] - 
+        B0[0, MSfgl2[1, bM1], MSfgl2[2, tM1]]*(dMSfsq1[2, 2, 3, 3] - 
+          dMSfsq1z[1, 1, 4, 3]) - B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]*
+         dMSfsq1z[1, 1, 4, 3])*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+         USfgl[2, 1, tM1]*USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+         USfgl[2, 1, tM1]*USfglC[1, 2, bM1] + Mf[tM1, 3]*
+         (CB2*Ytgl*USfgl[2, 2, tM1]*USfglC[1, 1, bM1] + 
+          Mf[bM1, 3]*USfgl[2, 2, tM1]*USfglC[1, 2, bM1]))*
+       ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*
+         USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*
+         USfglC[2, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*
+           USfglC[2, 2, tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*
+           USfglC[2, 2, tM1])))/(MSfgl2[1, bM1] - MSfgl2[2, tM1]) + 
+     dMSfsq1[2, 2, 3, 3]*(B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*
+        (CB2^2*Mf2[tM1, 3]*USfgl2[1, 1, tM1] + SB2^2*Mf2[bM1, 3]*
+          USfgl2[1, 2, tM1]) + ((-B0[0, MSfgl2[2, tM1], MSfgl2[2, bM1]] + 
+          B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]])*
+         ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, tM1]*
+           USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[2, 1, tM1]*
+           USfglC[2, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[2, 2, tM1]*
+             USfglC[2, 1, bM1] + Mf[bM1, 3]*USfgl[2, 2, tM1]*
+             USfglC[2, 2, bM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+           USfgl[2, 1, bM1]*USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*
+           USfgl[2, 2, bM1]*USfglC[2, 1, tM1] + Mf[tM1, 3]*
+           (CB2*YtglC*USfgl[2, 1, bM1]*USfglC[2, 2, tM1] + 
+            Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[2, 2, tM1])))/
+        (-MSfgl2[2, bM1] + MSfgl2[2, tM1])) + 
+     B0[0, MSfgl2[2, tM1], MSfgl2[2, bM1]]*
+      (((dMSfsq1z[1, 2, 4, 3]*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+             USfgl[2, 1, tM1]*USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+             USfgl[2, 1, tM1]*USfglC[1, 2, bM1] + Mf[tM1, 3]*
+             (CB2*Ytgl*USfgl[2, 2, tM1]*USfglC[1, 1, bM1] + Mf[bM1, 3]*USfgl[
+                2, 2, tM1]*USfglC[1, 2, bM1])))/MSfgl2[3, bM1] + 
+         CB2*dXt1*Mf[tM1, 3]*USfgl[2, 2, tM1]*USfglC[2, 1, bM1] + 
+         (Conjugate[dMSfsq1z[1, 2, 3, 3]]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, tM1]*
+             USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[1, 1, tM1]*
+             USfglC[2, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[
+                2, 1, bM1] + Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[2, 2, bM1])))/
+          MSfgl2[3, tM1])*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+          USfgl[2, 1, bM1]*USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*
+          USfgl[2, 2, bM1]*USfglC[2, 1, tM1] + Mf[tM1, 3]*
+          (CB2*YtglC*USfgl[2, 1, bM1]*USfglC[2, 2, tM1] + 
+           Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[2, 2, tM1])) + 
+       ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, tM1]*
+          USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[2, 1, tM1]*
+          USfglC[2, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[2, 2, tM1]*
+            USfglC[2, 1, bM1] + Mf[bM1, 3]*USfgl[2, 2, tM1]*
+            USfglC[2, 2, bM1]))*((dMSfsq1z[1, 2, 3, 3]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, bM1]*
+             USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*
+             USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[2, 1, bM1]*
+               USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[1, 2, 
+                tM1])))/MSfgl2[3, tM1] + CB2*Conjugate[dXt1]*Mf[tM1, 3]*
+          USfgl[2, 1, bM1]*USfglC[2, 2, tM1] + 
+         (Conjugate[dMSfsq1z[1, 2, 4, 3]]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*
+             USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*
+             USfglC[2, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*
+               USfglC[2, 2, tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[2, 2, 
+                tM1])))/MSfgl2[3, bM1])) + 
+     B0[0, MSfgl2[1, tM1], MSfgl2[1, bM1]]*
+      (CB2*Mf[tM1, 3]*(2*U2s1[tM1, dXt1*(SB2*Ybgl*Mf[bM1, 3]*
+              UCSfglC[1, 3, bM1] + (SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+              USfgl2[1, 1, bM1])] + Mf[tM1, 3]*
+          (2*Mf[bM1, 3]*U2s1[bM1, dXt1] + CB2*(dXt1*YtglC + 
+             Ytgl*Conjugate[dXt1])*USfgl2[1, 1, bM1])*USfgl2[1, 2, tM1]) - 
+       (dMSfsq1z[1, 2, 4, 3]*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+            USfgl[1, 1, tM1]*USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+            USfgl[1, 1, tM1]*USfglC[1, 2, bM1] + Mf[tM1, 3]*
+            (CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[1, 1, bM1] + 
+             Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[1, 2, bM1]))*
+          ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, bM1]*
+            USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*
+            USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[2, 1, bM1]*
+              USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[2, 2, bM1]*
+              USfglC[1, 2, tM1])) + Conjugate[dMSfsq1z[1, 2, 4, 3]]*
+          ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*
+            USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*
+            USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*
+              USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*
+              USfglC[1, 2, tM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+            USfgl[1, 1, tM1]*USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+            USfgl[1, 1, tM1]*USfglC[2, 2, bM1] + Mf[tM1, 3]*
+            (CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[2, 1, bM1] + 
+             Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[2, 2, bM1])))/
+        MSfgl2[3, bM1] - (dMSfsq1z[1, 2, 3, 3]*
+          ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, tM1]*
+            USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[2, 1, tM1]*
+            USfglC[1, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[2, 2, tM1]*
+              USfglC[1, 1, bM1] + Mf[bM1, 3]*USfgl[2, 2, tM1]*
+              USfglC[1, 2, bM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+            USfgl[1, 1, bM1]*USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*
+            USfgl[1, 2, bM1]*USfglC[1, 1, tM1] + Mf[tM1, 3]*
+            (CB2*YtglC*USfgl[1, 1, bM1]*USfglC[1, 2, tM1] + 
+             Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[1, 2, tM1])) + 
+         Conjugate[dMSfsq1z[1, 2, 3, 3]]*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+            USfgl[1, 1, tM1]*USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+            USfgl[1, 1, tM1]*USfglC[1, 2, bM1] + Mf[tM1, 3]*
+            (CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[1, 1, bM1] + 
+             Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[1, 2, bM1]))*
+          ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*
+            USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*
+            USfglC[2, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*
+              USfglC[2, 2, tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*
+              USfglC[2, 2, tM1])))/MSfgl2[3, tM1]) + 
+     B0[0, MSfgl2[1, tM1], MSfgl2[2, bM1]]*
+      (((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, bM1]*
+          USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*
+          USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[2, 1, bM1]*
+            USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[2, 2, bM1]*
+            USfglC[1, 2, tM1]))*((dMSfsq1z[1, 2, 4, 3]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, tM1]*
+             USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[1, 1, tM1]*
+             USfglC[1, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[
+                1, 1, bM1] + Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[1, 2, bM1])))/
+          MSfgl2[3, bM1] + CB2*dXt1*Mf[tM1, 3]*USfgl[1, 2, tM1]*
+          USfglC[2, 1, bM1] - (dMSfsq1z[1, 2, 3, 3]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, tM1]*
+             USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[2, 1, tM1]*
+             USfglC[2, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[2, 2, tM1]*USfglC[
+                2, 1, bM1] + Mf[bM1, 3]*USfgl[2, 2, tM1]*USfglC[2, 2, bM1])))/
+          MSfgl2[3, tM1]) + ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+          USfgl[1, 1, tM1]*USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+          USfgl[1, 1, tM1]*USfglC[2, 2, bM1] + Mf[tM1, 3]*
+          (CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[2, 1, bM1] + 
+           Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[2, 2, bM1]))*
+        (CB2*Conjugate[dXt1]*Mf[tM1, 3]*USfgl[2, 1, bM1]*USfglC[1, 2, tM1] + 
+         (Conjugate[dMSfsq1z[1, 2, 4, 3]]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*
+             USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*
+             USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*
+               USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[1, 2, 
+                tM1])))/MSfgl2[3, bM1] - (Conjugate[dMSfsq1z[1, 2, 3, 3]]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, bM1]*
+             USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[2, 2, bM1]*
+             USfglC[2, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[2, 1, bM1]*
+               USfglC[2, 2, tM1] + Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[2, 2, 
+                tM1])))/MSfgl2[3, tM1])) + 
+     B0[0, MSfgl2[1, bM1], MSfgl2[2, tM1]]*
+      (((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, tM1]*
+          USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[2, 1, tM1]*
+          USfglC[1, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[2, 2, tM1]*
+            USfglC[1, 1, bM1] + Mf[bM1, 3]*USfgl[2, 2, tM1]*
+            USfglC[1, 2, bM1]))*((dMSfsq1z[1, 2, 3, 3]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*
+             USfglC[1, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*
+             USfglC[1, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*
+               USfglC[1, 2, tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[1, 2, 
+                tM1])))/MSfgl2[3, tM1] + CB2*Conjugate[dXt1]*Mf[tM1, 3]*
+          USfgl[1, 1, bM1]*USfglC[2, 2, tM1]) + 
+       (CB2*dXt1*Mf[tM1, 3]*USfgl[2, 2, tM1]*USfglC[1, 1, bM1] + 
+         (Conjugate[dMSfsq1z[1, 2, 3, 3]]*
+           ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, tM1]*
+             USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[1, 1, tM1]*
+             USfglC[1, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[1, 2, tM1]*USfglC[
+                1, 1, bM1] + Mf[bM1, 3]*USfgl[1, 2, tM1]*USfglC[1, 2, bM1])))/
+          MSfgl2[3, tM1])*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+          USfgl[1, 1, bM1]*USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*
+          USfgl[1, 2, bM1]*USfglC[2, 1, tM1] + Mf[tM1, 3]*
+          (CB2*YtglC*USfgl[1, 1, bM1]*USfglC[2, 2, tM1] + 
+           Mf[bM1, 3]*USfgl[1, 2, bM1]*USfglC[2, 2, tM1])) - 
+       (Conjugate[dMSfsq1z[1, 2, 4, 3]]*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+            USfgl[2, 1, tM1]*USfglC[2, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*
+            USfgl[2, 1, tM1]*USfglC[2, 2, bM1] + Mf[tM1, 3]*
+            (CB2*Ytgl*USfgl[2, 2, tM1]*USfglC[2, 1, bM1] + 
+             Mf[bM1, 3]*USfgl[2, 2, tM1]*USfglC[2, 2, bM1]))*
+          ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[1, 1, bM1]*
+            USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*USfgl[1, 2, bM1]*
+            USfglC[2, 1, tM1] + Mf[tM1, 3]*(CB2*YtglC*USfgl[1, 1, bM1]*
+              USfglC[2, 2, tM1] + Mf[bM1, 3]*USfgl[1, 2, bM1]*
+              USfglC[2, 2, tM1])) + dMSfsq1z[1, 2, 4, 3]*
+          ((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*USfgl[2, 1, tM1]*
+            USfglC[1, 1, bM1] + SB2*YbglC*Mf[bM1, 3]*USfgl[2, 1, tM1]*
+            USfglC[1, 2, bM1] + Mf[tM1, 3]*(CB2*Ytgl*USfgl[2, 2, tM1]*
+              USfglC[1, 1, bM1] + Mf[bM1, 3]*USfgl[2, 2, tM1]*
+              USfglC[1, 2, bM1]))*((SB2*Mf2[bM1, 3] + CB2*Mf2[tM1, 3])*
+            USfgl[2, 1, bM1]*USfglC[2, 1, tM1] + SB2*Ybgl*Mf[bM1, 3]*
+            USfgl[2, 2, bM1]*USfglC[2, 1, tM1] + Mf[tM1, 3]*
+            (CB2*YtglC*USfgl[2, 1, bM1]*USfglC[2, 2, tM1] + 
+             Mf[bM1, 3]*USfgl[2, 2, bM1]*USfglC[2, 2, tM1])))/
+        MSfgl2[3, bM1])))/(2*MW2*Pi*S2B^2*SW2), 
+ se["h0HH"] -> 
+  (Alfa1L*((SB*Mf2[bM1, 3]*((3*dMSfsq1z[1, 1, 4, 3]*
+          (B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]] - 
+           (2*(Mf[bM1, 3] + U2s1[bM1, Xbgl])*(Mf[bM1, 3] + U2s1[bM1, Ybgl]))/
+            MSfgl2[1, bM1]))/8 + (3*(4*B0[0, MSfgl2[2, bM1], MSfgl2[2, bM1]]*
+            (Conjugate[dMSfsq1z[1, 2, 4, 3]]*(Mf[bM1, 3]*(U2c1[bM1, Xbgl] + 
+                 U2c1[bM1, Ybgl]) - U2c1[bM1, Ybgl]*U2s1[bM1, Xbgl] - 
+               U2c1[bM1, Xbgl]*U2s1[bM1, Ybgl]) + dMSfsq1z[1, 2, 4, 3]*
+              (Mf[bM1, 3]*(U2c1C[bM1, Xbgl] + U2c1C[bM1, Ybgl]) - 
+               U2c1C[bM1, Ybgl]*U2s1[bM1, Xbgl] - U2c1C[bM1, Xbgl]*
+                U2s1[bM1, Ybgl])) + 8*B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]]*
+            (Conjugate[dMSfsq1z[1, 2, 4, 3]]*(U2c1[bM1, Ybgl]*U2s1[bM1, 
+                 Xbgl] + U2c1[bM1, Xbgl]*U2s1[bM1, Ybgl]) + 
+             dMSfsq1z[1, 2, 4, 3]*(U2c1C[bM1, Ybgl]*U2s1[bM1, Xbgl] + 
+               U2c1C[bM1, Xbgl]*U2s1[bM1, Ybgl])) - 
+           4*(2*(B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]] - B0[0, MSfgl2[1, 
+                 bM1], MSfgl2[2, bM1]])*dMSfsq1z[1, 1, 4, 3]*
+              Re[U2c1[bM1, Ybgl]*U2c1C[bM1, Xbgl]] + B0[0, MSfgl2[1, bM1], 
+               MSfgl2[1, bM1]]*(Conjugate[dMSfsq1z[1, 2, 4, 3]]*
+                (U2c1[bM1, Ybgl]*(Mf[bM1, 3] + U2s1[bM1, Xbgl]) + 
+                 U2c1[bM1, Xbgl]*(Mf[bM1, 3] + U2s1[bM1, Ybgl])) + 
+               dMSfsq1z[1, 2, 4, 3]*(U2c1C[bM1, Ybgl]*(Mf[bM1, 3] + 
+                   U2s1[bM1, Xbgl]) + U2c1C[bM1, Xbgl]*(Mf[bM1, 3] + 
+                   U2s1[bM1, Ybgl]))))))/(16*MSfgl2[3, bM1])))/CB + 
+     (CB*Mf2[tM1, 3]*
+       ((3*((8*(B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*dMSfsq1[1, 1, 3, 3] - 
+              B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]*(dMSfsq1[1, 1, 3, 3] - 
+                dMSfsq1[2, 2, 3, 3]) - B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*
+               dMSfsq1[2, 2, 3, 3])*Re[U2c1[tM1, Ytgl]*U2c1C[tM1, Xtgl]])/
+            MSfgl2[3, tM1] + (4*dMSfsq1[2, 2, 3, 3]*(Mf[tM1, 3] - 
+              U2s1[tM1, Xtgl])*(Mf[tM1, 3] - U2s1[tM1, Ytgl]))/
+            MSfgl2[2, tM1]))/16 - (3*(B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*
+            dMSfsq1[2, 2, 3, 3] + dMSfsq1[1, 1, 3, 3]*
+            (B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]] - 
+             (2*(Mf[tM1, 3] + U2s1[tM1, Xtgl])*(Mf[tM1, 3] + U2s1[tM1, 
+                 Ytgl]))/MSfgl2[1, tM1])))/8 + 
+        (3*(B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*
+            (MSfgl2[3, tM1]*U2s1[tM1, dXt1]*(2*Mf[tM1, 3] + U2s1[tM1, 
+                -Xtgl - Ytgl]) - Conjugate[dMSfsq1z[1, 2, 3, 3]]*
+              (Mf[tM1, 3]*(U2c1[tM1, Xtgl] + U2c1[tM1, Ytgl]) - U2c1[tM1, 
+                 Ytgl]*U2s1[tM1, Xtgl] - U2c1[tM1, Xtgl]*U2s1[tM1, Ytgl]) - 
+             dMSfsq1z[1, 2, 3, 3]*(Mf[tM1, 3]*(U2c1C[tM1, Xtgl] + 
+                 U2c1C[tM1, Ytgl]) - U2c1C[tM1, Ytgl]*U2s1[tM1, Xtgl] - 
+               U2c1C[tM1, Xtgl]*U2s1[tM1, Ytgl])) - 
+           2*B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]*
+            (MSfgl2[3, tM1]*Re[U2c1[tM1, Xtgl + Ytgl]*U2c1C[tM1, dXt1]] + 
+             Conjugate[dMSfsq1z[1, 2, 3, 3]]*(U2c1[tM1, Ytgl]*U2s1[tM1, 
+                 Xtgl] + U2c1[tM1, Xtgl]*U2s1[tM1, Ytgl]) + 
+             dMSfsq1z[1, 2, 3, 3]*(U2c1C[tM1, Ytgl]*U2s1[tM1, Xtgl] + 
+               U2c1C[tM1, Xtgl]*U2s1[tM1, Ytgl])) + 
+           B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*
+            (Conjugate[dMSfsq1z[1, 2, 3, 3]]*(U2c1[tM1, Ytgl]*(Mf[tM1, 3] + 
+                 U2s1[tM1, Xtgl]) + U2c1[tM1, Xtgl]*(Mf[tM1, 3] + 
+                 U2s1[tM1, Ytgl])) + dMSfsq1z[1, 2, 3, 3]*(U2c1C[tM1, Ytgl]*
+                (Mf[tM1, 3] + U2s1[tM1, Xtgl]) + U2c1C[tM1, Xtgl]*
+                (Mf[tM1, 3] + U2s1[tM1, Ytgl])) - MSfgl2[3, tM1]*
+              U2s1[tM1, dXt1]*(2*Mf[tM1, 3] + U2s1[tM1, Xtgl + Ytgl]))))/
+         (4*MSfgl2[3, tM1])))/SB))/(MW2*Pi*SW2), 
+ se["h0A0"] -> 
+  (Alfa1L*((SB*Mf2[bM1, 3]*(B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]*
+         (6*dMSfsq1z[1, 1, 4, 3]*Im[U2c1[bM1, Xbgl]*U2c2C[bM1, Ybgl]] + 
+          (3*I)*(Conjugate[dMSfsq1z[1, 2, 4, 3]]*(U2c2[bM1, Ybgl]*(
+                Mf[bM1, 3] + U2s1[bM1, Xbgl]) + I*U2c1[bM1, Xbgl]*U2s2[bM1, 
+                Ybgl]) - dMSfsq1z[1, 2, 4, 3]*(U2c2C[bM1, Ybgl]*(Mf[bM1, 3] + 
+                U2s1[bM1, Xbgl]) - I*U2c1C[bM1, Xbgl]*U2s2[bM1, Ybgl]))) - 
+        3*(2*B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]]*
+           (dMSfsq1z[1, 1, 4, 3]*Im[U2c1[bM1, Xbgl]*U2c2C[bM1, Ybgl]] + 
+            Conjugate[dMSfsq1z[1, 2, 4, 3]]*(I*U2c2[bM1, Ybgl]*U2s1[bM1, 
+                Xbgl] - U2c1[bM1, Xbgl]*U2s2[bM1, Ybgl]) + 
+            dMSfsq1z[1, 2, 4, 3]*((-I)*U2c2C[bM1, Ybgl]*U2s1[bM1, Xbgl] - 
+              U2c1C[bM1, Xbgl]*U2s2[bM1, Ybgl])) + 
+          B0[0, MSfgl2[2, bM1], MSfgl2[2, bM1]]*
+           (Conjugate[dMSfsq1z[1, 2, 4, 3]]*(I*U2c2[bM1, Ybgl]*(Mf[bM1, 3] - 
+                U2s1[bM1, Xbgl]) + U2c1[bM1, Xbgl]*U2s2[bM1, Ybgl]) + 
+            dMSfsq1z[1, 2, 4, 3]*((-I)*U2c2C[bM1, Ybgl]*(Mf[bM1, 3] - 
+                U2s1[bM1, Xbgl]) + U2c1C[bM1, Xbgl]*U2s2[bM1, Ybgl])))))/
+      (4*CB*MSfgl2[3, bM1]) + 
+     (3*(-((SB2*dMSfsq1z[1, 1, 4, 3]*Mf2[bM1, 3]*(Mf[bM1, 3] + 
+            U2s1[bM1, Xbgl])*U2s2[bM1, Ybgl])/MSfgl2[1, bM1]) + 
+        CB2*Mf2[tM1, 3]*((dMSfsq1[2, 2, 3, 3]*(Mf[tM1, 3] - U2s1[tM1, Xtgl]))/
+           MSfgl2[2, tM1] - (dMSfsq1[1, 1, 3, 3]*(Mf[tM1, 3] + 
+             U2s1[tM1, Xtgl]))/MSfgl2[1, tM1])*U2s2[tM1, Ytgl]))/(2*S2B) + 
+     (CB*Mf2[tM1, 3]*((3*((B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*
+              dMSfsq1[1, 1, 3, 3] - B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]*
+              (dMSfsq1[1, 1, 3, 3] - dMSfsq1[2, 2, 3, 3]) - 
+             B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*dMSfsq1[2, 2, 3, 3])*
+            Im[U2c1[tM1, Xtgl]*U2c2C[tM1, Ytgl]] - 
+           B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]*
+            ((Im[U2c1[tM1, Xtgl]*U2c2C[tM1, dXt1]] + Im[U2c1[tM1, dXt1]*
+                 U2c2C[tM1, Ytgl]])*MSfgl2[3, tM1] - 
+             2*(Im[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c2[tM1, Ytgl]]*
+                U2s1[tM1, Xtgl] + Re[Conjugate[dMSfsq1z[1, 2, 3, 3]]*
+                  U2c1[tM1, Xtgl]]*U2s2[tM1, Ytgl]))))/(2*MSfgl2[3, tM1]) + 
+        ((3*I)/32)*(B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*
+           ((8*I)*(Mf[tM1, 3] - U2s1[tM1, Xtgl])*U2s2[tM1, dXt1] - 
+            (8*I)*U2s1[tM1, dXt1]*U2s2[tM1, Ytgl] - 
+            (Conjugate[dMSfsq1z[1, 2, 3, 3]]*(U2c2[tM1, Ytgl]*(8*Mf[tM1, 3] - 
+                  8*U2s1[tM1, Xtgl]) - (8*I)*U2c1[tM1, Xtgl]*U2s2[tM1, 
+                  Ytgl]) - 8*dMSfsq1z[1, 2, 3, 3]*(U2c2C[tM1, Ytgl]*
+                 (Mf[tM1, 3] - U2s1[tM1, Xtgl]) + I*U2c1C[tM1, Xtgl]*
+                 U2s2[tM1, Ytgl]))/MSfgl2[3, tM1]) - 
+          B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*
+           ((8*I)*((Mf[tM1, 3] + U2s1[tM1, Xtgl])*U2s2[tM1, dXt1] + 
+              U2s1[tM1, dXt1]*U2s2[tM1, Ytgl]) - 
+            (2*(Conjugate[dMSfsq1z[1, 2, 3, 3]]*(4*U2c2[tM1, Ytgl]*
+                  (Mf[tM1, 3] + U2s1[tM1, Xtgl]) + (4*I)*U2c1[tM1, Xtgl]*
+                  U2s2[tM1, Ytgl]) - dMSfsq1z[1, 2, 3, 3]*(4*U2c2C[tM1, Ytgl]*
+                  (Mf[tM1, 3] + U2s1[tM1, Xtgl]) - (4*I)*U2c1C[tM1, Xtgl]*
+                  U2s2[tM1, Ytgl])))/MSfgl2[3, tM1]))))/SB))/(MW2*Pi*SW2), 
+ se["HHA0"] -> 
+  -((Alfa1L*(TB2*Mf2[bM1, 3]*((3*dMSfsq1z[1, 1, 4, 3]*(Mf[bM1, 3] + 
+           U2s1[bM1, Ybgl])*U2s2[bM1, Ybgl])/(4*MSfgl2[1, bM1]) - 
+        (3*B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]]*
+           Im[Conjugate[dMSfsq1z[1, 2, 4, 3]]*U2c2[bM1, Ybgl^2*UCSfC[1, 3, 4, 
+                3]]] + ((3*I)/16)*((-8*I)*(B0[0, MSfgl2[1, bM1], MSfgl2[1, 
+                bM1]] - B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]])*
+             dMSfsq1z[1, 1, 4, 3]*Im[U2c1[bM1, Ybgl]*U2c2C[bM1, Ybgl]] + 
+            B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]*(-2*dMSfsq1z[1, 2, 4, 3]*(
+                2*U2c2C[bM1, Ybgl^2*UCSfC[1, 3, 4, 3]] + Mf[bM1, 3]*
+                 (2*U2s1[bM1, Ybgl]*UCSfglC[3, 1, bM1] - YbglC*UCSfglC[3, 4, 
+                    bM1]*(1 + USfgl2[1, 1, bM1]) + Ybgl*UCSfglC[3, 3, bM1]*
+                   (1 + USfgl2[1, 2, bM1]))) + 2*Conjugate[dMSfsq1z[1, 2, 4, 
+                 3]]*(2*U2c2[bM1, Ybgl^2*UCSfC[1, 3, 4, 3]] + Mf[bM1, 3]*
+                 (-(Ybgl*(-(UCSfgl[3, 1, bM1]*UCSfglC[1, 3, bM1]) + 
+                     UCSfgl[3, 4, bM1]*(1 + USfgl2[1, 1, bM1]))) + 
+                  YbglC*(UCSfgl[1, 3, bM1]*UCSfgl[3, 1, bM1] + UCSfgl[3, 3, 
+                      bM1]*(1 + USfgl2[1, 2, bM1]))))) + 
+            B0[0, MSfgl2[2, bM1], MSfgl2[2, bM1]]*(2*Conjugate[dMSfsq1z[1, 2, 
+                 4, 3]]*(2*U2c2[bM1, Ybgl^2*UCSfC[1, 3, 4, 3]] - 
+                Mf[bM1, 3]*(-(Ybgl*(-(UCSfgl[3, 1, bM1]*UCSfglC[1, 3, bM1]) + 
+                     UCSfgl[3, 4, bM1]*(1 + USfgl2[1, 1, bM1]))) + 
+                  YbglC*(UCSfgl[1, 3, bM1]*UCSfgl[3, 1, bM1] + UCSfgl[3, 3, 
+                      bM1]*(1 + USfgl2[1, 2, bM1])))) - dMSfsq1z[1, 2, 4, 3]*(
+                2*Ybgl^2*UCSfglC[1, 3, bM1]*UCSfglC[3, 3, bM1] - 
+                2*(YbglC^2*UCSfgl[1, 3, bM1]*UCSfglC[3, 4, bM1] + Mf[bM1, 3]*
+                   (2*U2s1[bM1, Ybgl]*UCSfglC[3, 1, bM1] - YbglC*UCSfglC[3, 
+                      4, bM1]*(1 + USfgl2[1, 1, bM1]) + Ybgl*UCSfglC[3, 3, 
+                      bM1]*(1 + USfgl2[1, 2, bM1])))))))/MSfgl2[3, bM1]) + 
+      (CB2*Mf2[tM1, 3]*((6*(B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*
+              dMSfsq1[1, 1, 3, 3] - B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*
+              dMSfsq1[2, 2, 3, 3])*Im[U2c1[tM1, Ytgl]*U2c2C[tM1, Ytgl]] + 
+           3*B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]*
+            (4*Im[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c2[tM1, Ytgl^2*
+                  UCSfC[1, 3, 3, 3]]] - 2*((dMSfsq1[1, 1, 3, 3] - 
+                 dMSfsq1[2, 2, 3, 3])*Im[U2c1[tM1, Ytgl]*U2c2C[tM1, Ytgl]] + 
+               (Im[U2c1[tM1, Ytgl]*U2c2C[tM1, dXt1]] + Im[U2c1[tM1, dXt1]*
+                   U2c2C[tM1, Ytgl]])*MSfgl2[3, tM1])))/(4*MSfgl2[3, tM1]) + 
+         (3*((dMSfsq1[2, 2, 3, 3]*(Mf[tM1, 3] - U2s1[tM1, Ytgl]))/
+             MSfgl2[2, tM1] - (dMSfsq1[1, 1, 3, 3]*(Mf[tM1, 3] + U2s1[tM1, 
+                Ytgl]))/MSfgl2[1, tM1])*U2s2[tM1, Ytgl])/4 + 
+         ((3*I)/32)*(B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]*
+            ((8*I)*(Mf[tM1, 3] - U2s1[tM1, Ytgl])*U2s2[tM1, dXt1] - 
+             (8*I)*U2s1[tM1, dXt1]*U2s2[tM1, Ytgl] + 
+             (4*(-(dMSfsq1z[1, 2, 3, 3]*(2*U2c2C[tM1, Ytgl^2*UCSfC[1, 3, 3, 
+                       3]] - Mf[tM1, 3]*(2*U2s1[tM1, Ytgl]*UCSfglC[3, 1, 
+                       tM1] - YtglC*UCSfglC[3, 4, tM1]*(1 + USfgl2[1, 1, 
+                        tM1]) + Ytgl*UCSfglC[3, 3, tM1]*(1 + USfgl2[1, 2, 
+                        tM1])))) + Conjugate[dMSfsq1z[1, 2, 3, 3]]*
+                 (2*U2c2[tM1, Ytgl^2*UCSfC[1, 3, 3, 3]] - Mf[tM1, 3]*
+                   (-(Ytgl*(-(UCSfgl[3, 1, tM1]*UCSfglC[1, 3, tM1]) + 
+                       UCSfgl[3, 4, tM1]*(1 + USfgl2[1, 1, tM1]))) + 
+                    YtglC*(UCSfgl[1, 3, tM1]*UCSfgl[3, 1, tM1] + 
+                      UCSfgl[3, 3, tM1]*(1 + USfgl2[1, 2, tM1]))))))/
+              MSfgl2[3, tM1]) - B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]*
+            ((8*I)*((Mf[tM1, 3] + U2s1[tM1, Ytgl])*U2s2[tM1, dXt1] + 
+               U2s1[tM1, dXt1]*U2s2[tM1, Ytgl]) - (-4*dMSfsq1z[1, 2, 3, 3]*
+                (2*U2c2C[tM1, Ytgl^2*UCSfC[1, 3, 3, 3]] + Mf[tM1, 3]*
+                  (2*U2s1[tM1, Ytgl]*UCSfglC[3, 1, tM1] - YtglC*UCSfglC[3, 4, 
+                     tM1]*(1 + USfgl2[1, 1, tM1]) + Ytgl*UCSfglC[3, 3, tM1]*
+                    (1 + USfgl2[1, 2, tM1]))) + 4*Conjugate[dMSfsq1z[1, 2, 3, 
+                  3]]*(2*U2c2[tM1, Ytgl^2*UCSfC[1, 3, 3, 3]] + Mf[tM1, 3]*
+                  (-(Ytgl*(-(UCSfgl[3, 1, tM1]*UCSfglC[1, 3, tM1]) + 
+                      UCSfgl[3, 4, tM1]*(1 + USfgl2[1, 1, tM1]))) + 
+                   YtglC*(UCSfgl[1, 3, tM1]*UCSfgl[3, 1, tM1] + UCSfgl[3, 3, 
+                       tM1]*(1 + USfgl2[1, 2, tM1])))))/MSfgl2[3, tM1]))))/
+       SB2))/(MW2*Pi*SW2)), 
+ dTA01 -> 
+  (-3*EL1L*(2*(SB2*Im[Conjugate[dMSfsq1z[1, 2, 4, 3]]*U2c2[bM1, Ybgl]]*
+        Mf[bM1, 3]*Re[B0[0, MSfgl2[2, bM1], MSfgl2[1, bM1]]] + 
+       CB2*Im[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c2[tM1, Ytgl]]*Mf[tM1, 3]*
+        Re[B0[0, MSfgl2[2, tM1], MSfgl2[1, tM1]]]) + 
+     SB2*dMSfsq1z[1, 1, 4, 3]*Mf[bM1, 3]*Re[B0[0, MSfgl2[1, bM1], 
+        MSfgl2[1, bM1]]]*U2s2[bM1, Ybgl] - CB2*Mf[tM1, 3]*
+      (MSfgl2[3, tM1]*Re[B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]]*
+        U2s2[tM1, dXt1] - (dMSfsq1[1, 1, 3, 3]*Re[B0[0, MSfgl2[1, tM1], 
+            MSfgl2[1, tM1]]] - dMSfsq1[2, 2, 3, 3]*
+          Re[B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]])*U2s2[tM1, Ytgl])))/
+   (8*MW*Pi^2*S2B*SW), 
+ dTh01 -> (-3*EL1L*(Mf[bM1, 3]*(2*Re[B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]]]*
+        Re[Conjugate[dMSfsq1z[1, 2, 4, 3]]*U2c1[bM1, Xbgl]] + 
+       dMSfsq1z[1, 1, 4, 3]*Re[B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]]*
+        (Mf[bM1, 3] + U2s1[bM1, Xbgl])) + 
+     Mf[tM1, 3]*(Re[B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]]*
+        (2*Re[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c1[tM1, Xtgl]] - 
+         MSfgl2[3, tM1]*U2s1[tM1, dXt1]) + dMSfsq1[2, 2, 3, 3]*
+        Re[B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]]*(Mf[tM1, 3] - 
+         U2s1[tM1, Xtgl]) + dMSfsq1[1, 1, 3, 3]*
+        Re[B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]]*(Mf[tM1, 3] + 
+         U2s1[tM1, Xtgl]))))/(16*MW*Pi^2*SW), 
+ dTHH1 -> 
+  (3*EL1L*(-2*SB2*Mf[bM1, 3]*(2*Re[B0[0, MSfgl2[1, bM1], MSfgl2[2, bM1]]]*
+        Re[Conjugate[dMSfsq1z[1, 2, 4, 3]]*U2c1[bM1, Ybgl]] + 
+       dMSfsq1z[1, 1, 4, 3]*Re[B0[0, MSfgl2[1, bM1], MSfgl2[1, bM1]]]*
+        (Mf[bM1, 3] + U2s1[bM1, Ybgl])) + 2*CB2*Mf[tM1, 3]*
+      (Re[B0[0, MSfgl2[1, tM1], MSfgl2[2, tM1]]]*
+        (2*Re[Conjugate[dMSfsq1z[1, 2, 3, 3]]*U2c1[tM1, Ytgl]] - 
+         MSfgl2[3, tM1]*U2s1[tM1, dXt1]) + dMSfsq1[2, 2, 3, 3]*
+        Re[B0[0, MSfgl2[2, tM1], MSfgl2[2, tM1]]]*(Mf[tM1, 3] - 
+         U2s1[tM1, Ytgl]) + dMSfsq1[1, 1, 3, 3]*
+        Re[B0[0, MSfgl2[1, tM1], MSfgl2[1, tM1]]]*(Mf[tM1, 3] + 
+         U2s1[tM1, Ytgl]))))/(16*MW*Pi^2*S2B*SW), 
+ shift["h0h0"] -> dTh01/vev + se["h0h0"], 
+ shift["h0HH"] -> dTHH1/vev + se["h0HH"], 
+ shift["h0A0"] -> dTA01/vev + se["h0A0"], IndexIf[inputmass == A0A0, 
+  {shift["HHHH"] -> -se["A0A0"] + se["HHHH"], shift["A0A0"] -> 0, 
+   shift["HmHp"] -> -se["A0A0"] + se["HmHp"]}, True, 
+  {shift["HHHH"] -> se["HHHH"] - se["HmHp"], shift["A0A0"] -> 
+    se["A0A0"] - se["HmHp"], shift["HmHp"] -> 0}]}

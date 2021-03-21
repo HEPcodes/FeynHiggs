@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 27 Jan 17 th
+* last modified 27 Oct 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -923,8 +923,8 @@ c	  i = -iand(isB(t), isMFV(t))
 	ComplexType hc(6,6,6)
 * 1 = Phi2, 2 = Phi1, 3 = A, 4 = H+-, 5 = G, 6 = G+-
 
-	call CalcSelf(Mh02, cpeven, 0)
-c	call CalcSelf(0D0, cpeven, 0)
+	call CalcSE(Mh02, cpeven, 0)
+c	call CalcSE(0D0, cpeven, 0)
 	omega_t = CA2*Re(seR(h0h0)) + SA2*Re(seR(HHHH)) +
      &    S2A*Re(seR(h0HH))
 

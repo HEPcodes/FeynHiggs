@@ -1,7 +1,7 @@
 * OutputSLHA.F
 * fill SLHA data structure from FeynHiggs inputs and outputs
 * this file is part of FeynHiggs
-* last modified 20 Jan 17 th
+* last modified 26 Oct 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -103,7 +103,7 @@
 
 	if( .not. btest(key, 0) ) goto 1
 
-	SMInputs_invAlfaMZ = invAlfaMZ - 1/Alfa0*DeltaAlfaTop(MT2, MZ2)
+	SMInputs_invAlfaMZ = invAlfaMZ - DeltaAlfaTopAlfa(MT2, MZ2)
 	SMInputs_AlfasMZ = AlfasMZ
 	SMInputs_GF = GF
 

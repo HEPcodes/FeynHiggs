@@ -1,7 +1,7 @@
 * GetSelf.F
 * Subroutines for outside access to the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 6 Jan 17 th
+* last modified 1 Nov 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -19,7 +19,7 @@
 	integer key, dkey, ren
 	ComplexType sig(semax), dsig(semax)
 
-	integer i, dk
+	integer dk
 
 	error = 0
 	CheckSf(error)
@@ -30,23 +30,15 @@
 	dk = dkey
 	if( Im(k2) .ne. 0 ) dk = ior(dk, key)
 
-	if( higgs_valid .ne. valid ) call CalcCTs
-	call CalcSelf(k2, key, dk)
+	if( higgs_valid .ne. valid ) call CalcRC
+	call CalcSE(k2, key, dk)
 
 	if( ren .eq. 0 ) then
-	  do i = 1, semax
-	    sig(i) = seU(i) + cI*Im(k2)*dseU(i)
-	  enddo
-	  do i = 1, semax
-	    dsig(i) = dseU(i)
-	  enddo
+	  sig(1:semax) = seU(1:semax) + cI*Im(k2)*dseU(1:semax)
+	  dsig(1:semax) = dseU(1:semax)
 	else
-	  do i = 1, semax
-	    sig(i) = seR(i) + cI*Im(k2)*dseR(i)
-	  enddo
-	  do i = 1, semax
-	    dsig(i) = dseR(i)
-	  enddo
+	  sig(1:semax) = seR(1:semax) + cI*Im(k2)*dseR(1:semax)
+	  dsig(1:semax) = dseR(1:semax)
 	endif
 	end
 

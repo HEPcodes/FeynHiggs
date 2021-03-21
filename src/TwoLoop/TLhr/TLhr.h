@@ -1,11 +1,10 @@
 * TLhr.h
 * declarations for Heidi Rzehak's two-loop corrections
 * this file is part of FeynHiggs
-* last modified 15 Feb 17 th
+* last modified 12 Dec 17 th
 
 #include "TL.h"
 #include "TLhrvars.h"
-#include "Sfgl.h"
 
 #ifndef DTLHR
 #define DTLHR if( debuglevel .gt. 4 ) DSELF
@@ -18,21 +17,17 @@
 	RealType dMTfin
 	parameter (dMTfin = 0)
 
-	ComplexType Xt, At, PhiAt, MUEXt, seinput
+	ComplexType PhiAt, MUEXt, seinput
 
-	RealType Q
-	equivalence (mudim, Q)
+	RealType Q2
+	equivalence (mudim, Q2)
 
-	RealType MTy, MTy2, MGlmT2, MGlpT2
-	RealType MGlpTmSt2(2), MGlpTmSt4(2)
-	RealType MGlpTmStxGlT4(2)
-	RealType A0delStop(2), A0delGl, A0delT
+	RealType MGlmT2, MGlpT2
+	RealType A0delStgl(2), A0delGl, A0delT
 
-	common /hrvar2/ Xt, At, PhiAt, MUEXt, seinput
-	common /hrvar2/ MTy, MTy2, MGlmT2, MGlpT2
-	common /hrvar2/ MGlpTmSt2, MGlpTmSt4
-	common /hrvar2/ MGlpTmStxGlT4
-	common /hrvar2/ A0delStop, A0delGl, A0delT
+	common /hrvar2/ PhiAt, MUEXt, seinput
+	common /hrvar2/ MGlmT2, MGlpT2
+	common /hrvar2/ A0delStgl, A0delGl, A0delT
 
 	RealType T134
 	external T134

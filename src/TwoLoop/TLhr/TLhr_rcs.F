@@ -47,108 +47,108 @@
 	DTLHR "dMSfsq1233eps(1)", dMSfsq1233eps(1) ENDL
 #endif
 
-	dMf133eps(-1) = -(4/(3.D0*Pi)*(Alfas2L*MTy))
+	dMf133eps(-1) = -(4/(3.D0*Pi)*(Alfas2L*MTgl))
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dMf133eps(-1)", dMf133eps(-1) ENDL
 #endif
 
         dMf133eps(0) = 
-     &   1/(6.D0*Pi)*(dMT1OS*(Alfas2L*Cr(88) + 6*Pi*(dMTfin*MTy)))/
-     &     MTy
+     &   1/(6.D0*Pi)*(dMT1OS*(Alfas2L*Cr(88) + 6*Pi*(dMTfin*MTgl)))/
+     &     MTgl
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dMf133eps(0)", dMf133eps(0) ENDL
 #endif
 
-	dMf133eps(1) = 1/(12.D0*Pi)*(Alfas2L*dMT1OS*Cr(135))/MTy
+	dMf133eps(1) = 1/(12.D0*Pi)*(Alfas2L*dMT1OS*Cr(135))/MTgl
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dMf133eps(1)", dMf133eps(1) ENDL
 #endif
 
         dY33eps(-1) = 4/(3.D0*Pi)*
-     &    (Alfas2L*(2*MTy*Cr(139) - Cr(117)*MStop2(3)*UCStop(3,1)))
+     &    (Alfas2L*(2*MTgl*Cr(139) - Cr(117)*MStgl2(3)*UCStgl(3,1)))
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dY33eps(-1)", dY33eps(-1) ENDL
 #endif
 
         dY33eps(0) = 2/(3.D0*Pi)*
-     &    (Alfas2L*(MTy*Cr(70)*Cr(139) - 
-     &        Cr(117)*Cr(140)*UCStop(3,1)))
+     &    (Alfas2L*(MTgl*Cr(70)*Cr(139) - 
+     &        Cr(117)*Cr(140)*UCStgl(3,1)))
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dY33eps(0)", dY33eps(0) ENDL
 #endif
 
-	dY33eps(1) = 1/(3.D0*Pi)*(Alfas2L*Cr(117)*Cr(134)*UCStop(3,1))
+	dY33eps(1) = 1/(3.D0*Pi)*(Alfas2L*Cr(117)*Cr(134)*UCStgl(3,1))
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dY33eps(1)", dY33eps(1) ENDL
 #endif
 
         dMSfsq1143eps(-1) = 
-     &   -2*MTy*dMf133eps(-1) + 
-     &    dMSfsq1133eps(-1)*UStop(1,1)*UStopC(1,1) + 
-     &    (dMSfsq1233eps(-1)*UStop(1,2) - dY33eps(-1)*UStop(2,2))*
-     &     UStopC(1,2) - Conjugate(dY33eps(-1))*UStop(1,2)*
-     &     UStopC(2,2)
+     &   -2*MTgl*dMf133eps(-1) + 
+     &    dMSfsq1133eps(-1)*UStgl(1,1)*UStglC(1,1) + 
+     &    (dMSfsq1233eps(-1)*UStgl(1,2) - dY33eps(-1)*UStgl(2,2))*
+     &     UStglC(1,2) - Conjugate(dY33eps(-1))*UStgl(1,2)*
+     &     UStglC(2,2)
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dMSfsq1143eps(-1)", dMSfsq1143eps(-1) ENDL
 #endif
 
         dMSfsq1143eps(0) = 
-     &   -2*MTy*dMf133eps(0) + 
-     &    dMSfsq1133eps(0)*UStop(1,1)*UStopC(1,1) + 
-     &    (dMSfsq1233eps(0)*UStop(1,2) - dY33eps(0)*UStop(2,2))*
-     &     UStopC(1,2) - Conjugate(dY33eps(0))*UStop(1,2)*
-     &     UStopC(2,2)
+     &   -2*MTgl*dMf133eps(0) + 
+     &    dMSfsq1133eps(0)*UStgl(1,1)*UStglC(1,1) + 
+     &    (dMSfsq1233eps(0)*UStgl(1,2) - dY33eps(0)*UStgl(2,2))*
+     &     UStglC(1,2) - Conjugate(dY33eps(0))*UStgl(1,2)*
+     &     UStglC(2,2)
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dMSfsq1143eps(0)", dMSfsq1143eps(0) ENDL
 #endif
 
         dMSfsq1143eps(1) = 
-     &   -2*MTy*dMf133eps(1) + 
-     &    dMSfsq1133eps(1)*UStop(1,1)*UStopC(1,1) + 
-     &    (dMSfsq1233eps(1)*UStop(1,2) - dY33eps(1)*UStop(2,2))*
-     &     UStopC(1,2) - Conjugate(dY33eps(1))*UStop(1,2)*
-     &     UStopC(2,2)
+     &   -2*MTgl*dMf133eps(1) + 
+     &    dMSfsq1133eps(1)*UStgl(1,1)*UStglC(1,1) + 
+     &    (dMSfsq1233eps(1)*UStgl(1,2) - dY33eps(1)*UStgl(2,2))*
+     &     UStglC(1,2) - Conjugate(dY33eps(1))*UStgl(1,2)*
+     &     UStglC(2,2)
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dMSfsq1143eps(1)", dMSfsq1143eps(1) ENDL
 #endif
 
         dAf133eps(-1) = 
-     &   (((MUEC - At*TB)*dMf133eps(-1))/TB + 
+     &   (((MUEC - Atgl*TB)*dMf133eps(-1))/TB + 
      &      ((Conjugate(dMSfsq1133eps(-1)) - 
-     &            Conjugate(dMSfsq1233eps(-1)))*UStop(1,1) + 
-     &         dY33eps(-1)*UStop(2,1))*UStopC(1,2) + 
-     &      Conjugate(dY33eps(-1))*UStop(1,1)*UStopC(2,2))/MTy
+     &            Conjugate(dMSfsq1233eps(-1)))*UStgl(1,1) + 
+     &         dY33eps(-1)*UStgl(2,1))*UStglC(1,2) + 
+     &      Conjugate(dY33eps(-1))*UStgl(1,1)*UStglC(2,2))/MTgl
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dAf133eps(-1)", dAf133eps(-1) ENDL
 #endif
 
         dAf133eps(0) = 
-     &   (((MUEC - At*TB)*dMf133eps(0))/TB + 
+     &   (((MUEC - Atgl*TB)*dMf133eps(0))/TB + 
      &      ((Conjugate(dMSfsq1133eps(0)) - 
-     &            Conjugate(dMSfsq1233eps(0)))*UStop(1,1) + 
-     &         dY33eps(0)*UStop(2,1))*UStopC(1,2) + 
-     &      Conjugate(dY33eps(0))*UStop(1,1)*UStopC(2,2))/MTy
+     &            Conjugate(dMSfsq1233eps(0)))*UStgl(1,1) + 
+     &         dY33eps(0)*UStgl(2,1))*UStglC(1,2) + 
+     &      Conjugate(dY33eps(0))*UStgl(1,1)*UStglC(2,2))/MTgl
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dAf133eps(0)", dAf133eps(0) ENDL
 #endif
 
         dAf133eps(1) = 
-     &   (((MUEC - At*TB)*dMf133eps(1))/TB + 
+     &   (((MUEC - Atgl*TB)*dMf133eps(1))/TB + 
      &      ((Conjugate(dMSfsq1133eps(1)) - 
-     &            Conjugate(dMSfsq1233eps(1)))*UStop(1,1) + 
-     &         dY33eps(1)*UStop(2,1))*UStopC(1,2) + 
-     &      Conjugate(dY33eps(1))*UStop(1,1)*UStopC(2,2))/MTy
+     &            Conjugate(dMSfsq1233eps(1)))*UStgl(1,1) + 
+     &         dY33eps(1)*UStgl(2,1))*UStglC(1,2) + 
+     &      Conjugate(dY33eps(1))*UStgl(1,1)*UStglC(2,2))/MTgl
 
 #ifdef DETAILED_DEBUG
 	DTLHR "dAf133eps(1)", dAf133eps(1) ENDL

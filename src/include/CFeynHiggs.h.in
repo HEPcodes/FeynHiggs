@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 9 Feb 17 th
+		last modified 30 Jan 18 th
 */
 
 
@@ -91,19 +91,17 @@ extern "C" {
 #endif
 
 extern void FORTRAN(fhsetflags)(INTEGER *error,
-  CINTEGER *mssmpart, CINTEGER *fieldren, CINTEGER *tanbren,
-  CINTEGER *higgsmix, CINTEGER *p2approx, CINTEGER *looplevel,
-  CINTEGER *loglevel, CINTEGER *tl_running_mt,
-  CINTEGER *tl_bot_resum, CINTEGER *tl_cplx_approx);
+  CINTEGER *mssmpart, CINTEGER *higgsmix, CINTEGER *p2approx,
+  CINTEGER *looplevel, CINTEGER *loglevel,
+  CINTEGER *runningMT, CINTEGER *botResum, CINTEGER *tlCplxApprox);
 
 extern void FORTRAN(fhsetflagsstring)(INTEGER *error,
   const char *flags, const int flags_len);
 
 extern void FORTRAN(fhretrieveflags)(INTEGER *error,
-  INTEGER *mssmpart, INTEGER *fieldren, INTEGER *tanbren,
-  INTEGER *higgsmix, INTEGER *p2approx, INTEGER *looplevel,
-  INTEGER *loglevel, INTEGER *tl_running_mt,
-  INTEGER *tl_bot_resum, INTEGER *tl_cplx_approx);
+  INTEGER *mssmpart, INTEGER *higgsmix, INTEGER *p2approx,
+  INTEGER *looplevel, INTEGER *loglevel,
+  INTEGER *runningMT, INTEGER *botResum, INTEGER *tlCplxApprox);
 
 extern void FORTRAN(fhretrieveflagsstring)(INTEGER *error,
   char *flags, const int flags_len);
@@ -318,7 +316,7 @@ extern void FORTRAN(fhselectipol)(INTEGER *error,
 
 
 extern void FORTRAN(fhalphas)(INTEGER *error,
-  _fh_Fr_(as,[1]), INTEGER *nf, _fh_Fcr_(Q,[1]));
+  _fh_Fr_(as,[1]), INTEGER *nf, _fh_Fcr_(Q2,[1]));
 
 extern void FORTRAN(fhrunqcd)(INTEGER *error,
   _fh_Fr_(mto,[1]), _fh_Fcr_(Qto,[1]),
@@ -331,14 +329,13 @@ extern void FORTRAN(fhrunqcd)(INTEGER *error,
 /****************************************************************/
 
 static inline void FHSetFlags(int *error,
-  const int mssmpart, const int fieldren, const int tanbren,
-  const int higgsmix, const int p2approx, const int looplevel,
-  const int loglevel, const int tl_running_mt,
-  const int tl_bot_resum, const int tl_cplx_approx)
+  const int mssmpart, const int higgsmix, const int p2approx,
+  const int looplevel, const int loglevel,
+  const int runningMT, const int botResum, const int tlCplxApprox)
 {
-  FORTRAN(fhsetflags)(error, &mssmpart, &fieldren, &tanbren,
-    &higgsmix, &p2approx, &looplevel, &loglevel,
-    &tl_running_mt, &tl_bot_resum, &tl_cplx_approx);
+  FORTRAN(fhsetflags)(error,
+    &mssmpart, &higgsmix, &p2approx, &looplevel, &loglevel,
+    &runningMT, &botResum, &tlCplxApprox);
 }
 
 
@@ -349,19 +346,19 @@ static inline void FHSetFlagsString(int *error, const char *flags)
 
 
 static inline void FHRetrieveFlags(int *error,
-  int *mssmpart, int *fieldren, int *tanbren,
-  int *higgsmix, int *p2approx, int *looplevel, int *loglevel,
+  int *mssmpart, int *higgsmix, int *p2approx,
+  int *looplevel, int *loglevel,
   int *runningMT, int *botResum, int *tlCplxApprox)
 {
-  FORTRAN(fhretrieveflags)(error, mssmpart, fieldren, tanbren,
-    higgsmix, p2approx, looplevel, loglevel,
+  FORTRAN(fhretrieveflags)(error,
+    mssmpart, higgsmix, p2approx, looplevel, loglevel,
     runningMT, botResum, tlCplxApprox);
 }
 
 
 #define FHRetrieveFlagsString(error, flags) { \
   FORTRAN(fhretrieveflagsstring)(error, flags, sizeof(flags) - 1); \
-  if( *(error) == 0 ) (flags)[9] = 0; \
+  if( *(error) == 0 ) (flags)[8] = 0; \
 }
 
 
@@ -695,12 +692,12 @@ static inline void FHSelectIpol(int *error,
 
 
 static inline void FHAlphaS(int *error,
-  RealType *as, int *nf, cRealType Q)
+  RealType *as, int *nf, cRealType Q2)
 {
   _fh_Dr_(as,[1]);
-  _fh_Dr_(Q,[1]);
-  _fh_Ir_(Q,[1]);
-  FORTRAN(fhalphas)(error, _fh_Pr_(as,[1]), nf, _fh_Pcr_(Q,[1]));
+  _fh_Dr_(Q2,[1]);
+  _fh_Ir_(Q2,[1]);
+  FORTRAN(fhalphas)(error, _fh_Pr_(as,[1]), nf, _fh_Pcr_(Q2,[1]));
   _fh_Or_(as,[1]);
 }
 

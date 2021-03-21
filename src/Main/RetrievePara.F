@@ -1,7 +1,7 @@
 * RetrievePara.F
 * retrieve the input parameters from FeynHiggs
 * this file is part of FeynHiggs
-* last modified 30 Nov 11 th
+* last modified 14 Nov 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -38,7 +38,7 @@
 
 	MT_ = MT
 	TB_ = TB
-	if( inputmass .eq. 3 ) then
+	if( inputmass .eq. A0A0 ) then
 	  MA0_ = MA0
 	  MHp_ = -1
 	else

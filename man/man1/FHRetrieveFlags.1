@@ -1,4 +1,4 @@
-.TH FHRETRIEVEFLAGS 1 "1-Feb-2016"
+.TH FHRETRIEVEFLAGS 1 "30-Jan-2018"
 .SH NAME
 .PP
 FHRetrieveFlags \- retrieve the FeynHiggs flags
@@ -6,15 +6,15 @@ FHRetrieveFlags \- retrieve the FeynHiggs flags
 .PP
 integer error
 .br
-integer mssmpart, fieldren, tanbren, higgsmix, p2approx
+integer mssmpart, higgsmix, p2approx, looplevel, loglevel
 .br
-integer looplevel, loglevel, runningMT, botResum, tlCplxApprox
+integer runningMT, botResum, tlCplxApprox
 .sp
 subroutine FHRetrieveFlags(error,
 .br
-  mssmpart, fieldren, tanbren, higgsmix, p2approx,
+  mssmpart, higgsmix, p2approx, looplevel, loglevel,
 .br
-  looplevel, loglevel, runningMT, botResum, tlCplxApprox)
+  runningMT, botResum, tlCplxApprox)
 .SH SYNOPSIS (Mathematica version)
 .PP
 FHRetrieveFlags[]
@@ -38,28 +38,6 @@ specifies the scope of the calculation:
 3: full (s-)quark/lepton-sector
 .br
 4: full MSSM
-.TP
-.B fieldren = 0..4 (output)
-determines the 1-loop field-renormalization constants:
-.br
-0: DRbar
-.br
-1: On-Shell, Dabelstein's convention
-.br
-2: On-Shell, 'Goldstone-pole' version
-.br
-3: On-Shell, MF I
-.br
-4: On-Shell, MF II
-.TP
-.B tanbren = 0..2 (output)
-determines the 1-loop tan(beta) counter term:
-.br
-0: DRbar
-.br
-1: field renormalization part only (Dabelstein)
-.br
-2: mixed field/On-Shell-renormalization
 .TP
 .B higgsmix = 1..3 (output)
 determines the mixing in the Higgs sector:
@@ -140,14 +118,7 @@ complex parameters (cMSSM):
    corrections in the rMSSM
 .br
 3: the cMSSM a_s a_t corrections are combined with the remaining
-   corrections, whose complex phases are interpolated in
-   At, Ab, M_3, MUE
-.br
-4: ditto, with interpolation in At, Xb, M_3, MUE
-.br
-5: ditto, with interpolation in Xt, Ab, M_3, MUE
-.br
-6: ditto, with interpolation in Xt, Xb, M_3, MUE
+   corrections, interpolated in the complex phases (cf. FHSelectIPol)
 .SH SEE ALSO
 .PP
 libFH(1)

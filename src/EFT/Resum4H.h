@@ -35,7 +35,7 @@
 	RealType llog, tTop, tCha, tGlu
 	RealType tSS(5), tSQ, tSU
 	RealType tA0, tMUE, tM_2
-	RealType xOS, xOS2, xOS1, xMS, xMS2
+	RealType xOS, xOS2, xOS1, xMS, xMS2, vMS2
 	RealType mueOS, mueOS2, mueOS1, mueMS
 	RealType lfmueOS(5), lfmueMS(5), lfM12(6,3), lfSf(7)
 	RealType dlam_asatMS
@@ -45,7 +45,7 @@
      &    llog, tTop, tCha, tGlu,
      &    tSS, tSQ, tSU,
      &    tA0, tMUE, tM_2,
-     &    xOS, xOS2, xOS1, xMS, xMS2,
+     &    xOS, xOS2, xOS1, xMS, xMS2, vMS2,
      &    mueOS, mueOS2, mueOS1, mueMS,
      &    lfmueOS, lfmueMS, lfM12, lfSf,
      &    dlam_asatMS

@@ -18,5 +18,5 @@ EnhCoup[ (c:C[F[4, {j1_, _}], -F[4, _], S[h:1|2]]) == rhs_ ] :=
 EnhCoup[ other_ ] = other
 
 
-M$CouplingMatrices = ResumCoup/@ EnhCoup/@ M$CouplingMatrices
+M$CouplingMatrices = (*ResumCoup/@ EnhCoup/@*) M$CouplingMatrices
 

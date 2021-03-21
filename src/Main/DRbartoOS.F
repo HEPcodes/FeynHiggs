@@ -1,59 +1,60 @@
 * DRbartoOS.F
 * this file is part of FeynHiggs
-* last modified 27 Jan 17 th
+* last modified 30 Jan 18 th
 
 * Code by Pietro Slavich
-* 10/04/2013: different Ab conversion according to hep-ph/0206101
 * 28/05/2004: error in charg12 corrected
 * 18/06/2004: rewritten by TH for FeynHiggs
+* 10/04/2013: different Ab conversion according to hep-ph/0206101
 
 #include "externals.h"
 #include "types.h"
 #include "debug.h"
 
-#define __SUBROUTINE__ "DRbartoOS"
 
-
-	subroutine DRbartoOS(t, i, ospara)
+	subroutine DRbarShifts(t, ty, by, as, dM11, dM22, dM12)
 	implicit none
-	integer t, i
-	RealType ospara(3)
+	integer t, ty, by
+	RealType as
+	RealType dM11, dM22, dM12
 
 #include "FH.h"
 #include "looptools.h"
+#define __SUBROUTINE__ "DRbartoOS"
 
-	integer try, b, ty, by
-	RealType Q, dtt
-	RealType stt, stt2, ctt, ctt2, s2tt, c2tt
-	RealType stb, stb2, ctb, ctb2, s2tb, c2tb
-	RealType MT_, MT2_, MB_, MB2_
+	integer b
+	RealType Q2, MT_, MT2_, MB_, MB2_
 	RealType TB_, CB_, SB_, CB2_, SB2_
 	RealType ht, hb, Xt, Xb, Yt, Yb
+	RealType stt, stt2, ctt, ctt2, s2tt, c2tt
+	RealType stb, stb2, ctb, ctb2, s2tb, c2tb
 	RealType MSt12, MSt22, MSb12, MSb22
-	RealType dMSt12, dMSt12_s, dMSt12_y
-	RealType dMSt22, dMSt22_s, dMSt22_y
-	RealType astt, dtt_s, dtt_y
+	RealType dM11s, dM22s, dM12s, dM11y, dM22y, dM12y
+
+	SfIdType sfid(SfSlots)
+	common /sfids/ sfid
+	external sfidini
 
 	integer Nc
 	parameter (Nc = 3)
 
-	RealType Pitt11_s, Pitt11_y, Pitt12_s, Pitt12_y
+	RealType Pitt11s, Pitt11y, Pitt12s, Pitt12y
 	RealType Charge11, Charge12, p
 
 * Eq. (B3) of DSZ
-	Pitt11_s(p, MSt12, MSt22, s2tt) = AlfasMH/(3*pi)*(
-     &    MSt12*((3 - c2tt**2)*(log(MSt12/Q) - 1) - 4) -
-     &    MSt22*s2tt**2*(log(MSt22/Q) - 1) +
-     &    2*(MGl2*(log(MGl2/Q) - 1) +
-     &       MT2_*(log(MT2_/Q) - 1) +
+	Pitt11s(p, MSt12, MSt22, s2tt) = as/(3*pi)*(
+     &    MSt12*((3 - c2tt**2)*(log(MSt12/Q2) - 1) - 4) -
+     &    MSt22*s2tt**2*(log(MSt22/Q2) - 1) +
+     &    2*(MGl2*(log(MGl2/Q2) - 1) +
+     &       MT2_*(log(MT2_/Q2) - 1) +
      &       (p - MGl2 - MT2_ + s2tt*MT_*Re(M_3 + M_3C))*
-     &         myB0(p, MT2_, MGl2, Q)) )
+     &         myB0(p, MT2_, MGl2, Q2)) )
 
 * Eq. (B7) of DSZ
-	Pitt12_s(p) = AlfasMH/(3*pi)*(
-     &    4*MT_*Re(M_3*ctt2 - M_3C*stt2)*myB0(p, MT2_, MGl2, Q) +
-     &    c2tt*s2tt*(MSt22*(1 - log(MSt22/Q)) -
-     &               MSt12*(1 - log(MSt12/Q))) )
+	Pitt12s(p) = as/(3*pi)*(
+     &    4*MT_*Re(M_3*ctt2 - M_3C*stt2)*myB0(p, MT2_, MGl2, Q2) +
+     &    c2tt*s2tt*(MSt22*(1 - log(MSt22/Q2)) -
+     &               MSt12*(1 - log(MSt12/Q2))) )
 
 	Charge11(s2tt, stt2, ctt2, s2tb, c2tb, stb2, ctb2,
      &           SB_, CB_, Xt, Xb) =
@@ -68,29 +69,29 @@
      &      s2tb*MT_*(ctt2*Xb + stt2*Xt) +
      &      s2tt*MB_*(ctb2*Xt + stb2*Xb))
 
-	Pitt11_y(p, MSt12, MSt22, s2tt, c2tt, stt2, ctt2) =
+	Pitt11y(p, MSt12, MSt22, s2tt, c2tt, stt2, ctt2) =
      &  1/(16*pi**2)*(
-     &    ht**2*(myG(p, MT2_, MUE2, Q) +
-     &      stt2*(ctb2*myAA(MSb12, Q) + stb2*myAA(MSb22, Q)) +
-     &      (c2tt**2 - .5D0*(Nc - 1)*s2tt**2)*myAA(MSt22, Q) +
-     &      .5D0*(Nc + 1)*s2tt**2*myAA(MSt12, Q) +
-     &      CB2_*(1 + stt2)*myAA(MA02, q) +
-     &      .5D0*(SB2_*(2*MT_ + s2tt*Xt)**2*myB0(p, MSt12, 0D0, Q) +
-     &         CB2_*(2*MT_ + s2tt*Yt)**2*myB0(p, MSt12, MA02, Q) +
-     &         (1 + c2tt**2)*(SB2_*Xt**2*myB0(p, MSt22, 0D0, Q) +
-     &                        CB2_*Yt**2*myB0(p, MSt22, MA02, Q)))) +
-     &    (ht**2*stt2 + hb**2*ctt2)*myG(p, MB2_, MUE2, Q) -
-     &    2*ht*hb*MB_*reMUE*s2tt*myB0(p, MB2_, MUE2, Q) +
-     &    hb**2*ctt2*(SB2_*myAA(MA02, Q) +
-     &      stb2*myAA(MSb12, Q) + ctb2*myAA(MSb22, Q)) +
+     &    ht**2*(myG(p, MT2_, MUE2, Q2) +
+     &      stt2*(ctb2*myAA(MSb12, Q2) + stb2*myAA(MSb22, Q2)) +
+     &      (c2tt**2 - .5D0*(Nc - 1)*s2tt**2)*myAA(MSt22, Q2) +
+     &      .5D0*(Nc + 1)*s2tt**2*myAA(MSt12, Q2) +
+     &      CB2_*(1 + stt2)*myAA(MA02, Q2) +
+     &      .5D0*(SB2_*(2*MT_ + s2tt*Xt)**2*myB0(p, MSt12, 0D0, Q2) +
+     &         CB2_*(2*MT_ + s2tt*Yt)**2*myB0(p, MSt12, MA02, Q2) +
+     &         (1 + c2tt**2)*(SB2_*Xt**2*myB0(p, MSt22, 0D0, Q2) +
+     &                        CB2_*Yt**2*myB0(p, MSt22, MA02, Q2)))) +
+     &    (ht**2*stt2 + hb**2*ctt2)*myG(p, MB2_, MUE2, Q2) -
+     &    2*ht*hb*MB_*reMUE*s2tt*myB0(p, MB2_, MUE2, Q2) +
+     &    hb**2*ctt2*(SB2_*myAA(MA02, Q2) +
+     &      stb2*myAA(MSb12, Q2) + ctb2*myAA(MSb22, Q2)) +
      &    Charge11(s2tt, stt2, ctt2, s2tb, c2tb, stb2, ctb2,
-     &      SB_, CB_, Xt, Xb)*myB0(p, MSb12, 0D0, Q) +
+     &      SB_, CB_, Xt, Xb)*myB0(p, MSb12, 0D0, Q2) +
      &    Charge11(s2tt, stt2, ctt2, -s2tb, -c2tb, ctb2, stb2,
-     &      SB_, CB_, Xt, Xb)*myB0(p, MSb22, 0D0, Q) +
+     &      SB_, CB_, Xt, Xb)*myB0(p, MSb22, 0D0, Q2) +
      &    Charge11(s2tt, stt2, ctt2, s2tb, c2tb, stb2, ctb2,
-     &      CB_, -SB_, Yt, Yb)*myB0(p, MSb12, MA02, Q) +
+     &      CB_, -SB_, Yt, Yb)*myB0(p, MSb12, MA02, Q2) +
      &    Charge11(s2tt, stt2, ctt2, -s2tb, -c2tb, ctb2, stb2,
-     &      CB_, -SB_, Yt, Yb)*myB0(p, MSb22, MA02, Q) )
+     &      CB_, -SB_, Yt, Yb)*myB0(p, MSb22, MA02, Q2) )
 
 	Charge12(s2tb, c2tb, stb2, ctb2, SB_, CB_, Xt, Xb) =
      &    .5D0*(ht*SB_)**2*(s2tt*(stb2*MB2_ - ctb2*MT2_) + 
@@ -103,40 +104,37 @@
      &      s2tt*s2tb*MT_*(Xt - Xb) +
      &      2*MB_*(c2tt*(ctb2*Xt + stb2*Xb) - s2tt*c2tb*MT_))
 
-	Pitt12_y(p) = 1/(16*pi**2)*(
+	Pitt12y(p) = 1/(16*pi**2)*(
      &    .5D0*ht**2*(
-     &      s2tt*(CB2_*myAA(MA02, Q) +
-     &        (Nc + 1)*c2tt*(myAA(MSt12, Q) - myAA(MSt22, Q)) +
-     &        ctb2*myAA(MSb12, Q) + stb2*myAA(MSb22, Q)) +
-     &      c2tt*(SB2_*Xt*(2*MT_ + s2tt*Xt)*myB0(p, MSt12, 0D0, Q) +
-     &        CB2_*Yt*(2*MT_ + s2tt*Yt)*myB0(p, MSt12, MA02, Q) +
-     &        SB2_*Xt*(2*MT_ - s2tt*Xt)*myB0(p, MSt22, 0D0, Q) +
-     &        CB2_*Yt*(2*MT_ - s2tt*Yt)*myB0(p, MSt22, MA02, Q))) +
-     &    .5D0*(ht + hb)*(ht - hb)*s2tt*myG(p, MB2_, MUE2, Q) -
-     &    2*ht*hb*MB_*reMUE*c2tt*myB0(p, MB2_, MUE2, Q) -
-     &    .5D0*hb**2*s2tt*(SB2_*myAA(MA02, Q) +
-     &      stb2*myAA(MSb12, Q) + ctb2*myAA(MSb22, Q)) +
+     &      s2tt*(CB2_*myAA(MA02, Q2) +
+     &        (Nc + 1)*c2tt*(myAA(MSt12, Q2) - myAA(MSt22, Q2)) +
+     &        ctb2*myAA(MSb12, Q2) + stb2*myAA(MSb22, Q2)) +
+     &      c2tt*(SB2_*Xt*(2*MT_ + s2tt*Xt)*myB0(p, MSt12, 0D0, Q2) +
+     &        CB2_*Yt*(2*MT_ + s2tt*Yt)*myB0(p, MSt12, MA02, Q2) +
+     &        SB2_*Xt*(2*MT_ - s2tt*Xt)*myB0(p, MSt22, 0D0, Q2) +
+     &        CB2_*Yt*(2*MT_ - s2tt*Yt)*myB0(p, MSt22, MA02, Q2))) +
+     &    .5D0*(ht + hb)*(ht - hb)*s2tt*myG(p, MB2_, MUE2, Q2) -
+     &    2*ht*hb*MB_*reMUE*c2tt*myB0(p, MB2_, MUE2, Q2) -
+     &    .5D0*hb**2*s2tt*(SB2_*myAA(MA02, Q2) +
+     &      stb2*myAA(MSb12, Q2) + ctb2*myAA(MSb22, Q2)) +
      &    Charge12(s2tb, c2tb, stb2, ctb2, SB_, CB_, Xt, Xb)*
-     &      myB0(p, MSb12, 0D0, Q) +
+     &      myB0(p, MSb12, 0D0, Q2) +
      &    Charge12(-s2tb, -c2tb, ctb2, stb2, SB_, CB_, Xt, Xb)*
-     &      myB0(p, MSb22, 0D0, Q) +
+     &      myB0(p, MSb22, 0D0, Q2) +
      &    Charge12(s2tb, c2tb, stb2, ctb2, CB_, -SB_, Yt, Yb)*
-     &      myB0(p, MSb12, MA02, Q) +
+     &      myB0(p, MSb12, MA02, Q2) +
      &    Charge12(-s2tb, -c2tb, ctb2, stb2, CB_, -SB_, Yt, Yb)*
-     &      myB0(p, MSb22, MA02, Q) )
-
-	b = 7 - t
-* the caller is assumed to have set the DRbar scale with SetDecayScale:
-	ty = t + (tH - 3)*isQ(t)
-	by = b + (bH - 4)*isQ(t)
+     &      myB0(p, MSb22, MA02, Q2) )
 
 	MSt12 = MSf2(1,ty,3)
 	MSt22 = MSf2(2,ty,3)
 	stt = Re(USf(1,2,ty,3))
-	astt = asin(stt)
-	Q = QSf(t)**2
+	Q2 = QSf2(t)
 
 	if( debuglevel .ge. 2 ) then
+	  DPARA "DRbartoOS ", sfid(t) ENDL
+	  DPARA "ty,by = ", sfid(ty), sfid(by) ENDL
+	  DPARA "Q2 =", Q2 ENDL
 	  DPARA "MSf("//Digit(t)//")_DRbar =", sqrt(MSt12), sqrt(MSt22) ENDL
 	  DPARA "ssf("//Digit(t)//")_DRbar =", stt ENDL
 	endif
@@ -151,14 +149,12 @@
 	s2tb = 2*ctb*stb
 	c2tb = (ctb - stb)*(ctb + stb)
 
-c	MT_ = Mf(t,3)
-c	MB_ = Mf(b,3)
-c future extension (hr+kw)
 	MT_ = Mf(ty,3)
 	MB_ = Mf(by,3)
 	MT2_ = MT_**2
 	MB2_ = MB_**2
 
+	b = 7 - t
 	CB_ = SCB(b)
 	CB2_ = CB_**2
 	SB_ = SCB(t)
@@ -173,94 +169,117 @@ c future extension (hr+kw)
 	Xb = Re(Af0(b,3) + MUETB(b))
 	Yb = Xb + reMUE/(SB_*CB_)
 
-	dMSt12 = 0
-	dMSt22 = 0
-	dtt = 0
-
-c	do try = 1, 20
-	do try = 1, 1
-	  stt2 = stt**2
-	  ctt2 = (1 - stt)*(1 + stt)
-	  ctt = sqrt(ctt2)
-	  s2tt = 2*ctt*stt
-	  c2tt = (ctt - stt)*(ctt + stt)
+	stt2 = stt**2
+	ctt2 = (1 - stt)*(1 + stt)
+	ctt = sqrt(ctt2)
+	s2tt = 2*ctt*stt
+	c2tt = (ctt - stt)*(ctt + stt)
 
 * strong shifts
-
-	  dMSt12_s = Pitt11_s(MSt12, MSt12, MSt22, s2tt)
-
-	  dMSt22_s = Pitt11_s(MSt22, MSt22, MSt12, -s2tt)
-
-	  dtt_s = .5D0/(MSt12 - MSt22)*
-     &      (Pitt12_s(MSt12) + Pitt12_s(MSt22))
+	dM11s = Pitt11s(MSt12, MSt12, MSt22, s2tt)
+	dM22s = Pitt11s(MSt22, MSt22, MSt12, -s2tt)
+	dM12s = Pitt12s(MSt12) + Pitt12s(MSt22)
 
 * Yukawa shifts
+	dM11y = Pitt11y(MSt12, MSt12, MSt22, s2tt, c2tt, stt2, ctt2)
+	dM22y = Pitt11y(MSt22, MSt22, MSt12, -s2tt, -c2tt, ctt2, stt2)
+	dM12y = Pitt12y(MSt12) + Pitt12y(MSt22)
 
-	  dMSt12_y = Pitt11_y(MSt12,
-     &      MSt12, MSt22, s2tt, c2tt, stt2, ctt2)
+	if( debuglevel .gt. 4 ) then
+	  DPARA "dM11s =", dM11s	ENDL
+	  DPARA "dM11y =", dM11y	ENDL
+	  DPARA "dM22s =", dM22s	ENDL
+	  DPARA "dM22y =", dM22y	ENDL
+	  DPARA "dM12s =", dM12s	ENDL
+	  DPARA "dM12y =", dM12y	ENDL
+	endif
 
-	  dMSt22_y = Pitt11_y(MSt22,
-     &      MSt22, MSt12, -s2tt, -c2tt, ctt2, stt2)
+	dM11 = dM11y + dM11s
+	dM22 = dM22y + dM22s
+	dM12 = dM12y + dM12s
+	end
 
-	  dtt_y = .5D0/(MSt12 - MSt22)*
-     &      (Pitt12_y(MSt12) + Pitt12_y(MSt22))
+#undef __SUBROUTINE__
 
-	  dMSt12_y = dMSt12_y + dMSt12_s
-	  dMSt22_y = dMSt22_y + dMSt22_s
-	  dtt_y = dtt_y + dtt_s
-	  if( MSt12 .lt. dMSt12_y .or.
-     &        MSt22 .lt. dMSt22_y ) then
-	    if( MSt12 .lt. dMSt12_s .or.
-     &          MSt22 .lt. dMSt22_s ) return
-	    Warning("Using DRbartoOS without Yukawa corrections")
-	    dMSt12_y = dMSt12_s
-	    dMSt22_y = dMSt22_s
-	    dtt_y = dtt_s
+
+************************************************************************
+
+	subroutine DRbartoOS(t, i, ospara)
+	implicit none
+	integer t, i
+	RealType ospara(3)
+
+#include "FH.h"
+#define __SUBROUTINE__ "DRbartoOS"
+
+	RealType Q2, dMT, MTrun, MSt12, MSt22, stt, ctt
+	RealType dM11, dM22, dM12
+	integer fail, nf, tQ, bQ
+
+	RealType Q2cur
+	common /DRbarscale/ Q2cur
+
+	Q2 = QSf2(t)
+	if( abs(Q2 - Q2cur) .gt. 1D-10 ) then
+	  fail = 0
+	  call AlphaS(AlfasMH, nf, Q2)
+
+#if 1
+* MT(Q2)_MSSM
+	  call EigenSf(fail, MStgl2(1), UStgl(1,1),
+     &      DSStgl2, MT, Xf(3,3), 0)
+	  call DeltaMT_MSSM(dMT, AlfasMH, Q2)
+	  Mf(tH,3) = MT + dMT
+#else
+* MT(Q2)_SM
+	  call RunQCD(Mf(tH,3),Q2, Mf(tT,3),MT2)
+#endif
+	  Mf2(tH,3) = Mf(tH,3)**2
+
+	  call EigenSf(fail, MSf2(1,tH,3), USf(1,1,tH,3),
+     &      DSS2(1,3,3), Mf(tH,3), Xf(3,3), 0)
+
+	  call RunQCD(Mf(bH,3),Q2, MB,MB2)
+	  Mf2(bH,3) = Mf(bH,3)**2
+	  call EigenSf(fail, MSf2(1,bH,3), USf(1,1,bH,3),
+     &      DSS2(1,4,3), Mf(bH,3), Xf(4,3), 0)
+
+	  if( fail .ne. 0 ) return
+	  Q2cur = Q2
+
+	  if( debuglevel .ge. 4 ) then
+	    DPARA "DRbar Q     =", sqrt(Q2)			ENDL
+	    call RunQCD(MTrun,Q2, Mf(tT,3),MT2)
+	    DPARA "MT(Q)_SM    =", MTrun			ENDL
+	    DPARA "MT(Q)_MSSM  =", Mf(tH,3)			ENDL
+	    DPARA "MStop_DRbar =", MSf(1,tH,3), MSf(2,tH,3)	ENDL
+	    DPARA "MSbot_DRbar =", MSf(1,bH,3), MSf(2,bH,3)	ENDL
 	  endif
+	endif
 
-	  dMSt12 = dMSt12 + dMSt12_y
-	  dMSt22 = dMSt22 + dMSt22_y
-	  dtt = dtt + dtt_y
+	tQ = tH + t-3
+	bQ = bH + 3-t
+	call DRbarShifts(t, tQ, bQ, AlfasMH, dM11, dM22, dM12)
 
-	  MSt12 = MSf2(1,ty,3) - dMSt12
-	  MSt22 = MSf2(2,ty,3) - dMSt22
-	  stt = sin(astt - dtt)
-
-	  if( debuglevel .ge. 3 ) then
-	    DPARA "MSf =", sqrt(MSt12), sqrt(MSt22)	ENDL
-	    DPARA "stt =", stt				ENDL
-	    if( debuglevel .gt. 3 ) then
-	      DPARA "MSf12    =", MSt12		ENDL
-	      DPARA "dMSf12_s =", dMSt12_s	ENDL
-	      DPARA "dMSf12_y =", dMSt12_y	ENDL
-	      DPARA "MSf22    =", MSt22		ENDL
-	      DPARA "dMSf22_s =", dMSt22_s	ENDL
-	      DPARA "dMSf22_y =", dMSt22_y	ENDL
-	      DPARA "tf       =", asin(stt)	ENDL
-	      DPARA "dtf_s    =", dtt_s		ENDL
-	      DPARA "dtf_y    =", dtt_y		ENDL
-	    endif
-	  endif
-
-	  if( abs(dMSt12_y) + abs(dMSt22_y) + abs(dtt_y) .lt. 1D-5 )
-     &      goto 1
-	enddo
-
-1	continue
-
-* From X = USf^+ diag(MSf) USf we get
-*   DSS2_1 = X11 - X22
-*   DSS2_2 = X22 - Mf^2
-*   Xf = Conjugate(X12)/Mf
-
+	MSt12 = MSf2(1,tQ,3) - dM11
+	MSt22 = MSf2(2,tQ,3) - dM22
+	stt = Re(USf(1,2,tQ,3))
+	stt = sin(asin(stt) - .5D0/(MSf2(1,tQ,3) - MSf2(2,tQ,3))*dM12)
 	ctt = sqrt((1 - stt)*(1 + stt))
+
+* From M = USf^+ diag(MSf) USf we get
+*   DSS2_1 = M11 - M22
+*   DSS2_2 = M22 - Mf^2
+*   Xf = Conjugate(M12)/Mf
+
 	ospara(1) = (MSt12 - MSt22)*(ctt - stt)*(ctt + stt)
 	ospara(2) = MSt12*stt**2 + MSt22*ctt**2 - Mf2(t,3)
 	if( t .eq. 4 ) then
 * hep-ph/0206101 Eq. (19)
-	  ospara(3) = Xt + C_F/(2*pi)*AlfasMH*MGl*(4 - 2*log(MGl2/Q) -
-     &      (1 - MGl2/MSt12)*log(abs(1 - MSt12/MGl2)) -
-     &      (1 - MGl2/MSt22)*log(abs(1 - MSt22/MGl2)))
+	  ospara(3) = Re(Af0(t,3) + MUETB(t)) +
+     &      C_F/(2*pi)*AlfasMH*MGl*( 4 - 2*log(MGl2/Q2) -
+     &        (1 - MGl2/MSt12)*log(abs(1 - MSt12/MGl2)) -
+     &        (1 - MGl2/MSt22)*log(abs(1 - MSt22/MGl2)) )
 	else
 	  ospara(3) = (MSt12 - MSt22)*ctt*stt/Mf(t,3)
 	endif
@@ -270,56 +289,5 @@ c	do try = 1, 20
 	  DPARA "MSf("//Digit(t)//")_OS    =", sqrt(MSt12), sqrt(MSt22) ENDL
 	  DPARA "ssf("//Digit(t)//")_OS    =", stt ENDL
 	endif
-	end
-
-
-************************************************************************
-
-	subroutine SetDRbarScale(error, Q)
-	implicit none
-	integer error
-	RealType Q
-
-#include "FH.h"
-
-	RealType dMT, MTrun
-	integer nf
-
-	RealType Qcur
-	common /DRbarvars/ Qcur
-
-	error = 0
-	if( abs(Qcur - Q) .lt. 1D-10 ) return
-
-	call AlphaS(AlfasMH, nf, Q)
-
-#if 1
-* MT(Q)_MSSM
-	call DeltaMT_MSSM(error, dMT, AlfasMH, Q)
-	Mf(tH,3) = MT + dMT
-#else
-* MT(Q)_SM
-	call RunQCD(Mf(tH,3),Q, Mf(tT,3),MT2)
-#endif
-	Mf2(tH,3) = Mf(tH,3)**2
-
-	call EigenSf(error, MSf2(1,tH,3), USf(1,1,tH,3),
-     &    DSS2(1,3,3), Mf(tH,3), Xf(3,3), 0)
-
-	call RunQCD(Mf(bH,3),Q, MB,MB2)
-	Mf2(bH,3) = Mf(bH,3)**2
-	call EigenSf(error, MSf2(1,bH,3), USf(1,1,bH,3),
-     &    DSS2(1,4,3), Mf(bH,3), Xf(4,3), 0)
-
-	Qcur = Q
-
-	if( debuglevel .lt. 4 ) return
-
-	DPARA "DRbar Q     =", sqrt(Q)			ENDL
-	call RunQCD(MTrun,Q, Mf(tT,3),MT2)
-	DPARA "MT(Q)_SM    =", MTrun			ENDL
-	DPARA "MT(Q)_MSSM  =", Mf(tH,3)			ENDL
-	DPARA "MStop_DRbar =", MSf(1,tH,3), MSf(2,tH,3)	ENDL
-	DPARA "MSbot_DRbar =", MSf(1,bH,3), MSf(2,bH,3)	ENDL
 	end
 

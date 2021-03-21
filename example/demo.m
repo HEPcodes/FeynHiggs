@@ -2,7 +2,7 @@
    demo.m
    demonstration program for calling FeynHiggs from Mathematica
    this file is part of FeynHiggs
-   last modified 8 Jul 16 th
+   last modified 31 Jan 18 th
 *)
 
 
@@ -10,7 +10,7 @@ Install["build/MFeynHiggs"]
 
 
 mhiggs[i_, TB_] :=
-Block[ {mssmpart, fieldren, tanbren, higgsmix, p2approx,
+Block[ {mssmpart, higgsmix, p2approx,
 looplevel, loglevel, runningMT, botResum, tlCplxApprox,
 invAlfa0, invAlfaMZ, AlfasMZ, GF, MU, MD, MC, MS, MB,
 MW, MZ, GammaW, GammaZ, CKMlambda, CKMA, CKMrho, CKMeta,
@@ -18,17 +18,15 @@ scalefactor, MT, MA0, MHp,
 MSL, MSE, MSQ, MSU, MSD, MUE, Af, M1, M2, M3,
 Qtau, Qt, Qb},
   mssmpart = 4;
-  fieldren = 0;
-  tanbren = 0;
   higgsmix = 2;
-  p2approx = 0;
+  p2approx = 4;
   looplevel = 2;
-  loglevel = 0;
+  loglevel = 3;
   runningMT = 1;
   botResum = 1;
   tlCplxApprox = 3;
-  FHSetFlags[mssmpart, fieldren, tanbren, higgsmix, p2approx,
-    looplevel, loglevel, runningMT, botResum, tlCplxApprox];
+  FHSetFlags[mssmpart, higgsmix, p2approx, looplevel, loglevel,
+    runningMT, botResum, tlCplxApprox];
 
   invAlfa0 = -1;
   invAlfaMZ = -1;
@@ -58,7 +56,7 @@ Qtau, Qt, Qb},
     CKMlambda, CKMA, CKMrho, CKMeta];
 
   scalefactor = 1;
-  MT = 170.9;
+  MT = 173.2;
 
   MA0 = 250;
   MHp = -1;
@@ -95,5 +93,5 @@ _mass = $Failed
 
 
 
-Plot[ mhiggs[1, TB], {TB, 1.5, 12} ]
+Plot[mhiggs[1, TB], {TB, 1.5, 12}]
 

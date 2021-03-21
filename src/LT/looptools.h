@@ -1,7 +1,7 @@
 * looptools.h
 * the declarations for LoopTools Light
 * this file is part of FeynHiggs
-* last modified 29 Dec 16 th
+* last modified 29 Nov 17 th
 
 #include "ltdefs.h"
 #include "ltcache.h"
@@ -40,3 +40,5 @@
 	RealType mudim, delta, lambda
 	common /cutoff/ mudim, delta, lambda
 
+	RealType Divergence
+	equivalence (delta, Divergence)

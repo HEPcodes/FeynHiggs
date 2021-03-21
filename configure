@@ -1,7 +1,7 @@
 #! /bin/sh
 # configure script for FeynHiggs
 # note: has nothing to do with GNU autoconf
-# last modified 2 Feb 17 th
+# last modified 31 Jan 18 th
 
 
 exec 2> ${LOGFILE:-/dev/null} 3>&1
@@ -98,8 +98,6 @@ CONF_STATIC_EXT=
 CONF_QUAD=
 CONF_DEBUG=
 CONF_BITS=
-  # Mma 5.1's mcc needs -lpthread for static linking
-CONF_MCLIBS=-lpthread
 CONF_EXE=
 case "$CONF_OS" in
 CYG*)	CONF_EXE=.exe ;;
@@ -220,7 +218,7 @@ $CONF_STATIC ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc}"
   ;;
 GNU,Fortran,*)
   CONF_FFLAGS="\
-${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-g -Wall -Wno-tabs -ffpe-trap=invalid,overflow,zero}} \
+${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-g -Wall -Wno-tabs -Wno-integer-division -ffpe-trap=invalid,overflow,zero}} \
 $CONF_M -ffixed-line-length-none ${CONF_QUAD:+-fdefault-real-8} \
 $CONF_STATIC ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc}"
   ;;
@@ -416,19 +414,14 @@ eval ${LOGFILE:+cat $test.tm 1>&2}
 CONF_MCC=${MCC:-mcc}
 CONF_MCFLAGS="-st ${CONF_BITS:+-b$CONF_BITS}"
 
-# this is a workaround for a bug in mcc 11.0:
-ln -s `dirname $0` =.
-
 for CONF_STDCPP in "" -stdlib=libstdc++ ; do
   NM="$CONF_NM" DLLTOOL="$CONF_DLLTOOL" \
   CC="$CONF_SRC/tools/fcc.in" REALCC="$CONF_CC $CONF_CFLAGS" \
   CXX="$CONF_SRC/tools/f++.in" REALCXX="$CONF_CXX $CONF_CXXFLAGS $CONF_STDCPP" \
   PATH="$PATH:$CONF_SRC/tools" \
-    "$CONF_MCC" $CONF_MCFLAGS -o $test$CONF_EXE $test.tm $CONF_MCLIBS 1>&2
+    "$CONF_MCC" $CONF_MCFLAGS -o $test$CONF_EXE $test.tm 1>&2
   test -x $test$CONF_EXE && break
 done
-
-rm -f =.
 
 if test -x $test$CONF_EXE ; then
   echo "yes" 1>&3
@@ -477,7 +470,6 @@ HASQUAD = $CONF_HASQUAD
 ML = $CONF_ML
 MCC = $CONF_MCC
 MCFLAGS = $CONF_MCFLAGS
-MCLIBS = $CONF_MCLIBS
 
 LDFLAGS = $CONF_LDFLAGS $CONF_M
 

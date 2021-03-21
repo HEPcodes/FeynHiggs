@@ -9,6 +9,7 @@ MUEC/: MUEC EMUE = MMUE;
 MUEC/: MUEC EMUE^2 = MUE;
 MMUE/: MMUE EMUE = MUE;
 MMUE/: MMUE EMUEC = MUEC;
+MMUE/: MMUE^2 = MMUE2;
 
 EMUE/: EMUE^(n_?Negative) := EMUEC^(-n);
 EMUEC/: EMUEC^(n_?Negative) := EMUE^(-n);

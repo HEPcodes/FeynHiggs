@@ -3,14 +3,16 @@
 * to the MSSM Higgs sector
 * this file is part of FeynHiggs
 * V1.0 by Markus Frank 21/08/2002
-* last modified 9 Jan 17 th
+* last modified 30 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
 #include "debug.h"
 
 #define UNINITIALIZED -123D0
-#define calledFromFHUncertainties higgs_valid .eq. valid
+#define notInUncertainties higgs_valid .ne. valid
+
+#define NotOnshell(key) iand(key,not(SEKey(inputmass)))
 
 
 	subroutine FHHiggsCorr(error,
@@ -26,23 +28,13 @@
 	ComplexType UHiggs_(NNeutral,NNeutral)
 	ComplexType ZHiggs_(NNeutral,NNeutral)
 
-	integer i, j
-
 	call CheckHiggsCorr(error)
 	if( error .gt. 0 ) return
 
-	do i = 1, NHiggs
-	  MHiggs_(i) = MHiggs(i)
-	enddo
-
+	MHiggs_ = MHiggs(:)
 	SAeff_ = SAeff
-
-	do i = 1, NNeutral
-	  do j = 1, NNeutral
-	    UHiggs_(j,i) = UHiggs(j,i)
-	    ZHiggs_(j,i) = ZHiggs(j,i)
-	  enddo
-	enddo
+	UHiggs_ = UHiggs(1:NNeutral,1:NNeutral)
+	ZHiggs_ = ZHiggs(1:NNeutral,1:NNeutral)
 	end
 
 
@@ -55,7 +47,7 @@
 
 #include "FH.h"
 
-	integer i, j, p, uz, hmix
+	integer i, j, p, hmix
 	RealType m
 	ComplexType c
 
@@ -70,37 +62,31 @@
 	CheckRGE(error)
 	if( error .gt. 0 ) return
 
-	call CalcCTs
+	call CalcRC
+	call CalcRCgl
 
 	if( debuglevel .lt. 0 .and. higgs_valid .ne. valid ) then
 	  call DumpHiggsFuncs
 	  stop
 	endif
 
-	do uz = 0, 2
-	  do i = 1, NNeutral
-	    do j = 1, NNeutral
-	      XHiggs(j,i,uz) = 0
-	    enddo
-	    XHiggs(i,i,uz) = 1
-	  enddo
-	enddo
-
-	do i = 1, NHiggs
-	  MHiggs2(i) = Msq(i)
-	enddo
-
-	hmix = higgsmix - ishft(higgsmix, -2)
+	XHiggs(:,:,:) = 0
+	XHiggs(1,1,0:2) = 1
+	XHiggs(2,2,0:2) = 1
+	XHiggs(3,3,0:2) = 1
+	MHiggs2(1:NHiggs) = Msq(1:NHiggs)
 
 	if( looplevel .eq. 0 ) then
 	  MHiggs2(1) = Mh02EFT
 	else
 	  call CalcUHiggs
-	  if( extSE(1:1) .eq. ' ' .or. calledFromFHUncertainties ) then
-	    call CalcZHiggs
+	  if( fopoleeq .eq. 1 ) then
+	    call CalcHiggsFO
 	  else
-	    call CalcZHiggs
-	    call AddExt(error, extSE)
+	    if( extSE(1:1) .ne. ' ' .and. notInUncertainties ) then
+	      call CalcZHiggs
+	      call AddExt(error, extSE)
+	    endif
 	    call CalcZHiggs
 	  endif
 	endif
@@ -112,6 +98,8 @@
 
 * biggest overlap with ('closest to') {h, H, A}
 *#define sortby(i,j) -abs(ZHiggs(i,j))
+
+	hmix = higgsmix - ishft(higgsmix, -2)
 
 	do i = 1, hmix - 1
 	  p = i
@@ -141,10 +129,10 @@
 	do i = 1, NHiggs
 	  MHiggs(i) = SignSqrt(MHiggs2(i))
 	  if( MHiggs2(i) .lt. 0 ) then
-	    if( calledFromFHUncertainties ) then
-	      error = __LINE__
-	    else
+	    if( notInUncertainties ) then
 	      Error(error, "error computing Mh"//Digit(i))
+	    else
+	      error = __LINE__
 	    endif
 	  endif
 	enddo
@@ -191,6 +179,69 @@
 	end
 
 
+***********************************************************************
+* "fixed-order" determination of pole masses
+
+	subroutine CalcHiggsFO
+	implicit none
+
+#include "FH.h"
+
+	ComplexType dse(se2Rn), se
+	ComplexType tmp
+
+	ComplexType M2ev(NNeutral), Uev(0:NNeutral,0:NNeutral,NNeutral)
+	common /evmix/ M2ev, Uev
+
+	ComplexType seRx(semax)
+	common /evexp/ seRx
+
+#include "HiggsRot.h"
+
+	call CalcSEgl(Msqgl(h0h0), cpeven, cpeven + cpodd)
+	dse(h0h0) = C_h0h0(rBA, cpe(dseRgl))
+	dse(HHHH) = C_HHHH(rBA, cpe(dseRgl))
+	dse(h0HH) = C_h0HH(rBA, cpe(dseRgl))
+	dse(A0A0) = dseRgl(A0A0)
+	dse(h0A0) = C_h0A0(rBA, cpo(dseRgl))
+	dse(HHA0) = C_HHA0(rBA, cpo(dseRgl))
+	se = C_h0h0(rBA, cpe(seRgl))
+
+	seRx(h0h0:HHA0) = -dse(h0h0:HHA0)*se
+
+	seRx(G0G0:A0G0) = 0
+	call EVFunc(tmp, h0h0, ToComplex(Msq(h0h0), 0D0), 0)
+	MHiggs2(h0h0) = Re(M2ev(h0h0))
+	call GWFunc(tmp, h0h0, M2ev(h0h0), ZHiggs(1,1), 0)
+
+	call CalcSEgl(Msqgl(HHHH), cpeven + SEKey(A0A0), cpeven + cpodd)
+	dse(h0h0) = C_h0h0(rBA, cpe(dseRgl))
+	dse(HHHH) = C_HHHH(rBA, cpe(dseRgl))
+	dse(h0HH) = C_h0HH(rBA, cpe(dseRgl))
+	dse(A0A0) = dseRgl(A0A0)
+	dse(h0A0) = C_h0A0(rBA, cpo(dseRgl))
+	dse(HHA0) = C_HHA0(rBA, cpo(dseRgl))
+	se = C_HHHH(rBA, cpe(seRgl))
+
+	seRx(h0h0:HHA0) = -dse(h0h0:HHA0)*se
+	call EVFunc(tmp, HHHH, ToComplex(Msq(HHHH), 0D0), 0)
+	MHiggs2(HHHH) = Re(M2ev(HHHH))
+	call GWFunc(tmp, HHHH, M2ev(HHHH), ZHiggs(2,1), 0)
+
+	seRx(h0h0:HHA0) = -dse(h0h0:HHA0)*seRgl(A0A0)
+	call EVFunc(tmp, A0A0, ToComplex(Msq(A0A0), 0D0), 0)
+	MHiggs2(A0A0) = Re(M2ev(A0A0))
+	call GWFunc(tmp, A0A0, M2ev(A0A0), ZHiggs(3,1), 0)
+
+	MHiggs2(HmHp) = Msq(HmHp)
+	if( inputmass .eq. A0A0 ) then
+	  call CalcSE(Msq(HmHp), SEKey(HmHp), 0)
+	  se = seR(HmHp) - dseRgl(HmHp)*seRgl(HmHp)
+	  MHiggs2(HmHp) = Msq(HmHp) - Re(se)
+	endif
+	end
+
+
 ************************************************************************
 * CalcUHiggs: Calculate UHiggs and initial values for MHiggs2 at k^2 = 0
 
@@ -199,22 +250,14 @@
 
 #include "FH.h"
 
-	integer key, lo
+	integer lo
 	ComplexType M(0:NNeutral,0:NNeutral)
 
 * must cut off imaginary parts, otherwise UHiggs is not unitary
 #define seUH(i) Re(seR(i))
 
-#define Need(i) -ibits(i-1-higgsmix,4,1)
-
-	key = SEKey(h0h0) + SEKey(HHHH) + SEKey(HmHp) +
-     &    iand(not(SEKey(inputmass)), SEKey(A0A0)) +
-     &    iand(Need(2), SEKey(h0HH)) +
-     &    iand(Need(3), SEKey(h0A0) + SEKey(HHA0)) +
-     &    iand(Need(4), goldstones)
-
 * calculate masses^2 & mixing angles at k^2 = 0
-	call CalcSelf(-1D0, key, key)
+	call CalcSE(-1D0, not(SEKey(inputmass)), 0)
 
 	M(1,1) = Msq(h0h0) - seUH(h0h0)
 	M(2,2) = Msq(HHHH) - seUH(HHHH)
@@ -263,7 +306,7 @@ c	MHiggs2(A0A0) = M(3,3)
 
 
 ************************************************************************
-* CalcUHiggs: Calculate ZHiggs and final values for MHiggs2
+* CalcZHiggs: Calculate ZHiggs and final values for MHiggs2
 
 	subroutine CalcZHiggs
 	implicit none
@@ -273,16 +316,13 @@ c	MHiggs2(A0A0) = M(3,3)
 	integer i, j, k, l, p, iter, minperm, hmix
 	RealType d1, d2, test, mintest
 	ComplexType p2, gw(NNeutral,NNeutral)
-	ComplexType c, ZH(NNeutral,NNeutral,NNeutral)
+	ComplexType c, ZH(0:NNeutral,NNeutral,NNeutral)
 
 	integer gwiter
 	parameter (gwiter = 1)
 
-	ComplexType GWFunc
-	external GWFunc
-
-	ComplexType CH(0:NNeutral,0:NNeutral,NNeutral)
-	common /evmix/ CH
+	ComplexType M2ev(NNeutral), Uev(0:NNeutral,0:NNeutral,NNeutral)
+	common /evmix/ M2ev, Uev
 
 	integer perm(NNeutral,6), nperm(NNeutral)
 	data perm /1,2,3, 2,1,3, 1,3,2, 2,3,1, 3,1,2, 3,2,1/
@@ -317,7 +357,7 @@ c	MHiggs2(A0A0) = M(3,3)
 	      c = 1.000003D0*p2
 c	      c = p2 + 1D-1
 	      do iter = 1, gwiter
-	        gw(i,j) = GWFunc(j, c, ZH(1,i,j))
+	        call GWFunc(gw(i,j), j, c, ZH(i,1,j), -1)
 	      enddo
 	    enddo
 	  endif
@@ -339,8 +379,8 @@ c	      c = p2 + 1D-1
 	    d1 = 0
 	    d2 = 0
 	    do k = 1, hmix
-	      d1 = d1 + abs(ZH(k,j,p) - CH(j,k,l))
-	      d2 = d2 + abs(ZH(k,j,p) + CH(j,k,l))
+	      d1 = d1 + abs(ZH(j,k,p) - Uev(j,k,l))
+	      d2 = d2 + abs(ZH(j,k,p) + Uev(j,k,l))
 	    enddo
 	    test = test + abs(gw(j,p)) + min(d1, d2)
 	  enddo
@@ -363,7 +403,7 @@ c	      c = p2 + 1D-1
 	do i = 1, NNeutral
 	  p = perm(i,minperm)
 	  do j = 1, NNeutral
-	    ZHiggs(i,j) = ZH(j,i,p)
+	    ZHiggs(i,j) = ZH(i,j,p)
 	  enddo
 	enddo
 	end
@@ -373,15 +413,12 @@ c	      c = p2 + 1D-1
 * EVFunc: the function whose roots are the exact poles of the
 * Higgs propagators
 
-	ComplexType function EVFunc(i, p2in)
+	subroutine EVFunc(evf, i, p2in, needdse)
 	implicit none
-	integer i
-	ComplexType p2in
+	ComplexType evf, p2in
+	integer i, needdse
 
 #include "FH.h"
-
-	ComplexType CH(0:NNeutral,0:NNeutral,NNeutral)
-	common /evmix/ CH
 
 	integer key, lo, h
 	ComplexType M(0:NNeutral,0:NNeutral), ev(0:NNeutral)
@@ -390,23 +427,33 @@ c	      c = p2 + 1D-1
 	RealType p2reim(2), p2re, p2im
 	equivalence (p2, p2reim, p2re), (p2reim(2), p2im)
 
-#define seEV(h) (seR(h) + cI*p2im*dseR(h))
+	ComplexType M2ev(NNeutral), Uev(0:NNeutral,0:NNeutral,NNeutral)
+	common /evmix/ M2ev, Uev
+
+	ComplexType seRx(semax)
+	common /evexp/ seRx
+
+#define seEV(h) (seR(h) + seRx(h))
 *#define seEV(h) seR(h)
 
 	p2 = p2in
 
-	if( higgsmix - ishft(higgsmix, -2) .lt. max(2, i) ) then
-	  key = iand(not(SEKey(inputmass)), SEKey(i))
-	  call CalcSelf(p2re, key, key)
-	  if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
+	if( i .gt. min(higgsmix, 3) ) then
+	  key = SEKey(i)
+	  call CalcSE(p2re, key, iand(key, needdse))
+	  if( needdse .ne. 0 ) then
+	    if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
+	    seRx(i) = cI*p2im*dseR(i)
+	  endif
 
 	  m2 = Msq(i) - seEV(i)
 	else
-	  key = cpeven +
-     &      iand(Need(3), iand(not(SEKey(inputmass)), cpodd)) +
-     &      iand(Need(4), goldstones)
-	  call CalcSelf(p2re, key, key)
-	  if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
+	  key = not(iand(SEKey(A0A0), not(SEKey(higgsmix))) + SEKey(HmHp))
+	  call CalcSE(p2re, key, iand(key, needdse))
+	  if( needdse .ne. 0 ) then
+	    if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
+	    seRx(:) = cI*p2im*dseR(:)
+	  endif
 
 	  M(1,1) = Msq(h0h0) - seEV(h0h0)
 	  M(2,2) = Msq(HHHH) - seEV(HHHH)
@@ -423,20 +470,26 @@ c	      c = p2 + 1D-1
 	  if( debuglevel .ge. 4 ) then
 	    DHIGGS "EVFunc:"		ENDL
 	    DHIGGS "M(1,1) =", M(1,1)	ENDL
-	    DHIGGS "M(1,2) =", M(1,2)	ENDL
-	    DHIGGS "M(2,2) =", M(2,2)	ENDL
-	    DHIGGS "M(1,3) =", M(1,3)	ENDL
-	    DHIGGS "M(2,3) =", M(2,3)	ENDL
-	    DHIGGS "M(3,3) =", M(3,3)	ENDL
-	    DHIGGS "M(0,0) =", M(0,0)	ENDL
-	    DHIGGS "M(0,1) =", M(0,1)	ENDL
-	    DHIGGS "M(0,2) =", M(0,2)	ENDL
-	    DHIGGS "M(0,3) =", M(0,3)	ENDL
+	    if( higgsmix .ge. 2 ) then
+	      DHIGGS "M(1,2) =", M(1,2)	ENDL
+	      DHIGGS "M(2,2) =", M(2,2)	ENDL
+	      if( higgsmix .ge. 3 ) then
+	        DHIGGS "M(1,3) =", M(1,3)	ENDL
+	        DHIGGS "M(2,3) =", M(2,3)	ENDL
+	        DHIGGS "M(3,3) =", M(3,3)	ENDL
+	        if( higgsmix .ge. 4 ) then
+	          DHIGGS "M(0,0) =", M(0,0)	ENDL
+	          DHIGGS "M(0,1) =", M(0,1)	ENDL
+	          DHIGGS "M(0,2) =", M(0,2)	ENDL
+	          DHIGGS "M(0,3) =", M(0,3)	ENDL
+	        endif
+	      endif
+	    endif
 	  endif
 
-	  lo = ieor(ishft(higgsmix, -2), 1)
+	  lo = 1 - ishft(higgsmix, -2)
 	  call SEigensystem(higgsmix, M(lo,lo),NNeutral+1, ev(lo),
-     &      CH(lo,lo,i),NNeutral+1, 1)
+     &      Uev(lo,lo,i),NNeutral+1, 1)
 	  m2 = ev(i)
 
 	  if( debuglevel .ge. 4 ) then
@@ -446,11 +499,9 @@ c	      c = p2 + 1D-1
 	  endif
 	endif
 
+	M2ev(i) = m2
 	p2in = ToComplex(Re(p2in), Im(m2))
-
-c	p2 = sqrt(p2)
-c	m2 = sqrt(m2)
-	EVFunc = m2 - p2
+	evf = m2 - p2
 
 	if( debuglevel .ge. 3 ) then
 	  DHIGGS "         p =", p2 			ENDL
@@ -460,20 +511,18 @@ c	m2 = sqrt(m2)
 
 
 ************************************************************************
-* GWFunc: another function whose roots are the exact poles of the
+* GWFunc: another function whose roots are the exact HiggsPoles of the
 * neutral Higgs propagators
 
-	ComplexType function GWFunc(i, p2in, Z)
+	subroutine GWFunc(gwf, i, p2in, Z, needse)
 	implicit none
 
 #include "FH.h"
 
-	integer i
-	ComplexType p2in, Z(NNeutral)
+	integer i, needse
+	ComplexType gwf, p2in, Z(NNeutral+1,*)
 
-	integer j, k, ij, ik, jk
-	integer needi, needj, needk, key
-c	RealType mgamma
+	integer j, k, ij, ik, jk, key
 	ComplexType Dj, Dk, den, Zij, Zik, se_eff
 	ComplexType dDj, dDk, dden, dZij, dZik, dse_eff
 	ComplexType p2, m2
@@ -481,17 +530,26 @@ c	RealType mgamma
 	RealType p2reim(2), p2re, p2im
 	equivalence (p2, p2reim, p2re), (p2reim(2), p2im)
 
+	ComplexType seRx(semax)
+	common /evexp/ seRx
+
 	integer se_ijk(NNeutral-1+NNeutral,NNeutral)
 	data se_ijk /
      &    HHHH,A0A0, h0HH,h0A0,HHA0,
      &    h0h0,A0A0, h0HH,HHA0,h0A0,
      &    h0h0,HHHH, h0A0,HHA0,h0HH /
 
-#define seGW(h) (seR(h) + cI*p2im*dseR(h))
-*#define seGW(h) seR(h)
-#define dseGW(h) dseR(h)
+#define seZ(h) (seR(h) + seRx(h))
+*#define seZ(h) seR(h)
+#define dseZ(h) dseR(h)
 
 	p2 = p2in
+	key = iand(not(SEKey(inputmass)), cpeven + cpodd)
+	call CalcSE(p2re, iand(key, needse), key)
+	if( needse .ne. 0 ) then
+	  if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
+	  seRx(:) = cI*p2im*dseR(:)
+	endif
 
 	j = se_ijk(1,i)
 	k = se_ijk(2,i)
@@ -499,56 +557,43 @@ c	RealType mgamma
 	ik = se_ijk(4,i)
 	jk = se_ijk(5,i)
 
-	needi = Need(i)
-	needj = Need(j)
-	needk = Need(k)
-	key = iand( not(SEKey(inputmass)),
-     &    SEKey(i) +
-     &    iand(needj, SEKey(j) +
-     &                iand(needi, SEKey(ij))) +
-     &    iand(needk, SEKey(k) +
-     &                iand(needi, SEKey(ik)) +
-     &                iand(needj, SEKey(jk))) )
-	call CalcSelf(p2re, key, key)
-	if( p2im .eq. UNINITIALIZED ) p2im = -Im(seR(i))
-
-	Dj = p2 - Msq(j) + seGW(j)
-	Dk = p2 - Msq(k) + seGW(k)
-	den = Dj*Dk - seGW(jk)**2
+	Dj = p2 - Msq(j) + seZ(j)
+	Dk = p2 - Msq(k) + seZ(k)
+	den = Dj*Dk - seZ(jk)**2
 	if( den .eq. 0 ) then
 * either j or k = inputmass and this boson does not mix
 * (typically A0 and 2x2 mixing)
-	  GWFunc = 1D100
+	  gwf = 1D100
 	  return
 	endif
 	den = 1/den
 
-	Zij = den*(seGW(ik)*seGW(jk) -
-     &    seGW(ij)*Dk)
-	Zik = den*(seGW(ij)*seGW(jk) -
-     &    seGW(ik)*Dj)
+	Zij = den*(seZ(ik)*seZ(jk) -
+     &    seZ(ij)*Dk)
+	Zik = den*(seZ(ij)*seZ(jk) -
+     &    seZ(ik)*Dj)
 
-	dDj = 1 + dseGW(j)
-	dDk = 1 + dseGW(k)
-	dden = dDj*Dk + Dj*dDk - 2*seGW(jk)*dseGW(jk)
+	dDj = 1 + dseZ(j)
+	dDk = 1 + dseZ(k)
+	dden = dDj*Dk + Dj*dDk - 2*seZ(jk)*dseZ(jk)
 
-	dZij = dseGW(ik)*seGW(jk) +
-     &    seGW(ik)*dseGW(jk) -
-     &    dseGW(ij)*Dk -
-     &    seGW(ij)*dDk
-	dZik = dseGW(ij)*seGW(jk) +
-     &    seGW(ij)*dseGW(jk) -
-     &    dseGW(ik)*Dj -
-     &    seGW(ik)*dDj
+	dZij = dseZ(ik)*seZ(jk) +
+     &    seZ(ik)*dseZ(jk) -
+     &    dseZ(ij)*Dk -
+     &    seZ(ij)*dDk
+	dZik = dseZ(ij)*seZ(jk) +
+     &    seZ(ij)*dseZ(jk) -
+     &    dseZ(ik)*Dj -
+     &    seZ(ik)*dDj
 
-	se_eff = seGW(i) +
-     &    seGW(ij)*Zij +
-     &    seGW(ik)*Zik
-	dse_eff = dseGW(i) +
-     &    dseGW(ij)*Zij +
-     &    dseGW(ik)*Zik +
-     &    den*(seGW(ij)*(dZij - dden*Zij) +
-     &         seGW(ik)*(dZik - dden*Zik))
+	se_eff = seZ(i) +
+     &    seZ(ij)*Zij +
+     &    seZ(ik)*Zik
+	dse_eff = dseZ(i) +
+     &    dseZ(ij)*Zij +
+     &    dseZ(ik)*Zik +
+     &    den*(seZ(ij)*(dZij - dden*Zij) +
+     &         seZ(ik)*(dZik - dden*Zik))
 
 	if( debuglevel .ge. 4 ) then
 	  DHIGGS "se_eff("//Digit(i)//") =", se_eff	ENDL
@@ -557,11 +602,11 @@ c	RealType mgamma
 	  DHIGGS "Z"//Digit(i)//Digit(k)//" =", Zik	ENDL
 	endif
 
-	Z(i) = sqrt(1/(1 + dse_eff))
+	Z(1,i) = sqrt(1/(1 + dse_eff))
 c version with jumps:
-c	Z(i) = Sqrtc(1/(1 + Re(dse_eff)))
-	Z(j) = Z(i)*Zij
-	Z(k) = Z(i)*Zik
+c	Z(1,i) = Sqrtc(1/(1 + Re(dse_eff)))
+	Z(1,j) = Z(1,i)*Zij
+	Z(1,k) = Z(1,i)*Zik
 
 c	mgamma = Im(se_eff)/(1 + Re(dse_eff))
 c	m2 = Msq(i) - Re(se_eff) - mgamma*Im(dse_eff)
@@ -569,10 +614,7 @@ c	m2 = Msq(i) - se_eff + cI*mgamma*dse_eff
 	m2 = Msq(i) - se_eff
 
 	p2in = m2
-
-c	p2 = sqrt(p2)
-c	m2 = sqrt(m2)
-	GWFunc = m2 - p2
+	gwf = m2 - p2
 
 	if( debuglevel .ge. 3 ) then
 c	  DHIGGS "  mh*width =", mgamma			ENDL
@@ -595,9 +637,6 @@ c	  DHIGGS "  mh*width =", mgamma			ENDL
 	RealType deriv_eps, s, m, w1, w2, s1, s2
 	integer try, j
 
-	ComplexType EVFunc
-	external EVFunc
-
 	RealType prec, inf, maxstep, widening_eps
 	parameter (prec = 1D-3)
 	parameter (inf = 2D0**1000)
@@ -613,7 +652,7 @@ c	widening_eps = abs(Re(x))/2**17
 	lim(1,1) = -inf
 	do try = 1, 20
 	  x1 = x - deriv_eps
-	  f1 = EVFunc(i, x1)
+	  call EVFunc(f1, i, x1, -1)
 	  if( abs(f1) .lt. prec ) return
 	  s = sign(1D0, Re(f1))
 	  j = ishft(int(s) + 1, -1)
@@ -623,7 +662,7 @@ c	widening_eps = abs(Re(x))/2**17
 	  if( s*Re(lim(1,j) - x) .gt. widening_eps ) goto 2
 
 	  x2 = x + deriv_eps
-	  f2 = EVFunc(i, x2)
+	  call EVFunc(f2, i, x2, -1)
 
 	  x = .5D0*(x1 + x2)
 	  lim(1,j) = x
@@ -646,7 +685,7 @@ c	widening_eps = abs(Re(x))/2**17
 	    j = 1 - j
 	    lim(1,j) = lim(1,1-j) + (2 + try)*s*sqrt(abs(lim(1,1-j)))
 	    x = lim(1,j)
-	    lim(2,j) = EVFunc(i, x)
+	    call EVFunc(lim(2,j), i, x, -1)
 	    if( Re(lim(2,j))*Re(lim(2,1-j)) .lt. 0 .and.
      &          Im(lim(2,j))*Im(lim(2,1-j)) .lt. 0 ) goto 3
 	  enddo
@@ -677,7 +716,7 @@ c	widening_eps = abs(Re(x))/2**17
 #else
 	  x = .5D0*lim(1,0) + .5D0*lim(1,1)
 #endif
-	  f = EVFunc(i, x)
+	  call EVFunc(f, i, x, -1)
 	  if( abs(f) .lt. prec ) return
 
 c	  s = sign(1D0, Re(f)*Re(lim(2,1)))
@@ -699,12 +738,9 @@ c	  s = sign(1D0, Re(f)*Re(lim(2,1)))
 	integer pre_from, pre_to, pre_step
 	integer pim_from, pim_to, pim_step
 	integer pre, pim
-	ComplexType p2, p2x, m2ev, m2gw, Zdummy(3)
-	integer i, j, hfrom, hto
+	ComplexType p2, p2x, m2ev, m2gw, Zdummy(3,3)
+	integer i, hfrom, hto
 	character*20 env
-
-	ComplexType EVFunc, GWFunc
-	external EVFunc, GWFunc
 
 	pre_from = 50
 	pre_to = 200
@@ -740,13 +776,11 @@ c	  s = sign(1D0, Re(f)*Re(lim(2,1)))
 	      p2 = ToComplex(pre*abs(pre), pim*abs(pim))
 * p2 gets overwritten by {EV,GW}Func
 	      p2x = p2
-	      do j = 1, 1
-	        m2ev = EVFunc(i, p2)
-	      enddo
+	      call EVFunc(m2ev, i, p2, -1)
 	      if( i .eq. 4 ) then
 	        m2gw = 0
 	      else
-	        m2gw = GWFunc(i, p2, Zdummy)
+	        call GWFunc(m2gw, i, p2, Zdummy, -1)
 	      endif
 101	      format(6G20.10)
 	      write(70+i,101) p2x, m2ev, m2gw
@@ -756,4 +790,3 @@ c	  s = sign(1D0, Re(f)*Re(lim(2,1)))
 	  enddo
 	enddo
 	end
-

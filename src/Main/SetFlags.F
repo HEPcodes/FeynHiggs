@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 13 Feb 17 th
+* last modified 30 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -10,13 +10,11 @@
 
 
 	subroutine FHSetFlags(error,
-     &    mssmpart_, fieldren_, tanbren_,
-     &    higgsmix_, p2approx_, looplevel_, loglevel_,
+     &    mssmpart_, higgsmix_, p2approx_, looplevel_, loglevel_,
      &    runningMT_, botResum_, tlCplxApprox_)
 	implicit none
 	integer error
-	integer mssmpart_, fieldren_, tanbren_
-	integer higgsmix_, p2approx_, looplevel_, loglevel_
+	integer mssmpart_, higgsmix_, p2approx_, looplevel_, loglevel_
 	integer runningMT_, botResum_, tlCplxApprox_
 
 #include "FH.h"
@@ -59,14 +57,14 @@ c	  call setfpu
 	Check(mssmpart, 0, 4, "mssmpart")
 	gM = 2*ibits(mssmpart - 3, 3, 1) + 1
 
-	fieldren = fieldren_
-	Check(fieldren, 0, 4, "fieldren")
-
-	tanbren = tanbren_
-	Check(tanbren, 0, 2, "tanbren")
-
 	higgsmix = higgsmix_
 	Check(higgsmix, 1, 4, "higgsmix")
+#define Need(i) -ibits(i-1-higgsmix,4,1)
+	mixmask =
+     &    SEKey(h0h0) + SEKey(HHHH) + SEKey(A0A0) + SEKey(HmHp) +
+     &    iand(Need(2), SEKey(h0HH)) +
+     &    iand(Need(3), SEKey(h0A0) + SEKey(HHA0)) +
+     &    iand(Need(4), goldstones)
 
 	p2approx = p2approx_
 	Check(p2approx, 0, 4, "p2approx")
@@ -85,7 +83,7 @@ c	  call setfpu
 
 	botResum = botResum_
 	Check(botResum, 0, 2, "botResum")
-	b = ibits(-botResum, 3, 1)
+	b = merge(1, 0, botResum .gt. 0)
 	bM = 4 + (bTR - 4)*b
 	bM0 = 4 + (bTR0 - 4)*b
 
@@ -97,9 +95,6 @@ c	  call setfpu
 	  if( higgsmix .gt. 2 )
      &      Error(error, "mssmpart = 0 with higgsmix > 2 not allowed")
 	endif
-
-	if( fieldren .eq. 4 .and. tanbren .eq. 1 )
-     &    Error(error, "fieldren = 4 not compatible with tanbren = 1")
 
 	if( runningMT .eq. 3 .and. loglevel .ne. 0 )
      &    Error(error, "runningMT = 3 allowed only with loglevel = 0")
@@ -179,6 +174,24 @@ c	  call setfpu
 	print *, "env FHFORCESU2 ", forceSU2
 50	continue
 
+	drbarmode = 1
+	call getenv("FHDRBARMODE", env)
+	read(env, *, end=60, err=60) drbarmode
+	print *, "env FHDRBARMODE ", drbarmode
+60	continue
+
+	fopoleeq = 1
+	call getenv("FHFOPOLEEQ", env)
+	read(env, *, end=70, err=70) fopoleeq
+	print *, "env FHFOPOLEEQ ", fopoleeq
+70	continue
+
+	dmtlimim = 1
+	call getenv("FHDMTLIMIM", env)
+	read(env, *, end=80, err=80) dmtlimim
+	print *, "env FHDMTLIMIM ", dmtlimim
+80	continue
+
 	call getenv("FHEXTSE", extSE)
 	l = len_trim(extSE)
 	if( extSE(1:1) .ne. ' ' )
@@ -190,8 +203,6 @@ c	  call setfpu
 	DFLAGS "flags set by FHSetFlags"	ENDL
 	DFLAGS "----------------------------"	ENDL
 	DFLAGS "mssmpart     =", mssmpart	ENDL
-	DFLAGS "fieldren     =", fieldren	ENDL
-	DFLAGS "tanbren      =", tanbren	ENDL
 	DFLAGS "higgsmix     =", higgsmix	ENDL
 	DFLAGS "p2approx     =", p2approx	ENDL
 	DFLAGS "looplevel    =", looplevel	ENDL
@@ -218,7 +229,7 @@ c	  call setfpu
 	external lnblnk
 #endif
 
-	if( len_trim(flags) .ne. 10 ) then
+	if( len_trim(flags) .ne. 8 ) then
 	  Error(error, "wrong number of flags")
 	  return
 	endif
@@ -226,8 +237,6 @@ c	  call setfpu
 #define Flag(i) ichar(flags(i:i))-48
 
 	call FHSetFlags(error,
-     &    Flag(1), Flag(2), Flag(3),
-     &    Flag(4), Flag(5), Flag(6), Flag(7),
-     &    Flag(8), Flag(9), Flag(10))
+     &    Flag(1), Flag(2), Flag(3), Flag(4), Flag(5),
+     &    Flag(6), Flag(7), Flag(8))
 	end
-

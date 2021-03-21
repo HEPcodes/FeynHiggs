@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 6 Jan 17 th
+* last modified 22 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -19,22 +19,16 @@
 #include "TLps.h"
 #define __SUBROUTINE__ "CalcRenSETL"
 
-	ComplexType se
-	RealType dMTMT, alfat
+	RealType dM2imxim, dMT, alfat
 	RealType bpara_ps(3,ipslots)
-	RealType dPhi(dPhin,se2Rc,ipslots)
+	RealType dPhi(dPhin,dPhic,ipslots)
+	RealType dMTshift(se2Rn)
+	ComplexType DRbarshift(se2Rn)
 	integer i, c, fail, tlx
-
-	RealType dPhi_flat(dPhin*se2Rc,ipslots)
-	RealType dPhi_fflat(dPhin*se2Rc*ipslots)
-	equivalence (dPhi, dPhi_flat, dPhi_fflat)
 
 	integer tlxbits(0:6), axatbits, axabbits
 	parameter (axabbits = 2**asab + 2**atab)
 	parameter (axatbits = axabbits + 2**asat + 2**atat)
-
-	RealType Ra_h0h0, Ra_HHHH, Ra_h0HH
-	RealType Ra_h0A0, Ra_HHA0, Ra_A0A0
 
 	character*4 catname(se2Rc), sename(se2Rn)
 
@@ -48,8 +42,8 @@
 	data catname(atat) /"atat"/
 	data catname(asab) /"asab"/
 	data catname(atab) /"atab"/
-	data catname(dMTH) /"dMTH"/
-	data catname(dMTA) /"dMTA"/
+	data catname(sdMT) /"sdMT"/
+	data catname(sDRb) /"sDRb"/
 
 	data sename(h0h0) /"h0h0"/
 	data sename(HHHH) /"HHHH"/
@@ -59,16 +53,9 @@
 	data sename(h0A0) /"h0A0"/
 	data sename(HHA0) /"HHA0"/
 
-	Ra_h0h0(c) = SA2*dPhi(se11,c,1) + CA2*dPhi(se22,c,1) -
-     &    S2A*dPhi(se12,c,1)
-	Ra_HHHH(c) = CA2*dPhi(se11,c,1) + SA2*dPhi(se22,c,1) +
-     &    S2A*dPhi(se12,c,1)
-	Ra_h0HH(c) = .5D0*S2A*(dPhi(se22,c,1) - dPhi(se11,c,1)) +
-     &    C2A*dPhi(se12,c,1)
+#include "HiggsRot.h"
 
-	Ra_h0A0(c) = CA*dPhi(se2A,c,1) - SA*dPhi(se1A,c,1)
-	Ra_HHA0(c) = CA*dPhi(se1A,c,1) + SA*dPhi(se2A,c,1)
-	Ra_A0A0(c) = dPhi(seAA,c,1)
+#define cpe_dPhi(c) dPhi(se11,c,1),dPhi(se22,c,1),dPhi(se12,c,1)
 
 	if( blurb ) then
 	  print *, "FHHiggsCorr contains code by:"
@@ -79,23 +66,13 @@
 	endif
 
 	dMT1OS = 1 - Delta(tM2, tD)
-	tS2 = 3 + (tM2 - 3)*dMT1OS
 
 	tlx = ior(tlxbits(tlCplxApprox), tlpsmask)
 
-	do i = 1, semax
-	  se2U(i) = 0
-	enddo
-	do i = 1, semax
-	  se2R(i) = 0
-	enddo
-	do i = 1, se2Rn*se2Rc
-	  se2Rcat_flat(i) = 0
-	enddo
-
-	do i = 1, dPhin*se2Rc*ipn
-	  dPhi_fflat(i) = 0
-	enddo
+	se2U = 0
+	se2R(:) = 0
+	se2Rcat(:,:) = 0
+	dPhi = 0
 
 	Deltab = 0
 	BSS2(1) = DSS2(1,4,3)
@@ -177,6 +154,7 @@
 	    endif
 
 	    call SfUpdate(error, X4(0,bTR0,bTR0,4), SORT_SF, 1)
+	    call SbglUpdate(error, bTR0)
 	    if( error .ne. 0 ) return
 	  endif
 
@@ -190,42 +168,87 @@
      &          dPhi(se12,c,1), dPhi(se12,c,1),dPhin*se2Rc)
 	      call CplxInterpolate(error,
      &          dPhi(se22,c,1), dPhi(se22,c,1),dPhin*se2Rc)
-	      if( TLallow(c, h0h0) ) se2Rcat(h0h0,c) = Ra_h0h0(c)
-	      if( TLallow(c, HHHH) ) se2Rcat(HHHH,c) = Ra_HHHH(c)
-	      if( TLallow(c, h0HH) ) se2Rcat(h0HH,c) = Ra_h0HH(c)
+	      if( TLallow(c, h0h0) )
+     &          se2Rcat(h0h0,c) = R_h0h0(rA, cpe_dPhi(c))
+	      if( TLallow(c, HHHH) )
+     &          se2Rcat(HHHH,c) = R_HHHH(rA, cpe_dPhi(c))
+	      if( TLallow(c, h0HH) )
+     &          se2Rcat(h0HH,c) = R_h0HH(rA, cpe_dPhi(c))
 	    endif
 	  enddo
 	endif
 
-	call TLhrSE(error, btest(tlx, asat))
-	call TLspSE(error, btest(tlx, atat))
+	call TLhrSE(btest(tlx, asat))
+	call TLspSE(btest(tlx, atat))
 
 	if( tM2 .eq. tT .or. tM2 .eq. tT2 ) then
-	  dMTMT = 0
+	  dMT = 0
 	  if( tlzeromask(asat) .eq. 0 )
-     &      dMTMT = dMTMT + 4/(3*pi)*Alfas2L
+     &      dMT = dMT + 4/(3*pi)*Alfas2L
 	  if( tlzeromask(atat) .eq. 0 ) then
 	    alfat = 1/(4*pi)*2*Mf2(tM2,3)/vev**2
-	    dMTMT = dMTMT - 1/(2*pi)*alfat
+	    dMT = dMT - 1/(2*pi)*alfat
 	  endif
-	  call MTrepara(dPhi(1,dMTH,1), Mf(tM2,3)*dMTMT)
-
-	  se2Rcat(h0A0,dMTA) = Ra_h0A0(dMTA)
-	  se2Rcat(HHA0,dMTA) = Ra_HHA0(dMTA)
-	  se2Rcat(A0A0,dMTA) = Ra_A0A0(dMTA)
+	  dMT = dMT*Mf(tM2,3)
+	  call MTrepara(dMTshift, dMT)
+	  se2Rcat(h0h0,sdMT) = R_h0h0(rA, cpe(dMTshift))
+	  se2Rcat(HHHH,sdMT) = R_HHHH(rA, cpe(dMTshift))
+	  se2Rcat(h0HH,sdMT) = R_h0HH(rA, cpe(dMTshift))
+	  se2Rcat(A0A0,sdMT) = dMTshift(A0A0)
+	  se2Rcat(h0A0,sdMT) = R_h0A0(rA, cpo(dMTshift))
+	  se2Rcat(HHA0,sdMT) = R_HHA0(rA, cpo(dMTshift))
+	  if( debuglevel .ge. 4 ) then
+	    DSELF "dMT shifts:" ENDL
+	    DSELF "dMT =", dMT ENDL
+	    DSELF "shift(h0h0) =", se2Rcat(h0h0,sdMT) ENDL
+	    DSELF "shift(HHHH) =", se2Rcat(HHHH,sdMT) ENDL
+	    DSELF "shift(h0HH) =", se2Rcat(h0HH,sdMT) ENDL
+	    DSELF "shift(A0A0) =", se2Rcat(A0A0,sdMT) ENDL
+	    DSELF "shift(h0A0) =", se2Rcat(h0A0,sdMT) ENDL
+	    DSELF "shift(HHA0) =", se2Rcat(HHA0,sdMT) ENDL
+	  endif
 	endif
 
-	se2Rcat(h0h0,dMTH) = Ra_h0h0(dMTH)
-	se2Rcat(HHHH,dMTH) = Ra_HHHH(dMTH)
-	se2Rcat(h0HH,dMTH) = Ra_h0HH(dMTH)
+	if( drbarvars .eq. 1 ) then
+	  bM1 = bM
+	  call DRbar2LShifts(DRbarshift, QSf2(3))
+	  se2Rcat(h0h0,sDRb) = -C_h0h0(rBA, cpe(DRbarshift))
+	  se2Rcat(HHHH,sDRb) = -C_HHHH(rBA, cpe(DRbarshift))
+	  se2Rcat(h0HH,sDRb) = -C_h0HH(rBA, cpe(DRbarshift))
+	  se2Rcat(A0A0,sDRb) = -DRbarshift(A0A0)
+	  se2Rcat(h0A0,sDRb) = -C_h0A0(rBA, cpo(DRbarshift))
+	  se2Rcat(HHA0,sDRb) = -C_HHA0(rBA, cpo(DRbarshift))
+	  if( debuglevel .ge. 4 ) then
+	    DSELF "DRbar shifts:" ENDL
+	    DSELF "DRbar scale =", QSf2(3) ENDL
+	    DSELF "shift(h0h0) =", se2Rcat(h0h0,sDRb) ENDL
+	    DSELF "shift(HHHH) =", se2Rcat(HHHH,sDRb) ENDL
+	    DSELF "shift(h0HH) =", se2Rcat(h0HH,sDRb) ENDL
+	    DSELF "shift(A0A0) =", se2Rcat(A0A0,sDRb) ENDL
+	    DSELF "shift(h0A0) =", se2Rcat(h0A0,sDRb) ENDL
+	    DSELF "shift(HHA0) =", se2Rcat(HHA0,sDRb) ENDL
+	  endif
+	endif
 
 	do i = 1, se2Rn
-	  se = 0
-	  do c = 1, se2Rc
-	    se = se + se2Rcat(i,c)
-	  enddo
-	  se2R(i) = se
+	  se2R(i) = sum(se2Rcat(i,1:se2Rc))
 	enddo
+
+* add Im(se1L)*Im(dse1L) to dMA02/dMHmHp2 CT
+* NB: seRgl = seUgl here since RC not computed yet but need Im only
+	if( dmtlimim .eq. 1 ) then
+	  call CalcSE_gl(inputmass, SEKey(inputmass), SEKey(inputmass))
+	  dM2imxim = Im(seRgl(inputmass))*Im(dseRgl(inputmass))
+	  se2R(h0h0) = se2R(h0h0) - CBA2*dM2imxim
+	  se2R(h0HH) = se2R(h0HH) + CBA*SBA*dM2imxim
+	  se2R(HHHH) = se2R(HHHH) - SBA2*dM2imxim
+	  se2R(A0A0) = se2R(A0A0) - dM2imxim
+	  se2R(HmHp) = se2R(HmHp) - dM2imxim
+
+	  if( debuglevel .gt. 4 ) then
+	    DSELF "dMA02/dMHmHp2 Im(se)*Im(dse) =", dM2imxim	ENDL
+	  endif
+	endif
 
 	if( error .eq. 0 ) tl_valid = valid
 
@@ -244,4 +267,3 @@
 	  endif
 	enddo
 	end
-

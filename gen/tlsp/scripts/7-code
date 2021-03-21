@@ -30,45 +30,59 @@ Alfa = Alfa2L;
 
 M0 = M02 = 0;
 
-MT = MTy;
-MT2 = MTy2;
-Sq[MTy] = MTy2;
+MT = MTgl;
+MT2 = MTgl2;
+Sq[MTgl] = MTgl2;
 
-MA0 = MA0in;
-MA02 = MA02in;
-MHp = MHpin;
-MHp2 = MHp2in;
+MA0 = MHin;
+MA02 = MHin2;
+MHp = MHin;
+MHp2 = MHin2;
 MMUE2 = MUE2;
+
+At = Atgl;
+AtC = AtglC;
+Xt = Xtgl;
+XtC = XtglC;
+Yt = Ytgl;
+YtC = YtglC;
+Conjugate[Atgl] ^= AtglC;
+Conjugate[AtglC] ^= Atgl;
+Conjugate[Xtgl] ^= XtglC;
+Conjugate[XtglC] ^= Xtgl;
+Conjugate[Ytgl] ^= YtglC;
+Conjugate[YtglC] ^= Ytgl;
 
 (*Sq[ht] = 4 Pi Alfat;*)
 
-MSf[i_,3,3] = MStop[i];
-MSf[i_,4,3] = MSbot[i];
+MSf[i_,3,3] := MStgl[i];
+MSf[i_,4,3] := MSb0gl[i];
 
-MSf2[i_,3,3] = MStop2[i];
-MSf2[i_,4,3] = MSbot2[i];
+MSf2[i_,3,3] := MStgl2[i];
+MSf2[i_,4,3] := MSb0gl2[i];
+MSq2Diff[i_,j_] := DMSb0tgl2[i,j];
 
-USf[i_,j_,3,3] = UStop[i,j];
-USf[i_,j_,4,3] = USbot[i,j];
-USfC[i_,j_,3,3] = UStopC[i,j];
-USfC[i_,j_,4,3] = USbotC[i,j];
+USf[i_,j_,3,3] := UStgl[i,j];
+USf[i_,j_,4,3] := USb0gl[i,j];
+USfC[i_,j_,3,3] := UStglC[i,j];
+USfC[i_,j_,4,3] := USb0glC[i,j];
 
-UCSf[i:1|2,j:1|2,3,3] := UStop2[i,j];
-UCSf[i_,j_,3,3] := UCStop[i,j];
-UCSfC[i_,j_,3,3] := UCStopC[i,j];
+UCSf[i:1|2,j:1|2,3,3] := UStgl2[i,j];
+UCSf[i_,j_,3,3] := UCStgl[i,j];
+UCSfC[i_,j_,3,3] := UCStglC[i,j];
 
 u2srulz = Join[
-  u2sdefs[Xt, MTy, MTy2,
+  u2sdefs[Xt, MTgl, MTgl2,
     U2s1Xt, U2s2Xt, U2s1XtmMT, U2s1XtpMT,
     U2c1Xt, U2c2Xt, U2c1XtC, U2c2XtC, U2c1Xt2, U2c2Xt2],
-  u2sdefs[Yt, MTy, MTy2,
+  u2sdefs[Yt, MTgl, MTgl2,
     U2s1Yt, U2s2Yt, U2s1YtmMT, U2s1YtpMT,
     U2c1Yt, U2c2Yt, U2c1YtC, U2c2YtC, U2c1Yt2, U2c2Yt2] ];
 
-MTy2/: MTy2 + 2 MTy x_ + x_^2 := (MTy + x)^2;
-MTy2/: MTy2 - 2 MTy x_ + x_^2 := (MTy - x)^2;
-MTy2/: MTy2 - x_^2 := (MTy - x) (MTy + x);
-(*MMUE2/: MMUE2 - MTy2 := (MMUE - MTy) (MMUE + MTy);*)
+MTgl2/: MTgl2 + 2 MTgl x_ + x_^2 := (MTgl + x)^2;
+MTgl2/: MTgl2 - 2 MTgl x_ + x_^2 := (MTgl - x)^2;
+MTgl2/: MTgl2 - x_^2 := (MTgl - x) (MTgl + x);
+(*MMUE2/: MMUE2 - MTgl2 := (MMUE - MTgl) (MMUE + MTgl);*)
 MMUE2/: MMUE2 - x_^2 := (MMUE - x) (MMUE + x);
 
 simp[x_] := FullSimplify[x] /;
@@ -95,7 +109,8 @@ Protect[Re];
 
 abtag = Sequence[Ccl, Ccx, Cel, Cex, Col, Cox];
 
-$DebugCmd = {"DTLSP ", " ENDL"};
+$DebugPre[1] = $DebugPost[1] = "";
+$DebugCmd[1] = "DTLSP \"`1``2` =\", `3` ENDL\n";
 If[ debug === 0, debtag[_[Alternatives[abtag][__], _]] = False ];
 (*debtag[RuleAdd[_Symbol, _]] := "ren";*)
 _debtag = True;
@@ -120,7 +135,8 @@ Block[ {hh},
     FinalTouch -> final,
     RealArgs -> integrals,
     TmpType -> "ComplexType",
-    DebugLines -> debtag];
+    DebugLines -> 1,
+    DebugLabel -> debtag];
   WriteString[hh, "\tend\n"];
   Close[hh];
   mod
@@ -150,7 +166,7 @@ tad[name_, pre_:"Tad"] := selist[
 ];
 
 
-den[m:(MStop2|MSbot2)[1|2|4]] := 1/m;
+den[m:(MStgl2|MSbgl2)[1|2|4]] := 1/m;
 den[n_?NumberQ] := 1/n;
 
 
@@ -237,10 +253,10 @@ WriteString[hh, "\
 
 Close[hh];
 
-
+(*
 SetDirectory[sdir];
 CopyFile[#, ToFileName[{"..", fdir}, #]]&/@ FileNames[];
-
+*)
 _EOF_
 
 gzip $out.log

@@ -207,16 +207,13 @@
 :Begin:
 :Function: mFHSetFlags
 :Pattern:
-  FHSetFlags[mssmpart_, fieldren_, tanbren_,
-    higgsmix_, p2approx_, looplevel_, loglevel_,
+  FHSetFlags[mssmpart_, higgsmix_, p2approx_, looplevel_, loglevel_,
     runningMT_, botResum_, tlCplxApprox_]
 :Arguments: {
-  mssmpart, fieldren, tanbren,
-  higgsmix, p2approx, looplevel, loglevel,
+  mssmpart, higgsmix, p2approx, looplevel, loglevel,
   runningMT, botResum, tlCplxApprox }
 :ArgumentTypes: {
-  Integer, Integer, Integer,
-  Integer, Integer, Integer, Integer,
+  Integer, Integer, Integer, Integer, Integer,
   Integer, Integer, Integer }
 :ReturnType: Manual
 :End:
@@ -357,7 +354,7 @@
 :Begin:
 :Function: mFHSetSLHA
 :Pattern: FHSetSLHA[file_]
-:Arguments: {file}
+:Arguments: {ExpandFileName[file]}
 :ArgumentTypes: {String}
 :ReturnType: Manual
 :End:
@@ -550,7 +547,7 @@
 :Begin:
 :Function: mFHOutput
 :Pattern: FHOutput[file_, key_, sqrts_:0]
-:Arguments: {file, key, sqrts}
+:Arguments: {ExpandFileName[file], key, sqrts}
 :ArgumentTypes: {String, Integer, Real}
 :ReturnType: Manual
 :End:
@@ -558,7 +555,7 @@
 :Begin:
 :Function: mFHOutputSLHA
 :Pattern: FHOutputSLHA[file_, key_]
-:Arguments: {file, key}
+:Arguments: {ExpandFileName[file], key}
 :ArgumentTypes: {String, Integer}
 :ReturnType: Manual
 :End:
@@ -606,7 +603,7 @@
 :Begin:
 :Function: mFHReadRecord
 :Pattern: FHReadRecord[file_]
-:Arguments: {file}
+:Arguments: {ExpandFileName[file]}
 :ArgumentTypes: {String}
 :ReturnType: Manual
 :End:
@@ -614,7 +611,7 @@
 :Begin:
 :Function: mFHSLHARecord
 :Pattern: FHSLHARecord[file_]
-:Arguments: {file}
+:Arguments: {ExpandFileName[file]}
 :ArgumentTypes: {String}
 :ReturnType: Manual
 :End:
@@ -622,7 +619,7 @@
 :Begin:
 :Function: mFHLoadTable
 :Pattern: FHLoadTable[file_]
-:Arguments: {file}
+:Arguments: {ExpandFileName[file]}
 :ArgumentTypes: {String}
 :ReturnType: Manual
 :End:
@@ -661,8 +658,8 @@
 
 :Begin:
 :Function: mFHAlphaS
-:Pattern: FHAlphaS[Q_]
-:Arguments: {Q}
+:Pattern: FHAlphaS[Q2_]
+:Arguments: {Q2}
 :ArgumentTypes: {Real}
 :ReturnType: Manual
 :End:
@@ -699,7 +696,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 9 Feb 17 th
+		last modified 30 Jan 18 th
 */
 
 
@@ -880,16 +877,16 @@ static void MLPutComplexTensor(MLINK mlp, ComplexType *a, cint len,
 
 /******************************************************************/
 
-static void mFHSetFlags(cint mssmpart, cint fieldren, cint tanbren,
-  cint higgsmix, cint p2approx, cint looplevel, cint loglevel,
+static void mFHSetFlags(cint mssmpart, cint higgsmix, cint p2approx,
+  cint looplevel, cint loglevel,
   cint runningMT, cint botResum, cint tlCplxApprox)
 {
   int error;
 
   BeginRedirect();
 
-  FHSetFlags(&error, mssmpart, fieldren, tanbren,
-    higgsmix, p2approx, looplevel, loglevel,
+  FHSetFlags(&error,
+    mssmpart, higgsmix, p2approx, looplevel, loglevel,
     runningMT, botResum, tlCplxApprox);
 
   EndRedirect();
@@ -918,25 +915,23 @@ static void mFHSetFlagsString(cchar *flags)
 
 static void mFHRetrieveFlags(void)
 {
-  int error, mssmpart, fieldren, tanbren;
-  int higgsmix, p2approx, looplevel, loglevel;
+  int error;
+  int mssmpart, higgsmix, p2approx, looplevel, loglevel;
   int runningMT, botResum, tlCplxApprox;
 
   BeginRedirect();
 
-  FHRetrieveFlags(&error, &mssmpart, &fieldren, &tanbren,
-    &higgsmix, &p2approx, &looplevel, &loglevel,
+  FHRetrieveFlags(&error,
+    &mssmpart, &higgsmix, &p2approx, &looplevel, &loglevel,
     &runningMT, &botResum, &tlCplxApprox);
 
   EndRedirect();
 
   if( error ) MLPutStatus(stdlink, error);
   else {
-    MLPutFunction(stdlink, "List", 9);
+    MLPutFunction(stdlink, "List", 8);
 
     MLPutIRule(stdlink, mssmpart);
-    MLPutIRule(stdlink, fieldren);
-    MLPutIRule(stdlink, tanbren);
     MLPutIRule(stdlink, higgsmix);
     MLPutIRule(stdlink, p2approx);
     MLPutIRule(stdlink, looplevel);
@@ -2110,14 +2105,14 @@ static void mFHSelectIpol(cint xt, cint xb)
 
 /******************************************************************/
 
-static void mFHAlphaS(cRealType Q)
+static void mFHAlphaS(cRealType Q2)
 {
   int error, nf;
   RealType AlphaS;
 
   BeginRedirect();
 
-  FHAlphaS(&error, &AlphaS, &nf, Q);
+  FHAlphaS(&error, &AlphaS, &nf, Q2);
 
   EndRedirect();
 

@@ -3,17 +3,17 @@
 * Code is transcribed from I. Hinchliffe's Java applet at
 * http://www-theory.lbl.gov/~ianh/alpha/alpha.html.
 * this file is part of FeynHiggs
-* last modified 27 Jan 17 th
+* last modified 12 Dec 17 th
 
 #include "externals.h"
 #include "types.h"
 #include "debug.h"
 
 
-	subroutine FHAlphaS(error, as, nf, Q)
+	subroutine FHAlphaS(error, as, nf, Q2)
 	implicit none
 	integer error, nf
-	RealType as, Q
+	RealType as, Q2
 
 #include "FH.h"
 #define __SUBROUTINE__ "FHAlphaS"
@@ -81,7 +81,7 @@
 	CheckPara(error)
 	if( error .gt. 0 ) return
 
-	entry AlphaS(as, nf, Q)
+	entry AlphaS(as, nf, Q2)
 
 	do while( abs(asMZ - AlfasMZ) .gt. 1D-4 )
 	  t = 2*log(MZ/lam5)
@@ -94,19 +94,19 @@
      &      (1 + c*(c + 1) + l*(3*l - 5*c - 2) + 3*b))
 	enddo
 
-	if( Q .lt. .25D0 ) then
+	if( Q2 .lt. .25D0 ) then
 	  as = 1D10
 	  return
 	endif
 
-	if( Q .gt. MT2 ) then
+	if( Q2 .gt. MT2 ) then
 	  nf = 6
 	  beta0 = beta6_0
 	  beta1 = beta6_1
 	  beta2 = beta6_2
 	  t = MT/lam5
 	  lam = lam5*t**(-2/21D0)*(2*log(t))**(-107/1127D0)
-	else if( Q .gt. MB2 ) then
+	else if( Q2 .gt. MB2 ) then
 	  nf = 5
 	  beta0 = beta5_0
 	  beta1 = beta5_1
@@ -118,7 +118,7 @@
 	  lam = lam5*exp(delta54_0*t +
      &      delta54_11*l + delta54_10 +
      &      (delta54_21*l + delta54_20)/t)
-	  if( Q .gt. MC2 ) then
+	  if( Q2 .gt. MC2 ) then
 	    nf = 4
 	    beta0 = beta4_0
 	    beta1 = beta4_1
@@ -136,7 +136,7 @@
 	  endif
 	endif
 
-	t = log(Q/lam**2)
+	t = log(Q2/lam**2)
 	c = 2*beta1/(beta0**2*t)
 	l = c*log(t)
 	b = c**2*(beta2*beta0/(8*beta1**2) - 1)
@@ -148,15 +148,15 @@
 
 ************************************************************************
 
-	subroutine FHRunQCD(error, m_to, Q_to, m_from, Q_from)
+	subroutine FHRunQCD(error, m_to, Q2_to, m_from, Q2_from)
 	implicit none
 	integer error
-	RealType m_to, Q_to, m_from, Q_from
+	RealType m_to, Q2_to, m_from, Q2_from
 
 #include "FH.h"
 #define __SUBROUTINE__ "FHRunQCD"
 
-	RealType Q(3:5), as1, as2, fac
+	RealType Q2(3:5), as1, as2, fac
 	integer nf, nf_from, nf_to, nf1, nf2
 
 	RealType g0, eps
@@ -183,28 +183,28 @@
 	CheckPara(error)
 	if( error .gt. 0 ) return
 
-	entry RunQCD(m_to, Q_to, m_from, Q_from)
+	entry RunQCD(m_to, Q2_to, m_from, Q2_from)
 
-	Q(3) = MC2
-	Q(4) = MB2
-	Q(5) = MT2
+	Q2(3) = MC2
+	Q2(4) = MB2
+	Q2(5) = MT2
 
-	call AlphaS(as1, nf_to, Q_to)
-	call AlphaS(as2, nf_from, Q_from)
+	call AlphaS(as1, nf_to, Q2_to)
+	call AlphaS(as2, nf_from, Q2_from)
 * NB: 1/(3*pi)*Alfas is the MSbar -> DRbar correction
 	fac = cfn(as1, nf_to)/cfn(as2, nf_from)*(1 - 1/(3*pi)*as1)
 
 * nf_to > nf_from
 	do nf = nf_from, nf_to - 1
-	  call AlphaS(as1, nf1, Q(nf))
-	  call AlphaS(as2, nf2, Q(nf) + eps)
+	  call AlphaS(as1, nf1, Q2(nf))
+	  call AlphaS(as2, nf2, Q2(nf) + eps)
 	  fac = fac*cfn(as1, nf1)/cfn(as2, nf2)
 	enddo
 
 * nf_to < nf_from
 	do nf = nf_from - 1, nf_to, -1
-	  call AlphaS(as1, nf1, Q(nf))
-	  call AlphaS(as2, nf2, Q(nf) + eps)
+	  call AlphaS(as1, nf1, Q2(nf))
+	  call AlphaS(as2, nf2, Q2(nf) + eps)
 	  fac = fac*cfn(as2, nf2)/cfn(as1, nf1)
 	enddo
 

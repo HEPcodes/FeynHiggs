@@ -1,7 +1,7 @@
 * AddSelf.F
 * Add user-specified values to the Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 19 Jul 16 th
+* last modified 13 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -26,6 +26,8 @@
 	character*4 p2(0:4)
 	data p2 /"0", "Mh02", "MHH2", "MA02", "MHp2"/
 
+#include "HiggsRot.h"
+
 	error = 0
 	CheckPara(error)
 	if( error .gt. 0 ) return
@@ -33,9 +35,7 @@
 	if( n .gt. seXmax + 1 )
      &    Warning("User self-energies at too many points given")
 
-	do i = 1, semax*(seXmax + 1)
-	  seX_flat(i) = 0
-	enddo
+	seX = 0
 
 	sub_h0h0 =
      &    ibits(flags, asat, 1)*se2Rcat(h0h0,asat) +
@@ -71,12 +71,10 @@
 	  enddo
 
 	  if( btest(flags, FLAG_ROTATE) ) then
-	    seX(h0h0,h) = SA2*sig(h0h0,h) + CA2*sig(HHHH,h) -
-     &        S2A*sig(h0HH,h)
-	    seX(HHHH,h) = CA2*sig(h0h0,h) + SA2*sig(HHHH,h) +
-     &        S2A*sig(h0HH,h)
-	    seX(h0HH,h) = C2A*sig(h0HH,h) +
-     &        .5D0*S2A*(sig(HHHH,h) - sig(h0h0,h))
+#define cpe_sig sig(h0h0,h),sig(HHHH,h),sig(h0HH,h)
+	    seX(h0h0,h) = C_h0h0(rA, cpe_sig)
+	    seX(HHHH,h) = C_HHHH(rA, cpe_sig)
+	    seX(h0HH,h) = -C_h0HH(rA, cpe_sig)
 	    if( debuglevel .ge. 3 ) then
 	      DSEX("  sig(F1F1) =", sig(h0h0,h))
 	      DSEX("  sig(F2F2) =", sig(HHHH,h))

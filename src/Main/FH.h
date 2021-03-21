@@ -1,15 +1,17 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 9 Feb 17 th
+* last modified 30 Jan 18 th
 
 
 #ifndef SignSq
 #define SignSq(x) (x)*abs(x)
 #define SignSqrt(x) sign(sqrt(abs(Re(x))),Re(x))
 #define signbit(i) ibits(i,31,1)
-#define Delta(i,j) signbit(ieor(i,j)-1)
+#define Delta(i,j) merge(1,0,i.eq.j)
 #define SEKey(se) 2**(se-1)
+#define SETest(key,se) btest(key,se-1)
+#define SEMask(key) iand(key, mixmask)
 
 #define Li2omx(x) Re(spence(1, ToComplex(x), 0D0))
 
@@ -28,6 +30,7 @@
 
 #define tQ(t) Ncolor(t)
 #define tU(t) (t + isQ(t))
+#define tS2 (tM2 + (3 - tM2)*Delta(tM2,tD))
 
 #define SetSfIni(t,t0) t0*8**(t-5)
 #define GetSfIni(t) int(ibits(SfIni,3*(t-5),3))
@@ -46,27 +49,106 @@
 #define nib1(x) ibits(x,4,4)
 #define nib0(x) ibits(x,0,4)
 
-#define Mf(t,g) Sf(g,t)
-#define Mf2(t,g) Sf(g+3,t)
-#define MSf2(s,t,g) Sf(s+6*(g),t)
-#define USf2(s1,s2,t,g) Sf(s1+2*(s2)+4*(g)+18,t)
-#define USf(s1,s2,t,g) CSf(s1+2*(s2)+4*(g)+12,t)
-#define MASf(as,t) Sf(as+60,t)
-#define MASf2(as,t) Sf(as+66,t)
-#define UASf(as1,as2,t) CSf(as1+6*(as2)+33,t)
-#define UASf_flat(i,t) CSf(i+39,t)
-#define DSS2(s,t,g) Sf(s+2*(g)+148,t)
-#define Kf(g1,g2,t) CSf(g1+3*(g2)+75,t)
-#define Kf_flat(i,t) CSf(i+78,t)
-#define Deltaf(t,g) CSf(g+87,t)
-#define CKM(g1,g2) CSf(g1+3*(g2)+84,1)
-#define CKM_flat(i) CSf(i+87,1)
-#define NSf 194
+#define Mf2(t,g) Sf(t)%mf2(g)
+#define Mf(t,g) Sf(t)%mf(g)
+#define MSf2(s,t,g) Sf(t)%msf(g)%m2(s)
+#define MSf(s,t,g) Sf(t)%msf(g)%m(s)
+#define USf2(s1,s2,t,g) Sf(t)%usf2(s1,s2,g)
+#define USf(s1,s2,t,g) Sf(t)%usf(s1,s2,g)
+#define MSfgl2(s,t) Sf(t)%msfgl%m2(s)
+#define MSfgl(s,t) Sf(t)%msfgl%m(s)
+#define USfgl2(s1,s2,t) Sf(t)%usfgl2(s1,s2)
+#define USfgl(s1,s2,t) Sf(t)%usfgl(s1,s2)
+#define UCSfgl(s1,s2,t) Sf(t)%ucsfgl(s1,s2)
+#define Afgl(t) Sf(t)%af
+#define Xfgl(t) Sf(t)%xf
+#define Yfgl(t) Sf(t)%yf
+#define MASf2(as,t) Sf(t)%masf2(as)
+#define MASf(as,t) Sf(t)%masf(as)
+#define UASf(as1,as2,t) Sf(t)%uasf(as1,as2)
+#define DSS2(s,t,g) Sf(t)%dss2(s,g)
+#define Kf(g1,g2,t) Sf(t)%kf(g1,g2)
+#define Deltaf(t,g) Sf(t)%deltaf(g)
 
-#define MSf(s,t,g) MSf2(s+4,t,g)
-#define MSdL(s,g) MSdL2(s+4,g)
+#define Stgl Sf(tM2)
+#define MTgl2 Stgl%mf2(3)
+#define MTgl Stgl%mf(3)
+#define MStgl2(s) Stgl%msfgl%m2(s)
+#define MStgl(s) Stgl%msfgl%m(s)
+#define UStgl2(s1,s2) Stgl%usfgl2(s1,s2)
+#define UStgl(s1,s2) Stgl%usfgl(s1,s2)
+#define UCStgl(s1,s2) Stgl%ucsfgl(s1,s2)
+#define Atgl Stgl%af
+#define Xtgl Stgl%xf
+#define Ytgl Stgl%yf
+
+#define UUStgl(s1,s2) Stgl%uusfgl(s1,s2)
+#define DMSb0tgl2(sb,st) Stgl%dsfgl(sb,st)
+#define MGlpTmSt2(s) Stgl%dsfgl(s,3)
+#define MGlpTmSt4(s) Stgl%dsfgl(s,4)
+#define MGlpTmStxGlT4(s) Stgl%dsfgl(s,5)
+
+#define Sbgl Sf(bM1)
+#define MBgl2 Sbgl%mf2(3)
+#define MBgl Sbgl%mf(3)
+#define MSbgl2(s) Sbgl%msfgl%m2(s)
+#define MSbgl(s) Sbgl%msfgl%m(s)
+#define USbgl2(s1,s2) Sbgl%usfgl2(s1,s2)
+#define USbgl(s1,s2) Sbgl%usfgl(s1,s2)
+#define UCSbgl(s1,s2) Sbgl%ucsfgl(s1,s2)
+#define Abgl Sbgl%af
+#define Xbgl Sbgl%xf
+#define Ybgl Sbgl%yf
+
+#define MSb0gl2(s) msb0gl%m2(s)
+#define MSb0gl(s) msb0gl%m(s)
+
+#define MSdL2(s,g) msdl(g)%m2(s)
+#define MSdL(s,g) msdl(g)%m(s)
+
+#define ME Mf(2,1)
+#define MM Mf(2,2)
+#define ML Mf(2,3)
+#define MU Mf(3,1)
+#define MC Mf(3,2)
+#define MT Mf(3,3)
+#define MD Mf(4,1)
+#define MS Mf(4,2)
+#define MB Mf(4,3)
+
+#define ME2 Mf2(2,1)
+#define MM2 Mf2(2,2)
+#define ML2 Mf2(2,3)
+#define MU2 Mf2(3,1)
+#define MC2 Mf2(3,2)
+#define MT2 Mf2(3,3)
+#define MD2 Mf2(4,1)
+#define MS2 Mf2(4,2)
+#define MB2 Mf2(4,3)
+
+#define MHiggs(h) Hi%x%mhiggs(h)
+#define SAeff Hi%x%saeff
+#define XHiggs(h1,h2,uz) Hi%x%xhiggs(h1,h2,uz)
+#define UHiggs(h1,h2) XHiggs(h1,h2,1)
+#define ZHiggs(h1,h2) XHiggs(h1,h2,2)
+
+#define MHiggs2(h) Hi%i%mhiggs2(h)
+#define dMsq1(h) Hi%i%dmsq1(h)
+#define dZ1(h) Hi%i%dz1(h)
+#define seR(h) Hi%i%ser(h)
+#define dseR(h) Hi%i%dser(h)
+#define se2R(h) Hi%i%se2r(h)
+#define se2Rcat(n,c) Hi%i%se2rcat(n,c)
+
 #define USfC(s1,s2,t,g) Conjugate(USf(s1,s2,t,g))
 #define UASfC(as1,as2,t) Conjugate(UASf(as1,as2,t))
+#define USfglC(s1,s2,t) Conjugate(UStgl(s1,s2,t))
+#define UCSfglC(s1,s2,t) Conjugate(UCStgl(s1,s2,t))
+#define UStglC(s1,s2) Conjugate(UStgl(s1,s2))
+#define UCStglC(s1,s2) Conjugate(UCStgl(s1,s2))
+#define UUStglC(s1,s2) Conjugate(UUStgl(s1,s2))
+#define USbglC(s1,s2) Conjugate(USbgl(s1,s2))
+#define UCSbglC(s1,s2) Conjugate(UCSbgl(s1,s2))
 #define VChaC(c1,c2) Conjugate(VCha(c1,c2))
 #define UChaC(c1,c2) Conjugate(UCha(c1,c2))
 #define ZNeuC(n1,n2) Conjugate(ZNeu(n1,n2))
@@ -79,7 +161,14 @@
 #define KfC(g1,g2,t) Conjugate(Kf(g1,g2,t))
 #define AfC(t,g) Conjugate(Af(t,g))
 #define XfC(t,g) Conjugate(Xf(t,g))
+#define AtglC Conjugate(Atgl)
+#define XtglC Conjugate(Xtgl)
+#define YtglC Conjugate(Ytgl)
+#define AbglC Conjugate(Abgl)
+#define XbglC Conjugate(Xbgl)
+#define YbglC Conjugate(Ybgl)
 #define MUEC Conjugate(MUE)
+#define EMUEC Conjugate(EMUE)
 #define M_3C Conjugate(M_3)
 
 #define M_3c ipslot(1,ipi)
@@ -112,7 +201,7 @@
 
 * SM parameters
 
-	ComplexType CKMin(3,3)
+	ComplexType CKMin(3,3), CKM(3,3)
 	RealType CKMlambda, CKMA, CKMrhobar, CKMetabar
 	RealType Qf(4), MB_MT
 	RealType MW, MW2, MZ, MZ2
@@ -124,7 +213,8 @@
 	RealType htMT, htMT2
 
 	common /smpara/
-     &    CKMin, CKMlambda, CKMA, CKMrhobar, CKMetabar,
+     &    CKMin, CKM,
+     &    CKMlambda, CKMA, CKMrhobar, CKMetabar,
      &    Qf, MB_MT,
      &    MW, MW2, MZ, MZ2,
      &    CW, CW2, SW, SW2,
@@ -142,34 +232,18 @@
 	equivalence (gsMT, gs2L)
 	equivalence (AlfasMT, Alfas2L)
 
-	RealType ME, ME2, MM, MM2, ML, ML2
-	RealType MU, MU2, MC, MC2, MT, MT2
-	RealType MD, MD2, MS, MS2, MB, MB2
-	equivalence (Mf(2,1), ME), (Mf2(2,1), ME2)
-	equivalence (Mf(2,2), MM), (Mf2(2,2), MM2)
-	equivalence (Mf(2,3), ML), (Mf2(2,3), ML2)
-	equivalence (Mf(3,1), MU), (Mf2(3,1), MU2)
-	equivalence (Mf(3,2), MC), (Mf2(3,2), MC2)
-	equivalence (Mf(3,3), MT), (Mf2(3,3), MT2)
-	equivalence (Mf(4,1), MD), (Mf2(4,1), MD2)
-	equivalence (Mf(4,2), MS), (Mf2(4,2), MS2)
-	equivalence (Mf(4,3), MB), (Mf2(4,3), MB2)
-
-	ComplexType CKMin_flat(3*3)
-	equivalence (CKMin, CKMin_flat)
-
 
 * MSSM parameters
 
 	ComplexType UCha(2,2), VCha(2,2), ZNeu(4,4)
 	ComplexType MSS2(3,3,5), deltaSf(6,6,2:4)
 	ComplexType Xf(4,3), Af(4,3), Af0(2:4,3)
-	ComplexType MUETB(2:4), MUE, M_1, M_2, M_3
+	ComplexType MUETB(2:4), MUE, EMUE, M_1, M_2, M_3
 	RealType MCha(2), MCha2(2), MNeu(4), MNeu2(4)
 	RealType MSS(5,3), MSS0(5,3)
-	RealType DSf(2,5), QSf(2:4)
+	RealType DSf(2,5), QSf(2:4), QSf2(2:4)
         RealType MHtree(4), MHtree2(4)
-	RealType MUE2, MGl, MGl2
+	RealType MUE2, MMUE, MGl, MGl2
 	RealType CB, SB, TB, CB2, SB2, TB2, C2B, S2B
 	RealType CA, SA, CA2, SA2, C2A, S2A
 	RealType CAB, SAB, CBA, SBA, CBA2, SBA2, SCB(2:4)
@@ -180,12 +254,12 @@
      &    UCha, VCha, ZNeu,
      &    MSS2, deltaSf,
      &    Xf, Af, Af0,
-     &    MUETB, MUE, M_1, M_2, M_3,
+     &    MUETB, MUE, EMUE, M_1, M_2, M_3,
      &    MCha, MCha2, MNeu, MNeu2,
      &    MSS, MSS0,
-     &    DSf, QSf,
+     &    DSf, QSf, QSf2,
      &    MHtree, MHtree2,
-     &    MUE2, MGl, MGl2,
+     &    MUE2, MMUE, MGl, MGl2,
      &    CB, SB, TB, CB2, SB2, TB2, C2B, S2B,
      &    CA, SA, CA2, SA2, C2A, S2A,
      &    CAB, SAB, CBA, SBA, CBA2, SBA2, SCB,
@@ -198,32 +272,10 @@
 	equivalence (MHtree(3), MA0), (MHtree2(3), MA02)
 	equivalence (MHtree(4), MHp), (MHtree2(4), MHp2)
 
-	ComplexType MSS2_flat(3*3*5)
-	equivalence (MSS2, MSS2_flat)
-
 	RealType reimMUE(2), reMUE, imMUE
 	equivalence (MUE, reimMUE)
 	equivalence (reimMUE(1), reMUE)
 	equivalence (reimMUE(2), imMUE)
-
-	ComplexType UCha_flat(2*2), VCha_flat(2*2), ZNeu_flat(4*4)
-	equivalence (UCha, UCha_flat)
-	equivalence (VCha, VCha_flat)
-	equivalence (ZNeu, ZNeu_flat)
-
-	ComplexType deltaSf_flat(6*6*2)
-	equivalence (deltaSf, deltaSf_flat)
-
-* variants for large TB:
-
-	ComplexType UChaL(2,2), VChaL(2,2)
-	ComplexType ZNeuL(4,4), USdL(2,2,3)
-	RealType MChaL(2), MNeuL(4)
-	RealType MSdL2(6,3)
-
-	common /mssmparaLargeTB/
-     &    UChaL, VChaL, ZNeuL, USdL,
-     &    MChaL, MNeuL, MSdL2
 
 * variables for interpolation:
 
@@ -251,8 +303,8 @@
 *
 * Sf(*,8=bBR) = Sdown with MB(MB)/|1 + Db|	- set in Sfermions.F
 * Sf(*,9=bTR) = Sdown with MB(MT)/|1 + Db|	- set in Sfermions.F
-* Sf(*,10=bTR0) = ditto compatible with TLps	- set in TLShifts.F
-*   (latter used for neutral Higgs masses only)
+* Sf(*,10=bTR0) = ditto compatible with TLps	- set in CalcRenSETL.F
+*   (latter used for cpe Higgs masses only)
 *
 * Sf(*,11=tH) = Sup with MT(Mh) for Decays	- set in Couplings.F
 * Sf(*,12=bH) = Sdown with MB(Mh) for Decays	- set in Couplings.F
@@ -269,13 +321,51 @@
      &    SetSfIni(bBR,4) + SetSfIni(bTR,4) + SetSfIni(bTR0,4) +
      &    SetSfIni(tH,3) + SetSfIni(bH,4) + SetSfIni(bHR,4))
 
-	RealType Sf(NSf,SfSlots)
+	type MSfType
+* EigenSf depends on this order:
+	sequence
+	RealType m2(4), m(2)
+	endtype
+
+	type SfType
+	sequence
+	RealType mf2(3), mf(3)
+* mfv sfermions
+	type(MSfType) msf(3)
+	RealType usf2(2,2,3)
+	ComplexType usf(2,2,3)
+* gaugeless sfermions
+	type(MSfType) msfgl
+	RealType usfgl2(2,2)
+	ComplexType usfgl(2,2)
+	ComplexType ucsfgl(3,4)
+	ComplexType af, xf, yf
+* tlhr stuff
+	ComplexType uusfgl(3,4)
+	RealType dsfgl(2,5)
+* nmfv sfermions
+	RealType masf2(6), masf(6)
+	ComplexType uasf(6,6)
+* breaking para
+	RealType dss2(2,3)
+	ComplexType kf(3,3)
+	ComplexType deltaf(3)
+	endtype
+
+	type(SfType) Sf(SfSlots)
 
 	common /sfermpara/ Sf
 
-	RealType Sf_flat(NSf*SfSlots)
-	ComplexType CSf(NSf/2,SfSlots)
-	equivalence (Sf, Sf_flat, CSf)
+* variants for large TB:
+
+	ComplexType UChaL(2,2), VChaL(2,2)
+	ComplexType ZNeuL(4,4), USdL(2,2,3)
+	RealType MChaL(2), MNeuL(4)
+	type(MSfType) msdl(3)
+
+	common /mssmparaLargeTB/
+     &    UChaL, VChaL, ZNeuL, USdL,
+     &    MChaL, MNeuL, msdl
 
 * Higgs results
 
@@ -301,38 +391,43 @@
 	parameter (NNeutral = 3)
 	parameter (NCharged = 1)
 	parameter (NHiggs = NNeutral + NCharged)
-	ComplexType SAeff, XHiggs(0:NNeutral,0:NNeutral,0:2)
-	RealType MHiggs(NHiggs), MHiggs2(0:NHiggs)
 
 * renormalized self-energies & counter terms
 
-	integer asat, atat, asab, atab, dMTH, dMTA, se2Rc
+	integer asat, atat, asab, atab, sdMT, sDRb, se2Rc
 	parameter (asat = 1, atat = 2, asab = 3, atab = 4)
-	parameter (dMTH = 5, dMTA = 6, se2Rc = 6)
+	parameter (sdMT = 5, sDRb = 6, se2Rc = 6)
 
-	RealType dZ(semax), Msq(semax)
-	ComplexType dMsq(semax)
-	ComplexType seR(semax), dseR(semax)
-	ComplexType se2R(semax), se2Rcat(se2Rn,se2Rc)
+	type HExtType
+	sequence
+	RealType mhiggs(NHiggs)
+	ComplexType saeff
+	ComplexType xhiggs(0:NNeutral,0:NNeutral,0:2)
+	endtype
+
+	type HIntType
+	sequence
+	RealType mhiggs2(0:NHiggs)
+	ComplexType dmsq1(semax), dz1(semax)
+	ComplexType ser(semax), dser(semax)
+	ComplexType se2r(semax), se2rcat(se2Rn,se2Rc)
+	endtype
+
+	type HiggsType
+	sequence
+	type(HExtType) x
+	type(HIntType) i
+	endtype
+
+	type(HiggsType) Hi
+	RealType Msq(0:semax), Msqgl(0:se2Rn)
 
 	common /higgsdata/
-     &    MHiggs, SAeff, XHiggs, MHiggs2,
-     &    dZ, Msq, dMsq, seR, dseR, se2R, se2Rcat
+     &    Hi,
+     &    Msq, Msqgl
 
-	ComplexType UHiggs(0:NNeutral,0:NNeutral)
-	ComplexType ZHiggs(0:NNeutral,0:NNeutral)
-	equivalence (XHiggs(0,0,1), UHiggs)
-	equivalence (XHiggs(0,0,2), ZHiggs)
-
-	ComplexType se2Rcat_flat(se2Rn*se2Rc)
-	equivalence (se2Rcat, se2Rcat_flat)
-
-	integer NHiggsErr, NHiggsData
-	parameter (NHiggsErr = NHiggs + 2 + 2*(NNeutral+1)**2*2)
-	parameter (NHiggsData = NHiggsErr + NHiggs+1 +
-     &    (2 + 4*2)*semax + se2Rn*se2Rc*2)
-	RealType HiggsData(NHiggsData)
-	equivalence (MHiggs, HiggsData)
+	RealType MHin2
+	equivalence (Msqgl(HmHp), MHin2)
 
 * external self-energies supplied by the user
 * (what else did you think seX stands for?)
@@ -342,13 +437,29 @@
 	integer hX, seXflags
 	common /userdata/ seX, hX, seXflags
 
-	ComplexType seX_flat(semax*(seXmax + 1))
-	equivalence (seX, seX_flat)
-
 	ComplexType seU(semax), dseU(semax), se2U(semax)
 	RealType seEFT(semax), Mh02EFT
-	common /higgsunren/ seU, dseU, se2U, seEFT, Mh02EFT
+	RealType seDiv
+	common /higgsunren/
+     &    seU, dseU, se2U,
+     &    seEFT, Mh02EFT,
+     &    seDiv
 
+* gaugeless approximation
+
+	RealType DSStgl2(2), DSSbgl2(2)
+	type(MSfType) msb0gl
+
+	ComplexType dMsqgl1(se2Rn), dZgl1(se2Rn)
+	ComplexType seUgl(se2Rn), dseUgl(se2Rn)
+	ComplexType seRgl(se2Rn), dseRgl(se2Rn)
+
+	common /gldata/
+     &    DSStgl2, DSSbgl2,
+     &    msb0gl,
+     &    dMsqgl1, dZgl1,
+     &    seUgl, dseUgl,
+     &    seRgl, dseRgl
 
 * couplings and widths
 
@@ -377,13 +488,14 @@
 
 * flags
 
-	integer mssmpart, fieldren, tanbren
-	integer higgsmix, p2approx, looplevel, loglevel
+	integer mssmpart, higgsmix, p2approx, looplevel, loglevel
 	integer runningMT, botResum, tlCplxApprox
-	integer debuglevel, debugunit, paraunit, fv
+	integer mixmask, fv
+	integer debuglevel, debugunit, paraunit
 	integer uzint, uzext, mfeff, ipolXt, ipolXb
-	integer tlpsmask, tlzeromask(4), loglevelmt, forceSU2
-	integer tM1, tM2, tS2, bM, bM0, gM
+	integer tlpsmask, tlzeromask(4), loglevelmt
+	integer forceSU2, drbarmode, drbarvars, fopoleeq, dmtlimim
+	integer tM1, tM2, bM, bM0, bM1, gM
 	character*256 extSE
 
 * debuglevel = 0: no debug messages
@@ -392,13 +504,14 @@
 *              3: display search for zeros
 
 	common /flags/
-     &    mssmpart, fieldren, tanbren,
-     &    higgsmix, p2approx, looplevel, loglevel,
+     &    mssmpart, higgsmix, p2approx, looplevel, loglevel,
      &    runningMT, botResum, tlCplxApprox,
-     &    debuglevel, debugunit, paraunit, fv,
+     &    mixmask, fv,
+     &    debuglevel, debugunit, paraunit,
      &    uzint, uzext, mfeff, ipolXt, ipolXb,
-     &    tlpsmask, tlzeromask, loglevelmt, forceSU2,
-     &    tM1, tM2, tS2, bM, bM0, gM,
+     &    tlpsmask, tlzeromask, loglevelmt,
+     &    forceSU2, drbarmode, drbarvars, fopoleeq, dmtlimim,
+     &    tM1, tM2, bM, bM0, bM1, gM,
      &    extSE
 
 
@@ -414,4 +527,3 @@
 
 	character*1 cMSS(5), cAf(4)
 	common /debug/ cMSS, cAf
-

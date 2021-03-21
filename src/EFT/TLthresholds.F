@@ -2,7 +2,7 @@
 * 2L threshold corrections to lambdaSM
 * expressions provided by Pietro Slavich 
 * this file is part of FeynHiggs
-* last modified 8 Feb 17 th
+* last modified 30 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -32,13 +32,11 @@
 	if( abs(xSQU2) .lt. 1D-5 ) then
 	  if( abs(xSQ1) .lt. 1D-5 ) then
 * x1 == 1 && x2 == 1
-c	PRINT *, "case 11"
 	    dlam_asat = 1/3.D0*(-36*LGlq2**2 - xg*
      &       (24 + xg*(12 - xg*(28 + (1 - 2*xg)*xg)) - 
      &         2*LGlq2*(24 - xg*(24 + (4 - xg)*xg))))
 	  else
 * x1 == x2
-c	PRINT *, "case Eq"
 	   dlam_asat = 1/3.D0*
      &      (xg**4*(2*LSQ*xSQ*(3 - (8 - 3*xSQ)*xSQ) - 4*xSQ1 + 
      &          (7 - LGlq2*(4 - 6*xSQ))*xSQ1**2 + xSQ1**3) + 
@@ -67,7 +65,6 @@ c	PRINT *, "case Eq"
 
 	if( abs(xSU1) .lt. 1D-5 ) then
 * x1 != 1 and x2 == 1
-c	PRINT *, "case X1"
 	  dlam_asat = (xSQ*
      &       (8*xg**5*(LSQ*xSQ + xSQ1)*(LSQ*(1 + xSQ) + 2*xSQ1) - 
      &         8*xg*xSQ1**3*
@@ -100,7 +97,6 @@ c	PRINT *, "case X1"
 
 	if( abs(xSQ1) .lt. 1D-5 ) then
 * x1 == 1 and x2 != 1
-c	PRINT *, "case 1X"
 	  dlam_asat = (xSU*
      &       (8*xg**5*(LSU*xSU + xSU1)*(LSU*(1 + xSU) + 2*xSU1) - 
      &         8*xg*xSU1**3*
@@ -127,7 +123,6 @@ c	PRINT *, "case 1X"
 	endif
 
 * x1 != 1 and x2 != 1
-c	PRINT *, "case XX"
 	tmp1 = xSQU2**4*
      &     (2*LGlq2*xSQ1**2*
      &        (xSQ + xSU - (2 - 3*(LGlq2 + LSQ + LSU))*xSQ*xSU)*

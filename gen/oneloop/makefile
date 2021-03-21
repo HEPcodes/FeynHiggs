@@ -1,37 +1,38 @@
-all: mfv nmfv
-	./combine
+SRC = .
+FH = OneLoop
 
-SE = \
-  se_h0h0.F dse_h0h0.F \
-  se_HHHH.F dse_HHHH.F \
-  se_A0A0.F dse_A0A0.F \
-  se_h0HH.F dse_h0HH.F \
-  se_h0A0.F dse_h0A0.F \
-  se_HHA0.F dse_HHA0.F \
-  se_HmHp.F dse_HmHp.F \
-  se_G0G0.F dse_G0G0.F \
-  se_h0G0.F dse_h0G0.F \
-  se_HHG0.F dse_HHG0.F \
-  se_A0G0.F dse_A0G0.F \
-  se_HmGp.F dse_HmGp.F \
-  se_GmGp.F dse_GmGp.F \
-  se_WW.F   dse_WW.F \
-  se_ZZ.F   dse_ZZ.F \
-  se_A0Z.F \
-  td_h0.F \
-  td_HH.F \
-  td_A0.F
+segl := h0h0 HHHH A0A0 HmHp h0HH h0A0 HHA0
+se := G0G0 h0G0 HHG0 A0G0 GmGp HmGp WW ZZ
+td := h0 HH A0
 
-.SUFFIXES:
+SEgl := \
+  $(foreach x,$(td),$(x)/td_$(x)) \
+  $(foreach x,$(segl),$(x)/se_$(x) $(x)/dse_$(x)) \
+  h0h0/dZ_h0h0 HHHH/dZ_HHHH
+SE := $(SEgl) \
+  $(foreach x,$(se),$(x)/se_$(x) $(x)/dse_$(x))
 
-mfv: $(addprefix f-mfv/, $(SE))
+define mod
+$(1): $(2)
+install-$(1): $(2)
+	mkdir -p $(FH)/$(1)
+	cp -p $(2) $(3) $(FH)/$(1)
+$(2): $(3)
+	$(SRC)/rc $(1)
+endef
 
-nmfv: $(addprefix f-nmfv/, $(SE))
+define model
+$(eval $(call mod,$(1),m/$(1)/CalcSE_$(1).h,$(foreach se,$(2),m/$(1)/$(se)_$(1).F)))
+endef
 
-%.F:
-	./se $@
+$(call model,mfv,$(SE))
+$(call model,nmfv,$(SE))
+$(call model,gl,$(SEgl) h0HH/dZ_h0HH)
 
+se_%.F dse_%.F td_%.F dZ_%.F:
+	$(SRC)/se $(@F)
 
-clean:
-	rm -fr f-mfv f-nmfv f
+all: mfv nmfv gl
+
+install: install-mfv install-nmfv install-gl
 

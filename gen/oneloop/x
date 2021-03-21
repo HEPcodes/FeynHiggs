@@ -1,9 +1,0 @@
-#! /bin/sh
-
-for file in *.F ; do
-  [ -f $file.orig ] || mv $file $file.orig
-  sed '
-	s/List(),//g
-	s/List(k2),/k2, /g' $file.orig > $file
-done
-

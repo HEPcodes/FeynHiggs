@@ -1,7 +1,7 @@
 * DRhoSUSY2LGlu.F
 * the gluino part and dMSb12 shift for Delta rho
 * this file is part of FeynHiggs
-* last modified 11 Feb 17 th
+* last modified 21 Jan 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -15,7 +15,7 @@
 #include "Deltar.h"
 
 	ComplexType USx(2,2,3:4)
-	RealType MSx2(6,3:4)
+	RealType MSx2(8,3:4)
 	integer fail
 
 	RealType MSt1, MSt2, MSt12, MSt22, DMSt2
@@ -86,35 +86,6 @@
 	LSt22 = Re(A0(MSt22))/MSt22
 	LSb12 = Re(A0(MSb12))/MSb12
 	LSb22 = Re(A0(MSb22))/MSb22
-
-#if 0
-	PRINT *, "LT2=", LT2
-	PRINT *, "LB2=", LB2
-	PRINT *, "LGl2=", LGl2
-	PRINT *, "LSt12=", LSt12
-	PRINT *, "LSt22=", LSt22
-	PRINT *, "LSb12=", LSb12
-	PRINT *, "LSb22=", LSb22
-#endif
-
-#if 0
-	PRINT *, "Atc=", Atc
-	PRINT *, "Xtc=", Xtc
-	PRINT *, "Abc=", Abc
-	PRINT *, "Xbc=", Xbc
-	PRINT *, "MSt1=", MSt1, MSt12
-	PRINT *, "MSt2=", MSt2, MSt22
-	PRINT *, "ctt=", ctt, ctt2
-	PRINT *, "stt=", stt, stt2
-	PRINT *, "c2tt=", c2tt, c2tt2
-	PRINT *, "s2tt=", s2tt, s2tt2
-	PRINT *, "MSb1=", MSb1, MSb12
-	PRINT *, "MSb2=", MSb2, MSb22
-	PRINT *, "ctb=", ctb, ctb2
-	PRINT *, "stb=", stb, stb2
-	PRINT *, "c2tb=", c2tb, c2tb2
-	PRINT *, "s2tb=", s2tb, s2tb2
-#endif
 
 #include "DrhoSUSY2LGluino.h"
 

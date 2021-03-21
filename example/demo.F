@@ -1,10 +1,10 @@
 * demo.F
 * demonstration program for calling FeynHiggs from Fortran
 * this file is part of FeynHiggs
-* last modified 25 Jan 17 th
+* last modified 31 Jan 18 th
 
 * compile this file with something like
-* f77 -Ibuild example/demo.F -Lbuild -lFH
+* gfortran -Ibuild example/demo.F build/libFH.a
 
 
 	program FHdemo
@@ -28,23 +28,21 @@ c	call setSLHA("myfile.slha")
 	subroutine setFlags
 	implicit none
 
-	integer mssmpart, fieldren, tanbren, higgsmix, p2approx
-	integer loglevel, looplevel, runningMT, botResum, tlCplxApprox
+	integer mssmpart, higgsmix, p2approx, looplevel, loglevel
+	integer runningMT, botResum, tlCplxApprox
 	parameter (mssmpart = 4)
-	parameter (fieldren = 0)
-	parameter (tanbren = 0)
 	parameter (higgsmix = 2)
-	parameter (p2approx = 0)
+	parameter (p2approx = 4)
 	parameter (looplevel = 2)
-	parameter (loglevel = 0)
+	parameter (loglevel = 3)
 	parameter (runningMT = 1)
 	parameter (botResum = 1)
 	parameter (tlCplxApprox = 3)
 
 	integer error
 
-	call FHSetFlags(error, mssmpart, fieldren, tanbren,
-     &    higgsmix, p2approx, looplevel, loglevel,
+	call FHSetFlags(error,
+     &    mssmpart, higgsmix, p2approx, looplevel, loglevel,
      &    runningMT, botResum, tlCplxApprox)
 	if( error .ne. 0 ) stop
 	end
@@ -80,7 +78,7 @@ c	call setSLHA("myfile.slha")
 	parameter (CKMetabar = -1)
 
 	double precision MT, TB, MA0, MHp
-	parameter (MT = 172)
+	parameter (MT = 173.2D0)
 	parameter (TB = 5)
 	parameter (MA0 = 250)
 	parameter (MHp = -1)
@@ -181,19 +179,21 @@ c	call setSLHA("myfile.slha")
 	subroutine getPara
 	implicit none
 
-	integer nmfv
+	integer fv
 	double precision MSf(2,5,3), MASf(6,5), MCha(2), MNeu(4)
 	double complex USf(2,2,5,3), UASf(6,6,5)
 	double complex UCha(2,2), VCha(2,2), ZNeu(4,4)
 	double complex DeltaMB
 	double precision MGl
 	double precision MHtree(4), SAtree
+	double precision AlfasMT
 
 	integer error
 
-	call FHGetPara(error, nmfv, MSf, USf, MASf, UASf,
+	call FHGetPara(error,
+     &    fv, MSf, USf, MASf, UASf,
      &    MCha, UCha, VCha, MNeu, ZNeu, DeltaMB, MGl,
-     &    MHtree, SAtree)
+     &    MHtree, SAtree, AlfasMT)
 	if( error .ne. 0 ) stop
 
 * print some sample output:
@@ -223,4 +223,3 @@ c	call setSLHA("myfile.slha")
 	print *, "MHp =", MHiggs(4)
 	print *, "sin alpha_eff =", SAeff
 	end
-

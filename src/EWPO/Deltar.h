@@ -1,7 +1,7 @@
 * Deltar.h
 * declarations for Delta r
 * this file is part of FeynHiggs
-* last modified 6 Feb 17 th
+* last modified 13 Jan 18 th
 
 #include "FH.h"
 #include "looptools.h"
@@ -17,7 +17,8 @@
 c	parameter (tR = 3, bR = bBR)
 	parameter (tR = 3, bR = 4)
 
-	RealType MTr, MTr2, MBr, MBr2
-	equivalence (Mf(tR,3), MTr), (Mf2(tR,3), MTr2)
-	equivalence (Mf(bR,3), MBr), (Mf2(bR,3), MBr2)
+#define MTr2 Mf2(tR,3)
+#define MTr Mf(tR,3)
+#define MBr2 Mf2(bR,3)
+#define MBr Mf(bR,3)
 

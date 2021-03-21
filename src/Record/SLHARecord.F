@@ -1,7 +1,7 @@
 * SLHARecord.F
 * initialize FeynHiggs record from an SLHA data structure
 * this file is part of FeynHiggs
-* last modified 25 Jan 17 th
+* last modified 26 Oct 17 th
 
 #include "externals.h"
 #include "types.h"
@@ -46,8 +46,8 @@ c	if( extpar_Q .eq. invalid ) extpar_Q = 2D16
 
 #define R(i) record(i,iLower)
 
-	R(iinvAlfaMZ) = Re(SMInputs_invAlfaMZ) + 1/Alfa0*
-     &    DeltaAlfaTop(Re(SMInputs_Mt)**2, Re(SMInputs_MZ)**2)
+	R(iinvAlfaMZ) = Re(SMInputs_invAlfaMZ) +
+     &    DeltaAlfaTopAlfa(Re(SMInputs_Mt)**2, Re(SMInputs_MZ)**2)
 	R(iAlfasMZ) = Re(SMInputs_AlfasMZ)
 	R(iGF) = Re(SMInputs_GF)
 
