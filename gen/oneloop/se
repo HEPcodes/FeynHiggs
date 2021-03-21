@@ -27,7 +27,7 @@ math -run "
 " << \_EOF_ > "$file.log"
 AppendTo[$Echo, "stdout"];
 
-<< packages/fafc.m;
+<< ../Packages/fafc.m;
 
 $DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
 $DebugCmd[1] := "DHIGGS \"" <> name <> " " <> debtag <> " =\", `3` ENDL\n";
@@ -73,7 +73,7 @@ Block[ {process, top, cttop, charged, tst, bsb, lsl, all, rem, res, hh, dZ, dMsq
     paint[bsb, deb];
     tst = Head[bsb][],
   (* else *)
-    tst = InsertFields[top, process, 
+    tst = InsertFields[top, process,
       LastSelections -> F[3] | S[13],
       ExcludeParticles -> {F[4], S[14]}];
     paint[tst, deb];
@@ -117,7 +117,6 @@ Block[ {process, top, cttop, charged, tst, bsb, lsl, all, rem, res, hh, dZ, dMsq
     Put[sfsimp[mod][{dMsq1[proc] -> dMsq, dZ1[proc] -> dZ}], file <> ".ct"] ];
 
   res = res /. ToOldBRules /. {
-    Mino3 -> "M_3", Mino3C -> "M_3C",
     IndexDelta -> Delta,
     Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2 };
 
@@ -173,4 +172,3 @@ _EOF_
 gzip "$file"{.log,.amp,*.ps}
 
 test -f "$file.F"
-

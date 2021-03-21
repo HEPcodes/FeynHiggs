@@ -4,7 +4,7 @@
 * Based on A. Brignole, G. Degrassi, P. Slavich and F. Zwirner,
 * hep-ph/0112177.
 * this file is part of FeynHiggs
-* last modified 31 Dec 16 th
+* last modified 21 Jun 18 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -58,19 +58,19 @@
 
 	x14 = InvTri(MSt22,pMT2,MUEr2)
 
-	x1 = Li2omx(MbSL2/MSt12)
+	x1 = Li21m(MbSL2/MSt12)
 
-	x3 = Li2omx(MbSL2/MSt22)
+	x3 = Li21m(MbSL2/MSt22)
 
-	x31 = Li2omx(MSt22/MSt12)
+	x31 = Li21m(MSt22/MSt12)
 
-	x32 = Li2omx(MSt12/MSt22)
+	x32 = Li21m(MSt12/MSt22)
 
-	x17 = Li2omx(MA02/pMT2)
+	x17 = Li21m(MA02/pMT2)
 
-	x4 = Li2omx(MUEr2/MSt12)
+	x4 = Li21m(MUEr2/MSt12)
 
-	x5 = Li2omx(MUEr2/MSt22)
+	x5 = Li21m(MUEr2/MSt22)
 
 	x18 = Log(MA02)
 

@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 24 Apr 18 th
+* last modified 2 Aug 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -50,17 +50,19 @@ c#define HFFTEST 1
 	integer Nc
 	RealType fac, sqme(2)
 	RealType kw, kt, kx, x, y, rtb(3)
-	RealType r, rr, r2, logrr, logr2
+	RealType r, rr, r2, logrr, logr2, li2r2
 	RealType mhi, mlo, m, gam, qcd
-	ComplexType DD(3,3,0:2)
+	ComplexType DD(3,3,0:3)
 	ComplexType cL(0:2), cR(0:2)
 	ComplexType chffL(3,0:1), chhv(3,0:2), chhh(3,4,4,0:2)
 	ComplexType chss(2,2), chssy(2,2)
 	ComplexType u1, u2, u3, u4, c
 	RealType ga(4), gasm(4), gatot_top
 
-	RealType Kallen, KallenLR, HXVWidth, Li2
-	external Kallen, KallenLR, HXVWidth, Li2
+	ComplexType spence
+	RealType Kallen, KallenLR, HXVWidth
+	external spence
+	external Kallen, KallenLR, HXVWidth
 	external hee_SquaredME, heeSM_SquaredME
 	external huu_SquaredME, huuSM_SquaredME
 	external hdd_SquaredME, hddSM_SquaredME
@@ -467,11 +469,11 @@ c	  i = -iand(isB(t), isMFV(t))
 
 	call H0HHCouplings(chhh, DD)
 
-	DeltaHhh = .5D0*cI*EL0*MW/(CW2*SW)*
+	DeltaHhh = cI/2*EL0*MW/(CW2*SW)*
      &    3*SA*CA2/SB/MZ2*
-     &    (CA2*(se2R(h0h0) + seEFT(h0h0)) +
-     &     SA2*(se2R(HHHH) + seEFT(HHHH)) +
-     &     S2A*(se2R(h0HH) + seEFT(h0HH)))
+     &    (CA2*(se2R(zD,h0h0) + seEFT(h0h0)) +
+     &     SA2*(se2R(zD,HHHH) + seEFT(HHHH)) +
+     &     S2A*(se2R(zD,h0HH) + seEFT(h0HH)))
 
 	call hhh_RenConst
 
@@ -612,13 +614,14 @@ c	  i = -iand(isB(t), isMFV(t))
 	r2 = 1 + 2*r**2
 	logrr = log(rr)
 	logr2 = log(r**2)
+	li2r2 = Li2(r**2)
 
 * hep-ph/0408158, Eqs 6 + 26:
 	Gamma(tBF(1)) = GF*Mf(3,3)**3/(8*pi*sqrt2)*rr**2*r2*(
      &    1 - C_F/(2*pi)*AlfasMT*(
      &      2/3D0*pi**2 + 1/2D0 + 2*(logr2 + 1)*(logrr - 1) -
      &      4/(3*rr) + (22 - 34*r**2)/(9*rr**2)*logr2 +
-     &      (3 + 27*logrr - 4*logr2)/(9*r2) + 4*Li2(r**2) ) )
+     &      (3 + 27*logrr - 4*logr2)/(9*r2) + 4*li2r2 ) )
 
 * top -> H+ bottom
 
@@ -887,13 +890,13 @@ c	  i = -iand(isB(t), isMFV(t))
 
 	call CalcSE(Mh02, cpeven, 0)
 c	call CalcSE(0D0, cpeven, 0)
-	omega_t = CA2*Re(seR(h0h0)) + SA2*Re(seR(HHHH)) +
-     &    S2A*Re(seR(h0HH))
+	omega_t = CA2*Re(seR(zD,h0h0)) + SA2*Re(seR(zD,HHHH)) +
+     &    S2A*Re(seR(zD,h0HH))
 
 	hc(1,1,1) = -3*SB + 3/MZ2/SB*(omega_t +
      &    GF*sqrt2/(pi**2*SB2)*Mf2(3,3)**2)	! hep-ph/0108245, eq26
-	hc(1,1,2) = CB 
-	hc(1,2,2) = SB 
+	hc(1,1,2) = CB
+	hc(1,2,2) = SB
 	hc(2,2,2) = -3*CB
 	hc(1,3,3) = -SB*C2B + SB*omega_t/(MZ2*TB2)
 	hc(2,3,3) = CB*C2B
@@ -1097,7 +1100,7 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 
 
 ************************************************************************
-	
+
 	RealType function Kallen(m, m1, m2)
 	implicit none
 	RealType m, m1, m2
@@ -1117,7 +1120,7 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 
 
 ************************************************************************
-	
+
 	RealType function KallenLR(m, m1, m2, cL, cR)
 	implicit none
 	RealType m, m1, m2
@@ -1314,12 +1317,12 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 #include "Decay.h"
 
 	RealType fac, sqmeSM(3), sqme(3)
-	RealType m, b2, b, lb, d, ld, irH, ir
+	RealType m, b2, b, lb, d, ld, li2d, li2m, irH, ir
 	character*8 id
 	integer ty
 
-	RealType Li2
-	external Li2
+	ComplexType spence
+	external spence
 
 	ty = t + ifB(t, bH - 4)
 	call Kin1to2(fac, h, Mf(ty,g1), Mf(ty,g2), 1D0)
@@ -1337,11 +1340,11 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	  lb = log(b)
 	  d = (1 - b)/(1 + b)
 	  ld = log(d)
-	  irH = (1 + b2)/b*
-     &        (4*Li2(d) + 2*Li2(-d) + (3*log(2/(1 + b)) + 2*lb)*ld) +
-     &      6*log(.5D0*m) - 4*lb -
+	  li2d = Li2(d)
+	  li2m = Li2(-d)
+	  irH = 21/8D0 + 6*log(m/2) - 4*lb - 3/8D0/b2 -
      &      (3/16D0 + b2*(34/16D0 - 13/16D0*b2))/(b*b2)*ld +
-     &      21/8D0 - 3/8D0/b2
+     &      (b + 1/b)*(4*li2d + 2*li2m + (3*log(2/(1 + b)) + 2*lb)*ld)
 * we ignore the extra term for the pseudoscalar, Eq. (4.3),
 * as the contribution is tiny and is straightforward to apply
 * only in the 2x2 mixing case: irH = irH + m**4

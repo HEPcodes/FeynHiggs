@@ -2,7 +2,7 @@
 * Compute (actually, not completely invent) an error estimate
 * for the Higgs masses and mixings
 * this file is part of FeynHiggs
-* last modified 10 Apr 18 th
+* last modified 2 Aug 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -162,6 +162,6 @@ c	if( loglevel .eq. 0 ) tM1 = tM2
 	  DeltaMHiggs_ = dHix%mhiggs
 	  DeltaSAeff_ = dHix%saeff
 	  DeltaUHiggs_ = dHix%xhiggs(1:NNeutral,1:NNeutral,1)
-	  DeltaZHiggs_ = dHix%xHiggs(1:NNeutral,1:NNeutral,2)
+	  DeltaZHiggs_ = dHix%xhiggs(1:NNeutral,1:NNeutral,3)
 	endif
 	end

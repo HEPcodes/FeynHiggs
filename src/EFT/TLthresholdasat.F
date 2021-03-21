@@ -2,7 +2,7 @@
 * 2L asat threshold corrections to lambdaSM
 * expressions provided by Emanuele Bagnaschi and Pietro Slavich
 * this file is part of FeynHiggs
-* last modified 13 Mar 18 th
+* last modified 21 Jun 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -31,7 +31,7 @@ c	sg = 1/abs(m_3OS)
 	xSQ = rSQ**2
 	xSQ1 = (1 - rSQ)*(1 + rSQ)
 	LSQ = log(xSQ)
-	Li2SQ = Li2omx(1/xSQ)
+	Li2SQ = Li21m(1/xSQ)
 	rSU = MStU*sg
 	xSQU2 = (rSQ - rSU)*(rSQ + rSU)
 
@@ -99,7 +99,7 @@ c	sg = 1/abs(m_3OS)
 	endif
 
 	LSU = log(xSU)
-	Li2SU = Li2omx(1/xSU)
+	Li2SU = Li21m(1/xSU)
 
 	if( abs(xSQ1) .lt. eps ) then
 * x1 == 1 and x2 != 1

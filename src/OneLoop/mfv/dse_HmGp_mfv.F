@@ -1,5 +1,5 @@
 * dse_HmGp_mfv.F
-* generated 8-May-2018 11:25
+* generated 13-Jul-2018 16:57
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -20,7 +20,7 @@
 
 	ComplexType B0tmp1, B0tmp2, B1tmp1, B1tmp2, DB0tmp1, DB0tmp2
 	ComplexType DB1tmp1, DB1tmp2, dup1, dup2, dup3, dup4, dup5
-	ComplexType dup6, dup7, dup8
+	ComplexType dup6, dup7, dup8, dup9
 
 #ifdef DETAILED_DEBUG
 	DHIGGS "dse_HmGp_mfv k2 =", k2 ENDL
@@ -189,15 +189,14 @@
 
 	if( mssmpart .le. 3 ) return
 
-        se = se - 1/(16.D0*Pi)*
-     &     (Alfa1L*(MW2*((C2B*CAB*CW2 - S2B*SAB*SW2)*
-     &              ((CA*(C2B + 2*CW2) - CW2*S2B*SA)*SB - 
-     &                CB*SA*(1 - 2*CB2*SW2))*DB0(k2,Mh02,MHp2) + 
-     &             (C2B*CW2*SAB + CAB*S2B*SW2)*
-     &              ((C2B + 2*CW2)*SA*SB + 
-     &                CA*(CW2*S2B*SB + CB*(1 - 2*CB2*SW2)))*
-     &              DB0(k2,MHH2,MHp2)) + 
-     &          CW2**2*(((CBA*CW2**2*(3*k2 + Mh02)*SBA - 
+	dup9 = CW2*S2B*SB + CB*(1 - 2*CB2*SW2)
+
+        se = se + 1/(16.D0*Pi)*
+     &     (Alfa1L*(MW2*((dup9*SA + CA*(-C2B - 2*CW2)*SB)*
+     &              (C2B*CAB*CW2 - S2B*SAB*SW2)*DB0(k2,Mh02,MHp2)-
+     &               (CA*dup9 + (C2B + 2*CW2)*SA*SB)*
+     &              (C2B*CW2*SAB + CAB*S2B*SW2)*DB0(k2,MHH2,MHp2))-
+     &            CW2**2*(((CBA*CW2**2*(3*k2 + Mh02)*SBA - 
      &                   C2B*MW2*(C2B*CAB*CW2*SAB - S2B*SAB**2*SW2)
      &                   )*DB0(k2,Mh02,MW2) - 
      &                (CBA*CW2**2*(3*k2 + MHH2)*SBA - 

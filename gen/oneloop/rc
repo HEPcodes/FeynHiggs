@@ -29,12 +29,10 @@ math -run "
 " << \_EOF_ > "$file.log"
 AppendTo[$Echo, "stdout"];
 
-<< packages/fafc.m;
-
-Scan[(N[#] = Random[])&, {EL1L, CW, SW, MZ}];
+<< ../Packages/fafc.m;
 
 $DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
-$DebugCmd[1] := "DHIGGS \"`1``2` =\", `3` ENDL\n";
+$DebugCmd[1] = "DHIGGS \"`1``2` =\", `3` ENDL\n";
 $DebugPost[1] = "#endif\n";
 
 
@@ -79,31 +77,17 @@ modopt[mod, $MHpInput -> False];
 rcCat[se_, rc_] :=
 Block[ {ij, hH},
   {ij, hH} = GatherBy[rc, MatchQ[#, _["h0h0"|"HHHH"|"h0HH"] -> _]&];
-  hH = MoveDepsLeft[hH, se, ij][[1]];
-  ij = MoveDepsLeft[ij, se][[1]];
-  {GatherBy[hH, FreeQ[#, Call]&], GatherBy[ij, FreeQ[#, Call]&]}
+  First/@ {MoveDepsLeft[hH, se, ij], MoveDepsLeft[ij, se]}
 ];
-
-rcIf[xHp_, xA0_] :=
-Block[ {xCom = Select[xHp, MemberQ[xA0, #]&]},
-  {xCom, Select[xHp, !MemberQ[xCom, #]&], Select[xA0, !MemberQ[xCom, #]&]}
-];
-
-rcExpr[{seCom_, seHp_, seA0_}, {rcCom_, rcHp_, rcA0_}] := Flatten[{
-  seCom,
-  IndexIf[ inputmass == A0A0,
-    OnePassOrder[Flatten[{seA0, rcA0}]],
-    OnePassOrder[Flatten[{seHp, rcHp}]] ],
-  rcCom }];
 
 {hHHp, ijHp} = rcCat[seHp, rcHp];
 {hHA0, ijA0} = rcCat[seA0, rcA0];
 
 fexpr = {
   bM1 -> bMps,
-  rcExpr@@ MapThread[rcIf, {hHHp, hHA0}],
+  OnePassOrder[IndexIf[inputmass == A0A0, hHA0, hHHp]],
   bM1 -> bM,
-  rcExpr@@ MapThread[rcIf, {ijHp, ijA0}] };
+  OnePassOrder[IndexIf[inputmass == A0A0, ijA0, ijHp]] };
 
 Put[fexpr, file <> ".rc.m"];
 
@@ -129,10 +113,7 @@ secall = Flatten[{bM1 -> bMps, xcall/@ hH, bM1 -> bM, xcall/@ ij}];
 Put[secall, file <> ".se.m"];
 
 
-N[fac] = Random[];
-Format[fac, FortranForm] := HoldForm[EL1L/(2 MW SW)];
-
-fexpr = PrepareExpr[fexpr /. EL1L -> fac (2 CW SW MZ), 
+fexpr = PrepareExpr[fexpr,
   Optimize -> False,
   DebugLines -> False ];
 
@@ -164,7 +145,9 @@ WriteString[hh, "\n\n\
 #include \"FH.h\"\n\
 #include \"looptools.h\"\n\n"];
 
-WriteExpr[hh, {fexpr, "\tend\n"} /. {dMsq1 -> "dMsq1_", dZ1 -> "dZ1_"},
+fexpr = fexpr /. {dMsq1 -> "dMsq1_", dZ1 -> "dZ1_"};
+
+WriteExpr[hh, {fexpr, "\tend\n"},
   RealArgs -> _String,
   Optimize -> False,
   DebugLines -> 0];

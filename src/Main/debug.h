@@ -1,7 +1,7 @@
 * debug.h
 * definitions for error handling and debugging
 * this file is part of FeynHiggs
-* last modified 6 Feb 18 th
+* last modified 31 Jul 18 th
 
 
 #ifndef DEBUG_H
@@ -44,39 +44,28 @@ if( loglevel .gt. 0 .and. eft_valid .ne. valid ) call Resum4H(err)
 c#define SORT_SF 1
 
 
+* which of (z0,zM) to print
+c#define zO zRan
+#define zO zM
+
+
 #define Digit(n) char(n+48)
 #define Letter(n) char(n+96)
 #define Hex(n) char(n+(n)/10*7+48)
 
 #define SfIdType character*6
 
-#if VT100
-#define RESET char(27)//"[0m"
-#define BOLD char(27)//"[1m"
-#define RED char(27)//"[31m"
-#define GREEN char(27)//"[32m"
-#define BROWN char(27)//"[33m"
-#define BLUE char(27)//"[34m"
-#define PURPLE char(27)//"[35m"
-#define CYAN char(27)//"[36m"
-#define WHITE char(27)//"[37m"
-#define DCOLOR(c) write(debugunit,*) c//"FH> ",
-#define ENDL ,RESET
-#else
-#define DCOLOR(c) write(debugunit,*) "FH> ",
-#define ENDL
-#endif
-
-#define DFLAGS DCOLOR(BLUE)
-#define DPARA DCOLOR(RED)
-#define DSLHA DCOLOR(PURPLE)
-#define DSELF DCOLOR(GREEN)
-#define DHIGGS DCOLOR(PURPLE)
-#define DEFT DCOLOR(RED)
-#define DCOUP DCOLOR(CYAN)
-#define DHEAD DCOLOR(BLUE)
-#define DPROD DCOLOR(PURPLE)
-#define DCONST DCOLOR(GREEN)
+#define DFLAGS DCOLOR(dflags)
+#define DPARA DCOLOR(dpara)
+#define DSLHA DCOLOR(dslha)
+#define DSELF DCOLOR(dself)
+#define DHIGGS DCOLOR(dhiggs)
+#define DEFT DCOLOR(deft)
+#define DCOUP DCOLOR(dcoup)
+#define DHEAD DCOLOR(dhead)
+#define DPROD DCOLOR(dprod)
+#define DCONST DCOLOR(dconst)
+#define DLOOP DCOLOR(dloop)
 
 #define DTAG(i,x) write(paraunit,*) FHName(i), x
 #define DTAGm(i,x) if(x.gt.0) DTAG(i,x)

@@ -2,7 +2,7 @@
 * 2-loop parts of Delta b
 * code adapted from HDecay
 * this file is part of FeynHiggs
-* last modified 9 Mar 18 th
+* last modified 31 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -18,9 +18,9 @@
 #define MSb22 MSdL2(2,3)
 
 
-	RealType function Deltab2L_ew(scale)
+	RealType function Deltab2L_ew(Q)
 	implicit none
-	RealType scale
+	RealType Q
 
 #include "FH.h"
 
@@ -488,7 +488,7 @@
 	Rew = C_F*Re(R22 + R42 + R52 + R72 + R82 + R92 +
      &    Rat2 + Rlt2 + RMSt12 + RMSt22)/TLdb(MSt12, MSt22, MUE2)
 	anomalous = -C_F
-	finscale = 2*log(scale**2/MGl2)
+	finscale = 2*log(Q**2/MGl2)
 c??? should be MUE2???
 
 	Deltab2L_ew = Rew*fnorm + anomalous + finscale
@@ -497,9 +497,9 @@ c??? should be MUE2???
 
 ************************************************************************
 
-	RealType function Deltab2L_qcd(scale)
+	RealType function Deltab2L_qcd(Q)
 	implicit none
-	RealType scale
+	RealType Q
 
 #include "FH.h"
 
@@ -1090,7 +1090,7 @@ c??? should be MUE2???
 
 	Rqcd = Re(C_A*RCA + C_F*RCF + T_F*(RTF + RTFb + RTFt))/bo
 	anomalous = -C_F/4D0
-	finscale = (11*C_A - 4*T_F*Nf)/12D0*log(scale**2/MGl2)
+	finscale = (11*C_A - 4*T_F*Nf)/12D0*log(Q**2/MGl2)
 
 	Deltab2L_qcd = Rqcd*fnorm + anomalous + finscale
 	end

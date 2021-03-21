@@ -78,6 +78,9 @@
 :Evaluate: FHGetSelf::usage =
 	"FHGetSelf computes various Higgs self-energies plus their derivatives."
 
+:Evaluate: FHGetSelfgl::usage =
+	"FHGetSelfgl computes various Higgs self-energies plus their derivatives in the gaugeless limit."
+
 :Evaluate: FHAddSelf::usage =
 	"FHAddSelf registers user-defined shifts for the Higgs self-energies."
 
@@ -319,15 +322,15 @@
     Qtau_, Qt_, Qb_]
 :Arguments: {
   N[scalefactor],
-  N[MT], N[TB], N[MA0], N[MHp], 
+  N[MT], N[TB], N[MA0], N[MHp],
   N[M3SL], N[M3SE], N[M3SQ], N[M3SU], N[M3SD],
   N[M2SL], N[M2SE], N[M2SQ], N[M2SU], N[M2SD],
   N[M1SL], N[M1SE], N[M1SQ], N[M1SU], N[M1SD],
-  N[Re[MUE]], N[Im[MUE]], 
+  N[Re[MUE]], N[Im[MUE]],
   N[Re[Atau]], N[Im[Atau]], N[Re[At]], N[Im[At]], N[Re[Ab]], N[Im[Ab]],
   N[Re[Amu]], N[Im[Amu]], N[Re[Ac]], N[Im[Ac]], N[Re[As]], N[Im[As]],
   N[Re[Ae]], N[Im[Ae]], N[Re[Au]], N[Im[Au]], N[Re[Ad]], N[Im[Ad]],
-  N[Re[M1]], N[Im[M1]], N[Re[M2]], N[Im[M2]], N[Re[M3]], N[Im[M3]], 
+  N[Re[M1]], N[Im[M1]], N[Re[M2]], N[Im[M2]], N[Re[M3]], N[Im[M3]],
   N[Qtau], N[Qt], N[Qb] }
 :ArgumentTypes: {
   Real,
@@ -363,7 +366,7 @@
 :Begin:
 :Function: mFHSetSLHA
 :Pattern: FHSetSLHA[file_]
-:Arguments: {ExpandFileName[file]}
+:Arguments: {file}
 :ArgumentTypes: {String}
 :ReturnType: Manual
 :End:
@@ -543,6 +546,14 @@
 :ReturnType: Manual
 :End:
 
+:Begin:
+:Function: mFHGetSelfgl
+:Pattern: FHGetSelfgl[p2_, key_, dkey_, ren_]
+:Arguments: {N[Re[p2]], N[Im[p2]], key, dkey, ren}
+:ArgumentTypes: {Real, Real, Integer, Integer, Integer}
+:ReturnType: Manual
+:End:
+
 :Evaluate: mSElist[sig_] := Transpose[Through[{Re, Im}[PadRight[sig, 16]]]]
 
 :Begin:
@@ -556,7 +567,7 @@
 :Begin:
 :Function: mFHOutput
 :Pattern: FHOutput[file_, key_, sqrts_:0]
-:Arguments: {ExpandFileName[file], key, sqrts}
+:Arguments: {file, key, sqrts}
 :ArgumentTypes: {String, Integer, Real}
 :ReturnType: Manual
 :End:
@@ -564,7 +575,7 @@
 :Begin:
 :Function: mFHOutputSLHA
 :Pattern: FHOutputSLHA[file_, key_]
-:Arguments: {ExpandFileName[file], key}
+:Arguments: {file, key}
 :ArgumentTypes: {String, Integer}
 :ReturnType: Manual
 :End:
@@ -612,7 +623,7 @@
 :Begin:
 :Function: mFHReadRecord
 :Pattern: FHReadRecord[file_]
-:Arguments: {ExpandFileName[file]}
+:Arguments: {file}
 :ArgumentTypes: {String}
 :ReturnType: Manual
 :End:
@@ -620,7 +631,7 @@
 :Begin:
 :Function: mFHSLHARecord
 :Pattern: FHSLHARecord[file_]
-:Arguments: {ExpandFileName[file]}
+:Arguments: {file}
 :ArgumentTypes: {String}
 :ReturnType: Manual
 :End:
@@ -628,7 +639,7 @@
 :Begin:
 :Function: mFHLoadTable
 :Pattern: FHLoadTable[file_]
-:Arguments: {ExpandFileName[file]}
+:Arguments: {file}
 :ArgumentTypes: {String}
 :ReturnType: Manual
 :End:
@@ -729,7 +740,7 @@
 	MFeynHiggs.tm
 		the Mathematica frontend for FeynHiggs
 		this file is part of FeynHiggs
-		last modified 19 Apr 18 th
+		last modified 18 Jul 18 th
 */
 
 
@@ -1785,8 +1796,46 @@ static void mFHHiggsProd(cRealType sqrts) {
 
 /******************************************************************/
 
+static inline int BitCount(int i) {
+  i -= (i >> 1) & 0x55555555;
+  i = (i & 0x33333333) + ((i >> 2) & 0x33333333);
+  i = (i + (i >> 4)) & 0x0F0F0F0F;
+  return i*0x01010101 >> 24;
+}
+
+/******************************************************************/
+
+static inline void MLPutSelf(MLINK mlp,
+    int key, ComplexType *sig, int dkey, ComplexType *dsig) {
+  int i;
+
+  key &= (1 << nsig) - 1;
+  dkey &= (1 << nsig) - 1;
+  MLPutFunction(mlp, "List", BitCount(key) + BitCount(dkey));
+
+  for( i = 1; key; ++i, key >>= 1, ++sig )
+    if( key & 1 ) {
+      MLPutRules(mlp, Sigma, 1);
+      MLPutFunction(mlp, "Part", 2);
+      MLPutFHSymbol(mlp, "SelfID");
+      MLPutInteger(mlp, i);
+      MLPutComplex(mlp, *sig);
+    }
+
+  for( i = 1; dkey; ++i, dkey >>= 1, ++dsig )
+    if( dkey & 1 ) {
+      MLPutRules(mlp, DSigma, 1);
+      MLPutFunction(mlp, "Part", 2);
+      MLPutFHSymbol(mlp, "SelfID");
+      MLPutInteger(mlp, i);
+      MLPutComplex(mlp, *dsig);
+    }
+}
+
+/******************************************************************/
+
 static void mFHGetSelf(_Mc_(k2,[1]), cint key, cint dkey, cint ren) {
-  int error, i;
+  int error;
   ComplexType sig[nsig], dsig[nsig];
 
   CaptureStdout();
@@ -1796,29 +1845,25 @@ static void mFHGetSelf(_Mc_(k2,[1]), cint key, cint dkey, cint ren) {
   MLPutStdout(stdlink);
 
   if( error ) MLPutStatus(stdlink, error);
-  else {
-    int n = 0;
-    for( i = 0; i < nsig; ++i )
-      n += ((key >> i) & 1) + ((dkey >> i) & 1);
-    MLPutFunction(stdlink, "List", n);
+  else MLPutSelf(stdlink, key, sig, dkey, dsig);
 
-    for( i = 0; i < nsig; ++i ) {
-      if( (key >> i) & 1 ) {
-        MLPutRules(stdlink, Sigma, 1);
-        MLPutFunction(stdlink, "Part", 2);
-        MLPutFHSymbol(stdlink, "SelfID");
-        MLPutInteger(stdlink, i + 1);
-        MLPutComplex(stdlink, sig[i]);
-      }
-      if( (dkey >> i) & 1 ) {
-        MLPutRules(stdlink, DSigma, 1);
-        MLPutFunction(stdlink, "Part", 2);
-        MLPutFHSymbol(stdlink, "SelfID");
-        MLPutInteger(stdlink, i + 1);
-        MLPutComplex(stdlink, dsig[i]);
-      }
-    }
-  }
+  MLEndPacket(stdlink);
+}
+
+/******************************************************************/
+
+static void mFHGetSelfgl(_Mc_(k2,[1]), cint key, cint dkey, cint ren) {
+  int error;
+  ComplexType sig[nsig], dsig[nsig];
+
+  CaptureStdout();
+
+  FHGetSelfgl(&error, _Vc_(k2,[1]), key, sig, dkey, dsig, ren);
+
+  MLPutStdout(stdlink);
+
+  if( error ) MLPutStatus(stdlink, error);
+  else MLPutSelf(stdlink, key, sig, dkey, dsig);
 
   MLEndPacket(stdlink);
 }
@@ -2212,4 +2257,3 @@ int main(int argc, char **argv) {
 
   return ret;
 }
-

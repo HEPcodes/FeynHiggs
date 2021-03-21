@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 16 May 18 th
+* last modified 20 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -20,7 +20,7 @@
 *   DRbar2LShifts later.  Only the mfv stop masses relevant for the
 *   mass determination (tM3, tMT, tMT1, tMD) and the mfv sleptons
 *   are initialized here.
-* 
+*
 * - "SfermionsOS" sets up all other mfv stops and sbottoms and gets
 *   called on OS values, i.e. after a possible DRbar2OS conversion.
 *
@@ -220,8 +220,9 @@
 #include "looptools.h"
 #define __SUBROUTINE__ "SfermionsOS"
 
-	integer j, g, fail, nfdummy, pass
-	RealType Qew, Qqcd, asew, db2Lqcd, db2Lew, adb(3,3,2)
+	integer g, fail, nf, pass
+	RealType Qqcd, Qew, AlfasQew, db2Lqcd, db2Lew
+	RealType MDAlfas(3,3), MDAlfa(3,3)
 	RealType Mdin(3), Mdbar(3)
 	ComplexType db, Mcorr(3,3), se(3,3,3)
 	ComplexType DL(3,3), DR(3,3)
@@ -256,43 +257,44 @@
 	fail = 0
 	call SfUpdateLargeTB(fail)
 
-	Qew = ((MSf(1,3,3) + MSf(2,3,3) + abs(MUE))/3D0)**2
-	Qqcd = ((MSdL(1,3) + MSdL(2,3) + MGl)/3D0)**2
-* for comparison with 2.7.4, for the moment:
-	if( botResum .eq. 1 ) then
-	  Qew = MSdL(1,3)*MSdL(2,3)
-	  Qqcd = Qew
+	if( botResum .eq. 2 ) then
+	  Qew = ((MSf(1,3,3) + MSf(2,3,3) + abs(MUE))/3)**2
+	  call AlphaS(AlfasQew, nf, Qew)
+	  Qqcd = ((MSdL(1,3) + MSdL(2,3) + MGl)/3)**2
+	else
+	  Qqcd = MSdL(1,3)*MSdL(2,3)
 	endif
-	call AlphaS(asew, nfdummy, Qew)
-	call AlphaS(AlfasDb, nfdummy, Qqcd)
+	call AlphaS(AlfasDb, nf, Qqcd)
 
-	if( DEBUGLEVEL .gt. 3 ) then
-	  DPARA "Delta b  Q(QCD)  =", sqrt(Qqcd)	ENDL
-	  DPARA "Delta b  as(QCD) =", AlfasDb		ENDL
-	  DPARA "Delta b  Q(ew)   =", sqrt(Qew)		ENDL
-	  DPARA "Delta b  as(ew)  =", asew		ENDL
+	if( DEBUGLEVEL .gt. 2 ) then
+	  DPARA "Delta b  Qqcd     =", sqrt(Qqcd)	ENDL
+	  DPARA "Delta b  as(Qqcd) =", AlfasDb		ENDL
 	endif
 
-	adb(1:3,1:3,1) = AlfasDb
-	adb(1:3,1:3,2) = AlfaGF
+	MDAlfas = AlfasDb
+	MDAlfa = AlfaGF
 
 	if( botResum .eq. 2 ) then
 	  db2Lqcd = AlfasDb/pi*Deltab2L_qcd(Qqcd)
-	  adb(3,3,1) = AlfasDb*(1 + db2Lqcd)
-	  db2Lew = asew/pi*Deltab2L_ew(Qew)
-	  adb(3,3,2) = AlfaGF*(1 + db2Lew)
-	  if( debuglevel .ge. 2 ) then
-	    DPARA "Delta b  f^2L_QCD =", db2Lqcd ENDL
-	    DPARA "Delta b  f^2L_ew  =", db2Lew  ENDL
+	  MDAlfas(3,3) = AlfasDb*(1 + db2Lqcd)
+	  db2Lew = AlfasQew/pi*Deltab2L_ew(Qew)
+	  MDAlfa(3,3) = AlfaGF*(1 + db2Lew)
+	  if( debuglevel .gt. 2 ) then
+	    DPARA "Delta b  Qew      =", sqrt(Qew)	ENDL
+	    DPARA "Delta b  as(Qew)  =", AlfasQew	ENDL
+	    DPARA "Delta b  f^2L_QCD =", db2Lqcd	ENDL
+	    DPARA "Delta b  f^2L_ew  =", db2Lew		ENDL
 	  endif
 	endif
 
+#define MDseas(g1,g2,as,a) MDcorr(se(1,g1,g2), g1, g2, as, a, Mf2(3,3), Mf2(3,3))
+#define MDse(g1,g2) MDseas(g1,g2, MDAlfas(g1,g2), MDAlfa(g1,g2))
+
 	do g = 1, 3
-	  call MDcorr(se(1,g,g), g, g,
-     &      Qqcd, adb(g,g,1), Qew, adb(g,g,2))
+	  call MDse(g,g)
 	  Deltaf(bTR,g) = se(1,g,g)/Mf(bTR,g)
 	  Mf(bTR,g) = Mdin(g)/abs(1 + Deltaf(bTR,g))*
-     &      Re(1 - .5D0*(se(2,g,g) + se(3,g,g)))
+     &      Re(1 - (se(2,g,g) + se(3,g,g))/2)
 	enddo
 
 	do pass = 1, 20
@@ -307,40 +309,35 @@
 	  call SfUpdateLargeTB(fail)
 	  if( botResum .eq. 2 ) then
 	    db2Lqcd = AlfasDb/pi*Deltab2L_qcd(Qqcd)
-	    adb(3,3,1) = AlfasDb*(1 + db2Lqcd)
-	    db2Lew = asew/pi*Deltab2L_ew(Qew)
-	    adb(3,3,2) = AlfaGF*(1 + db2Lew)
-	    if( debuglevel .ge. 2 ) then
+	    MDAlfas(3,3) = AlfasDb*(1 + db2Lqcd)
+	    db2Lew = AlfasQew/pi*Deltab2L_ew(Qew)
+	    MDAlfa(3,3) = AlfaGF*(1 + db2Lew)
+	    if( debuglevel .gt. 2 ) then
 	      DPARA "Delta b  f^2L_QCD =", db2Lqcd ENDL
 	      DPARA "Delta b  f^2L_ew  =", db2Lew  ENDL
 	    endif
 	  endif
 
 	  do g = 1, 3
-	    do j = 1, 3
-	      call MDcorr(se(1,j,g), j, g,
-     &          Qqcd, adb(j,g,1), Qew, adb(j,g,2))
-	    enddo
+	    call MDse(1,g)
+	    call MDse(2,g)
+	    call MDse(3,g)
 	    Mcorr(:,g) = se(1,:,g) +
-     &        Mf(bTR,:)*se(2,:,g) + Mf(bTR,g)*se(3,:,g)
+     &        (Mf(bTR,:)*se(2,:,g) + Mf(bTR,g)*se(3,:,g))/2
 	    Deltaf(bTR,g) = se(1,g,g)/Mf(bTR,g)
 	    Mf(bTR,g) = Mdin(g)/abs(1 + Deltaf(bTR,g))*
-     &        Re(1 - .5D0*(se(2,g,g) + se(3,g,g)))
+     &        Re(1 - (se(2,g,g) + se(3,g,g))/2)
 	    Mcorr(g,g) = Mcorr(g,g) + Mf(bTR,g)
 	  enddo
 
 	  call SVD(3, 3, Mcorr,3, Mdbar, DR,3, DL,3, 0)
+	  CKM = matmul(CKMin, DL)
 
 	  if( debuglevel .ge. 3 ) then
 	    DPARA "MDc1 =", Mdbar(1), Mdin(1) ENDL
 	    DPARA "MDc2 =", Mdbar(2), Mdin(2) ENDL
 	    DPARA "MDc3 =", Mdbar(3), Mdin(3) ENDL
 	  endif
-
-	  forall(g = 1:3) CKM(:,g) =
-     &      CKMin(:,1)*DL(1,g) +
-     &      CKMin(:,2)*DL(2,g) + 
-     &      CKMin(:,3)*DL(3,g)
 
 	  if( abs(Deltaf(bTR,3) - db) .lt. 1D-6 ) goto 99
 	enddo
@@ -358,19 +355,12 @@
 
 * Delta_b with just the 1L corrections for subtraction in Hff:
 	DSS2(:,bTR1,:) = DSS2(:,4,:)
-#if 1
-	call MDcorr(se(1,3,3), 3, 3, Qqcd, AlfasDb, Qew, AlfaGF)
+	call MDseas(3,3, AlfasDb, AlfaGF)
 	forall(g = 1:3)
 	  Deltaf(bTR1,g) = se(1,g,g)/Mf(bTR,g)
 	  Mf(bTR1,g) = Mdin(g)*
-     &      Re(1 - Deltaf(bTR1,g) - .5D0*(se(2,g,g) + se(3,g,g)))
+     &      Re(1 - Deltaf(bTR1,g) - (se(2,g,g) + se(3,g,g))/2)
 	endforall
-#else
-* pre-2.14.2
-	Deltaf(bTR1,:) = 0
-	Mf(bTR1,:) = Mf(bTR,:)
-c	Mf(bTR1,3) = Mf(4,3)
-#endif
 
 	call SfUpdate(error, X4(0,bTR1,4,4), SORT_SF)
 	call SbglUpdate(error, bTR1)
@@ -940,4 +930,3 @@ c	MGlpTmSt2(2) = MGlpT2 - MStgl2(2)
 	data sfid(bH) /"bH"/
 	data sfid(bHR) /"bHR"/
 	end
-

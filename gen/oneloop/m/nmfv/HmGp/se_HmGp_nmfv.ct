@@ -1,2 +1,2 @@
-{dMsq1["HmGp"] -> dMHiggs1[6, 5] + (MHp2*dZHiggs1[5, 6])/2 - 
+{dMsq1["HmGp"] -> Conjugate[dMHiggs1[5, 6]] + (MHp2*dZHiggs1[5, 6])/2 - 
    ((MHp2 + MW2)*dZHiggs1[6, 5])/2, dZ1["HmGp"] -> dZHiggs1[6, 5]}

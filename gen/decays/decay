@@ -1,10 +1,12 @@
-#! /bin/sh
+#! /bin/bash
 
 test $# -ne 1 && {
-  echo 'Usage:  decay tag'
-  echo 'generates the "tag" decay'
-  echo '- will output diagrams if DEBUG=1'
-  echo '- turn off simplification with NOSIMP=1'
+  cat << _EOF_
+Usage:  $0 tag
+generates the "tag" decay
+- will output diagrams if DEBUG=1
+- turn off simplification with NOSIMP=1
+_EOF_
   exit 1
 }
 
@@ -18,13 +20,19 @@ echo DEBUG=$DEBUG
 echo NOSIMP=$NOSIMP
 
 mkdir -p f m
-rm -fr f/$tag-squaredme f/$tag-renconst m/$tag.*
-test $DEBUG = 1 && rm -f d/$tag-*
+rm -fr "f/$tag-squaredme" "f/$tag-renconst" "m/$tag".*
+test "$DEBUG" = 1 && rm -f "d/$tag"-*
 
-math -run tag=\"$tag\" -run nosimp=$NOSIMP -run debug=$DEBUG << \_EOF_ > m/$tag.log
+math -run "
+	tag=\"$tag\";
+	nosimp=$NOSIMP;
+	debug=$DEBUG;
+" << \_EOF_ > "m/$tag.log"
 AppendTo[$Echo, "stdout"];
 
 << FeynArts`;
+
+PrependTo[$ModelPath, "../model"];
 
 << FormCalc`;
 
@@ -62,6 +70,10 @@ MHHtree2 = MHH2;
 MA0tree = MA0;
 MA0tree2 = MA02;
 
+(*Mdy[g_] := Mfy[7, g];*)
+Sq[Mfy[a__]] = Mfy2[a];
+RealQ[_Mfy] = True;
+
 Sq[GS] =.;
 GS = GSMH;
 Sq[GSMH] = 4 Pi AlfasMH;
@@ -70,6 +82,9 @@ Sq[GSDb] = 4 Pi AlfasDb;
 Sq[EL] =.;
 EL = EL0;
 Sq[EL0] = 4 Pi Alfa0;
+
+Format[Mino3, FortranForm] := "M_3";
+Format[Mino3C, FortranForm] := "M_3C";
 
 trigrulz = {
   CA a_ + CA2 b_ :> CA (a + CA b),
@@ -116,13 +131,15 @@ final[expr_] := expr /.
     im[h_[x__]] :> ToSymbol[h, "Im"][x] } /.
   IndexDelta -> IDelta;
 
-(*Mdy[g_] := Mfy[7, g];*)
-Sq[Mfy[a__]] = Mfy2[a];
-RealQ[_Mfy] = True;
 
-Format[Mino3, FortranForm] := "M_3";
-Format[Mino3C, FortranForm] := "M_3C";
+toFortran[expr_] := expr /.
+  d:dZ11H1fin|dZ12H1fin|dZ22H1fin|dTB1fin|dA1|dBn1|dBc1 :> d[zD];
+SetOptions[WriteExpr, FinalFunction -> toFortran];
 
+(*
+dZ11H1fin = dZ12H1fin = dZ22H1fin = dTB1fin = dA1 = dBn1 = dBc1 = 0;
+SetOptions[WriteExpr, FinalFunction -> (# /. ivev -> 1/vev &)];
+*)
 
 $DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
 $DebugCmd[1] = "DCOUP \"" <> tag <> "-`1` `2` =\", `3` ENDL\n";
@@ -174,7 +191,7 @@ Block[ {io, top, ins, insv, insct, amp, vert},
 
   amp = CreateFeynAmp[Join[insv, Head[insv]@@ insct]];
 
-  SetOptions[CalcFeynAmp, Dimension -> If[model === SM, D, 4]];
+  SetOptions[CalcFeynAmp, Dimension -> If[model === "sm", D, 4]];
 
   amp = OffShell[amp, 1 -> m1,
     2 -> ((If[# === 0, m2 = m22 = 0]; m2)&),
@@ -211,10 +228,8 @@ si[x_] := si[x] = xi[xi[x]];
 simp1 = OnSize[100, fsi, 250, si, Map];
 simp2 = fsimp;
 
-loopint = _A0 | _B0 | _B1 | _B00 | _B11 | _DB0 | _DB1 | _DB00 | _DB11;
-
 SetOptions[PrepareExpr,
-  Expensive -> List@@ loopint,
+  Expensive -> LoopIntegral[__],
   FinalTouch -> simp2];
 
 
@@ -233,7 +248,7 @@ SetOptions[WriteRenConst,
   Folder -> tag <> "-renconst"];
 
 job[proc_, model_, excl_, rul0_, rul1_, foo_, opt___] :=
-Block[ {v0, v1, col, abbr, sub, uzext, DoDim},
+Block[ {v0, v1, col, abbr, sub, uzext, rcs, rcinc, w, DoDim},
   v0 = amps[0, proc, model, excl, rul0, foo, opt];
   v1 = amps[1, proc, model, excl, rul1, foo, opt];
 
@@ -251,7 +266,7 @@ Block[ {v0, v1, col, abbr, sub, uzext, DoDim},
   rcinc = If[ Length[rcs] === 0, "",
     "#include \"" <> tag <> "-RenConst.h.F\"\n"];
 
-  SetOptions[WriteSquaredME, 
+  SetOptions[WriteSquaredME,
     FileIncludes -> {"\
 #include \"externals.h\"\n\
 #include \"types.h\"\n\
@@ -263,10 +278,12 @@ Block[ {v0, v1, col, abbr, sub, uzext, DoDim},
       "\
 #include \"inline.h\"\n" }];
 
-  WriteSquaredME[v0, v1, col, abbr, sub, "f",
+  w = WriteSquaredME[v0, v1, col, abbr, sub, "f",
     ExtraRules -> ToOldBRules,
     SymbolPrefix -> tag <> "_",
     LoopSquare -> True];	(* <<<!!! *)
+
+  Put[w, ToFileName["m", tag <> ".out"]];
 
   If[ Length[rcs] > 0,
 FormSub = simp1;
@@ -295,52 +312,35 @@ sgather[0] = 0;
 split[x_] := ReTilde[x /. reim -> re] + cI ImTilde[x /. reim -> im];
 
 
-$CKM = True;
-$FV = {12, 13, 14};
-cMSSMhgaga = {"MSSMQCD", "dAlfa", "KW", "FV", "Kf", "HGpGm", "Yuk", "HMixExt"};
-cMSSM = DeleteCases[cMSSMhgaga, "HGpGm"];
-SM = {"SMQCD", "dAlfa", "Yuk", "dZH1"};
-
-Hel[3] = Hel[2]
+Hel[3] = Hel[2];
 
 
-decay["hgaga"] := job[
-  S[10, {hno}] -> {V[1], V[1]},
-  cMSSMhgaga, _,
-  {}, {},
+decay["hgaga"] := job[ S[10, {hno}] -> {V[1], V[1]},
+  {"mssm-hgaga", "HMixExt"}, _, {}, {},
   # /. massrulz[tH, tH, 0, bBR] /. {
     Yuk[3|4, _, g_, g_] :> hgagaQ,
     Yuk[13|14, _, g_, g_] :> hgagaSq,
-    Hbb[h_, g_, g_] :> HffDb[0, h, 4, g] Mf[4, g]/Mf[bBR, g] } &
-];
+    Hbb[h_, g_, g_] :> HffDb[0, h, 4, g] Mf[4, g]/Mf[bBR, g] } & ];
 
-decay["hgagaSM"] := job[
-  S[1] -> {V[1], V[1]},
-  SM, _,
-  {}, {},
+decay["hgagaSM"] := job[ S[1] -> {V[1], V[1]},
+  "sm", _, {}, {},
   # /. massrulz[tH, tH, 0, 0] /. {
     Yuk[3|4, _, g_, g_] :> hgagaQ } & ];
 
 
-decay["hgaZ"] := job[
-  S[10, {hno}] -> {V[1], V[2]},
-  cMSSMhgaga, _,
-  {}, {},
+decay["hgaZ"] := job[ S[10, {hno}] -> {V[1], V[2]},
+  {"mssm-hgaZ", "HMixExt"}, _, {}, {},
   # /. massrulz[tH, tH, 0, bBR] /. {
     _Yuk -> 1,
     Hbb[h_, g_, g_] :> HffDb[0, h, 4, g] Mf[4, g]/Mf[bBR, g] } & ];
 
-decay["hgaZSM"] := job[
-  S[1] -> {V[1], V[2]},
-  SM, _,
-  {}, {},
+decay["hgaZSM"] := job[ S[1] -> {V[1], V[2]},
+  "sm", _, {}, {},
   # /. massrulz[tH, tH, 0, 0] /. _Yuk -> 1 & ];
 
 
-decay["hgg"] := job[
-  S[10, {hno}] -> {V[5], V[5]},
-  cMSSM, _,
-  {}, {},
+decay["hgg"] := job[ S[10, {hno}] -> {V[5], V[5]},
+  {"mssm-hgg", "HMixExt"}, _, {}, {},
   simp[# /. massrulz[tH, tH, 0, bBR] /. {
     Yuk[3, h_, g_, g_] :> hggU[h, g],
     Yuk[4, h_, g_, g_] :> gather[hggD[h, g]],
@@ -348,19 +348,15 @@ decay["hgg"] := job[
     Hbb[h_, g_, g_] :> HffDb[0, h, 4, g] Mf[4, g]/Mf[bBR, g] }]&
 ];
 
-decay["hggSM"] := job[
-  S[1] -> {V[5], V[5]},
-  SM, _,
-  {}, {},
+decay["hggSM"] := job[ S[1] -> {V[5], V[5]},
+  "sm", _, {}, {},
   simp[# /. massrulz[tH, tH, 0, 0] /. {
     Yuk[3, h_, g_, g_] :> hggU[h, g],
     Yuk[4, h_, g_, g_] :> gather[hggD[h, g]] }]& ];
 
 
-decay["hhh"] := job[
-  S[10, {hno}] -> {S[10, {hno1}], S[10, {hno2}]},
-  cMSSM /. "FV" -> "Hhh", 2|3,
-  {}, DeltaHhh -> 0,
+decay["hhh"] := job[ S[10, {hno}] -> {S[10, {hno1}], S[10, {hno2}]},
+  {"mssm-hhh", "HMixExt"}, 2|3, {}, DeltaHhh -> 0,
   # /. massrulz[tM3, tM3, bTR, bTR] /. {
     _Yuk -> 1,
     _Hbb -> 1 } &,
@@ -377,13 +373,11 @@ Block[ {dMWsq1, EL0 = ELMZ, Alfa0 = AlfaMZ},
     ExcludeParticles -> {V[1], V[5]} ]
 ];
 
-Hff[t_] := hffjob[
-  S[10, {hno}] -> {F[t, {gno1}], -F[t, {gno2}]},
-  cMSSM, 2|3 ];
+Hff[t_] := hffjob[ S[10, {hno}] -> {F[t, {gno1}], -F[t, {gno2}]},
+  {"mssm-hff", "HMixExt"}, 2|3 ];
 
-HffSM[t_] := hffjob[
-  S[1] -> {F[t, {gno1}], -F[t, {gno2}]},
-  SM, _ ];
+HffSM[t_] := hffjob[ S[1] -> {F[t, {gno1}], -F[t, {gno2}]},
+  "sm", _ ];
 
 decay["hee"] := Hff[2];
 
@@ -411,7 +405,6 @@ _decay := Abort[];
 
 decay[tag];
 
-Uninstall[$ReadFormHandle];
 _EOF_
 
 
@@ -481,4 +474,3 @@ rm -f $tag-squaredme/$tag-specs.h
 
 convert $tag-squaredme
 convert $tag-renconst
-

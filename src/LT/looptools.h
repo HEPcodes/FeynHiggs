@@ -1,41 +1,38 @@
 * looptools.h
 * the declarations for LoopTools Light
 * this file is part of FeynHiggs
-* last modified 29 Nov 17 th
+* last modified 2 Aug 18 th
 
 #include "ltdefs.h"
 #include "ltcache.h"
 
-
 	external ltcutoffini
 
-	RealType A0, A0q
-	ComplexType B0, B0q, B1, B1q, B00, B00q, B11, B11q
-	ComplexType DB0, DB1, DB00, DB11
-	ComplexType C0, D0p
-	RealType C0z, C00z, D0z, D00z
-	memindex Cget, Dget
+	RealPrec Prec(A0), Prec(A0q)
+	ComplexPrec Prec(B0), Prec(B0q), Prec(DB0)
+	ComplexPrec Prec(B1), Prec(B1q), Prec(DB1)
+	ComplexPrec Prec(B00), Prec(B00q), Prec(DB00)
+	ComplexPrec Prec(B11), Prec(B11q), Prec(DB11)
+	ComplexPrec Prec(C0)
+	RealPrec Prec(C0z), Prec(C00z), Prec(D0z), Prec(D00z)
+	memindex Prec(Cget)
 
-	external A0, A0q
-	external B0, B0q, B1, B1q, B00, B00q, B11, B11q
-	external DB0, DB1, DB00, DB11
-	external C0, D0p
-	external C0z, C00z, D0z, D00z
-	external Cget, Dget
+	external Prec(A0), Prec(A0q)
+	external Prec(B0), Prec(B0q), Prec(DB0)
+	external Prec(B1), Prec(B1q), Prec(DB1)
+	external Prec(B00), Prec(B00q), Prec(DB00)
+	external Prec(B11), Prec(B11q), Prec(DB11)
+	external Prec(C0), Prec(D0p)
+	external Prec(C0z), Prec(C00z), Prec(D0z), Prec(D00z)
+	external Prec(Cget), Prec(Dget)
 
-* these are the conventions of Slavich et al.
+	RealPrec Prec(A0del), Prec(A0delq), Prec(myG)
+	ComplexPrec Prec(B0del), Prec(DB0del)
+	external Prec(A0del), Prec(A0delq), Prec(myG)
+	external Prec(B0del), Prec(DB0del)
 
-#ifndef myAA
-#define myAA(m,q) A0q(m,q)
-#define myB0(p,m1,m2,q) Re(B0q(p,m1,m2,q))
-#define myB1(p,m1,m2,q) Re(-B1q(p,m1,m2,q))
-#define myB00(p,m1,m2,q) Re(B00q(p,m1,m2,q))
-#endif
-
-	RealType A0del, A0delq, myG
-	ComplexType B0del, DB0del
-	external A0del, A0delq, myG
-	external B0del, DB0del
+	RealPrec zPrec
+	parameter (zPrec = 0)
 
 	RealType mudim, delta, lambda
 	common /cutoff/ mudim, delta, lambda

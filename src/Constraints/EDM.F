@@ -1,7 +1,7 @@
 * EDM.F
 * computation of the electric dipole moments
 * this file is part of FeynHiggs
-* last modified 27 Jul 16 th
+* last modified 26 May 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -21,8 +21,8 @@
 	RealType eps
 	parameter (eps = 1D-10)
 
-	ComplexType Dilog
-	external Dilog
+	ComplexType spence
+	external spence
 
 	if( abs(z - .25D0) .le. 1D-6 ) then
 	   edmF = 2*(1 + log(z))
@@ -34,7 +34,7 @@
 	  edmF = 2 + log(z) +
      &      Re( z/delta*
      &         (log(z)*(log(-xp/xm) - log(-xm/xp))
-     &          + 2*(Dilog(1/xp) - Dilog(1/xm))) )
+     &          + 2*(spence(0, 1/xp, 0D0) - spence(0, 1/xm, 0D0))) )
 	endif
 	end
 

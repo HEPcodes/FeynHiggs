@@ -15,26 +15,21 @@
 
 #include "Resum4H.h"
 
-	RealType Li2omx1, Li2omx2, Li2omx3, Li2omx4, Phi1, Phi2, Phi3
-	RealType Phi4, clam(15), tmp1
+	RealPrec Li21m1, Li21m2, Li21m3, Li21m4
+	RealPrec Phi1, Phi2, Phi3, Phi4
+	RealPrec clam(15), tmp1
 
 #include "TLthresholdatat.h"
 
-	Li2omx3 = Li2omx(rSQ2/rMUE2)
+	Li21m3 = Li21m(rSQ2/rMUE2)
+	Li21m1 = Li21m(rSQ2/rSU2)
+	Li21m4 = Li21m(rSU2/rMUE2)
+	Li21m2 = Li21m(rSU2/rSQ2)
 
-	Li2omx1 = Li2omx(rSQ2/rSU2)
-
-	Li2omx4 = Li2omx(rSU2/rMUE2)
-
-	Li2omx2 = Li2omx(rSU2/rSQ2)
-
-	Phi3 = Phi(rA02,rSQ2,rSQ2)
-
-	Phi1 = Phi(rA02,rSQ2,rSU2)
-
-	Phi2 = Phi(rA02,rSU2,rSQ2)
-
-	Phi4 = Phi(rA02,rSU2,rSU2)
+	Phi3 = Prec(Phi)(rA02,rSQ2,rSQ2)
+	Phi1 = Prec(Phi)(rA02,rSQ2,rSU2)
+	Phi2 = Prec(Phi)(rA02,rSU2,rSQ2)
+	Phi4 = Prec(Phi)(rA02,rSU2,rSU2)
 
         clam(13) = Nc*(5 - (6 - 3*LSQ2)*LSQ2 + 
      &      LQ2*(10 + 5*LQ2 - 6*LSQ2 - 4*LSU2) - (4 - 2*LSU2)*LSU2)
@@ -47,7 +42,7 @@
      &          (xSQU2**2 + (-2*LA02 + 2*LQ2)*xSQU2**2 + 
      &            rSQ2*((4 - 4*LA02 + 4*LQ2)*rA02 - 
      &               (2 - 4*LA02 + 4*LQ2)*xSQU2))))/
-     &     (rSQ2*rSU2*scale2**2*xSQU2**4)
+     &     (rSQ2*rSU2*refscale2**2*xSQU2**4)
 
         clam(3) = Nc*(8*(6 + 3*LQ2 - 2*LSQ2 - LSU2)*
      &        (LSQ2 - LSU2)*rSQ2**3 + 
@@ -55,20 +50,20 @@
      &       rSQ2*xSQU2*((48 + LQ2*(24 + 38*LSQ2 - 38*LSU2) - 
      &             (88 - 13*LSU2)*LSU2 + 
      &             LSQ2*(64 - 25*LSQ2 + 12*LSU2))*rSQ2 + 
-     &          6*Li2omx1*rSU2 - 
+     &          6*Li21m1*rSU2 - 
      &          (50 + LQ2*(26 + 14*LSQ2 - 14*LSU2) - 
      &             (38 - 5*LSU2)*LSU2 + LSQ2*(12 - 9*LSQ2 + 4*LSU2)
-     &             )*xSQU2))/(rSQ2*rSU2*scale2**2*xSQU2**3)
+     &             )*xSQU2))/(rSQ2*rSU2*refscale2**2*xSQU2**3)
 
         clam(8) = Nc*(2*(2 + LQ2 - LSQ2)*(LSQ2 - LSU2)*
      &        rSQ2**3 + (1 + LQ2 - LSU2)*xSQU2**3 - 
      &       rSQ2*xSQU2*((4 + LQ2*(2 + 20*LSQ2 - 20*LSU2) - 
      &             (23 - 9*LSU2)*LSU2 + 
      &             LSQ2*(21 - 11*LSQ2 + 2*LSU2))*rSQ2 + 
-     &          6*Li2omx1*rSU2 - 
+     &          6*Li21m1*rSU2 - 
      &          (1 + (19 - 9*LSQ2)*LSQ2 - (18 - 9*LSU2)*LSU2 - 
      &             LQ2*(1 - 18*LSQ2 + 18*LSU2))*xSQU2))/
-     &     (rSQ2*rSU2*scale2*xSQU2**2)
+     &     (rSQ2*rSU2*refscale2*xSQU2**2)
 
         clam(1) = Nc*(2*(LSQ2 - LSU2)*
      &        (6 + 3*LQ2 - 7*LSQ2 + 4*LSU2)*rSQ2**3 + 
@@ -76,16 +71,16 @@
      &       rSQ2*xSQU2*((12 + LQ2*(6 + 6*LSQ2 - 6*LSU2) - 
      &             LSU2*(13 + 13*LSU2) + 
      &             LSQ2*(7 - 19*LSQ2 + 32*LSU2))*rSQ2 + 
-     &          2*(Li2omx1 - 2*Li2omx2)*rSU2 - 
+     &          2*(Li21m1 - 2*Li21m2)*rSU2 - 
      &          (9 + 3*LQ2 - LSQ2*(3 + 5*LSQ2 - 10*LSU2) - 
      &             5*LSU2**2)*xSQU2))/
-     &     (rSQ2*rSU2*scale2**3*xSQU2**4)
+     &     (rSQ2*rSU2*refscale2**3*xSQU2**4)
 
         clam(14) = Nc*(-2*
-     &       (LQ2**2 - (Li2omx4*
+     &       (LQ2**2 - (Li21m4*
      &            (rSU2*(2*rSU2 - 4*xSUM2) + xSUM2**2))/xSUM2**2)+
      &        (2*(LSQ2**2*rSQ2*(rSQ2 - 2*xSQM2) + 
-     &            Li2omx3*(rSQ2*(4*rSQ2 - 8*xSQM2) + 3*xSQM2**2))+
+     &            Li21m3*(rSQ2*(4*rSQ2 - 8*xSQM2) + 3*xSQM2**2))+
      &           (2*LMUE2**2*
      &             (2*rMUE2**4 - rSQ2**2*rSU2**2 - 
      &               rMUE2*rSU2*
@@ -191,10 +186,10 @@
      &                       (xSQU2*xSUM2 + 
      &                       rSQ2*(rSQ2 + xSQU2 + xSUM2))))/
      &                     (rSQ2*rSU2)))/xSUM2**2)/xSQM2**2) + 
-     &         4*((Li2omx3 - Li2omx4)*xSQM2 - 
+     &         4*((Li21m3 - Li21m4)*xSQM2 - 
      &            Nc*((LSQ2 - LSU2)*
      &               ((LSQ2 - LSU2)*rSQ2 + (-1 - LQ2 + LSU2)*xSQU2)
-     &               )))/(scale2*xSQU2**2))
+     &               )))/(refscale2*xSQU2**2))
 
         tmp1 = 2*(2*LSQ2**2*rSQ2**2*rSU2*
      &        ((2*rSQ2**2 - xSQM2*(3*xSQM2 - 2*xSQU2))*xSQU2 + 
@@ -269,7 +264,7 @@
      &        (2*LSU2**2*rSU2*(2*rSQ2 - xSQU2)*
      &           (xSQM2*(4*xSQM2 - 6*xSQU2) - rSQ2*xSQU2 + 
      &             3*xSQU2**2) - 
-     &          xSUM2**2*(4*(Li2omx3 - Li2omx4)*
+     &          xSUM2**2*(4*(Li21m3 - Li21m4)*
      &              (3*xSQM2**2 - xSQU2**2) + 
      &             8*Nc*((2*LSU2*rSQ2 - LSQ2*(2*rSQ2 - xSQU2) + 
      &                  (2 - LSU2)*xSQU2)*
@@ -277,7 +272,7 @@
      &                  (-1 - LQ2 + LSU2)*xSQU2)))))
 
         clam(4) = -(Nc/2.D0*
-     &      tmp1/(rSQ2*rSU2*scale2**2*xSQM2**2*xSQU2**4*xSUM2**2))
+     &      tmp1/(rSQ2*rSU2*refscale2**2*xSQM2**2*xSQU2**4*xSUM2**2))
 
         clam(12) = Nc/2.D0*
      &    ((Phi1*((rA02*(rA02 - 2*rSQ2) + xSQU2**2)*
@@ -308,7 +303,7 @@
      &                ((6 + 6*LQ2)*rSQ2 + 
      &                   LSU2*(rA02 - 2*rSQ2 + 3*xSQU2) - 
      &                   2*(xSQU2 + LQ2*xSQU2))*rDen(rA0,rSQ,rSU)))
-     &            /rSU2**2)/rSQ2)/(scale2*rDen(rA0,rSQ,rSU))
+     &            /rSU2**2)/rSQ2)/(refscale2*rDen(rA0,rSQ,rSU))
 
         clam(15) = Nc*(7*LA02 - 3*(LA02 + LQ2)*LSQ2 + 
      &      3*(LA02**2 + LSQ2**2) - (3*LA02 + LQ2)*LSU2 + 
@@ -375,7 +370,7 @@
      &                     xSQU2*(rSQ2*xSQU2 + 2*rDen(rA0,rSQ,rSU))
      &                     ))))/rSU2**3)/rDen(rA0,rSQ,rSU) + 
      &       (Phi4*(rA02*(rA02 - 6*rSU2) - rDen(rA0,rSU,rSU)))/
-     &        rSU2**2)/(scale2**2*xSQU2**2)
+     &        rSU2**2)/(refscale2**2*xSQU2**2)
 
         clam(10) = Nc*(Phi3*
      &        (rA02*(rA02 - 7*rSQ2)*xSQU2 - 
@@ -391,7 +386,7 @@
      &                   xSQU2) + Phi2*rSU2*rDen(rA0,rSQ,rSU)) - 
      &            Phi4*rSQ2*xSQU2*
      &             (rA02*(rA02 - 6*rSU2) - rDen(rA0,rSU,rSU))))/
-     &        rSU2**2)/(rSQ2**2*scale2*xSQU2**2)
+     &        rSU2**2)/(rSQ2**2*refscale2*xSQU2**2)
 
         clam(11) = -(2*Nc*
      &      ((6 - LA02 + 6*LQ2 - 3*LSQ2 - 2*LSU2)*(LSQ2 - LSU2) - 
@@ -399,7 +394,7 @@
      &         (Phi3*(rA02*(rA02 - 7*rSQ2) - rDen(rA0,rSQ,rSQ)))/
      &          rSQ2**2 + (Phi4*
      &            (rA02*(rA02 - 6*rSU2) - rDen(rA0,rSU,rSU)))/
-     &          rSU2**2)/(scale2*xSQU2))
+     &          rSU2**2)/(refscale2*xSQU2))
 
         clam(2) = Nc*(1/2.D0*
      &        (-((Phi1*(xSQU2**2*
@@ -472,7 +467,7 @@
      &            (-7*rSQ2 - xSQU2)*rDen(rA0,rSQ,rSQ)))/rSQ2**2 - 
      &       (Phi4*(rA02*(rA02 - 6*rSU2)*xSQU2 + 
      &            (4*rSQ2 - 5*xSQU2)*rDen(rA0,rSU,rSU)))/rSU2**2)/
-     &     (scale2**3*xSQU2**4)
+     &     (refscale2**3*xSQU2**4)
 
         clam(6) = -(2*Nc*
      &      (2*(LSQ2 - LSU2)*
@@ -487,8 +482,7 @@
      &              2*rDen(rA0,rSQ,rSU)))/rSQ2 - 
      &         (Phi4*(rA02*(rA02 - 6*rSU2)*xSQU2 + 
      &              (2*rSQ2 - 3*xSQU2)*rDen(rA0,rSU,rSU)))/rSU2**2)
-     &        /(scale2**2*xSQU2**3))
-
+     &        /(refscale2**2*xSQU2**3))
 	end
 
 
@@ -496,7 +490,8 @@
 
 	subroutine TLthresholdatat(dlam, clam, Xt_, Yt_, TB2_, SB2_)
 	implicit none
-	RealType dlam, clam(*), Xt_, Yt_, TB2_, SB2_
+	RealType dlam, Xt_, Yt_, TB2_, SB2_
+	RealPrec clam(*)
 
 #include "Resum4H.h"
 
@@ -511,5 +506,4 @@
      &             (Xt_**2*(Xt_**2*clam(1) + clam(3)) + 
      &               clam(8)) + clam(13)) + clam(15)))/
      &    (SB2_*TB2_)
-
 	end

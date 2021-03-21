@@ -4,7 +4,7 @@
 * Written by P. Slavich (e-mail: slavich@lpthe.jussieu.fr).
 * Based on A. Dedes, G. Degrassi, and P. Slavich, hep-ph/0305127.
 * this file is part of FeynHiggs
-* last modified 31 Dec 16 th
+* last modified 21 Jun 18 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -127,27 +127,27 @@ c#define COMPLETE_REN
 
 	x27 = InvTri(MSt22,pMT2,MUEr2)
 
-	x50 = Li2omx(MSb12/MSb22)
+	x50 = Li21m(MSb12/MSb22)
 
-	x33 = Li2omx(MSt12/MSb12)
+	x33 = Li21m(MSt12/MSb12)
 
-	x34 = Li2omx(MSt12/MSb22)
+	x34 = Li21m(MSt12/MSb22)
 
-	x35 = Li2omx(MSt22/MSb12)
+	x35 = Li21m(MSt22/MSb12)
 
-	x36 = Li2omx(MSt22/MSb22)
+	x36 = Li21m(MSt22/MSb22)
 
-	x43 = Li2omx(MSt12/MSt22)
+	x43 = Li21m(MSt12/MSt22)
 
-	x8 = Li2omx(pMT2/MA02)
+	x8 = Li21m(pMT2/MA02)
 
-	x51 = Li2omx(MSb12/MUEr2)
+	x51 = Li21m(MSb12/MUEr2)
 
-	x52 = Li2omx(MSb22/MUEr2)
+	x52 = Li21m(MSb22/MUEr2)
 
-	x6 = Li2omx(MSt12/MUEr2)
+	x6 = Li21m(MSt12/MUEr2)
 
-	x7 = Li2omx(MSt22/MUEr2)
+	x7 = Li21m(MSt22/MUEr2)
 
 	x9 = Log(MA02)
 

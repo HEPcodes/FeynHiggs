@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 29 Apr 18 th
+* last modified 2 Aug 18 th
 
 
 #ifndef SignSq
@@ -12,8 +12,6 @@
 #define SEKey(se) 2**(se-1)
 #define SETest(key,se) btest(key,se-1)
 #define SEMask(key) iand(key, mixmask)
-
-#define Li2omx(x) Re(spence(1, ToComplex(x), 0D0))
 
 #define LOOP(var,from,to,step) do var = from, to, step
 #define ENDLOOP(var) enddo
@@ -92,6 +90,11 @@
 #define MGlpTmSt4(s) Stgl%dsfgl(s,4)
 #define MGlpTmStxGlT4(s) Stgl%dsfgl(s,5)
 
+#define U2s1(u,x) Re(u(1,3)*Conjugate(x))
+#define U2s2(u,x) Im(u(1,3)*Conjugate(x))
+#define U2c1(u,x) ((u(3,3)*Conjugate(x) + u(3,4)*(x))/2)
+#define U2c2(u,x) ((u(3,3)*Conjugate(x) - u(3,4)*(x))/2)
+
 #define Sbgl Sf(bM1)
 #define MBgl2 Sbgl%mf2(3)
 #define MBgl Sbgl%mf(3)
@@ -132,18 +135,22 @@
 #define MB2 Mf2(4,3)
 #endif
 
+#define zRan 0:1
+#define cpeRan se11:se22
+
 #define MHiggs(h) Hi%x%mhiggs(h)
 #define SAeff Hi%x%saeff
 #define XHiggs(h1,h2,uz) Hi%x%xhiggs(h1,h2,uz)
 #define UHiggs(h1,h2) XHiggs(h1,h2,1)
-#define ZHiggs(h1,h2) XHiggs(h1,h2,2)
+* XHiggs(:,:,2) = the THDM ZHiggs is addressed through 'uz' in FHCouplings
+#define ZHiggs(h1,h2) XHiggs(h1,h2,3)
 
 #define MHiggs2(h) Hi%i%mhiggs2(h)
-#define dMsq1(h) Hi%i%dmsq1(h)
-#define dZ1(h) Hi%i%dz1(h)
-#define seR(h) Hi%i%ser(h)
-#define dseR(h) Hi%i%dser(h)
-#define se2R(h) Hi%i%se2r(h)
+#define dMsq1(z,h) Hi%i%dmsq1(z,h)
+#define dZ1(z,h) Hi%i%dz1(z,h)
+#define seR(z,h) Hi%i%ser(z,h)
+#define dseR(z,h) Hi%i%dser(z,h)
+#define se2R(z,h) Hi%i%se2r(z,h)
 #define se2Rcat(n,c) Hi%i%se2rcat(n,c)
 
 #define USfC(s1,s2,t,g) Conjugate(USf(s1,s2,t,g))
@@ -202,6 +209,7 @@
 
 
 #include "const.h"
+#include "colors.h"
 #include "FHCouplings.h"
 
 
@@ -431,28 +439,34 @@
 
 * renormalized self-energies & counter terms
 
-	integer asat, atat, asab, atab, sdMT, sDRb, se2Rc
+	integer asat, atat, asab, atab, sdMT, sDRb, sdZH, se2Rc
 	parameter (asat = 1, atat = 2, asab = 3, atab = 4)
-	parameter (sdMT = 5, sDRb = 6, se2Rc = 6)
+	parameter (sdMT = 5, sDRb = 6, sdZH = 7)
+	parameter (se2Rc = 7)
+
+	integer z0, zM
+	integer zU, zZ, zD
+	parameter (z0 = 0, zM = 1)
+	parameter (zU = zM, zZ = zM, zD = zZ)
 
 	type HExtType
 	sequence
 	RealType mhiggs(NHiggs)
 	ComplexType saeff
-	ComplexType xhiggs(0:NNeutral,0:NNeutral,0:2)
+	ComplexType xhiggs(0:NNeutral,0:NNeutral,0:3)
 	endtype
 
 * an ugly kludge for older gfortrans whose 'sizeof' may not
 * appear in parameter statements (Uncertainties.F):
 	integer len_HExtType
-	parameter (len_HExtType = NHiggs + 2 + 6*(NNeutral + 1)**2)
+	parameter (len_HExtType = NHiggs + 2 + 2*(NNeutral + 1)**2*4)
 
 	type HIntType
 	sequence
 	RealType mhiggs2(0:NHiggs)
-	ComplexType dmsq1(semax), dz1(semax)
-	ComplexType ser(semax), dser(semax)
-	ComplexType se2r(semax), se2rcat(se2Rn,se2Rc)
+	ComplexType dmsq1(zRan,semax), dz1(zRan,semax)
+	ComplexType ser(zRan,semax), dser(zRan,semax)
+	ComplexType se2r(zRan,semax), se2rcat(se2Rn,se2Rc)
 	endtype
 
 	type HiggsType
@@ -462,11 +476,9 @@
 	endtype
 
 	type(HiggsType) Hi
-	RealType Msq(0:semax), Msqgl(0:se2Rn)
+	RealType Msq(0:semax), Msqgl(0:semax)
 
-	common /higgsdata/
-     &    Hi,
-     &    Msq, Msqgl
+	common /higgsdata/ Hi, Msq, Msqgl
 
 	RealType MHin2
 	equivalence (Msqgl(HmHp), MHin2)
@@ -492,16 +504,58 @@
 	RealType DSStgl2(2), DSSbgl2(2)
 	type(MSfType) msb0gl
 
-	ComplexType dMsqgl1(se2Rn), dZgl1(se2Rn)
-	ComplexType seUgl(se2Rn), dseUgl(se2Rn)
-	ComplexType seRgl(se2Rn), dseRgl(se2Rn)
+	ComplexType dMsq1gl(zRan,semax), dZ1gl(zRan,semax)
+	ComplexType seUgl(semax), dseUgl(semax)
+	ComplexType seRgl(zRan,semax), dseRgl(zRan,semax)
 
 	common /gldata/
      &    DSStgl2, DSSbgl2,
      &    msb0gl,
-     &    dMsqgl1, dZgl1,
+     &    dMsq1gl, dZ1gl,
      &    seUgl, dseUgl,
      &    seRgl, dseRgl
+
+* finite shifts
+
+	integer se11, se22, se12
+	parameter (se11 = 1, se12 = 2, se22 = 3)
+
+	ComplexType dZHfin(zRan,cpeRan,2)
+	ComplexType dTBfin(zRan,4,2)
+
+	common /dZHfin/ dZHfin, dTBfin
+
+	ComplexType dZH1fin(zRan,cpeRan), dZH1fingl(zRan,cpeRan)
+	equivalence (dZHfin(z0,1,1), dZH1fin)
+	equivalence (dZHfin(z0,1,2), dZH1fingl)
+
+	ComplexType dZ11H1fin(zRan)
+	ComplexType dZ12H1fin(zRan)
+	ComplexType dZ22H1fin(zRan)
+	equivalence (dZH1fin(z0,se11), dZ11H1fin)
+	equivalence (dZH1fin(z0,se12), dZ12H1fin)
+	equivalence (dZH1fin(z0,se22), dZ22H1fin)
+
+	ComplexType dZ11H1fingl(zRan)
+	ComplexType dZ12H1fingl(zRan)
+	ComplexType dZ22H1fingl(zRan)
+	equivalence (dZH1fingl(z0,se11), dZ11H1fingl)
+	equivalence (dZH1fingl(z0,se12), dZ12H1fingl)
+	equivalence (dZH1fingl(z0,se22), dZ22H1fingl)
+
+	ComplexType dTB1fin(zRan)
+	ComplexType dA1(zRan), dBn1(zRan), dBc1(zRan)
+	equivalence (dTBfin(z0,1,1), dTB1fin)
+	equivalence (dTBfin(z0,2,1), dA1)
+	equivalence (dTBfin(z0,3,1), dBn1)
+	equivalence (dTBfin(z0,4,1), dBc1)
+
+	ComplexType dTB1fingl(zRan)
+	ComplexType dA1gl(zRan), dBn1gl(zRan), dBc1gl(zRan)
+	equivalence (dTBfin(z0,1,2), dTB1fingl)
+	equivalence (dTBfin(z0,2,2), dA1gl)
+	equivalence (dTBfin(z0,3,2), dBn1gl)
+	equivalence (dTBfin(z0,4,2), dBc1gl)
 
 * couplings and widths
 
@@ -538,6 +592,7 @@
 	integer tlpsmask, tlzeromask(se2Rc), loglevelmt, tldegatat
 	integer forceSU2, drbarmode, drbarvars, fopoleeq
 	integer interpolateEFT, dmtlimim
+	integer finfieldren, tbdef
 	integer tM1, tM2, bM, bMps, bM1, gM
 	character*256 extSE
 
@@ -555,6 +610,7 @@
      &    tlpsmask, tlzeromask, loglevelmt, TLdegatat,
      &    forceSU2, drbarmode, drbarvars, fopoleeq,
      &    interpolateEFT, dmtlimim,
+     &    finfieldren, tbdef,
      &    tM1, tM2, bM, bMps, bM1, gM,
      &    extSE
 
@@ -568,6 +624,6 @@
      &    tl_valid, eft_valid, higgs_valid, coup_valid,
      &    Ab_bad
 
-
 	character*1 cMSS(5), cAf(4)
 	common /debug/ cMSS, cAf
+

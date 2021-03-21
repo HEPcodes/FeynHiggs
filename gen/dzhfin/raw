@@ -1,0 +1,82 @@
+#! /bin/bash -x
+shopt -s nullglob
+
+mkdir -p m || exit 1
+out=m/raw.m
+log=m/raw.log
+rm -f $out $log*
+
+math -run "
+	out=\"$out\"
+" << \_EOF_ > $log
+AppendTo[$Echo, "stdout"];
+$Post = LeafCount;
+
+(* set non-shifted CTs to zero *)
+_dZSf1 = _dZbarSf1 =
+_dZfR1 = _dZbarfR1 =
+_dZfL1 = _dZbarfL1 =
+dMUE1 =
+dSW1 =
+dMWsq1 = dMWsq1MW2 = dZe1 =
+_dMf1 =
+_dMSfsq1 = 0;
+
+dZ11H2gl = dZ12H2gl = dZ21H2gl = dZ22H2gl = dTB2fingl = 0;
+
+M0 = M02 = 0;
+
+mod = "gl";
+<< ../Packages/fafc.m;
+(*<< FormCalc`tools`btensor`;*)
+
+<< ../Packages/C0z.m;
+C0i[cc0, m__] := C0[m];
+
+SetOptions[CreateTopologies, ExcludeTopologies -> Internal];
+
+rcCalc[expr_, mhp_] := (
+  modopt[mod, mhp];
+  Level[CalcRenConst[expr], {2}]
+);
+
+seParts[tag_, fi:(S[i_] -> S[j_])] := {
+  se[tag] -> SelfEnergy[fi, 0, CTOrder -> 1],
+  seshift[tag] -> se[tag] - dMHiggsZ2gl[i, j]
+};
+
+$FCVerbose = 2;
+
+(*
+$PaintSE = MkDir["diag-1"];
+$PutSE = MkDir["deb-1"];
+*)
+
+{seU, seR} = Transpose[seParts[#, fields[#]]&/@
+  {"h0h0", "HHHH", "A0A0", "HmHp", "h0HH", "h0A0", "HHA0"}]
+
+(*
+$PaintSE = MkDir["diag-0"];
+$PutSE = MkDir["deb-0"];
+*)
+
+rc1LHp = rcCalc[{seU, seR}, $MHpInput -> True]
+
+rc1LA0 = rcCalc[{seU, seR}, $MHpInput -> False]
+
+rc1L = OnePassOrder[IndexIf[inputmass == A0A0, rc1LA0, rc1LHp]]
+
+raw = Flatten[{rc1L, seU, seR}] /. ToOldBRules (*/. Re -> ReTilde*)
+
+raw = OnePassOrder[raw]
+
+raw = SubstSimpleAbbr[raw]
+
+Put[raw, out];
+
+_EOF_
+
+gzip $log
+
+test -f $out
+

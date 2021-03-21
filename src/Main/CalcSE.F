@@ -1,7 +1,7 @@
 * CalcSE.F
 * Calculate the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 15 May 18 th
+* last modified 11 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -30,12 +30,12 @@ c#define FinCheck(div) div
 	if( p2approx .eq. 1 .or. p2 .eq. -1 ) Msq(0) = 0
 
 	if( key_ .ne. 0 ) then
-	  seR(1:seonly) = 0
 	  seU(1:seonly) = 0
+	  seR(:,1:seonly) = 0
 	endif
 	if( key_ .ne. 0 ) then
-	  dseR(1:seonly) = 0
 	  dseU(1:seonly) = 0
+	  dseR(:,1:seonly) = 0
 	endif
 
 	key = SEMask(key_)
@@ -57,8 +57,8 @@ c#define FinCheck(div) div
 	Divergence = 0
 
 	if( p2approx .eq. 3 ) then
-	  seR(1:semax) = Re(seR(1:semax))
-	  dseR(1:semax) = Re(dseR(1:semax))
+	  seR(:,1:semax) = Re(seR(:,1:semax))
+	  dseR(:,1:semax) = Re(dseR(:,1:semax))
 	endif
 
 	if( debuglevel .lt. 4 ) return
@@ -68,39 +68,39 @@ c#define FinCheck(div) div
 	else
 	  DHIGGS "k2 =", p2 ENDL
 	endif
-	if( SETest(key,h0h0) ) DHIGGS "seR(h0h0) =", seR(h0h0) ENDL
-	if( SETest(key,HHHH) ) DHIGGS "seR(HHHH) =", seR(HHHH) ENDL
-	if( SETest(key,A0A0) ) DHIGGS "seR(A0A0) =", seR(A0A0) ENDL
-	if( SETest(key,HmHp) ) DHIGGS "seR(HmHp) =", seR(HmHp) ENDL
-	if( SETest(key,h0HH) ) DHIGGS "seR(h0HH) =", seR(h0HH) ENDL
-	if( SETest(key,h0A0) ) DHIGGS "seR(h0A0) =", seR(h0A0) ENDL
-	if( SETest(key,HHA0) ) DHIGGS "seR(HHA0) =", seR(HHA0) ENDL
+	if( SETest(key,h0h0) ) DHIGGS "seR(h0h0) =", seR(zO,h0h0) ENDL
+	if( SETest(key,HHHH) ) DHIGGS "seR(HHHH) =", seR(zO,HHHH) ENDL
+	if( SETest(key,A0A0) ) DHIGGS "seR(A0A0) =", seR(zO,A0A0) ENDL
+	if( SETest(key,HmHp) ) DHIGGS "seR(HmHp) =", seR(zO,HmHp) ENDL
+	if( SETest(key,h0HH) ) DHIGGS "seR(h0HH) =", seR(zO,h0HH) ENDL
+	if( SETest(key,h0A0) ) DHIGGS "seR(h0A0) =", seR(zO,h0A0) ENDL
+	if( SETest(key,HHA0) ) DHIGGS "seR(HHA0) =", seR(zO,HHA0) ENDL
 
 	if( debuglevel .lt. 5 ) return
 
-	if( SETest(dkey,h0h0) ) DHIGGS "dseR(h0h0) =", dseR(h0h0) ENDL
-	if( SETest(dkey,HHHH) ) DHIGGS "dseR(HHHH) =", dseR(HHHH) ENDL
-	if( SETest(dkey,A0A0) ) DHIGGS "dseR(A0A0) =", dseR(A0A0) ENDL
-	if( SETest(dkey,HmHp) ) DHIGGS "dseR(HmHp) =", dseR(HmHp) ENDL
-	if( SETest(dkey,h0HH) ) DHIGGS "dseR(h0HH) =", dseR(h0HH) ENDL
-	if( SETest(dkey,h0A0) ) DHIGGS "dseR(h0A0) =", dseR(h0A0) ENDL
-	if( SETest(dkey,HHA0) ) DHIGGS "dseR(HHA0) =", dseR(HHA0) ENDL
+	if( SETest(dkey,h0h0) ) DHIGGS "dseR(h0h0) =", dseR(zO,h0h0) ENDL
+	if( SETest(dkey,HHHH) ) DHIGGS "dseR(HHHH) =", dseR(zO,HHHH) ENDL
+	if( SETest(dkey,A0A0) ) DHIGGS "dseR(A0A0) =", dseR(zO,A0A0) ENDL
+	if( SETest(dkey,HmHp) ) DHIGGS "dseR(HmHp) =", dseR(zO,HmHp) ENDL
+	if( SETest(dkey,h0HH) ) DHIGGS "dseR(h0HH) =", dseR(zO,h0HH) ENDL
+	if( SETest(dkey,h0A0) ) DHIGGS "dseR(h0A0) =", dseR(zO,h0A0) ENDL
+	if( SETest(dkey,HHA0) ) DHIGGS "dseR(HHA0) =", dseR(zO,HHA0) ENDL
 
-	if( SETest(key,G0G0) ) DHIGGS "seR(G0G0) =", seR(G0G0) ENDL
-	if( SETest(key,h0G0) ) DHIGGS "seR(h0G0) =", seR(h0G0) ENDL
-	if( SETest(key,HHG0) ) DHIGGS "seR(HHG0) =", seR(HHG0) ENDL
-	if( SETest(key,A0G0) ) DHIGGS "seR(A0G0) =", seR(A0G0) ENDL
-	if( SETest(key,GmGp) ) DHIGGS "seR(GmGp) =", seR(GmGp) ENDL
-	if( SETest(key,HmGp) ) DHIGGS "seR(HmGp) =", seR(HmGp) ENDL
+	if( SETest(key,G0G0) ) DHIGGS "seR(G0G0) =", seR(zO,G0G0) ENDL
+	if( SETest(key,h0G0) ) DHIGGS "seR(h0G0) =", seR(zO,h0G0) ENDL
+	if( SETest(key,HHG0) ) DHIGGS "seR(HHG0) =", seR(zO,HHG0) ENDL
+	if( SETest(key,A0G0) ) DHIGGS "seR(A0G0) =", seR(zO,A0G0) ENDL
+	if( SETest(key,GmGp) ) DHIGGS "seR(GmGp) =", seR(zO,GmGp) ENDL
+	if( SETest(key,HmGp) ) DHIGGS "seR(HmGp) =", seR(zO,HmGp) ENDL
 
 	if( debuglevel .lt. 6 ) return
 
-	if( SETest(dkey,G0G0) ) DHIGGS "dseR(G0G0) =", dseR(G0G0) ENDL
-	if( SETest(dkey,h0G0) ) DHIGGS "dseR(h0G0) =", dseR(h0G0) ENDL
-	if( SETest(dkey,HHG0) ) DHIGGS "dseR(HHG0) =", dseR(HHG0) ENDL
-	if( SETest(dkey,A0G0) ) DHIGGS "dseR(A0G0) =", dseR(A0G0) ENDL
-	if( SETest(dkey,GmGp) ) DHIGGS "dseR(GmGp) =", dseR(GmGp) ENDL
-	if( SETest(dkey,HmGp) ) DHIGGS "dseR(HmGp) =", dseR(HmGp) ENDL
+	if( SETest(dkey,G0G0) ) DHIGGS "dseR(G0G0) =", dseR(zO,G0G0) ENDL
+	if( SETest(dkey,h0G0) ) DHIGGS "dseR(h0G0) =", dseR(zO,h0G0) ENDL
+	if( SETest(dkey,HHG0) ) DHIGGS "dseR(HHG0) =", dseR(zO,HHG0) ENDL
+	if( SETest(dkey,A0G0) ) DHIGGS "dseR(A0G0) =", dseR(zO,A0G0) ENDL
+	if( SETest(dkey,GmGp) ) DHIGGS "dseR(GmGp) =", dseR(zO,GmGp) ENDL
+	if( SETest(dkey,HmGp) ) DHIGGS "dseR(HmGp) =", dseR(zO,HmGp) ENDL
 
 	if( SETest(key,h0h0) ) DHIGGS "seU(h0h0) =", seU(h0h0) ENDL
 	if( SETest(key,HHHH) ) DHIGGS "seU(HHHH) =", seU(HHHH) ENDL
@@ -133,7 +133,7 @@ c#define FinCheck(div) div
 
 	if( MStgl2(3) .lt. 1D-12 ) then
 	  x = Re(Xtgl)/MStgl2(1)
-	  x2 = -1/12D0*x**2
+	  x2 = -x**2/12
 	else
 	  mlog = log(MStgl2(2)/MStgl2(1))
 	  x = Re(Xtgl)/MStgl2(3)
@@ -146,11 +146,11 @@ c#define FinCheck(div) div
 	lam_t = c*MUE*(-.5D0*x - Atgl*x2)
 	omega_t = c*(log(MStgl(1)*MStgl(2)/MTgl2) + Atgl*(x + Atgl*x2))
 
-	seR(h0h0) = -(SA2*sigma_t + CA2*omega_t - S2A*lam_t) +
+	seR(:,h0h0) = -(SA2*sigma_t + CA2*omega_t - S2A*lam_t) +
      &    seX(h0h0,hX)
-	seR(HHHH) = -(CA2*sigma_t + SA2*omega_t + S2A*lam_t) +
+	seR(:,HHHH) = -(CA2*sigma_t + SA2*omega_t + S2A*lam_t) +
      &    seX(HHHH,hX)
-	seR(h0HH) = -(C2A*lam_t + .5D0*S2A*(omega_t - sigma_t)) +
+	seR(:,h0HH) = -(C2A*lam_t + .5D0*S2A*(omega_t - sigma_t)) +
      &    seX(h0HH,hX)
 	end
 
@@ -175,7 +175,7 @@ c#define FinCheck(div) div
 	d = MTgl2 - stt**2*MStgl2(3)
 	MSbot12 = MStgl2(1) - d
 
-	seR(HmHp) = -3/(8.D0*pi)*MTgl2*
+	seR(:,HmHp) = -3/(8.D0*pi)*MTgl2*
      &    AlfaGF/(MW2*SW2*TB2*(MTgl2 + ctt**2*MStgl2(3)))*
      &    (MTgl*Ytgl + ctt*stt*MStgl2(3))**2*
      &    (B0(0D0, MStgl2(1), MStgl2(2)) +
@@ -209,32 +209,32 @@ c#define FinCheck(div) div
 	DSELF "========================="	ENDL
 	DSELF "renormalization constants"	ENDL
 	DSELF "-------------------------"	ENDL
-	DSELF "dMsq1(h0h0) =", dMsq1(h0h0)	ENDL
-	DSELF "dMsq1(HHHH) =", dMsq1(HHHH)	ENDL
-	DSELF "dMsq1(A0A0) =", dMsq1(A0A0)	ENDL
-	DSELF "dMsq1(HmHp) =", dMsq1(HmHp)	ENDL
-	DSELF "dMsq1(h0HH) =", dMsq1(h0HH)	ENDL
-	DSELF "dMsq1(h0A0) =", dMsq1(h0A0)	ENDL
-	DSELF "dMsq1(HHA0) =", dMsq1(HHA0)	ENDL
-	DSELF "dMsq1(G0G0) =", dMsq1(G0G0)	ENDL
-	DSELF "dMsq1(h0G0) =", dMsq1(h0G0)	ENDL
-	DSELF "dMsq1(HHG0) =", dMsq1(HHG0)	ENDL
-	DSELF "dMsq1(A0G0) =", dMsq1(A0G0)	ENDL
-	DSELF "dMsq1(GmGp) =", dMsq1(GmGp)	ENDL
-	DSELF "dMsq1(HmGp) =", dMsq1(HmGp)	ENDL
-	DSELF "dZ1(h0h0)   =", dZ1(h0h0)	ENDL
-	DSELF "dZ1(HHHH)   =", dZ1(HHHH)	ENDL
-	DSELF "dZ1(A0A0)   =", dZ1(A0A0)	ENDL
-	DSELF "dZ1(HmHp)   =", dZ1(HmHp)	ENDL
-	DSELF "dZ1(h0HH)   =", dZ1(h0HH)	ENDL
-	DSELF "dZ1(h0A0)   =", dZ1(h0A0)	ENDL
-	DSELF "dZ1(HHA0)   =", dZ1(HHA0)	ENDL
-	DSELF "dZ1(G0G0)   =", dZ1(G0G0)	ENDL
-	DSELF "dZ1(h0G0)   =", dZ1(h0G0)	ENDL
-	DSELF "dZ1(HHG0)   =", dZ1(HHG0)	ENDL
-	DSELF "dZ1(A0G0)   =", dZ1(A0G0)	ENDL
-	DSELF "dZ1(GmGp)   =", dZ1(GmGp)	ENDL
-	DSELF "dZ1(HmGp)   =", dZ1(HmGp)	ENDL
+	DSELF "dMsq1(h0h0) =", dMsq1(zO,h0h0)	ENDL
+	DSELF "dMsq1(HHHH) =", dMsq1(zO,HHHH)	ENDL
+	DSELF "dMsq1(A0A0) =", dMsq1(zO,A0A0)	ENDL
+	DSELF "dMsq1(HmHp) =", dMsq1(zO,HmHp)	ENDL
+	DSELF "dMsq1(h0HH) =", dMsq1(zO,h0HH)	ENDL
+	DSELF "dMsq1(h0A0) =", dMsq1(zO,h0A0)	ENDL
+	DSELF "dMsq1(HHA0) =", dMsq1(zO,HHA0)	ENDL
+	DSELF "dMsq1(G0G0) =", dMsq1(zO,G0G0)	ENDL
+	DSELF "dMsq1(h0G0) =", dMsq1(zO,h0G0)	ENDL
+	DSELF "dMsq1(HHG0) =", dMsq1(zO,HHG0)	ENDL
+	DSELF "dMsq1(A0G0) =", dMsq1(zO,A0G0)	ENDL
+	DSELF "dMsq1(GmGp) =", dMsq1(zO,GmGp)	ENDL
+	DSELF "dMsq1(HmGp) =", dMsq1(zO,HmGp)	ENDL
+	DSELF "dZ1(h0h0)   =", dZ1(zO,h0h0)	ENDL
+	DSELF "dZ1(HHHH)   =", dZ1(zO,HHHH)	ENDL
+	DSELF "dZ1(A0A0)   =", dZ1(zO,A0A0)	ENDL
+	DSELF "dZ1(HmHp)   =", dZ1(zO,HmHp)	ENDL
+	DSELF "dZ1(h0HH)   =", dZ1(zO,h0HH)	ENDL
+	DSELF "dZ1(h0A0)   =", dZ1(zO,h0A0)	ENDL
+	DSELF "dZ1(HHA0)   =", dZ1(zO,HHA0)	ENDL
+	DSELF "dZ1(G0G0)   =", dZ1(zO,G0G0)	ENDL
+	DSELF "dZ1(h0G0)   =", dZ1(zO,h0G0)	ENDL
+	DSELF "dZ1(HHG0)   =", dZ1(zO,HHG0)	ENDL
+	DSELF "dZ1(A0G0)   =", dZ1(zO,A0G0)	ENDL
+	DSELF "dZ1(GmGp)   =", dZ1(zO,GmGp)	ENDL
+	DSELF "dZ1(HmGp)   =", dZ1(zO,HmGp)	ENDL
 	end
 
 
@@ -242,15 +242,15 @@ c#define FinCheck(div) div
 
 #define P2(i) Msq(iand(i,onshell))
 
+#define dMsq1_(i) dMsq1(zRan,i)
+#define dZ1_(i) dZ1(zRan,i)
+#define dZH1fin_(i) dZH1fin(zRan,i)
+
 #define SEu(i,se1) seU(i) = se1+se2U(i)
-#define SEr(i,se1) seR(i) = se1+dZ1(i)*(p2-Msq(i))-dMsq1(i)+se2R(i)+seEFT(i)+seX(i,hX)
+#define SEr(i,se1) seR(zRan,i) = se1+dZ1_(i)*(p2-Msq(i))-dMsq1_(i)+se2R(zRan,i)+seEFT(i)+seX(i,hX)
 
 #define DSEu(i,dse1) dseU(i) = dse1
-#define DSEr(i,dse1) dseR(i) = dse1+dZ1(i)
-
-#define dZ1_ dZ1
-#define dMsq1_ dMsq1
+#define DSEr(i,dse1) dseR(zRan,i) = dse1+dZ1_(i)
 
 #include "CalcSE_mfv.h"
 #include "CalcSE_nmfv.h"
-

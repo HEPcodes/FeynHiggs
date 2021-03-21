@@ -1,0 +1,27 @@
+ABRules = {}
+
+RenConst[dZ11H1gl] := CB2 dZHiggs1gl[1,1] + S2B dZHiggs1gl[1,2] + SB2 dZHiggs1gl[2,2]
+
+RenConst[dZ22H1gl] := SB2 dZHiggs1gl[1,1] - S2B dZHiggs1gl[1,2] + CB2 dZHiggs1gl[2,2]
+
+
+RenConst[dTB1] := 1/2 TB (dZ11H1gl - dZ22H1gl)
+
+
+RenConst[dZHiggs1gl[1,1]] := -UVDivergentPart[DSelfEnergy[S[1] -> S[1], 0]];
+RenConst[dZHiggs1gl[1,2]] := -UVDivergentPart[DSelfEnergy[S[1] -> S[2], 0]];
+RenConst[dZHiggs1gl[2,2]] := -UVDivergentPart[DSelfEnergy[S[2] -> S[2], 0]];
+
+RenConst[dZHiggs1gl[3,3]] := dZHiggs1gl[2,2];
+RenConst[dZHiggs1gl[4,4]] := dZHiggs1gl[1,1];
+RenConst[dZHiggs1gl[3,4]] := -dZHiggs1gl[1,2];
+
+RenConst[dZHiggs1gl[5,5]] := dZHiggs1gl[3,3];
+RenConst[dZbarHiggs1gl[5,5]] := dZHiggs1gl[5,5];
+
+RenConst[dZHiggs1gl[5,6]] := dZHiggs1gl[3,4];
+RenConst[dZHiggs1gl[6,5]] := dZHiggs1gl[3,4];
+RenConst[dZHiggs1gl[6,6]] := dZHiggs1gl[4,4];
+
+RenConst[_dZHiggs1gl] = 0;
+

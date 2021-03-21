@@ -1,7 +1,7 @@
 * CalcSEgl.F
 * Calculate the renormalized Higgs self-energies in the gaugeless limit
 * this file is part of FeynHiggs
-* last modified 19 Jan 18 th
+* last modified 10 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -40,13 +40,19 @@ c#define FinCheck(div) div
 	if( debuglevel .lt. 4 ) return
 
 	DHIGGS "k2 =", p2 ENDL
-	if( SETest(key,h0h0) ) DHIGGS "seRgl(h0h0) =", seRgl(h0h0) ENDL
-	if( SETest(key,HHHH) ) DHIGGS "seRgl(HHHH) =", seRgl(HHHH) ENDL
-	if( SETest(key,A0A0) ) DHIGGS "seRgl(A0A0) =", seRgl(A0A0) ENDL
-	if( SETest(key,HmHp) ) DHIGGS "seRgl(HmHp) =", seRgl(HmHp) ENDL
-	if( SETest(key,h0HH) ) DHIGGS "seRgl(h0HH) =", seRgl(h0HH) ENDL
-	if( SETest(key,h0A0) ) DHIGGS "seRgl(h0A0) =", seRgl(h0A0) ENDL
-	if( SETest(key,HHA0) ) DHIGGS "seRgl(HHA0) =", seRgl(HHA0) ENDL
+	if( SETest(key,h0h0) ) DHIGGS "seRgl(h0h0) =", seRgl(zO,h0h0) ENDL
+	if( SETest(key,HHHH) ) DHIGGS "seRgl(HHHH) =", seRgl(zO,HHHH) ENDL
+	if( SETest(key,A0A0) ) DHIGGS "seRgl(A0A0) =", seRgl(zO,A0A0) ENDL
+	if( SETest(key,HmHp) ) DHIGGS "seRgl(HmHp) =", seRgl(zO,HmHp) ENDL
+	if( SETest(key,h0HH) ) DHIGGS "seRgl(h0HH) =", seRgl(zO,h0HH) ENDL
+	if( SETest(key,h0A0) ) DHIGGS "seRgl(h0A0) =", seRgl(zO,h0A0) ENDL
+	if( SETest(key,HHA0) ) DHIGGS "seRgl(HHA0) =", seRgl(zO,HHA0) ENDL
+	if( SETest(key,G0G0) ) DHIGGS "seRgl(G0G0) =", seRgl(zO,G0G0) ENDL
+	if( SETest(key,h0G0) ) DHIGGS "seRgl(h0G0) =", seRgl(zO,h0G0) ENDL
+	if( SETest(key,HHG0) ) DHIGGS "seRgl(HHG0) =", seRgl(zO,HHG0) ENDL
+	if( SETest(key,A0G0) ) DHIGGS "seRgl(A0G0) =", seRgl(zO,A0G0) ENDL
+	if( SETest(key,GmGp) ) DHIGGS "seRgl(GmGp) =", seRgl(zO,GmGp) ENDL
+	if( SETest(key,HmGp) ) DHIGGS "seRgl(HmGp) =", seRgl(zO,HmGp) ENDL
 
 	if( debuglevel .lt. 6 ) return
 
@@ -57,10 +63,12 @@ c#define FinCheck(div) div
 	if( SETest(key,h0HH) ) DHIGGS "seUgl(h0HH) =", seUgl(h0HH) ENDL
 	if( SETest(key,h0A0) ) DHIGGS "seUgl(h0A0) =", seUgl(h0A0) ENDL
 	if( SETest(key,HHA0) ) DHIGGS "seUgl(HHA0) =", seUgl(HHA0) ENDL
-
-	DHIGGS "dMsqgl(h0h0)=", dMsqgl1(h0h0) ENDL
-	DHIGGS "dMsqgl(HHHH)=", dMsqgl1(HHHH) ENDL
-	DHIGGS "dMsqgl(h0HH)=", dMsqgl1(h0HH) ENDL
+	if( SETest(key,G0G0) ) DHIGGS "seUgl(G0G0) =", seUgl(G0G0) ENDL
+	if( SETest(key,h0G0) ) DHIGGS "seUgl(h0G0) =", seUgl(h0G0) ENDL
+	if( SETest(key,HHG0) ) DHIGGS "seUgl(HHG0) =", seUgl(HHG0) ENDL
+	if( SETest(key,A0G0) ) DHIGGS "seUgl(A0G0) =", seUgl(A0G0) ENDL
+	if( SETest(key,GmGp) ) DHIGGS "seUgl(GmGp) =", seUgl(GmGp) ENDL
+	if( SETest(key,HmGp) ) DHIGGS "seUgl(HmGp) =", seUgl(HmGp) ENDL
 	end
 
 
@@ -83,22 +91,34 @@ c#define FinCheck(div) div
 
 	if( debuglevel .lt. 3 ) return
 
-	DSELF "renormalization constants (gl)"	ENDL
-	DSELF "------------------------------"	ENDL
-	DSELF "dMsq1gl(h0h0) =", dMsqgl1(h0h0)	ENDL
-	DSELF "dMsq1gl(HHHH) =", dMsqgl1(HHHH)	ENDL
-	DSELF "dMsq1gl(A0A0) =", dMsqgl1(A0A0)	ENDL
-	DSELF "dMsq1gl(HmHp) =", dMsqgl1(HmHp)	ENDL
-	DSELF "dMsq1gl(h0HH) =", dMsqgl1(h0HH)	ENDL
-	DSELF "dMsq1gl(h0A0) =", dMsqgl1(h0A0)	ENDL
-	DSELF "dMsq1gl(HHA0) =", dMsqgl1(HHA0)	ENDL
-	DSELF "dZ1gl(h0h0)   =", dZgl1(h0h0)	ENDL
-	DSELF "dZ1gl(HHHH)   =", dZgl1(HHHH)	ENDL
-	DSELF "dZ1gl(A0A0)   =", dZgl1(A0A0)	ENDL
-	DSELF "dZ1gl(HmHp)   =", dZgl1(HmHp)	ENDL
-	DSELF "dZ1gl(h0HH)   =", dZgl1(h0HH)	ENDL
-	DSELF "dZ1gl(h0A0)   =", dZgl1(h0A0)	ENDL
-	DSELF "dZ1gl(HHA0)   =", dZgl1(HHA0)	ENDL
+	DSELF "renormalization constants (gl)"		ENDL
+	DSELF "------------------------------"		ENDL
+	DSELF "dMsq1gl(h0h0) =", dMsq1gl(zO,h0h0)	ENDL
+	DSELF "dMsq1gl(HHHH) =", dMsq1gl(zO,HHHH)	ENDL
+	DSELF "dMsq1gl(A0A0) =", dMsq1gl(zO,A0A0)	ENDL
+	DSELF "dMsq1gl(HmHp) =", dMsq1gl(zO,HmHp)	ENDL
+	DSELF "dMsq1gl(h0HH) =", dMsq1gl(zO,h0HH)	ENDL
+	DSELF "dMsq1gl(h0A0) =", dMsq1gl(zO,h0A0)	ENDL
+	DSELF "dMsq1gl(HHA0) =", dMsq1gl(zO,HHA0)	ENDL
+	DSELF "dMsq1gl(G0G0) =", dMsq1gl(zO,G0G0)	ENDL
+	DSELF "dMsq1gl(h0G0) =", dMsq1gl(zO,h0G0)	ENDL
+	DSELF "dMsq1gl(HHG0) =", dMsq1gl(zO,HHG0)	ENDL
+	DSELF "dMsq1gl(A0G0) =", dMsq1gl(zO,A0G0)	ENDL
+	DSELF "dMsq1gl(GmGp) =", dMsq1gl(zO,GmGp)	ENDL
+	DSELF "dMsq1gl(HmGp) =", dMsq1gl(zO,HmGp)	ENDL
+	DSELF "dZ1gl(h0h0)   =", dZ1gl(zO,h0h0)		ENDL
+	DSELF "dZ1gl(HHHH)   =", dZ1gl(zO,HHHH)		ENDL
+	DSELF "dZ1gl(A0A0)   =", dZ1gl(zO,A0A0)		ENDL
+	DSELF "dZ1gl(HmHp)   =", dZ1gl(zO,HmHp)		ENDL
+	DSELF "dZ1gl(h0HH)   =", dZ1gl(zO,h0HH)		ENDL
+	DSELF "dZ1gl(h0A0)   =", dZ1gl(zO,h0A0)		ENDL
+	DSELF "dZ1gl(HHA0)   =", dZ1gl(zO,HHA0)		ENDL
+	DSELF "dZ1gl(G0G0)   =", dZ1gl(zO,G0G0)		ENDL
+	DSELF "dZ1gl(h0G0)   =", dZ1gl(zO,h0G0)		ENDL
+	DSELF "dZ1gl(HHG0)   =", dZ1gl(zO,HHG0)		ENDL
+	DSELF "dZ1gl(A0G0)   =", dZ1gl(zO,A0G0)		ENDL
+	DSELF "dZ1gl(GmGp)   =", dZ1gl(zO,GmGp)		ENDL
+	DSELF "dZ1gl(HmGp)   =", dZ1gl(zO,HmGp)		ENDL
 	end
 
 
@@ -106,14 +126,15 @@ c#define FinCheck(div) div
 
 #define P2(i) Msqgl(iand(i,onshell))
 
+#define dMsq1_(i) dMsq1gl(zRan,i)
+#define dZ1_(i) dZ1gl(zRan,i)
+#define dZH1fingl_(i) dZH1fingl(zRan,i)
+
 #define SEu(i,se1) seUgl(i) = se1
-#define SEr(i,se1) seRgl(i) = se1+dZgl1(i)*(p2-Msqgl(i))-dMsqgl1(i)
+#define SEr(i,se1) seRgl(zRan,i) = se1+dZ1_(i)*(p2-Msqgl(i))-dMsq1_(i)
 
 #define DSEu(i,dse1) dseUgl(i) = dse1
-#define DSEr(i,dse1) dseRgl(i) = dse1+dZgl1(i)
-
-#define dZ1_ dZgl1
-#define dMsq1_ dMsqgl1
+#define DSEr(i,dse1) dseRgl(zRan,i) = dse1+dZ1_(i)
 
 #include "CalcSE_gl.h"
 

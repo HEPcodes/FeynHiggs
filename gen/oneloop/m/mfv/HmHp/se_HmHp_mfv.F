@@ -1,5 +1,5 @@
 * se_HmHp_mfv.F
-* generated 8-May-2018 11:23
+* generated 13-Jul-2018 16:55
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -241,7 +241,7 @@
      &              B0(k2,Mh02,MHp2) + 
      &             ((C2B + 2*CW2)*
      &                 ((2*C2B*SA2 + CW2*(2*S2A*S2B + 4*SA2))*
-     &                    SB2 + S2A*S2B*(1 - 2*CB2*SW2)) + 
+     &                    SB2 + S2A*(S2B - 2*CB2*S2B*SW2)) + 
      &                2*CA2*
      &                 (CW2*S2B**2*(1 + CW2*SB2) - 4*CB2**2*SW2 + 
      &                   4*CB2**3*SW2**2 + 

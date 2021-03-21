@@ -1,5 +1,5 @@
 * se_h0HH_mfv.F
-* generated 8-May-2018 11:24
+* generated 13-Jul-2018 16:56
 * this file is part of FeynHiggs
 * please do not edit directly
 
@@ -227,11 +227,13 @@
      &                   3*C2A**2*B0(k2,Mh02,Mh02))) + 
      &             3*C2A*CAB*(2*CAB*S2A + C2A*SAB)*
      &              B0(k2,MHH2,MHH2) - 
-     &             (C2A*(C2B + 2*CW2)*S2B*(1 + 2*CW2*SB2) + 
-     &                S2A*((C2B**2 + CW2**2*(4 - S2B**2))*SB2 - 
-     &                   CW2*(S2B**2 - 4*C2B*SB2) + 4*CB2**2*SW2 - 
+     &             (C2B*(C2A*S2B + CW2*(4*S2A + 2*C2A*S2B)*SB2) + 
+     &                CW2*(-(S2A*
+     &                      (S2B**2 - CW2*(4 - S2B**2)*SB2)) + 
+     &                   S2B*(2*CA2 - 2*(SA2 - 2*C2A*CW2*SB2))) + 
+     &                S2A*(C2B**2*SB2 + 4*CB2**2*SW2 - 
      &                   4*CB2**3*SW2**2) - 
-     &                CB2*(2*C2A*(C2B + 2*CW2)*S2B*SW2 + 
+     &                CB2*(C2A*(2*C2B + 4*CW2)*S2B*SW2 + 
      &                   S2A*(1 - 2*CW2*S2B**2*SW2)))*
      &              B0(k2,MHp2,MHp2)) + 
      &          2*((CAB*MW2*S2B**2*SAB - CBA*CW2*(k2 + MA02)*SBA)*

@@ -80,7 +80,7 @@
 
 \begin{document}
 
-\chapter*{FeynHiggs 2.14.0\\[2ex] Application Programming Interface}
+\chapter*{FeynHiggs 2.14.3\\[2ex] Application Programming Interface}
 
 \makeatletter
 \begin{multicols}{2}
@@ -1410,13 +1410,14 @@ fermion mass, \ie $K_f = m_f A_f$, where the last index $t$ runs over
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 
-\ROUTINE{FHGetSelf}
+\ROUTINE{FHGetSelf, FHGetSelfgl}
 
 \DESCRIPTION
 
-\CODE{FHGetSelf} returns the renormalized Higgs self-energies at a given
-$k^2$.  The flags and parameters must have been set before with
-\CODE{FHSetFlags} and \CODE{FHSetPara}.
+\CODE{FHGetSelf} returns the renormalized Higgs self-energies at a given 
+$k^2$.  \CODE{FHGetSelfgl} does the same but with results in the 
+gaugeless limit.  The flags and parameters must have been set before 
+with \CODE{FHSetFlags} and \CODE{FHSetPara}.
 
 \FSYNOPSIS
 
@@ -1437,12 +1438,14 @@ parameter (GmGp = 12, HmGp = 13)
 #define Key(se) 2**(se-1)
 
 subroutine FHGetSelf(error, k2, key, sig, dkey, dsig, ren)
+subroutine FHGetSelfgl(error, k2, key, sig, dkey, dsig, ren)
 \end{verbatim}
 
 \MSYNOPSIS
 
 \begin{verbatim}
 FHGetSelf[k2, key, dkey, ren]
+FHGetSelfgl[k2, key, dkey, ren]
 \end{verbatim}
 
 \ARGUMENTS

@@ -1,0 +1,91 @@
+#! /bin/bash -x
+shopt -s nullglob
+
+in=m/simp.m
+test -f $in || exit 1
+mkdir -p f || exit 1
+out=f/dZHfin2LShifts.F
+log=m/write.log
+rm -f $out $log*
+
+math -run "
+	in=\"$in\"
+	out=\"$out\"
+" << \_EOF_ > $log
+AppendTo[$Echo, "stdout"];
+
+mod = "gl";
+<< ../Packages/fafc.m;
+<< ../Packages/MUERules.m;
+<< ../Packages/U2Rules.m;
+
+expr = Get[in];
+
+$DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
+$DebugCmd[1] = "DHIGGS \"`1``2` =\", `3` ENDL\n";
+$DebugPost[1] = "#endif\n";
+
+expr = Get[in];
+
+expr = sfsimp[mod][expr] //. U2Rules;
+
+Mf2[tM1,3] = MTgl2;
+Mf[tM1,3] = MTgl;
+Mf2[bM1,3] = MBgl2;
+Mf[bM1,3] = MBgl;
+
+expr = expr /. {A0[m_] :> A0q[m, Q2], B0[m__] :> B0q[m, Q2], B1[m__] :> B1q[m, Q2]};
+
+expr = expr /. x_ Conjugate[x_] :> Sq[x];
+
+expr = PrepareExpr[expr /. dAf1[3,3,3] -> dAt,
+  MakeTmp -> (Flatten[{
+    ToVars[_A0q|_B0q|_B1q|_U2s1|_U2s2|_U2c1|_U2c2, Head][#] /. Rule -> U2Rule,
+    "\tend\n"
+  }]&)
+];
+
+expr = SubstSimpleAbbr[expr, _seshift];
+
+deprul[h_[__]] := h[i__] -> h[zRan,i];
+deprul[h_] := h -> h[zRan];
+
+zRobjs = dZ11H1fingl|dZ12H1fingl|dZ22H1fingl|dTB1fingl|dA1gl|dBn1gl|dBc1gl;
+(*
+deps = FindDeps[expr, zRobjs];
+drul = Union[deprul/@ deps];
+expr = expr /. drul;
+*)
+expr = expr /. (d:zRobjs) :> d[zM];
+
+expr >> m/write.m;
+
+hh = OpenFortran[out];
+
+WriteString[hh, "\
+* " <> FileNameTake[out, -1] <> "\n\
+* compute the 2L shifts due to finite field-renormalization constants\n\
+* generated " <> TimeStamp[] <> "\n\
+* this file is part of FeynHiggs\n\
+* please do not edit directly\n\n\
+#include \"externals.h\"\n\
+#include \"types.h\"\n\
+#include \"debug.h\"\n\n\
+\tsubroutine dZHfin2LShifts(seshift, Q2)\n\
+\timplicit none\n\
+\tRealType Q2\n\n\
+#include \"FH.h\"\n\
+#include \"looptools.h\"\n\n"];
+
+WriteExpr[hh, expr,
+  Type -> "ComplexType",
+  RealArgs -> {A0q, B0q, B1q}];
+
+Close[hh];
+
+_EOF_
+
+gzip $log
+
+test -f $out
+

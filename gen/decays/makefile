@@ -1,7 +1,7 @@
 all: sm mssm
 
-ferm: smferm mssmferm
 bos: smbos mssmbos
+ferm: smferm mssmferm
 
 sm: smbos smferm
 mssm: mssmbos mssmferm
@@ -14,4 +14,6 @@ mssmferm: f/hee f/huu f/hdd
 
 f/%:
 	./decay$(SUFFIX) $@
+
+.PHONY: sm mssm bos ferm smbos smferm mssmbos mssmferm
 

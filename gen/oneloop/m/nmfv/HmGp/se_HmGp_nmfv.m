@@ -1,4 +1,4 @@
-{{-dMHiggs1[6, 5] - (MHp2*dZHiggs1[5, 6])/2 + k2*dZHiggs1[6, 5]}, 
+{{-Conjugate[dMHiggs1[5, 6]] - (MHp2*dZHiggs1[5, 6])/2 + k2*dZHiggs1[6, 5]}, 
  {(3*Alfa1L*B0i[bb0, k2, MASf2[All3, tM1], MASf2[All4, bM1]]*
     CKMin[Ind1, Ind2]*CKMinC[Ind3, Ind4]*Kf[Ind1, Ind5, tM1]*
     KfC[Ind3, Ind6, tM1]*SumOver[All3, 6]*SumOver[All4, 6]*SumOver[Ind1, 3]*
@@ -170,8 +170,8 @@
        C2B*S2B*(A0[MA02] + 4*A0[MHp2] - 4*A0[MW2] - A0[MZ2])) - 
      2*MW2*(C2B*CW2*SAB + CAB*S2B*SW2)*((C2B + 2*CW2)*SA*SB + 
        CA*(CW2*S2B*SB + CB*(1 - 2*CB2*SW2)))*B0i[bb0, k2, MHH2, MHp2] + 
-     2*(MW2*(C2B*CAB*CW2 - S2B*SAB*SW2)*((CA*(-C2B - 2*CW2) + CW2*S2B*SA)*
-          SB + CB*SA*(1 - 2*CB2*SW2))*B0i[bb0, k2, Mh02, MHp2] + 
+     2*(MW2*(C2B*CAB*CW2 - S2B*SAB*SW2)*(-(CA*(C2B + 2*CW2)*SB) + 
+         SA*(CW2*S2B*SB + CB*(1 - 2*CB2*SW2)))*B0i[bb0, k2, Mh02, MHp2] + 
        CW2^2*((-(CBA*(3*k2 + Mh02)*SBA) + (C2B*MW2*SAB*(C2B*CAB*CW2 - 
               S2B*SAB*SW2))/CW2^2)*B0i[bb0, k2, Mh02, MW2] + 
          (CBA*(3*k2 + MHH2)*SBA - (C2B*CAB*MW2*(C2B*CW2*SAB + CAB*S2B*SW2))/

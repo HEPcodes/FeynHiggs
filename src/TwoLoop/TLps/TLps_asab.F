@@ -4,7 +4,7 @@
 * Based on A. Brignole, G. Degrassi, P. Slavich, and F. Zwirner,
 * Nucl. Phys. B643 (2002) 79 [hep-ph/0206101].
 * this file is part of FeynHiggs
-* last modified 1 Jan 17 th
+* last modified 21 Jun 18 th
 
 * Revision history:
 * 14/07/2004: rewritten completely by TH for FeynHiggs
@@ -27,9 +27,9 @@
 	RealType x1, x3, x4, x6, x7, x5, x8, x9, GG, FF, FFo
 	RealType dMSb12, dMSb22, ds2tb, dhbhb, dAb, c2, k
 
-	x1 = Li2omx(MSb12/MGl2)
+	x1 = Li21m(MSb12/MGl2)
 
-	x3 = Li2omx(MSb22/MGl2)
+	x3 = Li21m(MSb22/MGl2)
 
 	x4 = Log(MGl2)
 

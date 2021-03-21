@@ -1,7 +1,7 @@
 * SetSMPara.F
 * set the SM inputs for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 9 Mar 18 th
+* last modified 16 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -119,7 +119,7 @@
 	s23 = s12**2*CKMA
 	c23 = sqrt((1 - s23)*(1 + s23))
 
-	s13c = s12*s23*ToComplex(CKMrhobar, CKMetabar)
+	s13c = s12*s23*ToComplex(CKMrhobar,CKMetabar)
 	s13c = c23/c12*s13c/(1 - CKMA*s12*s13c)
 * this version problematic if s12 = 0:
 *	s13c = c23/c12*s13c/(1 - s23/s12*s13c)

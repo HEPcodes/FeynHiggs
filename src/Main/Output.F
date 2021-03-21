@@ -1,7 +1,7 @@
 * Output.F
 * run FH functions encoded in key and write output to unit
 * this file is part of FeynHiggs
-* last modified 9 Mar 17 th
+* last modified 29 Aug 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -53,29 +53,29 @@
 
 	character*2 higgs(4)
 
-	character*7 f_f(2:4,3)
-	data f_f /
-     &    "e-e", "u-u", "d-d",
-     &    "mu-mu", "c-c", "s-s",
-     &    "tau-tau", "t-t", "b-b" /
+	character*7 fbar_f(2:4,3)
+	data fbar_f /
+     &    "E-e", "U-u", "D-d",
+     &    "Mu-mu", "C-c", "S-s",
+     &    "Tau-tau", "T-t", "B-b" /
 
-	character*10 f_fprime(2,3,3)
-	data f_fprime /
-     &    "nu_e-e",     "u-d",
-     &    "nu_mu-e",    "c-d",
-     &    "nu_tau-e",   "t-d",
-     &    "nu_e-mu",    "u-s",
-     &    "nu_mu-mu",   "c-s",
-     &    "nu_tau-mu",  "t-s",
-     &    "nu_e-tau",   "u-b",
-     &    "nu_mu-tau",  "c-b",
-     &    "nu_tau-tau", "t-b" /
+	character*10 fbar_fprime(2,3,3)
+	data fbar_fprime /
+     &    "N_e-e",     "U-d",
+     &    "N_mu-e",    "C-d",
+     &    "N_tau-e",   "T-d",
+     &    "N_e-mu",    "U-s",
+     &    "N_mu-mu",   "C-s",
+     &    "N_tau-mu",  "T-s",
+     &    "N_e-tau",   "U-b",
+     &    "N_mu-tau",  "C-b",
+     &    "N_tau-tau", "T-b" /
 
-	character*6 sfe(4,3)
-	data sfe /
-     &    "snue", "se", "su", "sd",
-     &    "snumu", "smu", "sc", "ss",
-     &    "snutau", "stau", "stop", "sbot" /
+	character*6 f(4,3)
+	data f /
+     &    "n_e", "e", "u", "d",
+     &    "n_mu", "mu", "c", "s",
+     &    "n_tau", "tau", "t", "b" /
 
 	character*12 v_v(5)
 	data v_v / "gamma-gamma", "gamma-Z", "Z-Z", "W-W", "g-g" /
@@ -282,14 +282,14 @@
      &                CONT, 3 TRIG_FMT,
      &                CONT, 3 TRIG_FMT)
 	write(unit,122) "UHiggsRe",
-     &    ((Re(UHiggs(i,j)), j = 1, 3), i = 1, 3)
+     &    ((Re(UHiggs(i,j)), j = 1,NNeutral), i = 1,NNeutral)
 	write(unit,122) "UHiggsIm",
-     &    ((Im(UHiggs(i,j)), j = 1, 3), i = 1, 3)
+     &    ((Im(UHiggs(i,j)), j = 1,NNeutral), i = 1,NNeutral)
 
 	write(unit,122) "ZHiggsRe",
-     &    ((Re(ZHiggs(i,j)), j = 1, 3), i = 1, 3)
+     &    ((Re(ZHiggs(i,j)), j = 1,NNeutral), i = 1,NNeutral)
 	write(unit,122) "ZHiggsIm",
-     &    ((Im(ZHiggs(i,j)), j = 1, 3), i = 1, 3)
+     &    ((Im(ZHiggs(i,j)), j = 1,NNeutral), i = 1,NNeutral)
 
 *** bit 3: Uncertainties
 
@@ -307,14 +307,14 @@
 	write(unit,111) "DeltaSAeff", DeltaSAeff
 
 	write(unit,122) "DeltaUHiggsRe",
-     &    ((Re(DeltaUHiggs(i,j)), j = 1, 3), i = 1, 3)
+     &    ((Re(DeltaUHiggs(i,j)), j = 1,NNeutral), i = 1,NNeutral)
 	write(unit,122) "DeltaUHiggsIm",
-     &    ((Im(DeltaUHiggs(i,j)), j = 1, 3), i = 1, 3)
+     &    ((Im(DeltaUHiggs(i,j)), j = 1,NNeutral), i = 1,NNeutral)
 
 	write(unit,122) "DeltaZHiggsRe",
-     &    ((Re(DeltaZHiggs(i,j)), j = 1, 3), i = 1, 3)
+     &    ((Re(DeltaZHiggs(i,j)), j = 1,NNeutral), i = 1,NNeutral)
 	write(unit,122) "DeltaZHiggsIm",
-     &    ((Im(DeltaZHiggs(i,j)), j = 1, 3), i = 1, 3)
+     &    ((Im(DeltaZHiggs(i,j)), j = 1,NNeutral), i = 1,NNeutral)
 
 *** bit 4+5: Couplings (bit 5 = fast)
 
@@ -335,7 +335,8 @@
 142	format(SKIP/SKIP,"  Channel", T29,A, T44,A,:,T59,A,T74,A)
 143	format(SKIP, TAG, A,"-",A, GAMMA_BR_FMT)
 144	format(SKIP, TAG, A,"-",A,I1,"-",A,I1, GAMMA_BR_FMT)
-145	format(SKIP, TAG, A,"-",A,"-",A, GAMMA_BR_FMT)
+145	format(SKIP, TAG, A,"-S",A,I1,"-s",A,I1, GAMMA_BR_FMT)
+146	format(SKIP, TAG, A,"-",A,"-",A, GAMMA_BR_FMT)
 
 	do h = 1, 3
 	  write(unit,142) "Gamma", "BR", "GammaSM", "BRSM"
@@ -354,7 +355,7 @@
 	    do g = 1, 3
 	      if( Gamma(H0FF(h,t,g,g)) .ne. 0 .or.
      &            GammaSM(H0FF(h,t,g,g)) .ne. 0 )
-     &          write(unit,143) higgs(h), f_f(t,g),
+     &          write(unit,143) higgs(h), fbar_f(t,g),
      &            Gamma(H0FF(h,t,g,g)),
      &            BR(H0FF(h,t,g,g)),
      &            GammaSM(H0FF(h,t,g,g)),
@@ -365,7 +366,7 @@
 	  do c1 = 1, 2
 	    do c2 = 1, 2
 	      if( Gamma(H0ChaCha(h,c1,c2)) .ne. 0 )
-     &          write(unit,144) higgs(h), "Cha",c1, "Cha",c2,
+     &          write(unit,144) higgs(h), "Cha",c1, "cha",c2,
      &            Gamma(H0ChaCha(h,c1,c2)),
      &            BR(H0ChaCha(h,c1,c2))
 	    enddo
@@ -374,7 +375,7 @@
 	  do n1 = 1, 4
 	    do n2 = n1, 4
 	      if( Gamma(H0NeuNeu(h,n1,n2)) .ne. 0 )
-     &          write(unit,144) higgs(h), "Neu",n1, "Neu",n2,
+     &          write(unit,144) higgs(h), "neu",n1, "neu",n2,
      &            Gamma(H0NeuNeu(h,n1,n2)),
      &            BR(H0NeuNeu(h,n1,n2))
 	    enddo
@@ -382,7 +383,7 @@
 
 	  do hv = 1, 3
 	    if( Gamma(H0HV(h,hv)) .ne. 0 )
-     &        write(unit,145) higgs(h), higgs(hv), "Z",
+     &        write(unit,146) higgs(h), higgs(hv), "Z",
      &          Gamma(H0HV(h,hv)),
      &          BR(H0HV(h,hv))
 	  enddo
@@ -390,10 +391,11 @@
 	  do t = 1, 4
 	    do g = 1, 3
 	      do s1 = 1, 2
-	        do s2 = s1, 2
+	        do s2 = 1, 2
 	          if( Gamma(H0SfSf(h,s1,s2,t,g)) .ne. 0 )
-     &              write(unit,144)
-     &                higgs(h), Strip(sfe(t,g)),s1, Strip(sfe(t,g)),s2,
+     &              write(unit,145) higgs(h),
+     &                Strip(f(t,g)),s1,
+     &                Strip(f(t,g)),s2,
      &                Gamma(H0SfSf(h,s1,s2,t,g)),
      &                BR(H0SfSf(h,s1,s2,t,g))
 	        enddo
@@ -404,7 +406,7 @@
 	  do h1 = 1, 4
 	    do h2 = h1, 4
 	      if( Gamma(H0HH(h,h1,h2)) .ne. 0 )
-     &          write(unit,145) higgs(h), higgs(h1), higgs(h2),
+     &          write(unit,146) higgs(h), higgs(h1), higgs(h2),
      &            Gamma(H0HH(h,h1,h2)), BR(H0HH(h,h1,h2))
 	    enddo
 	  enddo
@@ -416,7 +418,7 @@
 	  do g1 = 1, 3
 	    do p = 1, 2
 	      if( Gamma(HpFF(p,g1,g2)) .ne. 0 )
-     &          write(unit,143) higgs(4), f_fprime(p,g1,g2),
+     &          write(unit,143) "Hm", fbar_fprime(p,g1,g2),
      &            Gamma(HpFF(p,g1,g2)),
      &            BR(HpFF(p,g1,g2))
 	    enddo
@@ -426,7 +428,7 @@
 	do c2 = 1, 2
 	  do n1 = 1, 4
 	    if( Gamma(HpNeuCha(n1,c2)) .ne. 0 )
-     &        write(unit,144) higgs(4), "Neu",n1, "Cha",c2,
+     &        write(unit,144) "Hm", "neu",n1, "cha",c2,
      &          Gamma(HpNeuCha(n1,c2)),
      &          BR(HpNeuCha(n1,c2))
 	  enddo
@@ -434,7 +436,7 @@
 
 	do hv = 1, 3
 	  if( Gamma(HpHV(hv)) .ne. 0 )
-     &      write(unit,145) higgs(4), higgs(hv), "W",
+     &      write(unit,146) "Hm", higgs(hv), "W",
      &        Gamma(HpHV(hv)),
      &        BR(HpHV(hv))
 	enddo
@@ -445,8 +447,9 @@
 	      do s1 = 1, 2
 	        do s2 = 1, 2
 	          if( Gamma(HpSfSf(s1,s2,t/2,g1,g2)) .ne. 0 )
-     &              write(unit,144)
-     &                higgs(4), Strip(sfe(t-1,g1)),s1, Strip(sfe(t,g2)),s2,
+     &              write(unit,145) "Hm",
+     &                Strip(f(t-1,g1)),s1,
+     &                Strip(f(t,g2)),s2,
      &                Gamma(HpSfSf(s1,s2,t/2,g1,g2)),
      &                BR(HpSfSf(s1,s2,t/2,g1,g2))
 	        enddo
@@ -457,8 +460,8 @@
 
 	write(unit,142) "Gamma", "BR"
 
-	write(unit,145) "t", "W", "b", Gamma(tBF(1)), BR(tBF(1))
-	write(unit,145) "t", higgs(4), "b", Gamma(tBF(2)), BR(tBF(2))
+	write(unit,146) "t", "W", "b", Gamma(tBF(1)), BR(tBF(1))
+	write(unit,146) "t", "Hm", "b", Gamma(tBF(2)), BR(tBF(2))
 
 150	format(SKIP/SKIP,
      &    "------------------ SELECTED COUPLINGS ------------------")
@@ -468,7 +471,8 @@
 
 151	format(SKIP, TAG, A,":",A,"-",A, COUPLING_FMT)
 152	format(SKIP, TAG, A,":",A,"-",A,I1,"-",A,I1, COUPLING_FMT)
-153	format(SKIP, TAG, A,":",A,"-",A,"-",A, COUPLING_FMT)
+153	format(SKIP, TAG, A,":",A,"-S",A,I1,"-s",A,I1, COUPLING_FMT)
+154	format(SKIP, TAG, A,":",A,"-",A,"-",A, COUPLING_FMT)
 
 #define SMRatio(c,mssm,sm) Im(mssm(c))/Im(sm(c))
 
@@ -489,10 +493,10 @@
 	    do g = 3, 3
 	      if( LCoupling(H0FF(h,t,g,g)) .ne. 0 .or.
      &            RCoupling(H0FF(h,t,g,g)) .ne. 0 ) then
-	        write(unit,151) "CL", higgs(h), f_f(t,g),
+	        write(unit,151) "CL", higgs(h), fbar_f(t,g),
      &            LCoupling(H0FF(h,t,g,g)),
      &            SMRatio(H0FF(h,t,g,g), LCoupling, LCouplingSM)
-	        write(unit,151) "CR", higgs(h), f_f(t,g),
+	        write(unit,151) "CR", higgs(h), fbar_f(t,g),
      &            RCoupling(H0FF(h,t,g,g)),
      &            SMRatio(H0FF(h,t,g,g), RCoupling, RCouplingSM)
 	      endif
@@ -503,9 +507,9 @@
 	    do c2 = 1, 2
 	      if( LCoupling(H0ChaCha(h,c1,c2)) .ne. 0 .or.
      &            RCoupling(H0ChaCha(h,c1,c2)) .ne. 0 ) then
-	        write(unit,152) "CL", higgs(h), "Cha",c1, "Cha",c2,
+	        write(unit,152) "CL", higgs(h), "Cha",c1, "cha",c2,
      &            LCoupling(H0ChaCha(h,c1,c2))
-	        write(unit,152) "CR", higgs(h), "Cha",c1, "Cha",c2,
+	        write(unit,152) "CR", higgs(h), "Cha",c1, "cha",c2,
      &            RCoupling(H0ChaCha(h,c1,c2))
 	      endif
 	    enddo
@@ -515,9 +519,9 @@
 	    do n2 = n1, 4
 	      if( LCoupling(H0NeuNeu(h,n1,n2)) .ne. 0 .or.
      &            RCoupling(H0NeuNeu(h,n1,n2)) .ne. 0 ) then
-	        write(unit,152) "CL", higgs(h), "Neu",n1, "Neu",n2,
+	        write(unit,152) "CL", higgs(h), "neu",n1, "neu",n2,
      &            LCoupling(H0NeuNeu(h,n1,n2))
-	        write(unit,152) "CR", higgs(h), "Neu",n1, "Neu",n2,
+	        write(unit,152) "CR", higgs(h), "neu",n1, "neu",n2,
      &            RCoupling(H0NeuNeu(h,n1,n2))
 	      endif
 	    enddo
@@ -525,7 +529,7 @@
 
 	  do hv = 1, 3
 	    if( Coupling(H0HV(h,hv)) .ne. 0 )
-     &        write(unit,153) "C", higgs(h), higgs(hv), "Z",
+     &        write(unit,154) "C", higgs(h), higgs(hv), "Z",
      &          Coupling(H0HV(h,hv))
 	  enddo
 
@@ -534,8 +538,9 @@
 	      do s1 = 1, 2
 	        do s2 = s1, 2
 	          if( Coupling(H0SfSf(h,s1,s2,t,g)) .ne. 0 )
-     &              write(unit,152) "C", higgs(h),
-     &                Strip(sfe(t,g)),s1, Strip(sfe(t,g)),s2,
+     &              write(unit,153) "C", higgs(h),
+     &                Strip(f(t,g)),s1,
+     &                Strip(f(t,g)),s2,
      &                Coupling(H0SfSf(h,s1,s2,t,g))
 	        enddo
 	      enddo
@@ -545,7 +550,7 @@
 	  do h1 = 1, 4
 	    do h2 = h1, 4
 	      if( Coupling(H0HH(h,h1,h2)) .ne. 0 )
-     &          write(unit,153) "C", higgs(h), higgs(h1), higgs(h2),
+     &          write(unit,154) "C", higgs(h), higgs(h1), higgs(h2),
      &            Coupling(H0HH(h,h1,h2))
 	    enddo
 	  enddo
@@ -557,9 +562,9 @@
 	  do p = 1, 2
 	    if( LCoupling(HpFF(p,g,g)) .ne. 0 .or.
      &          RCoupling(HpFF(p,g,g)) .ne. 0 ) then
-	      write(unit,151) "CL", higgs(4), f_fprime(p,g,g),
+	      write(unit,151) "CL", "Hp", fbar_fprime(p,g,g),
      &          LCoupling(HpFF(p,g,g))
-	      write(unit,151) "CR", higgs(4), f_fprime(p,g,g),
+	      write(unit,151) "CR", "Hp", fbar_fprime(p,g,g),
      &          RCoupling(HpFF(p,g,g))
 	    endif
 	  enddo
@@ -569,9 +574,9 @@
 	  do n1 = 1, 4
 	    if( LCoupling(HpNeuCha(n1,c2)) .ne. 0 .or.
      &          RCoupling(HpNeuCha(n1,c2)) .ne. 0 ) then
-	      write(unit,152) "CL", higgs(4), "Neu",n1, "Cha",c2,
+	      write(unit,152) "CL", "Hp", "neu",n1, "cha",c2,
      &          LCoupling(HpNeuCha(n1,c2))
-	      write(unit,152) "CR", higgs(4), "Neu",n1, "Cha",c2,
+	      write(unit,152) "CR", "Hp", "neu",n1, "cha",c2,
      &          RCoupling(HpNeuCha(n1,c2))
 	    endif
 	  enddo
@@ -579,7 +584,7 @@
 
 	do hv = 1, 3
 	  if( Coupling(HpHV(hv)) .ne. 0 )
-     &      write(unit,153) "C", higgs(4), higgs(hv), "W",
+     &      write(unit,154) "C", "Hp", higgs(hv), "W",
      &        Coupling(HpHV(hv))
 	enddo
 
@@ -588,8 +593,9 @@
 	    do s1 = 1, 2
 	      do s2 = 1, 2
 	        if( Coupling(HpSfSf(s1,s2,t/2,g,g)) .ne. 0 )
-     &            write(unit,152) "C", higgs(4),
-     &              Strip(sfe(t-1,g)),s1, Strip(sfe(t,g)),s2,
+     &            write(unit,153) "C", "Hp",
+     &              Strip(f(t-1,g)),s1,
+     &              Strip(f(t,g)),s2,
      &              Coupling(HpSfSf(s1,s2,t/2,g,g))
 	      enddo
 	    enddo
@@ -651,7 +657,7 @@
 	write(unit,161) "EDMn", edmn
 	write(unit,161) "EDMHg", edmHg
 
-	if( ccb .ne. 0 ) Warning("Colour-breaking minimum detected")
+	if( ccb .ne. 0 ) Warning("Color-breaking minimum detected")
 
 *** Production XS
 
@@ -684,10 +690,10 @@
 	enddo
 
 	write(unit,192) "xsection/fb"
-	write(unit,193) "prod:t", higgs(4), tHm
-	write(unit,193) "prod:alt-t", higgs(4), tHm2
-	write(unit,193) "prod:altlo-t", higgs(4), tHm2lo
-	write(unit,193) "prod:althi-t", higgs(4), tHm2hi
+	write(unit,193) "prod:t", "Hp", tHm
+	write(unit,193) "prod:alt-t", "Hp", tHm2
+	write(unit,193) "prod:altlo-t", "Hp", tHm2lo
+	write(unit,193) "prod:althi-t", "Hp", tHm2hi
 
 500	if( unit .eq. 10 ) close(unit)
 	return

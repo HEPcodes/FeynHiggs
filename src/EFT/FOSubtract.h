@@ -8,6 +8,23 @@
 	subnonlog1L = 0
 	sublog1L = 0
 
+	if( (finfieldren .eq. 1) .AND. (tbdef .eq. 0) ) then
+	  tbMs = TB*(1
+     &               - 3/2D0*k1L*htMT2/SB2
+     &                             *xOS*(xOS+mueOS*(1/TB+TB))
+     &                             *db0msqmsu
+     &                + 1/8D0*k1L*(3*gMT2*db0m2mue + gyMT2*db0m1mue)
+     &                            *(TB-1/TB))
+	else
+	  tbMs = TB
+	endif
+
+	sbMs2 = tbMs**2/(1+tbMs**2)
+	sbMs = sqrt(sbMs2)
+	cbMs2 = 1/(1+tbMs**2)
+	c2bMs = cbMs2 - sbMs2
+	s2bMs = 2*tbMs/(1+tbMs**2)
+
 	if( looplevel .gt. 0 ) then
 	  gyMs = gyMT*(1 + k1L/3D0*gyMT2*(tCha - tMUE))
 	  gyMs2 = gyMs**2
@@ -67,35 +84,34 @@
 	  htC2 = htC**2
 
 * lambda(MSUSY) -> tree-level
-	  lC = 1/4D0*(C2B**2*(gMs2 + gyMs2))
+	  lC = 1/4.D0*(c2bMs**2*(gMs2 + gyMs2))
 
 * lambda(MSUSY) -> 1L DRbar -> MSbar
 	  lC = lC - k1L/12.D0*
-     &     ((9 - 2*C2B**2)*gMs2**2 + gyMs2*(6*gMs2 + 3*gyMs2))
+     &     ((9 - 2*c2bMs**2)*gMs2**2 + gyMs2*(6*gMs2 + 3*gyMs2))
 
 * lambda(MSUSY) -> 1L heavy Higgs
-	  lC = lC - k1L*(
-     &      3/4D0*(C2B**2*(gMs2 + gyMs2)**2*S2B**2) -
-     &      1/192D0*(tA0 - tSUSYOS)*(
-     &        (53*gMs2**2 + 42*gMs2*gyMs2 + 29*gyMs2**2 -
-     &          4*(gyMs2**2 + gMs2*(7*gMs2 + 6*gyMs2))*
-     &            (C2B - S2B)*(C2B + S2B) -
-     &          9*(gMs2 + gyMs2)**2*
-     &            ((C2B - S2B)*(C2B + S2B) - 2*C2B*S2B)*
-     &            ((C2B - S2B)*(C2B + S2B) + 2*C2B*S2B)) ) )
+	  lC = lC - k1L*
+     &     (3/4.D0*(c2bMs**2*(gMs2 + gyMs2)**2*s2bMs**2) -
+     &       1/192.D0*((53*gMs2**2 + 42*gMs2*gyMs2 + 29*gyMs2**2 -
+     &            4*(gyMs2**2 + gMs2*(7*gMs2 + 6*gyMs2))*
+     &             (c2bMs - s2bMs)*(c2bMs + s2bMs) -
+     &            9*(gMs2 + gyMs2)**2*
+     &             (s2bMs**4 + c2bMs**2*(c2bMs**2 - 6*s2bMs**2)))*
+     &          (tA0 - tSUSYOS)))
 
 * lambda(MSUSY) -> 1L sfermions
-	  lC = lC + k1L/12.D0*(
-     &      6*htC2**2*(
-     &        6*(tSQ + tSU - 2*tSUSYOS + 2*xOS**2*lfSf(1)) -
-     &        xOS2**2*lfSf(2) ) -
-     &      3*C2B*htC2*(
-     &        gyMs2*(2*tSQ - 8*tSU + 6*tSUSYOS - 3*xOS**2*lfSf(3)) -
-     &        3*gMs2*(2*tSQ - 2*tSUSYOS + xOS**2*lfSf(4)) ) -
-     &      C2B**2*(
-     &        gyMs2*(3*htC2*xOS**2*lfSf(5) + gyMs2*(20*tSUSYOS - tSS1)) +
-     &        3*gMs2*(htC2*xOS**2*lfSf(5) + gMs2*(4*tSUSYOS - tSS2)) ) )
-
+	  lC = lC + k1L/12.D0*
+     &     (6*htC2**2*(6*(tSQ + tSU - 2*tSUSYOS +
+     &             2*xOS**2*lfSf(1)) - xOS2**2*lfSf(2)) -
+     &       3*c2bMs*htC2*(gyMs2*
+     &           (2*tSQ - 8*tSU + 6*tSUSYOS - 3*xOS**2*lfSf(3)) -
+     &          3*gMs2*(2*tSQ - 2*tSUSYOS + xOS**2*lfSf(4))) -
+     &       c2bMs**2*(3*(gMs2*htC2*xOS**2*lfSf(5) +
+     &             gMs2**2*(4*tSUSYOS - tSS(1) - 3*tSS(3))) +
+     &          gyMs2*(3*htC2*xOS**2*lfSf(5) +
+     &             gyMs2*(20*tSUSYOS - 3*tSS(1) - 6*tSS(2) -
+     &                tSS(3) - 8*tSS(4) - 2*tSS(5)))))
 #ifdef DETAILED_DEBUG
 	  DEFT "lC =", lC ENDL
 #endif

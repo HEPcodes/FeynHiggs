@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 12 Mar 18 th
+* last modified 13 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -73,7 +73,7 @@ c	  call setfpu
 	Check(looplevel, 0, 2, "looplevel")
 
 	loglevel = loglevel_
-	Check(loglevel, 0, 3, "loglevel")
+	Check(loglevel, 0, 4, "loglevel")
 
 	runningMT = runningMT_
 	Check(runningMT, 0, 3, "runningMT")
@@ -98,6 +98,9 @@ c	  call setfpu
 
 	if( runningMT .eq. 3 .and. loglevel .ne. 0 )
      &    Error(error, "runningMT = 3 allowed only with loglevel = 0")
+
+! 	if( looplevel .lt. 2 .and. loglevel .ne. 0 )
+!      &    Error(error, "looplevel < 2 allowed only with loglevel = 0")
 
 	if( error .eq. 0 ) flags_valid = valid
 
@@ -169,7 +172,7 @@ c	  call setfpu
 	print *, "env FHDRBARMODE ", drbarmode
 60	continue
 
-	fopoleeq = 1
+	fopoleeq = 0
 	call getenv("FHFOPOLEEQ", env)
 	read(env, *, end=70, err=70) fopoleeq
 	print *, "env FHFOPOLEEQ ", fopoleeq
@@ -192,6 +195,18 @@ c	  call setfpu
 	read(env, *, end=100, err=100) interpolateEFT
 	print *, "env FHINTERPOLATEEFT ", interpolateEFT
 100	continue
+
+	finfieldren = 1
+	call getenv("FHFINFIELDREN", env)
+	read(env, *, end=110, err=110) finfieldren
+	print *, "env FHFINFIELDREN ", finfieldren
+110	continue
+
+	tbdef = 1
+	call getenv("FHTBDEF", env)
+	read(env, *, end=120, err=120) tbdef
+	print *, "env FHTBDEF ", tbdef
+120	continue
 
 	call getenv("FHEXTSE", extSE)
 	if( extSE(1:1) .ne. ' ' )
@@ -254,15 +269,15 @@ c	  call setfpu
 
 #include "FH.h"
 
-	character*4 keyword(se2Rn+se2Rc)
-	data keyword /
-     &    "h0h0", "HHHH", "A0A0", "HmHp", "h0HH", "h0A0", "HHA0",
-     &    "asat", "atat", "asab", "atab", "sdMT", "sDRb" /
-
 	integer zero, last, token, mask, i
 
 	integer NextToken
 	external NextToken
+
+	character*4 keyword(se2Rn+se2Rc)
+	common /secatnames/ keyword
+
+	external secatnamesini
 
 	zero = 0
 	last = 1
@@ -301,4 +316,36 @@ c	  call setfpu
 	  if( tlzeromask(i) .ne. 0 )
      &      print 100, keyword(se2Rn+i), tlzeromask(i)
 	enddo
+	end
+
+
+************************************************************************
+
+	block data secatnamesini
+	implicit none
+
+#include "FH.h"
+
+	character*4 keyword(se2Rn+se2Rc)
+	common /secatnames/ keyword
+
+	character*4 sename(se2Rn), catname(se2Rc)
+	equivalence (keyword(1), sename)
+	equivalence (keyword(se2Rn+1), catname)
+
+	data sename(h0h0) /"h0h0"/
+	data sename(HHHH) /"HHHH"/
+	data sename(A0A0) /"A0A0"/
+	data sename(HmHp) /"HmHp"/
+	data sename(h0HH) /"h0HH"/
+	data sename(h0A0) /"h0A0"/
+	data sename(HHA0) /"HHA0"/
+
+	data catname(asat) /"asat"/
+	data catname(atat) /"atat"/
+	data catname(asab) /"asab"/
+	data catname(atab) /"atab"/
+	data catname(sdMT) /"sdMT"/
+	data catname(sDRb) /"sDRb"/
+	data catname(sdZH) /"sdZH"/
 	end

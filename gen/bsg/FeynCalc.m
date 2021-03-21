@@ -1,1 +1,1 @@
-../tools/FeynCalc.m
+../Packages/FeynCalc.m

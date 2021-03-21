@@ -1,0 +1,151 @@
+* dZHfin.F
+* set finite field renormalization constants
+* this file is part of FeynHiggs
+* last modified 2 Feb 18 th
+
+#include "externals.h"
+#include "types.h"
+#include "debug.h"
+
+
+	subroutine CalcdZHfin()
+	implicit none
+
+#include "FH.h"
+#include "looptools.h"
+	RealType mudim_, dup, lowscale, fac
+	integer g
+
+* ren scale of FO calculation
+	mudim_ = (scalefactor*MT)**2
+* scale at which poles are determined (i.e., scale of dse)
+	lowscale = MT2
+* common prefactor
+	fac = -AlfaGF/(16*MW2*SW2*Pi)
+
+* dZHfin gets contributions from
+
+* stops
+
+	dZH11fin = + 6*(Mf2(tM2,3)/SB2)*MUE*MUEC
+     &                                 *DB0(0D0,MSS2(3,3,3),MSS2(3,3,4))
+	dZH12fin = - 6*(Mf2(tM2,3)/SB2)*Re(Af(3,3)*MUE)
+     &                                 *DB0(0D0,MSS2(3,3,3),MSS2(3,3,4))
+	dZH22fin = + 6*(Mf2(tM2,3)/SB2)*Af(3,3)*AfC(3,3)
+     &                                 *DB0(0D0,MSS2(3,3,3),MSS2(3,3,4))
+
+* tops
+	dZH22fin = dZH22fin + 6*(Mf2(tM2,3)/SB2)*log(mudim_/lowscale)
+
+#ifdef DETAILED_DEBUG
+	DPARA "dZH11fin t/st =", fac*dZH11fin ENDL
+	DPARA "dZH12fin t/st =", fac*dZH12fin ENDL
+	DPARA "dZH22fin t/st =", fac*dZH22fin ENDL
+#endif
+
+* sbottoms
+
+	dZH11fin = dZH11fin + 6*(Mf2(bM1,3)/CB2)*Af(4,3)*AfC(4,3)
+     &                                 *DB0(0D0,MSS2(3,3,3),MSS2(3,3,5))
+	dZH12fin = dZH12fin - 6*(Mf2(bM1,3)/CB2)*Re(Af(4,3)*MUE)
+     &                                 *DB0(0D0,MSS2(3,3,3),MSS2(3,3,5))
+	dZH22fin = dZH22fin + 6*(Mf2(bM1,3)/CB2)*MUE*MUEC
+     &                                 *DB0(0D0,MSS2(3,3,3),MSS2(3,3,5))
+
+* bottoms
+	dZH11fin = dZH11fin + 6*(Mf2(bM1,3)/CB2)*log(mudim_/lowscale)
+
+#ifdef DETAILED_DEBUG
+	DPARA "dZH11fin + b/bst =", fac*dZH11fin ENDL
+	DPARA "dZH12fin + b/bst =", fac*dZH12fin ENDL
+	DPARA "dZH22fin + b/bst =", fac*dZH22fin ENDL
+#endif
+
+
+* dZHfingl only gets contributions from thrid generation (s)quarks
+
+	dZH11fingl = fac*dZH11fin
+	dZH12fingl = fac*dZH12fin
+	dZH22fingl = fac*dZH22fin
+
+* first and second generation
+
+	do g = 1, 2
+* up-type squarks
+	  dZH11fin = dZH11fin + 6*(Mf2(3,g)/SB2)*MUE*MUEC
+     &                                 *DB0(0D0,MSS2(g,g,3),MSS2(g,g,4))
+	  dZH12fin = dZH12fin - 6*(Mf2(3,g)/SB2)*Re(Af(3,g)*MUE)
+     &                                 *DB0(0D0,MSS2(g,g,3),MSS2(g,g,4))
+	  dZH22fin = dZH22fin + 6*(Mf2(3,g)/SB2)*Af(3,g)*AfC(3,g)
+     &                                 *DB0(0D0,MSS2(g,g,3),MSS2(g,g,4))
+* down-type squarks
+	  dZH11fin = dZH11fin + 6*(Mf2(4,g)/CB2)*Af(4,g)*AfC(4,g)
+     &                                 *DB0(0D0,MSS2(g,g,3),MSS2(g,g,5))
+	  dZH12fin = dZH12fin - 6*(Mf2(4,g)/CB2)*Re(Af(4,g)*MUE)
+     &                                 *DB0(0D0,MSS2(g,g,3),MSS2(g,g,5))
+	  dZH22fin = dZH22fin + 6*(Mf2(4,g)/CB2)*MUE*MUEC
+     &                                 *DB0(0D0,MSS2(g,g,3),MSS2(g,g,5))
+* up-type quarks
+	  dZH22fin = dZH22fin + 6*(Mf2(3,g)/SB2)*log(mudim_/lowscale)
+* down-type quarks
+	  dZH11fin = dZH11fin + 6*(Mf2(4,g)/CB2)*log(mudim_/lowscale)
+	enddo
+
+	do g = 1, 2
+* sleptons
+	  dZH11fin = dZH11fin + 2*(Mf2(2,g)/CB2)*Af(2,g)*AfC(2,g)
+     &                                 *DB0(0D0,MSS2(g,g,1),MSS2(g,g,2))
+	  dZH12fin = dZH12fin - 2*(Mf2(2,g)/CB2)*Re(Af(2,g)*MUE)
+     &                                 *DB0(0D0,MSS2(g,g,1),MSS2(g,g,2))
+	  dZH22fin = dZH22fin + 2*(Mf2(2,g)/CB2)*MUE*MUEC
+     &                                 *DB0(0D0,MSS2(g,g,1),MSS2(g,g,2))
+* leptons
+	  dZH11fin = dZH11fin + 2*(Mf2(2,g)/CB2)*log(mudim_/lowscale)
+	enddo
+
+#ifdef DETAILED_DEBUG
+	DPARA "dZH11fin + l/lst + 1st/2nd gen q/sq =", fac*dZH11fin ENDL
+	DPARA "dZH12fin + l/lst + 1st/2nd gen q/sq =", fac*dZH12fin ENDL
+	DPARA "dZH22fin + l/lst + 1st/2nd gen q/sq =", fac*dZH22fin ENDL
+#endif
+
+* gauginos, Higgsinos + SM partners
+
+	dup = - 4*MZ2*SW2*Sq(M_1)*DB0(0D0, Sq(M_1), Sq(MUE))
+     &        - 4*MW2*(2*Sq(M_1)+Sq(MUE))*DB0(0D0, Sq(M_2), Sq(MUE))
+     &        + 4*MW2*B0q(0D0, Sq(M_2), Sq(MUE), lowscale)
+     &        - 4*MZ2*SW2*B1q(0D0, Sq(M_1), Sq(MUE), lowscale)
+     &        - 4*MW2*B1q(0D0, Sq(M_2), Sq(MUE), lowscale)
+	dZH11fin = dZH11fin + dup
+	dZH12fin = dZH12fin
+     &          - 4*MZ2*SW2*abs(M_1)*abs(MUE)*DB0(0D0, Sq(M_1), Sq(MUE))
+     &          - 12*MW2*abs(M_2)*abs(MUE)*DB0(0D0, Sq(M_2), Sq(MUE))
+	dZH22fin = dZH22fin + dup
+
+#ifdef DETAILED_DEBUG
+	DPARA "dZH11fin + EWinos =", fac*dZH11fin ENDL
+	DPARA "dZH12fin + EWinos =", fac*dZH12fin ENDL
+	DPARA "dZH22fin + EWinos =", fac*dZH22fin ENDL
+#endif
+
+* add common prefactor
+
+	dZH11fin = fac*dZH11fin
+	dZH12fin = fac*dZH12fin
+	dZH22fin = fac*dZH22fin
+
+	dZH11TL = 0D0
+	dZH12TL = 0D0
+	dZH22TL = 0D0
+
+	if( debuglevel .ge. 4 ) then
+	  DPARA "dZHfin:" ENDL
+	  DPARA "dZH11fin =", dZH11fin ENDL
+	  DPARA "dZH12fin =", dZH12fin ENDL
+	  DPARA "dZH22fin =", dZH22fin ENDL
+	  DPARA "dZH11fingl =", dZH11fingl ENDL
+	  DPARA "dZH12fingl =", dZH12fingl ENDL
+	  DPARA "dZH22fingl =", dZH22fingl ENDL
+	endif
+
+	end

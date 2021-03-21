@@ -1,7 +1,7 @@
 * ltdefs.h
 * preprocessor definitions for the LoopTools functions
 * this file is part of FeynHiggs
-* last modified 21 Sep 12 th
+* last modified 31 Jul 18 th
 
 
 #ifndef LTDEFS_H
@@ -74,6 +74,15 @@
 #define Dval(id,pos) cache(pos+id,2)
 
 #define memindex integer*8
+
+#define Li2(x) RePrec(Prec(spence)(0, ToComplexPrec(x,zPrec), zPrec))
+#define Li21m(x) RePrec(Prec(spence)(1, ToComplexPrec(x,zPrec), zPrec))
+
+* these are the conventions of Slavich et al.
+#define myAA(m,q) A0q(m,q)
+#define myB0(p,m1,m2,q) Re(B0q(p,m1,m2,q))
+#define myB1(p,m1,m2,q) Re(-B1q(p,m1,m2,q))
+#define myB00(p,m1,m2,q) Re(B00q(p,m1,m2,q))
 
 #endif
 

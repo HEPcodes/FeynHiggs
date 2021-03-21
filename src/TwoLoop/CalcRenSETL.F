@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 4 May 18 th
+* last modified 20 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -19,18 +19,27 @@
 #include "TLps.h"
 #define __SUBROUTINE__ "CalcRenSETL"
 
-	RealType dM2imxim, dMT, alfat
+	RealType dM2imxim(zRan), dMT, alfat
+
 	RealType bpara_ps(3,ipslots)
 	RealType dPhi(dPhin,dPhic,ipslots)
 	RealType dMTshift(se2Rn)
 	ComplexType DRbarshift(se2Rn)
+	ComplexType dZHfinshift(se2Rn)
 	integer i, c, fail, tlx
 
 	integer tlxbits(0:3), axatbits, axabbits
 	parameter (axabbits = 2**asab + 2**atab)
 	parameter (axatbits = axabbits + 2**asat + 2**atat)
 
-	character*4 catname(se2Rc), sename(se2Rn)
+	character*4 keyword(se2Rn+se2Rc)
+	common /secatnames/ keyword
+
+	character*4 sename(se2Rn), catname(se2Rc)
+	equivalence (keyword(1), sename)
+	equivalence (keyword(se2Rn+1), catname)
+
+	external secatnamesini
 
 	logical blurb
 	save blurb
@@ -38,24 +47,7 @@
 
 	data tlxbits /axatbits, 0, 2*axabbits/
 
-	data catname(asat) /"asat"/
-	data catname(atat) /"atat"/
-	data catname(asab) /"asab"/
-	data catname(atab) /"atab"/
-	data catname(sdMT) /"sdMT"/
-	data catname(sDRb) /"sDRb"/
-
-	data sename(h0h0) /"h0h0"/
-	data sename(HHHH) /"HHHH"/
-	data sename(A0A0) /"A0A0"/
-	data sename(HmHp) /"HmHp"/
-	data sename(h0HH) /"h0HH"/
-	data sename(h0A0) /"h0A0"/
-	data sename(HHA0) /"HHA0"/
-
 #include "HiggsRot.h"
-
-#define cpe_dPhi(c) dPhi(se11,c,1),dPhi(se22,c,1),dPhi(se12,c,1)
 
 	if( blurb ) then
 	  print *, "FHHiggsCorr contains code by:"
@@ -70,7 +62,7 @@
 	tlx = ior(tlxbits(tlCplxApprox), tlpsmask)
 
 	se2U = 0
-	se2R(:) = 0
+	se2R(zRan,:) = 0
 	se2Rcat(:,:) = 0
 	dPhi = 0
 
@@ -156,12 +148,14 @@
      &      dPhi(se12,c,1), dPhi(se12,c,1),dPhin*se2Rc)
 	  call CplxInterpolate(error,
      &      dPhi(se22,c,1), dPhi(se22,c,1),dPhin*se2Rc)
+
+#define dPhic(h) dPhi(h,c,1)
 	  if( TLallow(c, h0h0) )
-     &      se2Rcat(h0h0,c) = R_h0h0(rA, cpe_dPhi(c))
+     &      se2Rcat(h0h0,c) = R_h0h0(rA, cpf(dPhic))
 	  if( TLallow(c, HHHH) )
-     &      se2Rcat(HHHH,c) = R_HHHH(rA, cpe_dPhi(c))
+     &      se2Rcat(HHHH,c) = R_HHHH(rA, cpf(dPhic))
 	  if( TLallow(c, h0HH) )
-     &      se2Rcat(h0HH,c) = R_h0HH(rA, cpe_dPhi(c))
+     &      se2Rcat(h0HH,c) = R_h0HH(rA, cpf(dPhic))
 	enddo
 
 1	call TLhrSE(btest(tlx, asat))
@@ -218,8 +212,30 @@
 	  endif
 	endif
 
+	if( ior(finfieldren, tbdef) .ne. 0 ) then
+	  call dZHfin2LShifts(dZHfinshift, mudim)
+	  se2Rcat(h0h0,sdZH) = C_h0h0(rBA, cpe(dZHfinshift))
+	  se2Rcat(HHHH,sdZH) = C_HHHH(rBA, cpe(dZHfinshift))
+	  se2Rcat(h0HH,sdZH) = C_h0HH(rBA, cpe(dZHfinshift))
+	  se2Rcat(A0A0,sdZH) = dZHfinshift(A0A0)
+	  se2Rcat(h0A0,sdZH) = C_h0A0(rBA, cpo(dZHfinshift))
+	  se2Rcat(HHA0,sdZH) = C_HHA0(rBA, cpo(dZHfinshift))
+	  se2Rcat(HmHp,sdZH) = dZHfinshift(HmHp)
+	  if( debuglevel .ge. 4 ) then
+	    DSELF "dZHfin/TBrepara 2L shifts:" ENDL
+	    DSELF "shift(h0h0) =", se2Rcat(h0h0,sdZH) ENDL
+	    DSELF "shift(HHHH) =", se2Rcat(HHHH,sdZH) ENDL
+	    DSELF "shift(h0HH) =", se2Rcat(h0HH,sdZH) ENDL
+	    DSELF "shift(A0A0) =", se2Rcat(A0A0,sdZH) ENDL
+	    DSELF "shift(h0A0) =", se2Rcat(h0A0,sdZH) ENDL
+	    DSELF "shift(HHA0) =", se2Rcat(HHA0,sdZH) ENDL
+	    DSELF "shift(HmHp) =", se2Rcat(HmHp,sdZH) ENDL
+	  endif
+	endif
+
 	do i = 1, se2Rn
-	  se2R(i) = sum(se2Rcat(i,1:se2Rc))
+	  se2R(z0,i) = sum(se2Rcat(i,asat:sDRb))
+	  se2R(zM,i) = se2R(z0,i) + se2Rcat(i,sdZH)
 	enddo
 
 * add Im(se1L)*Im(dse1L) to dMA02/dMHmHp2 CT
@@ -227,15 +243,15 @@
 	if( dmtlimim .eq. 1 ) then
 	  call CalcSEgl(Msqgl(inputmass), SEKey(inputmass),
      &                                    SEKey(inputmass))
-	  dM2imxim = Im(seRgl(inputmass))*Im(dseRgl(inputmass))
-	  se2R(h0h0) = se2R(h0h0) - CBA2*dM2imxim
-	  se2R(h0HH) = se2R(h0HH) + CBA*SBA*dM2imxim
-	  se2R(HHHH) = se2R(HHHH) - SBA2*dM2imxim
-	  se2R(A0A0) = se2R(A0A0) - dM2imxim
-	  se2R(HmHp) = se2R(HmHp) - dM2imxim
+	  dM2imxim = Im(seRgl(zRan,inputmass))*Im(dseRgl(zRan,inputmass))
+	  se2R(zRan,h0h0) = se2R(zRan,h0h0) - CBA2*dM2imxim
+	  se2R(zRan,h0HH) = se2R(zRan,h0HH) + CBA*SBA*dM2imxim
+	  se2R(zRan,HHHH) = se2R(zRan,HHHH) - SBA2*dM2imxim
+	  se2R(zRan,A0A0) = se2R(zRan,A0A0) - dM2imxim
+	  se2R(zRan,HmHp) = se2R(zRan,HmHp) - dM2imxim
 
 	  if( debuglevel .gt. 4 ) then
-	    DSELF "dMA02/dMHmHp2 Im(se)*Im(dse) =", dM2imxim	ENDL
+	    DSELF "dMA02/dMHmHp2 Im(se)*Im(dse) =", dM2imxim(zO) ENDL
 	  endif
 	endif
 
@@ -248,7 +264,7 @@
 	DSELF "------------------------"	ENDL
 
 	do i = 1, se2Rn
-	  DSELF "se2R(", sename(i), ") =", se2R(i)
+	  DSELF "se2R(", sename(i), ") =", se2R(zO,i)
 	  if( debuglevel .ge. 3 ) then
 	    do c = 1, se2Rc
 	      DSELF "  ", catname(c), se2Rcat(i,c) ENDL

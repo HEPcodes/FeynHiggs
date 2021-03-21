@@ -1,8 +1,8 @@
 SRC = .
 FH = OneLoop
 
-segl := h0h0 HHHH A0A0 HmHp h0HH h0A0 HHA0
-se := G0G0 h0G0 HHG0 A0G0 GmGp HmGp WW ZZ
+segl := h0h0 HHHH A0A0 HmHp h0HH h0A0 HHA0 G0G0 h0G0 HHG0 A0G0 GmGp HmGp
+se := WW ZZ
 td := h0 HH A0
 
 SEgl := \
@@ -35,4 +35,6 @@ se_%.F dse_%.F td_%.F dZ_%.F:
 all: mfv nmfv gl
 
 install: install-mfv install-nmfv install-gl
+
+.PHONY: all install mfv nmfv gl install-mfv install-nmfv install-gl
 

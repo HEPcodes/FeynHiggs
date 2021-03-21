@@ -178,8 +178,11 @@
 #if 0
 * StglUpdate already makes sure denominators are ok
 	call TLps_Sf(error, StopPara(1),
-     &    DSStgl2, Mf(tS2,3), Atc,
+     &    DSS2(1,tMT,3), Mf(tS2,3), Atc,
      &    "large TB: MStop^2 negative")
+c	call TLps_Sf(error, StopPara(1),
+c     &    DSStgl2, Mf(tS2,3), Atc,
+c     &    "large TB: MStop^2 negative")
 #else
 c	DSS2large = DSStgl2
 	DSS2large = DSS2(:,tMT,3)
@@ -351,7 +354,7 @@ c	DSS2large = DSStgl2
      &    (hb2*stt2 + ht2*ctt2)*myB1(0D0, MUEr2, MSt22, TLMBscale) )
 
 	dvevvev = Nc/(16*pi**2)*ht2*(.5D0*LT2 - .25D0 -
-     &    (ctt2*ctb2*fW(MSt12, MSb12) + 
+     &    (ctt2*ctb2*fW(MSt12, MSb12) +
      &     ctt2*stb2*fW(MSt12, MSb22) +
      &     stt2*ctb2*fW(MSt22, MSb12) +
      &     stt2*stb2*fW(MSt22, MSb22))/pMT2)

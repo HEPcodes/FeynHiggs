@@ -32,8 +32,10 @@
 	parameter (Kfac = -.1953256D0)
 
 	RealType MStQ, MStU
-	equivalence (MSS0(tQ(3),3), MStQ)
-	equivalence (MSS0(tU(3),3), MStU)
+c	equivalence (MSS0(tQ(3),3), MStQ)
+c	equivalence (MSS0(tU(3),3), MStU)
+	equivalence (MSS0(3,3), MStQ)
+	equivalence (MSS0(4,3), MStU)
 
 	RealType MSUSYOS, MSUSYMS, tSUSYOS, tSUSYMS
 	RealType llog, tTop, tCha, tGlu, tmudim
@@ -42,6 +44,7 @@
 	RealType xOS, xOS2, xOS1, xMS, xMS2, vMS2
 	RealType mueOS, mueOS2, mueOS1, mueMS, m_3OS
 	RealType lfmueOS(5), lfmueMS(5), lfM12(6,3), lfSf(7)
+	RealType db0msqmsu, db0m1mue, db0m2mue
 	RealType dlam_asatMS, clam_atat(15)
 
 	common /resum4Hvars/
@@ -52,4 +55,5 @@
      &    xOS, xOS2, xOS1, xMS, xMS2, vMS2,
      &    mueOS, mueOS2, mueOS1, mueMS, m_3OS,
      &    lfmueOS, lfmueMS, lfM12, lfSf,
+     &    db0msqmsu, db0m1mue, db0m2mue,
      &    dlam_asatMS, clam_atat

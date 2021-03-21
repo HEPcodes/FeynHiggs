@@ -1,7 +1,7 @@
 * Para.F
 * initialization routines for the various parameter blocks
 * this file is part of FeynHiggs
-* last modified 29 Apr 18 th
+* last modified 29 Aug 18 th
 
 * based on mssm_ini.F from FormCalc:
 * Christian Schappacher, 17 Feb 99
@@ -60,7 +60,7 @@
 	se2U = 0
 	seEFT = 0
 
-	se2R(:) = 0
+	se2R(zRan,:) = 0
 	se2Rcat(:,:) = 0
 
 	seX = 0
@@ -165,6 +165,8 @@ c	call AlphaS(AlfasMT, nf, Mf2(3,3))
 	  MA02 = (MHp - MW)*(MHp + MW)
 	  MA0 = sqrt(MA02)
 	  inputmass = HmHp
+	  if( tlCplxApprox .eq. 0 )
+     &      Error(error, "tlCplxApprox = 0 not allowed for MHp input")
 	else
 	  Error(error, "neither MA0 nor MHp given")
 	  return
@@ -187,23 +189,29 @@ c	call AlphaS(AlfasMT, nf, Mf2(3,3))
 	Msq(HHHH) = MHH2
 	Msq(A0A0) = MA02
 	Msq(HmHp) = MHp2
-	Msq(h0HH) = .5D0*(Msq(h0h0) + Msq(HHHH))
-	Msq(h0A0) = .5D0*(Msq(h0h0) + Msq(A0A0))
-	Msq(HHA0) = .5D0*(Msq(HHHH) + Msq(A0A0))
+	Msq(h0HH) = (Msq(h0h0) + Msq(HHHH))/2
+	Msq(h0A0) = (Msq(h0h0) + Msq(A0A0))/2
+	Msq(HHA0) = (Msq(HHHH) + Msq(A0A0))/2
 	Msq(G0G0) = 0
-	Msq(h0G0) = .5D0*(Msq(h0h0) + Msq(G0G0))
-	Msq(HHG0) = .5D0*(Msq(HHHH) + Msq(G0G0))
-	Msq(A0G0) = .5D0*(Msq(A0A0) + Msq(G0G0))
+	Msq(h0G0) = (Msq(h0h0) + Msq(G0G0))/2
+	Msq(HHG0) = (Msq(HHHH) + Msq(G0G0))/2
+	Msq(A0G0) = (Msq(A0A0) + Msq(G0G0))/2
 	Msq(GmGp) = 0
-	Msq(HmGp) = .5D0*(Msq(HmHp) + Msq(GmGp))
+	Msq(HmGp) = (Msq(HmHp) + Msq(GmGp))/2
 
 	Msqgl(h0h0) = 0
 	Msqgl(HHHH) = Msq(inputmass)
 	Msqgl(A0A0) = Msq(inputmass)
 	Msqgl(HmHp) = Msq(inputmass)
-	Msqgl(h0HH) = .5D0*(Msqgl(h0h0) + Msqgl(HHHH))
-	Msqgl(h0A0) = .5D0*(Msqgl(h0h0) + Msqgl(A0A0))
-	Msqgl(HHA0) = .5D0*(Msqgl(HHHH) + Msqgl(A0A0))
+	Msqgl(h0HH) = (Msqgl(h0h0) + Msqgl(HHHH))/2
+	Msqgl(h0A0) = (Msqgl(h0h0) + Msqgl(A0A0))/2
+	Msqgl(HHA0) = (Msqgl(HHHH) + Msqgl(A0A0))/2
+	Msqgl(G0G0) = 0
+	Msqgl(h0G0) = (Msqgl(h0h0) + Msqgl(G0G0))/2
+	Msqgl(HHG0) = (Msqgl(HHHH) + Msqgl(G0G0))/2
+	Msqgl(A0G0) = (Msqgl(A0A0) + Msqgl(G0G0))/2
+	Msqgl(GmGp) = 0
+	Msqgl(HmGp) = (Msqgl(HmHp) + Msqgl(GmGp))/2
 
 	CA2 = .5D0*(SB2*MA02 + CB2*MZ2 - Mh02)/deltaMH2
 	CA  = sqrt(CA2)
@@ -434,6 +442,7 @@ c tmp for TLps:
 	Q2cur = -1
 	drbar = 0
 	fail = 0
+
 	Q2default = abs(MSS(3,3)*MSS(4,3))
 
 	drbarvars = 0
@@ -524,6 +533,13 @@ c tmp for TLps:
      &      Warning(Digit(higgsmix)//"x"//Digit(higgsmix)//" mixing"//cplxmsg)
 	  if( inputmass .eq. 3 )
      &      Warning("Input parameter MA0"//cplxmsg)
+	endif
+
+	dZHfin = 0
+	dTBfin = 0
+	if( finfieldren .ne. 0 ) then
+	  call CalcdZHfin
+	  if( tbdef .ne. 0 ) call TBrepara
 	endif
 
 	if( error .eq. 0 ) para_valid = valid
@@ -901,4 +917,3 @@ c tmp for TLps:
 	data FHName(iAbs(ideltaDRR13)) /"Abs(deltaDRR13)"/
 	data FHName(iArg(ideltaDRR13)) /"Arg(deltaDRR13)"/
 	end
-

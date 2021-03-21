@@ -1,0 +1,63 @@
+RenConst[dZH11] := dZH11fingl - (UVDivergentPart[Re[DSelfEnergy[S[2] -> S[2], 0]]] //. ABRules);
+RenConst[dZH12] := dZH12fingl;
+RenConst[dZH22] := dZH22fingl - (UVDivergentPart[Re[DSelfEnergy[S[1] -> S[1], 0]]] //. ABRules);
+
+RenConst[dTB1] := (TB (dZH22 - dZH11) + (1 - TB2) dZH12)/2 + dTB1fingl;
+RenConst[dTB2] := 1/2*TB*(dZH22TL - dZH11TL) \
+                  + 1/2*(1-TB2)*dZH12TL \
+                  + 1/8 TB (3 dZH11^2 - dZH22^2) \
+									- 1/8 (1 + 2 TB - TB2 - 2 TB^3) dZH12^2 \
+									- 1/4 TB dZH11 dZH22 \
+                  - 1/4 (1 - 2 TB2) dZH11 dZH12 \
+                  - 1/4 TB2 dZH12 dZH22 \
+									 + dTB2fingl;
+
+
+RenConst[dZHiggs1gl[1, 1]] := (CB2 dZH11 + S2B dZH12 + SB2 dZH22);
+RenConst[dZHiggs1gl[2, 2]] := (SB2 dZH11 - S2B dZH12 + CB2 dZH22);
+RenConst[dZHiggs1gl[3, 3]] := (SB2 dZH11 - S2B dZH12 + CB2 dZH22);
+RenConst[dZHiggs1gl[4, 4]] := (CB2 dZH11 + S2B dZH12 + SB2 dZH22);
+RenConst[dZHiggs1gl[5, 5]] := (SB2 dZH11 - S2B dZH12 + CB2 dZH22);
+RenConst[dZHiggs1gl[6, 6]] := (CB2 dZH11 + S2B dZH12 + SB2 dZH22);
+RenConst[dZHiggs1gl[1, 2]] := (- SB CB (dZH22 - dZH11) - C2B dZH12);
+RenConst[dZHiggs1gl[1, 3]] := 0;
+RenConst[dZHiggs1gl[1, 4]] := 0;
+RenConst[dZHiggs1gl[1, 5]] := 0;
+RenConst[dZHiggs1gl[1, 6]] := 0;
+RenConst[dZHiggs1gl[2, 3]] := 0;
+RenConst[dZHiggs1gl[2, 4]] := 0;
+RenConst[dZHiggs1gl[2, 5]] := 0;
+RenConst[dZHiggs1gl[2, 6]] := 0;
+RenConst[dZHiggs1gl[3, 4]] := (SB CB (dZH22 - dZH11) + C2B dZH12);
+RenConst[dZHiggs1gl[3, 5]] := 0;
+RenConst[dZHiggs1gl[3, 6]] := 0;
+RenConst[dZHiggs1gl[4, 5]] := 0;
+RenConst[dZHiggs1gl[4, 6]] := 0;
+RenConst[dZHiggs1gl[5, 6]] := (SB CB (dZH22 - dZH11) + C2B dZH12);
+RenConst[dZHiggs1gl[6, 5]] := (SB CB (dZH22 - dZH11) + C2B dZH12);
+
+RenConst[dZHiggs2gl[1, 1]] := (CB2 DZH11 + S2B DZH12 + CB2 DZH22);
+RenConst[dZHiggs2gl[2, 2]] := (SB2 DZH11 - S2B DZH12 + SB2 DZH22);
+RenConst[dZHiggs2gl[3, 3]] := (SB2 DZH11 - S2B DZH12 + CB2 DZH22);
+RenConst[dZHiggs2gl[4, 4]] := (CB2 DZH11 + S2B DZH12 + SB2 DZH22);
+RenConst[dZHiggs2gl[5, 5]] := (SB2 DZH11 - S2B DZH12 + CB2 DZH22);
+RenConst[dZHiggs2gl[6, 6]] := (CB2 DZH11 + S2B DZH12 + SB2 DZH22);
+RenConst[dZHiggs2gl[1, 2]] := (- SB CB (DZH22 - DZH11) - C2B DZH12);
+RenConst[dZHiggs2gl[1, 3]] := 0;
+RenConst[dZHiggs2gl[1, 4]] := 0;
+RenConst[dZHiggs2gl[1, 5]] := 0;
+RenConst[dZHiggs2gl[1, 6]] := 0;
+RenConst[dZHiggs2gl[2, 3]] := 0;
+RenConst[dZHiggs2gl[2, 4]] := 0;
+RenConst[dZHiggs2gl[2, 5]] := 0;
+RenConst[dZHiggs2gl[2, 6]] := 0;
+RenConst[dZHiggs2gl[3, 4]] := (SB CB (DZH22 - DZH11) + C2B DZH12);
+RenConst[dZHiggs2gl[3, 5]] := 0;
+RenConst[dZHiggs2gl[3, 6]] := 0;
+RenConst[dZHiggs2gl[4, 5]] := 0;
+RenConst[dZHiggs2gl[4, 6]] := 0;
+RenConst[dZHiggs2gl[5, 6]] := (SB CB (DZH22 - DZH11) + C2B DZH12);
+
+DZH11 = dZH11TL - 1/4*dZH11^2;
+DZH12 = dZH12TL - 1/4*dZH12^2;
+DZH22 = dZH22TL - 1/4*dZH22^2;

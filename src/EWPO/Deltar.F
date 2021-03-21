@@ -1,7 +1,7 @@
 * Deltar.F
 * compute Delta r in the SM and MSSM
 * this file is part of FeynHiggs
-* last modified 21 Jan 18 th
+* last modified 3 Aug 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -225,6 +225,8 @@
 	implicit none
 	RealType x, y
 
+#include "looptools.h"
+
 	RealType l, c, fy1, fs12
 
 	ComplexType spence
@@ -236,7 +238,7 @@
 	l = x*log(x/y)
 	c = 1 - l/(x - y)
 	fy1 = x - y + 2*y*c
-	fs12 = c*(c*(x + y) + 2*l) - 2*(x - y)*Li2omx(x/y)
+	fs12 = c*(c*(x + y) + 2*l) - 2*(x - y)*Li21m(x/y)
 
 	DrF = ToComplex(fy1, fs12)
 	end

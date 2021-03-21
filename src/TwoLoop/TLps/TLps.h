@@ -1,7 +1,7 @@
 * TLps.h
 * declarations for the two-loop routines
 * this file is part of FeynHiggs
-* last modified 9 Mar 18 th
+* last modified 21 Jun 18 th
 
 #include "TL.h"
 
@@ -44,9 +44,9 @@
 	logical onshell
 	parameter (onshell = .TRUE.)
 
-	RealType rPhi, Phi, InvTri
-	ComplexType spence
-	external rPhi, Phi, InvTri, spence
+	RealType Prec(Phi), Prec(InvTri)
+	ComplexType Prec(spence)
+	external Prec(Phi), Prec(InvTri), Prec(spence)
 
 	RealType StopPara(12), SbotPara(12)
 	RealType pMT, pMT2, pMB, pMB2

@@ -1,7 +1,7 @@
 * SLHARecord.F
 * initialize FeynHiggs record from an SLHA data structure
 * this file is part of FeynHiggs
-* last modified 12 Mar 18 th
+* last modified 17 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -357,8 +357,10 @@ c	  R(iQH) = extpar_Q
 c	vev = 1/sqrt(sqrt2*R(iGF))
 c	CB = 1/sqrt(1 + R(iTB)**2)
 c	x = vev/sqrt2*CB
+* TD (even t) goes with CB = 1/Sqrt[1 + TB^2]
 	x = 1/sqrt(2*sqrt2*R(iGF)*(1 + R(iTB)**2))
-	if( iand(t, 1) .eq. 1 ) x = x*R(iTB)
+* TU (odd t) goes with SB = CB TB
+	if( btest(t, 0) ) x = x*R(iTB)
 	do g = 1, 3
 	  do j = 1, 3
 	    Kf_(j,g) = 0

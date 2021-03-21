@@ -3,36 +3,37 @@
 * this function is adapted from Ansgar Denner's bcanew.f
 * to the conventions of LoopTools
 * this file is part of FeynHiggs 
-* last modified 29 Dec 16 th
+* last modified 29 May 18 th
 
 #include "externals.h"
 #include "types.h"
 
 
-	RealType function A0(m)
+	RealPrec function Prec(A0)(m)
 	implicit none
-	RealType m
+	RealPrec m
 
 #include "lt.h"
 
-	RealType A0q
-	external A0q
+	RealPrec Prec(A0q)
+	external Prec(A0q)
 
-	A0 = A0q(m, mudim)
+	Prec(A0) = Prec(A0q)(m, mudim)
 	end
 
 ************************************************************************
 
-	RealType function A0q(m, q)
+	RealPrec function Prec(A0q)(m, Q)
 	implicit none
-	RealType m, q
+	RealPrec m
+	RealType Q
 
 #include "lt.h"
 
 	if( m .eq. 0 ) then
-	  A0q = 0
+	  Prec(A0q) = 0
 	else
-	  A0q = m*(1 - log(m/q) + delta)
+	  Prec(A0q) = m*(1 - log(m/Q) + delta)
 	endif
 	end
 

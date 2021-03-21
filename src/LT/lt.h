@@ -1,23 +1,28 @@
 * lt.h
 * declarations internal to the LoopTools functions
 * this file is part of FeynHiggs
-* last modified 21 Dec 16 th
+* last modified 2 Aug 18 th
 
-#include "const.h"
+#include "FH.h"
 
-	RealType diffeps, zeroeps
-	ComplexType cIeps, onePeps, oneMeps, c2ipi
-	parameter (diffeps = 1D-12)
-	parameter (zeroeps = 1D-20)
-	parameter (cIeps = cI*1D-20)
-	parameter (onePeps = 1 + cIeps)
-	parameter (oneMeps = 1 - cIeps)
-	parameter (c2ipi = 2*pi*cI)
+#ifndef sqrtc
+#define sqrtc(c) sqrt(ToComplexPrec(c,zPrec))
+#endif
+
+	RealPrec diffeps, zeroeps, minmass
+	ComplexPrec cIeps
+	parameter (diffeps = N(1,-12))
+	parameter (zeroeps = N(1,-20))
+	parameter (minmass = diffeps)
+c	parameter (cIeps = cI*zeroeps)
+	parameter (cIeps = cI*N(1,-50))
+
+	RealPrec zPrec, I1, I2, I3, I4
+	ComplexPrec I1c
+	parameter (zPrec = 0)
+	parameter (I1 = 1, I2 = I1/2, I3 = I1/3, I4 = I1/4)
+	parameter (I1c = 1)
 
 	RealType mudim, delta, lambda
 	common /cutoff/ mudim, delta, lambda
-
-#ifndef ln
-#define ln(x,s) log(x+(s)*cIeps)
-#endif
 

@@ -9,7 +9,7 @@
  dMsq1["HHG0"] -> dMHiggs1[2, 4] - (-MHH2/2 + (MHH2 + MZ2)/2)*dZHiggs1[2, 4], 
  dMsq1["A0G0"] -> dMHiggs1[3, 4] - (-MA02/2 + (MA02 + MZ2)/2)*dZHiggs1[3, 4], 
  dMsq1["GmGp"] -> dMHiggs1[6, 6] - MW2*dZHiggs1[6, 6], 
- dMsq1["HmGp"] -> dMHiggs1[6, 5] + (MHp2*dZHiggs1[5, 6])/2 - 
+ dMsq1["HmGp"] -> Conjugate[dMHiggs1[5, 6]] + (MHp2*dZHiggs1[5, 6])/2 - 
    ((MHp2 + MW2)*dZHiggs1[6, 5])/2, dZ1["A0A0"] -> dZHiggs1[3, 3], 
  dZ1["HmHp"] -> dZbarHiggs1[5, 5]/2 + dZHiggs1[5, 5]/2, 
  dZ1["h0h0"] -> dZHiggs1[1, 1], dZ1["HHHH"] -> dZHiggs1[2, 2], 

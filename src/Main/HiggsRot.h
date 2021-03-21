@@ -1,6 +1,6 @@
 * Rotations of the Higgs fields
 * this file is part of FeynHiggs
-* last modified 12 Dec 17 th
+* last modified 20 Jul 18 th
 
 	ComplexType C_h0A0, C_HHA0
 	ComplexType C_h0h0, C_HHHH, C_h0HH
@@ -29,6 +29,7 @@
 #define rBA CBA,SBA,-1
 
 #define cpe(f) f(h0h0),f(HHHH),f(h0HH)
+#define cpf(f) f(se11),f(se22),f(se12)
 #define cpo(f) f(h0A0),f(HHA0)
 
 #define def_A1(f, S1A,S2A) f(r_, S1A,S2A) = i_*(c_*S2A - s_*S1A)

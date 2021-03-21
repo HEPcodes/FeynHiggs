@@ -1,7 +1,7 @@
 * AddSelf.F
 * Add user-specified values to the Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 13 Jan 18 th
+* last modified 10 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -111,13 +111,7 @@
 	enddo
 
 * special case for constant shifts (i.e., same for Mh0, MHH, MA0, MHp)
-	if( n .eq. 1 ) then
-	  do h = 1, seXmax
-	    do i = 1, semax
-	      seX(i,h) = seX(i,0)
-	    enddo
-	  enddo
-	endif
+	if( n .eq. 1 ) forall(h = 1:seXmax) seX(:,h) = seX(:,0)
 
 	higgs_valid = 0
 	coup_valid = 0

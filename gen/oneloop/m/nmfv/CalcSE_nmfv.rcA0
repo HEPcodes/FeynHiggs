@@ -1,30 +1,39 @@
 {dMWsq1 -> Re[seWW], dMZsq1 -> Re[seZZ], dTA01 -> -Re[tdA0], 
- dTB1 -> ((-dZH1 + dZH2)*TB)/2, dTh01 -> -Re[tdh0], dTHH1 -> -Re[tdHH], 
- dZH1 -> Re[dZHHHH], dZH2 -> Re[dZh0h0], dMHiggs1[1, 1] -> 
-  dMZsq1*SAB^2 + 2*CB2*dTB1*(CAB*MZ2*SAB - CBA*MA02*SBA) + 
-   (EL1L*(-((1 + CBA2)*dTh01*SBA) + CBA*dTHH1*SBA2))/(2*CW*MZ*SW) + 
-   CBA2*dMsq1["A0A0"], dMHiggs1[1, 2] -> -(CAB*dMZsq1*SAB) - 
+ dTB1 -> dTB1div + dTB1fin, dTB1div -> ((1 - TB2)*Re[dZ12H1fin])/2 + 
+   (TB*(-Re[dZ11H1] + Re[dZ22H1]))/2, dTh01 -> -Re[tdh0], dTHH1 -> -Re[tdHH], 
+ dZ11H1 -> dZ11H1fin + Re[dZHHHH], dZ22H1 -> dZ22H1fin + Re[dZh0h0], 
+ dMHiggs1[1, 1] -> dMZsq1*SAB^2 + 2*CB2*dTB1*(CAB*MZ2*SAB - CBA*MA02*SBA) + 
+   2*dA1*(CAB*MZ2*SAB + CBA*MA02*SBA) + CBA2*dMsq1["A0A0"] + 
+   (-((1 + CBA2)*dTh01*SBA) + CBA*dTHH1*SBA2)*HoldCode[EL1L/(2*MW*SW)], 
+ dMHiggs1[1, 2] -> -(CAB*dMZsq1*SAB) + 
+   dA1*(-(MZ2*(CAB^2 - SAB^2)) + MA02*(CBA2 - SBA2)) - 
    CB2*dTB1*(MZ2*(CAB^2 - SAB^2) + MA02*(CBA2 - SBA2)) - 
-   (EL1L*(CBA*CBA2*dTh01 + dTHH1*SBA*SBA2))/(2*CW*MZ*SW) - 
-   CBA*SBA*dMsq1["A0A0"], dMHiggs1[1, 3] -> -(dTA01*EL1L*SBA)/(2*CW*MZ*SW), 
- dMHiggs1[1, 4] -> (CBA*dTA01*EL1L)/(2*CW*MZ*SW), 
- dMHiggs1[2, 2] -> CAB^2*dMZsq1 - 2*CB2*dTB1*(CAB*MZ2*SAB - CBA*MA02*SBA) - 
-   (EL1L*(-(CBA2*dTh01*SBA) + CBA*dTHH1*(1 + SBA2)))/(2*CW*MZ*SW) + 
-   SBA2*dMsq1["A0A0"], dMHiggs1[2, 3] -> -(CBA*dTA01*EL1L)/(2*CW*MZ*SW), 
- dMHiggs1[2, 4] -> -(dTA01*EL1L*SBA)/(2*CW*MZ*SW), 
+   CBA*SBA*dMsq1["A0A0"] - (CBA*CBA2*dTh01 + dTHH1*SBA*SBA2)*
+    HoldCode[EL1L/(2*MW*SW)], dMHiggs1[1, 3] -> 
+  -(dTA01*SBA*HoldCode[EL1L/(2*MW*SW)]), dMHiggs1[1, 4] -> 
+  CBA*dTA01*HoldCode[EL1L/(2*MW*SW)], dMHiggs1[2, 2] -> 
+  CAB^2*dMZsq1 - 2*CB2*dTB1*(CAB*MZ2*SAB - CBA*MA02*SBA) - 
+   2*dA1*(CAB*MZ2*SAB + CBA*MA02*SBA) + SBA2*dMsq1["A0A0"] - 
+   (-(CBA2*dTh01*SBA) + CBA*dTHH1*(1 + SBA2))*HoldCode[EL1L/(2*MW*SW)], 
+ dMHiggs1[2, 3] -> -(CBA*dTA01*HoldCode[EL1L/(2*MW*SW)]), 
+ dMHiggs1[2, 4] -> -(dTA01*SBA*HoldCode[EL1L/(2*MW*SW)]), 
  dMHiggs1[3, 3] -> Re[seA0A0], dMHiggs1[3, 4] -> 
-  -(CB2*dTB1*MA02) + (EL1L*(-(CBA*dTh01) + dTHH1*SBA))/(2*CW*MZ*SW), 
- dMHiggs1[4, 4] -> -(EL1L*(CBA*dTHH1 + dTh01*SBA))/(2*CW*MZ*SW), 
+  dBn1*MA02 - CB2*dTB1*MA02 + (-(CBA*dTh01) + dTHH1*SBA)*
+    HoldCode[EL1L/(2*MW*SW)], dMHiggs1[4, 4] -> 
+  -((CBA*dTHH1 + dTh01*SBA)*HoldCode[EL1L/(2*MW*SW)]), 
  dMHiggs1[5, 5] -> dMWsq1 + dMsq1["A0A0"], 
- dMHiggs1[5, 6] -> -(CB2*dTB1*MHp2) + 
-   (EL1L*(I*dTA01 - CBA*dTh01 + dTHH1*SBA))/(2*CW*MZ*SW), 
- dMHiggs1[6, 5] -> Conjugate[dMHiggs1[5, 6]], 
- dMHiggs1[6, 6] -> dMHiggs1[4, 4], dZbarHiggs1[5, 5] -> 0, 
- dZHiggs1[1, 1] -> CA2*dZH2 + dZH1*SA2, dZHiggs1[1, 2] -> 
-  ((-dZH1 + dZH2)*S2A)/2, dZHiggs1[1, 3] -> 0, dZHiggs1[1, 4] -> 0, 
- dZHiggs1[2, 2] -> CA2*dZH1 + dZH2*SA2, dZHiggs1[2, 3] -> 0, 
- dZHiggs1[2, 4] -> 0, dZHiggs1[3, 3] -> CB2*dZH2 + dZH1*SB2, 
- dZHiggs1[3, 4] -> ((-dZH1 + dZH2)*S2B)/2, 
- dZHiggs1[4, 4] -> CB2*dZH1 + dZH2*SB2, dZHiggs1[5, 5] -> 0, 
- dZHiggs1[5, 6] -> dZ1["A0G0"], dZHiggs1[6, 5] -> dZ1["A0G0"], 
- dZHiggs1[6, 6] -> dZ1["G0G0"]}
+ dMHiggs1[5, 6] -> -(CB2*dTB1*MHp2) + (I*dTA01 - CBA*dTh01 + dTHH1*SBA)*
+    HoldCode[EL1L/(2*MW*SW)], dMHiggs1[6, 6] -> dMHiggs1[4, 4], 
+ dZbarHiggs1[5, 5] -> dZ1["A0A0"], dZHiggs1[1, 1] -> 
+  SA2*Re[dZ11H1] - S2A*Re[dZ12H1fin] + CA2*Re[dZ22H1], 
+ dZHiggs1[1, 2] -> C2A*Re[dZ12H1fin] + (S2A*(-Re[dZ11H1] + Re[dZ22H1]))/2, 
+ dZHiggs1[1, 3] -> -(SBA*Im[dZ12H1fin]), dZHiggs1[1, 4] -> CBA*Im[dZ12H1fin], 
+ dZHiggs1[2, 2] -> CA2*Re[dZ11H1] + S2A*Re[dZ12H1fin] + SA2*Re[dZ22H1], 
+ dZHiggs1[2, 3] -> -(CBA*Im[dZ12H1fin]), dZHiggs1[2, 4] -> 
+  -(SBA*Im[dZ12H1fin]), dZHiggs1[3, 3] -> SB2*Re[dZ11H1] - 
+   S2B*Re[dZ12H1fin] + CB2*Re[dZ22H1], dZHiggs1[3, 4] -> 
+  C2B*Re[dZ12H1fin] + (S2B*(-Re[dZ11H1] + Re[dZ22H1]))/2, 
+ dZHiggs1[4, 4] -> CB2*Re[dZ11H1] + S2B*Re[dZ12H1fin] + SB2*Re[dZ22H1], 
+ dZHiggs1[5, 5] -> dZ1["A0A0"], dZHiggs1[5, 6] -> 
+  dZ1["A0G0"] - I*Im[dZ12H1fin], dZHiggs1[6, 5] -> 
+  dZ1["A0G0"] + I*Im[dZ12H1fin], dZHiggs1[6, 6] -> dZ1["G0G0"]}

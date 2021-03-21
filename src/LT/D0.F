@@ -1,535 +1,361 @@
 * D0.F
 * the scalar four-point function
-* this function is adapted from Ansgar Denner's bcanew.f
-* to the conventions of LoopTools
 * this file is part of FeynHiggs
-* last modified 9 Dec 16 th
+* last modified 2 Aug 18 th
 
 #include "externals.h"
 #include "types.h"
 
+#define M(i) para(i)
+#define P(i) para(i+4)
 
-#define AddEps(k) (k - max(abs(k), 1D0)*cIeps)
+#define K2R(k) ((k + sign(I1, k)*sqrtc((k - 2)*(k + 2)))/2)
+#define K2R0(k) (k - max(abs(k), I1)*cIeps)
+#define R2S(r) merge(zPrec, sign(I1, abs(1 - RePrec(r))), ImPrec(r) .eq. 0)
+#define X(x) x(1),x(2)
 
-#define k2r(k) (.5D0*k*(1 + Sqrtc((1 - 2/k)*(1 + 2/k))))
-#define Sgn(i) (1 - 2*iand(i,1))
+
+	ComplexPrec function Prec(D0p)(p1, p2, p3, p4, p1p2, p2p3,
+     &    m1, m2, m3, m4)
+	implicit none
+	RealPrec p1, p2, p3, p4, p1p2, p2p3, m1, m2, m3, m4
+
+#include "lt.h"
+#include "perm.h"
+
+	integer i, perm, perms, nzero
+	RealPrec para(10)
+	ComplexPrec res
+
+	integer pperm(12), mperm(0:7)
+	data pperm /
+     &    p1234, p1243, p1324,
+     &    p2341, p2431, p2314,
+     &    p3412, p3142, p3421,
+     &    p4123, p4132, p4213 /
+	data mperm / p1234, p1234,
+     &    p1324, p1234, p1432,
+     &    p1243, p1342, p1234 /
+
+* 0 1 1xxx  O'1234561234'
+* 1 2 12xx  O'1234561234'
+* 2 2 13xx  O'5264131324'
+* 3 3 123x  O'1234561234'
+* 4 2 14xx  O'4321561432'
+* 5 3 124x  O'1635421243'
+* 6 3 134x  O'5361421342'
+* 7 4 xxxx  O'1234561234'
+
+#define pi(p,i) ibits(p,3*(10-i),3)
+#define mi(p,i) ibits(p,3*(4-i),3)
+
+#define Px(i) P(pi(perm,i))
+#define Mx(i) M(mi(perm,i))
+
+	M(1) = m1
+	M(2) = m2
+	M(3) = m3
+	M(4) = m4
+	P(1) = p1
+	P(2) = p2
+	P(3) = p3
+	P(4) = p4
+	P(5) = p1p2
+	P(6) = p2p3
+
+#ifdef DETAILED_DEBUG
+	print *, "D0:   p1 =", p1
+	print *, "D0:   p2 =", p2
+	print *, "D0:   p3 =", p3
+	print *, "D0:   p4 =", p4
+	print *, "D0: p1p2 =", p1p2
+	print *, "D0: p2p3 =", p2p3
+	print *, "D0:   m1 =", m1
+	print *, "D0:   m2 =", m2
+	print *, "D0:   m3 =", m3
+	print *, "D0:   m4 =", m4
+#endif
+
+	nzero = 0
+	perms = 0
+	do i = 1, 12
+	  perm = pperm(i)
+	  if( abs(Mx(1)) .lt. zeroeps ) then
+	    if( abs(Px(1)) + abs(Mx(2)) .lt. zeroeps ) then
+	      call Prec(D0coll)(res, para, perm)
+	      if( perm .eq. 0 ) goto 999
+	    endif
+	    if( perms .eq. 0 .and.
+     &        abs(Px(1) - Mx(2)) +
+     &        abs(Px(4) - Mx(4)) .lt. diffeps ) perms = perm
+	    if( nzero .eq. 0 ) nzero = perm
+	  endif
+	enddo
+
+	if( perms .ne. 0 ) then
+	  call Prec(D0soft)(res, para, perms)
+	  goto 999
+	endif
+
+	if( nzero .eq. 0 ) then
+	  call Prec(D0m4)(res, para)
+	  goto 999
+	endif
+
+	perm = nzero
+	nzero = 0
+	if( abs(Mx(2)) .lt. zeroeps ) nzero = 1
+	if( abs(Mx(3)) .lt. zeroeps ) nzero = nzero + 2
+	if( abs(Mx(4)) .lt. zeroeps ) nzero = nzero + 4
+	perms = mperm(nzero)
+	if( perms .ne. p1234 ) perm =
+     &    pi(perm,pi(perms,1))*8**9 +
+     &    pi(perm,pi(perms,2))*8**8 +
+     &    pi(perm,pi(perms,3))*8**7 +
+     &    pi(perm,pi(perms,4))*8**6 +
+     &    pi(perm,pi(perms,5))*8**5 +
+     &    pi(perm,pi(perms,6))*8**4 +
+     &    mi(perm,mi(perms,1))*8**3 +
+     &    mi(perm,mi(perms,2))*8**2 +
+     &    mi(perm,mi(perms,3))*8**1 +
+     &    mi(perm,mi(perms,4))*8**0
+
+	goto (2, 2, 3, 2, 3, 3, 4) nzero
+
+	call Prec(D0m3)(res, para, perm)
+	goto 999
+
+2	call Prec(D0m2)(res, para, perm)
+	goto 999
+
+3	call Prec(D0m1)(res, para, perm)
+	goto 999
+
+4	call Prec(D0m0)(res, para)
+
+999	Prec(D0p) = res
+
+#ifdef DETAILED_DEBUG
+	print *, "D0 =", res
+#endif
+	end
+
 
 ************************************************************************
-* this routine is adapted from Ansgar Denner's bcanew.f
-* to the conventions of LoopTools;
-* it is used for double-checking the results of FF
-* M. Rauch: implemented the log branch cuts for k13 < 2
+
+	subroutine Prec(D0soft)(res, para, perm)
+	implicit none
+	ComplexPrec res
+	RealPrec para(*)
+	integer perm
+
+#include "lt.h"
+
+	RealPrec m3, p1, p2, p3, p4, p1p2, p2p3
+	RealPrec r1, r3, r4
+	ComplexPrec c, fac, lm
+	ComplexPrec xs, x2, x3, x23, x32
+	ComplexPrec ls, l2, l3, l12, l13
+
+	ComplexPrec Prec(spence)
+	external Prec(spence)
+
+	ComplexPrec log1m2, Splog, x_, y_, lx_
+	log1m2(x_, y_) = (log(y_) - ((y_ - 1) + x_)/y_)
+	Splog(x_, lx_) = Prec(spence)(0, x_, zPrec) +
+     &    lx_*log1m2(x_, 1 - x_)
+
+	m3 = Mx(3)
+	p1 = Px(1)
+	p2 = Px(2)
+	p3 = Px(3)
+	p4 = Px(4)
+	p1p2 = Px(5)
+	p2p3 = Px(6)
+
+#ifdef DETAILED_DEBUG
+	print '(" D0soft perm = ",O4)', iand(perm, O'7777')
+#endif
+
+	r1 = sqrt(p1)
+	r4 = sqrt(p4)
+	fac = I2/(r1*r4*(p1p2 - m3))
+	call Prec(bdK)(xs, p2p3, r1, r4)
+	ls = -1
+	if( abs(xs - 1) .lt. diffeps ) then
+	  ls = log(xs)
+	  fac = 2*xs/((1 - xs)*(1 + xs))*fac
+	endif
+
+	if( abs(m3) .lt. zeroeps ) then
+* massless case
+	  if( abs(p1 - p2) + abs(p3 - p4) .lt. diffeps ) then
+	    res = -2*log(-lambda/p1p2 + cIeps)*ls
+	  else
+	    x2 = (r1*(p3 - p4 + cIeps))/(r4*(p2 - p1 + cIeps))
+	    l2 = log(x2)
+	    c = log(lambda/(r1*r4)) +
+     &        log((p2 - p1)/p1p2*(1 - cIeps)) +
+     &        log((p3 - p4)/p1p2*(1 - cIeps))
+	    if( abs(xs - 1) .lt. diffeps ) then
+	      res = c - 2 - (1 + x2)/(1 - x2)*l2
+	    else
+	      res = zeta2 - c*ls - (ls - l2)*(ls + l2)/2 +
+     &          Splog(xs**2, 2*ls) -
+     &          Splog(xs*x2, ls + l2) -
+     &          Splog(xs/x2, ls + log(1/x2))
+	    endif
+	  endif
+	else
+* massive case
+	  r3 = sqrt(m3)
+	  call Prec(bdK)(x2, p2, r1, r3)
+	  call Prec(bdK)(x3, p3, r4, r3)
+	  x32 = x3*x2
+	  x23 = x2/x3
+	  l2 = log(x2)
+	  l3 = log(x3)
+	  l13 = log(1/x3)
+	  lm = 2*log(r3*sqrt(lambda)/(m3 - p1p2) + cIeps)
+	  if( abs(xs - 1) .lt. diffeps ) then
+	    c = -2
+	    if( abs(x2 - x3) .gt. diffeps ) then
+	      c = (1 + x23)/(1 - x23)*(l2 + l13) +
+     &            (1 + x32)/(1 - x32)*(l2 + l3) + 2
+	    else if( abs(x2 - 1) .gt. diffeps ) then
+	      c = -2*(x2**2 + 1)/((x2 - 1)*(x2 + 1))*l2
+	    endif
+	    res = fac*(lm - c)
+	  else
+	    l12 = log(1/x2)
+	    res = 3*zeta2 + l2**2 + l3**2 +
+     &        Splog(xs**2, 2*ls) -
+     &        Splog(xs*x32, ls + l2 + l3) -
+     &        Splog(xs/x32, ls + l12 + l13) -
+     &        Splog(xs*x23, ls + l2 + l13) -
+     &        Splog(xs/x23, ls + l12 + l3)
+	  endif
+	endif
+
+	res = fac*res
+
+#ifdef DETAILED_DEBUG
+	print *, "D0soft =", res
+#endif
+	end
+
+
+
+************************************************************************
+
+	subroutine Prec(bdK)(res, x, m1, m2)
+* this is actually -K from the Beenakker/Denner paper for D0soft
+	implicit none
+	ComplexPrec res
+	RealPrec x, m1, m2
+
+#include "lt.h"
+
+	RealPrec d
+	ComplexPrec t
+
+	d = x - (m1 - m2)**2
+	if( abs(d) .lt. diffeps ) then
+	  res = 1
+	else
+	  t = 4*m1*m2/(d + cIeps)
+	  res = -t/(sqrt(1 - t) + 1)**2
+	endif
+	end
+
+
+************************************************************************
+
+	subroutine Prec(D0coll)(res, para, perm)
+	implicit none
+	ComplexPrec res
+	RealPrec para(*)
+	integer perm
+
+#include "lt.h"
+
+	logical ini
+	data ini /.FALSE./
+
+#ifdef DETAILED_DEBUG
+	print '(" D0coll perm = ",O4)', iand(perm, O'7777')
+#endif
+
+	Px(1) = minmass
+
+	if( .not. ini ) then
+	  print *, "collinear-divergent D0, using mass cutoff ", Px(1)
+	  ini = .TRUE.
+	endif
+	end
+
+
+************************************************************************
+* M. Rauch implemented the log branch cuts for k13 < 2
 * (from Denner, Nierste, Scharf; Nucl Phys B367 (1991) 637)
 
-	ComplexType function D0p(p1, p2, p3, p4, p1p2, p2p3,
-     &    m1, m2, m3, m4)
+	subroutine Prec(D0m4)(res, para)
 	implicit none
-	RealType p1, p2, p3, p4, p1p2, p2p3
-	RealType m1, m2, m3, m4
+	ComplexPrec res
+	RealPrec para(*)
 
 #include "lt.h"
+#include "perm.h"
 
-	ComplexType D0ir, D0m0, D0reg
-	external D0ir, D0m0, D0reg
-
-* check IR cases first
-	if( m1 .eq. 0 ) then
-	  if( abs(p1 - m2) + abs(p4 - m4) .lt. diffeps ) then
-	    D0p = D0ir(p1, p2, p3, p4, p1p2, p2p3, m3)
-	    return
-	  endif
-	  if( abs(p1 - m2) + abs(p1p2 - m3) .lt. diffeps ) then
-	    D0p = D0ir(p1, p2p3, p3, p1p2, p4, p2, m4)
-	    return
-	  endif
-	  if( abs(p4 - m4) + abs(p1p2 - m3) .lt. diffeps ) then
-	    D0p = D0ir(p1p2, p2, p2p3, p4, p1, p3, m2)
-	    return
-	  endif
-	endif
-
-	if( m2 .eq. 0 ) then
-	  if( abs(p1 - m1) + abs(p2 - m3) .lt. diffeps ) then
-	    D0p = D0ir(p1, p4, p3, p2, p2p3, p1p2, m4)
-	    return
-	  endif
-	  if( abs(p1 - m1) + abs(p2p3 - m4) .lt. diffeps ) then
-	    D0p = D0ir(p1, p1p2, p3, p2p3, p2, p4, m3)
-	    return
-	  endif
-	  if( abs(p2 - m3) + abs(p2p3 - m4) .lt. diffeps ) then
-	    D0p = D0ir(p2, p1p2, p4, p2p3, p1, p3, m1)
-	    return
-	  endif
-	endif
-
-	if( m3 .eq. 0 ) then
-	  if( abs(p2 - m2) + abs(p3 - m4) .lt. diffeps ) then
-	    D0p = D0ir(p2, p1, p4, p3, p1p2, p2p3, m1)
-	    return
-	  endif
-	  if( abs(p2 - m2) + abs(p1p2 - m1) .lt. diffeps ) then
-	    D0p = D0ir(p2, p2p3, p4, p1p2, p3, p1, m4)
-	    return
-	  endif
-	  if( abs(p3 - m4) + abs(p1p2 - m1) .lt. diffeps ) then
-	    D0p = D0ir(p1p2, p1, p2p3, p3, p2, p4, m2)
-	    return
-	  endif
-	endif
-
-	if( m4 .eq. 0 ) then
-	  if( abs(p4 - m1) + abs(p3 - m3) .lt. diffeps ) then
-	    D0p = D0ir(p3, p2, p1, p4, p2p3, p1p2, m2)
-	    return
-	  endif
-	  if( abs(p4 - m1) + abs(p2p3 - m2) .lt. diffeps ) then
-	    D0p = D0ir(p2p3, p2, p1p2, p4, p3, p1, m3)
-	    return
-	  endif
-	  if( abs(p3 - m3) + abs(p2p3 - m2) .lt. diffeps ) then
-	    D0p = D0ir(p3, p1p2, p1, p2p3, p4, p2, m1)
-	    return
-	  endif
-	endif
-
-	if( m1 .eq. 0 ) then
-	  D0p = D0m0(p3, p4, p1, p2, p1p2, p2p3, m3, m4, m2)
-	else if( m2 .eq. 0 ) then
-	  D0p = D0m0(p4, p1, p2, p3, p2p3, p1p2, m4, m1, m3)
-	else if( m3 .eq. 0 ) then
-	  D0p = D0m0(p1, p2, p3, p4, p1p2, p2p3, m1, m2, m4)
-	else if( m4 .eq. 0 ) then
-	  D0p = D0m0(p2, p3, p4, p1, p2p3, p1p2, m2, m3, m1)
-	else
-	  D0p = D0reg(p1, p2, p3, p4, p1p2, p2p3, m1, m2, m3, m4)
-	endif
-	end
-
-************************************************************************
-
-	ComplexType function D0ir(p1, p2, p3, p4, p1p2, p2p3, m3)
-	implicit none
-	RealType p1, p2, p3, p4, p1p2, p2p3, m3
-
-#include "lt.h"
-
-	RealType m1_, m3_, m4_, d
-	ComplexType xs, x2, x3, y, c, f
-	ComplexType logxs, logx2, logx3, log1x2, log1x3, logy
-
-	ComplexType ln, spence, bdK
-	external ln, spence, bdK
-
-	m1_ = sqrt(p1)
-	m4_ = sqrt(p4)
-	f = .5D0/(m1_*m4_*(p1p2 - m3))
-	d = p2p3 - (m1_ - m4_)**2
-	if( d .ne. 0 ) then
-	  xs = bdK(p2p3, m1_, m4_)
-	  logxs = log(xs)
-	  f = f*2*xs/((1 - xs)*(1 + xs))
-	endif
-
-* massless case
-	if( m3 .eq. 0 ) then
-	  if( p1 .eq. p2 .and. p3 .eq. p4 ) then
-	    D0ir = 2*f*ln(-lambda/p1p2, 1D0)
-	    if( d .ne. 0 ) D0ir = -logxs*D0ir
-	    return
-	  endif
-	  y = m1_/m4_*(p3 - p4 + cIeps)/
-     &                (p2 - p1 + cIeps)
-	  logy = log(y)
-	  c = ln(lambda/m1_/m4_, 0D0) +
-     &      ln((p2 - p1)/p1p2, p1 - p2) + ln((p3 - p4)/p1p2, p4 - p3)
-	  if( d .ne. 0 ) then
-	    D0ir = f*(zeta2 - .5D0*(logxs - logy)*(logxs + logy) -
-     &        spence(0, xs/y, 0) - (logxs + log(1/y))*log(1 - xs/y) -
-     &        spence(0, xs*y, 0) - (logxs + logy)*log(1 - xs*y) +
-     &        spence(0, xs**2, 0) +
-     &        logxs*(2*log((1 - xs)*(1 + xs)) - c))
-	    return
-	  endif
-	  D0ir = f*(c - 2 - (1 + y)/(1 - y)*logy)
-	  return
-	endif
-
-* massive case
-	m3_ = sqrt(m3)
-	x2 = bdK(p2, m1_, m3_)
-	x3 = bdK(p3, m4_, m3_)
-	logx2 = log(x2)
-	logx3 = log(x3)
-	log1x3 = log(1/x3)
-	c = ln(m3_*sqrt(lambda)/(m3 - p1p2), 1D0)
-	if( d .ne. 0 ) then
-	  log1x2 = log(1/x2)
-	  D0ir = f*(.5D0*pi**2 +
-     &      2*log(xs)*(log((1 - xs)*(1 + xs)) - c) +
-     &      spence(0, xs**2, 0) + logx2**2 + logx3**2 -
-     &      spence(0, xs/x2/x3, 0) -
-     &      (logxs + log1x2 + log1x3)*log(1 - xs/x2/x3) -
-     &      spence(0, xs*x2/x3, 0) -
-     &      (logxs + logx2 + log1x3)*log(1 - xs*x2/x3) -
-     &      spence(0, xs/x2*x3, 0) -
-     &      (logxs + log1x2 + logx3)*log(1 - xs/x2*x3) -
-     &      spence(0, xs*x2*x3, 0) -
-     &      (logxs + logx2 + logx3)*log(1 - xs*x2*x3))
-	  return
-	endif
-	D0ir = f*(2*c -
-     &    (1 + x2/x3)/(1 - x2/x3)*(logx2 + log1x3) -
-     &    (1 + x2*x3)/(1 - x2*x3)*(logx2 + logx3) - 2)
-	end
-
-************************************************************************
-
-	ComplexType function D0m0(p1, p2, p3, p4, p1p2, p2p3,
-     &    m1, m2, m4)
-	implicit none
-	RealType p1, p2, p3, p4, p1p2, p2p3
-	RealType m1, m2, m4
-
-#include "lt.h"
-
-	ComplexType D0m00, cspence, cln
-	integer eta_tilde
-	external D0m00, cspence, eta_tilde, cln
-
-	RealType m1_, m2_, m4_
-	RealType k12, k13, k14, k23, k24, k34
-	RealType ir12, ir14, ir24, ix1(2), ix4(2), ix2
-	ComplexType r12, r14, r24, x4(2), x1, x2
-	ComplexType a, b, c, d, disc
+	RealPrec tmp, s1324, gamma, s(2)
+	RealPrec k12, k13, k14, k23, k24, k34
+	RealPrec s12, s13, s14, s23, s24, s34
+	ComplexPrec r12, r14, r13, r23, r24, r34
+	RealPrec s1(2), s2(2), s3(2), s4(2)
+	ComplexPrec x1(2), x2(2), x3(2), x4(2)
+	ComplexPrec l1(2), l2(2), l3(2), l4(2)
+	ComplexPrec r1, r2, r3, r4
+	ComplexPrec q13, q24, a, b, c, d, disc, etas
 	integer i
 
-	if( m1 .eq. 0 ) then
-	  D0m0 = D0m00(p1, p1p2, p3, p2p3, p2, p4, m2, m4)
-	  return
-	endif
-	if( m2 .eq. 0 ) then
-	  D0m0 = D0m00(p1, p2, p3, p4, p1p2, p2p3, m1, m4)
-	  return
-	endif
-	if( m4 .eq. 0 ) then
-	  D0m0 = D0m00(p4, p3, p2, p1, p1p2, p2p3, m1, m2)
-	  return
-	endif
+	ComplexPrec Prec(xspence)
+	external Prec(xspence)
 
-	m1_ = sqrt(m1)
-	m2_ = sqrt(m2)
-	m4_ = sqrt(m4)
+	RealPrec Im_, etaim, eta, eta_
+	ComplexPrec x4eta, x4eta_
+	RealPrec im1_, im2_, im12_
+	RealPrec s_, s1_, s2_, s1_1,s1_2, s12_1, s12_2
+	ComplexPrec c_, c1_, c2_, c1_1,c1_2, l1_1,l1_2
 
-	k12 = (m1 + m2 - p1)/(m1_*m2_)
-	k13 = (m1 - p1p2)/m1
-	k14 = (m1 + m4 - p4)/(m1_*m4_)
-	k23 = (m2 - p2)/(m2_*m1_)
-	k24 = (m2 + m4 - p2p3)/(m2_*m4_)
-	k34 = (m4 - p3)/(m1_*m4_)
+	Im_(c_, s_) = merge(ImPrec(c_), s_, ImPrec(c_) .ne. 0)
 
-	r12 = k2r(k12)
-	r14 = k2r(k14)
-	r24 = k2r(k24)
+	etaim(im1_, im2_, im12_) = merge(sign(2*pi, im12_), zPrec,
+     &    im1_*im2_ .gt. 0 .and. im1_*im12_ .lt. 0)
+	eta(c1_, c2_) = etaim(ImPrec(c1_), ImPrec(c2_), ImPrec(c1_*c2_))
+	eta_(c1_,s1_, c2_,s2_) = merge(eta(c1_, c2_),
+     &    merge(sign(2*pi, s2_), zPrec, ImPrec(c1_)*s2_ .gt. 0),
+     &    ImPrec(c2_) .ne. 0)
 
-	a = k34/r24 - k23
-	b = k13*(1/r24 - r24) + k12*k34 - k14*k23
-	c = k13*(k12 - r24*k14) + r24*k34 - k23
-	d = -k34*r24 + k23
-	disc = (k12*k34 - k13*k24 - k14*k23)**2 -
-     &    4*(k13*(k13 - k23*(k12 - k14*k24)) +
-     &       k23*(k23 - k24*k34) + k34*(k34 - k13*k14))
-	disc = Sqrtc(disc)
-	x4(1) = .5D0/a*(-b + disc)
-	x4(2) = .5D0/a*(-b - disc)
-	if( abs(x4(1)) .gt. abs(x4(2)) ) then
-	  x4(2) = c/(a*x4(1))
-	else
-	  x4(1) = c/(a*x4(2))
-	endif
+	x4eta(l1_1,l1_2, c2_,s2_, s12_1,s12_2) =
+     &    l1_2*etaim(Im_(x4(2),s4(2)), Im_(c2_,s2_), s12_2) -
+     &    l1_1*etaim(Im_(x4(1),s4(1)), Im_(c2_,s2_), s12_1)
+	x4eta_(l1_1,l1_2, c2_,s2_) =
+     &    l1_2*eta_(x4(2),s4(2), c2_,s2_) -
+     &    l1_1*eta_(x4(1),s4(1), c2_,s2_)
 
-	if( k12 .lt. -2 ) then
-	  ir12 = sign(10D0, 1 - abs(r12))
-	else
-	  ir12 = 0
-	endif
-	if( k14 .lt. -2 ) then
-	  ir14 = sign(10D0, 1 - abs(r14))
-	else
-	  ir14 = 0
-	endif
-	if( k24 .lt. -2 ) then
-	  ir24 = sign(10D0, 1 - abs(r24))
-	else
-	  ir24 = 0
-	endif
+#ifdef DETAILED_DEBUG
+	print *, "D0m4"
+#endif
 
-	ix4(2) = sign(1D0, Re(d))
-	ix4(1) = -ix4(2)
-	ix1(1) = sign(1D0, ix4(1)*Re(r24))
-	ix1(2) = -ix1(1)
+	k12 = (M(1) + M(2) - P(1))/sqrt(M(1)*M(2))
+	k23 = (M(2) + M(3) - P(2))/sqrt(M(2)*M(3))
+	k34 = (M(3) + M(4) - P(3))/sqrt(M(3)*M(4))
+	k14 = (M(1) + M(4) - P(4))/sqrt(M(1)*M(4))
+	k13 = (M(1) + M(3) - P(5))/sqrt(M(1)*M(3))
+	k24 = (M(2) + M(4) - P(6))/sqrt(M(2)*M(4))
 
-	b = ToComplex(k34/k13)
-	c = ToComplex(k23/k13)
-
-	D0m0 = 0
-	do i = 1, 2
-	  x1 = -x4(i)/r24
-	  x2 = (k12 - r24*(k14 + x4(i)) - x1)/d
-	  ix2 = Re(-(r24 - 1/r24)*ix4(i)/d)
-	  D0m0 = D0m0 + Sgn(i)*(
-     &      cspence(-x4(i), r14, -ix4(i), ir14) +
-     &      cspence(-x4(i), 1/r14, -ix4(i), -ir14) -
-     &      cspence(x1, r12, -ix1(i), ir12) -
-     &      cspence(x1, 1/r12, -ix1(i), -ir12) -
-     &      cspence(-x4(i), b, -ix4(i), -k13) +
-     &      cspence(x1, c, -ix1(i), -k13) -
-     &      eta_tilde(-x4(i), 1/r24, -ix4(i), -ir24)*c2ipi*
-     &        (ln(x2, ix2) + ln(ToComplex(k13), -1D0)) )
-	enddo
-	D0m0 = D0m0/(m1*m2_*m4_*a*(x4(1) - x4(2)))
-	end
-
-************************************************************************
-
-	ComplexType function D0m00(p1, p2, p3, p4, p1p2, p2p3, m1, m4)
-	implicit none
-	RealType p1, p2, p3, p4, p1p2, p2p3
-	RealType m1, m4
-
-#include "lt.h"
-
-	ComplexType D0m000, cspence
-	external D0m000, cspence
-
-	RealType m1_, m4_
-	RealType k12, k13, k14, k23, k24, k34
-	ComplexType k12c, k13c, k23c, k24c, k34c
-	ComplexType r14, x4(2)
-	ComplexType a, b, c, disc
-	integer i
-
-	if( m1 .eq. 0 ) then
-	  D0m00 = D0m000(p4, p1, p2, p3, p2p3, p1p2, m4)
-	  return
-	endif
-	if( m4 .eq. 0 ) then
-	  D0m00 = D0m000(p1, p2, p3, p4, p1p2, p2p3, m1)
-	  return
-	endif
-
-	m1_ = sqrt(m1)
-	m4_ = sqrt(m4)
-
-	k12 = (m1 - p1)/m1
-	k13 = (m1 - p1p2)/m1
-	k14 = (m1 + m4 - p4)/(m1_*m4_)
-	k23 = -p2/m1
-	k24 = (m4 - p2p3)/(m1_*m4_)
-	k34 = (m4 - p3)/(m1_*m4_)
-
-	a = k34*k24 - k23
-	b = k13*k24 + k12*k34 - k14*k23
-	c = k13*k12 - k23*(1 - cIeps)
-	disc = sqrt(b**2 - 4*a*c)
-	x4(1) = .5D0/a*(-b + disc)
-	x4(2) = .5D0/a*(-b - disc)
-	if( abs(x4(1)) .gt. abs(x4(2)) ) then
-	  x4(2) = c/(a*x4(1))
-	else
-	  x4(1) = c/(a*x4(2))
-	endif
-
-	k12c = AddEps(k12)
-	k13c = AddEps(k13)
-	k23c = AddEps(k23)
-
-	k24c = AddEps(k24)/k12c
-	k34c = AddEps(k34)/k13c
-	c = log(k12c) + log(k13c) - log(k23c)
-
-	r14 = k2r(k14)
-	r14 = r14*(1 + cIeps*sign(1D0, Re(1/r14 - r14)))
-c	r14 = r14*ToComplex(1D0, sign(eps, Re(1/r14 - r14)))
-
-	D0m00 = 0
-	do i = 1, 2
-	  D0m00 = D0m00 + Sgn(i)*(
-     &      cspence(-x4(i), r14, 0D0, 0D0) +
-     &      cspence(-x4(i), 1/r14, 0D0, 0D0) -
-     &      cspence(-x4(i), k34c, 0D0, 0D0) -
-     &      cspence(-x4(i), k24c, 0D0, 0D0) +
-     &      log(-x4(i))*c )
-	enddo
-	D0m00 = D0m00/(m1*m1_*m4_*a*(x4(1) - x4(2)))
-	end
-
-************************************************************************
-
-	ComplexType function D0m000(p1, p2, p3, p4, p1p2, p2p3, m1)
-	implicit none
-	RealType p1, p2, p3, p4, p1p2, p2p3
-	RealType m1
-
-#include "lt.h"
-
-	ComplexType D0m0000, cspence
-	external D0m0000, cspence
-
-	RealType k12, k13, k14, k23, k24, k34
-	ComplexType k12c, k13c, k14c, k23c, k24c, k34c
-	RealType a, b
-	ComplexType c, disc, x4(2)
-	integer i
-
-	if( m1 .eq. 0 ) then
-	  D0m000 = D0m0000(p1, p2, p3, p4, p1p2, p2p3)
-	  return
-	endif
-
-	k12 = (m1 - p1)/m1
-	k13 = (m1 - p1p2)/m1
-	k14 = (m1 - p4)/m1
-	k23 = -p2/m1
-	k24 = -p2p3/m1
-	k34 = -p3/m1
-
-	a = k34*k24
-	b = k13*k24 + k12*k34 - k14*k23
-	c = k13*k12 - k23*(1 - cIeps)
-	disc = sqrt(b*b - 4*a*c)
-	x4(1) = .5D0/a*(-b + disc)
-	x4(2) = .5D0/a*(-b - disc)
-	if( abs(x4(1)) .gt. abs(x4(2)) ) then
-	  x4(2) = c/(a*x4(1))
-	else
-	  x4(1) = c/(a*x4(2))
-	endif
-
-	k12c = AddEps(k12)
-	k13c = AddEps(k13)
-	k23c = AddEps(k23)
-	k14c = AddEps(k14)
-
-	k24c = AddEps(k24)/k12c
-	k34c = AddEps(k34)/k13c
-	c = log(k12c) + log(k13c) - log(k23c)
-
-	D0m000 = 0
-	do i = 1, 2
-	  D0m000 = D0m000 + Sgn(i)*(
-     &      cspence(-x4(i), k14c, 0D0, 0D0) -
-     &      cspence(-x4(i), k34c, 0D0, 0D0) -
-     &      cspence(-x4(i), k24c, 0D0, 0D0) +
-     &      log(-x4(i))*c )
-	enddo
-	D0m000 = D0m000/(m1**2*a*(x4(1) - x4(2)))
-	end
-
-************************************************************************
-
-	ComplexType function D0m0000(p1, p2, p3, p4, p1p2, p2p3)
-	implicit none
-	RealType p1, p2, p3, p4, p1p2, p2p3
-
-#include "lt.h"
-
-	ComplexType cspence
-	external cspence
-
-	RealType m2
-	RealType k12, k13, k14, k23, k24, k34
-	ComplexType k12c, k13c, k14c, k23c, k24c, k34c
-	RealType a, b
-	ComplexType c, disc, x4(2)
-	integer i
-
-	m2 = abs(p2p3)
-	k12 = -p1/m2
-	k13 = -p1p2/m2
-	k14 = -p4/m2
-	k23 = -p2/m2
-	k24 = -p2p3/m2
-	k34 = -p3/m2
-
-	a = k34*k24
-	b = k13*k24 + k12*k34 - k14*k23
-	c = k13*k12 + cIeps*k23
-	disc = sqrt(b*b - 4*a*c)
-	x4(1) = .5D0/a*(-b + disc)
-	x4(2) = .5D0/a*(-b - disc)
-	if( abs(x4(1)) .gt. abs(x4(2)) ) then
-	  x4(2) = c/(a*x4(1))
-	else
-	  x4(1) = c/(a*x4(2))
-	endif
-
-	k12c = AddEps(k12)
-	k13c = AddEps(k13)
-	k23c = AddEps(k23)
-	k14c = AddEps(k14)
-
-	k24c = AddEps(k24)/k12c
-	k34c = AddEps(k34)/k13c
-	c = log(k12c) + log(k13c) - log(k23c) - log(k14c)
-
-	D0m0000 = 0
-	do i = 1, 2
-	  disc = log(-x4(i))
-	  D0m0000 = D0m0000 + Sgn(i)*(
-     &      -cspence(-x4(i), k34c, 0D0, 0D0) -
-     &      cspence(-x4(i), k24c, 0D0, 0D0) +
-     &      disc*(c - .5D0*disc) )
-	enddo
-	D0m0000 = D0m0000/(m2**2*a*(x4(1) - x4(2)))
-	end
-
-************************************************************************
-
-	ComplexType function D0reg(p1, p2, p3, p4, p1p2, p2p3,
-     &    m1, m2, m3, m4)
-	implicit none
-	RealType p1, p2, p3, p4, p1p2, p2p3
-	RealType m1, m2, m3, m4
-
-#include "lt.h"
-
-	ComplexType cspence, cln
-	integer eta, eta_tilde
-	external cspence, cln, eta, eta_tilde
-
-	RealType m1_, m2_, m3_, m4_
-	RealType tmp, ir1324, gamma
-	RealType kij(6), irij(6), ix(2,4)
-	ComplexType rij(6), x(2,4)
-	ComplexType ly1, ly2, lz1, lz2
-	ComplexType a, b, c, d, disc, ki
-	integer j, k
-
-	RealType k12, k13, k14, k23, k24, k34
-	RealType ir12, ir13, ir14, ir23, ir24, ir34
-	ComplexType r12, r14, r13, r23, r24, r34
-	equivalence (kij(1), k12), (rij(1), r12), (irij(1), ir12)
-	equivalence (kij(2), k23), (rij(2), r23), (irij(2), ir23)
-	equivalence (kij(3), k34), (rij(3), r34), (irij(3), ir34)
-	equivalence (kij(4), k14), (rij(4), r14), (irij(4), ir14)
-	equivalence (kij(5), k13), (rij(5), r13), (irij(5), ir13)
-	equivalence (kij(6), k24), (rij(6), r24), (irij(6), ir24)
-
-	m1_ = sqrt(m1)
-	m2_ = sqrt(m2)
-	m3_ = sqrt(m3)
-	m4_ = sqrt(m4)
-
-	k12 = (m1 + m2 - p1)/m1_/m2_
-	k23 = (m2 + m3 - p2)/m2_/m3_
-	k34 = (m3 + m4 - p3)/m3_/m4_
-	k14 = (m1 + m4 - p4)/m1_/m4_
-	k13 = (m1 + m3 - p1p2)/m1_/m3_
-	k24 = (m2 + m4 - p2p3)/m2_/m4_
-
-* test if r_13 can be made real by a permutation
-* if one of the r_ij is real r_13 must be made real => case 1
+* test if r13 can be made real by a permutation
+* if one of the rij is real r13 must be made real => case 1
 	if( abs(k13) .ge. 2 ) then
 *	  nothing to do
 * otherwise try all permutations
@@ -576,197 +402,483 @@ c	r14 = r14*ToComplex(1D0, sign(eps, Re(1/r14 - r14)))
 	  k13 = k34
 	  k34 = tmp
 * 	else
-* nothing found => all r_ij on the complex unit circle => case 2
+* nothing found => all rij on the complex unit circle => case 2
 	endif
 
-	r12 = k2r(k12)
-	r23 = k2r(k23)
-	r34 = k2r(k34)
-	r14 = k2r(k14)
-	r13 = 1/k2r(k13)
-	r24 = 1/k2r(k24)
+	r12 = K2R(k12)
+	s12 = R2S(r12)
+	r23 = K2R(k23)
+	s23 = R2S(r23)
+	r34 = K2R(k34)
+	s34 = R2S(r34)
+	r14 = K2R(k14)
+	s14 = R2S(r14)
+	r13 = 1/K2R(k13)
+	s13 = R2S(r13)
+1	r24 = 1/K2R(k24)
+	s24 = R2S(r24)
 
-	do j = 1, 6
-	  if( Im(rij(j)) .eq. 0 ) then
-	    ki = kij(j) - cIeps
-	    irij(j) = sign(1D0, abs(rij(j)) - 1)*
-     &        Im(k2r(ki))
-	  else
-	    irij(j) = 0
-	  endif
-	enddo
-
-	ir1324 = sign(1D0, Re(r24))*ir13 -
-     &           sign(1D0, Re(r13))*ir24
+	s1324 = sign(I1, RePrec(r24))*s13 - sign(I1, RePrec(r13))*s24
 
 	a = k34/r24 - k23 + (k12 - k14/r24)*r13
 	b = (1/r13 - r13)*(1/r24 - r24) + k12*k34 - k14*k23
 	c = k34*r24 - k23 + (k12 - k14*r24)/r13
 	d = k23 + (r24*k14 - k12)*r13 - r24*k34
-	disc = sqrt(b**2 - 4*a*(c + cIeps*d))
-	ix(1,4) = Im(.5D0/a*(-b + disc))
-	ix(2,4) = Im(.5D0/a*(-b - disc))
+	disc = sqrt(b**2 - 4*a*(c + d*cIeps))
+	s4(1) = ImPrec(I2/a*(b - disc))
+	s4(2) = ImPrec(I2/a*(b + disc))
 
 	disc = sqrt(b**2 - 4*a*c)
-	x(1,4) = .5D0/a*(-b + disc)
-	x(2,4) = .5D0/a*(-b - disc)
-	if( abs(x(1,4)) .gt. abs(x(2,4)) ) then
-	  x(2,4) = c/a/x(1,4)
-	else    
-	  x(1,4) = c/a/x(2,4)
+	if( abs(disc) .lt. diffeps ) then
+	  k24 = k24 - diffeps
+	  goto 1
 	endif
+	x4(1) = I2/a*(b - disc)
+	x4(2) = I2/a*(b + disc)
+	i = 1
+	if( abs(x4(1)) - abs(x4(2)) ) 12, 10, 11
+12	i = 2
+11	x4(3-i) = c/(a*x4(i))
+10	continue
 
-	x(1,1) = x(1,4)/r24
-	x(2,1) = x(2,4)/r24
-	x(1,2) = x(1,4)/r24*r13
-	x(2,2) = x(2,4)/r24*r13
-	x(1,3) = x(1,4)*r13
-	x(2,3) = x(2,4)*r13
+	x1 = x4/r24
+	x2 = x1*r13
+	x3 = x4*r13
 
-	ix(1,1) = ix(1,4)*Re(x(1,1))*sign(1D0, Re(x(1,4)))
-	ix(2,1) = ix(2,4)*Re(x(2,1))*sign(1D0, Re(x(2,4)))
-	ix(1,2) = ix(1,4)*Re(x(1,2))*sign(1D0, Re(x(1,4)))
-	ix(2,2) = ix(2,4)*Re(x(2,2))*sign(1D0, Re(x(2,4)))
-	ix(1,3) = ix(1,4)*Re(x(1,3))*sign(1D0, Re(x(1,4)))
-	ix(2,3) = ix(2,4)*Re(x(2,3))*sign(1D0, Re(x(2,4)))
+	s = s4*sign(I1, RePrec(x4))
+	s1 = RePrec(x1)*s
+	s2 = RePrec(x2)*s
+	s3 = RePrec(x3)*s
  
-	D0reg = 0
-	do k = 1, 2
-	  do j = 1, 4
-	    D0reg = D0reg + Sgn(j + k)*(
-     &        cspence(-x(k,j), rij(j), -ix(k,j), irij(j)) +
-     &        cspence(-x(k,j), 1/rij(j), -ix(k,j), -irij(j)) )
-	  enddo
-	  gamma = sign(1D0, Re(a*(x(k,4) - x(3-k,4))))
-	  if( Im(r13) .eq. 0 ) then
-	    ly1 = ln((k13 - 2*r13)/x(k,4) - r13*k14 + k34, -1)
-	    ly2 = ln((k13 - 2*r13)/x(k,1) - r13*k12 + k23, -1)
-	    lz1 = ((k24 - 2*r24)*x(k,3) - r24*k34 + k23)/d
-	    lz1 = ln(lz1, gamma*sign(1D0, Re(r13)*(Im(r24) + ir24)))
-	    lz2 = ((k24 - 2*r24)*x(k,4) - r24*k14 + k12)/d
-	    lz2 = ln(lz2, gamma*sign(1D0, Im(r24) + ir24))
-	    D0reg = D0reg - Sgn(k)*c2ipi*(
-     &        eta_tilde(-x(k,4), r13, -ix(k,4), ir13)*
-     &          (ln(x(k,3), ix(k,3)) + ly1 + lz1) +
-     &        eta_tilde(-x(k,4), 1/r24, -ix(k,4), -ir24)*
-     &          (ln(x(k,1), ix(k,1)) + ly2 + lz2) -
-     &        (eta_tilde(-x(k,4), r13/r24, -ix(k,4), ir1324) +
-     &          eta(r13, 1/r24, ir13, -ir24, ir1324))*(
-     &          ln(x(k,2), ix(k,2)) + ly2 + lz1) +
-     &        eta_tilde(-x(k,4), -r13/r24, -ix(k,4), -ir1324)*
-     &          eta(r13, 1D0/r24, ir13, -ir24, ir1324)*c2ipi
-     &      )
-	  else
-	    D0reg = D0reg - Sgn(k)*c2ipi*(
-     &        eta(-x(k,4), 1/r24, -ix(k,4), -ir24, -ix(k,1))*(
-     &          ln(1/x(k,1) + x(k,1) + k12, x(k,1)*b*gamma) +
-     &          log(x(k,1))
-     &        ) +
-     &        eta(-x(k,4), r13, -ix(k,4), ir13, -ix(k,3))*(
-     &          ln(1/x(k,3) + x(k,3) + k34, x(k,3)*b*gamma) +
-     &          log(x(k,3))
-     &        ) -
-     &        (eta(-x(k,4), r13/r24, -ix(k,4), ir13/ir24, -ix(k,2)) +
-     &          eta(r13, 1D0/r24, ir13, -ir24, ir13/ir24))*(
-     &          ln(1/x(k,2) + x(k,2) + k23, x(k,2)*b*gamma) +
-     &          log(x(k,2))
-     &        ) +
-     &        eta(-x(k,4), -r13/r24, -ix(k,4), -ir13/ir24, ix(k,2))*
-     &          eta(r13, 1/r24, ir13, -ir24, ir13/ir24)*
-     &          (1 - sign(1D0, Re(b))*gamma)*c2ipi
-     &      )
-	  endif
-	enddo
-	D0reg = D0reg/m1_/m2_/m3_/m4_/disc
-	end
+	r1 = Prec(xspence)(x1,s1, r12,s12) +
+     &       Prec(xspence)(x1,s1, 1/r12,-s12)
+	r2 = Prec(xspence)(x2,s2, r23,s23) +
+     &       Prec(xspence)(x2,s2, 1/r23,-s23)
+	r3 = Prec(xspence)(x3,s3, r34,s34) +
+     &       Prec(xspence)(x3,s3, 1/r34,-s34)
+	r4 = Prec(xspence)(x4,s4, r14,s14) +
+     &       Prec(xspence)(x4,s4, 1/r14,-s14)
 
-************************************************************************
+	gamma = sign(I1, RePrec(a*(x4(2) - x4(1))))
+	l4(1) = cI*etaim(Im_(r13,s13), Im_(1/r24,-s24), s1324)
+	l4(2) = l4(1)
 
-	ComplexType function bdK(x, m1, m2)
-* this is actually -K from the Beenakker/Denner paper for D0ir
-	implicit none
-	RealType x, m1, m2
+	if( ImPrec(r13) .eq. 0 ) then
+	  r12 = k12 - r24*k14
+	  r23 = k23 - r24*k34
+	  r34 = k34 - r13*k14
+	  r14 = k23 - r13*k12
+	  q13 = k13 - 2*r13
+	  q24 = k24 - 2*r24
 
-#include "lt.h"
+	  s = gamma*sign(I1, ImPrec(r24) + s24)*(/cIeps, -cIeps/)
+	  l1 = log((r12 - q24*x4)/d + s)
+	  l3 = log((r23 - q24*x3)/d + sign(I1, RePrec(r13))*s)
+	  l2 = log(r14 - q13/x1 - cIeps)
+	  l1 = log(-x1 - s1*cIeps) + l1 + l2
+	  l2 = log(-x2 - s2*cIeps) + l2 + l3
+	  l3 = log(-x3 - s3*cIeps) + l3 + log(r34 - q13/x4 - cIeps)
 
-	RealType d
-	ComplexType t
-
-	d = x - (m1 - m2)**2
-	if( d .eq. 0 ) then
-	  bdK = 1
+	  etas =
+     &      x4eta_(X(l3), r13,s13) +
+     &      x4eta_(X(l1), 1/r24,-s24) -
+     &      x4eta_(X(l2), r13/r24,s1324) +
+     &      x4eta_(X(l4), -r13/r24,-s1324)
 	else
-	  t = 4*m1*m2/(d + cIeps)
-	  bdK = -t/(sqrt(1 - t) + 1)**2
-	endif
-	end
+	  gamma = gamma*sign(I1, RePrec(b))
+	  c = 1 + gamma*cIeps
+	  l1 = log(-x1) + log(k12 - 1/x1 - x1*c)
+	  l2 = log(-x2) + log(k23 - 1/x2 - x2*c)
+	  l3 = log(-x3) + log(k34 - 1/x3 - x3*c)
 
-************************************************************************
+	  etas =
+     &      x4eta(X(l3), r13,s13, X(s3)) +
+     &      x4eta(X(l1), 1/r24,-s24, X(s1)) -
+     &      x4eta(X(l2), r13/r24,s1324, X(s2)) +
+     &      x4eta(X(l4), -r13/r24,-s1324, X(s4))*(1 - gamma)
+ 	endif
 
-	ComplexType function cspence(z1, z2, im1, im2)
-	implicit none
-	ComplexType z1, z2
-	RealType im1, im2
+	res = (r2 - r1 + r4 - r3 + (l2(2) - l2(1))*l4(1) - cI*etas)/
+     &    (sqrt(M(1)*M(2)*M(3)*M(4))*disc)
 
-#include "lt.h"
-
-	ComplexType cln, spence
-	integer eta
-	external cln, spence, eta
-
-	ComplexType z12
-	RealType im12
-	integer etas
-
-	z12 = z1*z2
-	im12 = im2*sign(1D0, Re(z1))
-	if( Re(z12) .gt. .5D0 ) then
-	  cspence = spence(1, z12, 0)
-	  etas = eta(z1, z2, im1, im2, im12)
-	  if( etas .ne. 0 ) cspence = cspence +
-     &      etas*ln(1 - z12, -im12)*c2ipi
-	else if( abs(z12) .lt. 1D-4 ) then
-	  cspence = zeta2
-	  if( abs(z12) .gt. 1D-14 ) cspence = cspence -
-     &      spence(0, z12, 0) +
-     &      (ln(z1, im1) + ln(z2, im2))*z12*
-     &        (1 + z12*(.5D0 + z12*(1/3D0 + z12/4D0)))
-	else
-	  cspence = zeta2 - spence(0, z12, 0) -
-     &      (ln(z1, im1) + ln(z2, im2))*ln(1 - z12, 0D0)
-	endif
-	end
-
-************************************************************************
-
-	integer function eta_tilde(c1, c2, im1x, im2x)
-	implicit none
-	ComplexType c1, c2
-	RealType im1x, im2x
-
-	RealType im1, im2
-
-	integer eta
-	external eta
-
-	im1 = Im(c1)
-	if( im1 .eq. 0 ) im1 = im1x
-	im2 = Im(c2)
-	if( im2 .ne. 0 ) then
-	  eta_tilde = eta(c1, c2, im1x, 0D0, 0D0)
-	else if( Re(c2) .gt. 0 ) then
-	  eta_tilde = 0
-	else if( im1 .gt. 0 .and. im2x .gt. 0 ) then
-	  eta_tilde = -1
-	else if( im1 .lt. 0 .and. im2x .lt. 0 ) then
-	  eta_tilde = 1
-	else
-	  eta_tilde = 0
-#ifdef WARNINGS
-	  if( im1 .eq. 0 .and. Re(c1) .lt. 0 .or.
-     &        im2x .eq. 0 .and. Re(c1*c2) .lt. 0 )
-     &      print *, "eta_tilde not defined"
+#ifdef DETAILED_DEBUG
+	print *, "D0m4 =", res
 #endif
-	endif
+	end
+
+
+************************************************************************
+
+	subroutine Prec(D0m3)(res, para, perm)
+	implicit none
+	ComplexPrec res
+	RealPrec para(*)
+	integer perm
+
+#include "lt.h"
+
+	RealPrec m2, m3, m4, p1, p2, p3, p4, p1p2, p2p3
+	RealPrec m, k12, k13, k14, k23, k24, k34
+	RealPrec s12, s14, s24, s1(2), s4(2)
+	ComplexPrec r12, r14, r24, q12, q24
+	ComplexPrec x1(2), x4(2), l4(2)
+	ComplexPrec a, b, c, d
+	integer i
+
+	ComplexPrec Prec(xspence)
+	external Prec(xspence)
+
+	RealPrec Im_, etaim, eta, eta_
+	ComplexPrec x4eta_
+	RealPrec im1_, im2_, im12_
+	RealPrec s_, s1_, s2_, s1_1,s1_2, s12_1, s12_2
+	ComplexPrec c_, c1_, c2_, c1_1,c1_2, l1_1,l1_2
+
+	Im_(c_, s_) = merge(ImPrec(c_), s_, ImPrec(c_) .ne. 0)
+
+	etaim(im1_, im2_, im12_) = merge(sign(2*pi, im12_), zPrec,
+     &    im1_*im2_ .gt. 0 .and. im1_*im12_ .lt. 0)
+	eta(c1_, c2_) = etaim(ImPrec(c1_), ImPrec(c2_), ImPrec(c1_*c2_))
+	eta_(c1_,s1_, c2_,s2_) = merge(eta(c1_, c2_),
+     &    merge(sign(2*pi, s2_), zPrec, ImPrec(c1_)*s2_ .gt. 0),
+     &    ImPrec(c2_) .ne. 0)
+
+	x4eta_(l1_1,l1_2, c2_,s2_) =
+     &    l1_2*eta_(x4(2),s4(2), c2_,s2_) -
+     &    l1_1*eta_(x4(1),s4(1), c2_,s2_)
+
+#ifdef DETAILED_DEBUG
+	print '(" D0m3 perm = ",O4)', iand(perm, O'7777')
+#endif
+
+	m2 = Mx(2)
+	m3 = Mx(3)
+	m4 = Mx(4)
+	p1 = Px(1)
+	p2 = Px(2)
+	p3 = Px(3)
+	p4 = Px(4)
+	p1p2 = Px(5)
+	p2p3 = Px(6)
+
+	m = sqrt(m3*m4)
+	k23 = (m4 - p4)/m
+	k12 = (m4 + m3 - p3)/m
+	r12 = K2R(k12)
+	s12 = R2S(r12)
+
+	m = sqrt(m2*m3)
+	k34 = (m2 - p1)/m
+	k14 = (m2 + m3 - p2)/m
+	r14 = K2R(k14)
+	s14 = R2S(r14)
+
+	k13 = (m3 - p1p2)/m3
+
+	m = sqrt(m2*m4)
+	k24 = (m2 + m4 - p2p3)/m
+	r24 = K2R(k24)
+	s24 = R2S(r24)
+
+	q24 = r24 - 1/r24
+	q12 = k12 - r24*k14
+
+	a = k34/r24 - k23
+	b = k12*k34 - k13*q24 - k14*k23
+	c = k13*q12 + r24*k34 - k23
+	d = (k12*k34 - k13*k24 - k14*k23)**2 -
+     &    4*(k13*(k13 - k23*(k12 - k14*k24)) +
+     &       k23*(k23 - k24*k34) + k34*(k34 - k13*k14))
+	d = sqrt(d)
+	x4(1) = I2/a*(b - d)
+	x4(2) = I2/a*(b + d)
+	i = 1
+	if( abs(x4(1)) - abs(x4(2)) ) 12, 10, 11
+12	i = 2
+11	x4(3-i) = c/(a*x4(i))
+10	continue
+
+	d = -k34*r24 + k23
+	s4(1) = sign(I1, RePrec(d))
+	s4(2) = -s4(1)
+
+	x1 = x4/r24
+	s1(1) = sign(I1, s4(1)*RePrec(r24))
+	s1(2) = -s1(1)
+
+	c = log(k13 - cIeps)
+	l4 = c + log((q12 + q24*(x4 + cIeps*s4))/d)
+
+	res =
+     &    Prec(xspence)(x4,s4, r14,s14) +
+     &    Prec(xspence)(x4,s4, 1/r14,-s14) -
+     &    Prec(xspence)(x4,s4, ToComplexPrec(k34/k13,zPrec),-k13) -
+     &    Prec(xspence)(x1,s1, r12,s12) -
+     &    Prec(xspence)(x1,s1, 1/r12,-s12) +
+     &    Prec(xspence)(x1,s1, ToComplexPrec(k23/k13,zPrec),-k13) -
+     &    cI*x4eta_(X(l4), 1/r24,-s24)
+	res = res/(m3*m*a*(x4(2) - x4(1)))
+
+#ifdef DETAILED_DEBUG
+	print *, "D0m3 =", res
+#endif
+	end
+
+
+************************************************************************
+
+	subroutine Prec(D0m2)(res, para, perm)
+	implicit none
+	ComplexPrec res
+	RealPrec para(*)
+	integer perm
+
+#include "lt.h"
+
+	RealPrec m3, m4, p1, p2, p3, p4, p1p2, p2p3
+	RealPrec m, k12, k13, k23, k24, k34, k14, s14
+	ComplexPrec r12, r13, r23, r24, r34, r14
+	ComplexPrec a, b, c, disc, x4(2)
+	integer i
+
+	ComplexPrec Prec(xspence)
+	external Prec(xspence)
+
+	RealPrec s4(2)
+	data s4 /zPrec, zPrec/
+
+#ifdef DETAILED_DEBUG
+	print '(" D0m2 perm = ",O4)', iand(perm, O'7777')
+#endif
+
+	m3 = Mx(3)
+	m4 = Mx(4)
+	p1 = Px(1)
+	p2 = Px(2)
+	p3 = Px(3)
+	p4 = Px(4)
+	p1p2 = Px(5)
+	p2p3 = Px(6)
+
+	k12 = (m3 - p2)/m3
+	r12 = K2R0(k12)
+
+	k13 = (m3 - p1p2)/m3
+	r13 = K2R0(k13)
+
+	k23 = -p1/m3
+	r23 = K2R0(k23)
+
+	m = sqrt(m3*m4)
+	k24 = (m4 - p2p3)/m
+	r24 = K2R0(k24)
+
+	k34 = (m4 - p4)/m
+	r34 = K2R0(k34)
+
+	k14 = (m3 + m4 - p3)/m
+	r14 = K2R(k14)
+	s14 = R2S(r14)
+
+	a = k34*k24 - k23
+	b = k13*k24 + k12*k34 - k14*k23
+	c = k13*k12 - k23*(1 - cIeps)
+	disc = sqrt(b**2 - 4*a*c)
+	x4(1) = I2/a*(b - disc)
+	x4(2) = I2/a*(b + disc)
+	i = 1
+	if( abs(x4(1)) - abs(x4(2)) ) 12, 10, 11
+12	i = 2
+11	x4(3-i) = c/(a*x4(i))
+10	continue
+
+	res =
+     &    Prec(xspence)(x4,s4, r34/r13,zPrec) +
+     &    Prec(xspence)(x4,s4, r24/r12,zPrec) -
+     &    Prec(xspence)(x4,s4, r14,s14) -
+     &    Prec(xspence)(x4,s4, 1/r14,-s14) +
+     &    (log(x4(2)) - log(x4(1)))*(log(r12) + log(r13) - log(r23))
+	res = res/(m3*m*a*(x4(2) - x4(1)))
+
+#ifdef DETAILED_DEBUG
+	print *, "D0m2 =", res
+#endif
+	end
+
+
+************************************************************************
+
+	subroutine Prec(D0m1)(res, para, perm)
+	implicit none
+	ComplexPrec res
+	RealPrec para(*)
+	integer perm
+
+#include "lt.h"
+
+	RealPrec m4, k12, k13, k14, k23, k24, k34
+	ComplexPrec r12, r13, r14, r23, r24, r34
+	RealPrec a, b
+	ComplexPrec c, disc, x4(2)
+	integer i
+
+	ComplexPrec Prec(xspence)
+	external Prec(xspence)
+
+	RealPrec s4(2)
+	data s4 /zPrec, zPrec/
+
+#ifdef DETAILED_DEBUG
+	print '(" D0m1 perm = ",O4)', iand(perm, O'7777')
+#endif
+
+	m4 = Mx(4)
+	k12 = (m4 - Px(3))/m4
+	r12 = K2R0(k12)
+	k13 = (m4 - Px(4))/m4
+	r13 = K2R0(k13)
+	k14 = (m4 - Px(6))/m4
+	r14 = K2R0(k14)
+	k23 = -Px(5)/m4
+	r23 = K2R0(k23)
+	k24 = -Px(2)/m4
+	r24 = K2R0(k24)
+	k34 = -Px(1)/m4
+	r34 = K2R0(k34)
+
+	a = k34*k24
+	b = k13*k24 + k12*k34 - k14*k23
+	c = k13*k12 - k23*(1 - cIeps)
+	disc = sqrt(b**2 - 4*a*c)
+	x4(1) = I2/a*(b - disc)
+	x4(2) = I2/a*(b + disc)
+	i = 1
+	if( abs(x4(1)) - abs(x4(2)) ) 12, 10, 11
+12	i = 2
+11	x4(3-i) = c/(a*x4(i))
+10	continue
+
+	res =
+     &    Prec(xspence)(x4,s4, r34/r13,zPrec) +
+     &    Prec(xspence)(x4,s4, r24/r12,zPrec) -
+     &    Prec(xspence)(x4,s4, r14,zPrec) +
+     &    (log(x4(2)) - log(x4(1)))*(log(r12) + log(r13) - log(r23))
+	res = res/(m4**2*a*(x4(2) - x4(1)))
+
+#ifdef DETAILED_DEBUG
+	print *, "D0m1 =", res
+#endif
+	end
+
+
+************************************************************************
+
+	subroutine Prec(D0m0)(res, para)
+	implicit none
+	ComplexPrec res
+	RealPrec para(*)
+
+#include "lt.h"
+
+	RealPrec m2, k12, k13, k14, k23, k24, k34
+	ComplexPrec r12, r13, r14, r23, r24, r34
+	RealPrec a, b
+	ComplexPrec c, disc, x4(2), l4(2)
+	integer i
+
+	ComplexPrec Prec(xspence)
+	external Prec(xspence)
+
+#ifdef DETAILED_DEBUG
+	print *, "D0m1"
+#endif
+
+	m2 = abs(P(6))
+	k12 = -P(1)/m2
+	r12 = K2R0(k12)
+	k13 = -P(5)/m2
+	r13 = K2R0(k13)
+	k14 = -P(4)/m2
+	r14 = K2R0(k14)
+	k23 = -P(2)/m2
+	r23 = K2R0(k23)
+	k24 = -P(6)/m2
+	r24 = K2R0(k24)
+	k34 = -P(3)/m2
+	r34 = K2R0(k34)
+
+	a = k34*k24
+	b = k13*k24 + k12*k34 - k14*k23
+	c = k13*k12 + k23*cIeps
+	disc = sqrt(b**2 - 4*a*c)
+	x4(1) = I2/a*(b - disc)
+	x4(2) = I2/a*(b + disc)
+	i = 1
+	if( abs(x4(1)) - abs(x4(2)) ) 12, 10, 11
+12	i = 2
+11	x4(3-i) = c/(a*x4(i))
+10	continue
+
+	l4 = log(x4)
+
+	res =
+     &    Prec(xspence)(x4,zPrec, r34/r13,zPrec) +
+     &    Prec(xspence)(x4,zPrec, r24/r12,zPrec) +
+     &    (l4(2) - l4(1))*
+     &      (log(r12) + log(r13) - log(r23) - log(r14) -
+     &        (l4(2) + l4(1))/2)
+	res = res/(m2**2*a*(x4(2) - x4(1)))
+
+#ifdef DETAILED_DEBUG
+	print *, "D0m0 =", res
+#endif
+	end
+
+
+************************************************************************
+
+	ComplexPrec function Prec(xspence)(c1,s1, c2,s2)
+	implicit none
+	ComplexPrec c1(2), c2
+	RealPrec s1(2), s2
+
+#include "lt.h"
+
+	ComplexPrec Prec(spence)
+	external Prec(spence)
+
+	ComplexPrec c12, res, r
+	RealPrec s12
+	integer i
+
+	ComplexPrec log1m2, log1m, x_, y_
+	RealPrec Im_, etaim
+	RealPrec im1_, im2_, im12_, s_
+	ComplexPrec c_
+
+	log1m2(x_, y_) = (log(y_) - ((y_ - 1) + x_)/y_)
+	log1m(x_) = log1m2(x_, 1 - x_)
+
+	Im_(c_, s_) = merge(ImPrec(c_), s_, ImPrec(c_) .ne. 0)
+	etaim(im1_, im2_, im12_) = merge(sign(2*pi, im12_), zPrec,
+     &    im1_*im2_ .gt. 0 .and. im1_*im12_ .lt. 0)
+
+	res = 0
+	do i = 1, 2
+	  c12 = c1(i)*c2
+	  s12 = s2*sign(I1, RePrec(c1(i)))
+	  if( RePrec(c12) .gt. I2 ) then
+	    r = Prec(spence)(1, c12, zPrec) +
+     &        etaim(Im_(c1(i),s1(i)), Im_(c2,s2), s12)*
+     &        log1m(c12 + s12*cIeps)*cI
+	  else
+	    r = zeta2 - Prec(spence)(0, c12, zPrec) -
+     &        (log(c1(i) + s1(i)*cIeps) + log(c2 + s2*cIeps))*
+     &        log1m(c12)
+	  endif
+	  res = r - res
+	enddo
+
+	Prec(xspence) = res
 	end
 

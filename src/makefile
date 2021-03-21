@@ -16,8 +16,8 @@ MAIN = SetFlags.o RetrieveFlags.o \
   SetSMPara.o RetrieveSMPara.o GetSMPara.o \
   SetPara.o RetrievePara.o RetrieveOSPara.o GetPara.o GetTLPara.o \
   SetFV.o RetrieveFV.o GetFV.o SetSLHA.o \
-  Para.o Sfermions.o SetDebug.o \
-  SetExt.o GetSelf.o HiggsCorr.o Uncertainties.o \
+  Para.o Sfermions.o dZHfin.o TBrepara.o SetDebug.o \
+  SetExt.o GetSelf.o GetSelfgl.o HiggsCorr.o Uncertainties.o \
   Couplings.o SelectUZ.o SelectIpol.o \
   Constraints.o EWPO.o Flavour.o \
   HiggsProd.o CalcSE.o CalcSEgl.o AddSelf.o AddExt.o Error.o \
@@ -33,10 +33,15 @@ REC = RecordIndex.o ClearRecord.o \
   LoopRecord.o SetRecord.o RetrieveRecord.o \
   LoadTable.o TableRecord.o
 
-LT = cache.o ini.o auxB.o auxCD.o A0.o \
-  B0.o B1.o B00.o B11.o DB0.o DB1.o DB00.o DB11.o \
-  C0.o Cget.o D0.o Dget.o CD0.o \
-  A0del.o myG.o TF.o T134.o T134p.o Li2.o Dilog.o
+LT = cache.o ini.o spence.o eta.o A0.o \
+  Bfpv.o B0.o B1.o B00.o B11.o DB0.o DB1.o DB00.o DB11.o \
+  C0.o Cget.o CDz.o \
+  A0del.o myG.o TF.o T134.o T134p.o
+#LT += B001.o B111.o DB001.o D0.o Dget.o
+
+B0.o B1.o B00.o B11.o DB0.o DB1.o DB00.o DB11.o B001.o B111.o DB001.o: Bcoeff.F
+
+T134.o TF.o: T134.h
 
 UTIL = Gauss.o ODESolve.o EigenSf.o SfEigensystem.o \
   HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o \
@@ -72,9 +77,13 @@ ONELOOP = \
   dZ_h0h0_nmfv.o dZ_HHHH_nmfv.o \
   se_h0h0_gl.o se_HHHH_gl.o se_A0A0_gl.o se_HmHp_gl.o \
   se_h0HH_gl.o se_h0A0_gl.o se_HHA0_gl.o \
+  se_G0G0_gl.o se_h0G0_gl.o se_HHG0_gl.o se_A0G0_gl.o \
+  se_GmGp_gl.o se_HmGp_gl.o \
   td_h0_gl.o td_HH_gl.o td_A0_gl.o \
   dse_h0h0_gl.o dse_HHHH_gl.o dse_A0A0_gl.o dse_HmHp_gl.o \
   dse_h0HH_gl.o dse_h0A0_gl.o dse_HHA0_gl.o \
+  dse_G0G0_gl.o dse_h0G0_gl.o dse_HHG0_gl.o dse_A0G0_gl.o \
+  dse_GmGp_gl.o dse_HmGp_gl.o \
   dZ_h0h0_gl.o dZ_HHHH_gl.o dZ_h0HH_gl.o
 
 CalcSE.o: CalcSE_mfv.h CalcSE_nmfv.h
@@ -98,13 +107,17 @@ TLSP = TLsp.o TLsp_atat_c1.o TLsp_atat_c2.o \
   TLsp_atat_o1.o TLsp_atat_o2.o
 
 TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
-  CalcRenSETL.o DRbar2LShifts.o MTrepara.o InvTri.o Phi.o
+  CalcRenSETL.o InvTri.o Phi.o \
+  DRbar2LShifts.o dZHfin2LShifts.o MTrepara.o
 
 EFT = Resum4H.o Resum4H1.o \
   Resum4H23.o eftloopfun.o beta4H.o \
-  TLthresholdasat.o TLthresholdatat.o
+  TLthresholdasat.o TLthresholdatat.o \
+  PhiQuad.o spenceQuad.o
 
-Resum4H.o Resum4H1.o Resum4H23.o beta4H.o TLthresholdasat.o TLthresholdatat.o: Resum4H.h
+PhiQuad.o: Phi.F
+
+spenceQuad.o: spence.F
 
 Resum4H23.o: FOSubtract.h
 
@@ -242,9 +255,10 @@ DECAYS = VecSet.o \
   $(HDD) $(HDDSM) \
   $(HHH)
 
-MOST = $(MAIN) $(ONELOOP) $(TWOLOOP) $(EFT) $(DECAYS) $(CONSTRAINTS) $(DR)
+MOST = $(MAIN) $(ONELOOP) $(TWOLOOP) $(LT) $(REC) $(UTIL) \
+  $(EFT) $(DECAYS) $(CONSTRAINTS) $(DR)
 
-ALL = $(MOST) $(REC) $(LT) $(UTIL) $(SLHA)
+ALL = $(MOST) $(SLHA)
 
 
 libFH.a: $(ALL)
@@ -281,14 +295,14 @@ SetFlags.o OutputSLHA.o: version.h
 
 SetFlags.o RetrieveFlags.o SetSMPara.o RetrieveSMPara.o \
   RetrievePara.o SetSLHA.o SetCKM.o RetrieveCKM.o SetNMFV.o \
-  RetrieveNMFV.o Para.o GetPara.o GetSelf.o CalcSE.o \
+  RetrieveNMFV.o Para.o GetPara.o GetSelf.o CalcSE.o CalcSEgl.o \
   HiggsCorr.o Uncertainties.o Couplings.o SelectUZ.o \
   HiggsProd.o Flavour.o EWPO.o Constraints.o \
   DRbartoOS.o Error.o: debug.h
 
 Couplings.o HiggsProd.o: FHCouplings.h
 
-Couplings.o: Dilog.o NHiggsDecayFitsLO.f NHiggsDecayFitsNLO.f
+Couplings.o: NHiggsDecayFitsLO.f NHiggsDecayFitsNLO.f
 
 HiggsProd.o: gghcTev.f gghkTev.f NHiggsProdFits-Tev.f NHiggsProdFits-LHC.f \
   gghcLHC.f gghkLHC.f NHiggsProdFits-LHC7.f NHiggsProdFits-LHC8.f \
@@ -299,21 +313,23 @@ Para.o DRbartoOS.o: looptools.h ltcache.h
 
 $(LT): lt.h
 
-Cget.o: ltcache.h
+Cget.o Dget.o: ltcache.h
 
 HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o Gauss.o LU.o: Util.h
 
-$(ONELOOP): looptools.h ltcache.h debug.h
+$(ONELOOP): looptools.h debug.h
 
-$(TLHR) MTrepara.o: TLhr.h TLhrvars.h TL.h FH.h looptools.h ltcache.h debug.h
+$(TLHR) MTrepara.o: TLhr.h TLhrvars.h TL.h FH.h looptools.h debug.h
 
-$(TLPS) CalcRenSETL.o: TLps.h TLpsvars.h TL.h FH.h looptools.h ltcache.h debug.h
+$(TLPS) CalcRenSETL.o: TLps.h TLpsvars.h TL.h FH.h looptools.h debug.h
 
-$(TLSP): TLsp.h TLspvars.h TL.h FH.h looptools.h ltcache.h debug.h
+$(TLSP): TLsp.h TLspvars.h TL.h FH.h looptools.h debug.h
 
 HiggsCorr.o AddSelf.o CalcRenSETL.o TLsp.o: HiggsRot.h
 
 MTrepara.o: MTrepara.h
+
+dZHfin2LShifts.o: looptools.h ltcache.h
 
 Constraints.o $(GM2): gm2.h
 

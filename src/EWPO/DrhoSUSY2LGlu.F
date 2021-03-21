@@ -1,7 +1,7 @@
 * DRhoSUSY2LGlu.F
 * the gluino part and dMSb12 shift for Delta rho
 * this file is part of FeynHiggs
-* last modified 27 Apr 18 th
+* last modified 17 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -15,7 +15,7 @@
 #include "Deltar.h"
 
 	ComplexType USx(2,2,3:4)
-	RealType MSx2(8,3:4)
+	RealType MSx2(6,3:4)
 	integer fail
 
 	RealType MSt1, MSt2, MSt12, MSt22, DMSt2
@@ -58,7 +58,7 @@
 	Dm3(x_, y_, z_) = x_ + y_ + z_
 
 	call EigenSf(fail, MSx2(1,3), USx(1,1,3),
-     &    DSS2(1,3,3), Mf(tR,3), ToComplex(Xtc), MUETB(3), 0)
+     &    DSS2(1,3,3), Mf(tR,3), ToComplex(Xtc,0D0), MUETB(3), 0)
 	ctt2 = ctt**2
 	stt2 = stt**2
 	c2tt = (ctt - stt)*(ctt + stt)
@@ -69,7 +69,7 @@
 	MTGlm = ctt*MT - stt*MGl
 
 	call EigenSf(fail, MSx2(1,4), USx(1,1,4),
-     &    DSS2(1,4,3), Mf(bR,3), ToComplex(Xbc), MUETB(4), 0)
+     &    DSS2(1,4,3), Mf(bR,3), ToComplex(Xbc,0D0), MUETB(4), 0)
 	ctb2 = ctb**2
 	stb2 = stb**2
 	c2tb = (ctb - stb)*(ctb + stb)

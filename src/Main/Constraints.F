@@ -2,7 +2,7 @@
 * evaluation of electroweak precision observables
 * used as further constraints for the MSSM parameter space
 * this file is part of FeynHiggs
-* last modified 9 Mar 18 th
+* last modified 22 Jun 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -62,8 +62,11 @@
 
 	call gm2_2L_1
 	call gm2_2L_2
-	if( debuglevel .ge. 2 )
-     &    DCONST "gm2 2-loop short =", gm2_2L ENDL
+	if( debuglevel .ge. 2 ) then
+	  DCONST "gm2 QED factor   =", gm2_2L_QEDfactor ENDL
+	  DCONST "gm2 1-loop       =", gm2_1L ENDL
+	  DCONST "gm2 2-loop short =", gm2_2L ENDL
+	endif
 
 #if GM2FULL
 	call gm2_2L_full1
@@ -87,8 +90,8 @@
 * b) EDMs
 	call CalcEDMs(edmeTh, edmn, edmHg)
 
-* c) test for colour-breaking minimum
-	cd = Sq(MUE) - .5D0*MZ2
+* c) test for color-breaking minimum
+	cd = Sq(MUE) - MZ2/2
 	cu = (MA02 + MZ2)*CB2 + cd
 	cd = (MA02 + MZ2)*SB2 + cd
 	ccb = 0

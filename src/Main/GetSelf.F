@@ -1,7 +1,7 @@
 * GetSelf.F
 * Subroutines for outside access to the renormalized Higgs self-energies
 * this file is part of FeynHiggs
-* last modified 1 Nov 17 th
+* last modified 10 Jul 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -37,8 +37,8 @@
 	  sig(1:semax) = seU(1:semax) + cI*Im(k2)*dseU(1:semax)
 	  dsig(1:semax) = dseU(1:semax)
 	else
-	  sig(1:semax) = seR(1:semax) + cI*Im(k2)*dseR(1:semax)
-	  dsig(1:semax) = dseR(1:semax)
+	  sig(1:semax) = seR(z0,1:semax) + cI*Im(k2)*dseR(z0,1:semax)
+	  dsig(1:semax) = dseR(z0,1:semax)
 	endif
 	end
 

@@ -1,13 +1,13 @@
 * Decay.h
 * common definitions for all decays
 * this file is part of FeynHiggs
-* last modified 6 Mar 18 th
+* last modified 10 Jul 18 th
 
 #include "FH.h"
 #include "looptools.h"
 
 #ifndef k
-*#define DETAILED_DEBUG
+c#define DETAILED_DEBUG
 #define LEGS 3
 
 #define k(i) (nvec*(i-1)+1)

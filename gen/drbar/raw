@@ -1,0 +1,126 @@
+#! /bin/bash -x
+shopt -s nullglob
+
+mkdir -p m || exit 1
+out=m/raw.m
+log=m/raw.log
+rm -f $out $log*
+
+math -run "
+	out=\"$out\"
+" << \_EOF_ > $log
+AppendTo[$Echo, "stdout"];
+$Post = LeafCount;
+
+(* set non-shifted CTs to zero *)
+_dZHiggs1gl = _dZbarHiggs1gl =
+_dZSf1 = _dZbarSf1 =
+_dZfR1 = _dZbarfR1 =
+_dZfL1 = _dZbarfL1 =
+dSB1 = dCB1 = dTB1 =
+dMUE1 =
+dSW1 =
+dMWsq1 = dMWsq1MW2 =
+dMf1[4,3] =
+dAf1[4,3,3] =
+dMSfsq1[2,2,4,3] = 0;
+
+M0 = M02 = 0;
+
+mod = "gl";
+<< ../Packages/fafc.m;
+(*<< FormCalc`tools`btensor`;*)
+
+<< ../Packages/C0z.m;
+C0i[cc0, m__] := C0[m];
+
+SetOptions[CreateTopologies, ExcludeTopologies -> Internal];
+
+SetOptions[InsertFields, LastSelections -> S[1|2|3|4|5|6|13|14] | F[11|12|15] | V[5]];
+
+dMSfsq1[2,1,t_,g_] := Conjugate[dMSfsq1[1,2,t,g]];
+
+rcCalc[expr_, mhp_] := (
+  modopt[mod, mhp];
+  Level[CalcRenConst[expr], {2}]
+);
+
+rcIf[xHp_, xA0_] :=
+Block[ {xCom = Select[xHp, MemberQ[xA0, #]&]},
+  { OnePassOrder[xCom],
+    IndexIf[ inputmass == A0A0,
+      OnePassOrder[Select[xA0, !MemberQ[xCom, #]&]],
+      OnePassOrder[Select[xHp, !MemberQ[xCom, #]&]] ] }
+];
+
+seParts[tag_, fi:(S[i_] -> S[j_])] := {
+  Hold[SEHook[SelfEnergy[fi, _], __] = se[tag]],
+  se[tag] -> SelfEnergy[fi, 0],
+  seshift[tag] -> se[tag] - dMHiggs1gl[i, j]
+};
+
+$FCVerbose = 2;
+
+(*
+$PaintSE = MkDir["diag-1"];
+$PutSE = MkDir["deb-1"];
+*)
+
+SetOptions[CreateTopologies, CTOrder -> 1];
+CreateFeynAmpHook[args__] := CreateFeynAmp[args] /.
+  {dMf1[3,3] -> 0 (*, dMSfsq1[1,2,3,3] -> dMStsq12*), dMSfsq1 -> dMSfsq1z};
+
+{hooks, seU, seR} = Transpose[seParts[#, fields[#]]&/@
+  {"h0h0", "HHHH", "A0A0", "HmHp", "h0HH", "h0A0", "HHA0"}]
+
+Clear[SEHook];
+ReleaseHold[hooks];
+SEHook[se_, amp_, k2_ -> _] := (
+  Print[HoldForm[se /. k2 -> 0]];
+  amp /. k2 -> 0
+);
+
+seRHp = SubstAbbr[
+  {rcCalc[seR, $MHpInput -> True], seR},
+  _dMHiggs1gl | dMHinsq1 -> _ ]
+
+seRA0 = SubstAbbr[
+  {rcCalc[seR, $MHpInput -> False], seR},
+  _dMHiggs1gl | dMHinsq1 -> _ ]
+
+(*
+$PaintSE = MkDir["diag-0"];
+$PutSE = MkDir["deb-0"];
+*)
+
+SetOptions[CreateTopologies, CTOrder -> 0];
+CreateFeynAmpHook[args__] := CreateFeynAmp[args];
+ClearSE[];
+Clear[SEHook];
+SEHook[se_, amp_, k2_ -> m2_] := (
+  Print[HoldForm[se]];
+  amp /. k2 -> m2
+);
+
+rc1LHp = rcCalc[seRHp[[2]] //. seRHp[[1]], $MHpInput -> True]
+
+rc1LA0 = rcCalc[seRA0[[2]] //. seRA0[[1]], $MHpInput -> False]
+
+raw = {rcIf[rc1LHp, rc1LA0], seU, rcIf[Flatten[seRHp], Flatten[seRA0]]}
+
+raw = Flatten[raw] /.
+  {dMHiggs1gl[3,3] -> dMAsq1, dAf1[3,3,3] -> dXt1} /.
+  ToOldBRules
+
+(*raw = OnePassOrder[raw]*)
+
+raw = SubstSimpleAbbr[raw, _seshift]
+
+Put[raw, out];
+
+_EOF_
+
+gzip $log
+
+test -f $out
+

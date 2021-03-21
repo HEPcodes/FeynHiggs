@@ -1,7 +1,7 @@
 * eftloopfun.F
 * loop functions (and helpers) for the EFT code
 * this file is part of FeynHiggs
-* last modified 23 Jan 17 th
+* last modified 21 Jun 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -16,6 +16,7 @@
 	RealType f(5), x
 
 #include "FH.h"
+#include "looptools.h"
 
 	RealType x1, x2, L1, L2
 
@@ -35,7 +36,7 @@
 	  L2 = x2*log(x2)
 	  f(1) = L2/x1
 	  f(2) = (1 + f(1))/x1
-	  f(3) = (1 - 2*x2*(1 + x2))*(Li2omx(x2) + L2)/x1**2
+	  f(3) = (1 - 2*x2*(1 + x2))*(Li21m(x2) + L2)/x1**2
 	  f(4) = x2*L2 + (1 + x2)*L1 + x1
 	  f(5) = x2*L2 - x1*(L1 - 3)
 	endif

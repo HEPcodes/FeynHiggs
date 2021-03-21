@@ -138,11 +138,11 @@
       MW2*(SAB*(C2B^2*CAB*B0i[dbb0, k2, MA02, MA02] + 
           3*C2A*(C2A*CAB - 2*S2A*SAB)*B0i[dbb0, k2, Mh02, Mh02]) + 
         3*C2A*CAB*(2*CAB*S2A + C2A*SAB)*B0i[dbb0, k2, MHH2, MHH2] + 
-        (C2B*(-4*CW2*S2A*SB2 - C2A*S2B*(1 + 2*CW2*SB2)) + 
-          CW2*(S2B*(-2*CA2 + 2*SA2)*(1 + 2*CW2*SB2) + 
-            S2A*(-4*CW2*SB2 + S2B^2*(1 + CW2*SB2))) + 
-          S2A*(-(C2B^2*SB2) - 4*CB2^2*SW2 + 4*CB2^3*SW2^2) + 
-          CB2*(2*C2A*(C2B + 2*CW2)*S2B*SW2 + S2A*(1 - 2*CW2*S2B^2*SW2)))*
+        (-(C2B^2*S2A*SB2) - C2B*(CA2*S2B - S2B*SA2 + 4*CW2*S2A*SB2 + 
+            2*C2A*CW2*S2B*SB2) + CW2*(-2*CA2*S2B + 
+            2*S2B*(SA2 - 2*C2A*CW2*SB2) + S2A*(S2B^2 - 4*CW2*SB2 + 
+              CW2*S2B^2*SB2)) - 4*CB2^2*S2A*SW2 + 4*CB2^3*S2A*SW2^2 + 
+          CB2*(S2A + 2*C2A*(C2B + 2*CW2)*S2B*SW2 - 2*CW2*S2A*S2B^2*SW2))*
          B0i[dbb0, k2, MHp2, MHp2]) + 2*(C2B^2*CAB*MW2*SAB + 
         2*CBA*CW2^2*(k2 - 6*MW2)*SBA)*B0i[dbb0, k2, MW2, MW2] + 
       (C2B^2*CAB*MW2*SAB + 2*CBA*(-7*MW2 + CW2*(k2 + MZ2))*SBA)*

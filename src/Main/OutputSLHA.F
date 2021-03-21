@@ -1,7 +1,7 @@
 * OutputSLHA.F
 * fill SLHA data structure from FeynHiggs inputs and outputs
 * this file is part of FeynHiggs
-* last modified 9 Mar 18 th
+* last modified 20 Jun 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -31,7 +31,7 @@
 	ComplexType DeltaUHiggs(NNeutral,NNeutral)
 	ComplexType DeltaZHiggs(NNeutral,NNeutral)
 
-	integer higgs(3), v_v(2,5), ferm(4,3), sferm(2,4,3)
+	integer higgs(4), v_v(2,5), ferm(4,3), sferm(2,4,3)
 	integer cha(2), neu(4)
 
 #include "DeltaAlfaTop.h"
@@ -41,7 +41,7 @@
 * from the FeynArts conventions adopted in FeynHiggs where
 * particles are generally negative and antiparticles positive.
 
-	data higgs / PDG_h0, PDG_HH, PDG_A0 /
+	data higgs / PDG_h0, PDG_HH, PDG_A0, PDG_Hp /
 
 	data v_v /
      &    PDG_photon, PDG_photon,

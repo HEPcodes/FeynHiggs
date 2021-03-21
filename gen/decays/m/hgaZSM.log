@@ -1,61 +1,67 @@
-Mathematica 11.2.0 Kernel for Linux x86 (64-bit)
-Copyright 1988-2017 Wolfram Research, Inc.
+Mathematica 11.3.0 Kernel for Linux x86 (64-bit)
+Copyright 1988-2018 Wolfram Research, Inc.
 
 In[1]:= 
 In[2]:= In[2]:= << FeynArts`;
-FeynArts 3.10 (12 Mar 2018)
+FeynArts 3.10 (11 Jul 2018)
 by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
 
-In[3]:= In[3]:= << FormCalc`;
-FormCalc 9.6 (7 Mar 2018)
+In[3]:= In[3]:= PrependTo[$ModelPath, "../model"];
+In[4]:= In[4]:= << FormCalc`;
+FormCalc 9.7 (3 Aug 2018)
 by Thomas Hahn
 
-In[4]:= In[4]:= (*SetOptions[CalcFeynAmp, RetainFile -> True];*)
-In[5]:= (*ReadFormDebug[1, "decay.log"];*)
-In[6]:= In[6]:= FormPre = Identity;
-In[7]:= FormSub = Identity;
-In[8]:= In[8]:= SetLanguage["Fortran", "novec"];
-In[9]:= In[9]:= (*loopopt[1] = LastSelections -> F[15];*)
-In[10]:= _loopopt = Sequence[];
-In[11]:= In[11]:= simp = If[nosimp === 0, Identity, Simplify];
-In[12]:= fsimp = If[nosimp === 0, Identity, FullSimplify];
-In[13]:= In[13]:= NClear[];
-In[14]:= In[14]:= N[sqrt2] = Sqrt[2.];
-In[15]:= sqrt2/: sqrt2/2 = 1/sqrt2;
-In[16]:= sqrt2/: sqrt2^2 = 2;
-In[17]:= sqrt2/: sqrt2^-2 = 1/2;
-In[18]:= In[18]:= Sq[m1] = m12;
-In[19]:= Sq[m2] = m22;
-In[20]:= Sq[m3] = m32;
-In[21]:= Sq[MHiggs[a_]] = MHiggs2[a];
-In[22]:= MH = MHiggs[hno];
-In[23]:= MH2 = MHiggs2[hno];
-In[24]:= Mh0tree = Mh0;
-In[25]:= Mh0tree2 = Mh02;
-In[26]:= MHHtree = MHH;
-In[27]:= MHHtree2 = MHH2;
-In[28]:= MA0tree = MA0;
-In[29]:= MA0tree2 = MA02;
-In[30]:= In[30]:= Sq[GS] =.;
-In[31]:= GS = GSMH;
-In[32]:= Sq[GSMH] = 4 Pi AlfasMH;
-In[33]:= Sq[GSDb] = 4 Pi AlfasDb;
-In[34]:= In[34]:= Sq[EL] =.;
-In[35]:= EL = EL0;
-In[36]:= Sq[EL0] = 4 Pi Alfa0;
-In[37]:= In[37]:= trigrulz = {
+In[5]:= In[5]:= (*SetOptions[CalcFeynAmp, RetainFile -> True];*)
+In[6]:= (*ReadFormDebug[1, "decay.log"];*)
+In[7]:= In[7]:= FormPre = Identity;
+In[8]:= FormSub = Identity;
+In[9]:= In[9]:= SetLanguage["Fortran", "novec"];
+In[10]:= In[10]:= (*loopopt[1] = LastSelections -> F[15];*)
+In[11]:= _loopopt = Sequence[];
+In[12]:= In[12]:= simp = If[nosimp === 0, Identity, Simplify];
+In[13]:= fsimp = If[nosimp === 0, Identity, FullSimplify];
+In[14]:= In[14]:= NClear[];
+In[15]:= In[15]:= N[sqrt2] = Sqrt[2.];
+In[16]:= sqrt2/: sqrt2/2 = 1/sqrt2;
+In[17]:= sqrt2/: sqrt2^2 = 2;
+In[18]:= sqrt2/: sqrt2^-2 = 1/2;
+In[19]:= In[19]:= Sq[m1] = m12;
+In[20]:= Sq[m2] = m22;
+In[21]:= Sq[m3] = m32;
+In[22]:= Sq[MHiggs[a_]] = MHiggs2[a];
+In[23]:= MH = MHiggs[hno];
+In[24]:= MH2 = MHiggs2[hno];
+In[25]:= Mh0tree = Mh0;
+In[26]:= Mh0tree2 = Mh02;
+In[27]:= MHHtree = MHH;
+In[28]:= MHHtree2 = MHH2;
+In[29]:= MA0tree = MA0;
+In[30]:= MA0tree2 = MA02;
+In[31]:= In[31]:= (*Mdy[g_] := Mfy[7, g];*)
+In[32]:= Sq[Mfy[a__]] = Mfy2[a];
+In[33]:= RealQ[_Mfy] = True;
+In[34]:= In[34]:= Sq[GS] =.;
+In[35]:= GS = GSMH;
+In[36]:= Sq[GSMH] = 4 Pi AlfasMH;
+In[37]:= Sq[GSDb] = 4 Pi AlfasDb;
+In[38]:= In[38]:= Sq[EL] =.;
+In[39]:= EL = EL0;
+In[40]:= Sq[EL0] = 4 Pi Alfa0;
+In[41]:= In[41]:= Format[Mino3, FortranForm] := "M_3";
+In[42]:= Format[Mino3C, FortranForm] := "M_3C";
+In[43]:= In[43]:= trigrulz = {
   CA a_ + CA2 b_ :> CA (a + CA b),
   SA a_ + SA2 b_ :> SA (a + SA b),
   CB a_ + CB2 b_ :> CB (a + CB b),
   SB a_ + SB2 b_ :> SB (a + SB b)
 };
-In[38]:= In[38]:= frulz[_, 0] = {};
-In[39]:= In[39]:= frulz[t_, ty_] := {
+In[44]:= In[44]:= frulz[_, 0] = {};
+In[45]:= In[45]:= frulz[t_, ty_] := {
   Mf[t,g_] :> Mf[ty,g],
   Mf2[t,g_] :> Mf2[ty,g] };
-In[40]:= In[40]:= sfrulz[t_, 0] := {		(* for SM *)
+In[46]:= In[46]:= sfrulz[t_, 0] := {		(* for SM *)
   Mqy[t,g_] :> Mf[t,g] };
-In[41]:= In[41]:= sfrulz[t_, ty_] := {
+In[47]:= In[47]:= sfrulz[t_, ty_] := {
   Mqy[t,g_] :> Mf[ty,g],
   MSf[s_,t,g_] :> MSf[s,ty,g],
   MSf2[s_,t,g_] :> MSf2[s,ty,g],
@@ -67,10 +73,10 @@ In[41]:= In[41]:= sfrulz[t_, ty_] := {
   UASfC[as__,t] :> UASfC[as,ty],
   Kf[g__,t] :> Kf[g,ty],
   KfC[g__,t] :> KfC[g,ty] };
-In[42]:= In[42]:= massrulz[u_, uy_, d_, dy_] := Flatten[{
+In[48]:= In[48]:= massrulz[u_, uy_, d_, dy_] := Flatten[{
   frulz[3, u], sfrulz[3, uy],
   frulz[4, d], sfrulz[4, dy] }];
-In[43]:= In[43]:= final[expr_] := expr /.
+In[49]:= In[49]:= final[expr_] := expr /.
   gather[q_, a_:1] :> sgather[reim[q] a] /.
   sgather -> split /.
   { Finite -> 1,
@@ -81,32 +87,34 @@ In[43]:= In[43]:= final[expr_] := expr /.
     re[h_[x__]] :> ToSymbol[h, "Re"][x],
     im[h_[x__]] :> ToSymbol[h, "Im"][x] } /.
   IndexDelta -> IDelta;
-In[44]:= In[44]:= (*Mdy[g_] := Mfy[7, g];*)
-In[45]:= Sq[Mfy[a__]] = Mfy2[a];
-In[46]:= RealQ[_Mfy] = True;
-In[47]:= In[47]:= Format[Mino3, FortranForm] := "M_3";
-In[48]:= Format[Mino3C, FortranForm] := "M_3C";
-In[49]:= In[49]:= In[49]:= $DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
-In[50]:= $DebugCmd[1] = "DCOUP \"" <> tag <> "-`1` `2` =\", `3` ENDL\n";
-In[51]:= $DebugPost[1] = "#endif\n";
-In[52]:= In[52]:= deepestOnly[{___, l_}] = {l};
-In[53]:= In[53]:= SetOptions[Paint,
+In[50]:= In[50]:= In[50]:= toFortran[expr_] := expr /.
+  d:dZ11H1fin|dZ12H1fin|dZ22H1fin|dTB1fin|dA1|dBn1|dBc1 :> d[zD];
+In[51]:= SetOptions[WriteExpr, FinalFunction -> toFortran];
+In[52]:= In[52]:=                            (*
+dZ11H1fin = dZ12H1fin = dZ22H1fin = dTB1fin = dA1 = dBn1 = dBc1 = 0;
+SetOptions[WriteExpr, FinalFunction -> (# /. ivev -> 1/vev &)];
+*)
+In[53]:= In[53]:= $DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
+In[54]:= $DebugCmd[1] = "DCOUP \"" <> tag <> "-`1` `2` =\", `3` ENDL\n";
+In[55]:= $DebugPost[1] = "#endif\n";
+In[56]:= In[56]:= deepestOnly[{___, l_}] = {l};
+In[57]:= In[57]:= SetOptions[Paint,
   PaintLevel :> deepestOnly[InsertionLevel],
   ColumnsXRows -> {3, 4}];
-In[54]:= In[54]:= paint[_[], _] := {};
-In[55]:= In[55]:= paint[ins_, suffix_] := (
+In[58]:= In[58]:= paint[_[], _] := {};
+In[59]:= In[59]:= paint[ins_, suffix_] := (
   MkDir["d"];
   $PaintSE = ToFileName["d", tag <> "-"];
   Paint[ ins,
     DisplayFunction -> (Export[$PaintSE <> suffix <> ".ps",
       #, "PS", ImageSize -> 144 {3, 4} ]&) ]
 ) /; debug === 1;
-In[56]:= In[56]:= In[56]:= SetOptions[WriteExpr, FinalCollect -> True];
-In[57]:= In[57]:= In[57]:= Attributes[wfok] = {Orderless};
-In[58]:= wfok[] = True;
-In[59]:= wfok[_, S[4]] = wfok[_, V[2]] = True;
-In[60]:= _wfok = False;
-In[61]:= In[61]:= In[61]:= amps[loop_, proc_, model_, excl_, rul_, foo_, opt___] :=
+In[60]:= In[60]:= In[60]:= SetOptions[WriteExpr, FinalCollect -> True];
+In[61]:= In[61]:= In[61]:= Attributes[wfok] = {Orderless};
+In[62]:= wfok[] = True;
+In[63]:= wfok[_, S[4]] = wfok[_, V[2]] = True;
+In[64]:= _wfok = False;
+In[65]:= In[65]:= In[65]:= amps[loop_, proc_, model_, excl_, rul_, foo_, opt___] :=
 Block[ {io, top, ins, insv, insct, amp, vert},
   SetOptions[InsertFields, Model -> model, opt];
 
@@ -126,7 +134,7 @@ Block[ {io, top, ins, insv, insct, amp, vert},
 
   amp = CreateFeynAmp[Join[insv, Head[insv]@@ insct]];
 
-  SetOptions[CalcFeynAmp, Dimension -> If[model === SM, D, 4]];
+  SetOptions[CalcFeynAmp, Dimension -> If[model === "sm", D, 4]];
 
   amp = OffShell[amp, 1 -> m1,
     2 -> ((If[# === 0, m2 = m22 = 0]; m2)&),
@@ -141,35 +149,34 @@ FormSub = simp1 (*Identity*) (*TermCollect*) (*Simplify*);
   vert = elimDiv[vert];
   vert
 ];
-In[62]:= In[62]:= In[62]:= IDelta/: IDelta[i_, j_] a_. := Delta[i, j] (a /. {s_SumOver :> s, j -> i})
-In[63]:= In[63]:= In[63]:= fxi[x_] := fsimp[x //. trigrulz] /. trigrulz;
-In[64]:= In[64]:= Attributes[fsi] = {Listable};
-In[65]:= fsi[var_ -> x_] := var -> fsi[x];
-In[66]:= fsi[x_] := x /; FreeQ[x, Plus];
-In[67]:= fsi[x_] := fsi[x] = fxi[fxi[x]];
-In[68]:= In[68]:= xi[x_] := simp[x //. trigrulz] /. trigrulz;
-In[69]:= In[69]:= Attributes[si] = {Listable};
-In[70]:= si[var_ -> x_] := var -> si[x];
-In[71]:= si[x_] := x /; FreeQ[x, Plus];
-In[72]:= si[x_] := si[x] = xi[xi[x]];
-In[73]:= In[73]:= simp1 = OnSize[100, fsi, 250, si, Map];
-In[74]:= simp2 = fsimp;
-In[75]:= In[75]:= loopint = _A0 | _B0 | _B1 | _B00 | _B11 | _DB0 | _DB1 | _DB00 | _DB11;
-In[76]:= In[76]:= SetOptions[PrepareExpr,
-  Expensive -> List@@ loopint,
+In[66]:= In[66]:= In[66]:= IDelta/: IDelta[i_, j_] a_. := Delta[i, j] (a /. {s_SumOver :> s, j -> i})
+In[67]:= In[67]:= In[67]:= fxi[x_] := fsimp[x //. trigrulz] /. trigrulz;
+In[68]:= In[68]:= Attributes[fsi] = {Listable};
+In[69]:= fsi[var_ -> x_] := var -> fsi[x];
+In[70]:= fsi[x_] := x /; FreeQ[x, Plus];
+In[71]:= fsi[x_] := fsi[x] = fxi[fxi[x]];
+In[72]:= In[72]:= xi[x_] := simp[x //. trigrulz] /. trigrulz;
+In[73]:= In[73]:= Attributes[si] = {Listable};
+In[74]:= si[var_ -> x_] := var -> si[x];
+In[75]:= si[x_] := x /; FreeQ[x, Plus];
+In[76]:= si[x_] := si[x] = xi[xi[x]];
+In[77]:= In[77]:= simp1 = OnSize[100, fsi, 250, si, Map];
+In[78]:= simp2 = fsimp;
+In[79]:= In[79]:= SetOptions[PrepareExpr,
+  Expensive -> LoopIntegral[__],
   FinalTouch -> simp2];
-In[77]:= In[77]:= In[77]:= elimDiv[expr_] := ToIndexIf[ expr /.
+In[80]:= In[80]:= In[80]:= elimDiv[expr_] := ToIndexIf[ expr /.
   (d:Den[MHiggs2[i_], MHiggs2[j_]]) :> d IndexDiff[i, j] ];
-In[78]:= In[78]:= In[78]:= SetOptions[WriteSquaredME,
+In[81]:= In[81]:= In[81]:= SetOptions[WriteSquaredME,
   FilePrefix -> tag <> "-",
   SymbolPrefix -> tag <> "_",
   Folder -> tag <> "-squaredme",
   FileHeader -> StringReplace[FileHeader /. Options[WriteSquaredME],
     "#endif" -> "* this file is part of FeynHiggs\n#endif"]];
-In[79]:= In[79]:= SetOptions[WriteRenConst,
+In[82]:= In[82]:= SetOptions[WriteRenConst,
   Folder -> tag <> "-renconst"];
-In[80]:= In[80]:= job[proc_, model_, excl_, rul0_, rul1_, foo_, opt___] :=
-Block[ {v0, v1, col, abbr, sub, uzext, DoDim},
+In[83]:= In[83]:= job[proc_, model_, excl_, rul0_, rul1_, foo_, opt___] :=
+Block[ {v0, v1, col, abbr, sub, uzext, rcs, rcinc, w, DoDim},
   v0 = amps[0, proc, model, excl, rul0, foo, opt];
   v1 = amps[1, proc, model, excl, rul1, foo, opt];
 
@@ -187,7 +194,7 @@ Block[ {v0, v1, col, abbr, sub, uzext, DoDim},
   rcinc = If[ Length[rcs] === 0, "",
     "#include \"" <> tag <> "-RenConst.h.F\"\n"];
 
-  SetOptions[WriteSquaredME, 
+  SetOptions[WriteSquaredME,
     FileIncludes -> {"\
 #include \"externals.h\"\n\
 #include \"types.h\"\n\
@@ -199,10 +206,12 @@ Block[ {v0, v1, col, abbr, sub, uzext, DoDim},
       "\
 #include \"inline.h\"\n" }];
 
-  WriteSquaredME[v0, v1, col, abbr, sub, "f",
+  w = WriteSquaredME[v0, v1, col, abbr, sub, "f",
     ExtraRules -> ToOldBRules,
     SymbolPrefix -> tag <> "_",
     LoopSquare -> True];	(* <<<!!! *)
+
+  Put[w, ToFileName["m", tag <> ".out"]];
 
   If[ Length[rcs] > 0,
 FormSub = simp1;
@@ -212,75 +221,53 @@ FormSub = simp1;
     Put[rcs, ToFileName["m", tag <> ".rc"]];
     WriteRenConst[rcs, "f"] ];
 ];
-In[81]:= In[81]:= In[81]:= gather/: gather[q_, expr_:1] x_ := gather[q, expr x] /;
+In[84]:= In[84]:= In[84]:= gather/: gather[q_, expr_:1] x_ := gather[q, expr x] /;
   FreeQ[x, gather | SUNT | IndexDelta];
-In[82]:= In[82]:= gather/: gather[q_, a_:1] + gather[q_, b_:1] := gather[q, a + b] /;
+In[85]:= In[85]:= gather/: gather[q_, a_:1] + gather[q_, b_:1] := gather[q, a + b] /;
   FreeQ[{a, b}, gather];
-In[83]:= In[83]:= In[83]:= sgather/: sgather[x_] + sgather[y_] := sgather[x + y];
-In[84]:= In[84]:= sgather/: sgather[x_] y_ := sgather[x y];
-In[85]:= In[85]:= sgather[0] = 0;
-In[86]:= In[86]:= In[86]:= split[x_] := ReTilde[x /. reim -> re] + cI ImTilde[x /. reim -> im];
-In[87]:= In[87]:= In[87]:= $CKM = True;
-In[88]:= $FV = {12, 13, 14};
-In[89]:= cMSSMhgaga = {"MSSMQCD", "dAlfa", "KW", "FV", "Kf", "HGpGm", "Yuk", "HMixExt"};
-In[90]:= cMSSM = DeleteCases[cMSSMhgaga, "HGpGm"];
-In[91]:= SM = {"SMQCD", "dAlfa", "Yuk", "dZH1"};
-In[92]:= In[92]:= Hel[3] = Hel[2]
-Out[92]= Hel[2]
-
-In[93]:= In[93]:= In[93]:= decay["hgaga"] := job[
-  S[10, {hno}] -> {V[1], V[1]},
-  cMSSMhgaga, _,
-  {}, {},
+In[86]:= In[86]:= In[86]:= sgather/: sgather[x_] + sgather[y_] := sgather[x + y];
+In[87]:= In[87]:= sgather/: sgather[x_] y_ := sgather[x y];
+In[88]:= In[88]:= sgather[0] = 0;
+In[89]:= In[89]:= In[89]:= split[x_] := ReTilde[x /. reim -> re] + cI ImTilde[x /. reim -> im];
+In[90]:= In[90]:= In[90]:= Hel[3] = Hel[2];
+In[91]:= In[91]:= In[91]:= decay["hgaga"] := job[ S[10, {hno}] -> {V[1], V[1]},
+  {"mssm-hgaga", "HMixExt"}, _, {}, {},
   # /. massrulz[tH, tH, 0, bBR] /. {
     Yuk[3|4, _, g_, g_] :> hgagaQ,
     Yuk[13|14, _, g_, g_] :> hgagaSq,
-    Hbb[h_, g_, g_] :> HffDb[0, h, 4, g] Mf[4, g]/Mf[bBR, g] } &
-];
-In[94]:= In[94]:= decay["hgagaSM"] := job[
-  S[1] -> {V[1], V[1]},
-  SM, _,
-  {}, {},
+    Hbb[h_, g_, g_] :> HffDb[0, h, 4, g] Mf[4, g]/Mf[bBR, g] } & ];
+In[92]:= In[92]:= decay["hgagaSM"] := job[ S[1] -> {V[1], V[1]},
+  "sm", _, {}, {},
   # /. massrulz[tH, tH, 0, 0] /. {
     Yuk[3|4, _, g_, g_] :> hgagaQ } & ];
-In[95]:= In[95]:= In[95]:= decay["hgaZ"] := job[
-  S[10, {hno}] -> {V[1], V[2]},
-  cMSSMhgaga, _,
-  {}, {},
+In[93]:= In[93]:= In[93]:= decay["hgaZ"] := job[ S[10, {hno}] -> {V[1], V[2]},
+  {"mssm-hgaZ", "HMixExt"}, _, {}, {},
   # /. massrulz[tH, tH, 0, bBR] /. {
     _Yuk -> 1,
     Hbb[h_, g_, g_] :> HffDb[0, h, 4, g] Mf[4, g]/Mf[bBR, g] } & ];
-In[96]:= In[96]:= decay["hgaZSM"] := job[
-  S[1] -> {V[1], V[2]},
-  SM, _,
-  {}, {},
+In[94]:= In[94]:= decay["hgaZSM"] := job[ S[1] -> {V[1], V[2]},
+  "sm", _, {}, {},
   # /. massrulz[tH, tH, 0, 0] /. _Yuk -> 1 & ];
-In[97]:= In[97]:= In[97]:= decay["hgg"] := job[
-  S[10, {hno}] -> {V[5], V[5]},
-  cMSSM, _,
-  {}, {},
+In[95]:= In[95]:= In[95]:= decay["hgg"] := job[ S[10, {hno}] -> {V[5], V[5]},
+  {"mssm-hgg", "HMixExt"}, _, {}, {},
   simp[# /. massrulz[tH, tH, 0, bBR] /. {
     Yuk[3, h_, g_, g_] :> hggU[h, g],
     Yuk[4, h_, g_, g_] :> gather[hggD[h, g]],
     Yuk[_, h_, g_, g_] :> hggSq[h],
     Hbb[h_, g_, g_] :> HffDb[0, h, 4, g] Mf[4, g]/Mf[bBR, g] }]&
 ];
-In[98]:= In[98]:= decay["hggSM"] := job[
-  S[1] -> {V[5], V[5]},
-  SM, _,
-  {}, {},
+In[96]:= In[96]:= decay["hggSM"] := job[ S[1] -> {V[5], V[5]},
+  "sm", _, {}, {},
   simp[# /. massrulz[tH, tH, 0, 0] /. {
     Yuk[3, h_, g_, g_] :> hggU[h, g],
     Yuk[4, h_, g_, g_] :> gather[hggD[h, g]] }]& ];
-In[99]:= In[99]:= In[99]:= decay["hhh"] := job[
-  S[10, {hno}] -> {S[10, {hno1}], S[10, {hno2}]},
-  cMSSM /. "FV" -> "Hhh", 2|3,
-  {}, DeltaHhh -> 0,
+In[97]:= In[97]:= In[97]:= decay["hhh"] := job[ S[10, {hno}] -> {S[10, {hno1}], S[10, {hno2}]},
+  {"mssm-hhh", "HMixExt"}, 2|3, {}, DeltaHhh -> 0,
   # /. massrulz[tM3, tM3, bTR, bTR] /. {
     _Yuk -> 1,
     _Hbb -> 1 } &,
   ExcludeParticles -> {U[5], V[5]} ];
-In[100]:= In[100]:= In[100]:= hffjob[args__] :=
+In[98]:= In[98]:= In[98]:= hffjob[args__] :=
 Block[ {dMWsq1, EL0 = ELMZ, Alfa0 = AlfaMZ},
   Options[dMWsq1] = {ExcludeParticles -> {}};	(* i.e. V[1] allowed here *)
   SetOptions[Abbreviate, Deny -> HffDb];
@@ -289,50 +276,48 @@ Block[ {dMWsq1, EL0 = ELMZ, Alfa0 = AlfaMZ},
     # /. massrulz[tH, tH, bH, bH] /. _Yuk -> 1 &,
     ExcludeParticles -> {V[1], V[5]} ]
 ];
-In[101]:= In[101]:= Hff[t_] := hffjob[
-  S[10, {hno}] -> {F[t, {gno1}], -F[t, {gno2}]},
-  cMSSM, 2|3 ];
-In[102]:= In[102]:= HffSM[t_] := hffjob[
-  S[1] -> {F[t, {gno1}], -F[t, {gno2}]},
-  SM, _ ];
-In[103]:= In[103]:= decay["hee"] := Hff[2];
-In[104]:= In[104]:= decay["heeSM"] := HffSM[2];
-In[105]:= In[105]:= decay["huu"] := Hff[3];
-In[106]:= In[106]:= decay["huuSM"] := HffSM[3];
-In[107]:= In[107]:= decay["hdd"] := Hff[4];
-In[108]:= In[108]:= decay["hddSM"] := HffSM[4];
-In[109]:= In[109]:= In[109]:=                                                   (*
+In[99]:= In[99]:= Hff[t_] := hffjob[ S[10, {hno}] -> {F[t, {gno1}], -F[t, {gno2}]},
+  {"mssm-hff", "HMixExt"}, 2|3 ];
+In[100]:= In[100]:= HffSM[t_] := hffjob[ S[1] -> {F[t, {gno1}], -F[t, {gno2}]},
+  "sm", _ ];
+In[101]:= In[101]:= decay["hee"] := Hff[2];
+In[102]:= In[102]:= decay["heeSM"] := HffSM[2];
+In[103]:= In[103]:= decay["huu"] := Hff[3];
+In[104]:= In[104]:= decay["huuSM"] := HffSM[3];
+In[105]:= In[105]:= decay["hdd"] := Hff[4];
+In[106]:= In[106]:= decay["hddSM"] := HffSM[4];
+In[107]:= In[107]:= In[107]:=                                                   (*
 decay["hcc"] := write[ CalcFeynAmp @
   amps[1, S[10, {hno}] -> {-F[12,{c1}], F[12,{c2}]}, "HMix"] ];
 decay["hnn"] := write[ CalcFeynAmp @
   amps[1, S[10, {hno}] -> {F[11,{n1}], F[11,{c2}]}, "HMix"] ];
 *)
-In[110]:= In[110]:= In[110]:= _decay := Abort[];
-In[111]:= In[111]:= In[111]:= decay[tag];
+In[108]:= In[108]:= In[108]:= _decay := Abort[];
+In[109]:= In[109]:= In[109]:= decay[tag];
 loading generic model file /home/pcl301/hahn/FeynArts/Models/Lorentz.gen
 > $GenericMixing is OFF
 generic model {Lorentz} initialized
 
-loading classes model file /home/pcl301/hahn/FeynArts/Models/SMQCD.mod
-  loading classes model file /home/pcl301/hahn/FeynArts/Models/SM.mod
+loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/sm.\
+ 
+      mod
+  loading classes model file /home/pcl301/hahn/FeynArts/Models/SMQCD.mod
+    loading classes model file /home/pcl301/hahn/FeynArts/Models/SM.mod
 
 $CKM = True
 
-loading classes model file /home/pcl301/hahn/feynhiggs/gen/decays/dAlfa.mod
-loading classes model file /home/pcl301/hahn/feynhiggs/gen/decays/Yuk.mod
-loading classes model file /home/pcl301/hahn/feynhiggs/gen/decays/dZH1.mod
+  loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models/d\
+ 
+      Alfa.mod
+  loading classes model file /home/pcl301/hahn/fh-2143/feynhiggs/gen/Models/Y\
+ 
+      uk.mod
 > 49 particles (incl. antiparticles) in 18 classes
-
-Intersection::heads: 
-   Heads List and IndexDelta at positions 3 and 1 are expected to be the same.
-
-Intersection::heads: 
-   Heads List and IndexDelta at positions 3 and 1 are expected to be the same.
 > $CounterTerms are ON
 > 93 vertices
 > 121 counterterms of order 1
 > 6 counterterms of order 2
-classes model {SMQCD, dAlfa, Yuk, dZH1} initialized
+classes model {sm} initialized
 
 inserting at level(s) {Generic, Classes}
 > Top. 1: 0 Generic, 0 Classes insertions
@@ -361,7 +346,9 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 5: 1 Generic, 1 Classes amplitudes
 in total: 15 Generic, 33 Classes amplitudes
 
-preparing FORM code in /home/pcl301/hahn/feynhiggs/gen/decays/fc-amp-1.frm
+preparing FORM code in\
+ 
+     /home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/fc-amp-1.frm
 running FORM... 
 ok
 
@@ -379,19 +366,11 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 2: 5 Generic, 9 Classes amplitudes
 in total: 7 Generic, 11 Classes amplitudes
 
-preparing FORM code in /home/pcl301/hahn/feynhiggs/gen/decays/fc-rc-1.frm
+preparing FORM code in\
+ 
+     /home/pcl301/hahn/fh-2143/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
 
-In[112]:= In[112]:= Uninstall[$ReadFormHandle];
-In[113]:= 
-
-LinkObject::linkn: 
-   Argument LinkObject[/home/pcl301/hahn/FormCalc/Linux-x86-64/ReadForm, 217, 
-     1] in LinkClose[LinkObject[/home/pcl301/hahn/FormCalc/Linux-x86-64/ReadFo
-       rm, 217, 1]] has an invalid LinkObject number; the link may be closed.
-
-Unset::norep: Assignment on LinkPatterns for 
-    LinkPatterns[LinkObject[/home/pcl301/hahn/FormCalc/Linux-x86-64/ReadForm, 
-      217, 1]] not found.
+In[110]:= In[110]:= 

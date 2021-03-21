@@ -1,7 +1,7 @@
 * Error.F
 * print the error messages and return the error code
 * this file is part of FeynHiggs
-* last modified 27 Oct 11 th
+* last modified 31 Jul 18 th
 
 #include "externals.h"
 #include "debug.h"
@@ -14,6 +14,8 @@
 	implicit none
 	integer error, lineno
 	character*(*) routine, msg
+
+#include "colors.h"
 
 * Note: 'time' is considered intrinsic by some compilers and
 * external by others, so we give just the type:
@@ -61,25 +63,13 @@
 
 1	continue
 
-#if VT100
 101	format(5A)
 	if( lineno .gt. 0 ) then
-	  print 101, BOLD//RED, routine, " error: ", msg, RESET
+	  print 101, ERROR routine, " error: ", msg ENDL
 	else if( lineno .ne. -1 ) then
-	  print 101, BOLD//BLUE, routine, " warning: ", msg, RESET
+	  print 101, WARNING routine, " warning: ", msg ENDL
 	else
 	  print 101, routine, ": ", msg
 	endif
-#else
-101	format(3A)
-	if( lineno .gt. 0 ) then
-	  print 101, routine, " error: ", msg
-	else if( lineno .ne. -1 ) then
-	  print 101, routine, " warning: ", msg
-	else
-	  print 101, routine, ": ", msg
-	endif
-#endif
-
 	end
 

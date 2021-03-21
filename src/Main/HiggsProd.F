@@ -5,7 +5,7 @@
 * charged-Higgs cross-section data are from Tilman Plehn
 *   http://www.ph.ed.ac.uk/~tplehn/charged_higgs
 * this file is part of FeynHiggs
-* last modified 10 Jan 17 th
+* last modified 1 Aug 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -267,35 +267,14 @@
 
 #include "FH.h"
 
-	hggU(1,1) = k0
-	hggU(2,1) = k0
-	hggU(3,1) = k0
-	hggU(1,2) = k0
-	hggU(2,2) = k0
-	hggU(3,2) = k0
-	hggU(1,3) = kt
-	hggU(2,3) = kt
-	hggU(3,3) = kt
+	hggU(1:3,1:2) = k0
+	hggU(1:3,3) = kt
 
-	hggDRe(1,1) = k0
-	hggDRe(2,1) = k0
-	hggDRe(3,1) = k0
-	hggDRe(1,2) = k0
-	hggDRe(2,2) = k0
-	hggDRe(3,2) = k0
-	hggDRe(1,3) = kbre
-	hggDRe(2,3) = kbre
-	hggDRe(3,3) = kbre
+	hggDRe(1:3,1:2) = k0
+	hggDRe(1:3,3) = kbre
 
-	hggDIm(1,1) = k0
-	hggDIm(2,1) = k0
-	hggDIm(3,1) = k0
-	hggDIm(1,2) = k0
-	hggDIm(2,2) = k0
-	hggDIm(3,2) = k0
-	hggDIm(1,3) = kbim
-	hggDIm(2,3) = kbim
-	hggDIm(3,3) = kbim
+	hggDIm(1:3,1:2) = k0
+	hggDIm(1:3,3) = kbim
 	end
 
 

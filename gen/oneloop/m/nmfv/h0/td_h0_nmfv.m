@@ -39,6 +39,6 @@
         CA*ZNeu[Neu2, 4]) + (SW*ZNeuC[Neu2, 1] - CW*ZNeuC[Neu2, 2])*
        (SA*ZNeuC[Neu2, 3] + CA*ZNeuC[Neu2, 4])))/(16*CW*Pi^2*SW), 
   (EL1L*MW*(SAB*(C2B*A0[MA02] + 3*C2A*A0[Mh02]) - (2*CAB*S2A + C2A*SAB)*
-      A0[MHH2] + 2*((C2B*CA + 2*CA*CW2 - CW2*S2B*SA)*SB + 
-       CB*SA*(-1 + 2*CB2*SW2))*A0[MHp2] + 2*(-(C2B*SAB) + 6*CW2*SBA)*
-      A0[MW2] - (C2B*SAB - 6*SBA)*A0[MZ2]))/(64*CW2*Pi^2*SW)}}
+      A0[MHH2] + 2*(CA*(C2B + 2*CW2)*SB - SA*(CB + CW2*S2B*SB - 
+         2*CB*CB2*SW2))*A0[MHp2] + 2*(-(C2B*SAB) + 6*CW2*SBA)*A0[MW2] - 
+     (C2B*SAB - 6*SBA)*A0[MZ2]))/(64*CW2*Pi^2*SW)}}

@@ -1,7 +1,7 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 27 Feb 18 th
+* last modified 22 Jun 18 th
 
 #include "FHCouplings.h"
 #include "types.h"
@@ -33,7 +33,7 @@
 	character*16 flags
 
 	character*54 dmssmpart(-1:5), dhiggsmix(0:5), dp2approx(-1:5),
-     &    dlooplevel(-1:3), dloglevel(-1:4), drunningMT(-1:4),
+     &    dlooplevel(-1:3), dloglevel(-1:5), drunningMT(-1:4),
      &    dbotResum(-1:3), dtlCplxApprox(-1:4)
 
 	data flags /defaultflags/
@@ -77,6 +77,7 @@
      &    "NLL resummation (for large MSUSY)",
      &    "NLL resummation (for large MCha,MNeu,MGlu,MSUSY)",
      &    "NNLL resummation (for large MCha,MNeu,MGlu,MSUSY)",
+     &    "NNLL resummation (with eff. THDM in case of low MA)",
      &    "???" /
 
 	data drunningMT /
@@ -122,7 +123,7 @@
      &    ShowFlag("higgsmix",     higgsmix,     1, 4),
      &    ShowFlag("p2approx",     p2approx,     0, 4),
      &    ShowFlag("looplevel",    looplevel,    0, 2),
-     &    ShowFlag("loglevel",     loglevel,     0, 3),
+     &    ShowFlag("loglevel",     loglevel,     0, 5),
      &    ShowFlag("runningMT",    runningMT,    0, 3),
      &    ShowFlag("botResum",     botResum,     0, 2),
      &    ShowFlag("tlCplxApprox", tlCplxApprox, 0, 3)
@@ -212,7 +213,6 @@ c	if( error .eq. -2 ) goto 2
      &    /"  #6 = runningMT, pole vs. running MT",
      &    4 DESC_FMT
      &    /"  #7 = botResum, MB resummation",
-     &    3 DESC_FMT
      &    /"  #8 = tlCplxApprox, complex parameters in the 2L corrections",
      &    4 DESC_FMT
      &    /)
@@ -223,12 +223,11 @@ c	if( error .eq. -2 ) goto 2
      &    (i, dhiggsmix(i),     i = 1, 4),
      &    (i, dp2approx(i),     i = 0, 4),
      &    (i, dlooplevel(i),    i = 0, 2),
-     &    (i, dloglevel(i),     i = 0, 3),
+     &    (i, dloglevel(i),     i = 0, 5),
      &    (i, drunningMT(i),    i = 0, 3),
      &    (i, dbotResum(i),     i = 0, 2),
-     &    (i, dtlCplxApprox(i), i = 0, 3)
+     &    (i, dtlCplxApprox(i), i = 0, 4)
 
 1	call flush(6)
 	call pageroff
 	end
-

@@ -5,7 +5,7 @@
 *   medium scale 2 = MGlu
 *   high scale = MSUSY
 * this file is part of FeynHiggs
-* last modified 27 Feb 18 th
+* last modified 22 Jun 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -29,6 +29,7 @@
 	RealType g2uC, g2uC2, g2dC, g2dC2
 	RealType htC, htC2, lC
 	RealType gMs, gMs2, gyMs, gyMs2
+	RealType tbMs, sbMs, sbMs2, cbMs2, c2bMs, s2bMs
 	RealType htMT2sub, sublog1L, sublog2L
 	RealType subnonlog1L, subnonlog2La, subnonlog2Lb
 	RealType dlam_asatOS, dlam_atatOS
@@ -106,6 +107,13 @@
 	tA0 = log(MA02)
 	tMUE = 2*log(abs(mueOS*MSUSYOS))
 	tM_2 = log(Sq(M_2))
+
+	if( (finfieldren .eq. 1) .AND. (tbdef .eq. 0) ) then
+	  db0msqmsu = Re(DB0(0D0,MSS2(3,3,3)/MSUSYOS**2,
+     &                           MSS2(3,3,4)/MSUSYOS**2))
+	  db0m1mue = abs(M_1)*abs(MUE)*Re(DB0(0D0, Sq(M_1), Sq(MUE)))
+	  db0m2mue = abs(M_2)*abs(MUE)*Re(DB0(0D0, Sq(M_2), Sq(MUE)))
+	endif
 
 * initial values from tree-level relations
 	x(ig) = gMT
@@ -313,6 +321,15 @@
 #endif
 	endif
 
+* threshold between tbMSSM and tbTHDM
+	if( (finfieldren .eq. 1) .AND. (tbdef .eq. 0) ) then
+	  y(itb) = y(itb)*(1
+     &             + 3/2D0*k1L*x(iht)**2*(1+y(itb)**2)/y(itb)**2
+     &                           *xMS*(xMS+mueMS*(1/y(itb)+y(itb)))
+     &                           *db0msqmsu
+     &             - 1/8D0*k1L*(3*yg2*db0m2mue + ygy2*db0m1mue)
+     &                        *(y(itb)-1/y(itb)))
+	endif
 * run from Q = MSUSY to Q = MCha with Split RGEs
 
 	call ODESolve(nSplit, betaSplit2L, y,

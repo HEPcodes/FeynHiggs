@@ -1,6 +1,6 @@
 * DRbartoOS.F
 * this file is part of FeynHiggs
-* last modified 25 Feb 18 th
+* last modified 31 Jul 18 th
 
 * Code by Pietro Slavich
 * 28/05/2004: error in charg12 corrected
@@ -274,7 +274,8 @@ c	c2tt = (ctt - stt)*(ctt + stt)
 * From M = USf^+ diag(MSf) USf we get
 *   DSS2_1 = M11 - M22
 *   DSS2_2 = M22 - Mf^2
-*   Xf = Conjugate(M12)/Mf
+*   Xf = M12^*/Mf
+*
 
 	osshift(1) = dMSt2*c2tt - DSS2(1,t,3)
 	osshift(2) = MSt12*stt**2 + MSt22*ctt**2 - Mf2(t,3) - DSS2(2,t,3)
