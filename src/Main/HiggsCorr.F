@@ -471,7 +471,7 @@ cPijk	hmix = higgsmix - ishft(higgsmix, -2)
 * the hill and gives a significantly different result.
 cPijk	  p2 = p2*1.000003D0
 
-	  call CalcSE(p2, key, key)
+	  call CalcSE(Re(p2), key, key)
 	  if( fopoleeq .eq. 0 ) seRx(:,i) = cI*Im(p2)*dseRZ(h0h0:A0G0)
 	  seRZ(h0h0:A0G0) = seRZ(h0h0:A0G0) + seRx(:,i)
 

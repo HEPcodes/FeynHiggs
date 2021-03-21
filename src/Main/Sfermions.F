@@ -1,7 +1,7 @@
 * Sfermions.F
 * initialization routines for the sfermions
 * this file is part of FeynHiggs
-* last modified 20 May 18 th
+* last modified 28 Apr 20 th
 
 #include "externals.h"
 #include "types.h"
@@ -10,10 +10,6 @@
 #define MX2_LL(i,j) MX2(i,j)
 #define MX2_LR(i,j) MX2(i,j+3)
 #define MX2_RR(i,j) MX2(i+3,j+3)
-
-#define ID id(1:l)
-#define SP "      "(1:l)
-#define SR "      "(1:len(id)-l)
 
 * - "SfermionsDR" gets called on the user input.
 *   Effects of DRbar breaking parameters are compensated by
@@ -155,7 +151,7 @@
 	CheckPara(error)
 	if( error .ne. 0 ) return
 
-	if( btest(fv, 2) ) then
+cNMFV	if( btest(fv, 2) ) then
 	  MX2_LL(1,1) = MSf2(1,1,1)
 	  MX2_LL(2,2) = MSf2(1,1,2)
 	  MX2_LL(3,3) = MSf2(1,1,3)
@@ -164,23 +160,25 @@
 	  MX2_LL(1,3) = MSS2(1,3,1)
 	  call SfEigensystem(3, MX2,3, MASf2(1,1), UASf(1,1,1),6, 0, 3)
 	  call SfUpdateNMFV(error, X3(2,2,2), 1)
-	endif
+cNMFV	endif
 
-	if( btest(fv, 3) ) then
+cNMFV	if( btest(fv, 3) ) then
 	  call SfUpdateNMFV(error, X3(3,3,3), 1)
+	  call SfUpdateNMFV(error, X3(tT,3,3), 1)
 	  call SfUpdateNMFV(error, X3(tM3,3,3), SORT_SF)
 	  call SfUpdateNMFV(error, X3(tMT,3,3), SORT_SF)
 	  if( Mf(tMT,3) .ne. Mf(tMT1,3) )
      &      call SfUpdateNMFV(error, X3(tMT1,3,3), SORT_SF)
-	endif
+cNMFV	endif
 
-	if( btest(fv, 4) ) then
+cNMFV	if( btest(fv, 4) ) then
 	  call SfUpdateNMFV(error, X3(4,4,4), 1)
+	  call SfUpdateNMFV(error, X3(bBR,4,4), 1)
 	  call SfUpdateNMFV(error, X3(bTR,4,4), SORT_SF)
 	  call SfUpdateNMFV(error, X3(bTR1,4,4), SORT_SF)
 	  Sf(bTRps) = Sf(bTR)
 	  Sf(bTR1ps) = Sf(bTR1)
-	endif
+cNMFV	endif
 
 	if( Mf(tMT,3) .eq. Mf(tMT1,3) ) Sf(tMT1) = Sf(tMT)
 
@@ -188,6 +186,9 @@
 
 	if( debuglevel .lt. 2 ) return
 
+#define ID id(1:l)
+#define SP "      "(1:l)
+#define SR "      "(1:len(id)-l)
 	DPARA "Sfermion Summary:" ENDL
 	do t = 1, bTRps-1
 	  if( MSf(1,t,3) .eq. 0 ) cycle
@@ -204,6 +205,11 @@
 	enddo
 	DPARA "MSb0gl       =", MSb0gl(:) ENDL
 	DPARA "============================" ENDL
+
+	do t = 2,12
+	  call SfDump(t)
+	  call SfDumpNMFV(t)
+	enddo
 	end
 
 #undef __SUBROUTINE__
@@ -349,7 +355,7 @@
 
 	call SfUpdate(error, X4(0,bTR,4,4), SORT_SF)
 	call SbglUpdate(error, bTR)
-	Sf(bTRps) = Sf(bTR)
+cNMFV	Sf(bTRps) = Sf(bTR)
 
 * Delta_b with just the 1L corrections for subtraction in Hff:
 	DSS2(:,bTR1,:) = DSS2(:,4,:)
@@ -362,7 +368,7 @@
 
 	call SfUpdate(error, X4(0,bTR1,4,4), SORT_SF)
 	call SbglUpdate(error, bTR1)
-	Sf(bTR1ps) = Sf(bTR1)
+cNMFV	Sf(bTR1ps) = Sf(bTR1)
 
 	Mf(bBR,:) = Mf(4,:)/abs(1 + Deltaf(bTR,:))
 	call SfUpdate(error, X4(0,bBR,4,4), 1)
@@ -417,10 +423,10 @@
 
 	if( debuglevel .lt. 2 ) return
 
-	DPARA "----------------------------" ENDL
-	DPARA "MSdL(1) =", MSdL(1,1), MSdL(2,1) ENDL
-	DPARA "MSdL(2) =", MSdL(1,2), MSdL(2,2) ENDL
-	DPARA "MSdL(3) =", MSdL(1,3), MSdL(2,3) ENDL
+	DPARA "----------------------------"	ENDL
+	DPARA "MSdL(1) =", MSdL(1:2,1)		ENDL
+	DPARA "MSdL(2) =", MSdL(1:2,2)		ENDL
+	DPARA "MSdL(3) =", MSdL(1:2,3)		ENDL
 	end
 
 
@@ -432,18 +438,7 @@
 
 #include "FH.h"
 
-	RealType uu
-	integer g, t, ts, ty, tn, fail, l
-	SfIdType id
-
-	SfIdType sfid(SfSlots)
-	common /sfids/ sfid
-	external sfidini
-
-#if U77EXT
-	integer lnblnk
-	external lnblnk
-#endif
+	integer g, t, ts, ty, tn, fail
 
 	character*32 msg(2:4)
 	data msg /
@@ -473,60 +468,22 @@
 	error = ior(error, fail)
 	if( fail .ne. 0 ) Error(error, msg(t))
 
-	UASf(:,:,ty) = 0
-	do g = 1, 3
-	  MASf2(g,ty) = MSf2(1,ty,g)
-	  MASf2(g+3,ty) = MSf2(2,ty,g)
-	  MASf(g,ty) = MSf(1,ty,g)
-	  MASf(g+3,ty) = MSf(2,ty,g)
-	  UASf(g,g,ty) = USf(1,1,ty,g)
-	  USf2(1,1,ty,g) = Sq(USf(1,1,ty,g))
-	  UASf(g+3,g,ty) = USf(2,1,ty,g)
-	  USf2(2,1,ty,g) = Sq(USf(2,1,ty,g))
-	  UASf(g,g+3,ty) = USf(1,2,ty,g)
-	  USf2(1,2,ty,g) = Sq(USf(1,2,ty,g))
-	  UASf(g+3,g+3,ty) = USf(2,2,ty,g)
-	  USf2(2,2,ty,g) = Sq(USf(2,2,ty,g))
-	enddo
+	USf2(:,:,ty,:) = Sq(USf(:,:,ty,:))
 
-	if( btest(fv, tn) ) call SfUpdateNMFV(error, tn_ty_ts_t, 1)
+cNMFV	UASf(:,:,ty) = 0
+cNMFV	do g = 1, 3
+cNMFV	  MASf2(g,ty) = MSf2(1,ty,g)
+cNMFV	  MASf2(g+3,ty) = MSf2(2,ty,g)
+cNMFV	  MASf(g,ty) = MSf(1,ty,g)
+cNMFV	  MASf(g+3,ty) = MSf(2,ty,g)
+cNMFV	  UASf(g,g,ty) = USf(1,1,ty,g)
+cNMFV	  UASf(g+3,g,ty) = USf(2,1,ty,g)
+cNMFV	  UASf(g,g+3,ty) = USf(1,2,ty,g)
+cNMFV	  UASf(g+3,g+3,ty) = USf(2,2,ty,g)
+cNMFV	enddo
+cNMFV	if( btest(fv, tn) ) call SfUpdateNMFV(error, tn_ty_ts_t, 1)
 
-	if( debuglevel .lt. 1 ) return
-
-	id = sfid(ty)
-	l = len_trim(id)
-
-	DPARA "----------------------------"			ENDL
-	DPARA "mfv sfermions ", ID				ENDL
-	DPARA "Mf(",ID,",3)  =", Mf(ty,3)			ENDL
-	DPARA "MSf(",ID,",1) =", MSf(1,ty,1), MSf(2,ty,1)	ENDL
-	DPARA "MSf(",ID,",2) =", MSf(1,ty,2), MSf(2,ty,2)	ENDL
-	DPARA "MSf(",ID,",3) =", MSf(1,ty,3), MSf(2,ty,3)	ENDL
-
-	if( debuglevel .lt. 2 ) return
-
-	DPARA "USf(1,1,",ID,",3) =", USf(1,1,ty,3)		ENDL
-	DPARA "   (2,2)",SP,"    =", USf(2,2,ty,3)		ENDL
-	DPARA "   (1,2)",SP,"    =", USf(1,2,ty,3)		ENDL
-	DPARA "   (2,1)",SP,"    =", USf(2,1,ty,3)		ENDL
-	uu = USf2(1,1,ty,3) + USf2(1,2,ty,3)
-	if( abs(uu - 1) .gt. 1D-8 ) DPARA "   11^2+12^2 =", uu	ENDL
-
-	if( debuglevel .lt. 3 ) return
-
-	DPARA "USf(1,1,",ID,",2) =", USf(1,1,ty,2)		ENDL
-	DPARA "   (2,2)",SP,"    =", USf(2,2,ty,2)		ENDL
-	DPARA "   (1,2)",SP,"    =", USf(1,2,ty,2)		ENDL
-	DPARA "   (2,1)",SP,"    =", USf(2,1,ty,2)		ENDL
-	uu = USf2(1,1,ty,2) + USf2(1,2,ty,2)
-	if( abs(uu - 1) .gt. 1D-8 ) DPARA "   11^2+12^2 =", uu	ENDL
-
-	DPARA "USf(1,1,",ID,",1) =", USf(1,1,ty,1)		ENDL
-	DPARA "   (2,2)",SP,"    =", USf(2,2,ty,1)		ENDL
-	DPARA "   (1,2)",SP,"    =", USf(1,2,ty,1)		ENDL
-	DPARA "   (2,1)",SP,"    =", USf(2,1,ty,1)		ENDL
-	uu = USf2(1,1,ty,1) + USf2(1,2,ty,1)
-	if( abs(uu - 1) .gt. 1D-8 ) DPARA "   11^2+12^2 =", uu	ENDL
+	if( debuglevel .gt. 0 ) call SfDump(ty)
 	end
 
 
@@ -539,17 +496,7 @@
 #include "FH.h"
 
 	ComplexType MX2(6,6), m1, m2, m3
-	integer t, ts, ty, nQ, nU, g, l
-	SfIdType id
-
-	SfIdType sfid(SfSlots)
-	common /sfids/ sfid
-	external sfidini
-
-#if U77EXT
-	integer lnblnk
-	external lnblnk
-#endif
+	integer t, ts, ty, nQ, nU, g
 
 	ty = nib2(ty_ts_t)
 	ts = nib1(ty_ts_t)
@@ -642,55 +589,7 @@
 
 	MASf(:,ty) = sqrt(MASf2(:,ty))
 
-	if( debuglevel .lt. 1 ) return
-
-	id = sfid(ty)
-	l = len_trim(id)
-
-	DPARA "----------------------------"		ENDL
-	DPARA "nmfv sfermions ", ID			ENDL
-	DPARA "MASf(",ID,") =", MASf(1,ty), MASf(2,ty)	ENDL
-	DPARA "     ",SP,"   ", MASf(3,ty), MASf(4,ty)	ENDL
-	DPARA "     ",SP,"   ", MASf(5,ty), MASf(6,ty)	ENDL
-
-	if( debuglevel .lt. 2 ) return
-
-	DPARA "UASf(1,1,",ID,") =", UASf(1,1,ty) 	ENDL
-	DPARA "    (1,2)",SP,"  =", UASf(1,2,ty)	ENDL
-	DPARA "    (1,3)",SP,"  =", UASf(1,3,ty)	ENDL
-	DPARA "    (1,4)",SP,"  =", UASf(1,4,ty)	ENDL
-	DPARA "    (1,5)",SP,"  =", UASf(1,5,ty)	ENDL
-	DPARA "____(1,6)",SP,"  =", UASf(1,6,ty)	ENDL
-	DPARA "    (2,1)",SP,"  =", UASf(2,1,ty)	ENDL
-	DPARA "    (2,2)",SP,"  =", UASf(2,2,ty)	ENDL
-	DPARA "    (2,3)",SP,"  =", UASf(2,3,ty)	ENDL
-	DPARA "    (2,4)",SP,"  =", UASf(2,4,ty)	ENDL
-	DPARA "    (2,5)",SP,"  =", UASf(2,5,ty)	ENDL
-	DPARA "____(2,6)",SP,"  =", UASf(2,6,ty)	ENDL
-	DPARA "    (3,1)",SP,"  =", UASf(3,1,ty)	ENDL
-	DPARA "    (3,2)",SP,"  =", UASf(3,2,ty)	ENDL
-	DPARA "    (3,3)",SP,"  =", UASf(3,3,ty)	ENDL
-	DPARA "    (3,4)",SP,"  =", UASf(3,4,ty)	ENDL
-	DPARA "    (3,5)",SP,"  =", UASf(3,5,ty)	ENDL
-	DPARA "____(3,6)",SP,"  =", UASf(3,6,ty)	ENDL
-	DPARA "    (4,1)",SP,"  =", UASf(4,1,ty)	ENDL
-	DPARA "    (4,2)",SP,"  =", UASf(4,2,ty)	ENDL
-	DPARA "    (4,3)",SP,"  =", UASf(4,3,ty)	ENDL
-	DPARA "    (4,4)",SP,"  =", UASf(4,4,ty)	ENDL
-	DPARA "    (4,5)",SP,"  =", UASf(4,5,ty)	ENDL
-	DPARA "____(4,6)",SP,"  =", UASf(4,6,ty)	ENDL
-	DPARA "    (5,1)",SP,"  =", UASf(5,1,ty)	ENDL
-	DPARA "    (5,2)",SP,"  =", UASf(5,2,ty)	ENDL
-	DPARA "    (5,3)",SP,"  =", UASf(5,3,ty)	ENDL
-	DPARA "    (5,4)",SP,"  =", UASf(5,4,ty)	ENDL
-	DPARA "    (5,5)",SP,"  =", UASf(5,5,ty)	ENDL
-	DPARA "____(5,6)",SP,"  =", UASf(5,6,ty)	ENDL
-	DPARA "    (6,1)",SP,"  =", UASf(6,1,ty)	ENDL
-	DPARA "    (6,2)",SP,"  =", UASf(6,2,ty)	ENDL
-	DPARA "    (6,3)",SP,"  =", UASf(6,3,ty)	ENDL
-	DPARA "    (6,4)",SP,"  =", UASf(6,4,ty)	ENDL
-	DPARA "    (6,5)",SP,"  =", UASf(6,5,ty)	ENDL
-	DPARA "    (6,6)",SP,"  =", UASf(6,6,ty)	ENDL
+	if( debuglevel .gt. 0 ) call SfDumpNMFV(ty)
 	end
 
 
@@ -706,8 +605,7 @@
 
 	RealType shift
 	RealQuad d2, x, y
-	integer try, fail, ts2, l
-	SfIdType id
+	integer try, fail, ts2
 
 	RealQuad dm2
 	common /eigensfvars/ dm2
@@ -715,12 +613,6 @@
 	SfIdType sfid(SfSlots)
 	common /sfids/ sfid
 	external sfidini
-
-#if U77EXT
-#define len_trim lnblnk
-	integer lnblnk
-	external lnblnk
-#endif
 
 	RealType eps
 	parameter (eps = 1D-4)
@@ -813,20 +705,17 @@ c	MGlpTmSt2(2) = MGlpT2 - MStgl2(2)
 
 	if( debuglevel .lt. 2 ) return
 
-	id = sfid(tM2)
-	l = len_trim(id)
-
 	DPARA "----------------------------"	ENDL
-	DPARA "gl stops ", ID			ENDL
-	DPARA "Mfgl(",ID,")  =", MTgl		ENDL
-	DPARA "MSfgl(",ID,") =", MStgl(:)	ENDL
+	DPARA "gl stops ", sfid(tM2)		ENDL
+	DPARA "MTgl  =", MTgl			ENDL
+	DPARA "MStgl =", MStgl(:)		ENDL
 
 	if( debuglevel .lt. 3 ) return
 
-	DPARA "USfgl(1,1,",ID,") =", UStgl(1,1)	ENDL
-	DPARA "     (2,2)",SP,"  =", UStgl(2,2)	ENDL
-	DPARA "     (1,2)",SP,"  =", UStgl(1,2)	ENDL
-	DPARA "     (2,1)",SP,"  =", UStgl(2,1)	ENDL
+	DPARA "UStgl(1,1) =", UStgl(1,1)	ENDL
+	DPARA "     (2,2) =", UStgl(2,2)	ENDL
+	DPARA "     (1,2) =", UStgl(1,2)	ENDL
+	DPARA "     (2,1) =", UStgl(2,1)	ENDL
 
 #undef tM2
 	end
@@ -843,18 +732,11 @@ c	MGlpTmSt2(2) = MGlpT2 - MStgl2(2)
 #include "looptools.h"
 
 	RealType shift
-	integer try, fail, l
-	SfIdType id
+	integer try, fail
 
 	SfIdType sfid(SfSlots)
 	common /sfids/ sfid
 	external sfidini
-
-#if U77EXT
-#define len_trim lnblnk
-	integer lnblnk
-	external lnblnk
-#endif
 
 	RealType eps
 	parameter (eps = 1D-4)
@@ -901,20 +783,124 @@ c	MGlpTmSt2(2) = MGlpT2 - MStgl2(2)
 
 	if( debuglevel .lt. 2 ) return
 
-	id = sfid(bM1)
-	l = len_trim(id)
-
 	DPARA "----------------------------"	ENDL
-	DPARA "gl sbottoms ", ID		ENDL
-	DPARA "Mfgl(",ID,")  =", MBgl		ENDL
-	DPARA "MSfgl(",ID,") =", MSbgl(:)	ENDL
+	DPARA "gl sbottoms ", sfid(bM1)		ENDL
+	DPARA "MBgl  =", MBgl			ENDL
+	DPARA "MSbgl =", MSbgl(:)		ENDL
 
 	if( debuglevel .lt. 3 ) return
 
-	DPARA "USfgl(1,1,",ID,") =", USbgl(1,1)	ENDL
-	DPARA "     (2,2)",SP,"  =", USbgl(2,2)	ENDL
-	DPARA "     (1,2)",SP,"  =", USbgl(1,2)	ENDL
-	DPARA "     (2,1)",SP,"  =", USbgl(2,1)	ENDL
+	DPARA "USbgl(1,1) =", USbgl(1,1)	ENDL
+	DPARA "     (2,2) =", USbgl(2,2)	ENDL
+	DPARA "     (1,2) =", USbgl(1,2)	ENDL
+	DPARA "     (2,1) =", USbgl(2,1)	ENDL
+	end
+
+
+************************************************************************
+
+	subroutine SfDump(t)
+	implicit none
+	integer t
+
+#include "FH.h"
+
+	RealType uu
+
+	SfIdType sfid(SfSlots)
+	common /sfids/ sfid
+	external sfidini
+
+	DPARA "----------------------------"		ENDL
+	DPARA "mfv sfermions ", sfid(t)			ENDL
+	DPARA "Mf(3)  =", Mf(t,3)			ENDL
+	DPARA "MSf(1) =", MSf(1,t,1), MSf(2,t,1)	ENDL
+	DPARA "MSf(2) =", MSf(1,t,2), MSf(2,t,2)	ENDL
+	DPARA "MSf(3) =", MSf(1,t,3), MSf(2,t,3)	ENDL
+
+	if( debuglevel .lt. 2 ) return
+
+	DPARA "USf(1,1,3) =", USf(1,1,t,3)	ENDL
+	DPARA "   (2,2)   =", USf(2,2,t,3)	ENDL
+	DPARA "   (1,2)   =", USf(1,2,t,3)	ENDL
+	DPARA "   (2,1)   =", USf(2,1,t,3)	ENDL
+	uu = USf2(1,1,t,3) + USf2(1,2,t,3)
+	if( abs(uu - 1) .gt. 1D-8 ) DPARA " 11^2+12^2 =", uu ENDL
+
+	if( debuglevel .lt. 3 ) return
+
+	DPARA "USf(1,1,2) =", USf(1,1,t,2)	ENDL
+	DPARA "   (2,2)   =", USf(2,2,t,2)	ENDL
+	DPARA "   (1,2)   =", USf(1,2,t,2)	ENDL
+	DPARA "   (2,1)   =", USf(2,1,t,2)	ENDL
+	uu = USf2(1,1,t,2) + USf2(1,2,t,2)
+	if( abs(uu - 1) .gt. 1D-8 ) DPARA " 11^2+12^2 =", uu ENDL
+
+	DPARA "USf(1,1,1) =", USf(1,1,t,1)	ENDL
+	DPARA "   (2,2)   =", USf(2,2,t,1)	ENDL
+	DPARA "   (1,2)   =", USf(1,2,t,1)	ENDL
+	DPARA "   (2,1)   =", USf(2,1,t,1)	ENDL
+	uu = USf2(1,1,t,1) + USf2(1,2,t,1)
+	if( abs(uu - 1) .gt. 1D-8 ) DPARA " 11^2+12^2 =", uu ENDL
+	end
+
+
+************************************************************************
+
+	subroutine SfDumpNMFV(t)
+	implicit none
+	integer t
+
+#include "FH.h"
+
+	SfIdType sfid(SfSlots)
+	common /sfids/ sfid
+	external sfidini
+
+	DPARA "----------------------------"	ENDL
+	DPARA "nmfv sfermions ", sfid(t)	ENDL
+	DPARA "MASf =", MASf(1,t), MASf(2,t)	ENDL
+	DPARA "      ", MASf(3,t), MASf(4,t)	ENDL
+	DPARA "      ", MASf(5,t), MASf(6,t)	ENDL
+
+	if( debuglevel .lt. 2 ) return
+
+	DPARA "UASf(1,1) =", UASf(1,1,t)	ENDL
+	DPARA "    (1,2) =", UASf(1,2,t)	ENDL
+	DPARA "    (1,3) =", UASf(1,3,t)	ENDL
+	DPARA "    (1,4) =", UASf(1,4,t)	ENDL
+	DPARA "    (1,5) =", UASf(1,5,t)	ENDL
+	DPARA "____(1,6) =", UASf(1,6,t)	ENDL
+	DPARA "    (2,1) =", UASf(2,1,t)	ENDL
+	DPARA "    (2,2) =", UASf(2,2,t)	ENDL
+	DPARA "    (2,3) =", UASf(2,3,t)	ENDL
+	DPARA "    (2,4) =", UASf(2,4,t)	ENDL
+	DPARA "    (2,5) =", UASf(2,5,t)	ENDL
+	DPARA "____(2,6) =", UASf(2,6,t)	ENDL
+	DPARA "    (3,1) =", UASf(3,1,t)	ENDL
+	DPARA "    (3,2) =", UASf(3,2,t)	ENDL
+	DPARA "    (3,3) =", UASf(3,3,t)	ENDL
+	DPARA "    (3,4) =", UASf(3,4,t)	ENDL
+	DPARA "    (3,5) =", UASf(3,5,t)	ENDL
+	DPARA "____(3,6) =", UASf(3,6,t)	ENDL
+	DPARA "    (4,1) =", UASf(4,1,t)	ENDL
+	DPARA "    (4,2) =", UASf(4,2,t)	ENDL
+	DPARA "    (4,3) =", UASf(4,3,t)	ENDL
+	DPARA "    (4,4) =", UASf(4,4,t)	ENDL
+	DPARA "    (4,5) =", UASf(4,5,t)	ENDL
+	DPARA "____(4,6) =", UASf(4,6,t)	ENDL
+	DPARA "    (5,1) =", UASf(5,1,t)	ENDL
+	DPARA "    (5,2) =", UASf(5,2,t)	ENDL
+	DPARA "    (5,3) =", UASf(5,3,t)	ENDL
+	DPARA "    (5,4) =", UASf(5,4,t)	ENDL
+	DPARA "    (5,5) =", UASf(5,5,t)	ENDL
+	DPARA "____(5,6) =", UASf(5,6,t)	ENDL
+	DPARA "    (6,1) =", UASf(6,1,t)	ENDL
+	DPARA "    (6,2) =", UASf(6,2,t)	ENDL
+	DPARA "    (6,3) =", UASf(6,3,t)	ENDL
+	DPARA "    (6,4) =", UASf(6,4,t)	ENDL
+	DPARA "    (6,5) =", UASf(6,5,t)	ENDL
+	DPARA "    (6,6) =", UASf(6,6,t)	ENDL
 	end
 
 

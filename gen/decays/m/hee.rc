@@ -28,33 +28,32 @@ RenConstList[RenConst][
          8 + (-((9 - 12*SW2 + 8*SW2^2)*Re[B1[MZ2, Mf2[bH, Gen3], 
               Mf2[bH, Gen3]]]) - (9 - 24*SW2 + 32*SW2^2)*
            Re[B1[MZ2, Mf2[tH, Gen3], Mf2[tH, Gen3]]])/24))*SumOver[Gen3, 3])/
-    (CW2*Pi*SW2) + (ELMZ^2*SumOver[All3, 6]*SumOver[Ind1, 3]*
+    (CW2*Pi*SW2) + (AlfaMZ*SumOver[All3, 6]*SumOver[Ind1, 3]*
      ((Re[A0[MASf2[All3, 2]]]*((1 - 2*SW2)^2*UASf[All3, Ind1, 2]*
           UASfC[All3, Ind1, 2] + 4*SW2^2*UASf[All3, 3 + Ind1, 2]*
-          UASfC[All3, 3 + Ind1, 2]))/32 + 
+          UASfC[All3, 3 + Ind1, 2]))/8 + 
       (Re[A0[MASf2[All3, bH]]]*((3 - 2*SW2)^2*UASf[All3, Ind1, bH]*
            UASfC[All3, Ind1, bH] + 4*SW2^2*UASf[All3, 3 + Ind1, bH]*
            UASfC[All3, 3 + Ind1, bH]) + Re[A0[MASf2[All3, tH]]]*
          ((3 - 4*SW2)^2*UASf[All3, Ind1, tH]*UASfC[All3, Ind1, tH] + 
-          16*SW2^2*UASf[All3, 3 + Ind1, tH]*UASfC[All3, 3 + Ind1, tH]))/96))/
-    (CW2*Pi^2*SW2) + (ELMZ^2*SumOver[All3, 6]*SumOver[All4, 6]*
-     SumOver[Ind1, 3]*SumOver[Ind2, 3]*
-     (-(Re[B00[MZ2, MASf2[All3, 2], MASf2[All4, 2]]]*
+          16*SW2^2*UASf[All3, 3 + Ind1, tH]*UASfC[All3, 3 + Ind1, tH]))/24))/
+    (CW2*Pi*SW2) + (AlfaMZ*SumOver[All3, 6]*SumOver[All4, 6]*SumOver[Ind1, 3]*
+     SumOver[Ind2, 3]*(-(Re[B00[MZ2, MASf2[All3, 2], MASf2[All4, 2]]]*
          ((1 - 2*SW2)*UASf[All4, Ind2, 2]*UASfC[All3, Ind2, 2] - 
           2*SW2*UASf[All4, 3 + Ind2, 2]*UASfC[All3, 3 + Ind2, 2])*
          ((1 - 2*SW2)*UASf[All3, Ind1, 2]*UASfC[All4, Ind1, 2] - 
-          2*SW2*UASf[All3, 3 + Ind1, 2]*UASfC[All4, 3 + Ind1, 2]))/16 - 
+          2*SW2*UASf[All3, 3 + Ind1, 2]*UASfC[All4, 3 + Ind1, 2]))/4 - 
       (Re[B00[MZ2, MASf2[All3, bH], MASf2[All4, bH]]]*
         ((3 - 2*SW2)*UASf[All4, Ind2, bH]*UASfC[All3, Ind2, bH] - 
          2*SW2*UASf[All4, 3 + Ind2, bH]*UASfC[All3, 3 + Ind2, bH])*
         ((3 - 2*SW2)*UASf[All3, Ind1, bH]*UASfC[All4, Ind1, bH] - 
-         2*SW2*UASf[All3, 3 + Ind1, bH]*UASfC[All4, 3 + Ind1, bH]))/48 - 
+         2*SW2*UASf[All3, 3 + Ind1, bH]*UASfC[All4, 3 + Ind1, bH]))/12 - 
       (Re[B00[MZ2, MASf2[All3, tH], MASf2[All4, tH]]]*
         ((3 - 4*SW2)*UASf[All4, Ind2, tH]*UASfC[All3, Ind2, tH] - 
          4*SW2*UASf[All4, 3 + Ind2, tH]*UASfC[All3, 3 + Ind2, tH])*
         ((3 - 4*SW2)*UASf[All3, Ind1, tH]*UASfC[All4, Ind1, tH] - 
-         4*SW2*UASf[All3, 3 + Ind1, tH]*UASfC[All4, 3 + Ind1, tH]))/48))/
-    (CW2*Pi^2*SW2) + (AlfaMZ*SumOver[Cha3, 2]*SumOver[Cha4, 2]*
+         4*SW2*UASf[All3, 3 + Ind1, tH]*UASfC[All4, 3 + Ind1, tH]))/12))/
+    (CW2*Pi*SW2) + (AlfaMZ*SumOver[Cha3, 2]*SumOver[Cha4, 2]*
      ((-Re[A0[MCha2[Cha4]]]/2 + Re[B00[MZ2, MCha2[Cha3], MCha2[Cha4]]] - 
         (MZ2*Re[B1[MZ2, MCha2[Cha3], MCha2[Cha4]]])/2)*
        ((SW2*Delta[Cha3, Cha4] - UCha[Cha4, 1]*UChaC[Cha3, 1] - 
@@ -260,18 +259,18 @@ RenConstList[RenConst][
           Re[B00[0, Mf2[bH, Gen3], Mf2[bH, Gen3]]]/6) - 
         (3 - 8*SW2)*(Re[A0[Mf2[tH, Gen3]]]/6 - 
           Re[B00[0, Mf2[tH, Gen3], Mf2[tH, Gen3]]]/3))*SumOver[Gen3, 3])/
-      (CW*Pi*SW) - (ELMZ^2*SumOver[All3, 6]*SumOver[Ind1, 3]*
-       ((-Re[A0[MASf2[All3, 2]]]/16 + Re[B00[0, MASf2[All3, 2], 
-             MASf2[All3, 2]]]/8)*((1 - 2*SW2)*UASf[All3, Ind1, 2]*
+      (CW*Pi*SW) - (AlfaMZ*SumOver[All3, 6]*SumOver[Ind1, 3]*
+       ((-Re[A0[MASf2[All3, 2]]]/4 + Re[B00[0, MASf2[All3, 2], 
+             MASf2[All3, 2]]]/2)*((1 - 2*SW2)*UASf[All3, Ind1, 2]*
            UASfC[All3, Ind1, 2] - 2*SW2*UASf[All3, 3 + Ind1, 2]*
-           UASfC[All3, 3 + Ind1, 2]) + (-Re[A0[MASf2[All3, bH]]]/48 + 
-          Re[B00[0, MASf2[All3, bH], MASf2[All3, bH]]]/24)*
+           UASfC[All3, 3 + Ind1, 2]) + (-Re[A0[MASf2[All3, bH]]]/12 + 
+          Re[B00[0, MASf2[All3, bH], MASf2[All3, bH]]]/6)*
          ((3 - 2*SW2)*UASf[All3, Ind1, bH]*UASfC[All3, Ind1, bH] - 
           2*SW2*UASf[All3, 3 + Ind1, bH]*UASfC[All3, 3 + Ind1, bH]) + 
-        (-Re[A0[MASf2[All3, tH]]]/24 + Re[B00[0, MASf2[All3, tH], 
-             MASf2[All3, tH]]]/12)*((3 - 4*SW2)*UASf[All3, Ind1, tH]*
+        (-Re[A0[MASf2[All3, tH]]]/6 + Re[B00[0, MASf2[All3, tH], 
+             MASf2[All3, tH]]]/3)*((3 - 4*SW2)*UASf[All3, Ind1, tH]*
            UASfC[All3, Ind1, tH] - 4*SW2*UASf[All3, 3 + Ind1, tH]*
-           UASfC[All3, 3 + Ind1, tH])))/(CW*Pi^2*SW) - 
+           UASfC[All3, 3 + Ind1, tH])))/(CW*Pi*SW) - 
      (AlfaMZ*(-Re[A0[MCha2[Cha3]]]/4 + Re[B00[0, MCha2[Cha3], MCha2[Cha3]]]/
          2)*SumOver[Cha3, 2]*(4*SW2 - UCha[Cha3, 2]*UChaC[Cha3, 2] - 
         2*(UCha[Cha3, 1]*UChaC[Cha3, 1] + VCha[Cha3, 1]*VChaC[Cha3, 1]) - 
@@ -298,16 +297,16 @@ RenConstList[RenConst][
      SumOver[Gen4, 3])/(Pi*SW2) - 
    (AlfaMZ*Re[B00[MW2, MSf2[1, 1, Gen3], MASf2[All3, 2]]]*SumOver[All3, 6]*
      SumOver[Gen3, 3]*UASf[All3, Gen3, 2]*UASfC[All3, Gen3, 2])/(2*Pi*SW2) + 
-   (ELMZ^2*SumOver[All3, 6]*SumOver[Ind1, 3]*
-     ((Re[A0[MASf2[All3, 2]]]*UASf[All3, Ind1, 2]*UASfC[All3, Ind1, 2])/32 + 
+   (AlfaMZ*SumOver[All3, 6]*SumOver[Ind1, 3]*
+     ((Re[A0[MASf2[All3, 2]]]*UASf[All3, Ind1, 2]*UASfC[All3, Ind1, 2])/8 + 
       (3*(Re[A0[MASf2[All3, bH]]]*UASf[All3, Ind1, bH]*UASfC[All3, Ind1, 
            bH] + Re[A0[MASf2[All3, tH]]]*UASf[All3, Ind1, tH]*
-          UASfC[All3, Ind1, tH]))/32))/(Pi^2*SW2) - 
-   (3*ELMZ^2*CKM[Ind1, Ind2]*CKMC[Ind3, Ind4]*
+          UASfC[All3, Ind1, tH]))/8))/(Pi*SW2) - 
+   (3*AlfaMZ*CKM[Ind1, Ind2]*CKMC[Ind3, Ind4]*
      Re[B00[MW2, MASf2[All3, tH], MASf2[All4, bH]]]*SumOver[All3, 6]*
      SumOver[All4, 6]*SumOver[Ind1, 3]*SumOver[Ind2, 3]*SumOver[Ind3, 3]*
      SumOver[Ind4, 3]*UASf[All3, Ind1, tH]*UASf[All4, Ind4, bH]*
-     UASfC[All3, Ind3, tH]*UASfC[All4, Ind2, bH])/(8*Pi^2*SW2) + 
+     UASfC[All3, Ind3, tH]*UASfC[All4, Ind2, bH])/(2*Pi*SW2) + 
    (AlfaMZ*SumOver[Cha3, 2]*SumOver[Neu3, 4]*
      ((-Re[A0[MCha2[Cha3]]]/2 + Re[B00[MW2, MNeu2[Neu3], MCha2[Cha3]]] - 
         (MW2*Re[B1[MW2, MNeu2[Neu3], MCha2[Cha3]]])/2)*

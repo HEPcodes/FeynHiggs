@@ -1,12 +1,13 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 13 Jul 18 th
+* last modified 1 Apr 20 th
 
 #include "externals.h"
 #include "types.h"
 #include "debug.h"
 #include "version.h"
+#include "flags.h"
 
 
 	subroutine FHSetFlags(error,
@@ -54,11 +55,11 @@ c	  call setfpu
 	error = 0
 
 	mssmpart = mssmpart_
-	Check(mssmpart, 0, 4, "mssmpart")
+	Check(mssmpart, mssmpart_min, mssmpart_max, "mssmpart")
 	gM = 2*ibits(mssmpart - 3, 3, 1) + 1
 
 	higgsmix = higgsmix_
-	Check(higgsmix, 1, 4, "higgsmix")
+	Check(higgsmix, higgsmix_min, higgsmix_max, "higgsmix")
 #define Need(i) -ibits(i-1-higgsmix,4,1)
 	mixmask =
      &    SEKey(h0h0) + SEKey(HHHH) + SEKey(A0A0) + SEKey(HmHp) +
@@ -67,28 +68,28 @@ c	  call setfpu
      &    iand(Need(4), goldstones)
 
 	p2approx = p2approx_
-	Check(p2approx, 0, 4, "p2approx")
+	Check(p2approx, p2approx_min, p2approx_max, "p2approx")
 
 	looplevel = looplevel_
-	Check(looplevel, 0, 2, "looplevel")
+	Check(looplevel, looplevel_min, looplevel_max, "looplevel")
 
 	loglevel = loglevel_
-	Check(loglevel, 0, 4, "loglevel")
+	Check(loglevel, loglevel_min, loglevel_max, "loglevel")
 
 	runningMT = runningMT_
-	Check(runningMT, 0, 3, "runningMT")
+	Check(runningMT, runningMT_min, runningMT_max, "runningMT")
 
 	tM1 = tSelect(tM3,tMT,tMT,tMD, runningMT)
 	tM2 = tM1
 
 	botResum = botResum_
-	Check(botResum, 0, 2, "botResum")
+	Check(botResum, botResum_min, botResum_max, "botResum")
 	b = merge(1, 0, botResum .eq. 0)
 	bM = bTR + (bTR1 - bTR)*b
 	bMps = bTRps + (bTR1ps - bTRps)*b
 
 	tlCplxApprox = tlCplxApprox_
-	Check(tlCplxApprox, 0, 3, "tlCplxApprox")
+	Check(tlCplxApprox, tlCplxApprox_min, tlCplxApprox_max, "tlCplxApprox")
 
 	if( mssmpart .eq. 0 ) then
 	  p2approx = 1

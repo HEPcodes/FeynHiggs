@@ -204,7 +204,7 @@
 #endif
 
 	y(ig1u) = y(igy)*(ySB + k1L/48D0/ySB*(
-     &    12*yht2*(9 + 7*tSQ - 13*tSU + 6*tMatch - xMS2*ySB**2) -
+     &    12*yht2*(9 + 7*tSQq - 13*tSUq + 6*tMatch - xMS2*ySB**2) -
      &    ySB**2*(9*(2 - (7 - 6*tA0q + 6*tMatch)*yCB2)*yg2 +
      &      ygy2*(132 - tA0q*(8 - 18*yCB2) +
      &      6*tMatch*(28 - 3*yCB2) - 21*yCB2 - 8*tSS1q)) ))
@@ -213,7 +213,7 @@
 #endif
 
 	y(ig2u) = y(ig)*(ySB + k1L/48D0/ySB*(
-     &    12*yht2*(9 - 9*tSQ + 3*tSU + 6*tMatch - xMS2*ySB**2) -
+     &    12*yht2*(9 - 9*tSQq + 3*tSUq + 6*tMatch - xMS2*ySB**2) -
      &    ySB**2*(3*(2 - (7 - 6*tA0q + 6*tMatch)*yCB2)*ygy2 +
      &      yg2*(32 - 8*tA0q + 104*tMatch +
      &        (33 - 42*tA0q + 42*tMatch)*yCB2 - 24*tSS2q)) ))

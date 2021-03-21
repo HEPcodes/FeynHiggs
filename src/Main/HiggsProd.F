@@ -5,7 +5,7 @@
 * charged-Higgs cross-section data are from Tilman Plehn
 *   http://www.ph.ed.ac.uk/~tplehn/charged_higgs
 * this file is part of FeynHiggs
-* last modified 1 Aug 18 th
+* last modified 29 Jul 20 th
 
 #include "externals.h"
 #include "types.h"
@@ -289,6 +289,9 @@
 
 	RealType c, csm, fac, sqme(2)
 
+	integer unpol
+	parameter (unpol = int(O'155'))
+
 	if( debuglevel .gt. 4 ) then
 	  DPROD "ggh factors"			ENDL
 	  DPROD "cTopNLO    =", cTopNLO		ENDL
@@ -308,40 +311,40 @@
 
 * ggh version 1 w/amplitude correction factors
 	call SetKFactors(0D0, cTopNLO, cBotReNLO, cBotImNLO)
-	call hggSM_SquaredME(sqme, O'155')
+	call hggSM_SquaredME(sqme, unpol)
 	csm = sqme(2)
 	if( csm .eq. 0 ) then
 	  ggh_c = 0
 	else
 	  call SetKFactors(1D0, cTopNNLO, cBotReNLO, cBotImNLO)
-	  call hgg_SquaredME(sqme, O'155')
+	  call hgg_SquaredME(sqme, unpol)
 	  ggh_c = ggh_SM*sqme(2)/csm
 	endif
 
 * ggh version 2 w/genuine k-factors
 	call SetKFactors(0D0, 1D0, 0D0, 0D0)
-	call hggSM_SquaredME(sqme, O'155')
+	call hggSM_SquaredME(sqme, unpol)
 	csm = (kTopNLO - kTopBotNLO)*sqme(2)
-	call hgg_SquaredME(sqme, O'155')
+	call hgg_SquaredME(sqme, unpol)
 	c = (kTopNNLO - kTopBotNLO)*sqme(2)
 
 	call SetKFactors(0D0, 0D0, 1D0, 1D0)
-	call hggSM_SquaredME(sqme, O'155')
+	call hggSM_SquaredME(sqme, unpol)
 	csm = csm + (kBotNLO - kTopBotNLO)*sqme(2)
-	call hgg_SquaredME(sqme, O'155')
+	call hgg_SquaredME(sqme, unpol)
 	c = c + (kBotNLO - kTopBotNLO)*sqme(2)
 
 	call SetKFactors(0D0, 1D0, 1D0, 1D0)
-	call hggSM_SquaredME(sqme, O'155')
+	call hggSM_SquaredME(sqme, unpol)
 	csm = csm + kTopBotNLO*sqme(2)
-	call hgg_SquaredME(sqme, O'155')
+	call hgg_SquaredME(sqme, unpol)
 	c = c + (kTopBotNLO - 1)*sqme(2)
 
 	if( csm .eq. 0 ) then
 	  ggh_k = 0
 	else
 	  call SetKFactors(1D0, 1D0, 1D0, 1D0)
-	  call hgg_SquaredME(sqme, O'155')
+	  call hgg_SquaredME(sqme, unpol)
 	  ggh_k = ggh_SM*(sqme(2) + c)/csm
 	endif
 	end

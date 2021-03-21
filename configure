@@ -1,7 +1,7 @@
 #! /bin/bash
 # configure script for FeynHiggs
 # note: has nothing to do with GNU autoconf
-# last modified 13 May 18 th
+# last modified 29 Jul 20 th
 
 
 exec 2> ${LOGFILE:-/dev/null} 3>&1
@@ -180,10 +180,11 @@ ${CONF_STATIC:-$CONF_STATIC_GFORTRAN} ${CONF_STATIC_EXT:+-static-libgfortran -st
 $CONF_LDFLAGS"
   ;;
 GNU,Fortran,*)
+  test "${3%%.*}" -ge 10 && extra="-fallow-argument-mismatch"
   eval setflags FFLAGS "\
 ${FFLAGS-${CONF_DEBUG:--O3} ${CONF_DEBUG:+-Wall -Wno-unused-dummy-argument -Wno-tabs -Wno-integer-division -Wno-real-q-constant -ffpe-trap=invalid,overflow,zero}} \
 $CONF_ARCH $CONF_AS $CONF_BITS -ffixed-line-length-none \
-${CONF_QUAD:+-freal-8-real-$CONF_QUADSIZE} \
+${CONF_QUAD:+-freal-8-real-$CONF_QUADSIZE} $extra \
 ${CONF_STATIC:-$CONF_STATIC_GFORTRAN} ${CONF_STATIC_EXT:+-static-libgfortran -static-libgcc} \
 $CONF_LDFLAGS"
   ;;

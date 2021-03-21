@@ -1,7 +1,7 @@
 * CalcRenSETL.F
 * computes the renormalized two-loop self-energies
 * this file is part of FeynHiggs
-* last modified 20 Jul 18 th
+* last modified 29 Jul 20 th
 
 #include "externals.h"
 #include "types.h"
@@ -124,7 +124,7 @@
 	call CplxInterpolate(error, DSS2(1,bMps,3), bpara_ps(1,1),3)
 
 	if( debuglevel .ge. 3 ) DPARA "interpolating Deltab" ENDL
-	call CplxInterpolate(error, Deltaf(bMps,3), bpara_ps(2,1),3)
+	call CplxInterpolate(error, Re(Deltaf(bMps,3)), bpara_ps(2,1),3)
 
 	if( debuglevel .ge. 3 ) DPARA "interpolating MBy" ENDL
 	call CplxInterpolate(error, Mf(bMps,3), bpara_ps(3,1),3)
@@ -136,7 +136,8 @@
 	  DPARA "Mf(bMps,3) =", Mf(bMps,3)		ENDL
 	endif
 
-	call SfUpdate(error, X4(0,bMps,bMps,4), SORT_SF, 1)
+	call SfUpdate(error, X4(0,bMps,bMps,4), SORT_SF)
+	call SfUpdateNMFV(error, X3(bMps,bMps,4), SORT_SF)
 	call SbglUpdate(error, bMps)
 	if( error .ne. 0 ) return
 

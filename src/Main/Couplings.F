@@ -4,7 +4,7 @@ c#define HFFTEST 1
 * Couplings.F
 * evaluation of Higgs couplings
 * this file is part of FeynHiggs
-* last modified 2 Aug 18 th
+* last modified 29 Jul 20 th
 
 #include "externals.h"
 #include "types.h"
@@ -1246,6 +1246,7 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	  DCOUP "  (tH,3) =", Mf(tH,3)	ENDL
 	endif
 	call SfUpdate(fail, X4(3,tH,3,3), sort)
+	call SfUpdateNMFV(fail, X3(tH,3,3), sort)
 
 	Mf(bH,1) = Mf(4,1)*qrun
 	Mf(bH,2) = Mf(4,2)*qrun
@@ -1256,11 +1257,13 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	  DCOUP "  (bH,3) =", Mf(bH,3)	ENDL
 	endif
 	call SfUpdate(fail, X4(4,bH,4,4), sort)
+	call SfUpdateNMFV(fail, X3(bH,4,4), sort)
 
 	Mf(bHR,1) = Mf(bH,1)/abs(1 + Deltaf(bTR,1))
 	Mf(bHR,2) = Mf(bH,2)/abs(1 + Deltaf(bTR,2))
 	Mf(bHR,3) = Mf(bH,3)/abs(1 + Deltaf(bTR,3))
 	call SfUpdate(fail, X4(4,bHR,4,4), sort)
+	call SfUpdateNMFV(fail, X3(bHR,4,4), sort)
 
 	hggSq(1) = sqrt(1 + AlfasMH/pi*(95/4D0 - 7/6D0*nf))
 	hggSq(2) = hggSq(1)
@@ -1321,6 +1324,9 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	character*8 id
 	integer ty
 
+	integer unpol
+	parameter (unpol = int(O'155'))
+
 	ComplexType spence
 	external spence
 
@@ -1355,13 +1361,13 @@ c	hc(3,4,6) = CW2		! (-I) is missing for (AH+G-), (+I) for AH-G+
 	  fac = fac*(1 + ir)
 	endif
 
-	call sqSM(sqmeSM, O'155')
+	call sqSM(sqmeSM, unpol)
 	sqmeSM(3) = sqmeSM(1) + sqmeSM(2)
 	GammaSM(H0FF(h,t,g1,g2)) = fac*sqmeSM(3)
 c	GammaSM(H0FF(h,t,g1,g2)) = max(GammaSM(H0FF(h,t,g1,g2)), 0D0)
 	GammaSMTot(h) = GammaSMTot(h) + GammaSM(H0FF(h,t,g1,g2))
 
-	call sq(sqme, O'155')
+	call sq(sqme, unpol)
 	sqme(3) = sqme(1) + sqme(2)
 	Gamma(H0FF(h,t,g1,g2)) = fac*sqme(3)
 c	Gamma(H0FF(h,t,g1,g2)) = max(Gamma(H0FF(h,t,g1,g2)), 0D0)

@@ -46,8 +46,8 @@ T134.o TF.o: T134.h
 UTIL = Gauss.o ODESolve.o EigenSf.o SfEigensystem.o \
   HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o \
   LU.o FindMinimum.o Interpolate.o extself.o \
-	ODESolveRK.o ODESolveStiff.o ODESolveODEPACK.o \
-	odepack.o odepack_sub1.o odepack_sub2.o
+  ODESolveRK.o ODESolveStiff.o ODESolveODEPACK.o \
+  odepack.o odepack_sub1.o odepack_sub2.o
 
 ODESolveODEPACK.o: odepack.o odepack_sub1.o odepack_sub2.o
 ODESolve.o: ODESolveRK.o ODESolveStiff.o ODESolveODEPACK.o
@@ -90,16 +90,16 @@ ONELOOP = \
   dse_G0G0_gl.o dse_h0G0_gl.o dse_HHG0_gl.o dse_A0G0_gl.o \
   dse_GmGp_gl.o dse_HmGp_gl.o \
   dZ_h0h0_gl.o dZ_HHHH_gl.o dZ_h0HH_gl.o \
-	se_h0h0_exp.o se_HHHH_exp.o se_A0A0_exp.o se_HmHp_exp.o \
-	se_h0HH_exp.o se_h0A0_exp.o se_HHA0_exp.o \
-	se_G0G0_exp.o se_h0G0_exp.o se_HHG0_exp.o se_A0G0_exp.o \
-	se_GmGp_exp.o se_HmGp_exp.o se_ZZ_exp.o se_WW_exp.o \
-	td_h0_exp.o td_HH_exp.o td_A0_exp.o \
-	dse_h0h0_exp.o dse_HHHH_exp.o dse_A0A0_exp.o dse_HmHp_exp.o \
-	dse_h0HH_exp.o dse_h0A0_exp.o dse_HHA0_exp.o \
-	dse_G0G0_exp.o dse_h0G0_exp.o dse_HHG0_exp.o dse_A0G0_exp.o \
-	dse_GmGp_exp.o dse_HmGp_exp.o \
-	dse_ZZ_exp.o dse_WW_exp.o \
+  se_h0h0_exp.o se_HHHH_exp.o se_A0A0_exp.o se_HmHp_exp.o \
+  se_h0HH_exp.o se_h0A0_exp.o se_HHA0_exp.o \
+  se_G0G0_exp.o se_h0G0_exp.o se_HHG0_exp.o se_A0G0_exp.o \
+  se_GmGp_exp.o se_HmGp_exp.o se_ZZ_exp.o se_WW_exp.o \
+  td_h0_exp.o td_HH_exp.o td_A0_exp.o \
+  dse_h0h0_exp.o dse_HHHH_exp.o dse_A0A0_exp.o dse_HmHp_exp.o \
+  dse_h0HH_exp.o dse_h0A0_exp.o dse_HHA0_exp.o \
+  dse_G0G0_exp.o dse_h0G0_exp.o dse_HHG0_exp.o dse_A0G0_exp.o \
+  dse_GmGp_exp.o dse_HmGp_exp.o \
+  dse_ZZ_exp.o dse_WW_exp.o \
   dZ_h0h0_exp.o dZ_HHHH_exp.o
 
 CalcSE.o: CalcSE_mfv.h CalcSE_nmfv.h CalcSE_exp.h
@@ -146,8 +146,7 @@ TLthresholdatat.o: TLthresholdatat.h Resum4H.h
 
 Resum4H.o: Resum4H.h
 Resum4H1.o: Resum4H.h
-Resum4H23.o: FOSubtract.h Resum4H.h \
-	           TLthresholdasat.o TLthresholdatat.o
+Resum4H23.o: FOSubtract.h Resum4H.h TLthresholdasat.o TLthresholdatat.o
 
 GM2_2L_0 = gm2_2L_1.o gm2_2L_2.o
 
@@ -437,6 +436,8 @@ MFeynHiggs-quad.tm: MFeynHiggs.tm
 	sed '/:Begin:/,/:End:/ s/Real/Real128/g' MFeynHiggs.tm > MFeynHiggs-quad.tm
 
 
+SetFlags.o FeynHiggs.o: flags.h
+
 FeynHiggs.o: version.h FHRecord.h SLHA.h
 
 
@@ -448,3 +449,4 @@ fcc: fcc.in makefile
 
 table$(EXE): table.c
 	$(CC) $(CFLAGS) -o table$(EXE) table.c
+

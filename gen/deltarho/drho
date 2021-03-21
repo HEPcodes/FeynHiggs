@@ -21,7 +21,12 @@ AppendTo[$Echo, "stdout"];
 << FormCalc`;
 (* << FormCalc`tools`btensor`; *)
 
+$CKM = True;
+$FV = {12, 13, 14};
+(*
+$CKM = False;
 CKM = IndexDelta;
+*)
 
 sfrulz[t_, ty_] = {
   MSf[s_,t,g_] :> MSf[s,ty,g],

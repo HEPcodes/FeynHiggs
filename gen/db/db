@@ -115,7 +115,8 @@ WriteString[hh, "\
 * generated " <> TimeStamp[] <> "\n\
 * this file is part of FeynHiggs\n\n\
 #include \"externals.h\"\n\
-#include \"types.h\"\n\n\n\
+#include \"types.h\"\n\
+#include \"debug.h\"\n\n\n\
 \tsubroutine MDcorr(se, g1, g2, asdb, adb, Qqcd, Qew)\n\
 \timplicit none\n\
 \tComplexType se(3)\n\

@@ -1,14 +1,13 @@
 * FeynHiggs.F
 * the command-line front end for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 22 Jun 18 th
+* last modified 1 Apr 20 th
 
 #include "FHCouplings.h"
 #include "types.h"
 #include "debug.h"
 #include "version.h"
-
-#define defaultflags "42423120"
+#include "flags.h"
 
 
 	program FeynHiggs
@@ -32,9 +31,15 @@
 
 	character*16 flags
 
-	character*54 dmssmpart(-1:5), dhiggsmix(0:5), dp2approx(-1:5),
-     &    dlooplevel(-1:3), dloglevel(-1:5), drunningMT(-1:4),
-     &    dbotResum(-1:3), dtlCplxApprox(-1:4)
+	character*54
+     &    dmssmpart(mssmpart_min-1:mssmpart_max+1), 
+     &    dhiggsmix(higgsmix_min-1:higgsmix_max+1),
+     &    dp2approx(p2approx_min-1:p2approx_max+1),
+     &    dlooplevel(looplevel_min-1:looplevel_max+1),
+     &    dloglevel(loglevel_min-1:loglevel_max+1),
+     &    drunningMT(runningMT_min-1:runningMT_max+1),
+     &    dbotResum(botResum_min-1:botResum_max+1),
+     &    dtlCplxApprox(tlCplxApprox_min-1:tlCplxApprox_max+1)
 
 	data flags /defaultflags/
 
@@ -119,14 +124,14 @@
 
 101	format(A, " = ", I1, T20, "# ", A)
 	print 101,
-     &    ShowFlag("mssmpart",     mssmpart,     0, 4),
-     &    ShowFlag("higgsmix",     higgsmix,     1, 4),
-     &    ShowFlag("p2approx",     p2approx,     0, 4),
-     &    ShowFlag("looplevel",    looplevel,    0, 2),
-     &    ShowFlag("loglevel",     loglevel,     0, 5),
-     &    ShowFlag("runningMT",    runningMT,    0, 3),
-     &    ShowFlag("botResum",     botResum,     0, 2),
-     &    ShowFlag("tlCplxApprox", tlCplxApprox, 0, 3)
+     &    ShowFlag("mssmpart",     mssmpart,     mssmpart_min, mssmpart_max),
+     &    ShowFlag("higgsmix",     higgsmix,     higgsmix_min, higgsmix_max),
+     &    ShowFlag("p2approx",     p2approx,     p2approx_min, p2approx_max),
+     &    ShowFlag("looplevel",    looplevel,    looplevel_min, looplevel_max),
+     &    ShowFlag("loglevel",     loglevel,     loglevel_min, loglevel_max),
+     &    ShowFlag("runningMT",    runningMT,    runningMT_min, runningMT_max),
+     &    ShowFlag("botResum",     botResum,     botResum_min, botResum_max),
+     &    ShowFlag("tlCplxApprox", tlCplxApprox, tlCplxApprox_min, tlCplxApprox_max)
 
 	if( error .ne. 0 ) stop
 
@@ -201,32 +206,33 @@ c	if( error .eq. -2 ) goto 2
      &    //"<inputfile> is a file containing the parameters"
      &    //"<flags> is an 8-digit string with"
      &    /"  #1 = mssmpart = scope of the calculation",
-     &    5 DESC_FMT
+     &    mssmpart_n DESC_FMT
      &    /"  #2 = higgsmix = mixing in the neutral Higgs sector",
-     &    4 DESC_FMT
+     &    higgsmix_n DESC_FMT
      &    /"  #3 = p2approx = approximation for the 1L result",
-     &    5 DESC_FMT
+     &    p2approx_n DESC_FMT
      &    /"  #4 = looplevel, inclusion of higher-order corrections",
-     &    3 DESC_FMT
+     &    looplevel_n DESC_FMT
      &    /"  #5 = loglevel, inclusion of log resummations",
-     &    4 DESC_FMT
+     &    loglevel_n DESC_FMT
      &    /"  #6 = runningMT, pole vs. running MT",
-     &    4 DESC_FMT
+     &    runningMT_n DESC_FMT
      &    /"  #7 = botResum, MB resummation",
+     &    botResum_n DESC_FMT
      &    /"  #8 = tlCplxApprox, complex parameters in the 2L corrections",
-     &    4 DESC_FMT
+     &    tlCplxApprox_n DESC_FMT
      &    /)
 
 999	call getarg(0, argv)
 	print 100, Strip(argv),
-     &    (i, dmssmpart(i),     i = 0, 4),
-     &    (i, dhiggsmix(i),     i = 1, 4),
-     &    (i, dp2approx(i),     i = 0, 4),
-     &    (i, dlooplevel(i),    i = 0, 2),
-     &    (i, dloglevel(i),     i = 0, 5),
-     &    (i, drunningMT(i),    i = 0, 3),
-     &    (i, dbotResum(i),     i = 0, 2),
-     &    (i, dtlCplxApprox(i), i = 0, 4)
+     &    (i, dmssmpart(i),     i = mssmpart_min, mssmpart_max),
+     &    (i, dhiggsmix(i),     i = higgsmix_min, higgsmix_max),
+     &    (i, dp2approx(i),     i = p2approx_min, p2approx_max),
+     &    (i, dlooplevel(i),    i = looplevel_min, looplevel_max),
+     &    (i, dloglevel(i),     i = loglevel_min, loglevel_max),
+     &    (i, drunningMT(i),    i = runningMT_min, runningMT_max),
+     &    (i, dbotResum(i),     i = botResum_min, botResum_max),
+     &    (i, dtlCplxApprox(i), i = tlCplxApprox_min, tlCplxApprox_max)
 
 1	call flush(6)
 	call pageroff

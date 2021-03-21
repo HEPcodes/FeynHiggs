@@ -138,7 +138,7 @@
 	dy(ivev) = 0D0
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ivev) =" dy(ivev)  ENDL
+	DHIGGS "dy(ivev) =", dy(ivev) ENDL
 #endif
 
 	end
@@ -418,6 +418,6 @@
 	dy(ivev) = 0D0
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ivev) =" dy(ivev)  ENDL
+	DHIGGS "dy(ivev) =", dy(ivev) ENDL
 #endif
 	end

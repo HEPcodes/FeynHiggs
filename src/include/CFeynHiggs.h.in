@@ -2,7 +2,7 @@
 	CFeynHiggs.h
 		C/C++ wrapper functions for the FH subroutines
 		this file is part of FeynHiggs
-		last modified 18 Jul 18 th
+		last modified 31 Mar 20 th
 */
 
 
@@ -269,7 +269,7 @@ extern void FORTRAN(fhgetselfgl)(INTEGER *error, _fh_Fcc_(k2,[1]),
   CINTEGER *dkey, _fh_Fc_(dsig,[nsig]), CINTEGER *ren);
 
 extern void FORTRAN(fhaddself)(INTEGER *error, CINTEGER *n,
-  _fh_Fcc_(sig,[n]), CINTEGER *flags);
+  _fh_Fcc_(sig,[n][nsig]), CINTEGER *flags);
 
 extern void FORTRAN(fhoutput)(INTEGER *error,
   const char *filename, CINTEGER *key, _fh_Fcr_(sqrts,[1]),
@@ -601,9 +601,9 @@ static inline void FHGetSelfgl(int *error, _fh_Ccc_(k2,[1]),
 static inline void FHAddSelf(int *error, const int n,
   _fh_Ccac_(sig,[]), const int flags)
 {
-  _fh_Dc_(sig,[n]);
-  _fh_Ic_(sig,[n]);
-  FORTRAN(fhaddself)(error, &n, _fh_Pcac_(sig,[n]), &flags);
+  _fh_Dc_(sig,[n][nsig]);
+  _fh_Iac_(sig,[n][nsig]);
+  FORTRAN(fhaddself)(error, &n, _fh_Pcac_(sig,[n][nsig]), &flags);
 }
 
 

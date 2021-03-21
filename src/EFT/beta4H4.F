@@ -135,7 +135,7 @@
      &      )
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ivev) =" dy(ivev)  ENDL
+	DHIGGS "dy(ivev) =", dy(ivev) ENDL
 #endif
 
 	end
@@ -422,7 +422,7 @@
      &             648*y(iht)**4))*y(ivev)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ivev) =" dy(ivev)  ENDL
+	DHIGGS "dy(ivev) =", dy(ivev) ENDL
 #endif
 
 	end
@@ -511,7 +511,7 @@
      &             y(il6)*y(il7))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il1) =" dy(il1)  ENDL
+	DHIGGS "dy(il1) =", dy(il1) ENDL
 #endif
 
 	dy(il2) = 1/8.D0*
@@ -562,7 +562,7 @@
      &                  17*y(il5))*y(il6)*y(il7)))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il2) =" dy(il2)  ENDL
+	DHIGGS "dy(il2) =", dy(il2) ENDL
 #endif
 
 	dy(il3) = 1/8.D0*
@@ -630,7 +630,7 @@
      &                       y(il5))*y(il7)))))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il3) =" dy(il3)  ENDL
+	DHIGGS "dy(il3) =", dy(il3) ENDL
 #endif
 
 	dy(il4) = -(1/2.D0*
@@ -694,7 +694,7 @@
      &         4*(yl42 + y(il6)*y(il7))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il4) =" dy(il4)  ENDL
+	DHIGGS "dy(il4) =", dy(il4) ENDL
 #endif
 
 	dy(il5) = -(1/2.D0*
@@ -752,7 +752,7 @@
      &                  17*y(il6)*y(il7))))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il5) =" dy(il5)  ENDL
+	DHIGGS "dy(il5) =", dy(il5) ENDL
 #endif
 
 	dy(il6) = 1/2.D0*
@@ -825,7 +825,7 @@
      &                     12*(yl62 + y(il6)*y(il7))))))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il6) =" dy(il6)  ENDL
+	DHIGGS "dy(il6) =", dy(il6) ENDL
 #endif
 
 	dy(il7) = -(1/2.D0*
@@ -896,7 +896,7 @@
      &                     12*(yl72 + y(il6)*y(il7))))))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il7) =" dy(il7)  ENDL
+	DHIGGS "dy(il7) =", dy(il7) ENDL
 #endif
 
 	dup1 = -27*yg2 - 96*yg32 - 17*ygy2 + 54*(yht2 + yhtp2)
@@ -922,7 +922,7 @@
      &          y(ihtp)*y(il7)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(iht) =" dy(iht)  ENDL
+	DHIGGS "dy(iht) =", dy(iht) ENDL
 #endif
 
 	dy(ihtp) = 1/24.D0*(dup1*k1L*y(ihtp)) +
@@ -943,7 +943,7 @@
      &            6*y(iht)**3)*y(il7)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ihtp) =" dy(ihtp)  ENDL
+	DHIGGS "dy(ihtp) =", dy(ihtp) ENDL
 #endif
 
 	dy(ig3) = -((7/2.D0*k1L -
@@ -951,7 +951,7 @@
      &           11/12.D0*ygy2))*y(ig3)**3)
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig3) =" dy(ig3)  ENDL
+	DHIGGS "dy(ig3) =", dy(ig3) ENDL
 #endif
 
 	dy(ig) = -((3/2.D0*k1L -
@@ -959,7 +959,7 @@
      &      y(ig)**3)
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig) =" dy(ig)  ENDL
+	DHIGGS "dy(ig) =", dy(ig) ENDL
 #endif
 
 	dy(igy) = (7/2.D0*k1L +
@@ -967,7 +967,7 @@
      &         17/12.D0*(yht2 + yhtp2)))*y(igy)**3
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(igy) =" dy(igy)  ENDL
+	DHIGGS "dy(igy) =", dy(igy) ENDL
 #endif
 
 	dy(itb) = -(3/2.D0*
@@ -988,7 +988,7 @@
      &            (yht2 - yhtp2)*y(itb))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(itb) =" dy(itb)  ENDL
+	DHIGGS "dy(itb) =", dy(itb) ENDL
 #endif
 
 	if( t .gt. tGlu ) then
@@ -1244,7 +1244,7 @@
      &            2*y(ig1ud)*y(il6))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il1) =" dy(il1)  ENDL
+	DHIGGS "dy(il1) =", dy(il1) ENDL
 #endif
 
 	dup6 = y(ig2du)*y(ig2ud) + y(ig2dd)*y(ig2uu)
@@ -1441,7 +1441,7 @@
      &            2*y(ig1dd)*y(il7))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il2) =" dy(il2)  ENDL
+	DHIGGS "dy(il2) =", dy(il2) ENDL
 #endif
 
 	dup3 = y(ig2du)*y(ig2ud) - 2*y(ig2dd)*y(ig2uu)
@@ -1784,7 +1784,7 @@
      &         ))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il3) =" dy(il3)  ENDL
+	DHIGGS "dy(il3) =", dy(il3) ENDL
 #endif
 
 	dup5 = -2*y(ig2du)*y(ig2ud) + y(ig2dd)*y(ig2uu)
@@ -2077,7 +2077,7 @@
      &            6*y(iht)*y(ihtp) + 4*y(il6))*y(il7)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il4) =" dy(il4)  ENDL
+	DHIGGS "dy(il4) =", dy(il4) ENDL
 #endif
 
 	dup17 = 13*y(ig2dd)*y(ig2du) + 8*y(ig2ud)*y(ig2uu)
@@ -2332,7 +2332,7 @@
      &            6*y(iht)*y(ihtp) - 4*y(il6))*y(il7)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il5) =" dy(il5)  ENDL
+	DHIGGS "dy(il5) =", dy(il5) ENDL
 #endif
 
 	dup11 = 11*y(ig2du)*y(ig2ud) + 5*y(ig2dd)*y(ig2uu)
@@ -2684,7 +2684,7 @@
      &         (-12*y(il3) - 8*y(il4) - 4*y(il5))*y(il7)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il6) =" dy(il6)  ENDL
+	DHIGGS "dy(il6) =", dy(il6) ENDL
 #endif
 
 	tmp7 = -(y(ig2dd)*
@@ -3016,7 +3016,7 @@
      &            12*y(il3) - 16*y(il4) - 20*y(il5))*y(il7)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(il7) =" dy(il7)  ENDL
+	DHIGGS "dy(il7) =", dy(il7) ENDL
 #endif
 
 	tmp8 = (162*(yg1ud2 + yg1uu2) +
@@ -3090,7 +3090,7 @@
      &          y(ihtp)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(iht) =" dy(iht)  ENDL
+	DHIGGS "dy(iht) =", dy(iht) ENDL
 #endif
 
 	tmp9 = (81*(y(ig1dd)**3*y(ig1ud) +
@@ -3162,7 +3162,7 @@
      &            54*(yht2 + y(ihtp)**2))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ihtp) =" dy(ihtp)  ENDL
+	DHIGGS "dy(ihtp) =", dy(ihtp) ENDL
 #endif
 
 	dy(ig3) = -((7/2.D0*k1L -
@@ -3170,7 +3170,7 @@
      &           11/12.D0*ygy2))*y(ig3)**3)
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig3) =" dy(ig3)  ENDL
+	DHIGGS "dy(ig3) =", dy(ig3) ENDL
 #endif
 
 	dy(ig) = -((1/2.D0*k1L +
@@ -3181,7 +3181,7 @@
      &      y(ig)**3)
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig) =" dy(ig)  ENDL
+	DHIGGS "dy(ig) =", dy(ig) ENDL
 #endif
 
 	dy(igy) = (23/6.D0*k1L -
@@ -3192,7 +3192,7 @@
      &    y(igy)**3
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(igy) =" dy(igy)  ENDL
+	DHIGGS "dy(igy) =", dy(igy) ENDL
 #endif
 
 	dup10 = y(ig2du)*y(ig2ud) + 3*y(ig2dd)*y(ig2uu)
@@ -3308,7 +3308,7 @@
      &            y(ig1du)*y(iht)*y(ihtp))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig1uu) =" dy(ig1uu)  ENDL
+	DHIGGS "dy(ig1uu) =", dy(ig1uu) ENDL
 #endif
 
 	dup1 = 29*y(ig1ud)*y(ig1uu) + 36*y(ig2dd)*y(ig2du)
@@ -3429,7 +3429,7 @@
      &               2*y(iht)*y(ihtp)))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig1dd) =" dy(ig1dd)  ENDL
+	DHIGGS "dy(ig1dd) =", dy(ig1dd) ENDL
 #endif
 
 	tmp12 = yg1ud2*
@@ -3555,7 +3555,7 @@
      &            11*y(ig2du)*y(ig2uu) + 12*y(iht)*y(ihtp))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig2uu) =" dy(ig2uu)  ENDL
+	DHIGGS "dy(ig2uu) =", dy(ig2uu) ENDL
 #endif
 
 	tmp13 = (90*yg1du2 + 60*yg1ud2 + 672*yg2ud2 +
@@ -3670,7 +3670,7 @@
      &         y(ig2ud)*(2*y(ig2du)*y(ig2uu) + 12*y(iht)*y(ihtp))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig2dd) =" dy(ig2dd)  ENDL
+	DHIGGS "dy(ig2dd) =", dy(ig2dd) ENDL
 #endif
 
 	dup9 = 7*y(ig2du)*y(ig2ud) + y(ig2dd)*y(ig2uu)
@@ -3789,7 +3789,7 @@
      &            y(ig2du)*y(ig2uu) + 2*y(iht)*y(ihtp))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig1ud) =" dy(ig1ud)  ENDL
+	DHIGGS "dy(ig1ud) =", dy(ig1ud) ENDL
 #endif
 
 	tmp15 = 6*dup1*y(ig1dd)**3 +
@@ -3916,7 +3916,7 @@
      &          y(ig2uu) + 12*y(ig1uu)*y(iht)*y(ihtp)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig1du) =" dy(ig1du)  ENDL
+	DHIGGS "dy(ig1du) =", dy(ig1du) ENDL
 #endif
 
 	tmp16 = ((60*yg1ud2 + 180*yg2ud2 + 54*yg2uu2 -
@@ -4033,7 +4033,7 @@
      &            12*y(iht)*y(ihtp))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig2ud) =" dy(ig2ud)  ENDL
+	DHIGGS "dy(ig2ud) =", dy(ig2ud) ENDL
 #endif
 
 	tmp17 = (96*yg1du2 + 144*yg2ud2 + 72*yg2uu2)*y(ig1ud)*
@@ -4151,7 +4151,7 @@
      &         12*y(ig2uu)*y(iht)*y(ihtp)))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(ig2du) =" dy(ig2du)  ENDL
+	DHIGGS "dy(ig2du) =", dy(ig2du) ENDL
 #endif
 
 	tmp18 = y(ig2dd)*
@@ -4243,7 +4243,7 @@
      &         y(ig2du)*(3*y(ig2uu) - 3*y(ig2du)*y(itb))))
 
 #ifdef DETAILED_DEBUG
-	DHIGGS "dy(itb) =" dy(itb)  ENDL
+	DHIGGS "dy(itb) =", dy(itb) ENDL
 #endif
 
 	if( t .gt. tGlu ) then

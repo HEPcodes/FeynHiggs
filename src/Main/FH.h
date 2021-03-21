@@ -1,7 +1,7 @@
 * FH.h
 * global variable declarations
 * this file is part of FeynHiggs
-* last modified 2 Aug 18 th
+* last modified 1 Apr 20 th
 
 
 #ifndef SignSq
@@ -414,7 +414,7 @@
 	parameter (cpeven = SEKey(h0h0) + SEKey(HHHH) + SEKey(h0HH))
 	parameter (cpodd = SEKey(A0A0) + SEKey(h0A0) + SEKey(HHA0))
 	parameter (goldstones = SEKey(G0G0) + SEKey(h0G0) +
-     &    SEKey(HHG0) + SEKey(A0G0))
+     &    SEKey(HHG0) + SEKey(A0G0) + SEKey(GmGp) + SEKey(HmGp))
 
 	integer NNeutral, NCharged, NHiggs
 	parameter (NNeutral = 3)

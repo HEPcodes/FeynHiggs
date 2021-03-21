@@ -3860,7 +3860,7 @@
 	DTLHR "Cd(10059)", Cd(10059) ENDL
 #endif
 
-        Cd(10067) = -T134(MGl2,MTgl2,Cd(1712)) + 
+        Cd(10067) = -T134(MGl2,MTgl2,MStgl2(1)) + 
      &    T134(MGl2,MTgl2,MStgl2(2))
 
 #ifdef DETAILED_DEBUG

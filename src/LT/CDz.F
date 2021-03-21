@@ -1,7 +1,7 @@
 * CDz.F
 * C0, C00, D0, D00 for zero momenta, from arXiv:0811.2891
 * this file is part of LoopTools
-* last modified 22 Jun 18 th
+* last modified 29 Jul 20 th
 
 #include "externals.h"
 #include "types.h"
@@ -25,11 +25,11 @@
      &    (dmlog(ma, mb, n) - dmlog(ma, mc, n))/(mb - mc)
 
 	if( abs(m1 - m2) .lt. diffeps ) then
-	  o = O'231'
+	  o = int(O'231')
 	else if( abs(m1 - m3) .lt. diffeps ) then
-	  o = O'213'
+	  o = int(O'213')
 	else if( abs(m2 - m3) .lt. diffeps ) then
-	  o = O'123'
+	  o = int(O'123')
 	else
 	  C0z = -ddmlog(m1, m2, m3, 1)
 	  return
@@ -67,11 +67,11 @@
      &    (dmlog(ma, mb, n) - dmlog(ma, mc, n))/(mb - mc)
 
 	if( abs(m1 - m2) .lt. diffeps ) then
-	  o = O'231'
+	  o = int(O'231')
 	else if( abs(m1 - m3) .lt. diffeps ) then
-	  o = O'213'
+	  o = int(O'213')
 	else if( abs(m2 - m3) .lt. diffeps ) then
-	  o = O'123'
+	  o = int(O'123')
 	else
 	  Prec(C00z) = (1 + ddmlog(m1, m2, m3, 2))/4
 	  return
@@ -110,17 +110,17 @@
      &    -mlog(ma, 1)/((ma - mb)*(ma - mc)*(ma - md))
 
 	if( abs(m1 - m2) .lt. diffeps ) then
-	  o = O'3412'
+	  o = int(O'3412')
 	else if( abs(m1 - m3) .lt. diffeps ) then
-	  o = O'3142'
+	  o = int(O'3142')
 	else if( abs(m1 - m4) .lt. diffeps ) then
-	  o = O'3124'
+	  o = int(O'3124')
 	else if( abs(m2 - m3) .lt. diffeps ) then
-	  o = O'1342'
+	  o = int(O'1342')
 	else if( abs(m2 - m4) .lt. diffeps ) then
-	  o = O'1324'
+	  o = int(O'1324')
 	else if( abs(m3 - m4) .lt. diffeps ) then
-	  o = O'1234'
+	  o = int(O'1234')
 	else
 	  Prec(D0z) = dq(m1, m2, m3, m4) + dq(m2, m1, m3, m4) +
      &                dq(m3, m1, m2, m4) + dq(m4, m1, m2, m3)
@@ -188,17 +188,17 @@
      &    -I4*mlog(ma, 2)/((ma - mb)*(ma - mc)*(ma - md))
 
 	if( abs(m1 - m2) .lt. diffeps ) then
-	  o = O'3412'
+	  o = int(O'3412')
 	else if( abs(m1 - m3) .lt. diffeps ) then
-	  o = O'3142'
+	  o = int(O'3142')
 	else if( abs(m1 - m4) .lt. diffeps ) then
-	  o = O'3124'
+	  o = int(O'3124')
 	else if( abs(m2 - m3) .lt. diffeps ) then
-	  o = O'1342'
+	  o = int(O'1342')
 	else if( abs(m2 - m4) .lt. diffeps ) then
-	  o = O'1324'
+	  o = int(O'1324')
 	else if( abs(m3 - m4) .lt. diffeps ) then
-	  o = O'1234'
+	  o = int(O'1234')
 	else
 	  Prec(D00z) = dq(m1, m2, m3, m4) + dq(m2, m1, m3, m4) +
      &                 dq(m3, m1, m2, m4) + dq(m4, m1, m2, m3)
