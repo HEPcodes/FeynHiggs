@@ -37,8 +37,8 @@ if( looplevel .gt. 1 .and. tl_valid .ne. valid ) call CalcRenSETL(err)
 * FHUncertainties).  Toggling this flag provides an additional means
 * to check the calculations.
 
-c#define SORT_SF 0
-#define SORT_SF 1
+#define SORT_SF 0
+c#define SORT_SF 1
 
 
 #define Digit(n) char(48+n)

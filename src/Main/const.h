@@ -1,11 +1,12 @@
 * const.h
 * some constants
 * this file is part of FeynHiggs
-* last modified 23 Jun 16 th
+* last modified 20 Dec 16 th
 
 
-	RealType pi, degree, sqrt2, sqrt3, log2
+	RealType pi, zeta2, degree, sqrt2, sqrt3, log2
 	parameter (pi = 3.1415926535897932384626433832795029D0)
+	parameter (zeta2 = pi**2/6D0)
 	parameter (degree = pi/180D0)
 	parameter (sqrt2 = 1.41421356237309504880168872421D0)
 	parameter (sqrt3 = 1.73205080756887729352744634151D0)

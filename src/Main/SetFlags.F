@@ -1,7 +1,7 @@
 * SetFlags.F
 * set the flags for FeynHiggs
 * this file is part of FeynHiggs
-* last modified 14 Dec 16 th
+* last modified 21 Dec 16 th
 
 #include "externals.h"
 #include "types.h"
@@ -99,6 +99,9 @@ c	  call setfpu
 
 	if( fieldren .eq. 4 .and. tanbren .eq. 1 )
      &    Error(error, "fieldren = 4 not compatible with tanbren = 1")
+
+	if( runningMT .eq. 3 .and. loglevel .ne. 0 )
+     &    Error(error, "runningMT = 3 allowed only with loglevel = 0")
 
 	if( error .eq. 0 ) flags_valid = valid
 

@@ -1,15 +1,14 @@
 * lt.h
 * declarations internal to the LoopTools functions
 * this file is part of FeynHiggs
-* last modified 9 Dec 16 th
+* last modified 21 Dec 16 th
 
 #include "const.h"
 
-	RealType diffeps, zeroeps, zeta2
+	RealType diffeps, zeroeps
 	ComplexType cIeps, onePeps, oneMeps, c2ipi
 	parameter (diffeps = 1D-12)
 	parameter (zeroeps = 1D-20)
-	parameter (zeta2 = pi**2/6)
 	parameter (cIeps = cI*1D-20)
 	parameter (onePeps = 1 + cIeps)
 	parameter (oneMeps = 1 - cIeps)
