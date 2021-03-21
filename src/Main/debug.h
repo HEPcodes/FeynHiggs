@@ -29,7 +29,7 @@ if( para_valid .ne. valid ) Error(err, "must set parameters before")
 if( sf_valid .ne. valid ) call SfermionsDelayed(err)
 
 #define CheckdZHfin(err) \
-if( dZHfin_valid .ne. valid .and. finfieldren .ne. 0) call CalcdZHfin
+if( dZHfin_valid .ne. valid .and. finfieldren .ne. 0) call SetFieldRen
 
 #define CheckTL(err) \
 if( looplevel .gt. 1 .and. tl_valid .ne. valid ) call CalcRenSETL(err)

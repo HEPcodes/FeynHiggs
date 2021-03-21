@@ -199,11 +199,54 @@ c	  call setfpu
 	print *, "env FHFINFIELDREN ", finfieldren
 110	continue
 
-	tbdef = 1
-	call getenv("FHTBDEF", env)
-	read(env, *, end=120, err=120) tbdef
-	print *, "env FHTBDEF ", tbdef
+	tbrepara = 1
+	call getenv("FHTBREPARA", env)
+	read(env, *, end=120, err=120) tbrepara
+	print *, "env FHTBREPARA ", tbrepara
 120	continue
+
+	tanbdefInput = 0
+	call getenv("FHTBDEF", env)
+	read(env, *, end=130, err=130) tanbdefInput
+	print *, "env FHTBDEF ", tanbdefInput
+130	continue
+
+	tanbscaleInput = -100D0
+	call getenv("FHTBSCALE", env)
+	read(env, *, end=140, err=140) tanbscaleInput
+	print *, "env FHTBSCALE ", tanbscaleInput
+	if( tanbscaleInput .ge. 0D0 ) then
+	  tanbscaleInput = tanbscaleInput**2
+	endif
+140	continue
+
+	THDMTLasat = 1
+	call getenv("FHTLTHDMASAT", env)
+	read(env, *, end=150, err=150) THDMTLasat
+	print *, "env FHTLTHDMASAT ", THDMTLasat
+150	continue
+
+	stiffodesolver = 0
+	call getenv("FHSTIFFODESOLVER", env)
+	read(env, *, end=160, err=160) stiffodesolver
+	print *, "env FHSTIFFODESOLVER ", stiffodesolver
+160	continue
+
+	seexp = 0
+	call getenv("FHSEEXP", env)
+	read(env, *, end=170, err=170) seexp
+	print *, "env FHSEEXP ", seexp
+170	continue
+
+	decczero = 1
+	call getenv("FHDECCZERO", env)
+	read(env, *, end=180, err=180) decczero
+	print *, "env FHDECCZERO ", decczero
+180	continue
+	if( decczero .ne. 1 ) then
+	  decczero = 0
+	  Warning("FHDECCZERO != 1 only consistent if A_f, MUE << MSusy")
+	endif
 
 * a) variation of mudim from MT/2 to 2 MT
 	uncmask(1) = 0
@@ -222,15 +265,23 @@ c	  call setfpu
 * h) uncertainty from suppressed term if looplevel = 0
 	uncmask(8) = 1
 	call getenv("FHUNCMASK", env)
-	read(env, *, end=130, err=130) uncmask
+	read(env, *, end=190, err=190) uncmask
 	print *, "env FHUNCMASK ", uncmask
-130	continue
+190	continue
 
 	drbartopmass = 0
 	call getenv("FHDRTOPMASS", env)
-	read(env, *, end=140, err=140) drbartopmass
+	read(env, *, end=200, err=200) drbartopmass
 	print *, "env FHDRTOPMASS ", drbartopmass
-140	continue
+200	continue
+
+	MUEscale = -1D0
+	call getenv("FHMUESCALE", env)
+	read(env, *, end=210, err=210) MUEscale
+	print *, "env FHMUESCALE ", MUEscale
+	if( ( MUEscale .gt. 0D0 ) .and. ( loglevel .eq. 4 ) )
+     &    Warning("loglevel = 4 assumes MUE to be renormalized at the scale MSusy")
+210	continue
 
 	call getenv("FHEXTSE", extSE)
 	if( extSE(1:1) .ne. ' ' )

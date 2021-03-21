@@ -18,7 +18,6 @@ _dZSf1 = _dZbarSf1 =
 _dZfR1 = _dZbarfR1 =
 _dZfL1 = _dZbarfL1 =
 dSB1 = dCB1 = dTB1 =
-dMUE1 =
 dSW1 =
 dMWsq1 = dMWsq1MW2 =
 dMf1[4,3] =
@@ -109,7 +108,7 @@ rc1LA0 = rcCalc[seRA0[[2]] //. seRA0[[1]], $MHpInput -> False]
 raw = {rcIf[rc1LHp, rc1LA0], seU, rcIf[Flatten[seRHp], Flatten[seRA0]]}
 
 raw = Flatten[raw] /.
-  {dMHiggs1gl[3,3] -> dMAsq1, dAf1[3,3,3] -> dXt1} /.
+  {dMHiggs1gl[3,3] -> dMAsq1} /.
   ToOldBRules
 
 (*raw = OnePassOrder[raw]*)
@@ -123,4 +122,3 @@ _EOF_
 gzip $log
 
 test -f $out
-

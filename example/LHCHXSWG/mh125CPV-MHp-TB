@@ -1,0 +1,86 @@
+#! /bin/bash -x
+
+test $# -eq 6 || {
+  echo "Usage: $0 mhpfrom mhpto mhpstep tbfrom tbto tbstep"
+  exit 1
+}
+
+dir="$0.$1.$2.$4.$5"
+mkdir -p "$dir"
+
+num=0
+
+varsets() {
+  bc -l << _EOF_
+	scale=4
+	for( mhp = $1; mhp <= $2; mhp += $3 ) {
+	  for( tb = $4; tb <= $5; tb += $6 ) {
+	    mue = 1650
+	    at = mue/tb + 2800
+            imag = 0.418879
+            num = num+1
+	    print "MHp=",mhp,";"
+	    print "MUE=",mue,";"
+	    print "ReAt=",at,";"
+            print "phiAt=",imag,";"
+	    print "TB=",tb,";\n"
+	    print "num=",num,";\n"
+	  }
+	}
+_EOF_
+}
+
+for varset in `varsets "$@"` ; do
+  eval $varset
+  file="$dir/mh1125CPV-MHp-TB-loop.in.fh-$num"
+###  build/FeynHiggs - 43423113
+  cat << _EOF_ > $file
+MT      172.5
+AlfasMZ 0.118
+GF	0.0000116637
+MB      4.18
+MZ	91.1876
+MW	80.385
+M2SQ	2000
+M2SU	2000
+M2SD	2000
+M2SL	2000
+M2SE	2000
+M1SQ	2000
+M1SU	2000
+M1SD	2000
+M1SL	2000
+M1SE	2000
+Abs(Ae)	0
+Abs(Au)	0
+Abs(Ad)	0
+Abs(Ac)	0
+Abs(As)	0
+Abs(Amu)	0
+TB      $TB
+MHp     $MHp
+M3SQ    2000
+M3SU    2000
+M3SD    2000
+M3SL    2000
+M3SE    2000
+Abs(MUE)	$MUE
+Arg(MUE)	0
+Abs(At)	$ReAt
+Arg(At)	$phiAt
+Abs(Ab)	$ReAt
+Arg(Ab)	        0
+Abs(Atau)	$ReAt
+Arg(Atau)	0
+Abs(M_1)	1000
+Abs(M_2)	1000
+Abs(M_3)	2500
+Arg(M_1)	0
+Arg(M_2)	0
+Arg(M_3)	0
+_EOF_
+
+  PAGER= build/FeynHiggs "$file#SLHA" 43423113 > "$file.log"
+
+done
+

@@ -1,0 +1,50 @@
+#! /bin/sh -x
+
+test $# -ne 2 && {
+  cat << _EOF_
+Usage:  $0 MA TB
+evaluates Higgs mass corrections and Higgs decays in MhEFT125chi scenario
+_EOF_
+  exit 1
+}
+
+math -run MA=$1 \
+     -run TB=$2 << \_EOF_
+
+AppendTo[$Echo, "stdout"];
+
+Install["../../build-quad/MFeynHiggs"];
+
+(* set tanb to be defined as tanbTHDM(MA)*)
+FHSetEnv["FHTBSCALE", "-1"];
+FHSetEnv["FHTBDEF", "1"];
+(* use odesolver optimized for stiff equation systems *)
+FHSetEnv["FHSTIFFODESOLVER", "2"];
+(* use expanded 1L self-energies *)
+FHSetEnv["FHSEEXP", "1"];
+(* switch off sparticle loops in decay calculation to prevent numerical instabilities *)
+FHSetEnv["FHDECCZERO", "0"];
+
+FHSetFlags[4, 2, 4, 1, 4, 1, 1, 0];
+
+(* interpolate MSusy table *)
+msusyTable = Import["MhEFT125chi_MSUSY.txt", "Table"];
+msusyTable = msusyTable[[2 ;;]];
+msusyTable = {{#[[1]], #[[2]]}, #[[3]]} & /@ msusyTable;
+msusyF = Interpolation[msusyTable];
+msusy = msusyF[MA, TB]
+
+FHSetPara[1, 173.34, TB, MA, -1,
+          msusy, msusy, msusy, msusy, msusy, msusy,
+          msusy, msusy, msusy, msusy, msusy, msusy,
+          msusy, msusy, msusy,
+          180, 0, 0, 0, 0, 0, 0, 0, 0, 0,
+          160, 180, 2500,
+          -1, -1, -1];
+
+FHHiggsCorr[]
+(* FHCouplings[] *)
+
+Quit[];
+
+_EOF_

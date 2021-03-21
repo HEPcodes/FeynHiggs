@@ -30,12 +30,12 @@
 *     ( x31 x32 ... y3n )
 *     ( ............... )
 *     ( xn1 xn2 ... ynn )
-*   where 
+*   where
 *     (   1   0 ...   0 )  ( y11 y12 ... y1n )
 *     ( x21   1 ...   0 )  (   0 y22 ... y2n )
 *     ( x31 x32 ...   0 )  (   0   0 ... y3n )  =  Permutation(A)
 *     ( ............... )  ( ............... )
-*     ( xn1 xn2 ...   1 )  (   0   0 ... ynn ) 
+*     ( xn1 xn2 ...   1 )  (   0   0 ... ynn )
 *   perm: permutation vector
 
 	subroutine LUDecompose(n, A,ldA, perm)
@@ -141,3 +141,47 @@
 	enddo
 	end
 
+************************************************************************
+* LUSolve computes the x in A.x = b from the LU-decomposed A.
+* Input:
+*   A: LU-decomposed n-by-n matrix A
+*   b: input vector b in A.x = b
+*   n: dimension of A
+*   indx: permutation vector from LU decomposition
+* Output:
+*   b: solution vector x in A.x = b
+
+	subroutine LUSolveIndx(n, A,ldA, indx, b)
+	implicit none
+	integer n, ldA, indx(n)
+	RealType A(ldA,ldA), b(n)
+
+	integer i, ii, j, ll
+	RealType tmp
+
+* forward substitution L.y = b
+	ii = 0
+	do i = 1, n
+	  ll = indx(i)
+	  tmp = b(ll)
+	  b(ll) = b(i)
+	  if( ii .ne. 0 ) then
+	    do j = ii, i - 1
+	      tmp = tmp - A(i,j)*b(j)
+	    enddo
+	  else if( tmp .ne. 0 ) then
+	    ii = i
+	  endif
+	  b(i) = tmp
+	enddo
+
+* backward substitution U.x = y
+	do i = n, 1, -1
+	  tmp = b(i)
+	  do j = i + 1, n
+	    tmp = tmp - A(i,j)*b(j)
+	  enddo
+	  b(i) = tmp/A(i,i)
+	enddo
+	return
+	end

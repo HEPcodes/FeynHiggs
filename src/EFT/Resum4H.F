@@ -18,17 +18,21 @@
 #include "Resum4H.h"
 #define __SUBROUTINE__ "Resum4H"
 
-	RealType res(ipslots), ipres, Mh02_, dPhi22
+	RealType res(ipslots,4), ipres(4)
+	RealType Mh02_
+	integer i
+
+	res = 0D0
+	ipres = 0D0
 
 	tmudim = log(mudim)
 	tTop = log(Mf2(3,3))
 	MSUSYOS = MSS0(3,3)*MSS0(4,3)
 	tSUSYOS = log(MSUSYOS)
+	tA0 = log(MA02)
 	llog = tSUSYOS - tTop
 	tMatch = tSUSYOS + 2*log(matchsf)
 	MSUSYOS = sqrt(MSUSYOS)
-	if( MA0 .lt. 1D-2*MSUSYOS ) Warning("MA << MSUSY")
-	if( MSUSYOS .lt. 1D-2*MA0 ) Warning("MSUSY << MA")
 
 	tCha = log(MCha(1)*MCha(2))
 	if( tCha .gt. tSUSYOS ) then
@@ -50,9 +54,25 @@
 	  supfac = 1D0
 	endif
 
+	if( (tA0 .le. tTop) .and. (loglevel .eq. 4) ) then
+	  tA0 = tTop
+	  Warning("Resum4H: MA < MT, setting MA = MT")
+	endif
+
+	if( (MA0 .lt. 1D-2*MSUSYOS) .and. (loglevel .ne. 4) ) then
+	  Warning("Resum4H: MA << MSUSY, loglevel = 4 might be more accurate")
+	endif
+
+	if( (loglevel .eq. 4) .and. (inputmass .eq. HmHp) ) then
+	  Warning("THDM-EFT uses MA02 = MHp2 - MW2 as input")
+	endif
+
+	if( (finfieldren .eq. 0) .and. (loglevel .eq. 4) ) then
+	  Warning("loglevel = 4 only works consistently for finfieldren = 1")
+	endif
+
 * calc MSbar vev
         Mh02_ = Mh02
-! 	vMS2 = vev**2
 #define Q2 Mf2(3,3)
 	vMS2 = vev**2 + k1L*3*(
      &    Mf2(tM1,3) - 2*A0q(Mf2(tM1,3), Q2) -
@@ -67,26 +87,41 @@
 	  call Resum4Hcplx(ipres, abs(M_3), abs(MUE), abs(Xtgl))
 	else
 	  do ipi = 1, ipn
-	    call Resum4Hcplx(res(ipi), Re(M_3c), Re(MUEc), Re(Xtc))
+	    call Resum4Hcplx(res(ipi,:), M_3c, MUEc, Xtc)
 	  enddo
-	  call CplxInterpolate(error, ipres, res,1)
+	  do i = 1, 4
+	    call CplxInterpolate(error, ipres(i), res(:,i),1)
+	  enddo
 	endif
 
 	if( looplevel .eq. 0 ) then
-	  call CalcMhEFT(ipres)
-	  Mh02EFT = ipres
+	  call CalcMhEFT(ipres(1))
+	  Mh02EFT = ipres(1)
 	  if( debuglevel .gt. 2 )
      &      DEFT "Mh2poleEFT =", Mh02EFT	ENDL
 	else
-	  dPhi22 = -ipres/SB2
-	  seEFT(h0h0) = CA2*dPhi22
-	  seEFT(HHHH) = SA2*dPhi22
-	  seEFT(h0HH) = .5D0*S2A*dPhi22
+	  if( loglevel .eq. 4 ) then
+	    seEFT(h0h0) = - ipres(1)
+	    seEFT(h0HH) = - ipres(2)
+	    seEFT(HHHH) = - ipres(3)
+	    seEFT(HmHp) =  -ipres(4)
+	  else
+	    ipres(1) = -ipres(1)/SB2
+	    seEFT(h0h0) = CA2*ipres(1)
+	    seEFT(HHHH) = SA2*ipres(1)
+	    seEFT(h0HH) = .5D0*S2A*ipres(1)
+	    seEFT(HmHp) =  0D0
+	  endif
+	  if( looplevel .eq. 1 ) then
+	    seEFT(h0h0) = seEFT(h0h0) + 2*k2L*vev2*(
+     &        g3MT2*(-23.88D0 + .12D0*dMh0RGE - .64D0*(Mf(3,3) - 173)) +
+     &        (-9.45D0 - .12D0*dMh0RGE - .21D0*(Mf(3,3) - 173)) )
+	  endif
 	  if( debuglevel .gt. 2 ) then
-	    DEFT "dPhi22 =", dPhi22			ENDL
 	    DEFT "resum4H h0h0 =", seEFT(h0h0)	ENDL
-	    DEFT "resum4H HHHH =", seEFT(h0HH)	ENDL
+	    DEFT "resum4H HHHH =", seEFT(HHHH)	ENDL
 	    DEFT "resum4H h0HH =", seEFT(h0HH)	ENDL
+	    DEFT "resum4H HmHp =", seEFT(HmHp)	ENDL
 	  endif
 	endif
 
@@ -97,13 +132,16 @@
 	endif
 
 	if( error .eq. 0 ) eft_valid = valid
+
 	end
 
 ************************************************************************
+* calculate EFT input parameter and call different loglevel options
 
 	subroutine Resum4Hcplx(res, M_3_, MUE_, Xt_)
 	implicit none
-	RealType res, M_3_, MUE_, Xt_, XtMS
+	RealType res(4)
+	RealType M_3_, MUE_, Xt_, XtMS
 
 #include "Resum4H.h"
 
@@ -150,9 +188,13 @@
 	endif
 
 	tSUSYMS = tSUSYOS + log(msMS**2)
-	mueMS = mueOS/msMS
 
-	call runStopPara(M_3_, mueMS*MSUSYOS, XtMS)
+	if( HScouplings_valid .ne. 1 ) then
+	  HScouplings = 1D0
+	endif
+	call runStopPara(M_3_, mueOS/msMS*MSUSYOS, XtMS)
+
+	mueMS = MUEq/sqrt(MSQq*MSUq)
 
 	xMS = Xtq/sqrt(MSQq*MSUq)
 	xMS2 = xMS**2
@@ -168,9 +210,11 @@
 	endif
 
 	if( loglevel .eq. 1 ) then
-	  call Resum4H1(res)
+	  call Resum4H1(res(1))
+	elseif( loglevel .eq. 4 ) then
+	  call Resum4H4(res)
 	else
-	  call Resum4H23(res)
+	  call Resum4H23(res(1))
 	endif
 
 	end

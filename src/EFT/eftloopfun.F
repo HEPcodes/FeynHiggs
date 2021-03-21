@@ -163,6 +163,71 @@ c             x != 1, y != 1
 	end
 
 
+	subroutine loopfunSf89(f, x, y)
+	implicit none
+	RealType f(2), x, y
+
+#include "FH.h"
+
+	RealType x1, x2, Lx2
+	RealType y1, y2, Ly2
+
+	x1 = (1 - x)*(1 + x)
+	y1 = (1 - y)*(1 + y)
+
+	if( abs(x-y) .lt. 1D-5 ) then
+	  if( abs(x1) .lt. 1D-5 ) then
+c           x == y == 1
+	    f(1) = 1D0
+	    f(2) = 1D0
+          else
+c           x == y
+            x2 = x**2
+            Lx2 = log(x2)
+
+            f(1) = -2*(1-x2+x2*(2-x2)*Lx2)/x1**2
+            f(2) = -2*(1-x2+Lx2)/x1**2
+          endif
+	else
+	  if( abs(x1) .lt. 1D-5 ) then
+	    if( abs(y1) .lt. 1D-5 ) then
+c             x == y == 1
+	      f(1) = 1D0
+	      f(2) = 1D0
+	    else
+c             x == 1, y != 1
+              y2 = y**2
+              Ly2 = log(y2)
+
+	      f(1) = 2*y2*(y1+y2*Ly2)/y1**2
+	      f(2) = 2*(y1+y2*Ly2)/y1**2
+	    endif
+          else
+	    if( abs(y1) .lt. 1D-5 ) then
+c             x != 1, y == 1
+              x2 = x**2
+              Lx2 = log(x2)
+
+	      f(1) = 2*x2*(x1+x2*Lx2)/x1**2
+	      f(2) = 2*(x1+x2*Lx2)/x1**2
+	    else
+c             x != 1, y != 1
+              x2 = x**2
+              Lx2 = log(x2)
+              y2 = y**2
+              Ly2 = log(y2)
+
+* F8~(x,y) Eq. (70c)
+	      f(1) = -2-2*(x**4*Lx2/x1-y**4*Ly2/y1)/(x2-y2)
+* F9~(x,y) Eq. (70d)
+	      f(2) = -2*(x2*Lx2/x1-y2*Ly2/y1)/(x2-y2)
+	    endif
+
+          endif
+	endif
+
+	end
+
 ************************************************************************
 * loop functions for the gaugino-Higgsino contribution to lambda & gt
 * functions F~[57], f1..8 from arXiv:1407.4081v2 Eqs. (69)-(71)
@@ -280,4 +345,45 @@ c             x != 1, y != 1
 	f(2,3) = 1
 	f(3,3) = 1
 	f(4,3) = 1
+	end
+
+************************************************************************
+* loop functions lf(1,2,3) for top Yukawa threshold (EFT->MSSM) from
+* helper functions lf(4,5) for Xt conversion from hep-ph/0003246v2
+
+	subroutine htloopfun(lf, mf, at)
+	implicit none
+	RealType lf(5), mf, at
+
+#include "FH.h"
+
+	RealType x, x1
+
+	x = mf**2
+	x1 = 1/(1-x)**2
+	if( abs(x) .lt. 1D-5 ) then
+	  lf(1) = 1.3125D0
+	  lf(2) = 0D0
+	  lf(3) = 55/144D0
+	  lf(4) = 0D0
+	  lf(5) = -3/8D0
+	elseif( abs(1-x) .lt. 1D-5 ) then
+	  lf(1) = -.75D0
+	  lf(2) = -.75D0
+	  lf(3) = -(9+4*at)/36D0
+	  lf(4) = -5/36D0
+	  lf(5) = 0D0
+	else
+c         ht threshold g^2 coeff
+	  lf(1) = -3*(-7+4*x+3*x**2-2*x*(8-3*x)*log(x))*x1/16D0
+c         htp threshold g^2 coeff
+	  lf(2) =  -3*x*(-1+x-log(x))*x1/2D0
+c         ht threshold gy^2 coeff
+	  lf(3) = ((-55+32*at*mf-51*x)*(-1+x)
+     &      -2*x*(-72+16*at*mf+19*x)*log(x))*x1/144D0
+c         htp threshold gy^2 coeff
+	  lf(4) = x*(13*(1-x)+(9+4*x)*log(x))*x1/18D0
+c         ht threshold ht^2 coeff
+	  lf(5) = 3*(-1+4*x-3*x**2+2*x**2*log(x))*x1/8D0
+	endif
 	end

@@ -77,13 +77,13 @@
 	sublog = 0
 
 	if( looplevel .eq. 0 ) then
-	  Mh2 = vev**2*y(jlam)
-	  Mh2 = Mh2 - k1L*2*3/vev**2*
+	  Mh2 = vev2*y(jlam)
+	  Mh2 = Mh2 - k1L*2*3/vev2*
      &      Mf2(3,3)*(Mh2 - 4*Mf2(3,3))*Re(B0(Mh2,Mf2(3,3),Mf2(3,3)))
 	  res = Mh2
 	else
 	  subnonlog = 6*k1L*htMT2**2*(xOS2*(1 - xOS2/12D0))
-	  htMT2sub = 2*Mf2(tM2,3)/vev**2
+	  htMT2sub = 2*Mf2(tM2,3)/vev2
 	  sublog = 6*k1L*htMT2sub**2*llog
 	  if( looplevel .ge. 2 ) then
 	    sublog = sublog*( 1 +
@@ -93,7 +93,7 @@
 	    if( tM2 .eq. tM3 ) sublog = sublog +
      &        k2L*llog*htMT2sub**2*(-128*gsMT2 + 48*htMT2sub)
 	  endif
-	  res = vev**2*(y(jlam) - subnonlog - sublog)
+	  res = vev2*(y(jlam) - subnonlog - sublog)
 	endif
 
 	if( debuglevel .gt. 5 ) then

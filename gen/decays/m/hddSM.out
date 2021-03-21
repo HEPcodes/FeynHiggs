@@ -1,18 +1,18 @@
 {
- "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-abbr0h.F"\
+ "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-abbr0h.F"\
 , 
- "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-abbr0s.F\
+ "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-abbr0s.F\
 ", 
- "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-abbr1h.F\
+ "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-abbr1h.F\
 ", 
- "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-abbr1s.F\
+ "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-abbr1s.F\
 ", 
- "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-makefile\
+ "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-makefile\
 ", 
- "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-specs.h"\
-, "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-Squared\
+ "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-specs.h"\
+, "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-Squared\
 ME.F", 
- "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-v0.F", 
- "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-v1.F", "\
-/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-v1_Gen4.F"\
-, "/home/desy/FeynTools/feynhiggs1/gen/decays/f/hddSM-squaredme/hddSM-vars.h"}
+ "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-v0.F", 
+ "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-v1.F", "\
+/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-v1_Gen4.F"\
+, "/home/konda/FeynTools/feynhiggs/gen/decays/f/hddSM-squaredme/hddSM-vars.h"}

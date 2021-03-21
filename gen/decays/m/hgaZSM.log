@@ -7,7 +7,7 @@ args::shdw: Symbol args appears in multiple contexts {FeynArts`, Global`}
     ; definitions in context FeynArts`
      may shadow or be shadowed by other definitions.
 
-FeynArts 3.11 (11 Apr 2019)
+FeynArts 3.10 (3 Sep 2018)
 by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
 
 In[3]:= In[3]:= PrependTo[$ModelPath, "../model"];
@@ -89,7 +89,8 @@ In[49]:= In[49]:= final[expr_] := expr /.
     Sqrt[2] -> sqrt2,
     1/Sqrt[2] -> 1/sqrt2,
     re[h_[x__]] :> ToSymbol[h, "Re"][x],
-    im[h_[x__]] :> ToSymbol[h, "Im"][x] } /.
+    im[h_[x__]] :> ToSymbol[h, "Im"][x],
+    C0i[x__] /; !FreeQ[List[x], _MASf2|_MASf|_MSf2|_MSf] -> decczero C0i[x] } /.
   IndexDelta -> IDelta;
 In[50]:= In[50]:= In[50]:= toFortran[expr_] := expr /.
   d:dZ11H1fin|dZ12H1fin|dZ22H1fin|dTB1fin|dA1|dBn1|dBc1 :> d[zD];
@@ -298,26 +299,26 @@ decay["hnn"] := write[ CalcFeynAmp @
 *)
 In[108]:= In[108]:= In[108]:= _decay := Abort[];
 In[109]:= In[109]:= In[109]:= decay[tag];
-loading generic model file /home/desy/FeynTools/FeynArts-3.11/Models/Lorentz.\
+loading generic model file /home/konda/FeynTools/FeynArts-3.10/Models/Lorentz\
  
-      gen
+      .gen
 > $GenericMixing is OFF
 generic model {Lorentz} initialized
 
-loading classes model file /home/desy/FeynTools/feynhiggs1/gen/decays/sm.mod
-  loading classes model file /home/desy/FeynTools/FeynArts-3.11/Models/SMQCD.\
+loading classes model file /home/konda/FeynTools/feynhiggs/gen/decays/sm.mod
+  loading classes model file /home/konda/FeynTools/FeynArts-3.10/Models/SMQCD\
+ 
+      .mod
+    loading classes model file /home/konda/FeynTools/FeynArts-3.10/Models/SM.\
  
       mod
-    loading classes model file /home/desy/FeynTools/FeynArts-3.11/Models/SM.m\
- 
-      od
 
 $CKM = True
 
-  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/dAlfa\
+  loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/dAlfa\
  
       .mod
-  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/Yuk.m\
+  loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/Yuk.m\
  
       od
 > 49 particles (incl. antiparticles) in 18 classes
@@ -356,7 +357,7 @@ in total: 15 Generic, 33 Classes amplitudes
 
 preparing FORM code in\
  
-     /home/desy/FeynTools/feynhiggs1/gen/decays/fc-amp-1.frm
+     /home/konda/FeynTools/feynhiggs/gen/decays/fc-amp-1.frm
 running FORM... 
 ok
 
@@ -374,7 +375,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 2: 5 Generic, 9 Classes amplitudes
 in total: 7 Generic, 11 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 

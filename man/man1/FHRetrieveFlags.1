@@ -104,7 +104,9 @@ determines whether the O(tan beta^n) corrections shall be resummed:
 .br
 0: no resummation
 .br
-1: resummation
+1: 1L resummation
+.br
+2: 1L resummation for Higgs self-energies, 2L resummation for Higgs decays
 .TP
 .B tlCplxApprox = 0..6 (output)
 determines how the two-loop corrections are treated in the presence of
@@ -114,7 +116,7 @@ complex parameters (cMSSM):
 .br
 1: only the cMSSM a_s a_t corrections are used
 .br
-2: the cMSSM a_s a_t corrections are combined with the remaining 
+2: the cMSSM a_s a_t corrections are combined with the remaining
    corrections in the rMSSM
 .br
 3: the cMSSM a_s a_t corrections are combined with the remaining

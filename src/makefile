@@ -16,7 +16,7 @@ MAIN = SetFlags.o RetrieveFlags.o \
   SetSMPara.o RetrieveSMPara.o GetSMPara.o \
   SetPara.o RetrievePara.o RetrieveOSPara.o GetPara.o GetTLPara.o \
   SetFV.o RetrieveFV.o GetFV.o SetSLHA.o \
-  Para.o Sfermions.o dZHfin.o TBrepara.o SetDebug.o \
+  Para.o Sfermions.o dZHfin.o TBconv.o TBrepara.o SetDebug.o \
   SetExt.o GetSelf.o GetSelfgl.o HiggsCorr.o Uncertainties.o \
   Couplings.o SelectUZ.o SelectIpol.o \
   Constraints.o EWPO.o Flavour.o \
@@ -45,7 +45,12 @@ T134.o TF.o: T134.h
 
 UTIL = Gauss.o ODESolve.o EigenSf.o SfEigensystem.o \
   HEigensystem.o SEigensystem.o TakagiFactor.o SVD.o \
-  LU.o FindMinimum.o Interpolate.o extself.o
+  LU.o FindMinimum.o Interpolate.o extself.o \
+	ODESolveRK.o ODESolveStiff.o ODESolveODEPACK.o \
+	odepack.o odepack_sub1.o odepack_sub2.o
+
+ODESolveODEPACK.o: odepack.o odepack_sub1.o odepack_sub2.o
+ODESolve.o: ODESolveRK.o ODESolveStiff.o ODESolveODEPACK.o
 
 SLHA = SLHAClear.o SLHARead.o SLHAWrite.o \
   SLHAGetInfo.o SLHAPutInfo.o SLHACopyString.o \
@@ -84,9 +89,20 @@ ONELOOP = \
   dse_h0HH_gl.o dse_h0A0_gl.o dse_HHA0_gl.o \
   dse_G0G0_gl.o dse_h0G0_gl.o dse_HHG0_gl.o dse_A0G0_gl.o \
   dse_GmGp_gl.o dse_HmGp_gl.o \
-  dZ_h0h0_gl.o dZ_HHHH_gl.o dZ_h0HH_gl.o
+  dZ_h0h0_gl.o dZ_HHHH_gl.o dZ_h0HH_gl.o \
+	se_h0h0_exp.o se_HHHH_exp.o se_A0A0_exp.o se_HmHp_exp.o \
+	se_h0HH_exp.o se_h0A0_exp.o se_HHA0_exp.o \
+	se_G0G0_exp.o se_h0G0_exp.o se_HHG0_exp.o se_A0G0_exp.o \
+	se_GmGp_exp.o se_HmGp_exp.o se_ZZ_exp.o se_WW_exp.o \
+	td_h0_exp.o td_HH_exp.o td_A0_exp.o \
+	dse_h0h0_exp.o dse_HHHH_exp.o dse_A0A0_exp.o dse_HmHp_exp.o \
+	dse_h0HH_exp.o dse_h0A0_exp.o dse_HHA0_exp.o \
+	dse_G0G0_exp.o dse_h0G0_exp.o dse_HHG0_exp.o dse_A0G0_exp.o \
+	dse_GmGp_exp.o dse_HmGp_exp.o \
+	dse_ZZ_exp.o dse_WW_exp.o \
+  dZ_h0h0_exp.o dZ_HHHH_exp.o
 
-CalcSE.o: CalcSE_mfv.h CalcSE_nmfv.h
+CalcSE.o: CalcSE_mfv.h CalcSE_nmfv.h CalcSE_exp.h
 
 CalcSEgl.o: CalcSE_gl.h
 
@@ -111,13 +127,19 @@ TWOLOOP = $(TLPS) $(TLHR) $(TLSP) \
   DRbar2LShifts.o dZHfin2LShifts.o MTrepara.o
 
 EFT = Resum4H.o Resum4H1.o \
-  Resum4H23.o eftloopfun.o beta4H.o runStopPara.o \
-  TLthresholdasat.o TLthresholdatat.o \
+  Resum4H23.o Resum4H4.o \
+  beta4H.o beta4H4.o eftloopfun.o runStopPara.o \
+  TLthresholdasat.o TLthresholdatat.o TLthresholds4.o \
   PhiQuad.o spenceQuad.o
 
 PhiQuad.o: Phi.F
 
 spenceQuad.o: spence.F
+
+$(EFT): Resum4H.h
+
+Resum4H23.o: FOSubtract.h
+Resum4H4.o: FOSubtract4.h
 
 TLthresholdasat.o: Resum4H.h
 TLthresholdatat.o: TLthresholdatat.h Resum4H.h

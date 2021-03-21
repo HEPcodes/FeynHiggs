@@ -58,6 +58,8 @@ c	if( looplevel .lt. 2 ) return
 	if( .not. ( (looplevel .eq. 2) .and. (loglevel .eq. 3) ) )
      &    Warning("Uncertainty estimate only fully reliable for looplevel = 2 and loglevel = 3.")
 
+	if( loglevel .gt. 3 ) goto 999
+
 * a) variation of mudim from MT/2 to 2 MT
 
 	if( uncmask(1) .eq. 1 ) then

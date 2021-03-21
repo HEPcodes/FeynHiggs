@@ -92,12 +92,8 @@
 	DEFT "dy(igy) =", dy(igy) ENDL
 #endif
 
-	if( finfieldren .eq. 0 ) then
-	  dy(itb) = merge(-3/2D0*k1L*(yht2*(1 + ytb2))/y(itb),
-     &      0D0, t .gt. tmudim)
-	else
-	  dy(itb) = -3/2D0*k1L*(yht2*(1 + ytb2))/y(itb)
-	endif
+	dy(itb) = merge(-3/2D0*k1L*(yht2*(1 + ytb2))/y(itb),
+     &      0D0, t .gt. log(tanbscale))
 
 #ifdef DETAILED_DEBUG
 	DEFT "dy(itb) =", dy(itb) ENDL
@@ -138,6 +134,13 @@
 	  DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 	endif
+
+	dy(ivev) = 0D0
+
+#ifdef DETAILED_DEBUG
+	DHIGGS "dy(ivev) =" dy(ivev)  ENDL
+#endif
+
 	end
 
 
@@ -271,12 +274,8 @@
 	DEFT "dy(igy) =", dy(igy) ENDL
 #endif
 
-	if( finfieldren .eq. 0 ) then
-	  dy(itb) = merge(-3/2D0*k1L*(yht2*(1 + ytb2))/y(itb),
-     &      0D0, t .gt. tmudim)
-	else
-	  dy(itb) = -3/2D0*k1L*(yht2*(1 + ytb2))/y(itb)
-	endif
+	dy(itb) = merge(-3/2D0*k1L*(yht2*(1 + ytb2))/y(itb),
+     &      0D0, t .gt. log(tanbscale))
 
 #ifdef DETAILED_DEBUG
 	DEFT "dy(itb) =", dy(itb) ENDL
@@ -415,4 +414,10 @@
 	  DEFT "dy(ig3) =", dy(ig3) ENDL
 #endif
 	endif
+
+	dy(ivev) = 0D0
+
+#ifdef DETAILED_DEBUG
+	DHIGGS "dy(ivev) =" dy(ivev)  ENDL
+#endif
 	end

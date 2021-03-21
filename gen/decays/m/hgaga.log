@@ -7,7 +7,7 @@ args::shdw: Symbol args appears in multiple contexts {FeynArts`, Global`}
     ; definitions in context FeynArts`
      may shadow or be shadowed by other definitions.
 
-FeynArts 3.11 (11 Apr 2019)
+FeynArts 3.10 (3 Sep 2018)
 by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
 
 In[3]:= In[3]:= PrependTo[$ModelPath, "../model"];
@@ -89,7 +89,8 @@ In[49]:= In[49]:= final[expr_] := expr /.
     Sqrt[2] -> sqrt2,
     1/Sqrt[2] -> 1/sqrt2,
     re[h_[x__]] :> ToSymbol[h, "Re"][x],
-    im[h_[x__]] :> ToSymbol[h, "Im"][x] } /.
+    im[h_[x__]] :> ToSymbol[h, "Im"][x],
+    C0i[x__] /; !FreeQ[List[x], _MASf2|_MASf|_MSf2|_MSf] -> decczero C0i[x] } /.
   IndexDelta -> IDelta;
 In[50]:= In[50]:= In[50]:= toFortran[expr_] := expr /.
   d:dZ11H1fin|dZ12H1fin|dZ22H1fin|dTB1fin|dA1|dBn1|dBc1 :> d[zD];
@@ -298,49 +299,96 @@ decay["hnn"] := write[ CalcFeynAmp @
 *)
 In[108]:= In[108]:= In[108]:= _decay := Abort[];
 In[109]:= In[109]:= In[109]:= decay[tag];
-loading generic model file /home/desy/FeynTools/FeynArts-3.11/Models/Lorentz.\
+loading generic model file /home/konda/FeynTools/FeynArts-3.10/Models/Lorentz\
  
-      gen
+      .gen
 > $GenericMixing is OFF
 generic model {Lorentz} initialized
 
-loading classes model file /home/desy/FeynTools/feynhiggs1/gen/decays/mssm-hg\
+loading classes model file /home/konda/FeynTools/feynhiggs/gen/decays/mssm-hg\
  
       aga.mod
-  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/decays/nmfv.\
+  loading classes model file /home/konda/FeynTools/feynhiggs/gen/decays/nmfv.\
  
       mod
-    loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/MSS\
+    loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/MSS\
  
       MDecay.mod
       loading classes model file 
  
-     /home/desy/FeynTools/FeynArts-3.11/Models/MSSMQCD.mod
+     /home/konda/FeynTools/FeynArts-3.10/Models/MSSMQCD.mod
         loading classes model file 
  
-     /home/desy/FeynTools/FeynArts-3.11/Models/MSSM.mod
+     /home/konda/FeynTools/FeynArts-3.10/Models/MSSM.mod
       loading classes model file 
  
-     /home/desy/FeynTools/feynhiggs1/gen/Models/dMHiggs1.mod
+     /home/konda/FeynTools/feynhiggs/gen/Models/dMHiggs1.mod
       loading classes model file 
  
-     /home/desy/FeynTools/feynhiggs1/gen/Models/dZHiggs1.mod
-    loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/FV.\
+     /home/konda/FeynTools/feynhiggs/gen/Models/dZHiggs1.mod
+    loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/FV.\
  
       mod
 
 $FV = {12, 13, 14}
 
+    loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/Kf.\
+ 
+      mod
+    loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/Yuk\
+ 
+      .mod
+    loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/dAl\
+ 
+      fa.mod
+loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/HMixExt\
+ 
+      .mod
+> 74 particles (incl. antiparticles) in 28 classes
+> $CounterTerms are ON
+> 685 vertices
+> 67 counterterms of order 1
+classes model {mssm-hgaga, HMixExt} initialized
 
-ReplaceCoupling::warning: Coupling #212 still contains s2.
+inserting at level(s) {Generic, Classes}
+> Top. 1: 0 Generic, 0 Classes insertions
+in total: 0 Generic, 0 Classes insertions
+in total: 0 Generic, 0 Classes insertions
 
-ReplaceCoupling::warning: Coupling #213 still contains s2.
+creating amplitudes at level(s) {Generic, Classes}
+in total: 0 Generic, 0 Classes amplitudes
 
-ReplaceCoupling::warning: Coupling #214 still contains s2.
+inserting at level(s) {Generic, Classes}
+> Top. 1: 10 Generic, 36 Classes insertions
+> Top. 2: 2 Generic, 6 Classes insertions
+> Top. 3: 1 Generic, 2 Classes insertions
+> Top. 4: 1 Generic, 2 Classes insertions
+in total: 14 Generic, 46 Classes insertions
 
-General::stop: Further output of ReplaceCoupling::warning
-     will be suppressed during this calculation.
+inserting at level(s) {Generic, Classes}
+> Top. 1: 0 Generic, 0 Classes insertions
+in total: 0 Generic, 0 Classes insertions
 
-Out[109]= $Aborted
+creating amplitudes at level(s) {Generic, Classes}
+> Top. 1: 10 Generic, 36 Classes amplitudes
+> Top. 2: 2 Generic, 6 Classes amplitudes
+> Top. 3: 1 Generic, 2 Classes amplitudes
+> Top. 4: 1 Generic, 2 Classes amplitudes
+in total: 14 Generic, 46 Classes amplitudes
+
+preparing FORM code in\
+ 
+     /home/konda/FeynTools/feynhiggs/gen/decays/fc-amp-1.frm
+running FORM... 
+ok
+
+
+ColourME::nomat: Warning: No matrix elements to compute.
+
+RenConst::nodefs: Warning: no definitions for RenConst found.
+
+FindRenConst::nodef: 
+   Warning: {decczero} might be renormalization constants but have no
+     definition.
 
 In[110]:= In[110]:= 

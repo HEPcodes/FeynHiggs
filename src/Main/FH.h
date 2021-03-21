@@ -221,7 +221,7 @@
 	RealType MW, MW2, MZ, MZ2
 	RealType SW, SW2, CW, CW2
 	RealType GammaW, GammaZ
-	RealType invAlfa0, invAlfaMZ, GF, vev, DeltaAlfa
+	RealType invAlfa0, invAlfaMZ, GF, vev, vev2, DeltaAlfa
 	RealType EL0, Alfa0, ELGF, AlfaGF, ELMZ, AlfaMZ
 	RealType AlfasMT, AlfasMZ, AlfasMS, AlfasDb, AlfasMH, Alfas2L
 	RealType gsMT, gsMT2, gsMS, gsMS2, gs2L, gs2L2
@@ -236,7 +236,7 @@
      &    MW, MW2, MZ, MZ2,
      &    CW, CW2, SW, SW2,
      &    GammaW, GammaZ,
-     &    invAlfa0, invAlfaMZ, GF, vev, DeltaAlfa,
+     &    invAlfa0, invAlfaMZ, GF, vev, vev2, DeltaAlfa,
      &    EL0, Alfa0, ELGF, AlfaGF, ELMZ, AlfaMZ,
      &    AlfasMT, AlfasMZ, AlfasMS, AlfasDb, AlfasMH, Alfas2L,
      &    AlfasPlus, gsPlus, gsPlus2,
@@ -527,6 +527,18 @@
 
 	common /dZHfin/ dZHfin, dTBfin
 
+	integer tanbMSSM, tanbTHDM
+	parameter (tanbMSSM = 0, tanbTHDM = 1)
+
+	RealType tanbscaleInput, tanbscale
+	RealType TBfh
+	integer tanbdefInput, tanbdef
+
+	common /tbdefinition/
+     &    tanbscaleInput, tanbscale,
+     &    TBfh,
+     &    tanbdefInput, tanbdef
+
 	ComplexType dZH1fin(zRan,cpeRan), dZH1fingl(zRan,cpeRan)
 	equivalence (dZHfin(z0,1,1), dZH1fin)
 	equivalence (dZHfin(z0,1,2), dZH1fingl)
@@ -594,9 +606,11 @@
 	integer tlpsmask, tlzeromask(se2Rc), loglevelmt, tldegatat
 	integer forceSU2, drbarmode, drbarvars, fopoleeq
 	integer interpolateEFT, dmtlimim
-	integer finfieldren, tbdef
+	integer finfieldren, tbrepara
+	integer THDMTLasat, stiffodesolver, seexp, decczero
 	integer uncmask(8), drbartopmass
 	integer tM1, tM2, bM, bMps, bM1, gM
+	RealType MUEscale
 	character*256 extSE
 
 * debuglevel = 0: no debug messages
@@ -605,6 +619,7 @@
 *              3: display search for zeros
 
 	common /flags/
+     &    MUEscale,
      &    mssmpart, higgsmix, p2approx, looplevel, loglevel,
      &    runningMT, botResum, tlCplxApprox,
      &    mixmask, fv,
@@ -613,18 +628,21 @@
      &    tlpsmask, tlzeromask, loglevelmt, TLdegatat,
      &    forceSU2, drbarmode, drbarvars, fopoleeq,
      &    interpolateEFT, dmtlimim,
-     &    finfieldren, tbdef,
+     &    finfieldren, tbrepara,
+     &    THDMTLasat, stiffodesolver, seexp, decczero,
      &    uncmask, drbartopmass,
      &    tM1, tM2, bM, bMps, bM1, gM,
      &    extSE
 
 * variables for controlling new uncertainty determination
-	integer htMT3L, gMSSMthresholds, suppressedterms, tlalfas
 	RealType pdscale, matchsf
+	integer htMT3L, gMSSMthresholds, suppressedterms, tlalfas
+	integer HScouplings_valid
 
 	common /uncertainty/
+     &    pdscale, matchsf,
      &    htMT3L, gMSSMthresholds, suppressedterms, tlalfas,
-     &    pdscale, matchsf
+     &    HScouplings_valid
 
 
 	integer flags_valid, sm_valid, para_valid, sf_valid

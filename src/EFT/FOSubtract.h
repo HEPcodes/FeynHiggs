@@ -3,7 +3,7 @@
 * this file is part of FeynHiggs
 * last modified 10 Mar 17 th
 
-	htMT2sub = 2*Mf2(tM2,3)/vev**2
+	htMT2sub = 2*Mf2(tM2,3)/vev2
 
 	subnonlog1L = 0
 	sublog1L = 0
@@ -154,6 +154,16 @@
      &           9*MZ2**3*Re(B1q(MZ2,0D0,0D0,Mf2(tM2,3))))))
 	  lamOL = lamOL + dmz2/vev**2*C2B**2
 
+* shift from tree-level tanbMSSM -> tanbTHDM if input is tanbTHDM
+	  if( tanbdefInput .eq. tanbTHDM ) then
+	    lamOL = lamOL - k1L*(gOS2 + gyOS2)*CB2*S2B*C2B*(
+     &                        - 3/2D0*htMT2sub/SB2
+     &                               *xOS*(xOS + mueOS*(1/TB + TB))
+     &                               *db0msqmsu
+     &                        + 1/8D0*(3*gOS2*db0m2mue + gyOS2*db0m1mue)
+     &                               *(TB -1/TB))
+	  endif
+
 
 	  subnonlog1L = lamTree + lamOL
 
@@ -169,11 +179,12 @@
      &          (MW2**2*(68 - 62*S2B**2) +
      &            3*MZ2**2*(14 - S2B**2*(10 + 3*S2B**2)) -
      &            6*MZ2*(C2B*(14*MW2*C2B - 3*Mf2(tM2,3))) +
-     &            36*Mf2(tM2,3)**2)))/vev**2
+     &            36*Mf2(tM2,3)**2)))/vev2
 
-* take it to account that tanb is renormalized at Q = mudim
+* take it to account that in FO calc tanb is renormalized at Q = tanbscale
 	  sublog1L = sublog1L -
-     &      k1L*24*CB2*C2B*MZ2*Mf2(tM2,3)*(tmudim - tTop)/vev**4
+     &      k1L*24*CB2*C2B*MZ2*Mf2(tM2,3)
+     &            *(log(tanbscale) - tTop)/vev**4
 
 #ifdef DETAILED_DEBUG
 	  DEFT "sublog1L =", sublog1L ENDL
@@ -319,9 +330,9 @@ c if gsMS is used compensate for Karina terms calculatd with gsMT
 	      subnonlog2Lb = subnonlog2Lb - (k2L*htMT2sub**2*
      &         (64*gs2L2*SB2**2 -
      &          3*htMT2sub*
-     &           (6*(mueOS2 + mueOS*S2B*xOS + SB2*xOS2) +
-     &             3/4.D0*S2B**2 -
-     &             Pi*(sqrt3*(mueOS + 1/2.D0*(S2B*xOS))**2) +
+     &           (6*(mueOS2 + mueOS*C2B*xOS + SB2*xOS2) +
+     &             3/4.D0*C2B**2 -
+     &             Pi*(sqrt3*(mueOS + 1/2.D0*(C2B*xOS))**2) +
      &             SB2*(9*mueOS1 + 3*mueOS**4*log(mueOS2) -
      &                3*mueOS1**2*log(abs(mueOS1))))))/SB2**2
 	    else
@@ -339,8 +350,8 @@ c if gsMS is used compensate for Karina terms calculatd with gsMT
 	      subnonlog2Lb = subnonlog2Lb - (k2L*htMT2sub**2*
      &         (SB2*(64*gs2L2*SB2 -
      &             htMT2sub*(18 + 18*xOS2 - 3*Pi*(SB2*sqrt3))) +
-     &          htMT2sub*(3*Pi*(sqrt3*(CB2**2 + CB2*S2B*xOS)) -
-     &             3*(S2B*xOS*(6 - Pi*(SB2*sqrt3)) +
+     &          htMT2sub*(3*Pi*(sqrt3*(CB2**2 + CB2*C2B*xOS)) -
+     &             3*(C2B*xOS*(6 - Pi*(SB2*sqrt3)) +
      &                CB2*(6 + SB2*(3 - Pi*(sqrt3*(2 + xOS2))))))))
      &         /SB2**2
 	    endif
@@ -353,7 +364,7 @@ c if gsMS is used compensate for Karina terms calculatd with gsMT
      &        (64*gs2L2*SB2**2 -
      &          htMT2sub*(9/4.D0*S2B**2 +
      &             mueOS2*(CB2*(18 - 3*Pi*(CB2*sqrt3)) -
-     &                (3*Pi)/2.D0*(S2B**2*sqrt3) +
+     &                (3*Pi)/2.D0*(C2B**2*sqrt3) +
      &                SB2*(18 - 3*Pi*(SB2*sqrt3))) +
      &             SB2*(9*mueOS**4*log(mueOS2) +
      &                mueOS1*(27 - 9*mueOS1*log(abs(mueOS1)))))))/

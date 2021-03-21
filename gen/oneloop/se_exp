@@ -1,0 +1,194 @@
+#! /bin/bash -x
+shopt -s nullglob
+
+echo "$1"
+IFS='_.' eval 'set -- $1'
+test $# -lt 3 && {
+  cat << _EOF_
+Usage:  $0 se
+generates the renormalized 'se' 1L self-energy, where se is one of
+{{se,dse,dsediv}_{h0h0,HHHH,A0A0,HmHp,h0HH,h0A0,HHA0,G0G0,h0G0,HHG0,A0G0,GmGp,HmGp,WW,ZZ},td_{h0,HH,A0}}_{mfv,nmfv,gl}.
+The self-energies are expanded in the limit of heavy sfermions. All sfermion soft-breaking masses are assumed to be equal.
+_EOF_
+  exit 1
+}
+
+var="$1" proc="$2" mod="$3"
+name="$1_$2_$3"
+file="m/$mod/$proc/$name"
+mkdir -p "${file%/*}" || exit 1
+rm -f "$file"*
+
+math10.4 -run "
+	var = \"$var\";
+	proc = \"$proc\";
+	mod = \"$mod\";
+	name = \"$name\";
+	file = \"$file\";
+	deb = ${DEBUG:-0};
+" << \_EOF_ > "$file.log"
+AppendTo[$Echo, "stdout"];
+
+<< ../Packages/fafc.m;
+
+$DebugPre[1] = "#ifdef DETAILED_DEBUG\n";
+$DebugCmd[1] := "DHIGGS \"" <> name <> " " <> debtag <> " =\", `3` ENDL\n";
+$DebugPost[1] = "#endif\n";
+
+res = Get["m/mfv/" <> proc <> "/" <> var <> "_" <> proc <> "_mfv" <> ".m"];
+If[res == $Failed,
+   (Print["failed to load m/mfv/" <> proc <> "/" <> var <> "_" <> proc <> "_mfv" <> ".m"];
+    Quit[];)];
+
+res = ExpandSums[res /. SumOver[x_, ind_] /; !FreeQ[x, Cha1|Cha2|Cha3|Cha4|Neu1|Neu2|Neu3|Neu4]
+                         -> SumOverHold[x, ind]
+                ] /. SumOverHold -> SumOver;
+
+ComplexRepl = {USfC -> USf, AfC -> Af, KfC -> Kf, MUEC -> MUE, UChaC -> UCha, VChaC -> VCha};
+USfExp = {
+  {-(1/Sqrt[2]) + (C2B (3 - 8 SW2) xZ^2)/(24 Sqrt[
+         2] xt xT) + (C2B^2 (3 - 8 SW2)^2 xZ^4)/(1152 Sqrt[
+         2] xt^2 xT^2),
+    1/Sqrt[2] + (C2B (3 - 8 SW2) xZ^2)/(24 Sqrt[
+         2] xt xT) - (C2B^2 (3 - 8 SW2)^2 xZ^4)/(1152 Sqrt[
+         2] xt^2 xT^2)}, {1/
+      Sqrt[2] + (C2B (3 - 8 SW2) xZ^2)/(24 Sqrt[
+         2] xt xT) - (C2B^2 (3 - 8 SW2)^2 xZ^4)/(1152 Sqrt[
+         2] xt^2 xT^2),
+    1/Sqrt[2] + (C2B (-3 + 8 SW2) xZ^2)/(24 Sqrt[
+         2] xt xT) - (C2B^2 (3 - 8 SW2)^2 xZ^4)/(1152 Sqrt[
+         2] xt^2 xT^2)}};
+SFermionMixRepl = {
+   USf[a_, b_, tM1, 3] :> USfExp[[a, b]](* ,
+   USf[a_, b_, 1, _] :> IdentityMatrix[2][[a,b]],
+   USf[a_, b_, 2, _] :> {{0,1},{1,0}}[[a,b]],
+   USf[a_, b_, 3, _] :> IdentityMatrix[2][[a,b]],
+   USf[a_, b_, 4, _] :> {{0,1},{1,0}}[[a,b]] *)
+};
+MSfSign[t_, g_] := sign[1,MSf2[3,t,g]];
+MSf2explicit[s_, t_, g_, Iso_, Q_] := MSusy^2 + Mf2[t,g] + Iso (C2B MZ2)/2 +
+       1/2 (-1)^s MSfSign[t,g] Sqrt[(C2B MZ2 (Iso - 2 Q SW2))^2 + 4 Mf2[t,g] Xf[t,g]^2];
+SFermionMassRepl = {
+   (* stop squarks *)
+   MSf2[1, tM1, 3] -> MSusy^2 + Mf2[tM1,3] + (C2B MZ2)/4 -
+       Mf[tM1,3] Xt -
+       (C2B^2 MZ2^2 (1/2 - 4/3 SW2)^2)/(8 Mf[tM1,3] Xt),
+   MSf2[2, tM1, 3] -> MSusy^2 + Mf2[tM1,3] + (C2B MZ2)/4 +
+       Mf[tM1,3] Xt +
+       (C2B^2 MZ2^2 (1/2 - 4/3 SW2)^2)/(8 Mf[tM1,3] Xt),
+   (* up-type squarks *)
+   MSf2[1, tM1, g_] -> MSf2explicit[1, tM1, g, 1/2, 2/3],
+   MSf2[2, tM1, g_] -> MSf2explicit[2, tM1, g, 1/2, 2/3],
+   (* down-type squarks *)
+   MSf2[1, bM1, g_] -> MSf2explicit[1, bM1, g, -1/2, -1/3],
+   MSf2[2, bM1, g_] -> MSf2explicit[2, bM1, g, -1/2, -1/3],
+   (* charged sleptons *)
+   MSf2[1, 2, g_] -> MSf2explicit[1, 2, g, -1/2, -1],
+   MSf2[2, 2, g_] -> MSf2explicit[2, 2, g, -1/2, -1],
+   (* sneutrinos *)
+   MSf2[1, 1, g_] -> MSusy^2 + MZ2 C2B (1/2)
+};
+
+XfRepl = { Xf[2, g_]   -> Kf[g, g, 2  ]/Mf[2,   g] - MUE TB,
+           Xf[tM1, g_] -> Kf[g, g, tM1]/Mf[tM1, g] - MUE/TB,
+           Xf[3, g_]   -> Kf[g, g, 3  ]/Mf[3,   g] - MUE/TB,
+           Xf[4, g_]   -> Kf[g, g, 4  ]/Mf[4,   g] - MUE TB,
+           Xf[bM1, g_] -> Kf[g, g, bM1]/Mf[bM1, g] - MUE TB};
+
+ReplList = Flatten[{Divergence -> 0,
+                    CKMin -> IndexDelta, CKMinC -> IndexDelta,
+                    USf2[x__] -> USf[x] USfC[x], ComplexRepl,
+                    Kf[3, 3, tM1] -> At Mf[tM1, 3],
+                    At -> Xt + MUE/TB,
+                    SFermionMixRepl, SFermionMassRepl,
+                    XfRepl,
+                    xT -> MT/MSusy, xZ -> MZ/MSusy,
+                    Xt -> xt MSusy
+                   }];
+
+res = res //. ReplList;
+
+<< ../Packages/loopfunctions.m;
+
+ProcessLF[lf_] := Module[{plf},
+    plf = lf //. LFrepl /. EG4Pi -> 1;
+    plf = SeriesCoefficient[Series[plf, {del, 0, 0}], 0];
+    Normal @ Series[plf, {MSusy, Infinity, 2}]
+];
+
+res = res  /. { A0[x__]  /; !FreeQ[List[x], MSusy] :> ProcessLF @ A0[x],
+                B0i[x__] /; !FreeQ[List[x], MSusy] :> ProcessLF @ B0i[x]};
+
+res = Join[{res[[1]]},
+            Map[SUSYTrigSimplify @
+                SeriesCoefficient[Series[#, {MSusy, Infinity, 0}], 0] &, res[[2 ;; 4]], {2}],
+           {res[[5]]}];
+
+res = Collect[res, {xt}];
+
+Put[res, file <> ".m"];
+
+If[ res[[1,1]] =!= 0,
+  dZ = Coefficient[res[[1,1]], k2];
+  Put[{dMsq1[proc] -> dMsq, dZ1[proc] -> dZ}, file <> ".ct"] ];
+  dMsq = -res[[1,1]] /. k2 -> (Plus@@ (TheMass[#]^2 &)/@ process)/2;
+
+res = res /. ToOldBRules /. {
+  Mino3 -> "M_3", Mino3C -> "M_3C",
+  sign[1,a_] -> sign["1D0",a],
+  IndexDelta -> Delta,
+  Sqrt[2] -> sqrt2, 1/Sqrt[2] -> 1/sqrt2,
+  MT -> Mf[tM1, 3], MT2 -> Mf2[tM1, 3],
+  MB -> Mf[bM1, 3], MB2 -> Mf2[bM1, 3] };
+
+gen3only = {
+    SumOver[i_, 3] :> SumOver[i, gM, 3] /; !StringMatchQ[ToString[i], "Ind*"],
+    SumOver[i_, 6] :> SumOver[i, 1, 6, gM] };
+
+hh = OpenFortran[file <> ".F"];
+
+  WriteString[hh, "\
+* " <> name <> ".F\n\
+* generated " <> TimeStamp[] <> "\n\
+* this file is part of FeynHiggs\n\
+* please do not edit directly\n\n\
+#include \"externals.h\"\n\
+#include \"types.h\"\n\
+#include \"debug.h\"\n\n\n\
+\tsubroutine " <> ToFortran[name["se", k2]] <> "\n\
+\timplicit none\n\
+\tComplexType se\n" <>
+    VarDecl[{k2}, "RealType"] <> "\n\
+#include \"FH.h\"\n\
+#include \"looptools.h\"\n\n" <>
+    VarDecl[
+      Cases[res, SumOver[i_, _] :> i, Infinity] //Union,
+      "integer"] <>
+      VarDecl[{MSusy,xt}, "RealType"] <> "\n"];
+
+WriteExpr[hh, {
+  Hold[debtag = "k2"],
+  DebugLine[1, k2],
+  "MSusy" -> "sqrt(Re(MSS(tQ(3),3)*MSS(tU(3),3)))",
+  "xt" -> "Re(Xtgl)/MSusy",
+  Hold[debtag = " t/st"],
+  "se" -> res[[2]] /. gen3only,
+  "\tif( mssmpart .le. 1 ) return\n\n",
+  Hold[debtag = "+b/sb"],
+  RuleAdd["se", res[[3]]] /. gen3only,
+  "\tif( mssmpart .le. 2 ) return\n\n",
+  Hold[debtag = "+l/sl"],
+  RuleAdd["se", res[[4]]],
+  "\tif( mssmpart .le. 3 ) return\n\n",
+  Hold[debtag = " all "],
+  RuleAdd["se", res[[5]]]
+} //. {x__, _String, _Hold, RuleAdd[_, {0}]} :> {x}];
+
+WriteString[hh, "\tend\n"];
+Close[hh]
+
+_EOF_
+
+gzip "$file".log
+
+test -f "$file.F"

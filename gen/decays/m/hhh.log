@@ -7,7 +7,7 @@ args::shdw: Symbol args appears in multiple contexts {FeynArts`, Global`}
     ; definitions in context FeynArts`
      may shadow or be shadowed by other definitions.
 
-FeynArts 3.11 (11 Apr 2019)
+FeynArts 3.10 (3 Sep 2018)
 by Hagen Eck, Sepp Kueblbeck, and Thomas Hahn
 
 In[3]:= In[3]:= PrependTo[$ModelPath, "../model"];
@@ -89,7 +89,8 @@ In[49]:= In[49]:= final[expr_] := expr /.
     Sqrt[2] -> sqrt2,
     1/Sqrt[2] -> 1/sqrt2,
     re[h_[x__]] :> ToSymbol[h, "Re"][x],
-    im[h_[x__]] :> ToSymbol[h, "Im"][x] } /.
+    im[h_[x__]] :> ToSymbol[h, "Im"][x],
+    C0i[x__] /; !FreeQ[List[x], _MASf2|_MASf|_MSf2|_MSf] -> decczero C0i[x] } /.
   IndexDelta -> IDelta;
 In[50]:= In[50]:= In[50]:= toFortran[expr_] := expr /.
   d:dZ11H1fin|dZ12H1fin|dZ22H1fin|dTB1fin|dA1|dBn1|dBc1 :> d[zD];
@@ -298,38 +299,38 @@ decay["hnn"] := write[ CalcFeynAmp @
 *)
 In[108]:= In[108]:= In[108]:= _decay := Abort[];
 In[109]:= In[109]:= In[109]:= decay[tag];
-loading generic model file /home/desy/FeynTools/FeynArts-3.11/Models/Lorentz.\
+loading generic model file /home/konda/FeynTools/FeynArts-3.10/Models/Lorentz\
  
-      gen
+      .gen
 > $GenericMixing is OFF
 generic model {Lorentz} initialized
 
-loading classes model file /home/desy/FeynTools/feynhiggs1/gen/decays/mssm-hh\
+loading classes model file /home/konda/FeynTools/feynhiggs/gen/decays/mssm-hh\
  
       h.mod
-  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/MSSMD\
+  loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/MSSMD\
  
       ecay.mod
-    loading classes model file /home/desy/FeynTools/FeynArts-3.11/Models/MSSM\
+    loading classes model file /home/konda/FeynTools/FeynArts-3.10/Models/MSS\
  
-      QCD.mod
+      MQCD.mod
       loading classes model file 
  
-     /home/desy/FeynTools/FeynArts-3.11/Models/MSSM.mod
-    loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/dMH\
+     /home/konda/FeynTools/FeynArts-3.10/Models/MSSM.mod
+    loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/dMH\
  
       iggs1.mod
-    loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/dZH\
+    loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/dZH\
  
       iggs1.mod
-  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/Kf.mod
-  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/Yuk.m\
+  loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/Kf.mod
+  loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/Yuk.m\
  
       od
-  loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/dAlfa\
+  loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/dAlfa\
  
       .mod
-loading classes model file /home/desy/FeynTools/feynhiggs1/gen/Models/HMixExt\
+loading classes model file /home/konda/FeynTools/feynhiggs/gen/Models/HMixExt\
  
       .mod
 > 104 particles (incl. antiparticles) in 28 classes
@@ -357,7 +358,7 @@ in total: 1 Generic, 1 Classes amplitudes
 
 preparing FORM code in\
  
-     /home/desy/FeynTools/feynhiggs1/gen/decays/fc-amp-1.frm
+     /home/konda/FeynTools/feynhiggs/gen/decays/fc-amp-1.frm
 running FORM... 
 ok
 
@@ -397,7 +398,7 @@ in total: 29 Generic, 315 Classes amplitudes
 
 preparing FORM code in\
  
-     /home/desy/FeynTools/feynhiggs1/gen/decays/fc-amp-1.frm
+     /home/konda/FeynTools/feynhiggs/gen/decays/fc-amp-1.frm
 running FORM... 
 ok
 
@@ -405,8 +406,8 @@ ok
 ColourME::nomat: Warning: No matrix elements to compute.
 
 FindRenConst::nodef: 
-   Warning: {dA1, dBn1} might be renormalization constants but have no
-     definition.
+   Warning: {dA1, dBn1, decczero}
+     might be renormalization constants but have no definition.
 dMWsq1
 
 Excluding 0 Generic, 3 Classes, and 3 Particles fields
@@ -423,7 +424,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 2: 5 Generic, 21 Classes amplitudes
 in total: 7 Generic, 34 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -441,7 +442,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 1: 2 Generic, 8 Classes amplitudes
 in total: 2 Generic, 8 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -460,7 +461,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 1: 4 Generic, 20 Classes amplitudes
 in total: 4 Generic, 20 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -478,7 +479,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 1: 4 Generic, 20 Classes amplitudes
 in total: 4 Generic, 20 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -498,7 +499,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 2: 5 Generic, 30 Classes amplitudes
 in total: 7 Generic, 42 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -518,7 +519,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 2: 5 Generic, 30 Classes amplitudes
 in total: 7 Generic, 42 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -538,7 +539,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 2: 5 Generic, 12 Classes amplitudes
 in total: 7 Generic, 18 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -557,7 +558,7 @@ creating amplitudes at level(s) {Particles}
 > Top. 1: 8 Particles amplitudes
 in total: 8 Particles amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -577,7 +578,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 2: 5 Generic, 14 Classes amplitudes
 in total: 7 Generic, 20 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 
@@ -597,7 +598,7 @@ creating amplitudes at level(s) {Generic, Classes}
 > Top. 2: 5 Generic, 23 Classes amplitudes
 in total: 7 Generic, 34 Classes amplitudes
 
-preparing FORM code in /home/desy/FeynTools/feynhiggs1/gen/decays/fc-rc-1.frm
+preparing FORM code in /home/konda/FeynTools/feynhiggs/gen/decays/fc-rc-1.frm
 running FORM... 
 ok
 

@@ -90,9 +90,9 @@
 
 	data dbotResum /
      &    "???",
-     &    "non-resummed MB in 1L/2L corrections",
-     &    "resummed 1L-MB in 1L/2L corrections [recommended]",
-     &    "resummed 2L-MB in 1L/2L corrections",
+     &    "non-resummed MB in 1L/2L Higgs self-energy corrections",
+     &    "resummed 1L-MB in 1L/2L Higgs self-energy corrections",
+     &    "resummed 1L-MB in Higgs se, 2L-MB in decays [rec.]",
      &    "???" /
 
 	data dtlCplxApprox /

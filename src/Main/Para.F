@@ -400,6 +400,7 @@
 	suppressedterms = 0
 	htMT3L = 0
 	matchsf = 1D0
+	HScouplings_valid = 0
 
 	pdscale = Mf2(3,3)
 	AlfasMS = AlfasMT/
@@ -474,9 +475,15 @@ c tmp for TLps:
 	do t = 3, 4
 	  QSf2(t) = merge(Q2default, QSf(t)**2, QSf(t) .lt. 0)
 	  if( QSf2(t) .ne. 0 ) then
-	    call DRbartoOS(t, drbar, osshift(1,t))
-	    if( .not. btest(drbar, t) )
-     &        Error(error, "DRbartoOS transition failed")
+c for very large MSusy DRbartoOS transition may fail -> switched of for seexp > 1
+	    if( seexp .lt. 1 ) then
+	      call DRbartoOS(t, drbar, osshift(1,t))
+	      if( .not. btest(drbar, t) )
+     &          Error(error, "DRbartoOS transition failed")
+	    else
+	      Warning("using self-energies expanded for large MSusy -> switching of DRbar to OS conversion")
+	      osshift(:,t) = 0D0
+	    endif
 	  endif
 	enddo
 
@@ -555,7 +562,13 @@ c tmp for TLps:
 	dTBfin = 0
 	if( finfieldren .ne. 0 ) then
 	  call CalcdZHfin
+	  if( tbrepara .ne. 0 ) then
+	    call TBrepara
+	  endif
 	endif
+
+* set MUEscale to MSusy if MUEscale <= 0
+	if( MUEscale .le. 0D0 ) MUEscale = sqrt(MSS0(3,3)*MSS0(4,3))
 
 	if( error .eq. 0 ) para_valid = valid
 
@@ -644,6 +657,22 @@ c tmp for TLps:
 	  gs2L = gsMT
 	  gs2L2 = gsMT2
 	  Alfas2L = AlfasMT
+	endif
+
+	end
+
+************************************************************************
+* calc fieldren and tbrepara if needed
+
+	subroutine SetFieldRen
+
+#include "FH.h"
+
+	if( finfieldren .ne. 0 ) then
+	  call CalcdZHfin
+	  if( tbrepara .ne. 0 ) then
+	    call TBrepara
+	  endif
 	endif
 
 	end

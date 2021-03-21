@@ -35,10 +35,14 @@
      &    -1D0, -1D0, -1D0, -1D0,
      &    -1D0, -1D0, -1D0, -1D0)
 
-	call BeginPara(error, scalefactor_, MT_, TB_, M_3_)
+	call TBconv(TB_, MA0_, MHp_,
+     &              M3SQ_, M3SU_, At_,
+     &              MUE_, M_1_, M_2_,
+     &              scalefactor_, MT_)
+
+	call BeginPara(error, scalefactor_, MT_, TBfh, M_3_)
 
 	call HiggsMasses(error, MA0_, MHp_, 0D0)
-
 	call CharginoMasses(M_2_, MUE_)
 
 	call NeutralinoMasses(M_1_)
@@ -58,4 +62,3 @@
 
 	call EndPara(error)
 	end
-

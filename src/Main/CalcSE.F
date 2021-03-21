@@ -49,7 +49,11 @@ c#define FinCheck(div) div
 	  if( iand(key, SEKey(HmHp)) + iand(dkey, SEKey(HmHp)) .ne. 0 )
      &      call HpSEs_MTapprox
 	else if( fv .eq. 0 ) then
-	  call CalcSE_mfv(onshell, key, dkey)
+	  if( seexp .eq. 0 ) then
+	    call CalcSE_mfv(onshell, key, dkey)
+	  else
+	    call CalcSE_exp(onshell, key, dkey)
+	  endif
 	else
 	  call CalcSE_nmfv(onshell, key, dkey)
 	endif
@@ -197,7 +201,11 @@ c#define FinCheck(div) div
 	Divergence = FinCheck(seDiv)
 
 	if( fv .eq. 0 ) then
-	  call CalcRC_mfv
+	  if( seexp .eq. 0 ) then
+	    call CalcRC_mfv
+	  else
+	    call CalcRC_exp
+	  endif
 	else
 	  call CalcRC_nmfv
 	endif
@@ -254,3 +262,4 @@ c#define FinCheck(div) div
 
 #include "CalcSE_mfv.h"
 #include "CalcSE_nmfv.h"
+#include "CalcSE_exp.h"

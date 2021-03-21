@@ -168,7 +168,7 @@
 	  if( tlzeromask(asat) .eq. 0 )
      &      dMT = dMT + 1/(3*pi)*AlfasMT*(4 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
 	  if( tlzeromask(atat) .eq. 0 ) then
-	    alfat = 1/(4*pi)*2*Mf2(tM2,3)/vev**2
+	    alfat = 1/(4*pi)*2*Mf2(tM2,3)/vev2
 	    dMT = dMT - 1/(16*pi)*alfat*(8 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
 	  endif
 	  dMT = dMT*Mf(tM2,3)
@@ -209,30 +209,33 @@
 	  endif
 	endif
 
-	if( drbarvars .eq. 1 ) then
-	  bM1 = bM
+* calc shifts if stop parameters are DRbar or MUE is not defined at mudim
+	bM1 = bM
+	if( drbarvars .eq. 0 ) then
+	  call DRbar2LShifts(DRbarshift, mudim)
+	else
 	  call DRbar2LShifts(DRbarshift, QSf2(3))
-	  se2Rcat(h0h0,sDRb) = -C_h0h0(rBA, cpe(DRbarshift))
-	  se2Rcat(HHHH,sDRb) = -C_HHHH(rBA, cpe(DRbarshift))
-	  se2Rcat(h0HH,sDRb) = -C_h0HH(rBA, cpe(DRbarshift))
-	  se2Rcat(A0A0,sDRb) = -DRbarshift(A0A0)
-	  se2Rcat(h0A0,sDRb) = -C_h0A0(rBA, cpo(DRbarshift))
-	  se2Rcat(HHA0,sDRb) = -C_HHA0(rBA, cpo(DRbarshift))
-	  se2Rcat(HmHp,sDRb) = -DRbarshift(HmHp)
-	  if( debuglevel .ge. 4 ) then
-	    DSELF "DRbar shifts:" ENDL
-	    DSELF "DRbar scale =", QSf2(3) ENDL
-	    DSELF "shift(h0h0) =", se2Rcat(h0h0,sDRb) ENDL
-	    DSELF "shift(HHHH) =", se2Rcat(HHHH,sDRb) ENDL
-	    DSELF "shift(h0HH) =", se2Rcat(h0HH,sDRb) ENDL
-	    DSELF "shift(A0A0) =", se2Rcat(A0A0,sDRb) ENDL
-	    DSELF "shift(h0A0) =", se2Rcat(h0A0,sDRb) ENDL
-	    DSELF "shift(HHA0) =", se2Rcat(HHA0,sDRb) ENDL
-	    DSELF "shift(HmHp) =", se2Rcat(HmHp,sDRb) ENDL
-	  endif
+	endif
+	se2Rcat(h0h0,sDRb) = -C_h0h0(rBA, cpe(DRbarshift))
+	se2Rcat(HHHH,sDRb) = -C_HHHH(rBA, cpe(DRbarshift))
+	se2Rcat(h0HH,sDRb) = -C_h0HH(rBA, cpe(DRbarshift))
+	se2Rcat(A0A0,sDRb) = -DRbarshift(A0A0)
+	se2Rcat(h0A0,sDRb) = -C_h0A0(rBA, cpo(DRbarshift))
+	se2Rcat(HHA0,sDRb) = -C_HHA0(rBA, cpo(DRbarshift))
+	se2Rcat(HmHp,sDRb) = -DRbarshift(HmHp)
+	if( debuglevel .ge. 4 ) then
+	  DSELF "DRbar shifts:" ENDL
+	  DSELF "DRbar scale =", QSf2(3) ENDL
+	  DSELF "shift(h0h0) =", se2Rcat(h0h0,sDRb) ENDL
+	  DSELF "shift(HHHH) =", se2Rcat(HHHH,sDRb) ENDL
+	  DSELF "shift(h0HH) =", se2Rcat(h0HH,sDRb) ENDL
+	  DSELF "shift(A0A0) =", se2Rcat(A0A0,sDRb) ENDL
+	  DSELF "shift(h0A0) =", se2Rcat(h0A0,sDRb) ENDL
+	  DSELF "shift(HHA0) =", se2Rcat(HHA0,sDRb) ENDL
+	  DSELF "shift(HmHp) =", se2Rcat(HmHp,sDRb) ENDL
 	endif
 
-	if( ior(finfieldren, tbdef) .ne. 0 ) then
+	if( ior(finfieldren, tbrepara) .ne. 0 ) then
 	  call dZHfin2LShifts(dZHfinshift, mudim)
 	  se2Rcat(h0h0,sdZH) = C_h0h0(rBA, cpe(dZHfinshift))
 	  se2Rcat(HHHH,sdZH) = C_HHHH(rBA, cpe(dZHfinshift))

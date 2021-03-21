@@ -208,7 +208,7 @@
 	do t = 2, 4
 	  Nc = Ncolor(t)
 	  ty = t + (bBR - 4)*isB(t)
-	  fac = 2*Nc*Mf(t,3)*r(t)/(vev**2*SB*CB)
+	  fac = 2*Nc*Mf(t,3)*r(t)/(vev2*SB*CB)
 	  do s = 1, 2
 	    pre = fac*edmF(MSf2(s,ty,3)/MA02)*
      &        Im(MUE * USf(s,1,ty,3) * USfC(s,2,ty,3))

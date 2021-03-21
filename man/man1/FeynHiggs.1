@@ -5,17 +5,17 @@ FeynHiggs \- the FeynHiggs command-line frontend
 .SH SYNOPSIS
 FeynHiggs parameterfile [flags]
 .SH DESCRIPTION
-FeynHiggs calculates the masses and couplings of the Higgs sector in the 
-MSSM.  FeynHiggs provides a convenient way of invoking the subroutines 
-of the FeynHiggs library from the command line.  The input parameters are 
-read from a file and the output is displayed in a human-readable form on 
+FeynHiggs calculates the masses and couplings of the Higgs sector in the
+MSSM.  FeynHiggs provides a convenient way of invoking the subroutines
+of the FeynHiggs library from the command line.  The input parameters are
+read from a file and the output is displayed in a human-readable form on
 screen, but can be piped through a utility program to yield
 machine-readable data files, e.g. for plotting.
 .SH PARAMETER FILES
 The input parameters for FeynHiggs are read from a file.  FeynHiggs
-attempts to read an SLHA file first and if that fails, falls back onto 
-its native format (description follows below).  Output-wise, the default 
-is to write out an SLHA file (original filename + .fh-NNN) if the input 
+attempts to read an SLHA file first and if that fails, falls back onto
+its native format (description follows below).  Output-wise, the default
+is to write out an SLHA file (original filename + .fh-NNN) if the input
 was one, and write the output to screen otherwise.  Output style can be
 changed by appending #SLHA to the filename to force SLHA output, and
 #FH to force screen output.
@@ -34,7 +34,7 @@ to
 .I upper
 in steps of
 .I step.
-A "*" in front of 
+A "*" in front of
 .I step
 results in a logarithmic stepping, i.e.
 .I var
@@ -46,7 +46,7 @@ is to be interpreted as the number of steps, rather than the step size.
 .P
 Simple assignments of the form
 .I name lower
-(i.e. no loop) are just a special case of this since the items in 
+(i.e. no loop) are just a special case of this since the items in
 brackets may be omitted.
 .P
 .I var
@@ -287,9 +287,11 @@ determines whether the O(tan beta^n) corrections shall be resummed:
 .br
 0: no resummation
 .br
-1: resummation of MB
+1: 1L resummation
 .br
-.B recommended: 1
+2: 1L resummation for Higgs self-energies, 2L resummation for Higgs decays
+.br
+.B recommended: 2
 .TP
 #8: tlCplxApprox = 0..3
 determines how the two-loop corrections are treated in the presence of
@@ -331,32 +333,32 @@ should result in the following Higgs masses and mixings:
 .P
 and the following widths and branching ratios:
 .P
-| h0-b-b        =    6.018044E-03   0.825117       0.725474    
+| h0-b-b        =    6.018044E-03   0.825117       0.725474
 .br
 | HH-b-b        =    5.165486E-02   0.559950       2.526224E-03
 .br
 | A0-b-b        =    5.896187E-02   0.848461       2.280889E-03
 .br
-| Hp-t-b        =    6.224386E-02   0.781530    
+| Hp-t-b        =    6.224386E-02   0.781530
 .P
 Before the results, FeynHiggs lists the parameters of the calculation.
 .P
-With all the detailed information on widths and branching ratios, the 
-screen can become rather crowded.  To mask off this detailed output, 
+With all the detailed information on widths and branching ratios, the
+screen can become rather crowded.  To mask off this detailed output,
 type
 .P
   FeynHiggs ... | grep -v %
 .SH CONVERSION TO MACHINE-READABLE OUTPUT
-The output of FeynHiggs can be converted into a format more amenable to 
-further processing, e.g. plotting, by the "table" utility.  This works as 
+The output of FeynHiggs can be converted into a format more amenable to
+further processing, e.g. plotting, by the "table" utility.  This works as
 follows:
 .P
   FeynHiggs ... | table TB Mh0 > var.out
 .P
-var.out then contains two columns listing TB and Mh0 for each pass of 
+var.out then contains two columns listing TB and Mh0 for each pass of
 the loop.
 .SH SPS BENCHMARK SCENARIOS
-The SPS benchmark scenarios are predefined.  The input files can be 
+The SPS benchmark scenarios are predefined.  The input files can be
 found in example/SPS/.  To run a scenario, type e.g.
 .P
   FeynHiggs example/SPS/SPS1a.in
@@ -366,7 +368,7 @@ For more information on the SPS, see
   http://www.ippp.dur.ac.uk/~georg/sps/
 .SH LES HOUCHES BENCHMARK SCENARIOS
 The Les Houches benchmark scenarios for Higgs boson searches at hadron
-colliders are predefined.  The input files can be found in 
+colliders are predefined.  The input files can be found in
 example/LHBMS/.  To run a scenario, type e.g.
 .P
   FeynHiggs example/SPS/mhmax.in
@@ -374,16 +376,16 @@ example/LHBMS/.  To run a scenario, type e.g.
 For more information on the Les Houches Benchmark scenarios, see
 Eur. Phys. J. C26 (2003) 601 [hep-ph/0202167].
 .SH SUSY LES HOUCHES ACCORD DATA
-FeynHiggs can handle data files in the SUSY Les Houches Accord (SLHA) 
+FeynHiggs can handle data files in the SUSY Les Houches Accord (SLHA)
 format.  If the input file is in SLHA format, the results (masses,
-widths, etc.) are equally written out in SLHA format, to a file named as 
+widths, etc.) are equally written out in SLHA format, to a file named as
 the source file suffixed by ".fh".  For example:
 .P
   FeynHiggs example/SLHA/TestEXTPAR.spc
 .P
 produces example/SLHA/TestEXTPAR.spc.fh.  FeynHiggs can process SLHA
-files in which the input parameters are given (Block EXTPAR) as well as 
-files in which the masses and mixings is given (Blocks MASS, STOPMIX, 
+files in which the input parameters are given (Block EXTPAR) as well as
+files in which the masses and mixings is given (Blocks MASS, STOPMIX,
 etc.), where in the latter case the input parameters are reconstructed
 from the mass spectrum.  For instance, try:
 .P
@@ -393,16 +395,16 @@ For more information on the SLHA, see
 .P
   http://home.fnal.gov/~skands/slha/
 .SH ENVIRONMENT
-The FeynHiggs debug level can be set using the FHDEBUG environment 
+The FeynHiggs debug level can be set using the FHDEBUG environment
 variable, e.g.
 .P
   setenv FHDEBUG 1   (in tcsh)
 .br
   export FHDEBUG=1   (in bash)
 .P
-The pager spawned to view FeynHiggs output is taken from the environment 
-variable PAGER and defaults to "less" if PAGER is not set.  Should a 
-program abort occur with FeynHiggs, it is advisable to set PAGER to an 
+The pager spawned to view FeynHiggs output is taken from the environment
+variable PAGER and defaults to "less" if PAGER is not set.  Should a
+program abort occur with FeynHiggs, it is advisable to set PAGER to an
 empty string, e.g.
 .P
   setenv PAGER

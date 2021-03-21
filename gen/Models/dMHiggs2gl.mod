@@ -21,8 +21,8 @@ If[ TrueQ[$MHpInput],
   RenConst[dMHinsq1] := MassRC[S[5] @ 0] - MHin2 dZHiggs1gl[5,5];
   RenConst[dMHinsq2] := MassRC[S[5] @ 0, CTOrder -> 1] -
     MHin2 (dZHiggs2gl[5,5] + 1/4 dZHiggs1gl[5,5]^2) -
-    (dZHiggs1gl[5,6] dMHiggs1gl[6,5] + dZHiggs1gl[6,5] dMHiggs1gl[5,6])/2 -
-  (*  (dZHiggs1gl[5,6] + dZHiggs1gl[6,5]) (dMHiggs1gl[5,6] + dMHiggs1gl[6,5])/4 - *)
+    (dZHiggs1gl[6,5] dMHiggs1gl[5,6] + dZHiggs1gl[5,6] dMHiggs1gl[6,5])/2 -
+    (*(dZHiggs1gl[5,6] + dZHiggs1gl[6,5]) (dMHiggs1gl[5,6] + dMHiggs1gl[6,5])/4 -*)
     dZHiggs1gl[5,5] dMHinsq1,
 (* else *)
   RenConst[dMHinsq1] := MassRC[S[3] @ 0] - MHin2 dZHiggs1gl[3,3];
@@ -38,7 +38,7 @@ RenConst[dMHiggs2gl[1,1]] :=
   ivev (dTh02 + dTh01 dZW1)
 
 RenConst[dMHiggs2gl[1,2]] :=
-  MHin2 CB2 dTB2 + CB2 dMHinsq1 dTB1gl - MHin2 CB^3 SB dTB1gl^2 -
+  MHin2 CB2 dTB2gl + CB2 dMHinsq1 dTB1gl - MHin2 CB^3 SB dTB1gl^2 -
   ivev (dTHH2 + dTHH1 dZW1)
 
 RenConst[dMHiggs2gl[1,3]] := -ivev (dTA02 + dTA01 dZW1)
@@ -105,8 +105,8 @@ RenConst[dMHiggsZ2gl[3,3]] := dMHiggs2gl[3, 3] +
 RenConst[dMHiggsZ2gl[5,5]] := dMHiggs2gl[5,5] +
   MHin2 (dZHiggs2gl[5,5] + 1/4 dZHiggs1gl[5,5]^2) +
   dZHiggs1gl[5,5] dMHiggs1gl[5,5] +
-    (dZHiggs1gl[5,6] dMHiggs1gl[6,5] + dZHiggs1gl[6,5] dMHiggs1gl[5,6])/2
-  (* 1/4 (dZHiggs1gl[5,6] + dZHiggs1gl[6,5]) (dMHiggs1gl[5,6] + dMHiggs1gl[6,5]) *)
+  (dZHiggs1gl[6,5] dMHiggs1gl[5,6] + dZHiggs1gl[5,6] dMHiggs1gl[6,5])/2
+  (*1/4 (dZHiggs1gl[5,6] + dZHiggs1gl[6,5]) (dMHiggs1gl[5,6] + dMHiggs1gl[6,5])*)
 
 RenConst[_dMHiggsZ2gl] := 0
 

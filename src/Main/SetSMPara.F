@@ -97,6 +97,7 @@
 	GF = Para(GF_, GF_default)
 
 	vev = 1/sqrt(sqrt2*GF)
+	vev2 = vev**2
 	AlfaGF = sqrt2/pi*GF*MW2*SW2
 	ELGF = sqrt(4*pi*AlfaGF)
 	Alfa0 = 1/invAlfa0

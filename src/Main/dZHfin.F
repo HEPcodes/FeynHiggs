@@ -29,6 +29,7 @@
 * ren scale of FO calculation:
 #define renscale mudim
 * scale at which poles are determined (i.e., scale of dse):
+#define pdscale Mf2(3,3)
 
 #define dZ_t (/0D0, 0D0, lmu/)
 #define dZ_b (/lmu, 0D0, 0D0/)
@@ -50,7 +51,7 @@
 	DPARA "  22      t/st =", dZ(se22) ENDL
 #endif
 
-	dZ = dZ + 6*Mf2(bM1,3)/CB2*fac*(
+	dZ = dZ + 6*Mf2(bM,3)/CB2*fac*(
      &    dZ_b +
      &    dZ_Sb(4,3)*DB0_Sf(4,3) )
 
@@ -119,6 +120,9 @@ c	do g = 1, 2
 	dZ = dZ + fac*(2*MW2 + MZ2)*(-3 + 2*log(MHin2/pdscale))*
      &    (/SB2, -SB*CB, CB2/)
 
+c EWino and heavyH contributions are evaluated at pdscale and not,
+c renscale since SM contributions shift scale from renscale to pdscale
+
 #ifdef DETAILED_DEBUG
 	DPARA "dZ11H1fin + heavyH =", dZ(se11) ENDL
 	DPARA "  12      + heavyH =", dZ(se12) ENDL
@@ -127,8 +131,6 @@ c	do g = 1, 2
 
 c take only real part to prevent unwanted higher order terms relevant for low tanb and high MA
 	dZH1fin(zM,:) = Re(dZ)
-
-	if( tbdef .ne. 0 ) call TBrepara
 
 	dZHfin_valid = valid
 

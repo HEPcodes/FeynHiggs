@@ -842,7 +842,8 @@ c	MGlpTmSt2(2) = MGlpT2 - MStgl2(2)
 #include "FH.h"
 #include "looptools.h"
 
-	integer fail, l
+	RealType shift
+	integer try, fail, l
 	SfIdType id
 
 	SfIdType sfid(SfSlots)
@@ -855,23 +856,40 @@ c	MGlpTmSt2(2) = MGlpT2 - MStgl2(2)
 	external lnblnk
 #endif
 
+	RealType eps
+	parameter (eps = 1D-4)
+
 	bM1 = bG
 
 	Abgl = Af(4,3)
 	Xbgl = Abgl + MUETB(4)
 	Ybgl = Abgl - MUETB(3)
 
-	fail = 0
-	call EigenSf(fail, MSbgl2(1), USbgl(1,1),
-     &    DSSbgl2, MBgl, Xbgl, SORT_SF)
-	if( fail .ne. 0 ) then
-	  Error(error, "negative gaugeless sbottom mass squares")
-	  return
-	endif
+	shift = eps*sqrt(DSSbgl2(1)**2 + 4*MBgl2*Sq(Xbgl))
+	do try = 1, 10
+	  fail = 0
+	  call EigenSf(fail, MSbgl2(1), USbgl(1,1),
+     &      DSSbgl2, MBgl, Xbgl, SORT_SF)
+	  if( fail .ne. 0 ) then
+	    Error(error, "negative gaugeless sbottom mass squares")
+	    return
+	  endif
 
-	USbgl2(1,1) = Sq(USbgl(1,1))
+	  USbgl2(1,1) = Sq(USbgl(1,1))
+	  USbgl2(1,2) = Sq(USbgl(1,2))
+
+* preempt div-by-zero in DRbar2LShifts, TLhr, TLsp:
+	  if( abs(USbgl2(1,1) - USbgl2(1,2)) .gt. eps ) exit
+
+	  shift = shift + shift
+	  DSSbgl2(1) = DSSbgl2(1) + shift
+	  DSSbgl2(2) = DSSbgl2(2) - shift
+	enddo
+
+	if( debuglevel .gt. 4 )
+     &    DPARA "DSSbgl2(1) shifted =", DSSbgl2(1), DSSbgl2(2) ENDL
+
 	USbgl2(2,1) = Sq(USbgl(2,1))
-	USbgl2(1,2) = Sq(USbgl(1,2))
 	USbgl2(2,2) = Sq(USbgl(2,2))
 
 	UCSbgl(3,1) = USbgl(1,1)*USbglC(2,1)
