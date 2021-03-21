@@ -54,10 +54,12 @@
 	RealType BSS2(2), Deltab, MBy
 	RealType MUEr, MUEr2, Abr, Xtr, Atr, Ytr
 	RealType ht2, ht, hb2, hb
+	RealType MbSL2
 
 	common /TLps/ StopPara, SbotPara,
      &    pMT, pMT2, pMB, pMB2,
      &    pSB2, pCB2,
      &    BSS2, Deltab, MBy,
      &    MUEr, MUEr2, Atr, Xtr, Ytr, Abr,
-     &    ht2, ht, hb2, hb
+     &    ht2, ht, hb2, hb,
+     &    MbSL2

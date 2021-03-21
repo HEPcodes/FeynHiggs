@@ -90,8 +90,6 @@
 	if( Mf(tMT,3) .ne. Mf(tMT1,3) )
      &    call SfUpdate(error, X4(0,tMT1,3,3), SORT_SF)
 
-	seDiv = log(.5D0*Re(MSS2(3,3,tQ(3)) + MSS2(3,3,tU(3)))/mudim) - 1
-
 	Afgl(tM3) = Af(3,3)
 	Afgl(tMT) = Afgl(tM3)
 	Afgl(tMT1) = Afgl(tM3)
@@ -275,7 +273,7 @@
 	MDAlfa = AlfaGF
 
 	if( botResum .eq. 2 ) then
-	  db2Lqcd = AlfasDb/pi*Deltab2L_qcd(Qqcd)
+	  db2Lqcd = AlfasDb/pi*Deltab2L_qcd(Qqcd, nf)
 	  MDAlfas(3,3) = AlfasDb*(1 + db2Lqcd)
 	  db2Lew = AlfasQew/pi*Deltab2L_ew(Qew)
 	  MDAlfa(3,3) = AlfaGF*(1 + db2Lew)
@@ -308,7 +306,7 @@
 
 	  call SfUpdateLargeTB(fail)
 	  if( botResum .eq. 2 ) then
-	    db2Lqcd = AlfasDb/pi*Deltab2L_qcd(Qqcd)
+	    db2Lqcd = AlfasDb/pi*Deltab2L_qcd(Qqcd, nf)
 	    MDAlfas(3,3) = AlfasDb*(1 + db2Lqcd)
 	    db2Lew = AlfasQew/pi*Deltab2L_ew(Qew)
 	    MDAlfa(3,3) = AlfaGF*(1 + db2Lew)

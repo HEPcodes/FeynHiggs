@@ -164,10 +164,10 @@
 	if( tM2 .eq. tMT .or. tM2 .eq. tMT1 ) then
 	  dMT = 0
 	  if( tlzeromask(asat) .eq. 0 )
-     &      dMT = dMT + 4/(3*pi)*Alfas2L
+     &      dMT = dMT + 1/(3*pi)*Alfas2L*(4 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
 	  if( tlzeromask(atat) .eq. 0 ) then
 	    alfat = 1/(4*pi)*2*Mf2(tM2,3)/vev**2
-	    dMT = dMT - 1/(2*pi)*alfat
+	    dMT = dMT - 1/(16*pi)*alfat*(8 - 3*log(Mf2(tM2,3)/Mf2(3,3)))
 	  endif
 	  dMT = dMT*Mf(tM2,3)
 	  call MTrepara(dMTshift, dMT)

@@ -1,7 +1,7 @@
 * OutputSLHA.F
 * fill SLHA data structure from FeynHiggs inputs and outputs
 * this file is part of FeynHiggs
-* last modified 20 Jun 18 th
+* last modified 12 Sep 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -96,8 +96,8 @@
 	SPInfo_NLines = 0
 	DCInfo_NLines = 0
 	call SLHAPutInfo(BlockSPInfo(1), 1, "FeynHiggs")
-	call SLHAPutInfo(BlockSPInfo(1), 2, FHVERSION)
-	call SLHAPutInfo(BlockSPInfo(1), 2, "built on "//FHBUILDDATE)
+	call SLHAPutInfo(BlockSPInfo(1), 2,
+     &    FHVERSION//" built on "//FHBUILDDATE)
 
 *** bit 0: RetrievePara
 
@@ -349,7 +349,7 @@ R1	  Af_Q(t) = QSf(t)
 	    do g2 = 1, 3
 	      do g1 = 1, 3
 	        call SLHAAddDecay(slhadata, BR(H0FF(h,t,g1,g2)),
-     &            parent, 2, -ferm(t,g1), ferm(t,g2))
+     &            parent, 2, ferm(t,g1), -ferm(t,g2))
 	      enddo
 	    enddo
 	  enddo
@@ -357,7 +357,7 @@ R1	  Af_Q(t) = QSf(t)
 	  do c1 = 1, 2
 	    do c2 = 1, 2
 	      call SLHAAddDecay(slhadata, BR(H0ChaCha(h,c1,c2)),
-     &          parent, 2, -cha(c1), cha(c2))
+     &          parent, 2, cha(c1), -cha(c2))
 	    enddo
 	  enddo
 
@@ -385,7 +385,7 @@ R1	  Af_Q(t) = QSf(t)
 	      do s1 = 1, 2
 	        do s2 = 1, 2
 	          call SLHAAddDecay(slhadata, BR(H0SfSf(h,s1,s2,t,g)),
-     &              parent, 2, -sferm(s1,t,g), sferm(s2,t,g))
+     &              parent, 2, sferm(s1,t,g), -sferm(s2,t,g))
 	        enddo
 	      enddo
 	    enddo

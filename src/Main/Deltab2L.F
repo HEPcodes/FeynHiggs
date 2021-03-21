@@ -13,10 +13,9 @@
 #define MSt22 MSf2(2,3,3)
 
 #define MSd12 MSdL2(1,2)
-#define MSd22 MSdL2(1,3)
-#define MSb12 MSdL2(2,2)
+#define MSd22 MSdL2(2,2)
+#define MSb12 MSdL2(1,3)
 #define MSb22 MSdL2(2,3)
-
 
 	RealType function Deltab2L_ew(Q)
 	implicit none
@@ -488,8 +487,7 @@
 	Rew = C_F*Re(R22 + R42 + R52 + R72 + R82 + R92 +
      &    Rat2 + Rlt2 + RMSt12 + RMSt22)/TLdb(MSt12, MSt22, MUE2)
 	anomalous = -C_F
-	finscale = 2*log(Q**2/MGl2)
-c??? should be MUE2???
+	finscale = 2*log(Q/MGl2)	
 
 	Deltab2L_ew = Rew*fnorm + anomalous + finscale
 	end
@@ -497,14 +495,14 @@ c??? should be MUE2???
 
 ************************************************************************
 
-	RealType function Deltab2L_qcd(Q)
+	RealType function Deltab2L_qcd(Q, Nf)
 	implicit none
 	RealType Q
 
 #include "FH.h"
 
 	integer Nu, Nd, Nf
-	parameter (Nu = 2, Nd = 2, Nf = Nu + Nd + 1)
+	parameter (Nu = 2, Nd = 2)
 
 	ComplexType Ieps
 	parameter (Ieps = (1D0, 1D-15))
@@ -1077,7 +1075,7 @@ c??? should be MUE2???
 	RCtCF = RAlsCF2 + RMSb12 + RMSb22
 	RuCtTF = RuAlsTF2 + RuMGlTF2
 	RdCtTF = RdAlsTF2 + RdMGlTF2
-	RbCtTF = RbalsTF2 + RbMGlTF2
+	RbCtTF = RbAlsTF2 + RbMGlTF2
 	RtCtTF = RtAlsTF2 + RtMGlTF2
 
 	bo = -2*TLdb(MSb12, MSb22, MGl2)
@@ -1090,7 +1088,10 @@ c??? should be MUE2???
 
 	Rqcd = Re(C_A*RCA + C_F*RCF + T_F*(RTF + RTFb + RTFt))/bo
 	anomalous = -C_F/4D0
-	finscale = (11*C_A - 4*T_F*Nf)/12D0*log(Q**2/MGl2)
+	finscale = (11*C_A - 4*T_F*Nf)/12D0*log(Q/MGl2)
+	if (Nf .eq. 6) then
+	     finscale = finscale - T_F/3D0*log(MGl2/Mf2(3,3))	 
+	endif	      
 
 	Deltab2L_qcd = Rqcd*fnorm + anomalous + finscale
 	end
@@ -1098,28 +1099,36 @@ c??? should be MUE2???
 
 ************************************************************************
 
-	RealType function TLdb(x, y, z)
+
+	RealType function TLdb(m1, m2, m3)
 	implicit none
-	RealType x, y, z
+	RealType res
+	RealType m1, m2, m3
+	RealType m12, m23, m13
+	RealType diffeps
+	parameter (diffeps = 1D-12)
+	
+	m12 = m1 - m2
+	m23 = m2 - m3
+	m13 = m1 - m3
 
-	RealType n, d
-
-	n = 0
-	d = 1
-
-	if( x .ne. y ) then
-	  if( x*y .ne. 0 ) n = n + x*y*log(x/y)
-	  d = d*(x - y)
+	if( abs(m23) .lt. diffeps ) then
+	  if( abs(m13) .lt. diffeps ) then
+	    res = 1/(2D0*m1)
+	  else
+	    res = (-m13 + m1*log(m1/m3))/m13**2
+	  endif
+	else
+	  if( abs(m12) .lt. diffeps ) then
+	    res = (m23 - m3*log(m2/m3))/m23**2
+	  else if( abs(m13) .lt. diffeps ) then
+	    res = (-m23 + m2*log(m2/m3))/m23**2
+	  else
+	    res = -m3/(m13*m23)*log(m1/m3) + m2/(m12*m23)*log(m1/m2)
+	  endif
 	endif
-	if( x .ne. z ) then
-	  if( x*z .ne. 0 ) n = n + x*z*log(z/x)
-	  d = d*(x - z)
-	endif
-	if( y .ne. z ) then
-	  if( y*z .ne. 0 ) n = n + y*z*log(y/z)
-	  d = d*(y - z)
-	endif
 
-	TLdb = n/d
+	TLdb = res
+	
 	end
 

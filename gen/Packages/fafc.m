@@ -166,4 +166,3 @@ simp[x_] := (*Full*)Simplify[Factor[Collect[x, PaVeIntegral[__], simp2]]] /.
   plus -> Plus //. a_ b_. + a_ c_ -> a (b + c)
 
 simp2[x_] := (*Full*)Simplify[x] /. -1 + SBA2 -> -CBA2 /. Plus -> plus
-

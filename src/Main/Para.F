@@ -503,10 +503,8 @@ c tmp for TLps:
      &          osshift(2,4)
 	    else
 	      DSS2(1,4,3) = DSS2(1,4,3) + osshift(1,4)
-	      DSSbgl2(1) = DSSbgl2(1) + osshift(1,4)
 	    endif
 	    DSS2(2,4,3) = DSS2(2,4,3) + osshift(2,4)
-	    DSSbgl2(2) = DSSbgl2(2) + osshift(2,4)
 	    MSS2(3,3,tQ(4)) = MSS2(3,3,tQ(4)) + (osshift(1,4) + osshift(2,4))
 	    MSS(tQ(4),3) = sqrt(Re(MSS2(3,3,tQ(4))))
 	    MSS2(3,3,tU(4)) = MSS2(3,3,tU(4)) + osshift(2,4)

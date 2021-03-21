@@ -1,7 +1,7 @@
 * Output.F
 * run FH functions encoded in key and write output to unit
 * this file is part of FeynHiggs
-* last modified 29 Aug 18 th
+* last modified 12 Sep 18 th
 
 #include "externals.h"
 #include "types.h"
@@ -53,23 +53,23 @@
 
 	character*2 higgs(4)
 
-	character*7 fbar_f(2:4,3)
-	data fbar_f /
-     &    "E-e", "U-u", "D-d",
-     &    "Mu-mu", "C-c", "S-s",
-     &    "Tau-tau", "T-t", "B-b" /
+	character*7 f_F(2:4,3)
+	data f_F /
+     &    "e-E", "u-U", "d-D",
+     &    "mu-Mu", "c-C", "s-S",
+     &    "tau-Tau", "t-T", "b-B" /
 
-	character*10 fbar_fprime(2,3,3)
-	data fbar_fprime /
-     &    "N_e-e",     "U-d",
-     &    "N_mu-e",    "C-d",
-     &    "N_tau-e",   "T-d",
-     &    "N_e-mu",    "U-s",
-     &    "N_mu-mu",   "C-s",
-     &    "N_tau-mu",  "T-s",
-     &    "N_e-tau",   "U-b",
-     &    "N_mu-tau",  "C-b",
-     &    "N_tau-tau", "T-b" /
+	character*10 f_Fprime(2,3,3)
+	data f_Fprime /
+     &    "n_e-E",     "u-D",
+     &    "n_mu-E",    "c-D",
+     &    "n_tau-E",   "t-D",
+     &    "n_e-Mu",    "u-S",
+     &    "n_mu-Mu",   "c-S",
+     &    "n_tau-Mu",  "t-S",
+     &    "n_e-Tau",   "u-B",
+     &    "n_mu-Tau",  "c-B",
+     &    "n_tau-Tau", "t-B" /
 
 	character*6 f(4,3)
 	data f /
@@ -335,7 +335,7 @@
 142	format(SKIP/SKIP,"  Channel", T29,A, T44,A,:,T59,A,T74,A)
 143	format(SKIP, TAG, A,"-",A, GAMMA_BR_FMT)
 144	format(SKIP, TAG, A,"-",A,I1,"-",A,I1, GAMMA_BR_FMT)
-145	format(SKIP, TAG, A,"-S",A,I1,"-s",A,I1, GAMMA_BR_FMT)
+145	format(SKIP, TAG, A,"-",A,A,I1,"-",A,A,I1, GAMMA_BR_FMT)
 146	format(SKIP, TAG, A,"-",A,"-",A, GAMMA_BR_FMT)
 
 	do h = 1, 3
@@ -355,7 +355,7 @@
 	    do g = 1, 3
 	      if( Gamma(H0FF(h,t,g,g)) .ne. 0 .or.
      &            GammaSM(H0FF(h,t,g,g)) .ne. 0 )
-     &          write(unit,143) higgs(h), fbar_f(t,g),
+     &          write(unit,143) higgs(h), f_F(t,g),
      &            Gamma(H0FF(h,t,g,g)),
      &            BR(H0FF(h,t,g,g)),
      &            GammaSM(H0FF(h,t,g,g)),
@@ -366,7 +366,7 @@
 	  do c1 = 1, 2
 	    do c2 = 1, 2
 	      if( Gamma(H0ChaCha(h,c1,c2)) .ne. 0 )
-     &          write(unit,144) higgs(h), "Cha",c1, "cha",c2,
+     &          write(unit,144) higgs(h), "cha",c1, "Cha",c2,
      &            Gamma(H0ChaCha(h,c1,c2)),
      &            BR(H0ChaCha(h,c1,c2))
 	    enddo
@@ -394,8 +394,8 @@
 	        do s2 = 1, 2
 	          if( Gamma(H0SfSf(h,s1,s2,t,g)) .ne. 0 )
      &              write(unit,145) higgs(h),
-     &                Strip(f(t,g)),s1,
-     &                Strip(f(t,g)),s2,
+     &                "s",Strip(f(t,g)),s1,
+     &                "S",Strip(f(t,g)),s2,
      &                Gamma(H0SfSf(h,s1,s2,t,g)),
      &                BR(H0SfSf(h,s1,s2,t,g))
 	        enddo
@@ -418,7 +418,7 @@
 	  do g1 = 1, 3
 	    do p = 1, 2
 	      if( Gamma(HpFF(p,g1,g2)) .ne. 0 )
-     &          write(unit,143) "Hm", fbar_fprime(p,g1,g2),
+     &          write(unit,143) "Hp", f_Fprime(p,g1,g2),
      &            Gamma(HpFF(p,g1,g2)),
      &            BR(HpFF(p,g1,g2))
 	    enddo
@@ -428,7 +428,7 @@
 	do c2 = 1, 2
 	  do n1 = 1, 4
 	    if( Gamma(HpNeuCha(n1,c2)) .ne. 0 )
-     &        write(unit,144) "Hm", "neu",n1, "cha",c2,
+     &        write(unit,144) "Hp", "neu",n1, "Cha",c2,
      &          Gamma(HpNeuCha(n1,c2)),
      &          BR(HpNeuCha(n1,c2))
 	  enddo
@@ -436,7 +436,7 @@
 
 	do hv = 1, 3
 	  if( Gamma(HpHV(hv)) .ne. 0 )
-     &      write(unit,146) "Hm", higgs(hv), "W",
+     &      write(unit,146) "Hp", higgs(hv), "W",
      &        Gamma(HpHV(hv)),
      &        BR(HpHV(hv))
 	enddo
@@ -447,9 +447,9 @@
 	      do s1 = 1, 2
 	        do s2 = 1, 2
 	          if( Gamma(HpSfSf(s1,s2,t/2,g1,g2)) .ne. 0 )
-     &              write(unit,145) "Hm",
-     &                Strip(f(t-1,g1)),s1,
-     &                Strip(f(t,g2)),s2,
+     &              write(unit,145) "Hp",
+     &                "s",Strip(f(t-1,g1)),s1,
+     &                "S",Strip(f(t,g2)),s2,
      &                Gamma(HpSfSf(s1,s2,t/2,g1,g2)),
      &                BR(HpSfSf(s1,s2,t/2,g1,g2))
 	        enddo
@@ -461,7 +461,7 @@
 	write(unit,142) "Gamma", "BR"
 
 	write(unit,146) "t", "W", "b", Gamma(tBF(1)), BR(tBF(1))
-	write(unit,146) "t", "Hm", "b", Gamma(tBF(2)), BR(tBF(2))
+	write(unit,146) "t", "Hp", "b", Gamma(tBF(2)), BR(tBF(2))
 
 150	format(SKIP/SKIP,
      &    "------------------ SELECTED COUPLINGS ------------------")
@@ -471,7 +471,7 @@
 
 151	format(SKIP, TAG, A,":",A,"-",A, COUPLING_FMT)
 152	format(SKIP, TAG, A,":",A,"-",A,I1,"-",A,I1, COUPLING_FMT)
-153	format(SKIP, TAG, A,":",A,"-S",A,I1,"-s",A,I1, COUPLING_FMT)
+153	format(SKIP, TAG, A,":",A,"-",A,A,I1,"-",A,A,I1, COUPLING_FMT)
 154	format(SKIP, TAG, A,":",A,"-",A,"-",A, COUPLING_FMT)
 
 #define SMRatio(c,mssm,sm) Im(mssm(c))/Im(sm(c))
@@ -493,10 +493,10 @@
 	    do g = 3, 3
 	      if( LCoupling(H0FF(h,t,g,g)) .ne. 0 .or.
      &            RCoupling(H0FF(h,t,g,g)) .ne. 0 ) then
-	        write(unit,151) "CL", higgs(h), fbar_f(t,g),
+	        write(unit,151) "CL", higgs(h), f_F(t,g),
      &            LCoupling(H0FF(h,t,g,g)),
      &            SMRatio(H0FF(h,t,g,g), LCoupling, LCouplingSM)
-	        write(unit,151) "CR", higgs(h), fbar_f(t,g),
+	        write(unit,151) "CR", higgs(h), f_F(t,g),
      &            RCoupling(H0FF(h,t,g,g)),
      &            SMRatio(H0FF(h,t,g,g), RCoupling, RCouplingSM)
 	      endif
@@ -507,9 +507,9 @@
 	    do c2 = 1, 2
 	      if( LCoupling(H0ChaCha(h,c1,c2)) .ne. 0 .or.
      &            RCoupling(H0ChaCha(h,c1,c2)) .ne. 0 ) then
-	        write(unit,152) "CL", higgs(h), "Cha",c1, "cha",c2,
+	        write(unit,152) "CL", higgs(h), "cha",c1, "Cha",c2,
      &            LCoupling(H0ChaCha(h,c1,c2))
-	        write(unit,152) "CR", higgs(h), "Cha",c1, "cha",c2,
+	        write(unit,152) "CR", higgs(h), "cha",c1, "Cha",c2,
      &            RCoupling(H0ChaCha(h,c1,c2))
 	      endif
 	    enddo
@@ -539,8 +539,8 @@
 	        do s2 = s1, 2
 	          if( Coupling(H0SfSf(h,s1,s2,t,g)) .ne. 0 )
      &              write(unit,153) "C", higgs(h),
-     &                Strip(f(t,g)),s1,
-     &                Strip(f(t,g)),s2,
+     &                "s",Strip(f(t,g)),s1,
+     &                "S",Strip(f(t,g)),s2,
      &                Coupling(H0SfSf(h,s1,s2,t,g))
 	        enddo
 	      enddo
@@ -562,9 +562,9 @@
 	  do p = 1, 2
 	    if( LCoupling(HpFF(p,g,g)) .ne. 0 .or.
      &          RCoupling(HpFF(p,g,g)) .ne. 0 ) then
-	      write(unit,151) "CL", "Hp", fbar_fprime(p,g,g),
+	      write(unit,151) "CL", "Hp", f_Fprime(p,g,g),
      &          LCoupling(HpFF(p,g,g))
-	      write(unit,151) "CR", "Hp", fbar_fprime(p,g,g),
+	      write(unit,151) "CR", "Hp", f_Fprime(p,g,g),
      &          RCoupling(HpFF(p,g,g))
 	    endif
 	  enddo
@@ -574,9 +574,9 @@
 	  do n1 = 1, 4
 	    if( LCoupling(HpNeuCha(n1,c2)) .ne. 0 .or.
      &          RCoupling(HpNeuCha(n1,c2)) .ne. 0 ) then
-	      write(unit,152) "CL", "Hp", "neu",n1, "cha",c2,
+	      write(unit,152) "CL", "Hp", "neu",n1, "Cha",c2,
      &          LCoupling(HpNeuCha(n1,c2))
-	      write(unit,152) "CR", "Hp", "neu",n1, "cha",c2,
+	      write(unit,152) "CR", "Hp", "neu",n1, "Cha",c2,
      &          RCoupling(HpNeuCha(n1,c2))
 	    endif
 	  enddo
@@ -594,8 +594,8 @@
 	      do s2 = 1, 2
 	        if( Coupling(HpSfSf(s1,s2,t/2,g,g)) .ne. 0 )
      &            write(unit,153) "C", "Hp",
-     &              Strip(f(t-1,g)),s1,
-     &              Strip(f(t,g)),s2,
+     &              "s",Strip(f(t-1,g)),s1,
+     &              "S",Strip(f(t,g)),s2,
      &              Coupling(HpSfSf(s1,s2,t/2,g,g))
 	      enddo
 	    enddo

@@ -178,13 +178,6 @@
 	  if( tM2 .eq. tM3 ) then
 	    sublog2L = sublog2L +
      &        k2L*llog*htMT2sub**2*(-128*gsMT2 + 48*htMT2sub)
-	  else
-	    sublog2L = sublog2L - .5D0*k2L*
-     &        (htMT2sub**2*llog*
-     &          (-(96*gsMT2 - 18*htMT2sub)*llog))
-     &        + .5D0*k2L*
-     &         (htMT2sub**2*(tSUSYOS - log(Mf2(tM1,3)))*
-     &         (-(96*gsMT2 - 18*htMT2sub)*(tSUSYOS - log(Mf2(tM1,3)))))
 	  endif
 
 	  if( drbarvars .eq. 1 ) then

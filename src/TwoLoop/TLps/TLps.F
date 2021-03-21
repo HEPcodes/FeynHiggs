@@ -99,6 +99,8 @@
 	ht = sqrt2/vev*pMT/SB
 	ht2 = ht**2
 
+	MbSL2 = MSb0gl2(1)
+
 	call TLps_Sf(error, StopPara(1),
      &    DSS2(1,tM3,3), Mf(tS2,3), Xtc,
      &    "normal TB: MStop^2 negative")
@@ -148,7 +150,6 @@
 	parameter (TBlarge = 1000)
 
 	RealType DSS2large(2)
-	RealType MbSL2
 	integer try
 
 	RealType eps
